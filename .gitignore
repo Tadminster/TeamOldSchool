@@ -367,3 +367,11 @@ FodyWeavers.xsd
 Build/
 
 # 개인 설정
+/Game1/window.ini
+/Game1/imgui.ini
+/Game2/window.ini
+/Game2/imgui.ini
+/AssetImpoter/window.ini
+/AssetImpoter/imgui.ini
+/MapTool/window.ini
+/MapTool/imgui.ini
