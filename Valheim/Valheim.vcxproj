@@ -32,7 +32,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{62755bc4-7433-469b-8413-314f6ec62971}</ProjectGuid>
+    <ProjectGuid>{32757AFE-5B57-41A2-AED7-8F5E693563E3}</ProjectGuid>
     <RootNamespace>Game1</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>Valheim</ProjectName>
