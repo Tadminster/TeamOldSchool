@@ -366,14 +366,14 @@ FodyWeavers.xsd
 # 빌드 파일
 Build/
 
-# 개인 설정
-/Game1/window.ini
+# 개인 설정 
+/AssetImpoter/imgui.ini
+/AssetImpoter/window.ini
 /Game1/imgui.ini
-/Game2/window.ini
+/Game1/window.ini
 /Game2/imgui.ini
-/AssetImpoter/window.ini
-/AssetImpoter/imgui.ini
-/MapTool/window.ini
+/Game2/window.ini
+/Game1/imgui.ini
+/Game1/window.ini
 /MapTool/imgui.ini
-/AssetImpoter/imgui.ini
-/AssetImpoter/window.ini
+/MapTool/window.ini
