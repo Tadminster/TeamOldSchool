@@ -369,13 +369,6 @@ Build/
 # 개인 설정 
 /AssetImpoter/imgui.ini
 /AssetImpoter/window.ini
-/Game1/imgui.ini
-/Game1/window.ini
-/Game2/imgui.ini
-/Game2/window.ini
-/Game1/imgui.ini
-/Game1/window.ini
-/MapTool/imgui.ini
-/MapTool/window.ini
+
 /Game1/imgui.ini
 /Game1/window.ini
