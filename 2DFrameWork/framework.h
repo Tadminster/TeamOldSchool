@@ -122,7 +122,6 @@ extern Application App;//Extern Global
 #include "SlashTrail.h"
 #include "Rain.h"
 
-
 #include "Utility.h"
 
 //Singleton Macro
