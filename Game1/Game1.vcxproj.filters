@@ -3,39 +3,9 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Fruit.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Zamong.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene1.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadingScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Mutant.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Fruit.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Zamong.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene1.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="LoadingScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Mutant.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
