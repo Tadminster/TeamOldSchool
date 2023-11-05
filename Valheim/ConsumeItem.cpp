@@ -3,7 +3,6 @@
 #include "ConsumeItem.h"
 
 ConsumeItem::ConsumeItem()
-	: Item()
 {
 	itemDurationTime = 0;
 	itemHealthPoint = 0;

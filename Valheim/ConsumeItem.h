@@ -12,9 +12,9 @@ public:
 	ConsumeItem();
 	~ConsumeItem();
 
-	virtual void CreateItem() override;
-	virtual void EquipItem() override;
-	virtual void DestroyItem() override;
-	virtual void FixItem() override;
+	void CreateItem() override;
+	void EquipItem() override;
+	void DestroyItem() override;
+	void FixItem() override;
 };
 

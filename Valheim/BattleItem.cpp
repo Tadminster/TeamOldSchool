@@ -3,17 +3,18 @@
 #include "BattleItem.h"
 
 BattleItem::BattleItem()
-	: Item()
 {
 	
 }
 
 BattleItem::~BattleItem()
 {
+
 }
 
 void BattleItem::CreateItem()
 {
+
 }
 
 void BattleItem::EquipItem()

@@ -3,7 +3,6 @@
 #include "ResourceItem.h"
 
 ResourceItem::ResourceItem()
-	: Item()
 {
 }
 

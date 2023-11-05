@@ -3,7 +3,6 @@
 #include "LivingItem.h"
 
 LivingItem::LivingItem()
-	: Item()
 {
 
 }

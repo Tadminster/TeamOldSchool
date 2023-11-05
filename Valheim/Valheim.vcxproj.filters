@@ -12,7 +12,13 @@
     <ClInclude Include="Item.h">
       <Filter>ItemAndInventory</Filter>
     </ClInclude>
-    <ClInclude Include="BattleItem.h">
+    <ClInclude Include="Inventory.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUiPannel.h">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceItem.h">
       <Filter>ItemAndInventory</Filter>
     </ClInclude>
     <ClInclude Include="LivingItem.h">
@@ -21,17 +27,11 @@
     <ClInclude Include="ConsumeItem.h">
       <Filter>ItemAndInventory</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceItem.h">
-      <Filter>ItemAndInventory</Filter>
-    </ClInclude>
-    <ClInclude Include="Inventory.h">
+    <ClInclude Include="BattleItem.h">
       <Filter>ItemAndInventory</Filter>
     </ClInclude>
     <ClInclude Include="StoneAxe.h">
       <Filter>ItemAndInventory\BattleItemList</Filter>
-    </ClInclude>
-    <ClInclude Include="InventoryUiPannel.h">
-      <Filter>ItemAndInventory\ItemUIManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -39,7 +39,13 @@
     <ClCompile Include="InGame.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="BattleItem.cpp">
+    <ClCompile Include="Inventory.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUiPannel.cpp">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceItem.cpp">
       <Filter>ItemAndInventory</Filter>
     </ClCompile>
     <ClCompile Include="LivingItem.cpp">
@@ -48,17 +54,11 @@
     <ClCompile Include="ConsumeItem.cpp">
       <Filter>ItemAndInventory</Filter>
     </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>ItemAndInventory</Filter>
-    </ClCompile>
-    <ClCompile Include="ResourceItem.cpp">
+    <ClCompile Include="BattleItem.cpp">
       <Filter>ItemAndInventory</Filter>
     </ClCompile>
     <ClCompile Include="StoneAxe.cpp">
       <Filter>ItemAndInventory\BattleItemList</Filter>
-    </ClCompile>
-    <ClCompile Include="InventoryUiPannel.cpp">
-      <Filter>ItemAndInventory\ItemUIManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

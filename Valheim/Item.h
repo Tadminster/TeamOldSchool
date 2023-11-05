@@ -12,11 +12,10 @@ class Item : public Prototype
 {
 protected:
 	string    itemName;
-	int        itemWeight =0;
+	int        itemWeight;
 
 public:
-	Item();
-	~Item();
+	
 
 	virtual void CreateItem() = 0;
 	virtual void EquipItem() = 0;
