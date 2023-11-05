@@ -113,6 +113,7 @@ extern Application App;//Extern Global
 #include "Grid.h"
 #include "Camara.h"
 #include "Terrain.h"
+#include "TerrainPerlin.h"
 #include "Sky.h"
 #include "UI.h"
 #include "PostEffect.h"

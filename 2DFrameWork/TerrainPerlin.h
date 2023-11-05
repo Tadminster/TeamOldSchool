@@ -1,5 +1,5 @@
 #pragma once
-class Terrain : public Actor
+class TerrainPerlin : public Actor
 {
     struct InputDesc
     {
@@ -21,12 +21,12 @@ class Terrain : public Actor
 	static ID3D11ComputeShader* computeShader;
 
 public:
-	static Terrain* Create(string name = "Terrain");
+	static TerrainPerlin* Create(string name = "Terrain");
     static void		CreateStaticMember();
     static void		DeleteStaticMember();
 protected:
-	Terrain();
-	~Terrain();
+    TerrainPerlin();
+	~TerrainPerlin();
 private:
     //compute Input
     InputDesc* inputArray;

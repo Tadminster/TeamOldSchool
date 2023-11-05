@@ -33,6 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F0
 		Shaders\7.Rain.hlsl = Shaders\7.Rain.hlsl
 		Shaders\Common.hlsl = Shaders\Common.hlsl
 		Shaders\ComputeShader.hlsl = Shaders\ComputeShader.hlsl
+		Shaders\PerlinNoise.hlsl = Shaders\PerlinNoise.hlsl
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{23927E1A-8E5E-46EE-82F6-D613BF3CD580}"
@@ -49,8 +50,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MapTool", "MapTool\MapTool.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		Contents\Texture\bono.png = Contents\Texture\bono.png
-		Contents\Texture\bono3.png = Contents\Texture\bono3.png
 		Contents\GameObject\box.xml = Contents\GameObject\box.xml
 		Contents\GameObject\bullet.xml = Contents\GameObject\bullet.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
@@ -76,6 +75,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssetImpoter", "AssetImpote
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Valheim", "Valheim\Valheim.vcxproj", "{32757AFE-5B57-41A2-AED7-8F5E693563E3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C2138BC9-A195-455F-91A6-5FF469EB5E61} = {C2138BC9-A195-455F-91A6-5FF469EB5E61}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

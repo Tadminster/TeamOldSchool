@@ -139,7 +139,7 @@ void GameObject::SaveObject(Xml::XMLElement* This, Xml::XMLDocument* doc)
 		This->LinkEndChild(terrain);
 		//                   down cast
 		Terrain* TerrainOb = dynamic_cast<Terrain*>(this);
-		terrain->SetAttribute("garo", TerrainOb->garo);
+		terrain->SetAttribute("garo", TerrainOb->rowSize);
 		terrain->SetAttribute("size", TerrainOb->size);
 		terrain->SetAttribute("uvScale", TerrainOb->uvScale);
 	}
@@ -282,7 +282,7 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 	{
 		Terrain* TerrainOb = dynamic_cast<Terrain*>(this);
 		component = This->FirstChildElement("Terrain");
-		TerrainOb->garo = component->FloatAttribute("garo");
+		TerrainOb->rowSize = component->FloatAttribute("garo");
 		TerrainOb->size = component->FloatAttribute("size");
 		TerrainOb->uvScale = component->FloatAttribute("uvScale");
 	}
