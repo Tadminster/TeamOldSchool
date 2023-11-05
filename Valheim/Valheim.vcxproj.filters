@@ -6,9 +6,15 @@
     <ClInclude Include="Prototype.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="InGame.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="InGame.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
