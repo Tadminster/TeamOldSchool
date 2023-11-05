@@ -3,20 +3,30 @@
 
 InGame::InGame()
 {
-	tempCamera = Camera::Create();
-	tempCamera->LoadFile("Cam.xml");
-	Camera::main = tempCamera;
+    grid = Grid::Create("Grid");
 
-	grid = Grid::Create();
+    tempCamera = Camera::Create("tempCamera");
+    tempCamera->LoadFile("Cam.xml");
+    Camera::main = tempCamera;
 
-	skyBox = Sky::Create();
-	skyBox->LoadFile("Sky1.xml");
+    map = Terrain::Create("Terrain");
+    map->LoadFile("Terrain.xml");
+    map->CreateStructuredBuffer();
 
-	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
+    skyBox = Sky::Create();
+    skyBox->LoadFile("Sky1.xml");
+
+    //RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
+    //RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
+    //RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
+    //RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
+    //RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
+    //RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 }
 
 InGame::~InGame()
 {
+
 }
 
 void InGame::Init()
@@ -29,17 +39,25 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-	ImGui::Begin("Hierarchy");
-	{
-		skyBox->RenderHierarchy();
-	}
-	ImGui::End();
+    LIGHT->RenderDetail();
 
-	Camera::main->ControlMainCam();
-	Camera::main->Update();
-	grid->Update();
-	skyBox->Update();
+    Camera::main->ControlMainCam();
+    Camera::main->Update();
+
+    ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+    ImGui::Begin("Hierarchy");
+    {
+        grid->RenderHierarchy();
+        tempCamera->RenderHierarchy();
+        map->RenderHierarchy();
+        skyBox->RenderHierarchy();
+    }
+    ImGui::End();
+
+
+    grid->Update();
+    map->Update();
+    skyBox->Update();
 }
 
 void InGame::LateUpdate()
@@ -48,18 +66,29 @@ void InGame::LateUpdate()
 
 void InGame::PreRender()
 {
-	// À°¸éÃ¼ ÅØ½ºÃ³ ·»´õ¸µ¿ë ½¦ÀÌ´õ
-	// 1031 È¯°æ¸ÊÇÎ_2 20:00 Âü°í
-	skyBox->Render(RESOURCE->shaders.Load("0.Sky.hlsl"));  //¹è°æ
+    LIGHT->Set();
+
+    skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
+    map->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 }
 
 void InGame::Render()
 {
-	Camera::main->Set();
-	skyBox->Render();
-	grid->Render();
+    Camera::main->Set();
+    LIGHT->Set();
+
+    skyBox->Render();
+    grid->Render();
+    map->Render();
 }
 
 void InGame::ResizeScreen()
 {
+    Camera::main->viewport.x = 0.0f;
+    Camera::main->viewport.y = 0.0f;
+    Camera::main->viewport.width = App.GetWidth();
+    Camera::main->viewport.height = App.GetHeight();
+
+    Camera::main->width = App.GetWidth();
+    Camera::main->height = App.GetHeight();
 }
