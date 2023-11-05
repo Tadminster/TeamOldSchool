@@ -225,7 +225,8 @@ void Terrain::LoadHeightRaw(string file)
 		{
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 			float _y = Height[i * rowSize + j] * 0.1f;
-			vertices[i * rowSize + j].position.y = _y;
+			//vertices[i * rowSize + j].position.y = _y;
+			vertices[i * rowSize + j].position.y = 1;
 		}
 	}
 	mesh->UpdateBuffer();
@@ -258,7 +259,8 @@ void Terrain::LoadHeightImage(string file)
 			{
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.1f;
-				vertices[i * rowSize + j].position.y = _y;
+				//vertices[i * rowSize + j].position.y = _y;
+				vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
@@ -271,7 +273,8 @@ void Terrain::LoadHeightImage(string file)
 			{
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.01f;
-				vertices[i * rowSize + j].position.y = _y;
+				//vertices[i * rowSize + j].position.y = _y;
+				vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
