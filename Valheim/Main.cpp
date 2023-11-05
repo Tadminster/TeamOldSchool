@@ -1,11 +1,10 @@
 #include "stdafx.h"
+#include "InGame.h"
 #include "Main.h"
 
 Main::Main()
 {
    
-  
-
 }
 
 Main::~Main()
@@ -14,30 +13,38 @@ Main::~Main()
 
 void Main::Init()
 {
+    SCENE->AddScene("InGame", new InGame);
+    SCENE->ChangeScene("InGame");
 }
 
 void Main::Release()
 {
-   
+    SCENE->Release();
 }
 
 void Main::Update()
 {
+    SCENE->Update();
 }
 
 void Main::LateUpdate()
 {
+    SCENE->LateUpdate();
 }
+
 void Main::PreRender()
 {
+    SCENE->PreRender();
 }
 
 void Main::Render()
 {
+    SCENE->Render();
 }
 
 void Main::ResizeScreen()
 {
+    SCENE->ResizeScreen();
 }
 
 int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prevInstance, LPWSTR param, int command)
