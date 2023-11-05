@@ -3,19 +3,44 @@
   <ItemGroup>
     <ClInclude Include="Main.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Item.h" />
     <ClInclude Include="Prototype.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="InGame.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsumeItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceItem.h" />
+    <ClInclude Include="Inventory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Item.cpp" />
     <ClCompile Include="InGame.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="LivingItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsumeItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceItem.cpp" />
+    <ClCompile Include="Inventory.cpp">
+      <Filter>ItemAndInventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -24,6 +49,9 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory">
+      <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
