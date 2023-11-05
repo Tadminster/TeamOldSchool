@@ -6,15 +6,14 @@ enum class ItemState
 	OnInventory
 };
 
-class Item
+class Item : public Prototype
 {
 protected:
 	string    itemName;
-	int        itemNumber;
 	int        itemWeight;
 
 public:
-	Item(const string itemName, const int itemNumber);
+	Item();
 	~Item();
 
 	virtual void CreateItem() = 0;

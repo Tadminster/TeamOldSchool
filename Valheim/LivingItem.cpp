@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
-LivingItem::LivingItem(const string itemName, const int itemNumber)
+LivingItem::LivingItem()
+	: Item()
 {
 }
 

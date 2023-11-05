@@ -1,7 +1,9 @@
 #include "stdafx.h"
 
-ConsumeItem::ConsumeItem(const string itemName, const int itemNumber)
+ConsumeItem::ConsumeItem()
+	: Item()
 {
+
 }
 
 ConsumeItem::~ConsumeItem()

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
-ResourceItem::ResourceItem(const string itemName, const int itemNumber)
+ResourceItem::ResourceItem()
+	: Item()
 {
 }
 

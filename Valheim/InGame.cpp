@@ -11,6 +11,7 @@ InGame::InGame()
 
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
+
 }
 
 InGame::~InGame()

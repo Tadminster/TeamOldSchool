@@ -1,7 +1,9 @@
 #include "stdafx.h"
 
-BattleItem::BattleItem(const string itemName, const int itemNumber)
+BattleItem::BattleItem()
+	: Item()
 {
+	
 }
 
 BattleItem::~BattleItem()

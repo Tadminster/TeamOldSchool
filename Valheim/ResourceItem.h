@@ -1,11 +1,13 @@
 #pragma once
 class ResourceItem : public Item
 {
+private:
+
 protected:
 	
 
 public:
-	ResourceItem(const string itemName, const int itemNumber);
+	ResourceItem();
 	~ResourceItem();
 
 	virtual void CreateItem() override;

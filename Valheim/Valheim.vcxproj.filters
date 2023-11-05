@@ -21,8 +21,15 @@
     <ClInclude Include="ConsumeItem.h">
       <Filter>ItemAndInventory</Filter>
     </ClInclude>
-    <ClInclude Include="ResourceItem.h" />
-    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="ResourceItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneAxe.h">
+      <Filter>ItemAndInventory\BattleItemList</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -38,9 +45,14 @@
     <ClCompile Include="ConsumeItem.cpp">
       <Filter>ItemAndInventory</Filter>
     </ClCompile>
-    <ClCompile Include="ResourceItem.cpp" />
     <ClCompile Include="Inventory.cpp">
       <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneAxe.cpp">
+      <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +64,18 @@
     </Filter>
     <Filter Include="ItemAndInventory">
       <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\BattleItemList">
+      <UniqueIdentifier>{738591d3-71c6-4a96-9847-556cf20d0267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ConsumeItemList">
+      <UniqueIdentifier>{4574d7a5-40cd-4c0a-aa33-ec925f2aa3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\LivingItemList">
+      <UniqueIdentifier>{934d54a8-9841-4ecb-8166-567f7b25895a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ResourceItemList">
+      <UniqueIdentifier>{0714caec-5cb6-4ec7-9ecb-0e4313ace475}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

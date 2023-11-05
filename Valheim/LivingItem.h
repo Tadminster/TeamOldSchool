@@ -6,7 +6,7 @@ protected:
 
 
 public:
-	LivingItem(const string itemName, const int itemNumber);
+	LivingItem();
 	~LivingItem();
 
 	virtual void CreateItem() override;

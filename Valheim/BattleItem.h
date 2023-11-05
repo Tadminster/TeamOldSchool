@@ -1,12 +1,14 @@
 #pragma once
 class BattleItem : public Item
 {
+private:
+
 protected:
-	int      itemDurability;
+	int      itemDurability =0;
 	
 
 public:
-	BattleItem(const string itemName, const int itemNumber);
+	BattleItem();
 	~BattleItem();
 
 	virtual void CreateItem() override;

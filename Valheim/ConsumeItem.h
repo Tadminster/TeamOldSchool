@@ -1,13 +1,15 @@
 #pragma once
 class ConsumeItem : public Item
 {
+private:
+
 protected:
-	int      itemFreshness;
+	int      itemDurationTime;
 	int      itemHealthPoint;
 	int      itemStaminaPoint;
 
 public:
-	ConsumeItem(const string itemName, const int itemNumber);
+	ConsumeItem();
 	~ConsumeItem();
 
 	virtual void CreateItem() override;
