@@ -11,6 +11,8 @@ InGame::InGame()
 
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
+
+	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 }
 
 InGame::~InGame()
@@ -46,8 +48,9 @@ void InGame::LateUpdate()
 
 void InGame::PreRender()
 {
+	// À°¸éÃ¼ ÅØ½ºÃ³ ·»´õ¸µ¿ë ½¦ÀÌ´õ
+	// 1031 È¯°æ¸ÊÇÎ_2 20:00 Âü°í
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky.hlsl"));  //¹è°æ
-	//skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 }
 
 void InGame::Render()

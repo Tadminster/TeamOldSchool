@@ -5,7 +5,6 @@ private:
     Camera* tempCamera;
     Grid*   grid;
 	Sky*    skyBox;
-    Sky*    skyBox2;
 
 public:
     InGame();
