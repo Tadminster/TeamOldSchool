@@ -5,7 +5,7 @@ private:
 
 protected:
 	int      itemDurability =0;
-	
+	int      itemDamage = 0;
 
 public:
 	BattleItem();

@@ -4,9 +4,9 @@ class ConsumeItem : public Item
 private:
 
 protected:
-	int      itemDurationTime;
-	int      itemHealthPoint;
-	int      itemStaminaPoint;
+	int      itemDurationTime =0;
+	int      itemHealthPoint = 0;
+	int      itemStaminaPoint = 0;
 
 public:
 	ConsumeItem();

@@ -1,8 +1,11 @@
 #include "stdafx.h"
+#include "Item.h"
+#include "LivingItem.h"
 
 LivingItem::LivingItem()
 	: Item()
 {
+
 }
 
 LivingItem::~LivingItem()

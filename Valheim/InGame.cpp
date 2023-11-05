@@ -1,5 +1,12 @@
 #include "stdafx.h"
 #include "InGame.h"
+#include "Prototype.h"
+#include "Item.h"
+#include "BattleItem.h"
+#include "LivingItem.h"
+#include "ConsumeItem.h"
+#include "ResourceItem.h"
+#include "Inventory.h"
 
 InGame::InGame()
 {

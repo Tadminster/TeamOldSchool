@@ -1,4 +1,6 @@
 #pragma once
+#include "stdafx.h"
+#include "Prototype.h"
 
 enum class ItemState
 {
@@ -10,7 +12,7 @@ class Item : public Prototype
 {
 protected:
 	string    itemName;
-	int        itemWeight;
+	int        itemWeight =0;
 
 public:
 	Item();

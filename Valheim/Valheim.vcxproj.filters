@@ -30,6 +30,9 @@
     <ClInclude Include="StoneAxe.h">
       <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClInclude>
+    <ClInclude Include="InventoryUiPannel.h">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -54,6 +57,9 @@
     <ClCompile Include="StoneAxe.cpp">
       <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClCompile>
+    <ClCompile Include="InventoryUiPannel.cpp">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -76,6 +82,9 @@
     </Filter>
     <Filter Include="ItemAndInventory\ResourceItemList">
       <UniqueIdentifier>{0714caec-5cb6-4ec7-9ecb-0e4313ace475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ItemUIManager">
+      <UniqueIdentifier>{a5c33e5b-020e-4933-890a-f0c6fe50e8f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

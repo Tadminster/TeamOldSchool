@@ -30,7 +30,7 @@ public:
 struct RAIN_DESC
 {
     Vector3 velocity;
-    float padding;
+    float padding =0.0f;
 
     Vector3 range;
     float time;

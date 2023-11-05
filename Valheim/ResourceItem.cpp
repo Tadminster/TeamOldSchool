@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "Item.h"
+#include "ResourceItem.h"
 
 ResourceItem::ResourceItem()
 	: Item()

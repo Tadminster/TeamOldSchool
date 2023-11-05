@@ -1,4 +1,6 @@
 #include "stdafx.h"
+#include "Item.h"
+#include "Inventory.h"
 
 Inventory::Inventory()
 {
@@ -20,7 +22,4 @@ void Inventory::DeleteItem(string name)
 
 }
 
-void Inventory::DeleteItem(string name)
-{
 
-}

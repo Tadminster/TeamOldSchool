@@ -2,7 +2,8 @@
 class StoneAxe : public BattleItem
 {
 private:
-	
+	int     woodAdditionalDamage;
+
 protected:
 
 public:

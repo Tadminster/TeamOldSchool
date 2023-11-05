@@ -1,8 +1,10 @@
 #pragma once
 class LivingItem : public Item
 {
+private:
+
 protected:
-	int      itemDurability;
+	int      itemDurability = 0;
 
 
 public:
