@@ -117,8 +117,8 @@
     <ClInclude Include="Rain.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TerrainPerlin.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="PerlinNoise.hpp">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -255,9 +255,6 @@
     </ClCompile>
     <ClCompile Include="SlashTrail.cpp" />
     <ClCompile Include="Rain.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
-    <ClCompile Include="TerrainPerlin.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

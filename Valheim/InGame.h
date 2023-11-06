@@ -2,9 +2,11 @@
 class InGame : public Scene
 {
 private:
-    Camera*  tempCamera;
-    Grid*      grid;
-	Sky*       skyBox;
+    Camera*     tempCamera;
+    Grid*       grid;
+	Sky*        skyBox;
+    Terrain*    map;
+   
     UI*         playerInventory;
 
 public:

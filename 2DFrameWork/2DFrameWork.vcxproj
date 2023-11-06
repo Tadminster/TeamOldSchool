@@ -131,6 +131,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -176,6 +177,7 @@
     <ClInclude Include="Light.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="PerlinNoise.hpp" />
     <ClInclude Include="PostEffect.h" />
     <ClInclude Include="Rain.h" />
     <ClInclude Include="Random.h" />
@@ -189,7 +191,6 @@
     <ClInclude Include="SlashTrail.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Terrain.h" />
-    <ClInclude Include="TerrainPerlin.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
@@ -233,7 +234,6 @@
     <ClCompile Include="SlashTrail.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Terrain.cpp" />
-    <ClCompile Include="TerrainPerlin.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="Transform.cpp" />

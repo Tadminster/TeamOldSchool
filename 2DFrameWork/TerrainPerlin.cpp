@@ -3,7 +3,7 @@
 TerrainPerlin* TerrainPerlin::Create(string name)
 {
 	TerrainPerlin* map = new TerrainPerlin();
-	map->type = ObType::Terrain;
+	map->type = ObType::TerrainPerlin;
 	map->name = name;
 	map->rowSize = 257;
 	map->size = map->rowSize * map->rowSize;
@@ -346,7 +346,7 @@ void TerrainPerlin::RenderDetail()
 	Actor::RenderDetail();
 	if (ImGui::BeginTabBar("MyTabBar3"))
 	{
-		if (ImGui::BeginTabItem("TerrainPerlin"))
+		if (ImGui::BeginTabItem("Terrain"))
 		{
 			if (GUI->FileImGui("SaveAll", "SaveAll",
 				".xml", "../Contents/GameObject"))
