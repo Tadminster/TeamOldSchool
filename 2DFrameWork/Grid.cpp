@@ -4,6 +4,7 @@ Grid* Grid::Create(string name)
 {
 	Grid* temp = new Grid();
 	temp->LoadFile("Grid.xml");
+	temp->name = name;
 	temp->type = ObType::Actor;
 	return temp;
 }

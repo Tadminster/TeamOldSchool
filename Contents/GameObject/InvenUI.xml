@@ -1,0 +1,396 @@
+<Root Name="playerInventory" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.UI.hlsl"/>
+    <Material File="UI.mtl"/>
+    <Transform>
+        <Position X="-0.15000001" Y="0.15000001" Z="0"/>
+        <Scale X="0.40000001" Y="0.40000001" Z="0.40000001"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <UI PivotX="-1" PivotY="1"/>
+    <Children Size="32"/>
+    <Child0 Name="SecondsubSlot0" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.79999995" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="SecondsubSlot1" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.57499999" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child1>
+    <Child2 Name="SecondsubSlot2" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.34999999" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child2>
+    <Child3 Name="SecondsubSlot3" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.125" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child3>
+    <Child4 Name="SecondsubSlot4" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.099999994" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child4>
+    <Child5 Name="SecondsubSlot5" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.32499999" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child5>
+    <Child6 Name="SecondsubSlot6" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.55000001" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child6>
+    <Child7 Name="SecondsubSlot7" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.77499998" Y="-0.125" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child7>
+    <Child8 Name="ThirdsubSlot0" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child8>
+    <Child9 Name="ThirdsubSlot1" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child9>
+    <Child10 Name="ThirdsubSlot2" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child10>
+    <Child11 Name="ThirdsubSlot3" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child11>
+    <Child12 Name="ThirdsubSlot4" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child12>
+    <Child13 Name="ThirdsubSlot5" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child13>
+    <Child14 Name="ThirdsubSlot6" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child14>
+    <Child15 Name="ThirdsubSlot7" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child15>
+    <Child16 Name="mainSlot0" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.79999995" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="0.1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child16>
+    <Child17 Name="mainSlot1" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.57499999" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child17>
+    <Child18 Name="mainSlot2" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.34999999" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child18>
+    <Child19 Name="mainSlot3" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.125" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child19>
+    <Child20 Name="mainSlot4" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.099999994" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child20>
+    <Child21 Name="mainSlot5" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.32499999" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child21>
+    <Child22 Name="mainSlot6" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.55000001" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child22>
+    <Child23 Name="mainSlot7" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.77499998" Y="0.67500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child23>
+    <Child24 Name="subSlot0" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.79999995" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child24>
+    <Child25 Name="subSlot1" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.57499999" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child25>
+    <Child26 Name="subSlot2" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.34999999" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child26>
+    <Child27 Name="subSlot3" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="-0.125" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child27>
+    <Child28 Name="subSlot4" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.099999994" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child28>
+    <Child29 Name="subSlot5" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.32499999" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child29>
+    <Child30 Name="subSlot6" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.55000001" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child30>
+    <Child31 Name="subSlot7" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="mainSlot.mtl"/>
+        <Transform>
+            <Position X="0.77499998" Y="0.27500001" Z="0"/>
+            <Scale X="0.11" Y="0.17" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child31>
+</Root>
