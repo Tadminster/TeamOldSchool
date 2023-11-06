@@ -19,14 +19,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BattleItem.h" />
+    <ClInclude Include="ConsumeItem.h" />
     <ClInclude Include="InGame.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="InventoryUiPannel.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="LivingItem.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Prototype.h" />
+    <ClInclude Include="ResourceItem.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="StoneAxe.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BattleItem.cpp" />
+    <ClCompile Include="ConsumeItem.cpp" />
     <ClCompile Include="InGame.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="InventoryUiPannel.cpp" />
+    <ClCompile Include="LivingItem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ResourceItem.cpp" />
+    <ClCompile Include="StoneAxe.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

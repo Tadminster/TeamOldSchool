@@ -6,6 +6,8 @@ private:
     Grid*       grid;
 	Sky*        skyBox;
     Terrain*    map;
+   
+    UI*         playerInventory;
 
 public:
     InGame();
