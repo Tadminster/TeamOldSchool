@@ -9,6 +9,30 @@
     <ClInclude Include="InGame.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="InventoryUiPannel.h">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="LivingItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="ConsumeItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleItem.h">
+      <Filter>ItemAndInventory</Filter>
+    </ClInclude>
+    <ClInclude Include="StoneAxe.h">
+      <Filter>ItemAndInventory\BattleItemList</Filter>
+    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -17,6 +41,27 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="InGame.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="InventoryUiPannel.cpp">
+      <Filter>ItemAndInventory\ItemUIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="LivingItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsumeItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleItem.cpp">
+      <Filter>ItemAndInventory</Filter>
+    </ClCompile>
+    <ClCompile Include="StoneAxe.cpp">
+      <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>GameObject</Filter>
@@ -28,6 +73,24 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory">
+      <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\BattleItemList">
+      <UniqueIdentifier>{738591d3-71c6-4a96-9847-556cf20d0267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ConsumeItemList">
+      <UniqueIdentifier>{4574d7a5-40cd-4c0a-aa33-ec925f2aa3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\LivingItemList">
+      <UniqueIdentifier>{934d54a8-9841-4ecb-8166-567f7b25895a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ResourceItemList">
+      <UniqueIdentifier>{0714caec-5cb6-4ec7-9ecb-0e4313ace475}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ItemAndInventory\ItemUIManager">
+      <UniqueIdentifier>{a5c33e5b-020e-4933-890a-f0c6fe50e8f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

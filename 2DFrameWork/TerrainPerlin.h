@@ -1,5 +1,5 @@
 #pragma once
-class Terrain : public Actor
+class TerrainPerlin : public Actor
 {
     struct InputDesc
     {
@@ -18,15 +18,15 @@ class Terrain : public Actor
         Vector3     direction;
         float       padding;
     };
-	static ID3D11ComputeShader* computeShader;
+    static ID3D11ComputeShader* computeShader;
 
 public:
-	static Terrain* Create(string name = "Terrain");
+    static TerrainPerlin* Create(string name = "Terrain");
     static void		CreateStaticMember();
     static void		DeleteStaticMember();
 protected:
-	Terrain();
-	~Terrain();
+    TerrainPerlin();
+    ~TerrainPerlin();
 private:
     //compute Input
     InputDesc* inputArray;
@@ -42,20 +42,19 @@ private:
     RayDesc                     ray;
     ID3D11Buffer* rayBuffer;
 public:
-	int				size;
-	float			uvScale;
-	int				rowSize;
+    int				size;
+    float			uvScale;
+    int				rowSize;
     //CS            컴퓨트 쉐이더로 피킹할때만 만들기
     void            CreateStructuredBuffer();
     void            DeleteStructuredBuffer();
 
-	void			CreateMesh(int   rowSize);
-	void			LoadHeightRaw(string file);
-	void			LoadHeightImage(string file);
-    void            PerlinNoiseHeightMap();
-	void			UpdateStructuredBuffer();
-	void			UpdateNormal();
-	void	        RenderDetail();
+    void			CreateMesh(int   rowSize);
+    void			LoadHeightRaw(string file);
+    void			LoadHeightImage(string file);
+    void			UpdateStructuredBuffer();
+    void			UpdateNormal();
+    void	        RenderDetail();
 
     bool            ComPutePicking(Ray WRay, OUT Vector3& HitPoint);
 };

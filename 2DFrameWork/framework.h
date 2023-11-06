@@ -113,6 +113,7 @@ extern Application App;//Extern Global
 #include "Grid.h"
 #include "Camara.h"
 #include "Terrain.h"
+#include "TerrainPerlin.h"
 #include "Sky.h"
 #include "UI.h"
 #include "PostEffect.h"
@@ -122,8 +123,9 @@ extern Application App;//Extern Global
 #include "SlashTrail.h"
 #include "Rain.h"
 
-
 #include "Utility.h"
+
+#include "PerlinNoise.hpp"
 
 //Singleton Macro
 #define	D3D			Direct3D11::GetInstance()
@@ -142,3 +144,4 @@ extern Application App;//Extern Global
 #define BLEND		BlendState::GetInstance()
 #define RESOURCE	ResourceManager::GetInstance()
 #define RASTER	    RasterState::GetInstance()
+#define PERLIN		PerlinNoise::GetInstance()

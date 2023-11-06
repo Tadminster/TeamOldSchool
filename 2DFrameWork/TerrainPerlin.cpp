@@ -1,9 +1,9 @@
 #include "framework.h"
 
-Terrain* Terrain::Create(string name)
+TerrainPerlin* TerrainPerlin::Create(string name)
 {
-	Terrain* map = new Terrain();
-	map->type = ObType::Terrain;
+	TerrainPerlin* map = new TerrainPerlin();
+	map->type = ObType::TerrainPerlin;
 	map->name = name;
 	map->rowSize = 257;
 	map->size = map->rowSize * map->rowSize;
@@ -11,10 +11,10 @@ Terrain* Terrain::Create(string name)
 	map->CreateMesh(map->rowSize);
 	map->shader = RESOURCE->shaders.Load("5.Cube.hlsl");
 	map->material = new Material();
-    return map;
+	return map;
 }
-ID3D11ComputeShader* Terrain::computeShader = nullptr;
-void Terrain::CreateStaticMember()
+ID3D11ComputeShader* TerrainPerlin::computeShader = nullptr;
+void TerrainPerlin::CreateStaticMember()
 {
 	ID3D10Blob* CsBlob;
 
@@ -30,21 +30,21 @@ void Terrain::CreateStaticMember()
 		nullptr, &computeShader);
 }
 
-void Terrain::DeleteStaticMember()
+void TerrainPerlin::DeleteStaticMember()
 {
 	SafeRelease(computeShader);
 }
 
-Terrain::Terrain()
+TerrainPerlin::TerrainPerlin()
 {
 }
 
-Terrain::~Terrain()
+TerrainPerlin::~TerrainPerlin()
 {
 }
 
 
-void Terrain::CreateStructuredBuffer()
+void TerrainPerlin::CreateStructuredBuffer()
 {
 	int triSize = (rowSize - 1) * (rowSize - 1) * 2;
 	//삼각형 단위
@@ -141,7 +141,7 @@ void Terrain::CreateStructuredBuffer()
 	}
 }
 
-void Terrain::DeleteStructuredBuffer()
+void TerrainPerlin::DeleteStructuredBuffer()
 {
 	SafeRelease(input);
 	SafeRelease(srv);
@@ -153,7 +153,7 @@ void Terrain::DeleteStructuredBuffer()
 	SafeDeleteArray(outputArray);
 }
 
-void Terrain::CreateMesh(int   rowSize)
+void TerrainPerlin::CreateMesh(int   rowSize)
 {
 	this->rowSize = rowSize;
 	UINT vertexCount = rowSize * rowSize;
@@ -198,7 +198,7 @@ void Terrain::CreateMesh(int   rowSize)
 
 }
 
-void Terrain::LoadHeightRaw(string file)
+void TerrainPerlin::LoadHeightRaw(string file)
 {
 	file = "../Assets/" + file;
 	FILE* fp;
@@ -226,14 +226,13 @@ void Terrain::LoadHeightRaw(string file)
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 			float _y = Height[i * rowSize + j] * 0.1f;
 			vertices[i * rowSize + j].position.y = _y;
-			//vertices[i * rowSize + j].position.y = 1;
 		}
 	}
 	mesh->UpdateBuffer();
 	delete[] Height;
 }
 
-void Terrain::LoadHeightImage(string file)
+void TerrainPerlin::LoadHeightImage(string file)
 {
 	ScratchImage* img = Texture::GetPixelData(file);
 
@@ -260,7 +259,6 @@ void Terrain::LoadHeightImage(string file)
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.1f;
 				vertices[i * rowSize + j].position.y = _y;
-				//vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
@@ -274,7 +272,6 @@ void Terrain::LoadHeightImage(string file)
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.01f;
 				vertices[i * rowSize + j].position.y = _y;
-				//vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
@@ -288,57 +285,13 @@ void Terrain::LoadHeightImage(string file)
 	mesh->UpdateBuffer();
 }
 
-void Terrain::PerlinNoiseHeightMap()
-{	
-	SafeReset(mesh);
-	size = rowSize * rowSize;
-	CreateMesh(rowSize);
-
-	double baseFrequency = 5.0;                   // 기본 주파수
-	double frequencyScale = 1.0 / rowSize * 2;    // 맵 크기에 따른 주파수 스케일 조정
-	double amplitude = 15.0;                      // 진폭
-	double centerPeak = 2.0;                      // 중앙 높이 증가
-	double edgeSteepness = 10.0;                  // 가장자리 경사의 가파름 조절
-
-	int randomSeed = RANDOM->Int(0, 10000);       // 난수 시드
-	siv::PerlinNoise perlin(randomSeed);
-
-	for (int i = 0; i < rowSize; i++)
-	{
-		for (int j = 0; j < rowSize; j++)
-		{
-			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
-
-			double x = (double)i * frequencyScale;
-			double y = (double)j * frequencyScale;
-			double z = 0.5;
-			double noiseValue = perlin.noise3D(x * baseFrequency, y * baseFrequency, z);
-
-			// 중앙에서의 거리에 따라 가중치 적용
-			double distanceToCenter = sqrt(pow(i - rowSize / 2.0, 2) + pow(j - rowSize / 2.0, 2));
-			double maxDistance = sqrt(2) * (rowSize / 2.0);
-			double heightFactor = (1.0 - (distanceToCenter / maxDistance)) * 1.4;
-
-			// 각 꼭짓점에서 가장 가까운 가장자리까지의 최소 거리 계산
-			double minEdgeDistance = min(min(i, rowSize - 1 - i), min(j, rowSize - 1 - j));
-			double edgeFactor = amplitude * (pow((maxDistance - minEdgeDistance) / maxDistance, edgeSteepness) - 1);
-
-			// 최종 높이 계산 (edgeFactor를 더하는 방식으로 수정)
-			vertices[i * rowSize + j].position.y = noiseValue * amplitude * heightFactor - edgeFactor;
-		}
-	}
-
-	mesh->UpdateBuffer();
-	UpdateNormal();
-}
-
-void Terrain::UpdateStructuredBuffer()
+void TerrainPerlin::UpdateStructuredBuffer()
 {
 	DeleteStructuredBuffer();
 	CreateStructuredBuffer();
 }
 
-void Terrain::UpdateNormal()
+void TerrainPerlin::UpdateNormal()
 {
 	for (int i = 0; i < (rowSize); i++)      //세로
 	{
@@ -388,7 +341,7 @@ void Terrain::UpdateNormal()
 	mesh->UpdateBuffer();
 }
 
-void Terrain::RenderDetail()
+void TerrainPerlin::RenderDetail()
 {
 	Actor::RenderDetail();
 	if (ImGui::BeginTabBar("MyTabBar3"))
@@ -399,12 +352,12 @@ void Terrain::RenderDetail()
 				".xml", "../Contents/GameObject"))
 			{
 				string path = ImGuiFileDialog::Instance()->GetCurrentPath();
-			
+
 				string file = ImGuiFileDialog::Instance()->GetCurrentFileName();
 				//terrain.xml;
 				size_t tok = file.find('.');
 				file = file.substr(0, tok);
-				
+
 
 
 				Utility::Replace(&path, "\\", "/");
@@ -418,7 +371,7 @@ void Terrain::RenderDetail()
 				{
 					path = ImGuiFileDialog::Instance()->GetCurrentFileName();
 				}
-			
+
 
 				UpdateNormal();
 				mesh->SaveFile(file + ".mesh");
@@ -451,11 +404,6 @@ void Terrain::RenderDetail()
 				imageFile = ImGuiFileDialog::Instance()->GetCurrentFileName();
 				LoadHeightRaw(imageFile);
 
-			}
-
-			if (ImGui::Button("PerinNoise"))
-			{
-				PerlinNoiseHeightMap();
 			}
 
 			if (ImGui::Button("UpdateNormal"))
@@ -524,7 +472,7 @@ void Terrain::RenderDetail()
 				}
 				int Min = min(last, rowSize);
 
-			
+
 				for (int i = 0; i < Min; i++)
 				{
 					for (int j = 0; j < Min; j++)
@@ -548,7 +496,7 @@ void Terrain::RenderDetail()
 	}
 }
 
-bool Terrain::ComPutePicking(Ray WRay, OUT Vector3& HitPoint)
+bool TerrainPerlin::ComPutePicking(Ray WRay, OUT Vector3& HitPoint)
 {
 	int triSize = (rowSize - 1) * (rowSize - 1) * 2;
 	//쉐이더부터 준비
