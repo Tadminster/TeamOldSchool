@@ -6,6 +6,7 @@ struct VertexInput
 	float2 Uv : UV0;
 	float3 Normal : NORMAL0;
 	float4 Weights : WEIGHTS0;
+    float4 Color : COLOR0;
 };
 struct PixelInput
 {
@@ -14,6 +15,7 @@ struct PixelInput
 	float4 wPosition : POSITION0;
 	float3 Normal : NORMAL0;
 	float4 Weights : WEIGHTS0;
+	float4 Color : COLOR0;
 };
 
 PixelInput VS(VertexInput input)
@@ -28,6 +30,7 @@ PixelInput VS(VertexInput input)
 	output.Position = mul(output.Position, Proj);
 	output.Normal = mul(input.Normal, (float3x3) World);
 	output.Weights = input.Weights;
+    output.Color = input.Color;
     return output;
 }
 
@@ -35,7 +38,8 @@ PixelInput VS(VertexInput input)
 
 float4 PS(PixelInput input):SV_TARGET
 {
-	float4 BaseColor = 0;
+    float4 BaseColor = input.Color;
+	//float4 BaseColor = 0;
 	BaseColor.a = 1.0f;
 	  [flatten]
 	if (Ka.a)
@@ -86,6 +90,7 @@ float4 PS(PixelInput input):SV_TARGET
 	BaseColor.rgb = saturate(BaseColor.rgb);
 	
 	BaseColor = AddShadow(BaseColor, input.wPosition);
+   
 	
 	return BaseColor;
 }

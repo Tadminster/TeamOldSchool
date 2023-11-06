@@ -170,6 +170,7 @@ void Terrain::CreateMesh(int   rowSize)
 			vertices[i * rowSize + j].normal = Vector3(0, 1, 0);
 			vertices[i * rowSize + j].uv = Vector2(j / float(rowSize - 1), i / float(rowSize - 1));
 			vertices[i * rowSize + j].weights = Vector4(1, 0, 0, 0);
+			vertices[i * rowSize + j].color = Color(1, 1, 1, 1);
 		}
 	}
 
@@ -226,7 +227,7 @@ void Terrain::LoadHeightRaw(string file)
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 			float _y = Height[i * rowSize + j] * 0.1f;
 			vertices[i * rowSize + j].position.y = _y;
-			//vertices[i * rowSize + j].position.y = 1;
+			//vertices[i * rowSize + j].color = Color(1, 1, 1, 1);
 		}
 	}
 	mesh->UpdateBuffer();
@@ -260,7 +261,8 @@ void Terrain::LoadHeightImage(string file)
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.1f;
 				vertices[i * rowSize + j].position.y = _y;
-				//vertices[i * rowSize + j].position.y = 1;
+				//vertices[i * rowSize + j].color = Color(1, 1, 1, 1);
+
 			}
 		}
 	}
@@ -274,7 +276,8 @@ void Terrain::LoadHeightImage(string file)
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.01f;
 				vertices[i * rowSize + j].position.y = _y;
-				//vertices[i * rowSize + j].position.y = 1;
+				//vertices[i * rowSize + j].color = Color(1, 1, 1, 1);
+
 			}
 		}
 	}
@@ -309,6 +312,7 @@ void Terrain::PerlinNoiseHeightMap()
 		{
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 
+
 			double x = (double)i * frequencyScale;
 			double y = (double)j * frequencyScale;
 			double z = 0.5;
@@ -330,6 +334,43 @@ void Terrain::PerlinNoiseHeightMap()
 
 	mesh->UpdateBuffer();
 	UpdateNormal();
+	UpdateColor();
+}
+
+void Terrain::UpdateColor()
+{
+	// 높이에 따른 색상 정의
+	auto GetColorForHeight = [](double height) -> Color 
+		{
+			Color sandColor(0.7608f, 0.6980f, 0.5020f);		// 모래색
+			Color grassColor(0.0f, 0.5020f, 0.0f);		// 초록색
+
+			// 높이에 따라 색상을 보간
+			return Color::Lerp(sandColor, grassColor, height);
+		};
+
+	// 높이의 최소값과 최대값을 찾음
+	double minHeight = DOUBLE_MAX;
+	double maxHeight = DOUBLE_MIN;
+
+	// 모든 정점을 순회하여 최소 높이와 최대 높이를 찾음
+	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
+	for (int i = 0; i < size; i++)
+	{
+		minHeight = min(minHeight, vertices[i].position.y);
+		maxHeight = max(maxHeight, vertices[i].position.y);
+	}
+
+	// 모든 정점에 대해 색상을 계산하고 적용
+	for (int i = 0; i < size; i++)
+	{
+		double height = vertices[i].position.y;
+		// 높이를 0에서 1 사이의 값으로 정규화
+		double normalizedHeight = (height - minHeight) / (maxHeight - minHeight);
+		vertices[i].color = GetColorForHeight(normalizedHeight);
+	}
+
+	mesh->UpdateBuffer();
 }
 
 void Terrain::UpdateStructuredBuffer()
@@ -483,7 +524,7 @@ void Terrain::RenderDetail()
 
 
 			int last = rowSize;
-			if (ImGui::SliderInt("rowSize", &rowSize, 2, 513))
+			if (ImGui::SliderInt("rowSize", &rowSize, 2, 1000))
 			{
 				UINT vertexCount = rowSize * rowSize;
 				VertexType type = VertexType::TERRAIN;

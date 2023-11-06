@@ -17,9 +17,10 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
 
-	map = Terrain::Create("Terrain");
-	map->LoadFile("Terrain.xml");
-	map->CreateStructuredBuffer();
+    map = Terrain::Create("Terrain");
+    map->LoadFile("TerrainPerlin.xml");
+    map->PerlinNoiseHeightMap();
+    map->CreateStructuredBuffer();
 
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");

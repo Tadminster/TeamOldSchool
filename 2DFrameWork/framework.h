@@ -75,6 +75,9 @@ using namespace SimpleMath;
 #define	HALFPI				1.5707963f	//90
 #define	QUATERPI			0.7853981f	//45
 
+#define DOUBLE_MAX			1.7976931348623158e+308
+#define DOUBLE_MIN			2.2250738585072014e-308
+
 //2DFramework Header
 #include "Types.h"
 #include "Window.h"

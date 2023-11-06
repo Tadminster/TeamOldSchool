@@ -105,17 +105,19 @@ struct VertexTerrain
         weights.z = 0.0f;
         weights.w = 0.0f;
     };
-    VertexTerrain(Vector3 pos, Vector2 uv, Vector3 normal, Vector4 weight)
+    VertexTerrain(Vector3 pos, Vector2 uv, Vector3 normal, Vector4 weight, Color color)
     {
         this->position = pos;
         this->uv = uv;
         this->normal = normal;
         this->weights = weight;
+        this->color = color;
     };
     Vector3 position;
     Vector2 uv;
     Vector3 normal;
     Vector4 weights; //
+    Color   color;
 };
 
 struct VertexPT
