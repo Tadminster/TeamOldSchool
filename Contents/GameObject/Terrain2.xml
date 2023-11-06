@@ -1,0 +1,11 @@
+<Root Name="Terrain" Visible="true" ObType="3">
+    <Shader File="5.Cube.hlsl"/>
+    <Material File="Terrain.mtl"/>
+    <Transform>
+        <Position X="0" Y="-5" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Terrain garo="257" size="66049" uvScale="1"/>
+    <Children Size="0"/>
+</Root>

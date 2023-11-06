@@ -53,6 +53,7 @@ public:
 	void			LoadHeightRaw(string file);
 	void			LoadHeightImage(string file);
     void            PerlinNoiseHeightMap();
+    void            UpdateColor();
 	void			UpdateStructuredBuffer();
 	void			UpdateNormal();
 	void	        RenderDetail();
