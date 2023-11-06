@@ -33,7 +33,7 @@ void InGame::Update()
 		skyBox->RenderHierarchy();
 	}
 	ImGui::End();
-
+	
 	Camera::main->ControlMainCam();
 	Camera::main->Update();
 	grid->Update();
