@@ -7,6 +7,7 @@
 #include "ConsumeItem.h"
 #include "ResourceItem.h"
 #include "Inventory.h"
+#include "InventoryUiPannel.h"
 
 InGame::InGame()
 {
@@ -18,6 +19,9 @@ InGame::InGame()
 
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
+
+	playerInventory = UI::Create("playerInventory");
+	playerInventory->LoadFile("InvenUI.xml");
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 }
@@ -40,6 +44,7 @@ void InGame::Update()
 	ImGui::Begin("Hierarchy");
 	{
 		skyBox->RenderHierarchy();
+		playerInventory->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -47,6 +52,8 @@ void InGame::Update()
 	Camera::main->Update();
 	grid->Update();
 	skyBox->Update();
+	playerInventory->Update();
+
 }
 
 void InGame::LateUpdate()
@@ -57,6 +64,7 @@ void InGame::PreRender()
 {
 	// À°¸éÃ¼ ÅØ½ºÃ³ ·»´õ¸µ¿ë ½¦ÀÌ´õ
 	// 1031 È¯°æ¸ÊÇÎ_2 20:00 Âü°í
+	
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky.hlsl"));  //¹è°æ
 }
 
@@ -65,6 +73,8 @@ void InGame::Render()
 	Camera::main->Set();
 	skyBox->Render();
 	grid->Render();
+	playerInventory->Render();
+
 }
 
 void InGame::ResizeScreen()

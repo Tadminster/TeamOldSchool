@@ -1,9 +1,9 @@
 #pragma once
-class InventoryUiPannel
+class InventoryUiPannel : public UI
 {
 private:
-	/*UI* inventoryUiPannel;*/
-
+	InventoryUiPannel* InventoryUI =nullptr;
+	
 protected:
 
 public:

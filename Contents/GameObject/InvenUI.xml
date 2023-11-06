@@ -1,0 +1,12 @@
+<Root Name="playerInventory" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.UI.hlsl"/>
+    <Material File="UI.mtl"/>
+    <Transform>
+        <Position X="-0.15000001" Y="0.15000001" Z="0"/>
+        <Scale X="0.40000001" Y="0.40000001" Z="0.40000001"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <UI PivotX="-1" PivotY="1"/>
+    <Children Size="0"/>
+</Root>

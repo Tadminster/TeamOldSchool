@@ -3,10 +3,11 @@
 
 InventoryUiPannel::InventoryUiPannel()
 {
-	/*inventoryUiPannel = new UI();*/
-
+	InventoryUI->Create("PlayerInventory");
+	InventoryUI->type = ObType::UI;
 }
 
 InventoryUiPannel::~InventoryUiPannel()
 {
+
 }
