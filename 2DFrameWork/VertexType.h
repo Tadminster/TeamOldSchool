@@ -113,7 +113,7 @@ struct VertexTerrain
         this->weights = weight;
         this->color = color;
     };
-    Vector3 position;dddddddddddddd
+    Vector3 position;
     Vector2 uv;
     Vector3 normal;
     Vector4 weights; //
