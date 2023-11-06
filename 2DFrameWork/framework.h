@@ -145,3 +145,4 @@ extern Application App;//Extern Global
 #define BLEND		BlendState::GetInstance()
 #define RESOURCE	ResourceManager::GetInstance()
 #define RASTER	    RasterState::GetInstance()
+#define PERLIN		PerlinNoise::GetInstance()
