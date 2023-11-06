@@ -12,12 +12,17 @@ Inventory::~Inventory()
 
 }
 
-void Inventory::AddItem(Item* item)
+void Inventory::AddItem(string name, Item* item)
 {
 
 }
 
 void Inventory::DeleteItem(string name)
+{
+
+}
+
+void Inventory::SlotChange()
 {
 
 }
