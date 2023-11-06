@@ -33,7 +33,11 @@ InGame::InGame()
 	playerInventory = UI::Create("playerInventory");
 	playerInventory->LoadFile("InvenUI.xml");
 	playerInventory->visible = false;
-
+    //첫번째 메인 사용아이템 ui는 인벤토리를 꺼도 보입니다!
+    for (int i = 0; i < 8; i++)
+    {
+        playerInventory->Find("mainSlot" + to_string(i))->visible = true;
+    }
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 }
