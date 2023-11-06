@@ -294,25 +294,42 @@ void Terrain::PerlinNoiseHeightMap()
 	size = rowSize * rowSize;
 	CreateMesh(rowSize);
 
-	int randomSeed = 1;
+	double baseFrequency = 5.0;                   // 기본 주파수
+	double frequencyScale = 1.0 / rowSize * 2;    // 맵 크기에 따른 주파수 스케일 조정
+	double amplitude = 15.0;                      // 진폭
+	double centerPeak = 2.0;                      // 중앙 높이 증가
+	double edgeSteepness = 10.0;                  // 가장자리 경사의 가파름 조절
+
+	int randomSeed = RANDOM->Int(0, 10000);       // 난수 시드
+	siv::PerlinNoise perlin(randomSeed);
+
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 
-			
-			siv::PerlinNoise perlin(randomSeed);;  // 기본 시드를 사용하여 PerlinNoise 객체를 생성합니다.
-			float x = (float)i / rowSize;
-			float y = (float)j / rowSize;
-			float z = 0.5;
-			float noiseValue = perlin.noise3D(x, y, z);
+			double x = (double)i * frequencyScale;
+			double y = (double)j * frequencyScale;
+			double z = 0.5;
+			double noiseValue = perlin.noise3D(x * baseFrequency, y * baseFrequency, z);
 
-			vertices[i * rowSize + j].position.y = noiseValue * 50;
+			// 중앙에서의 거리에 따라 가중치 적용
+			double distanceToCenter = sqrt(pow(i - rowSize / 2.0, 2) + pow(j - rowSize / 2.0, 2));
+			double maxDistance = sqrt(2) * (rowSize / 2.0);
+			double heightFactor = (1.0 - (distanceToCenter / maxDistance)) * 1.4;
+
+			// 각 꼭짓점에서 가장 가까운 가장자리까지의 최소 거리 계산
+			double minEdgeDistance = min(min(i, rowSize - 1 - i), min(j, rowSize - 1 - j));
+			double edgeFactor = amplitude * (pow((maxDistance - minEdgeDistance) / maxDistance, edgeSteepness) - 1);
+
+			// 최종 높이 계산 (edgeFactor를 더하는 방식으로 수정)
+			vertices[i * rowSize + j].position.y = noiseValue * amplitude * heightFactor - edgeFactor;
 		}
 	}
 
 	mesh->UpdateBuffer();
+	UpdateNormal();
 }
 
 void Terrain::UpdateStructuredBuffer()
