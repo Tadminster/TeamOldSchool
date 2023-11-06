@@ -52,6 +52,7 @@ public:
 	void			CreateMesh(int   rowSize);
 	void			LoadHeightRaw(string file);
 	void			LoadHeightImage(string file);
+    void            PerlinNoiseHeightMap();
 	void			UpdateStructuredBuffer();
 	void			UpdateNormal();
 	void	        RenderDetail();

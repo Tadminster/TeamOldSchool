@@ -225,8 +225,8 @@ void Terrain::LoadHeightRaw(string file)
 		{
 			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 			float _y = Height[i * rowSize + j] * 0.1f;
-			//vertices[i * rowSize + j].position.y = _y;
-			vertices[i * rowSize + j].position.y = 1;
+			vertices[i * rowSize + j].position.y = _y;
+			//vertices[i * rowSize + j].position.y = 1;
 		}
 	}
 	mesh->UpdateBuffer();
@@ -259,8 +259,8 @@ void Terrain::LoadHeightImage(string file)
 			{
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.1f;
-				//vertices[i * rowSize + j].position.y = _y;
-				vertices[i * rowSize + j].position.y = 1;
+				vertices[i * rowSize + j].position.y = _y;
+				//vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
@@ -273,8 +273,8 @@ void Terrain::LoadHeightImage(string file)
 			{
 				VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 				float _y = (float)data[(i * rowSize + j)] * 0.01f;
-				//vertices[i * rowSize + j].position.y = _y;
-				vertices[i * rowSize + j].position.y = 1;
+				vertices[i * rowSize + j].position.y = _y;
+				//vertices[i * rowSize + j].position.y = 1;
 			}
 		}
 	}
@@ -284,6 +284,33 @@ void Terrain::LoadHeightImage(string file)
 
 	}*/
 
+
+	mesh->UpdateBuffer();
+}
+
+void Terrain::PerlinNoiseHeightMap()
+{	
+	SafeReset(mesh);
+	size = rowSize * rowSize;
+	CreateMesh(rowSize);
+
+	int randomSeed = 1;
+	for (int i = 0; i < rowSize; i++)
+	{
+		for (int j = 0; j < rowSize; j++)
+		{
+			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
+
+			
+			siv::PerlinNoise perlin(randomSeed);;  // 기본 시드를 사용하여 PerlinNoise 객체를 생성합니다.
+			float x = (float)i / rowSize;
+			float y = (float)j / rowSize;
+			float z = 0.5;
+			float noiseValue = perlin.noise3D(x, y, z);
+
+			vertices[i * rowSize + j].position.y = noiseValue * 50;
+		}
+	}
 
 	mesh->UpdateBuffer();
 }
@@ -407,6 +434,11 @@ void Terrain::RenderDetail()
 				imageFile = ImGuiFileDialog::Instance()->GetCurrentFileName();
 				LoadHeightRaw(imageFile);
 
+			}
+
+			if (ImGui::Button("PerinNoise"))
+			{
+				PerlinNoiseHeightMap();
 			}
 
 			if (ImGui::Button("UpdateNormal"))
