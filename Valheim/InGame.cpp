@@ -42,6 +42,7 @@ InGame::InGame()
 	//RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	
+	player->GetPlayer()->name = "Player";
 }
 
 InGame::~InGame()
@@ -72,6 +73,7 @@ void InGame::Update()
 		map->RenderHierarchy();
 		skyBox->RenderHierarchy();
 		treeBeech->RenderHierarchy();
+		player->GetPlayer()->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -80,7 +82,7 @@ void InGame::Update()
 	playerInventoryUI->Update();
 	treeBeech->Update();
 	playerOptionUI->Update();
-
+	player->Update();
 
 }
 
@@ -109,7 +111,7 @@ void InGame::Render()
 	playerInventoryUI->Render();
 	treeBeech->Render();
 	playerOptionUI->Render();
-
+	player->Render();
 }
 
 void InGame::ResizeScreen()
