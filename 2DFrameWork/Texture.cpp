@@ -33,6 +33,20 @@ void Texture::LoadFile(string file)
     string format = file.substr(index + 1, file.length());
     wstring path = L"../Contents/Texture/" + Utility::ToWString(file);
 
+    //잘못된 경로 제거
+    wstring part_to_remove[] =
+    {
+        L"..\\..\\..\\unity\\valheim_rip\\Assets\\Texture2D\\"
+    };
+
+    for (auto part_to_remove : part_to_remove)
+    {
+        size_t pos = path.find(part_to_remove);
+        if (pos != wstring::npos) {
+            path.erase(pos, part_to_remove.length());
+        }
+    }
+
     ScratchImage image;
     HRESULT hr;
     if (format == "tga")

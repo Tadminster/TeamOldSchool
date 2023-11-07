@@ -36,6 +36,9 @@
     <ClInclude Include="Player.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="TreeBeech.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="GameOption.h">
       <Filter>GameOptionUI</Filter>
     </ClInclude>
@@ -67,6 +70,9 @@
       <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClCompile>
     <ClCompile Include="Player.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeBeech.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameOption.cpp">
