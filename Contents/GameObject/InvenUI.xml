@@ -11,14 +11,14 @@
         <Shader File="6.UI.hlsl"/>
         <Material File="UI.mtl"/>
         <Transform>
-            <Position X="0" Y="0" Z="0"/>
-            <Scale X="1" Y="1" Z="1"/>
+            <Position X="0" Y="0.0625" Z="0"/>
+            <Scale X="1" Y="0.94999999" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child0>
-    <Child1 Name="SecondsubSlot0" Visible="false" ObType="4">
+    <Child1 Name="SecondsubSlot0" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -30,7 +30,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child1>
-    <Child2 Name="SecondsubSlot1" Visible="false" ObType="4">
+    <Child2 Name="SecondsubSlot1" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -42,7 +42,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child2>
-    <Child3 Name="SecondsubSlot2" Visible="false" ObType="4">
+    <Child3 Name="SecondsubSlot2" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -54,7 +54,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child3>
-    <Child4 Name="SecondsubSlot3" Visible="false" ObType="4">
+    <Child4 Name="SecondsubSlot3" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -66,7 +66,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child4>
-    <Child5 Name="SecondsubSlot4" Visible="false" ObType="4">
+    <Child5 Name="SecondsubSlot4" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -78,7 +78,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child5>
-    <Child6 Name="SecondsubSlot5" Visible="false" ObType="4">
+    <Child6 Name="SecondsubSlot5" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -90,7 +90,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child6>
-    <Child7 Name="SecondsubSlot6" Visible="false" ObType="4">
+    <Child7 Name="SecondsubSlot6" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -102,7 +102,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child7>
-    <Child8 Name="SecondsubSlot7" Visible="false" ObType="4">
+    <Child8 Name="SecondsubSlot7" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -114,7 +114,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child8>
-    <Child9 Name="ThirdsubSlot0" Visible="false" ObType="4">
+    <Child9 Name="ThirdsubSlot0" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -126,7 +126,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child9>
-    <Child10 Name="ThirdsubSlot1" Visible="false" ObType="4">
+    <Child10 Name="ThirdsubSlot1" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -138,7 +138,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child10>
-    <Child11 Name="ThirdsubSlot2" Visible="false" ObType="4">
+    <Child11 Name="ThirdsubSlot2" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -150,7 +150,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child11>
-    <Child12 Name="ThirdsubSlot3" Visible="false" ObType="4">
+    <Child12 Name="ThirdsubSlot3" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -162,7 +162,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child12>
-    <Child13 Name="ThirdsubSlot4" Visible="false" ObType="4">
+    <Child13 Name="ThirdsubSlot4" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -174,7 +174,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child13>
-    <Child14 Name="ThirdsubSlot5" Visible="false" ObType="4">
+    <Child14 Name="ThirdsubSlot5" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -186,7 +186,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child14>
-    <Child15 Name="ThirdsubSlot6" Visible="false" ObType="4">
+    <Child15 Name="ThirdsubSlot6" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -198,7 +198,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child15>
-    <Child16 Name="ThirdsubSlot7" Visible="false" ObType="4">
+    <Child16 Name="ThirdsubSlot7" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -306,7 +306,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child24>
-    <Child25 Name="subSlot0" Visible="false" ObType="4">
+    <Child25 Name="subSlot0" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -318,7 +318,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child25>
-    <Child26 Name="subSlot1" Visible="false" ObType="4">
+    <Child26 Name="subSlot1" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -330,7 +330,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child26>
-    <Child27 Name="subSlot2" Visible="false" ObType="4">
+    <Child27 Name="subSlot2" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -342,7 +342,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child27>
-    <Child28 Name="subSlot3" Visible="false" ObType="4">
+    <Child28 Name="subSlot3" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -354,7 +354,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child28>
-    <Child29 Name="subSlot4" Visible="false" ObType="4">
+    <Child29 Name="subSlot4" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -366,7 +366,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child29>
-    <Child30 Name="subSlot5" Visible="false" ObType="4">
+    <Child30 Name="subSlot5" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -378,7 +378,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child30>
-    <Child31 Name="subSlot6" Visible="false" ObType="4">
+    <Child31 Name="subSlot6" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>
@@ -390,7 +390,7 @@
         <UI PivotX="0" PivotY="0"/>
         <Children Size="0"/>
     </Child31>
-    <Child32 Name="subSlot7" Visible="false" ObType="4">
+    <Child32 Name="subSlot7" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="mainSlot.mtl"/>

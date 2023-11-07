@@ -8,6 +8,7 @@
 #include "ResourceItem.h"
 #include "Inventory.h"
 #include "InventoryUiPannel.h"
+#include "GameOption.h"
 
 InGame::InGame()
 {
@@ -26,6 +27,7 @@ InGame::InGame()
 	skyBox->LoadFile("Sky1.xml");
 
 	playerInventoryUI = new InventoryUiPannel();
+	playerOptionUI    = new GameOption();
 	//RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -69,6 +71,7 @@ void InGame::Update()
 	grid->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
+	playerOptionUI->Update();
 
 
 }
@@ -96,6 +99,7 @@ void InGame::Render()
 	grid->Render();
 	map->Render();
 	playerInventoryUI->Render();
+	playerOptionUI->Render();
 
 }
 

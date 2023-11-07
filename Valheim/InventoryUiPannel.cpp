@@ -69,6 +69,13 @@ void InventoryUiPannel::LateUpdate()
 			playerInventory->Find("ThirdsubSlot" + to_string(i))->visible = !playerInventory->Find("ThirdsubSlot" + to_string(i))->visible;
 		}
 	}
+    //템칸에 마우스올릴때 이미지변경 불들어오는 효과
+	/*for (int i = 0; i < 8; i++)
+	{
+		dynamic_cast<UI*>(playerInventory->Find("subSlot" + to_string(i))->mouse
+	}*/
+	
+
 }
 
 void InventoryUiPannel::PreRender()

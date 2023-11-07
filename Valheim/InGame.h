@@ -8,6 +8,7 @@ private:
     Terrain*    map;
    
     class InventoryUiPannel* playerInventoryUI;
+    class GameOption* playerOptionUI;
 
 public:
     InGame();
