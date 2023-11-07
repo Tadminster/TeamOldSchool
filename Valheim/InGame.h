@@ -7,7 +7,7 @@ private:
 	Sky*        skyBox;
     Terrain*    map;
    
-    UI*         playerInventory;
+    class InventoryUiPannel* playerInventoryUI;
 
 public:
     InGame();
