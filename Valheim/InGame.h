@@ -9,6 +9,8 @@ private:
    
     class InventoryUiPannel* playerInventoryUI;
 
+    class TreeBeech*  treeBeech;
+
 public:
     InGame();
     ~InGame();

@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "InGame.h"
 #include "Prototype.h"
+
 #include "Item.h"
 #include "BattleItem.h"
 #include "LivingItem.h"
@@ -8,6 +8,10 @@
 #include "ResourceItem.h"
 #include "Inventory.h"
 #include "InventoryUiPannel.h"
+
+#include "TreeBeech.h"
+
+#include "InGame.h"
 
 InGame::InGame()
 {
@@ -26,14 +30,15 @@ InGame::InGame()
 	skyBox->LoadFile("Sky1.xml");
 
 	playerInventoryUI = new InventoryUiPannel();
-	//RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
+	treeBeech = new TreeBeech();
+
+	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	
-	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 }
 
 InGame::~InGame()
@@ -63,13 +68,14 @@ void InGame::Update()
 		tempCamera->RenderHierarchy();
 		map->RenderHierarchy();
 		skyBox->RenderHierarchy();
+		treeBeech->RenderHierarchy();
 	}
 	ImGui::End();
 
 	grid->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
-
+	treeBeech->Update();
 
 }
 
@@ -96,6 +102,7 @@ void InGame::Render()
 	grid->Render();
 	map->Render();
 	playerInventoryUI->Render();
+	treeBeech->Render();
 
 }
 

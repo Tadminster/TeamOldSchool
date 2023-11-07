@@ -3,9 +3,9 @@
 #pragma once
 class Prototype
 {
-	
 protected:
 	Actor* actor;
+
 public:
 	virtual void Init() = 0;
 	virtual void Update() = 0;
