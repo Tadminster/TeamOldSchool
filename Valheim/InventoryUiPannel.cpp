@@ -70,10 +70,40 @@ void InventoryUiPannel::LateUpdate()
 		}
 	}
     //템칸에 마우스올릴때 이미지변경 불들어오는 효과
-	/*for (int i = 0; i < 8; i++)
+	// 인벤토리가 켜져있을때@
+	if (playerInventory->Find("PLAYER_PANNEL_INVEN")->visible)
 	{
-		dynamic_cast<UI*>(playerInventory->Find("subSlot" + to_string(i))->mouse
-	}*/
+		for (int i = 0; i < 8; i++)
+		{
+			if (dynamic_cast<UI*>(playerInventory->Find("mainSlot" + to_string(i)))->MouseOver())
+			{
+				playerInventory->Find("mainSlot" + to_string(i))->material->LoadFile("mainSlotBlue.mtl");
+			}
+			else
+				playerInventory->Find("mainSlot" + to_string(i))->material->LoadFile("mainSlot.mtl");
+
+			if (dynamic_cast<UI*>(playerInventory->Find("subSlot" + to_string(i)))->MouseOver())
+			{
+				playerInventory->Find("subSlot" + to_string(i))->material->LoadFile("mainSlotBlue.mtl");
+			}
+			else
+				playerInventory->Find("subSlot" + to_string(i))->material->LoadFile("mainSlot.mtl");
+
+			if (dynamic_cast<UI*>(playerInventory->Find("SecondsubSlot" + to_string(i)))->MouseOver())
+			{
+				playerInventory->Find("SecondsubSlot" + to_string(i))->material->LoadFile("mainSlotBlue.mtl");
+			}
+			else
+				playerInventory->Find("SecondsubSlot" + to_string(i))->material->LoadFile("mainSlot.mtl");
+
+			if (dynamic_cast<UI*>(playerInventory->Find("ThirdsubSlot" + to_string(i)))->MouseOver())
+			{
+				playerInventory->Find("ThirdsubSlot" + to_string(i))->material->LoadFile("mainSlotBlue.mtl");
+			}
+			else
+				playerInventory->Find("ThirdsubSlot" + to_string(i))->material->LoadFile("mainSlot.mtl");
+		}
+	}
 	
 
 }
