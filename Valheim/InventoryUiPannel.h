@@ -1,8 +1,9 @@
 #pragma once
-class InventoryUiPannel : public UI
+class InventoryUiPannel : public Actor
 {
 private:
-	InventoryUiPannel* InventoryUI =nullptr;
+
+	UI* playerInventory;
 	
 protected:
 
@@ -10,6 +11,13 @@ public:
 	InventoryUiPannel();
 	~InventoryUiPannel();
 
+	void Init();
+	void Release();
+	void Update();
+	void LateUpdate() ;
+	void PreRender();
+	void Render();
+	void ResizeScreen();
 
 };
 
