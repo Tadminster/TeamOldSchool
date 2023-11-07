@@ -1,0 +1,60 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="beech.obj" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="-0"/>
+        </Transform>
+        <Children Size="3"/>
+        <Child0 Name="Lod0" Visible="true" ObType="0">
+            <Mesh File="beech/Lod0.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="beech_leaf.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="-0"/>
+            </Transform>
+            <Children Size="1"/>
+            <Child0 Name="beech_barkMeshObject1" Visible="true" ObType="0">
+                <Mesh File="beech/beech_barkMeshObject1.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="beech_bark.mtl"/>
+                <Transform>
+                    <Position X="0" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+        </Child0>
+        <Child1 Name="Lod1" Visible="true" ObType="0">
+            <Mesh File="beech/Lod1.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="beech/beech_leaf.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="-0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+        <Child2 Name="Lod3" Visible="true" ObType="0">
+            <Mesh File="beech/Lod3.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="beech/beech_leaf.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="-0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child2>
+    </Child0>
+</Root>
