@@ -374,3 +374,6 @@ Build/
 /Game1/window.ini
 /Valheim/imgui.ini
 /Valheim/imgui.ini
+
+#Asset 폴더 안에 있는 obj는 포함
+!/Assets/*.obj
