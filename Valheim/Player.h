@@ -1,14 +1,15 @@
 #pragma once
+//class PlayerState;
 class Player : public Prototype, public Singleton<Player>
 {
-private:
-	
+	class PlayerState* state;
 public:
 	Player();
 	~Player();
-	virtual void Init();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render();
+	void Init();
+	void Update();
+	void LateUpdate();
+	void Render();
+	Actor* GetPlayer() { return actor; }
+	void SetState(PlayerState* state);
 };
-

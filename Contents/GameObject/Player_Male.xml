@@ -1,4 +1,4 @@
-<Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
+<Root Name="Player" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Player_Male/Player_Male.skel" BoneIndexCount="52"/>
     <Animations AnimSize="2" File0="/Player_Idle0.anim" File1="/Player_Run0.anim"/>
     <Collider ColliderType="2" Visible="true">
@@ -7,7 +7,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="0" Y="0" Z="0"/>
+        <Position X="0" Y="21.25" Z="0"/>
         <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
