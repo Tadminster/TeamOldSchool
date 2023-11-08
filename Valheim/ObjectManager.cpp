@@ -27,11 +27,12 @@ void ObjectManager::Release()
 
 void ObjectManager::Update()
 {
+	//ImGui::Text("Object Count: %d", objects.size());
+
 	if (ImGui::Button("GenerateFeatures"))
 	{
 		GenerateFeatures();
 	}
-	ImGui::Text("mPrototypes Size: %d", objects.size());
 
 	static float time = 0;
 	if (TIMER->GetTick(time, 1.0f))
@@ -69,6 +70,10 @@ void ObjectManager::RenderHierarchy()
 {
 	ImGui::Begin("TerrainHierarchy");
 	{
+		//for (auto& obj : objects)
+		//{
+		//	obj->GetActor()->RenderHierarchy();
+		//}
 	}
 	ImGui::End();
 }
@@ -115,7 +120,10 @@ void ObjectManager::GenerateFeatures()
 					Vector3 Hit;
 					if (MAP->ComPutePicking(ray, Hit))
 					{
-						objects.emplace_back(new TreeBeech(Hit));
+						TreeBeech* treeBeech = new TreeBeech(Hit);
+						treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
+						treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.2f, 0.3f), RANDOM->Float(0.2f, 0.3f), RANDOM->Float(0.2f, 0.3f));
+						objects.emplace_back(treeBeech);
 						count++;
 					}
 				}
