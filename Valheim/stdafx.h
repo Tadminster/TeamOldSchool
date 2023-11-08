@@ -9,8 +9,8 @@
 
 #include "ObjectManager.h"
 
-#define GM		GameManager::GetInstance()
-#define OBJ		GM->objectManager
-#define DEBUG	GM->debugMode
-#define MAP		GM->map
-#define PLAYER	GM->player
+#define GM			GameManager::GetInstance()
+#define OBJ			GM->objectManager
+#define DEBUGMODE	GM->debugMode
+#define MAP			GM->map
+#define PLAYER		GM->player

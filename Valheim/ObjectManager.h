@@ -3,7 +3,7 @@
 class ObjectManager
 {
 private:
-	list<Prototype*>	mPrototypes;
+	list<Prototype*>	objects;
 	
 
 public:

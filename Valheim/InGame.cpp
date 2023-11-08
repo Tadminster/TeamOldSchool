@@ -59,7 +59,7 @@ void InGame::Update()
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if (DEBUG)
+		if (DEBUGMODE)
 		{
 			grid->RenderHierarchy();
 		}
@@ -67,12 +67,12 @@ void InGame::Update()
 		tempCamera->RenderHierarchy();
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
-		PLAYER->GetPlayer()->RenderHierarchy();
+		PLAYER->GetActor()->RenderHierarchy();
 	}
 	ImGui::End();
 
 	// 디버그 모드
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
 		grid->Update();
 	}
@@ -108,7 +108,7 @@ void InGame::Render()
 	LIGHT->Set();
 	skyBox->Render();
 
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
 		grid->Render();
 	}

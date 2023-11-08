@@ -31,28 +31,37 @@ void ObjectManager::Update()
 	{
 		GenerateFeatures();
 	}
-	ImGui::Text("mPrototypes Size: %d", mPrototypes.size());
+	ImGui::Text("mPrototypes Size: %d", objects.size());
 
-	for (auto& prototype : mPrototypes)
+	static float time = 0;
+	if (TIMER->GetTick(time, 1.0f))
 	{
-		prototype->Update();
+		for (auto& obj : objects)
+		{
+			if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
+			{
+				obj->Update();
+			}
+		}
 	}
-
 }
 
 void ObjectManager::LateUpdate()
 {
-	for (auto& prototype : mPrototypes)
-	{
-		prototype->LateUpdate();
-	}
+	//for (auto& obj : objects)
+	//{
+	//	obj->LateUpdate();
+	//}
 }
 
 void ObjectManager::Render()
 {
-	for (auto& prototype : mPrototypes)
+	for (auto& obj : objects)
 	{
-		prototype->Render();
+		if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
+		{
+			obj->Render();
+		}
 	}
 }
 
@@ -106,7 +115,7 @@ void ObjectManager::GenerateFeatures()
 					Vector3 Hit;
 					if (MAP->ComPutePicking(ray, Hit))
 					{
-						mPrototypes.emplace_back(new TreeBeech(Hit));
+						objects.emplace_back(new TreeBeech(Hit));
 						count++;
 					}
 				}

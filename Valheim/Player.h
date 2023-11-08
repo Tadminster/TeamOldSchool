@@ -10,6 +10,5 @@ public:
 	void Update();
 	void LateUpdate();
 	void Render();
-	Actor* GetPlayer() { return actor; }
 	void SetState(PlayerState* state);
 };
