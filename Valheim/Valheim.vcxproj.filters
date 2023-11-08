@@ -45,6 +45,7 @@
     <ClInclude Include="PlayerState.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -84,6 +85,7 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="ObjectManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
