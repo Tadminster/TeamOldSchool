@@ -4,9 +4,19 @@
 GameOption::GameOption()
 {
 	gameOption = UI::Create("gameOption");
+	gameOption->LoadFile("inGameOption.xml");
 
+	gameOption->visible = false;
+	gameOption->Find("headline")->visible = true;
+	gameOption->Find("continue")->visible = true;
+	gameOption->Find("save")->visible = true;
+	gameOption->Find("lastsavetime")->visible = true;
+	gameOption->Find("setting")->visible = true;
+	gameOption->Find("logout")->visible = true;
+	gameOption->Find("exit")->visible = true;
 
-	//gameOption->Find("PlayerGameOption")->visible = false;
+	
+
 }
 
 GameOption::~GameOption()
@@ -30,10 +40,16 @@ void GameOption::Update()
 	}
 	ImGui::End();
 	gameOption->Update();
+
+
+
 }
 
 void GameOption::LateUpdate()
 {
+	//옵션창 열기닫기 기능입니다
+	
+
 }
 
 void GameOption::PreRender()
