@@ -45,7 +45,12 @@
     <ClInclude Include="PlayerState.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="GameManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -85,7 +90,12 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -114,6 +124,9 @@
     </Filter>
     <Filter Include="GameOptionUI">
       <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Managers">
+      <UniqueIdentifier>{324d54cc-7540-4438-9bed-1b0d48497f74}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

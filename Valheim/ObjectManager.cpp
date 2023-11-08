@@ -7,6 +7,10 @@
 
 	#include "ObjectManager.h"
 
+ObjectManager::ObjectManager()
+{
+}
+
 ObjectManager::~ObjectManager()
 {
 
@@ -14,6 +18,7 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
+	//mPrototypes.emplace_back(new TreeBeech());
 }
 
 void ObjectManager::Release()
@@ -26,6 +31,7 @@ void ObjectManager::Update()
 	{
 		prototype->Update();
 	}
+
 }
 
 void ObjectManager::LateUpdate()
@@ -46,8 +52,13 @@ void ObjectManager::Render()
 
 void ObjectManager::RenderHierarchy()
 {
+	ImGui::Begin("TerrainHierarchy");
+	{
+	}
+	ImGui::End();
 }
 
 void ObjectManager::GenerateFeatures()
 {
+	
 }

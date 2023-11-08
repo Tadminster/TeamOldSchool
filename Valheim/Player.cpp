@@ -5,6 +5,7 @@ Player::Player()
 {
 	actor = Actor::Create();
 	actor->LoadFile("Player_Male.xml");
+	actor->name = "Player";
 
 	state = IdleState::GetInstance();
 }

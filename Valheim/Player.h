@@ -1,6 +1,6 @@
 #pragma once
 //class PlayerState;
-class Player : public Prototype, public Singleton<Player>
+class Player : public Prototype
 {
 	class PlayerState* state;
 public:

@@ -3,9 +3,11 @@
 class ObjectManager
 {
 private:
-	list<Prototype*>		mPrototypes;
+	list<Prototype*>	mPrototypes;
+	
 
 public:
+	ObjectManager();
 	~ObjectManager();
 
 	void	Init();

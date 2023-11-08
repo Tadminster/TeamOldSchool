@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="BattleItem.h" />
     <ClInclude Include="ConsumeItem.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
@@ -40,6 +41,7 @@
   <ItemGroup>
     <ClCompile Include="BattleItem.cpp" />
     <ClCompile Include="ConsumeItem.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
