@@ -5,6 +5,7 @@ GameManager::GameManager()
 {
 	map = Terrain::Create("Terrain");
 	player = new Player();
+	objectManager = new ObjectManager();
 
 
 	map->LoadFile("TerrainPerlin.xml");

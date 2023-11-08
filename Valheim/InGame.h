@@ -12,8 +12,6 @@ private:
     class InventoryUiPannel* playerInventoryUI;
     class GameOption* playerOptionUI;
 
-    class TreeBeech*  treeBeech;
-
 public:
     InGame();
     ~InGame();

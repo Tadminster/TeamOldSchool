@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TreeBeech.h"
 
-TreeBeech::TreeBeech()
+TreeBeech::TreeBeech(Vector3 spawnPos)
 {
 	actor = Actor::Create();
 	actor->LoadFile("Beech.xml");

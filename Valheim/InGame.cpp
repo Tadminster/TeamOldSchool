@@ -10,8 +10,6 @@
 #include "InventoryUiPannel.h"
 #include "GameOption.h"
 
-#include "TreeBeech.h"
-
 #include "InGame.h"
 
 InGame::InGame()
@@ -27,7 +25,6 @@ InGame::InGame()
 	skyBox->LoadFile("Sky1.xml");
 
 	playerInventoryUI = new InventoryUiPannel();
-	treeBeech = new TreeBeech();
 
 	playerOptionUI    = new GameOption();
 	
@@ -69,7 +66,7 @@ void InGame::Update()
 		
 		tempCamera->RenderHierarchy();
 		skyBox->RenderHierarchy();
-		treeBeech->RenderHierarchy();
+		MAP->RenderHierarchy();
 		PLAYER->GetPlayer()->RenderHierarchy();
 	}
 	ImGui::End();
@@ -83,9 +80,11 @@ void InGame::Update()
 	GM->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
-	treeBeech->Update();
 	playerOptionUI->Update();
+	
+	OBJ->Update();
 	PLAYER->Update();
+
 
 }
 
@@ -115,10 +114,10 @@ void InGame::Render()
 	}
 
 	MAP->Render();
-	playerInventoryUI->Render();
-	treeBeech->Render();
-	playerOptionUI->Render();
+	OBJ->Render();
 	PLAYER->Render();
+	playerInventoryUI->Render();
+	playerOptionUI->Render();
 
 
 }
