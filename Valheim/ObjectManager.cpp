@@ -31,6 +31,7 @@ void ObjectManager::Update()
 	{
 		GenerateFeatures();
 	}
+	ImGui::Text("mPrototypes Size: %d", mPrototypes.size());
 
 	for (auto& prototype : mPrototypes)
 	{
@@ -74,6 +75,7 @@ void ObjectManager::GenerateFeatures()
 	siv::PerlinNoise perlin(randomSeed);
 
 	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
+	static int count = 0;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
@@ -90,24 +92,26 @@ void ObjectManager::GenerateFeatures()
 			double minEdgeDistance = min(min(i, rowSize - 1 - i), min(j, rowSize - 1 - j));
 			double edgeFactor = pow((maxDistance - minEdgeDistance) / maxDistance, edgeSteepness) - 1;
 
-			// 최종 높이 계산 (edgeFactor를 더하는 방식으로 수정)
+			// 최종 높이 계산
 			float result = noiseValue - edgeFactor;
-			cout << result << endl;
 
 			//cout << result << endl;
-			if (result > 1 /*|| result > RANDOM->Float(0, 1)*/)
+			if (result > 1.0f || result > RANDOM->Float(0, 1))
 			{
-				
-				Ray ray;
-				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 10000, 0);
-				ray.direction = Vector3(0, -1, 0);
-				Vector3 Hit;
-				if (MAP->ComPutePicking(ray, Hit))
+				if (RANDOM->Int(1, 10) == 1)
 				{
-					cout << "나무생성";
-					mPrototypes.emplace_back(new TreeBeech(Hit));
+					Ray ray;
+					ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
+					ray.direction = Vector3(0, -1, 0);
+					Vector3 Hit;
+					if (MAP->ComPutePicking(ray, Hit))
+					{
+						mPrototypes.emplace_back(new TreeBeech(Hit));
+						count++;
+					}
 				}
 			}
 		}
 	}
+	cout << "생성된 나무 수:" << count;
 }

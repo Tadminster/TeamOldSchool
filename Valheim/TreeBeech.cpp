@@ -7,6 +7,8 @@ TreeBeech::TreeBeech(Vector3 spawnPos)
 	actor->LoadFile("Beech.xml");
 	static int index = 0;
 	actor->name = "Beech" + index++;
+	
+	actor->SetWorldPos(spawnPos);
 }
 
 TreeBeech::~TreeBeech()
