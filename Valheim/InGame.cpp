@@ -41,8 +41,6 @@ InGame::InGame()
 	//RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
-	
-	player->GetPlayer()->name = "Player";
 }
 
 InGame::~InGame()
@@ -73,7 +71,7 @@ void InGame::Update()
 		map->RenderHierarchy();
 		skyBox->RenderHierarchy();
 		treeBeech->RenderHierarchy();
-		player->GetPlayer()->RenderHierarchy();
+		player->RenderHierarchy();
 	}
 	ImGui::End();
 

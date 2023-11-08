@@ -6,10 +6,11 @@ class Player : public Prototype, public Singleton<Player>
 public:
 	Player();
 	~Player();
-	void Init();
-	void Update();
-	void LateUpdate();
-	void Render();
+	virtual void Init();
+	virtual void Update();
+	virtual void LateUpdate();
+	virtual void Render();
+	virtual void RenderHierarchy();
 	Actor* GetPlayer() { return actor; }
 	void SetState(PlayerState* state);
 };

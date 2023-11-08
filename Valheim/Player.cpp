@@ -5,6 +5,7 @@ Player::Player()
 {
 	actor = Actor::Create();
 	actor->LoadFile("Player_Male.xml");
+	actor->name = "Player";
 
 	state = IdleState::GetInstance();
 }
@@ -20,8 +21,7 @@ void Player::Init()
 
 void Player::Update()
 {
-	if (INPUT->KeyDown('1')) state->Idle();
-	else if (INPUT->KeyDown('2')) state->Move();
+	if (INPUT->KeyPress(VK_UP)) state->Move();
 	actor->Update();
 }
 
@@ -32,6 +32,11 @@ void Player::LateUpdate()
 void Player::Render()
 {
 	actor->Render();
+}
+
+void Player::RenderHierarchy()
+{
+	actor->RenderHierarchy();
 }
 
 void Player::SetState(PlayerState* state)

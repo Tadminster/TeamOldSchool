@@ -12,6 +12,7 @@ void IdleState::Idle()
 
 void IdleState::Move()
 {
+	player->GetPlayer()->MoveWorldPos(player->GetPlayer()->GetForward() * 10.0f * DELTA);
 	player->GetPlayer()->
 		anim->ChangeAnimation(AnimationState::LOOP, 1);
 	SetPlayerState(MoveState::GetInstance());
@@ -26,6 +27,7 @@ void MoveState::Idle()
 
 void MoveState::Move()
 {
+	player->GetPlayer()->MoveWorldPos(player->GetPlayer()->GetForward() * 10.0f * DELTA);
 	player->GetPlayer()->
 		anim->ChangeAnimation(AnimationState::LOOP, 1);
 }
