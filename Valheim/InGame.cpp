@@ -92,7 +92,7 @@ void InGame::Update()
 void InGame::LateUpdate()
 {
 	playerInventoryUI->LateUpdate();
-	
+	PLAYER->LateUpdate();
 }
 
 void InGame::PreRender()

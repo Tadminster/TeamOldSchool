@@ -9,7 +9,7 @@ protected:
 	}
 public:
 	virtual void Idle() = 0;
-	virtual void Move() = 0;
+	virtual void Move(char key) = 0;
 };
 //Idle 클래스----------------------------------------------------------
 class IdleState : public PlayerState
@@ -22,7 +22,7 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Move();
+	virtual void Move(char key);
 };
 //Move 클래스----------------------------------------------------------
 class MoveState : public PlayerState
@@ -35,5 +35,5 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Move();
+	virtual void Move(char key);
 };

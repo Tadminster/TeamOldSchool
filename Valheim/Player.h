@@ -2,7 +2,8 @@
 //class PlayerState;
 class Player : public Prototype
 {
-	class PlayerState* state;
+	class PlayerState* state = nullptr;
+	Vector3 lastPos = {};
 public:
 	Player();
 	~Player();
@@ -14,4 +15,5 @@ public:
 	Actor* GetPlayer() { return actor; }
 	void SetState(PlayerState* state);
 	void AvtivatePlayerCam();
+	void PlayerControl();
 };
