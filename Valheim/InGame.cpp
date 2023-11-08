@@ -22,6 +22,7 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
 
+	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
 
@@ -79,6 +80,7 @@ void InGame::Update()
 		grid->Update();
 	}
 		
+	GM->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
 	treeBeech->Update();
@@ -105,18 +107,20 @@ void InGame::Render()
 {
 	Camera::main->Set();
 	LIGHT->Set();
+	skyBox->Render();
 
 	if (DEBUG)
 	{
 		grid->Render();
 	}
 
-	skyBox->Render();
 	MAP->Render();
 	playerInventoryUI->Render();
 	treeBeech->Render();
 	playerOptionUI->Render();
 	PLAYER->Render();
+
+
 }
 
 void InGame::ResizeScreen()
