@@ -377,3 +377,4 @@ Build/
 
 #Asset 폴더 안에 있는 obj는 포함
 !/Assets/*.obj
+/Valheim/window.ini

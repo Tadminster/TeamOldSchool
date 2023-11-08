@@ -6,7 +6,7 @@ class TreeBeech : public Prototype
 private:
 
 public:
-	TreeBeech();
+	explicit TreeBeech(Vector3 spawnPos);
 	~TreeBeech();
 	virtual void Init();
 	virtual void Update();

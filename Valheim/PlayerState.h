@@ -5,7 +5,7 @@ class PlayerState
 protected:
 	void SetPlayerState(PlayerState* state)
 	{
-		player->SetState(state);
+		PLAYER->SetState(state);
 	}
 public:
 	virtual void Idle() = 0;
