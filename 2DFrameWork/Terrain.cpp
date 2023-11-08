@@ -306,13 +306,11 @@ void Terrain::PerlinNoiseHeightMap()
 	int randomSeed = RANDOM->Int(0, 10000);       // 난수 시드
 	siv::PerlinNoise perlin(randomSeed);
 
+	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
-
-
 			double x = (double)i * frequencyScale;
 			double y = (double)j * frequencyScale;
 			double z = 0.5;

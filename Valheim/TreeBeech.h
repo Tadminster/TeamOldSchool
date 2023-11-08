@@ -6,12 +6,12 @@ class TreeBeech : public Prototype
 private:
 
 public:
-	TreeBeech();
+	explicit TreeBeech(Vector3 spawnPos);
 	~TreeBeech();
-	virtual void Init();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render();
-	virtual void RenderHierarchy();
+	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
+	void Render() override;
+	void RenderHierarchy();
 };
 

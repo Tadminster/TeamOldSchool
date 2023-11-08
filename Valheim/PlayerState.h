@@ -1,4 +1,5 @@
 #pragma once
+#define moveSpeed 10
 //State 클래스들을 제어하기위한 추상클래스
 class PlayerState
 {

@@ -7,7 +7,10 @@
 #include "Prototype.h"
 #include "Player.h"
 
-#define GM		GameManager::GetInstance()
-#define DEBUG	GM->debugMode
-#define MAP		GM->map
-#define PLAYER	GM->player
+#include "ObjectManager.h"
+
+#define GM			GameManager::GetInstance()
+#define OBJ			GM->objectManager
+#define DEBUGMODE	GM->debugMode
+#define MAP			GM->map
+#define PLAYER		GM->player

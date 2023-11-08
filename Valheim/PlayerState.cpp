@@ -21,16 +21,16 @@ void IdleState::Move(char key)
 	//방향키 입력값에 따른 이동
 	switch (key) {
 	case 'W':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * moveSpeed * DELTA);
 		break;
 	case 'A':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * moveSpeed * DELTA);
 		break;
 	case 'S':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * moveSpeed * DELTA);
 		break;
 	case 'D':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * moveSpeed * DELTA);
 		break;
 	}
 	//플레이어 상태 Idle -> Move 전환
@@ -56,16 +56,16 @@ void MoveState::Move(char key)
 	//방향키 입력값에 따른 이동
 	switch (key) {
 	case 'W':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * moveSpeed * DELTA);
 		break;
 	case 'A':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * moveSpeed * DELTA);
 		break;
 	case 'S':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * moveSpeed * DELTA);
 		break;
 	case 'D':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * 10.0f * DELTA);
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * moveSpeed * DELTA);
 		break;
 	}
 }

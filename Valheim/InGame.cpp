@@ -10,8 +10,6 @@
 #include "InventoryUiPannel.h"
 #include "GameOption.h"
 
-#include "TreeBeech.h"
-
 #include "InGame.h"
 
 InGame::InGame()
@@ -22,11 +20,11 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
 
+	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
 
 	playerInventoryUI = new InventoryUiPannel();
-	treeBeech = new TreeBeech();
 
 	playerOptionUI    = new GameOption();
 	
@@ -55,13 +53,10 @@ void InGame::Update()
 {
 	LIGHT->RenderDetail();
 
-	//Camera::main->ControlMainCam();
-	Camera::main->Update();
-
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if (DEBUG)
+		if (DEBUGMODE)
 		{
 			grid->RenderHierarchy();
 			PLAYER->AvtivatePlayerCam();
@@ -69,23 +64,31 @@ void InGame::Update()
 		
 		tempCamera->RenderHierarchy();
 		skyBox->RenderHierarchy();
-		treeBeech->RenderHierarchy();
-		PLAYER->GetPlayer()->RenderHierarchy();
+		MAP->RenderHierarchy();
+		PLAYER->GetActor()->RenderHierarchy();
 	}
 	ImGui::End();
 
 	// 디버그 모드
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
 		grid->Update();
+		PLAYER->AvtivatePlayerCam();
 	}
-	PLAYER->AvtivatePlayerCam();
+	else {
+		Camera::main->ControlMainCam();
+	}
+		
+	GM->Update();
 
+	Camera::main->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
-	treeBeech->Update();
 	playerOptionUI->Update();
+	
+	OBJ->Update();
 	PLAYER->Update();
+
 
 }
 
@@ -107,18 +110,20 @@ void InGame::Render()
 {
 	Camera::main->Set();
 	LIGHT->Set();
+	skyBox->Render();
 
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
 		grid->Render();
 	}
 
-	skyBox->Render();
 	MAP->Render();
-	playerInventoryUI->Render();
-	treeBeech->Render();
-	playerOptionUI->Render();
+	OBJ->Render();
 	PLAYER->Render();
+	playerInventoryUI->Render();
+	playerOptionUI->Render();
+
+
 }
 
 void InGame::ResizeScreen()

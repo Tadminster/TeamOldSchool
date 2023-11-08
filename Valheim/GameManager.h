@@ -3,8 +3,9 @@
 class GameManager : public Singleton<GameManager>
 {
 public:
-    class Terrain*      map;
-    class Player*       player;
+    class Terrain*          map;
+    class Player*           player;
+    class ObjectManager*    objectManager;
 
     bool 			    debugMode{ false };
 
