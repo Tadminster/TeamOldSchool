@@ -6,7 +6,7 @@ MoveState* MoveState::instance;
 
 void IdleState::Idle()
 {
-	player->GetPlayer()->
+	PLAYER->GetPlayer()->
 		anim->ChangeAnimation(AnimationState::LOOP, 0);
 }
 
@@ -20,7 +20,7 @@ void IdleState::Move()
 
 void MoveState::Idle()
 {
-	player->GetPlayer()->
+	PLAYER->GetPlayer()->
 		anim->ChangeAnimation(AnimationState::LOOP, 0);
 	SetPlayerState(IdleState::GetInstance());
 }

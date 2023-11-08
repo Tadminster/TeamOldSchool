@@ -3,9 +3,11 @@ class InGame : public Scene
 {
 private:
     Camera*     tempCamera;
+
     Grid*       grid;
 	Sky*        skyBox;
-    Terrain*    map;
+
+    GameManager* gameManager;
    
     class InventoryUiPannel* playerInventoryUI;
     class GameOption* playerOptionUI;

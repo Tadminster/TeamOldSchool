@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="BattleItem.h" />
     <ClInclude Include="ConsumeItem.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
@@ -28,6 +29,7 @@
     <ClInclude Include="Item.h" />
     <ClInclude Include="LivingItem.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Prototype.h" />
@@ -39,12 +41,14 @@
   <ItemGroup>
     <ClCompile Include="BattleItem.cpp" />
     <ClCompile Include="ConsumeItem.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryUiPannel.cpp" />
     <ClCompile Include="LivingItem.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="ResourceItem.cpp" />
     <ClCompile Include="StoneAxe.cpp" />

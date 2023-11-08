@@ -16,16 +16,11 @@
 
 InGame::InGame()
 {
-	grid = Grid::Create("Grid");
+	gameManager = new GameManager();
 
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
-
-    map = Terrain::Create("Terrain");
-    map->LoadFile("TerrainPerlin.xml");
-    map->PerlinNoiseHeightMap();
-    map->CreateStructuredBuffer();
 
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
@@ -33,9 +28,9 @@ InGame::InGame()
 	playerInventoryUI = new InventoryUiPannel();
 	treeBeech = new TreeBeech();
 
-	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	playerOptionUI    = new GameOption();
-	//RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
+	
+	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
@@ -66,21 +61,29 @@ void InGame::Update()
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		grid->RenderHierarchy();
+		if (DEBUG)
+		{
+			grid->RenderHierarchy();
+		}
+		
 		tempCamera->RenderHierarchy();
-		map->RenderHierarchy();
 		skyBox->RenderHierarchy();
 		treeBeech->RenderHierarchy();
-		player->RenderHierarchy();
+		PLAYER->GetPlayer()->RenderHierarchy();
 	}
 	ImGui::End();
 
-	grid->Update();
+	// 디버그 모드
+	if (DEBUG)
+	{
+		grid->Update();
+	}
+		
 	skyBox->Update();
 	playerInventoryUI->Update();
 	treeBeech->Update();
 	playerOptionUI->Update();
-	player->Update();
+	PLAYER->Update();
 
 }
 
@@ -95,7 +98,7 @@ void InGame::PreRender()
 	LIGHT->Set();
 
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
-	map->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
+	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 }
 
 void InGame::Render()
@@ -103,13 +106,17 @@ void InGame::Render()
 	Camera::main->Set();
 	LIGHT->Set();
 
+	if (DEBUG)
+	{
+		grid->Render();
+	}
+
 	skyBox->Render();
-	grid->Render();
-	map->Render();
+	MAP->Render();
 	playerInventoryUI->Render();
 	treeBeech->Render();
 	playerOptionUI->Render();
-	player->Render();
+	PLAYER->Render();
 }
 
 void InGame::ResizeScreen()
