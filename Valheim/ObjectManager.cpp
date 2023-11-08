@@ -107,7 +107,7 @@ void ObjectManager::GenerateFeatures()
 			//cout << result << endl;
 			if (result > 1.0f || result > RANDOM->Float(0, 1))
 			{
-				if (RANDOM->Int(1, 10) == 1)
+				if (RANDOM->Int(1, 100) == 1)
 				{
 					Ray ray;
 					ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
