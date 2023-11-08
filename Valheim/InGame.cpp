@@ -55,7 +55,7 @@ void InGame::Update()
 {
 	LIGHT->RenderDetail();
 
-	Camera::main->ControlMainCam();
+	//Camera::main->ControlMainCam();
 	Camera::main->Update();
 
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
@@ -64,6 +64,7 @@ void InGame::Update()
 		if (DEBUG)
 		{
 			grid->RenderHierarchy();
+			PLAYER->AvtivatePlayerCam();
 		}
 		
 		tempCamera->RenderHierarchy();
@@ -78,7 +79,8 @@ void InGame::Update()
 	{
 		grid->Update();
 	}
-		
+	PLAYER->AvtivatePlayerCam();
+
 	skyBox->Update();
 	playerInventoryUI->Update();
 	treeBeech->Update();

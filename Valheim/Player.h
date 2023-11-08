@@ -13,4 +13,5 @@ public:
 	virtual void RenderHierarchy();
 	Actor* GetPlayer() { return actor; }
 	void SetState(PlayerState* state);
+	void AvtivatePlayerCam();
 };
