@@ -20,6 +20,9 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
 
+	tempCamera2 = Camera::Create("tempCamera2");
+	tempCamera2->LoadFile("Cam.xml");
+
 	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
@@ -65,6 +68,8 @@ void InGame::Update()
 		}
 		
 		tempCamera->RenderHierarchy();
+		tempCamera2->RenderHierarchy();
+
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
 		OBJ->RenderHierarchy();
@@ -119,7 +124,7 @@ void InGame::Render()
 	}
 
 	MAP->Render();
-	OBJ->Render();
+	OBJ->FrustumCulling(tempCamera2);
 	PLAYER->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();

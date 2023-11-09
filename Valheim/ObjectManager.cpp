@@ -1,11 +1,11 @@
-	#include "stdafx.h"
+#include "stdafx.h"
 
-	#include <list>
+#include <list>
 
-	#include "Prototype.h"
-	#include "TreeBeech.h"
+#include "Prototype.h"
+#include "TreeBeech.h"
 
-	#include "ObjectManager.h"
+#include "ObjectManager.h"
 
 ObjectManager::ObjectManager()
 {
@@ -83,7 +83,15 @@ void ObjectManager::Render()
 {
 	for (auto& obj : objects)
 	{
-		if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
+		obj->Render();
+	}
+}
+
+void ObjectManager::FrustumCulling(Camera* cam)
+{
+	for (auto& obj : objects)
+	{
+		if (cam->Intersect(obj->GetActor()->GetWorldPos()))
 		{
 			obj->Render();
 		}
