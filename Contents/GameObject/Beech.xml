@@ -9,7 +9,7 @@
         <Transform>
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0" Y="0" Z="-0"/>
+            <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <Children Size="3"/>
         <Child0 Name="Lod0" Visible="false" ObType="0">
@@ -19,7 +19,7 @@
             <Transform>
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="100" Y="100" Z="100"/>
-                <Rotation X="0" Y="0" Z="-0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="Lod0MeshObject1" Visible="true" ObType="0">
@@ -41,7 +41,7 @@
             <Transform>
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="100" Y="100" Z="100"/>
-                <Rotation X="0" Y="0" Z="-0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="Lod1MeshObject1" Visible="true" ObType="0">
@@ -63,7 +63,7 @@
             <Transform>
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="100" Y="100" Z="100"/>
-                <Rotation X="0" Y="0" Z="-0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="Lod3MeshObject1" Visible="true" ObType="0">
