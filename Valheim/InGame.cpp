@@ -128,7 +128,8 @@ void InGame::Render()
 	}
 
 	MAP->Render();
-	OBJ->FrustumCulling(tempCamera2);
+	//OBJ->FrustumCulling(tempCamera2);
+	OBJ->Render();
 	PLAYER->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();

@@ -227,9 +227,11 @@ void ObjectManager::GenerateInstanceFeature()
 		idx++;
 	}
 	treeBeech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("beech_barkMeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	treeBeech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
 	treeBeech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
+	treeBeech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
 	treeBeech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
+	treeBeech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
 
 	objects.emplace_back(treeBeech);
 }
