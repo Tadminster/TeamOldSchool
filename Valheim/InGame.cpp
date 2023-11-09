@@ -43,6 +43,7 @@ InGame::~InGame()
 
 void InGame::Init()
 {
+	PLAYER->Init();
 }
 
 void InGame::Release()
