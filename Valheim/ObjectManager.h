@@ -15,8 +15,10 @@ public:
 	void	Update();
 	void	LateUpdate();
 	void	Render();
+	void	FrustumCulling(Camera* cam);
 	void    RenderHierarchy();
 	
 	void	GenerateFeatures();
+	void	GenerateInstanceFeature();
 };
 
