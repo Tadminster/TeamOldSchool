@@ -18,5 +18,6 @@ public:
 	void    RenderHierarchy();
 	
 	void	GenerateFeatures();
+	void	GenerateInstanceFeature();
 };
 
