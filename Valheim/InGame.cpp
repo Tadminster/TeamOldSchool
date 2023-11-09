@@ -20,6 +20,9 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 	Camera::main = tempCamera;
 
+	tempCamera2 = Camera::Create("tempCamera2");
+	tempCamera2->LoadFile("Cam.xml");
+
 	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
@@ -64,8 +67,11 @@ void InGame::Update()
 		}
 		
 		tempCamera->RenderHierarchy();
+		tempCamera2->RenderHierarchy();
+
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
+		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 	}
 	ImGui::End();
@@ -101,10 +107,14 @@ void InGame::LateUpdate()
 
 void InGame::PreRender()
 {
+	Camera::main->Set();
 	LIGHT->Set();
 
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
+	
+	//OBJ->Render();
+
 }
 
 void InGame::Render()
@@ -119,6 +129,7 @@ void InGame::Render()
 	}
 
 	MAP->Render();
+	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
 	PLAYER->Render();
 	playerInventoryUI->Render();
