@@ -42,3 +42,17 @@ void TreeBeech::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 }
+
+void TreeBeech::LodUpdate(LodLevel lv)
+{
+	actor->Find("Lod0")->visible = false;
+	actor->Find("Lod1")->visible = false;
+	actor->Find("Lod3")->visible = false;
+
+	if (lv == LodLevel::LOD0)
+		actor->Find("Lod0")->visible = true;
+	else if (lv == LodLevel::LOD1)
+		actor->Find("Lod1")->visible = true;
+	else if (lv == LodLevel::LOD3)
+		actor->Find("Lod3")->visible = true;
+}

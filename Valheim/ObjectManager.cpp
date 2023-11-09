@@ -38,13 +38,33 @@ void ObjectManager::Update()
 		GenerateInstanceFeature();
 	}
 
-	static float time = 0;
-	if (TIMER->GetTick(time, 1.0f))
+	//static float updateCycle = 0;
+	//if (TIMER->GetTick(updateCycle, 1.0f))
+	//{
+	//	for (auto& obj : objects)
+	//	{
+	//		if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
+	//		{
+	//			obj->Update();
+	//		}
+	//	}
+	//}
+
+	static float distanceCalCycle = 0;
+	if (TIMER->GetTick(distanceCalCycle, 1.0f))
 	{
+		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
-			if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
+			TreeBeech* treeBeechObj = static_cast<TreeBeech*>(obj);
+			if (treeBeechObj)
 			{
+				float distance = Vector3::DistanceSquared(CameraPos, treeBeechObj->GetActor()->GetWorldPos());
+				if (distance < 2000) treeBeechObj->LodUpdate(LodLevel::LOD0);
+				else if (distance < 5000) treeBeechObj->LodUpdate(LodLevel::LOD1);
+				else if (distance < 10000) treeBeechObj->LodUpdate(LodLevel::LOD3);
+				else continue;
+
 				obj->Update();
 			}
 		}
@@ -125,7 +145,7 @@ void ObjectManager::GenerateFeatures()
 					{
 						TreeBeech* treeBeech = new TreeBeech(Hit, RenderType::SINGLE);
 						treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
-						treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.4f, 0.6f));
+						treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.002f, 0.003f), RANDOM->Float(0.002f, 0.003f), RANDOM->Float(0.002f, 0.003f));
 						objects.emplace_back(treeBeech);
 						count++;
 					}

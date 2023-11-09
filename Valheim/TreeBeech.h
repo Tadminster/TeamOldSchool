@@ -6,6 +6,13 @@ enum class RenderType
 	INSTANCING
 };
 
+enum class LodLevel
+{
+	LOD0,
+	LOD1,
+	LOD3
+};
+
 class TreeBeech : public Prototype
 {
 private:
@@ -18,5 +25,7 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 	void RenderHierarchy();
+
+	void LodUpdate(LodLevel lv);
 };
 
