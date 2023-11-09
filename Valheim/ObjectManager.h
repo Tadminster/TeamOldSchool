@@ -20,5 +20,6 @@ public:
 	
 	void	GenerateFeatures();
 	void	GenerateInstanceFeature();
+	void	GenerateInstanceGrass();
 };
 

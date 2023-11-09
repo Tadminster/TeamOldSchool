@@ -22,7 +22,7 @@
             <Children Size="1"/>
             <Child0 Name="grasscross__1_" Visible="true" ObType="0">
                 <Mesh File="Grass/grasscross__1_.mesh"/>
-                <Shader File="4.Cube.hlsl"/>
+                <Shader File="4.Instance.hlsl"/>
                 <Material File="Grass/grasscross_heath_green.mtl"/>
                 <Transform>
                     <Position X="-50" Y="0" Z="0"/>

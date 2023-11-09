@@ -4,7 +4,6 @@
 TreeBeech::TreeBeech(Vector3 spawnPos, RenderType type)
 {
 	actor = Actor::Create();
-	actor->LoadFile("Beech.xml");
 	if (type == RenderType::SINGLE) 
 		actor->LoadFile("Beech.xml");
 	else if (type == RenderType::INSTANCING) 
