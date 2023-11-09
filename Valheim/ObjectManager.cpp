@@ -226,6 +226,7 @@ void ObjectManager::GenerateInstanceFeature()
 	int idx = 0;
 	for (int i = 1; i < count; i++)
 	{
+		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y - treePos[0].y, treePos[i].z);
 		ins[idx] = Matrix::CreateTranslation(treePos[i]);
 		ins[idx] = ins[idx].Transpose();
 		idx++;
@@ -300,7 +301,8 @@ void ObjectManager::GenerateInstanceGrass()
 	int idx = 0;
 	for (int i = 1; i < count; i++)
 	{
-		ins[idx] = Matrix::CreateTranslation(grassPos[i]);
+		Vector3 insPos = Vector3(grassPos[i].x, grassPos[i].y - grassPos[0].y, grassPos[i].z);
+		ins[idx] = Matrix::CreateTranslation(insPos);
 		ins[idx] = ins[idx].Transpose();
 		idx++;
 	}
