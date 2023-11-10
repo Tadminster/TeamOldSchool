@@ -181,6 +181,7 @@ void ObjectManager::GenerateInstanceFeature()
 
 	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
 	vector<Vector3> treePos;
+	Ray ray;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
@@ -204,7 +205,7 @@ void ObjectManager::GenerateInstanceFeature()
 			{
 				if (RANDOM->Int(1, 50) == 1)
 				{
-					Ray ray;
+
 					ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
 					ray.direction = Vector3(0, -1, 0);
 					Vector3 Hit;
@@ -219,14 +220,15 @@ void ObjectManager::GenerateInstanceFeature()
 		}
 	}
 
-	TreeBeech* treeBeech = new TreeBeech(Vector3(0, treePos[0].y, 0), RenderType::INSTANCING);
+	TreeBeech* treeBeech = new TreeBeech(Vector3(0, 0, 0), RenderType::INSTANCING);
+	//TreeBeech* treeBeech = new TreeBeech(Vector3(0, treePos[0].y, 0), RenderType::INSTANCING);
 
 	UINT count = treePos.size();
 	Matrix* ins = new Matrix[count];
 	int idx = 0;
 	for (int i = 1; i < count; i++)
 	{
-		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y - treePos[0].y, treePos[i].z);
+		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y, treePos[i].z);
 		ins[idx] = Matrix::CreateTranslation(treePos[i]);
 		ins[idx] = ins[idx].Transpose();
 		idx++;
@@ -253,6 +255,9 @@ void ObjectManager::GenerateInstanceGrass()
 
 	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
 	vector<Vector3> grassPos;
+
+	Ray ray;
+	Vector3 Hit;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
@@ -278,10 +283,10 @@ void ObjectManager::GenerateInstanceGrass()
 			{
 				if (RANDOM->Int(1, 5) == 1)
 				{
-					Ray ray;
+
 					ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
 					ray.direction = Vector3(0, -1, 0);
-					Vector3 Hit;
+
 
 
 					if (MAP->ComPutePicking(ray, Hit))
@@ -293,7 +298,8 @@ void ObjectManager::GenerateInstanceGrass()
 		}
 	}
 
-	Grass* grass = new Grass(Vector3(0, grassPos[0].y, 0));
+	Grass* grass = new Grass(Vector3(0, 0, 0));
+	//Grass* grass = new Grass(Vector3(0, grassPos[0].y, 0));
 
 	UINT count = grassPos.size();
 	cout << count << endl;
@@ -301,7 +307,7 @@ void ObjectManager::GenerateInstanceGrass()
 	int idx = 0;
 	for (int i = 1; i < count; i++)
 	{
-		Vector3 insPos = Vector3(grassPos[i].x, grassPos[i].y - grassPos[0].y, grassPos[i].z);
+		Vector3 insPos = Vector3(grassPos[i].x, grassPos[i].y, grassPos[i].z);
 		ins[idx] = Matrix::CreateTranslation(insPos);
 		ins[idx] = ins[idx].Transpose();
 		idx++;
