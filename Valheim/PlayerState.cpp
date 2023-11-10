@@ -46,11 +46,11 @@ void WalkState::Idle()
 }
 void WalkState::Walk(unsigned char key)
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2 && !PLAYER->GetPlayerJump()) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
 	//방향키 입력값에 따른 Walk 이동
-	switch (key) {
+	/*switch (key) {
 	case 'W':
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * WALKSPEED * DELTA);
 		break;
@@ -63,7 +63,7 @@ void WalkState::Walk(unsigned char key)
 	case 'D':
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * WALKSPEED * DELTA);
 		break;
-	}
+	}*/
 }
 void WalkState::Run(unsigned char key)
 {
@@ -92,11 +92,11 @@ void RunState::Walk(unsigned char key)
 }
 void RunState::Run(unsigned char key)
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3 && !PLAYER->GetPlayerJump()) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 3);
 	}
 
-	switch (key) {
+	/*switch (key) {
 	case 'W':
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * RUNSPEED * DELTA);
 		break;
@@ -109,7 +109,7 @@ void RunState::Run(unsigned char key)
 	case 'D':
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * RUNSPEED * DELTA);
 		break;
-	}
+	}*/
 }
 void RunState::Jump()
 {
@@ -129,11 +129,11 @@ void JumpState::Idle()
 }
 void JumpState::Walk(unsigned char key)
 {
-	SetPlayerState(WalkState::GetInstance());
+	//SetPlayerState(WalkState::GetInstance());
 }
 void JumpState::Run(unsigned char key)
 {
-	SetPlayerState(RunState::GetInstance());
+	//SetPlayerState(RunState::GetInstance());
 }
 void JumpState::Jump()
 {
@@ -172,6 +172,12 @@ void SwingState::Swing()
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 5) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 5);
 	}
+	
+	Vector3 RootMove = PLAYER->GetPlayer()->Find("mixamorig:Hips")->GetWorldPos() - PLAYER->GetPlayer()->GetWorldPos();
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame==65) {
+		PLAYER->GetPlayer()->SetWorldPos(PLAYER->GetPlayer()->Find("mixamorig:Hips")->GetWorldPos());
+	}
+	
 }
 
 

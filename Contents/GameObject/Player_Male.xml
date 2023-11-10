@@ -7,16 +7,16 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="0" Y="21.25" Z="0"/>
+        <Position X="-18.214125" Y="19.79126" Z="38.593147"/>
         <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Rotation X="0" Y="2.0281289" Z="0"/>
     </Transform>
     <Children Size="2"/>
     <Child0 Name="PlayerCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
-            <Position X="0" Y="3" Z="-4.9999995"/>
+            <Position X="0" Y="3.5" Z="-4.9999995"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.174532" Y="0" Z="0"/>
+            <Rotation X="0.26179799" Y="0" Z="0"/>
         </Transform>
         <Camera Ortho="false" Fov="1.047192" Width="1280" Height="720" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="720"/>
         <Children Size="0"/>
