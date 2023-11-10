@@ -27,7 +27,10 @@ void Player::Init()
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	if (!DEBUGMODE) PlayerControl();
+	if (!DEBUGMODE) {
+		PlayerControl();
+		PlayerMove();
+	}
 	else isPlayerCam = false;
 	//중력 구현
 	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
