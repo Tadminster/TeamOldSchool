@@ -6,7 +6,11 @@ Player::Player()
 	actor = Actor::Create();
 	actor->LoadFile("Player_Male.xml");
 	actor->name = "Player";
+	actor->anim->aniScale = 0.65f;
 
+
+
+		
 	state = IdleState::GetInstance();
 }
 
@@ -149,4 +153,28 @@ void Player::PlayerControl()
 	if (state == IdleState::GetInstance()) ImGui::Text("%d state", 1);
 	else if (state == WalkState::GetInstance()) ImGui::Text("%d state", 2);
 	else if (state == RunState::GetInstance()) ImGui::Text("%d state", 3);
+}
+
+void Player::PlayerMove()
+{
+	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
+	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	
+
+	if (INPUT->KeyPress('W')) 
+	{
+		actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
+	}
+	else if (INPUT->KeyPress('S'))
+	{
+		actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+	}
+	if (INPUT->KeyPress('A'))
+	{
+		actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
+	}
+	else if (INPUT->KeyPress('D'))
+	{
+		actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
+	}
 }
