@@ -18,7 +18,6 @@ InGame::InGame()
 
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
-	Camera::main = tempCamera;
 
 	tempCamera2 = Camera::Create("tempCamera2");
 	tempCamera2->LoadFile("Cam.xml");
@@ -60,30 +59,31 @@ void InGame::Update()
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if (DEBUGMODE)
+		if(DEBUGMODE)
 		{
 			grid->RenderHierarchy();
-			PLAYER->AvtivatePlayerCam();
+			tempCamera->RenderHierarchy();
+			tempCamera2->RenderHierarchy();
 		}
-		
-		tempCamera->RenderHierarchy();
-		tempCamera2->RenderHierarchy();
-
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
+
 	}
 	ImGui::End();
 
 	// 디버그 모드
 	if (DEBUGMODE)
 	{
-		grid->Update();
-		PLAYER->AvtivatePlayerCam();
-	}
-	else {
+		Camera::main = tempCamera;
 		Camera::main->ControlMainCam();
+
+		grid->Update();
+	}
+	else 
+	{
+		PLAYER->AvtivatePlayerCam();
 	}
 		
 	GM->Update();

@@ -12,6 +12,7 @@ class Player : public Prototype
 	float gravity = 0;
 	bool isLand = 0;
 	bool isJump = 0;
+	bool isPlayerCam = 1;
 public:
 	Player();
 	~Player();

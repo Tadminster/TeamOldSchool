@@ -17,12 +17,14 @@ Player::~Player()
 void Player::Init()
 {
 	actor->SetWorldPosY(30);
+	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 }
 
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	if(DEBUGMODE) PlayerControl();
+	if (!DEBUGMODE) PlayerControl();
+	else isPlayerCam = false;
 	//중력 구현
 	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
 	if (isLand) gravity = 0;
@@ -89,7 +91,10 @@ void Player::SetState(PlayerState* state)
 void Player::AvtivatePlayerCam()
 {
 	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기
-	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+	if (!DEBUGMODE && !isPlayerCam) {
+		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+		isPlayerCam = true;
+	}
 	POINT ptMouse;
 	ptMouse.x = App.GetHalfWidth();
 	ptMouse.y = App.GetHalfHeight();
