@@ -38,6 +38,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StoneAxe.h" />
     <ClInclude Include="TreeBeech.h" />
+    <ClInclude Include="Wood.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BattleItem.cpp" />
@@ -56,6 +57,7 @@
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TreeBeech.cpp" />
+    <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
