@@ -54,6 +54,9 @@
     <ClInclude Include="Grass.h">
       <Filter>GameObject</Filter>
     </ClInclude>
+    <ClInclude Include="Wood.h">
+      <Filter>ItemAndInventory\ResourceItemList</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -98,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Wood.cpp">
+      <Filter>ItemAndInventory\ResourceItemList</Filter>
     </ClCompile>
     <ClCompile Include="Grass.cpp">
       <Filter>GameObject</Filter>

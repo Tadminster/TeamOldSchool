@@ -50,24 +50,24 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MapTool", "MapTool\MapTool.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		Contents\GameObject\box.xml = Contents\GameObject\box.xml
-		Contents\GameObject\bullet.xml = Contents\GameObject\bullet.xml
+		Contents\GameObject\axe.xml = Contents\GameObject\axe.xml
 		Contents\GameObject\Cam.xml = Contents\GameObject\Cam.xml
 		Contents\GameObject\Grid.xml = Contents\GameObject\Grid.xml
+		Contents\GameObject\inGameOption.xml = Contents\GameObject\inGameOption.xml
 		Contents\GameObject\InvenUI.xml = Contents\GameObject\InvenUI.xml
 		Contents\GameObject\Map.xml = Contents\GameObject\Map.xml
 		Contents\GameObject\MapSurface.xml = Contents\GameObject\MapSurface.xml
-		Contents\GameObject\Mutant.xml = Contents\GameObject\Mutant.xml
+		Contents\GameObject\Player_Male.xml = Contents\GameObject\Player_Male.xml
 		Contents\GameObject\PostEffect.xml = Contents\GameObject\PostEffect.xml
-		Contents\GameObject\Robot.xml = Contents\GameObject\Robot.xml
 		Contents\GameObject\Sky1.xml = Contents\GameObject\Sky1.xml
 		Contents\GameObject\Sky2.xml = Contents\GameObject\Sky2.xml
+		Contents\GameObject\stoneImg.xml = Contents\GameObject\stoneImg.xml
 		Contents\GameObject\Sun.xml = Contents\GameObject\Sun.xml
 		Contents\GameObject\Target.xml = Contents\GameObject\Target.xml
 		Contents\GameObject\Terrain.xml = Contents\GameObject\Terrain.xml
 		Contents\GameObject\UI.xml = Contents\GameObject\UI.xml
-		Contents\GameObject\Vam.xml = Contents\GameObject\Vam.xml
-		Contents\GameObject\Zamong.xml = Contents\GameObject\Zamong.xml
+		Contents\GameObject\woodImg.xml = Contents\GameObject\woodImg.xml
+		Contents\GameObject\woodpile.xml = Contents\GameObject\woodpile.xml
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AssetImpoter", "AssetImpoter\AssetImpoter.vcxproj", "{408B5E5E-A44D-47B8-AC78-A324B4051C2D}"

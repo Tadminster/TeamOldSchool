@@ -4,24 +4,30 @@
 
 ResourceItem::ResourceItem()
 {
+
 }
 
 ResourceItem::~ResourceItem()
 {
+
 }
 
 void ResourceItem::CreateItem()
 {
+
 }
 
 void ResourceItem::EquipItem()
 {
+
 }
 
 void ResourceItem::DestroyItem()
 {
+
 }
 
 void ResourceItem::FixItem()
 {
+
 }
