@@ -19,7 +19,9 @@ InGame::InGame()
 
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
-	Camera::main = tempCamera;
+
+	tempCamera2 = Camera::Create("tempCamera2");
+	tempCamera2->LoadFile("Cam.xml");
 
 	grid = Grid::Create();
 	skyBox = Sky::Create();
@@ -48,6 +50,7 @@ InGame::~InGame()
 
 void InGame::Init()
 {
+	PLAYER->Init();
 }
 
 void InGame::Release()
@@ -58,31 +61,39 @@ void InGame::Update()
 {
 	LIGHT->RenderDetail();
 
-	Camera::main->ControlMainCam();
-	Camera::main->Update();
-
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if (DEBUG)
+		if(DEBUGMODE)
 		{
 			grid->RenderHierarchy();
+			tempCamera->RenderHierarchy();
+			tempCamera2->RenderHierarchy();
 		}
-		
-		tempCamera->RenderHierarchy();
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
-		PLAYER->GetPlayer()->RenderHierarchy();
+		OBJ->RenderHierarchy();
+		PLAYER->GetActor()->RenderHierarchy();
+
 	}
 	ImGui::End();
 
 	// 디버그 모드
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
+		Camera::main = tempCamera;
+		Camera::main->ControlMainCam();
+
 		grid->Update();
+	}
+	else 
+	{
+		PLAYER->AvtivatePlayerCam();
 	}
 		
 	GM->Update();
+
+	Camera::main->Update();
 	skyBox->Update();
 	playerInventoryUI->Update();
 	playerOptionUI->Update();
@@ -102,14 +113,19 @@ void InGame::LateUpdate()
 	wood->LateUpdate();
 	stoneAxe->LateUpdate();
 	
+	PLAYER->LateUpdate();
 }
 
 void InGame::PreRender()
 {
+	Camera::main->Set();
 	LIGHT->Set();
 
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
+	
+	//OBJ->Render();
+
 }
 
 void InGame::Render()
@@ -118,12 +134,13 @@ void InGame::Render()
 	LIGHT->Set();
 	skyBox->Render();
 
-	if (DEBUG)
+	if (DEBUGMODE)
 	{
 		grid->Render();
 	}
 
 	MAP->Render();
+	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
 	PLAYER->Render();
 	playerInventoryUI->Render();

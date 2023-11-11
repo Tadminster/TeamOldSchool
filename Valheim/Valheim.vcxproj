@@ -23,6 +23,7 @@
     <ClInclude Include="ConsumeItem.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
+    <ClInclude Include="Grass.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryUiPannel.h" />
@@ -44,6 +45,7 @@
     <ClCompile Include="ConsumeItem.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
+    <ClCompile Include="Grass.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryUiPannel.cpp" />

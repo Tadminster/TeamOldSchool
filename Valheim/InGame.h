@@ -3,6 +3,7 @@ class InGame : public Scene
 {
 private:
     Camera*     tempCamera;
+    Camera*     tempCamera2;
 
     Grid*       grid;
 	Sky*        skyBox;

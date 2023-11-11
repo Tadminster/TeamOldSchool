@@ -1,17 +1,31 @@
 #pragma once
 
+enum class RenderType
+{
+	SINGLE,
+	INSTANCING
+};
+
+enum class LodLevel
+{
+	LOD0,
+	LOD1,
+	LOD3
+};
 
 class TreeBeech : public Prototype
 {
 private:
 
 public:
-	explicit TreeBeech(Vector3 spawnPos);
+	explicit TreeBeech(Vector3 spawnPos, RenderType type);
 	~TreeBeech();
-	virtual void Init();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render();
-	virtual void RenderHierarchy();
+	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
+	void Render() override;
+	void RenderHierarchy() override;
+
+	void LodUpdate(LodLevel lv);
 };
 

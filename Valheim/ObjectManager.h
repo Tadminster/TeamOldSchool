@@ -3,7 +3,7 @@
 class ObjectManager
 {
 private:
-	list<Prototype*>	mPrototypes;
+	list<Prototype*>	objects;
 	
 
 public:
@@ -15,8 +15,11 @@ public:
 	void	Update();
 	void	LateUpdate();
 	void	Render();
+	void	FrustumCulling(Camera* cam);
 	void    RenderHierarchy();
 	
 	void	GenerateFeatures();
+	void	GenerateInstanceFeature();
+	void	GenerateInstanceGrass();
 };
 
