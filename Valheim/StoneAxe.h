@@ -18,5 +18,9 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 
+
+	// BattleItem을(를) 통해 상속됨
+	void RenderHierarchy() override;
+
 };
 
