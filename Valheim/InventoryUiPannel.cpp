@@ -9,10 +9,11 @@ InventoryUiPannel::InventoryUiPannel()
 	stoneImg = UI::Create("stoneImg");
 	woodImg = UI::Create("woodImg");
 
+
 	stoneImg->LoadFile("stoneImg.xml");
 	woodImg->LoadFile("woodImg.xml");
-
-
+	stoneImg->visible = false;
+	woodImg->visible = false;
 
 	//인벤토리 처음에 감추기 메인슬롯은 보여줍니다
 	playerInventory->Find("PLAYER_PANNEL_INVEN")->visible = false;
@@ -84,8 +85,9 @@ void InventoryUiPannel::Update()
 			playerInventory->Find("itemSlot" + to_string(i))->SetLocalPosY(0.290);
 		}
 	}
-
-
+	//임시로 나무랑 돌멩이 위치해놓기
+	stoneImg->SetWorldPos(playerInventory->Find("itemSlot8")->GetWorldPos());
+	woodImg->SetWorldPos(playerInventory->Find("itemSlot9")->GetWorldPos());
 }
 
 void InventoryUiPannel::LateUpdate()
@@ -94,6 +96,8 @@ void InventoryUiPannel::LateUpdate()
 	if (INPUT->KeyDown(VK_TAB))
 	{
 		playerInventory->Find("PLAYER_PANNEL_INVEN")->visible = !playerInventory->Find("PLAYER_PANNEL_INVEN")->visible;
+		stoneImg->visible = !stoneImg->visible;
+		woodImg->visible = !woodImg->visible;
 		for (int i = 8; i < 32; i++)
 		{
 			playerInventory->Find("itemSlot" + to_string(i))->visible = !playerInventory->Find("itemSlot" + to_string(i))->visible;
@@ -116,12 +120,6 @@ void InventoryUiPannel::LateUpdate()
 		}
 	}
 
-	//아이템획득시 아이템 이미지 인벤토리에 적용
-	/*if (INPUT->KeyDown(VK_F8))
-	{
-		stoneImg->SetWorldPos(playerInventory->Find("itemSlot8")->GetWorldPos());
-		woodImg->SetWorldPos(playerInventory->Find("itemSlot9")->GetWorldPos());
-	}*/
 
 
 	

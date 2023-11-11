@@ -1,6 +1,4 @@
 <Root Name="playerInventory" Visible="true" ObType="4">
-    <Shader File="6.UI.hlsl"/>
-    <Material File="ChangeName.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
