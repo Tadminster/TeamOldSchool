@@ -108,6 +108,16 @@ void Player::AvtivatePlayerCam()
 		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 		isPlayerCam = true;
 	}
+	//카메라 전환 시 화면 짤리는 부분 방지
+	{
+		Camera::main->viewport.x = 0.0f;
+		Camera::main->viewport.y = 0.0f;
+		Camera::main->viewport.width = App.GetWidth();
+		Camera::main->viewport.height = App.GetHeight();
+
+		Camera::main->width = App.GetWidth();
+		Camera::main->height = App.GetHeight();
+	}
 	POINT ptMouse;
 	ptMouse.x = App.GetHalfWidth();
 	ptMouse.y = App.GetHalfHeight();
