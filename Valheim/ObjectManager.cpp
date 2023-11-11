@@ -43,27 +43,17 @@ void ObjectManager::Update()
 		GenerateInstanceGrass();
 	}
 
-	//static float updateCycle = 0;
-	//if (TIMER->GetTick(updateCycle, 1.0f))
-	//{
-	//	for (auto& obj : objects)
-	//	{
-	//		if (Camera::main->Intersect(obj->GetActor()->GetWorldPos()))
-	//		{
-	//			obj->Update();
-	//		}
-	//	}
-	//}
-
 	static float distanceCalCycle = 0;
 	if (TIMER->GetTick(distanceCalCycle, 1.0f))
 	{
 		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
+			// Down Casting
 			TreeBeech* treeBeechObj = dynamic_cast<TreeBeech*>(obj);
 			if (treeBeechObj)
 			{
+				// 거리에 따라 LOD 적용
 				float distance = Vector3::DistanceSquared(CameraPos, treeBeechObj->GetActor()->GetWorldPos());
 				if (distance < 2000) treeBeechObj->LodUpdate(LodLevel::LOD0);
 				else if (distance < 5000) treeBeechObj->LodUpdate(LodLevel::LOD1);
