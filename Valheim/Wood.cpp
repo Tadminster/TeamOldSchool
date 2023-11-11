@@ -45,7 +45,7 @@ void Wood::Init()
 
 void Wood::Update()
 {
-	
+	actor->Update();
 }
 
 void Wood::LateUpdate()
@@ -64,5 +64,4 @@ void Wood::RenderHierarchy()
 		actor->RenderHierarchy();
 	}
 	ImGui::End();
-	actor->Update();
 }

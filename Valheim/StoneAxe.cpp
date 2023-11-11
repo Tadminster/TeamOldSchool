@@ -30,7 +30,7 @@ void StoneAxe::Init()
 
 void StoneAxe::Update()
 {
-	
+	actor->Update();
 }
 
 void StoneAxe::LateUpdate()
@@ -50,5 +50,4 @@ void StoneAxe::RenderHierarchy()
 		actor->RenderHierarchy();
 	}
 	ImGui::End();
-	actor->Update();
 }

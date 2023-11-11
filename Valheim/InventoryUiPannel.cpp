@@ -80,6 +80,14 @@ void InventoryUiPannel::Update()
 		playerInventory->Find("ThirdsubSlot" + to_string(i))->scale.y = 0.170f;
 	}
 
+	//아이템 이미지 이동기능
+	/*if (stoneImg->mousePress)
+	{
+		stoneImg->MoveWorldPos(Vector3(INPUT->movePosition / App.GetWidth() * 2.0f,
+			0,
+			0
+		);
+	}*/
 
 }
 
