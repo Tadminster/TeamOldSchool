@@ -1,50 +1,45 @@
 #include "stdafx.h"
-#include "TreeBeech.h"
+#include "Prototype.h"
+#include "FeatureProto.h"
+#include "Beech.h"
 
-TreeBeech::TreeBeech(Vector3 spawnPos, RenderType type)
+Beech::Beech()
 {
 	actor = Actor::Create();
-	if (type == RenderType::SINGLE) 
-		actor->LoadFile("Beech.xml");
-	else if (type == RenderType::INSTANCING) 
-		actor->LoadFile("BeechInstance.xml");
+	actor->LoadFile("Beech.xml");
 
 	static int index = 0;
 	actor->name = "Beech" + index++;
-	
-	actor->SetWorldPos(spawnPos);
-
-	type = type;
 }
 
-TreeBeech::~TreeBeech()
+Beech::~Beech()
 {
 }
 
-void TreeBeech::Init()
+void Beech::Init()
 {
 }
 
-void TreeBeech::Update()
+void Beech::Update()
 {
 	actor->Update();
 }
 
-void TreeBeech::LateUpdate()
+void Beech::LateUpdate()
 {
 }
 
-void TreeBeech::Render()
+void Beech::Render()
 {
 	actor->Render();
 }
 
-void TreeBeech::RenderHierarchy()
+void Beech::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 }
 
-void TreeBeech::LodUpdate(LodLevel lv)
+void Beech::LodUpdate(LodLevel lv)
 {
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;

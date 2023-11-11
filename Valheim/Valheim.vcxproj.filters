@@ -36,9 +36,6 @@
     <ClInclude Include="Player.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TreeBeech.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameOption.h">
       <Filter>GameOptionUI</Filter>
     </ClInclude>
@@ -56,6 +53,18 @@
     </ClInclude>
     <ClInclude Include="Wood.h">
       <Filter>ItemAndInventory\ResourceItemList</Filter>
+    </ClInclude>
+    <ClInclude Include="Beech.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="BeechLog.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="FeatureProto.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="BeechHalfLog.h">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -87,9 +96,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="TreeBeech.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameOption.cpp">
       <Filter>GameOptionUI</Filter>
     </ClCompile>
@@ -107,6 +113,18 @@
     </ClCompile>
     <ClCompile Include="Grass.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Beech.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechLog.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="FeatureProto.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechHalfLog.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +157,9 @@
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{324d54cc-7540-4438-9bed-1b0d48497f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Terrain Features">
+      <UniqueIdentifier>{997c8266-dbe6-47bd-a153-8022c73e54f6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

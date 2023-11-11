@@ -20,7 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleItem.h" />
+    <ClInclude Include="BeechHalfLog.h" />
+    <ClInclude Include="BeechLog.h" />
     <ClInclude Include="ConsumeItem.h" />
+    <ClInclude Include="FeatureProto.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
     <ClInclude Include="Grass.h" />
@@ -37,12 +40,15 @@
     <ClInclude Include="ResourceItem.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StoneAxe.h" />
-    <ClInclude Include="TreeBeech.h" />
+    <ClInclude Include="Beech.h" />
     <ClInclude Include="Wood.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BattleItem.cpp" />
+    <ClCompile Include="BeechHalfLog.cpp" />
+    <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="ConsumeItem.cpp" />
+    <ClCompile Include="FeatureProto.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
     <ClCompile Include="Grass.cpp" />
@@ -56,7 +62,7 @@
     <ClCompile Include="ResourceItem.cpp" />
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="TreeBeech.cpp" />
+    <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>

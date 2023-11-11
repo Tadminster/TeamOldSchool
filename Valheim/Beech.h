@@ -1,10 +1,10 @@
 #pragma once
-
-enum class RenderType
-{
-	SINGLE,
-	INSTANCING
-};
+#include "FeatureProto.h"
+//enum class RenderType
+//{
+//	SINGLE,
+//	INSTANCING
+//};
 
 enum class LodLevel
 {
@@ -13,14 +13,14 @@ enum class LodLevel
 	LOD3
 };
 
-class TreeBeech : public Prototype
+class Beech : public FeatureProto
 {
 private:
-	RenderType type;
+	//RenderType type;
 
 public:
-	explicit TreeBeech(Vector3 spawnPos, RenderType type);
-	~TreeBeech();
+	Beech();
+	~Beech();
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
@@ -28,6 +28,6 @@ public:
 	void RenderHierarchy() override;
 
 	void LodUpdate(LodLevel lv);
-	RenderType GetRenderType() { return type; }
+	//RenderType GetRenderType() { return type; }
 };
 

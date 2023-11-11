@@ -3,8 +3,7 @@
 class ObjectManager
 {
 private:
-	list<Prototype*>	objects;
-	
+	list<std::unique_ptr<Prototype>> objects;
 
 public:
 	ObjectManager();
@@ -15,11 +14,10 @@ public:
 	void	Update();
 	void	LateUpdate();
 	void	Render();
-	void	FrustumCulling(Camera* cam);
 	void    RenderHierarchy();
 	
 	void	GenerateTree();
-	void	GenerateInstanceTree();
+	//void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 };
 

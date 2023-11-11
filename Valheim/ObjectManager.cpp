@@ -3,7 +3,8 @@
 #include <list>
 
 #include "Prototype.h"
-#include "TreeBeech.h"
+#include "FeatureProto.h"
+#include "Beech.h"
 #include "Grass.h"
 
 #include "ObjectManager.h"
@@ -19,7 +20,7 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-	//mPrototypes.emplace_back(new TreeBeech());
+	//mPrototypes.emplace_back(new Beech());
 }
 
 void ObjectManager::Release()
@@ -34,10 +35,10 @@ void ObjectManager::Update()
 	{
 		GenerateTree();
 	}
-	if (ImGui::Button("GenerateInstanceTree"))
-	{
-		GenerateInstanceTree();
-	}
+	//if (ImGui::Button("GenerateInstance"))
+	//{
+	//	GenerateInstanceTree();
+	//}
 	if (ImGui::Button("GenerateInstanceGrass"))
 	{
 		GenerateInstanceGrass();
@@ -50,14 +51,14 @@ void ObjectManager::Update()
 		for (auto& obj : objects)
 		{
 			// Down Casting
-			TreeBeech* treeBeechObj = dynamic_cast<TreeBeech*>(obj);
-			if (treeBeechObj)
+			Beech* beech = dynamic_cast<Beech*>(obj.get());
+			if (beech)
 			{
 				// 거리에 따라 LOD 적용
-				float distance = Vector3::DistanceSquared(CameraPos, treeBeechObj->GetActor()->GetWorldPos());
-				if (distance < 1000) treeBeechObj->LodUpdate(LodLevel::LOD0);
-				else if (distance < 2000) treeBeechObj->LodUpdate(LodLevel::LOD1);
-				else if (distance < 5000) treeBeechObj->LodUpdate(LodLevel::LOD3);
+				float distance = Vector3::DistanceSquared(CameraPos, beech->GetActor()->GetWorldPos());
+				if (distance < 1000) beech->LodUpdate(LodLevel::LOD0);
+				else if (distance < 2000) beech->LodUpdate(LodLevel::LOD1);
+				else if (distance < 5000) beech->LodUpdate(LodLevel::LOD3);
 				else continue;
 
 				obj->Update();
@@ -76,22 +77,21 @@ void ObjectManager::LateUpdate()
 
 void ObjectManager::Render()
 {
-	for (auto& obj : objects)
+	if (DEBUGMODE)
 	{
-		if (PLAYER->GetPlayerCam()->Intersect(obj->GetActor()->GetWorldPos()))
+		for (auto& obj : objects)
 		{
 			obj->Render();
 		}
 	}
-}
-
-void ObjectManager::FrustumCulling(Camera* cam)
-{
-	for (auto& obj : objects)
+	else
 	{
-		if (cam->Intersect(obj->GetActor()->GetWorldPos()))
+		for (auto& obj : objects)
 		{
-			obj->Render();
+			if (PLAYER->GetPlayerCam()->Intersect(obj->GetActor()->GetWorldPos()))
+			{
+				obj->Render();
+			}
 		}
 	}
 }
@@ -155,17 +155,18 @@ void ObjectManager::GenerateTree()
 
 				if (MAP->ComPutePicking(ray, Hit))
 				{
-					TreeBeech* treeBeech = new TreeBeech(Hit, RenderType::SINGLE);
+					unique_ptr<FeatureProto> treeBeech = FeatureProto::Create(FeatureType::Beech);
+					treeBeech->GetActor()->SetWorldPos(Hit);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
-					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.005f, 0.01f), RANDOM->Float(0.004f, 0.006f), RANDOM->Float(0.005f, 0.01f));
-					objects.emplace_back(treeBeech);
+					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));
+					objects.emplace_back(move(treeBeech));
 				}
 			}
 		}
 	}
-	cout << objects.size();
 }
 
+/*
 void ObjectManager::GenerateInstanceTree()
 {
 	int rowSize = MAP->rowSize;
@@ -221,8 +222,7 @@ void ObjectManager::GenerateInstanceTree()
 		}
 	}
 
-	cout << treePos.size() << endl;
-	TreeBeech* treeBeech = new TreeBeech(Vector3(0, 0, 0), RenderType::INSTANCING);
+	Beech* treeBeech = new Beech(Vector3(0, 0, 0), RenderType::INSTANCING);
 
 	UINT count = treePos.size();
 	Matrix* ins = new Matrix[count];
@@ -244,6 +244,7 @@ void ObjectManager::GenerateInstanceTree()
 
 	objects.emplace_back(treeBeech);
 }
+*/
 
 void ObjectManager::GenerateInstanceGrass()
 {
