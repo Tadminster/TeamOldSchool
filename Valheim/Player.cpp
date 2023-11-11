@@ -7,10 +7,7 @@ Player::Player()
 	actor->LoadFile("Player_Male.xml");
 	actor->name = "Player";
 	actor->anim->aniScale = 0.65f;
-
-
-
-		
+	
 	state = IdleState::GetInstance();
 }
 
@@ -27,7 +24,8 @@ void Player::Init()
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	if (!DEBUGMODE) {
+	if (!DEBUGMODE) 
+	{
 		PlayerControl();
 		PlayerMove();
 	}
@@ -78,6 +76,13 @@ void Player::LateUpdate()
 			actor->Update();
 		}
 	}
+
+	//------------------------------------------
+	if (actor->anim->currentAnimator.currentFrame == 28)
+	{
+		rootPos = actor->Find("mixamorig:Hips")->GetWorldPos();
+	}
+
 }
 
 void Player::Render()
@@ -98,7 +103,8 @@ void Player::SetState(PlayerState* state)
 void Player::AvtivatePlayerCam()
 {
 	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기
-	if (!DEBUGMODE && !isPlayerCam) {
+	if (!DEBUGMODE && !isPlayerCam) 
+	{
 		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 		isPlayerCam = true;
 	}
@@ -116,53 +122,64 @@ void Player::AvtivatePlayerCam()
 
 void Player::PlayerControl()
 {
-	//Idle--------------------------------------------------------------------------------------------
-	if (state == WalkState::GetInstance() || state == RunState::GetInstance()) {
-		if (INPUT->KeyUp('W') || INPUT->KeyUp('A') || INPUT->KeyUp('S') || INPUT->KeyUp('D')) {
+	//Idle로 복귀--------------------------------------------------------------------------------------------
+	if (state == WalkState::GetInstance() || state == RunState::GetInstance()) 
+	{
+		if (INPUT->KeyUp('W') || INPUT->KeyUp('A') || INPUT->KeyUp('S') || INPUT->KeyUp('D'))
+		{
 			state->Idle();
 		}
 	}
-	if (isJump) {
-		if (isLand) {
+	else if (state == JumpState::GetInstance())
+	{
+		if (isLand) 
+		{
 			isJump = false;
 			state->Idle();
 		}
 	}
-	//Run--------------------------------------------------------------------------------------------
-	if (INPUT->KeyPress(VK_SHIFT)) {
-		if (INPUT->KeyPress('W')) state->Run('W');
-		else if (INPUT->KeyPress('S')) state->Run('S');
-		if (INPUT->KeyPress('A')) state->Run('A');
-		else if (INPUT->KeyPress('D')) state->Run('D');
+	else if (state == SwingState::GetInstance())
+	{
+		if (INPUT->KeyUp(VK_LBUTTON))
+		{
+			state->Idle();
+		}
 	}
-	//Walk--------------------------------------------------------------------------------------------
-	else {
-		if (INPUT->KeyPress('W')) state->Walk('W');
-		else if (INPUT->KeyPress('S')) state->Walk('S');
-		if (INPUT->KeyPress('A')) state->Walk('A');
-		else if (INPUT->KeyPress('D')) state->Walk('D');
+	
+	//Walk & Run--------------------------------------------------------------------------------------------
+	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
+	{
+		if (INPUT->KeyPress(VK_SHIFT))
+		{
+			state->Run();
+		}
+		else 
+		{
+			state->Walk();
+		}
 	}
 	//Jump--------------------------------------------------------------------------------------------
-	if (INPUT->KeyDown(VK_SPACE)) {
+	if (INPUT->KeyDown(VK_SPACE) && !isJump) 
+	{
 		state = JumpState::GetInstance();
 		state->Jump();
 	}
 	//Swing--------------------------------------------------------------------------------------------
-	if (INPUT->KeyPress(VK_LBUTTON)) {
+	if (INPUT->KeyPress(VK_LBUTTON)) 
+	{
 		state->Swing();
 	}
 
-
-	if (state == IdleState::GetInstance()) ImGui::Text("%d state", 1);
-	else if (state == WalkState::GetInstance()) ImGui::Text("%d state", 2);
-	else if (state == RunState::GetInstance()) ImGui::Text("%d state", 3);
+	//if (state == SwingState::GetInstance()) ImGui::Text("%d state", 1);
+	//else if (state == WalkState::GetInstance()) ImGui::Text("%d state", 2);
+	//else if (state == RunState::GetInstance()) ImGui::Text("%d state", 3);
 }
 
 void Player::PlayerMove()
 {
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
-	
+	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 
 	if (INPUT->KeyPress('W')) 
 	{

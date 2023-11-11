@@ -15,7 +15,9 @@ class Player : public Prototype
 	bool isLand = 0;
 	bool isJump = 0;
 	bool isPlayerCam = 1;
+
 public:
+	Vector3 rootPos = {};
 	Player();
 	~Player();
 	virtual void Init();
