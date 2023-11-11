@@ -1,11 +1,15 @@
 #pragma once
+
 class UI : public Actor
 {
+protected:
 	bool			 Press = false;
+	
 public:
 	Vector2			 pivot;
 	static UI*		Create(string name = "UI");
 	bool			MouseOver(class Camera* cam = Camera::main);
+	bool			MousePress(class Camera* cam = Camera::main);
 	void			RenderDetail();
 
 	function<void()> mouseOver = nullptr; //마우스가 위에존재할떄

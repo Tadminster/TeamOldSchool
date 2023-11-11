@@ -210,5 +210,5 @@ void Player::EquipToHand(Prototype* item)
 
 void Player::ReleaseToHand()
 {
-
+	//
 }

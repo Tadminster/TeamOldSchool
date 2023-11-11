@@ -1,14 +1,16 @@
 #pragma once
+
 class InventoryUiPannel : public Actor
 {
 private:
-
+	
 	UI* playerInventory;
 
 	UI* stoneImg;
 	UI* woodImg;
 
 protected:
+	
 
 public:
 	InventoryUiPannel();
