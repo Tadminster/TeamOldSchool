@@ -16,6 +16,7 @@ enum class LodLevel
 class TreeBeech : public Prototype
 {
 private:
+	RenderType type;
 
 public:
 	explicit TreeBeech(Vector3 spawnPos, RenderType type);
@@ -27,5 +28,6 @@ public:
 	void RenderHierarchy() override;
 
 	void LodUpdate(LodLevel lv);
+	RenderType GetRenderType() { return type; }
 };
 

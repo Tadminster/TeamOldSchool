@@ -55,9 +55,9 @@ void ObjectManager::Update()
 			{
 				// 거리에 따라 LOD 적용
 				float distance = Vector3::DistanceSquared(CameraPos, treeBeechObj->GetActor()->GetWorldPos());
-				if (distance < 2000) treeBeechObj->LodUpdate(LodLevel::LOD0);
-				else if (distance < 5000) treeBeechObj->LodUpdate(LodLevel::LOD1);
-				else if (distance < 10000) treeBeechObj->LodUpdate(LodLevel::LOD3);
+				if (distance < 1000) treeBeechObj->LodUpdate(LodLevel::LOD0);
+				else if (distance < 2000) treeBeechObj->LodUpdate(LodLevel::LOD1);
+				else if (distance < 5000) treeBeechObj->LodUpdate(LodLevel::LOD3);
 				else continue;
 
 				obj->Update();
@@ -78,7 +78,10 @@ void ObjectManager::Render()
 {
 	for (auto& obj : objects)
 	{
-		obj->Render();
+		if (PLAYER->GetPlayerCam()->Intersect(obj->GetActor()->GetWorldPos()))
+		{
+			obj->Render();
+		}
 	}
 }
 
@@ -154,7 +157,7 @@ void ObjectManager::GenerateTree()
 				{
 					TreeBeech* treeBeech = new TreeBeech(Hit, RenderType::SINGLE);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
-					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.002f, 0.003f), RANDOM->Float(0.002f, 0.003f), RANDOM->Float(0.002f, 0.003f));
+					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.005f, 0.01f), RANDOM->Float(0.004f, 0.006f), RANDOM->Float(0.005f, 0.01f));
 					objects.emplace_back(treeBeech);
 				}
 			}

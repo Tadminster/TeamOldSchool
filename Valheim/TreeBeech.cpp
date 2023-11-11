@@ -13,6 +13,8 @@ TreeBeech::TreeBeech(Vector3 spawnPos, RenderType type)
 	actor->name = "Beech" + index++;
 	
 	actor->SetWorldPos(spawnPos);
+
+	type = type;
 }
 
 TreeBeech::~TreeBeech()
