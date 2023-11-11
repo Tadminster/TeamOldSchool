@@ -128,19 +128,19 @@ void ObjectManager::GenerateTree()
 			// 높이체크
 			// 높이가 -1 이하 인곳에서는 생성하지 않음
 			if (positionY < -1.0f) continue;
-			// 높이가 -1 ~ 1 이면, 50분의 1 확률로 생성
+			// 높이가 -1 ~ 1 이면, 100분의 1 확률로 생성
 			else if (positionY < 1.0f)
+			{
+				if (RANDOM->Int(1, 100) != 1) continue;
+			}
+			// 높이가 1 ~ 10 이면, 50분의 1 확률로 생성
+			else if (positionY < 10.0f)
 			{
 				if (RANDOM->Int(1, 50) != 1) continue;
 			}
-			// 높이가 1 ~ 10 이면, 30분의 1 확률로 생성
-			else if (positionY < 10.0f)
+			else // 높이가 10 이상이면, 30분의 1 확률로 생성
 			{
-				if (RANDOM->Int(1, 30) != 1) continue;
-			}
-			else // 높이가 10 이상이면, 20분의 1 확률로 생성
-			{
-				if (RANDOM->Int(1, 20) != 1) continue;
+				if (RANDOM->Int(1, 40) != 1) continue;
 			}
 
 			double x = (double)i * frequencyScale;
@@ -148,8 +148,8 @@ void ObjectManager::GenerateTree()
 			double z = 0.5;
 			double noiseValue = perlin.noise3D(x, y, z);
 
-			// 펄린노이즈 값 체크
-			if (noiseValue > -0.2f)
+			// 펄린노이즈 값이 0.2 이상이거나, 50분의 1 확률로 생성
+			if (noiseValue > -0.2f || RANDOM->Int(1, 50) == 1)
 			{
 				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 1000, 0);
 
