@@ -297,36 +297,24 @@ void Terrain::PerlinNoiseHeightMap()
 	size = rowSize * rowSize;
 	CreateMesh(rowSize);
 
-	double baseFrequency = 5.0;                   // 기본 주파수
-	double frequencyScale = 1.0 / rowSize * 2;    // 맵 크기에 따른 주파수 스케일 조정
-	double amplitude = 15.0;                      // 진폭
-	double centerPeak = 2.0;                      // 중앙 높이 증가
-	double edgeSteepness = 10.0;                  // 가장자리 경사의 가파름 조절
+	// 난수 시드를 사용하여 펄린 노이즈 생성
+	siv::PerlinNoise	perlin(RANDOM->Int(0, 10000));	
 
-	int randomSeed = RANDOM->Int(0, 10000);       // 난수 시드
-	siv::PerlinNoise perlin(randomSeed);
+	double				frequencyScale{ 1.0 / rowSize * 2 };    // 맵 크기에 따른 주파수 스케일 조정
 
 	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			double x = (double)i * frequencyScale;
-			double y = (double)j * frequencyScale;
-			double z = 0.5;
-			double noiseValue = perlin.noise3D(x * baseFrequency, y * baseFrequency, z);
+			double x = (double)i * frequencyScale;		// 펄린노이즈의 x좌표
+			double y = (double)j * frequencyScale;		// 펄린노이즈의 y좌표
+			double z = 0.5;								// 지형의 높이 변화에 영향
 
-			// 중앙에서의 거리에 따라 가중치 적용
-			double distanceToCenter = sqrt(pow(i - rowSize / 2.0, 2) + pow(j - rowSize / 2.0, 2));
-			double maxDistance = sqrt(2) * (rowSize / 2.0);
-			double heightFactor = (1.0 - (distanceToCenter / maxDistance)) * 1.4;
+			double noiseValueIsland = IslandNoise(perlin, x, y, z, i, j);		// i, j는 정점의 인덱스
 
-			// 각 꼭짓점에서 가장 가까운 가장자리까지의 최소 거리 계산
-			double minEdgeDistance = min(min(i, rowSize - 1 - i), min(j, rowSize - 1 - j));
-			double edgeFactor = amplitude * (pow((maxDistance - minEdgeDistance) / maxDistance, edgeSteepness) - 1);
-
-			// 최종 높이 계산 (edgeFactor를 더하는 방식으로 수정)
-			vertices[i * rowSize + j].position.y = noiseValue * amplitude * heightFactor - edgeFactor;
+			// 최종 높이
+			vertices[i * rowSize + j].position.y = noiseValueIsland;
 		}
 	}
 
@@ -341,15 +329,15 @@ void Terrain::UpdateColor()
 	auto GetColorForHeight = [](double height) -> Color 
 		{
 			Color sandColor(0.7608f, 0.6980f, 0.5020f);		// 모래색
-			Color grassColor(0.0f, 0.5020f, 0.0f);		// 초록색
+			Color grassColor(0.0f, 0.5020f, 0.0f);			// 초록색
 
 			// 높이에 따라 색상을 보간
 			return Color::Lerp(sandColor, grassColor, height);
 		};
 
-	// 높이의 최소값과 최대값을 찾음
-	double minHeight = DOUBLE_MAX;
-	double maxHeight = DOUBLE_MIN;
+	// 높이의 최소값과 최대값을 찾기 위한 변수
+	double minHeight = DOUBLE_MAX;		// 최소값을 찾기위해 최대값 저장
+	double maxHeight = DOUBLE_MIN;		// 최대값을 찾기위해 최소값 저장
 
 	// 모든 정점을 순회하여 최소 높이와 최대 높이를 찾음
 	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
@@ -585,6 +573,27 @@ void Terrain::RenderDetail()
 		}
 		ImGui::EndTabBar();
 	}
+}
+
+double Terrain::IslandNoise(siv::PerlinNoise& perlin, double x, double y, double z, int i, int j)
+{
+	// 펄린 노이즈 값을 계산
+	double noiseValue = perlin.noise3D(x * baseFrequency, y * baseFrequency, z);
+
+	// 지형의 중앙으로부터의 거리를 계산
+	double distanceToCenter = sqrt(pow(i - rowSize / 2.0, 2) + pow(j - rowSize / 2.0, 2));
+	// 지형 중앙부터 가장자리까지의 최대 거리를 계산
+	double maxDistance = sqrt(2) * (rowSize / 2.0);
+	// 높이 계수를 계산하여 지형의 중앙 부분이 높아지도록 함
+	double heightFactor = pow((1.0 - (distanceToCenter / maxDistance)), 2) * 2.0;
+	// 각 지점에서 가장자리까지의 최소 거리를 계산
+	double minEdgeDistance = min(min(i, rowSize - 1 - i), min(j, rowSize - 1 - j));
+	// 가장자리 계수를 계산하여 지형의 가장자리가 낮아지도록 함
+	double edgeFactor = amplitude * pow((maxDistance - minEdgeDistance) / maxDistance, edgeSteepness * 2);
+	// 중앙과의 거리에 따라 선형적으로 높이 가중치 조정 (distanceFactor가 5라면, 중앙에서 +5 ~ 최대 거리에서 -5)
+	double centralDistanceFactor = distanceFactor - (distanceFactor * 2) * (distanceToCenter / maxDistance);
+
+	return (noiseValue * amplitude * heightFactor - edgeFactor) + centralDistanceFactor;
 }
 
 bool Terrain::ComPutePicking(Ray WRay, OUT Vector3& HitPoint)
