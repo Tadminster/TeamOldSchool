@@ -2,6 +2,7 @@
 
 class Inventory
 {
+	friend class Player;
 private:
 	map<string, Item*> playerInventory;
 	bool                     ItemIn = false;

@@ -60,7 +60,7 @@ void InGame::Release()
 void InGame::Update()
 {
 	LIGHT->RenderDetail();
-
+	
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
@@ -74,6 +74,7 @@ void InGame::Update()
 		MAP->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
+		stoneAxe->RenderHierarchy();
 
 	}
 	ImGui::End();
@@ -89,6 +90,11 @@ void InGame::Update()
 	else 
 	{
 		PLAYER->AvtivatePlayerCam();
+		//실험단계--------------------------
+		if (INPUT->KeyDown('1'))
+		{
+			PLAYER->EquipToHand(stoneAxe);
+		}
 	}
 		
 	GM->Update();
