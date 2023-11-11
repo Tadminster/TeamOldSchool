@@ -25,12 +25,12 @@ StoneAxe::~StoneAxe()
 
 void StoneAxe::Init()
 {
-
+	
 }
 
 void StoneAxe::Update()
 {
-	
+	actor->Update();
 }
 
 void StoneAxe::LateUpdate()

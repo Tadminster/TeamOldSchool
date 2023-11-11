@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PlayerState.h"
+#include "Item.h"
 
 Player::Player()
 {
@@ -54,10 +55,8 @@ void Player::LateUpdate()
 		else isLand = false;
     }
 
-	ImGui::Text("%f actor y", actor->GetWorldPos().y);
-	ImGui::Text("%f hit y", hit.y);
-	ImGui::Text("%d island", isLand);
-	ImGui::Text("%d jump", isJump);
+	//ImGui::Text("%f actor y", actor->GetWorldPos().y);
+	//ImGui::Text("%f hit y", hit.y);
 	
     actor->Update();
 
@@ -76,13 +75,6 @@ void Player::LateUpdate()
 			actor->Update();
 		}
 	}
-
-	//------------------------------------------
-	if (actor->anim->currentAnimator.currentFrame == 28)
-	{
-		rootPos = actor->Find("mixamorig:Hips")->GetWorldPos();
-	}
-
 }
 
 void Player::Render()
@@ -118,6 +110,7 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
+	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기
 	POINT ptMouse;
 	ptMouse.x = App.GetHalfWidth();
 	ptMouse.y = App.GetHalfHeight();
@@ -207,4 +200,15 @@ void Player::PlayerMove()
 	{
 		actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 	}
+}
+//나중에 인벤토리 클래스로 매개변수 바꾸기
+void Player::EquipToHand(Prototype* item)
+{
+	actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
+	actor->Find(item->GetActor()->name)->scale = Vector3(1, 1, 1);
+}
+
+void Player::ReleaseToHand()
+{
+
 }

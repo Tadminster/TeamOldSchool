@@ -6,7 +6,6 @@ class Player : public Prototype
 {
 	friend class JumpState;
 	
-
 	class PlayerState* state = nullptr;
 	Vector3 lastPos = {};
 
@@ -17,7 +16,6 @@ class Player : public Prototype
 	bool isPlayerCam = 1;
 
 public:
-	Vector3 rootPos = {};
 	Player();
 	~Player();
 	virtual void Init();
@@ -25,11 +23,15 @@ public:
 	virtual void LateUpdate();
 	virtual void Render();
 	virtual void RenderHierarchy();
+
 	Actor* GetPlayer() { return actor; }
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	bool GetPlayerJump() { return isJump; }
 	void SetState(PlayerState* state);
+
 	void AvtivatePlayerCam();
 	void PlayerControl();
 	void PlayerMove();
+	void EquipToHand(Prototype* item);
+	void ReleaseToHand();
 };
