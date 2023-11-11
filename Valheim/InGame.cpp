@@ -9,7 +9,8 @@
 #include "Inventory.h"
 #include "InventoryUiPannel.h"
 #include "GameOption.h"
-
+#include "Wood.h"
+#include "StoneAxe.h"
 #include "InGame.h"
 
 InGame::InGame()
@@ -25,9 +26,13 @@ InGame::InGame()
 	skyBox->LoadFile("Sky1.xml");
 
 	playerInventoryUI = new InventoryUiPannel();
-
 	playerOptionUI    = new GameOption();
 	
+	
+	wood = new Wood();
+	stoneAxe = new StoneAxe();
+
+
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -81,6 +86,8 @@ void InGame::Update()
 	skyBox->Update();
 	playerInventoryUI->Update();
 	playerOptionUI->Update();
+	wood->Update();
+	stoneAxe->Update();
 	
 	OBJ->Update();
 	PLAYER->Update();
@@ -91,6 +98,9 @@ void InGame::Update()
 void InGame::LateUpdate()
 {
 	playerInventoryUI->LateUpdate();
+	playerOptionUI->LateUpdate();
+	wood->LateUpdate();
+	stoneAxe->LateUpdate();
 	
 }
 
@@ -118,6 +128,8 @@ void InGame::Render()
 	PLAYER->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();
+	wood->Render();
+	stoneAxe->Render();
 
 
 }

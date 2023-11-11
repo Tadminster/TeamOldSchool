@@ -9,8 +9,10 @@ private:
 
     GameManager* gameManager;
    
-    class InventoryUiPannel* playerInventoryUI;
-    class GameOption* playerOptionUI;
+    class InventoryUiPannel*     playerInventoryUI;
+    class GameOption*            playerOptionUI;
+    class Wood*                     wood;
+    class StoneAxe*                 stoneAxe;
 
 public:
     InGame();

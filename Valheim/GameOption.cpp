@@ -7,7 +7,6 @@ GameOption::GameOption()
 	gameOption->LoadFile("inGameOption.xml");
 
 	gameOption->visible = false;
-	gameOption->Find("headline")->visible = true;
 	gameOption->Find("continue")->visible = true;
 	gameOption->Find("save")->visible = true;
 	gameOption->Find("lastsavetime")->visible = true;
@@ -48,7 +47,10 @@ void GameOption::Update()
 void GameOption::LateUpdate()
 {
 	//옵션창 열기닫기 기능입니다
-	
+	if (INPUT->KeyDown(VK_F10))
+	{
+		gameOption->visible = !gameOption->visible;
+	}
 
 }
 

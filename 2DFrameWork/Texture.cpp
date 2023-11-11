@@ -1,11 +1,11 @@
-#include "framework.h"
+ï»¿#include "framework.h"
 
 
 Texture::Texture()
 {
     Sampler = nullptr;
     srv = nullptr;
-    //±âº» »ùÇÃ·¯ °ª
+    //ê¸°ë³¸ ìƒ˜í”ŒëŸ¬ ê°’
     //SamplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
     SamplerDesc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
     SamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
@@ -29,14 +29,16 @@ void Texture::LoadFile(string file)
 {
     this->file = file;
     size_t index = file.find_last_of('.');
-    //È®ÀåÀÚ ¹®ÀÚ¿­ ÀÚ¸£±â
+    //í™•ì¥ì ë¬¸ìì—´ ìë¥´ê¸°
     string format = file.substr(index + 1, file.length());
     wstring path = L"../Contents/Texture/" + Utility::ToWString(file);
 
-    //Àß¸øµÈ °æ·Î Á¦°Å
+    //ì˜ëª»ëœ ê²½ë¡œ ì œê±°
     wstring part_to_remove[] =
     {
-        L"..\\..\\..\\unity\\valheim_rip\\Assets\\Texture2D\\"
+        L"..\\..\\..\\unity\\valheim_rip\\Assets\\Texture2D\\" ,
+        L"..\\..\\..\\..\\valheimripper\\valheim\\Assets\\Texture2D\\",
+        L"..\\..\\..\\..\\..\\OneDrive\\ï¿«ï¾°ï¾”ï¿­ï¾ƒï¾• ï¿­ï¾™ï¾”ï¿«ï¾©ï¾´\\valheimripper\\valheim\\Assets\\Texture2D\\"
     };
 
     for (auto part_to_remove : part_to_remove)
@@ -73,8 +75,8 @@ void Texture::CreateSampler()
 
 void Texture::Set(int slot)
 {
-    D3D->GetDC()->PSSetShaderResources(slot,// ¿¬°áµÉ·¹Áö½ºÅÍ ¹øÈ£ 0
-        1,//¸®¼Ò½º°¹¼ö
+    D3D->GetDC()->PSSetShaderResources(slot,// ì—°ê²°ë ë ˆì§€ìŠ¤í„° ë²ˆí˜¸ 0
+        1,//ë¦¬ì†ŒìŠ¤ê°¯ìˆ˜
         &srv);
     D3D->GetDC()->PSSetSamplers(slot, 1, &Sampler);
 }
@@ -82,7 +84,7 @@ void Texture::Set(int slot)
 ScratchImage* Texture::GetPixelData(string file)
 {
     size_t index = file.find_last_of('.');
-    //È®ÀåÀÚ ¹®ÀÚ¿­ ÀÚ¸£±â
+    //í™•ì¥ì ë¬¸ìì—´ ìë¥´ê¸°
     string format = file.substr(index + 1, file.length());
     wstring path = L"../Contents/Texture/" + Utility::ToWString(file);
 
