@@ -25,7 +25,7 @@ StoneAxe::~StoneAxe()
 
 void StoneAxe::Init()
 {
-
+	
 }
 
 void StoneAxe::Update()

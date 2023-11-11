@@ -1,8 +1,13 @@
-<Root Name="Root" Visible="true" ObType="1">
-    <Transform>
-        <Position X="0" Y="0.050000001" Z="-0.5"/>
-        <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+<Root Name="StoneAxe" Visible="true" ObType="1">
+    <Collider ColliderType="2" Visible="true">
+        <Position X="2" Y="0" Z="45"/>
+        <Scale X="17" Y="10" Z="15"/>
         <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="-18.04744" Y="16.322105" Z="38.774097"/>
+        <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+        <Rotation X="0" Y="0.147" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="RootNode" Visible="true" ObType="0">
@@ -87,9 +92,9 @@
                     <Shader File="4.Cube.hlsl"/>
                     <Material File="AxeStone/weapons1.mtl"/>
                     <Transform>
-                        <Position X="0" Y="0" Z="0"/>
+                        <Position X="0" Y="0" Z="-55"/>
                         <Scale X="0.30000001" Y="0.30000001" Z="0.30000001"/>
-                        <Rotation X="1.5707963" Y="-3.1415923" Z="0"/>
+                        <Rotation X="1.5707961" Y="0" Z="0"/>
                     </Transform>
                     <Children Size="0"/>
                 </Child3>

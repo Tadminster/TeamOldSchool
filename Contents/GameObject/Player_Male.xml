@@ -9,7 +9,7 @@
     <Transform>
         <Position X="-18.214125" Y="19.79126" Z="38.593147"/>
         <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
-        <Rotation X="0" Y="2.0281289" Z="0"/>
+        <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <Children Size="2"/>
     <Child0 Name="PlayerCam" Visible="true" ObType="2" BoneIndex="-1">

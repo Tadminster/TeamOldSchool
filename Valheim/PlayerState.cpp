@@ -15,24 +15,25 @@ void IdleState::Idle()
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
-	//상태 Idle로 설정
-	//SetPlayerState(IdleState::GetInstance());
 }
-void IdleState::Walk(unsigned char key)
+void IdleState::Walk()
 {
 	//플레이어 상태 Idle -> Walk 전환
 	SetPlayerState(WalkState::GetInstance());
 }
-void IdleState::Run(unsigned char key)
+void IdleState::Run()
 {
+	//플레이어 상태 Idle -> Run 전환
 	SetPlayerState(RunState::GetInstance());
 }
 void IdleState::Jump()
 {
+	//플레이어 상태 Idle -> Jump 전환
 	SetPlayerState(JumpState::GetInstance());
 }
 void IdleState::Swing()
 {
+	//플레이어 상태 Idle -> Swing 전환
 	SetPlayerState(SwingState::GetInstance());
 }
 
@@ -44,28 +45,14 @@ void WalkState::Idle()
 	}
 	SetPlayerState(IdleState::GetInstance());
 }
-void WalkState::Walk(unsigned char key)
+void WalkState::Walk()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2) 
+	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
-	//방향키 입력값에 따른 Walk 이동
-	/*switch (key) {
-	case 'W':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * WALKSPEED * DELTA);
-		break;
-	case 'A':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * WALKSPEED * DELTA);
-		break;
-	case 'S':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * WALKSPEED * DELTA);
-		break;
-	case 'D':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * WALKSPEED * DELTA);
-		break;
-	}*/
 }
-void WalkState::Run(unsigned char key)
+void WalkState::Run()
 {
 	SetPlayerState(RunState::GetInstance());
 }
@@ -81,35 +68,22 @@ void WalkState::Swing()
 //Run 클래스----------------------------------------------------------
 void RunState::Idle()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) 
+	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
 	SetPlayerState(IdleState::GetInstance());
 }
-void RunState::Walk(unsigned char key)
+void RunState::Walk()
 {
 	SetPlayerState(WalkState::GetInstance());
 }
-void RunState::Run(unsigned char key)
+void RunState::Run()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3) 
+	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 3);
 	}
-
-	/*switch (key) {
-	case 'W':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * RUNSPEED * DELTA);
-		break;
-	case 'A':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetRight() * RUNSPEED * DELTA);
-		break;
-	case 'S':
-		PLAYER->GetPlayer()->MoveWorldPos(-PLAYER->GetPlayer()->GetForward() * RUNSPEED * DELTA);
-		break;
-	case 'D':
-		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetRight() * RUNSPEED * DELTA);
-		break;
-	}*/
 }
 void RunState::Jump()
 {
@@ -122,18 +96,19 @@ void RunState::Swing()
 //Jump 클래스----------------------------------------------------------
 void JumpState::Idle() 
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) 
+	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
 	SetPlayerState(IdleState::GetInstance());
 }
-void JumpState::Walk(unsigned char key)
+void JumpState::Walk()
 {
-	//SetPlayerState(WalkState::GetInstance());
+	//Jump에서 Walk로 변할 수 없음
 }
-void JumpState::Run(unsigned char key)
+void JumpState::Run()
 {
-	//SetPlayerState(RunState::GetInstance());
+	//Jump에서 Run으로 변할 수 없음
 }
 void JumpState::Jump()
 {
@@ -145,7 +120,7 @@ void JumpState::Jump()
 }
 void JumpState::Swing()
 {
-	SetPlayerState(SwingState::GetInstance());
+	//Jump에서 Swing으로 변할 수 없음
 }
 //Swing 클래스----------------------------------------------------------
 void SwingState::Idle()
@@ -155,29 +130,19 @@ void SwingState::Idle()
 	}
 	SetPlayerState(IdleState::GetInstance());
 }
-void SwingState::Walk(unsigned char key)
-{
-	SetPlayerState(WalkState::GetInstance());
-}
-void SwingState::Run(unsigned char key)
-{
-	SetPlayerState(RunState::GetInstance());
-}
-void SwingState::Jump()
-{
-	SetPlayerState(JumpState::GetInstance());
-}
+void SwingState::Walk() {}
+void SwingState::Run()  {}
+void SwingState::Jump() {}
 void SwingState::Swing()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 5) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 5);
 	}
-	
-	Vector3 RootMove = PLAYER->GetPlayer()->Find("mixamorig:Hips")->GetWorldPos() - PLAYER->GetPlayer()->GetWorldPos();
-	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame==65) {
-		PLAYER->GetPlayer()->SetWorldPos(PLAYER->GetPlayer()->Find("mixamorig:Hips")->GetWorldPos());
+
+	if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime()<=0.7f)
+	{
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
 	}
-	
 }
 
 
