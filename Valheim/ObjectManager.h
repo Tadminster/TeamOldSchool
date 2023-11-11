@@ -18,8 +18,8 @@ public:
 	void	FrustumCulling(Camera* cam);
 	void    RenderHierarchy();
 	
-	void	GenerateFeatures();
-	void	GenerateInstanceFeature();
+	void	GenerateTree();
+	void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 };
 

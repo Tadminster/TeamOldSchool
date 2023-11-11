@@ -1,4 +1,5 @@
 #pragma once
+#define SWINGSPEED 1
 #define WALKSPEED 5
 #define RUNSPEED 10
 //State 클래스들을 제어하기위한 추상클래스
@@ -11,8 +12,8 @@ protected:
 	}
 public:
 	virtual void Idle() = 0;
-	virtual void Walk(unsigned char key) = 0;
-	virtual void Run(unsigned char key) = 0;
+	virtual void Walk() = 0;
+	virtual void Run() = 0;
 	virtual void Jump() = 0;
 	virtual void Swing() = 0;
 };
@@ -27,8 +28,8 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Walk(unsigned char key);
-	virtual void Run(unsigned char key);
+	virtual void Walk();
+	virtual void Run();
 	virtual void Jump();
 	virtual void Swing();
 };
@@ -43,8 +44,8 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Walk(unsigned char key);
-	virtual void Run(unsigned char key);
+	virtual void Walk();
+	virtual void Run();
 	virtual void Jump();
 	virtual void Swing();
 };
@@ -59,8 +60,8 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Walk(unsigned char key);
-	virtual void Run(unsigned char key);
+	virtual void Walk();
+	virtual void Run();
 	virtual void Jump();
 	virtual void Swing();
 };
@@ -75,8 +76,8 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Walk(unsigned char key);
-	virtual void Run(unsigned char key);
+	virtual void Walk();
+	virtual void Run();
 	virtual void Jump();
 	virtual void Swing();
 };
@@ -91,8 +92,8 @@ public:
 		return instance;
 	}
 	virtual void Idle();
-	virtual void Walk(unsigned char key);
-	virtual void Run(unsigned char key);
+	virtual void Walk();
+	virtual void Run();
 	virtual void Jump();
 	virtual void Swing();
 };

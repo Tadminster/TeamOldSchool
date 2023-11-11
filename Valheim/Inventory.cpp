@@ -4,7 +4,7 @@
 
 Inventory::Inventory()
 {
-
+	
 }
 
 Inventory::~Inventory()
