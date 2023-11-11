@@ -45,12 +45,7 @@ void Wood::Init()
 
 void Wood::Update()
 {
-	ImGui::Begin("Hierarchy");
-	{
-		actor->RenderHierarchy();
-	}
-	ImGui::End();
-	actor->Update();
+	
 }
 
 void Wood::LateUpdate()
@@ -60,4 +55,14 @@ void Wood::LateUpdate()
 void Wood::Render()
 {
 	actor->Render();
+}
+
+void Wood::RenderHierarchy()
+{
+	ImGui::Begin("Hierarchy");
+	{
+		actor->RenderHierarchy();
+	}
+	ImGui::End();
+	actor->Update();
 }
