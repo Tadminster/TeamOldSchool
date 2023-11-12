@@ -148,7 +148,6 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
-	
 	//Walk & Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
 	{
@@ -206,6 +205,8 @@ void Player::EquipToHand(Prototype* item)
 {
 	actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
 	actor->Find(item->GetActor()->name)->scale = Vector3(1, 1, 1);
+
+	isEquip = true;
 }
 
 void Player::ReleaseToHand()

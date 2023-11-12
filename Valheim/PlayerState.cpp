@@ -135,14 +135,16 @@ void SwingState::Run()  {}
 void SwingState::Jump() {}
 void SwingState::Swing()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 5) {
-		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 5);
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 6) {
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 6);
 	}
 
 	if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime()<=0.7f)
 	{
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
 	}
+
+	
 }
 
 

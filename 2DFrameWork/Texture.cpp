@@ -38,7 +38,7 @@ void Texture::LoadFile(string file)
     {
         L"..\\..\\..\\unity\\valheim_rip\\Assets\\Texture2D\\" ,
         L"..\\..\\..\\..\\valheimripper\\valheim\\Assets\\Texture2D\\",
-        L"..\\..\\..\\..\\..\\OneDrive\\￫ﾰﾔ￭ﾃﾕ ￭ﾙﾔ￫ﾩﾴ\\valheimripper\\valheim\\Assets\\Texture2D\\"
+        L"..\\..\\..\\..\\..\\OneDrive\\￫ﾰﾔ￭ﾃﾕ ￭ﾙﾔ￫ﾩﾴ\\valheimripper\\valheim\\Assets\\Texture2D\\",
     };
 
     for (auto part_to_remove : part_to_remove)

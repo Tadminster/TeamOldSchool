@@ -1,6 +1,6 @@
 <Root Name="Player" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Player_Male/Player_Male.skel" BoneIndexCount="52"/>
-    <Animations AnimSize="7" File0="/Player_Opening0.anim" File1="/Player_Idle0.anim" File2="/Player_Walk0.anim" File3="/Player_Run0.anim" File4="/Player_Jump0.anim" File5="/Player_Swing0.anim" File6="/Player_Death0.anim"/>
+    <Animations AnimSize="8" File0="/Player_Opening0.anim" File1="/Player_Idle0.anim" File2="/Player_Walk0.anim" File3="/Player_Run0.anim" File4="/Player_Jump0.anim" File5="/Player_Fist0.anim" File6="/Player_Swing0.anim" File7="/Player_Death0.anim"/>
     <Collider ColliderType="2" Visible="true">
         <Position X="0" Y="91.999992" Z="-2.4999998"/>
         <Scale X="20" Y="90" Z="25"/>

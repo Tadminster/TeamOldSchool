@@ -15,6 +15,8 @@ class Player : public Prototype
 	bool isJump = 0;
 	bool isPlayerCam = 1;
 
+	bool isEquip = 0;
+
 public:
 	Player();
 	~Player();
