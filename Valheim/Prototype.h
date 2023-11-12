@@ -7,6 +7,7 @@ protected:
 	Actor* actor;
 
 public:
+	virtual ~Prototype() { actor->Release(); }
 	virtual void Init() = 0;
 	virtual void Update() = 0;
 	virtual void LateUpdate() = 0;
