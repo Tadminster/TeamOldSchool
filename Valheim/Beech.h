@@ -20,14 +20,19 @@ private:
 
 public:
 	Beech();
-	~Beech();
+	~Beech() override;
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
 	void RenderHierarchy() override;
 
+
+public:
 	void LodUpdate(LodLevel lv);
-	//RenderType GetRenderType() { return type; }
+
+	// FeatureProto을(를) 통해 상속됨
+	void DestructionEvent() override;
+	void ReceivedDamageEvent(int damage) override;
 };
 

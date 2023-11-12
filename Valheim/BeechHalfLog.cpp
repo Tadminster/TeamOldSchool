@@ -37,3 +37,11 @@ void BeechHalfLog::RenderHierarchy()
 {
 
 }
+
+void BeechHalfLog::DestructionEvent()
+{
+}
+
+void BeechHalfLog::ReceivedDamageEvent(int damage)
+{
+}

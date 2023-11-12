@@ -50,8 +50,14 @@ void ObjectManager::Update()
 		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
+			if (!obj)
+			{
+				objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
+				cout << "ObjectManager::Update() : Object Erase" << endl;
+			}
+
 			// Down Casting
-			Beech* beech = dynamic_cast<Beech*>(obj.get());
+			Beech* beech = dynamic_cast<Beech*>(obj);
 			if (beech)
 			{
 				// 거리에 따라 LOD 적용
@@ -63,6 +69,9 @@ void ObjectManager::Update()
 
 				obj->Update();
 			}
+			else
+				obj->Update();
+
 		}
 	}
 }
@@ -73,6 +82,24 @@ void ObjectManager::LateUpdate()
 	//{
 	//	obj->LateUpdate();
 	//}
+
+	for (auto& obj : objects)
+	{
+		if (PLAYER->GetActor()->Find("StoneAxe"))
+		{
+			if (PLAYER->GetActor()->Find("StoneAxe")->collider->Intersect(obj->GetActor()->Find("Collider")->collider))
+			{
+				Beech* beech = dynamic_cast<Beech*>(obj);
+				if (beech)
+				{
+					cout << "Beech Hit" << endl;
+					beech->ReceivedDamageEvent(1);
+				}
+			}
+		}
+
+	}
+	
 }
 
 void ObjectManager::Render()
@@ -155,7 +182,7 @@ void ObjectManager::GenerateTree()
 
 				if (MAP->ComPutePicking(ray, Hit))
 				{
-					unique_ptr<FeatureProto> treeBeech = FeatureProto::Create(FeatureType::Beech);
+					FeatureProto* treeBeech = FeatureProto::Create(FeatureType::Beech);
 					treeBeech->GetActor()->SetWorldPos(Hit);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
 					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));
@@ -314,4 +341,9 @@ void ObjectManager::GenerateInstanceGrass()
 	grass->Update();
 
 	objects.emplace_back(grass);
+}
+
+void ObjectManager::AddObject(Prototype* object)
+{
+		objects.emplace_back(object);
 }

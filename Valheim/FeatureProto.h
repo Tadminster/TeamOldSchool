@@ -1,5 +1,4 @@
 #pragma once
-#include "Prototype.h"
 
 enum class FeatureType
 {
@@ -8,12 +7,12 @@ enum class FeatureType
 
 class FeatureProto : public Prototype
 {
-private:
-
+protected:
+    int hitPoint;
 
 public:
 
-    static std::unique_ptr<FeatureProto> Create(FeatureType type);
+    static FeatureProto* Create(FeatureType type);
     virtual ~FeatureProto() {}
 
     virtual void Init() override;
@@ -21,4 +20,8 @@ public:
     virtual void LateUpdate() override;
     virtual void Render() override;
     virtual void RenderHierarchy() override;
+
+protected:
+    virtual void DestructionEvent() = 0;
+    virtual void ReceivedDamageEvent(int damage) = 0;
 };

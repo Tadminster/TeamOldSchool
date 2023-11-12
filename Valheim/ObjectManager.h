@@ -3,7 +3,7 @@
 class ObjectManager
 {
 private:
-	list<std::unique_ptr<Prototype>> objects;
+	list<Prototype*> objects;
 
 public:
 	ObjectManager();
@@ -19,5 +19,7 @@ public:
 	void	GenerateTree();
 	//void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
+
+	void	AddObject(Prototype* object);
 };
 

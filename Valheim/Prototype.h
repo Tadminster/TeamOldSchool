@@ -7,7 +7,12 @@ protected:
 	Actor* actor;
 
 public:
-	virtual ~Prototype() { actor->Release(); }
+	virtual ~Prototype() 
+	{ 
+		actor->Release(); 
+		actor = nullptr;
+		cout << "asdsad";
+	}
 	virtual void Init() = 0;
 	virtual void Update() = 0;
 	virtual void LateUpdate() = 0;

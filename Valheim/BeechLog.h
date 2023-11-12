@@ -1,4 +1,3 @@
-#include "FeatureProto.h"
 #pragma once
 class BeechLog : public FeatureProto
 {
@@ -13,5 +12,10 @@ public:
 	void Render() override;
 	void RenderHierarchy() override;
 
+	// FeatureProto을(를) 통해 상속됨
+	void DestructionEvent() override;
+
+	// FeatureProto을(를) 통해 상속됨
+	void ReceivedDamageEvent(int damage) override;
 };
 
