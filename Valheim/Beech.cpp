@@ -64,11 +64,21 @@ void Beech::ReceivedDamageEvent(int damage)
 
 void Beech::DestructionEvent()
 {
-	FeatureProto* object = FeatureProto::Create(FeatureType::BeechLog);
-	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0, 4, 0);
-	object->GetActor()->SetWorldPos(spawnPos);
-	//object->GetActor()->rotation = this->actor->rotation;
-	//object->GetActor()->scale = this->actor->scale;
-	OBJ->AddObject(object);
+	// 오브젝트 생성 (그루터기)
+	FeatureProto* stump = FeatureProto::Create(FeatureType::BeechStump);
+	stump->GetActor()->SetWorldPos(this->actor->GetWorldPos());
+
+	// 오브젝트 생성 (통나무)
+	FeatureProto* log = FeatureProto::Create(FeatureType::BeechLog);
+	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
+	log->GetActor()->SetWorldPos(spawnPos);
+	//log->GetActor()->rotation = this->actor->rotation;
+	//log->GetActor()->scale = this->actor->scale;
+
+	// 리스트에 오브젝트 추가
+	OBJ->AddObject(stump);
+	OBJ->AddObject(log);
+
+	// 오브젝트 삭제 (나무)
 	Beech::~Beech();
 }

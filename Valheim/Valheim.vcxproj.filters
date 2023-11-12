@@ -66,6 +66,9 @@
     <ClInclude Include="Grass.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
+    <ClInclude Include="BeechStump.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -124,6 +127,9 @@
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
     <ClCompile Include="Grass.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechStump.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>

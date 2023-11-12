@@ -2,7 +2,7 @@
 
 enum class FeatureType
 {
-    Beech, BeechLog, BeechHalfLog
+    Beech, BeechStump, BeechLog, BeechHalfLog
 };
 
 class FeatureProto : public Prototype

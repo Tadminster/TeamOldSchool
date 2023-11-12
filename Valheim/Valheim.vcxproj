@@ -22,6 +22,7 @@
     <ClInclude Include="BattleItem.h" />
     <ClInclude Include="BeechHalfLog.h" />
     <ClInclude Include="BeechLog.h" />
+    <ClInclude Include="BeechStump.h" />
     <ClInclude Include="ConsumeItem.h" />
     <ClInclude Include="FeatureProto.h" />
     <ClInclude Include="GameManager.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="BattleItem.cpp" />
     <ClCompile Include="BeechHalfLog.cpp" />
     <ClCompile Include="BeechLog.cpp" />
+    <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="ConsumeItem.cpp" />
     <ClCompile Include="FeatureProto.cpp" />
     <ClCompile Include="GameManager.cpp" />

@@ -2,6 +2,7 @@
 #include "Prototype.h"
 
 #include "Beech.h"
+#include "BeechStump.h"
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
 
@@ -13,6 +14,8 @@ FeatureProto* FeatureProto::Create(FeatureType type)
 	{
 		case FeatureType::Beech:
 			return new Beech();
+		case FeatureType::BeechStump:
+			return new BeechStump();
 		case FeatureType::BeechLog:
 			return new BeechLog();
 		case FeatureType::BeechHalfLog:
