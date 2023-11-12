@@ -5,6 +5,8 @@
 #include "Prototype.h"
 #include "FeatureProto.h"
 #include "Beech.h"
+#include "BeechLog.h"
+#include "BeechHalfLog.h"
 #include "Grass.h"
 
 #include "ObjectManager.h"
@@ -20,7 +22,6 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-	//mPrototypes.emplace_back(new Beech());
 }
 
 void ObjectManager::Release()
@@ -44,18 +45,33 @@ void ObjectManager::Update()
 		GenerateInstanceGrass();
 	}
 
+
+	objects.erase(
+		std::remove_if
+		(
+			objects.begin(),
+			objects.end(),
+			[](Prototype* object)
+			{
+				Beech* beech = dynamic_cast<Beech*>(object);
+				if (beech && beech->isDestroyed())
+				{
+					beech->DestructionEvent();
+					return true;
+				}
+				else return false;
+			}
+		),
+		objects.end()
+	);
+
+
 	static float distanceCalCycle = 0;
 	if (TIMER->GetTick(distanceCalCycle, 1.0f))
 	{
 		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
-			if (!obj)
-			{
-				objects.erase(remove(objects.begin(), objects.end(), obj), objects.end());
-				cout << "ObjectManager::Update() : Object Erase" << endl;
-			}
-
 			// Down Casting
 			Beech* beech = dynamic_cast<Beech*>(obj);
 			if (beech)
@@ -97,9 +113,7 @@ void ObjectManager::LateUpdate()
 				}
 			}
 		}
-
 	}
-	
 }
 
 void ObjectManager::Render()
@@ -327,7 +341,7 @@ void ObjectManager::GenerateInstanceGrass()
 	//Grass* grass = new Grass(Vector3(0, grassPos[0].y, 0));
 
 	UINT count = grassPos.size();
-	cout << count << endl;
+	cout << "Grass " << count << "°³ »ý¼º!" << endl;
 	Matrix* ins = new Matrix[count];
 	int idx = 0;
 	for (int i = 1; i < count; i++)

@@ -65,10 +65,10 @@ void Beech::ReceivedDamageEvent(int damage)
 void Beech::DestructionEvent()
 {
 	FeatureProto* object = FeatureProto::Create(FeatureType::BeechLog);
-	object->GetActor()->SetWorldPos(this->actor->GetWorldPos());
+	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0, 4, 0);
+	object->GetActor()->SetWorldPos(spawnPos);
 	//object->GetActor()->rotation = this->actor->rotation;
 	//object->GetActor()->scale = this->actor->scale;
 	OBJ->AddObject(object);
-	this->actor->visible = false;
-	//Beech::~Beech();
+	Beech::~Beech();
 }

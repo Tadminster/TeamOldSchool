@@ -21,7 +21,8 @@ public:
     virtual void Render() override;
     virtual void RenderHierarchy() override;
 
-protected:
+public:
+    bool isDestroyed() const { return hitPoint <= 0; }
     virtual void DestructionEvent() = 0;
     virtual void ReceivedDamageEvent(int damage) = 0;
 };

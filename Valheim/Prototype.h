@@ -11,7 +11,6 @@ public:
 	{ 
 		actor->Release(); 
 		actor = nullptr;
-		cout << "asdsad";
 	}
 	virtual void Init() = 0;
 	virtual void Update() = 0;
