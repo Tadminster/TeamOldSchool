@@ -5,6 +5,7 @@
 class Player : public Prototype
 {
 	friend class JumpState;
+	friend class SwingState;
 	
 	class PlayerState* state = nullptr;
 	Vector3 lastPos = {};
@@ -15,7 +16,7 @@ class Player : public Prototype
 	bool isJump = 0;
 	bool isPlayerCam = 1;
 
-	bool isEquip = 0;
+	int isEquip = 0;
 
 public:
 	Player();
@@ -36,4 +37,5 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
+	void TreeAttack(Prototype* tree);
 };

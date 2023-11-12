@@ -143,8 +143,6 @@ void SwingState::Swing()
 	{
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
 	}
-
-	
 }
 
 

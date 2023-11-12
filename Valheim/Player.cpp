@@ -213,3 +213,19 @@ void Player::ReleaseToHand()
 {
 	//
 }
+
+void Player::TreeAttack(Prototype* tree)
+{
+	if (isEquip == 1)
+	{
+		if (state == SwingState::GetInstance())
+		{
+			if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 31)
+			{
+				
+			}
+
+		}
+	}
+	//충돌 프레임 31 58 89
+}
