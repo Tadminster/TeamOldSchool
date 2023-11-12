@@ -1,0 +1,40 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="2"/>
+        <Child0 Name="Collider" Visible="true" ObType="1">
+            <Collider ColliderType="1" Visible="true">
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.60000002" Y="0.69999999" Z="0.60000002"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Collider>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="stub" Visible="true" ObType="0">
+            <Mesh File="Beech_Stub/stub.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="Beech_Stub/beech_stump.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+    </Child0>
+</Root>
