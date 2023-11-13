@@ -2,19 +2,20 @@
 class InGame : public Scene
 {
 private:
-    Camera*     tempCamera;
-    Camera*     tempCamera2;
+    Camera*                         tempCamera;
+    Camera*                         tempCamera2;
 
-    Grid*       grid;
-	Sky*        skyBox;
-
-    GameManager* gameManager;
+    Grid*                           grid;
+	Sky*                            skyBox;
+        
+    GameManager*                    gameManager;
    
-    class InventoryUiPannel*     playerInventoryUI;
-    class GameOption*            playerOptionUI;
+    class InventoryUiPannel*        playerInventoryUI;
+    class GameOption*               playerOptionUI;
     class Wood*                     wood;
     class StoneAxe*                 stoneAxe;
 
+    class Troll*                    troll;
 public:
     InGame();
     ~InGame();

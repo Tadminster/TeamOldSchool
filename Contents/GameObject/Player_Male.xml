@@ -14,7 +14,7 @@
     <Children Size="3"/>
     <Child0 Name="FrustumCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
-            <Position X="-0.16306116" Y="3.5" Z="-5"/>
+            <Position X="-0.16306116" Y="3.5" Z="-2.5"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0.26179799" Y="0" Z="0"/>
         </Transform>

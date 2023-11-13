@@ -33,14 +33,8 @@
     <ClInclude Include="StoneAxe.h">
       <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="GameOption.h">
       <Filter>GameOptionUI</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
@@ -72,6 +66,15 @@
     <ClInclude Include="Birch.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>GameObject\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="Troll.h">
+      <Filter>GameObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -99,14 +102,8 @@
     <ClCompile Include="StoneAxe.cpp">
       <Filter>ItemAndInventory\BattleItemList</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="GameOption.cpp">
       <Filter>GameOptionUI</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Managers</Filter>
@@ -137,6 +134,15 @@
     </ClCompile>
     <ClCompile Include="Birch.cpp">
       <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>GameObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="Troll.cpp">
+      <Filter>GameObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,9 @@
     </Filter>
     <Filter Include="GameObject\Terrain Features">
       <UniqueIdentifier>{997c8266-dbe6-47bd-a153-8022c73e54f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Unit">
+      <UniqueIdentifier>{3a7f72d0-fc55-4130-807b-f84f281d8a08}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

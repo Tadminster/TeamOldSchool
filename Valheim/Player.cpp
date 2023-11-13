@@ -18,7 +18,7 @@ Player::~Player()
 
 void Player::Init()
 {
-	actor->SetWorldPosY(30);
+	actor->SetWorldPos(Vector3(0,20,0));
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 }
 
@@ -32,9 +32,9 @@ void Player::Update()
 	}
 	else isPlayerCam = false;
 	//중력 구현
-	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
-	if (isLand) gravity = 0;
-	else gravity += GRAVITYPOWER * DELTA;
+		actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
+		if (isLand) gravity = 0;
+		else gravity += GRAVITYPOWER * DELTA;
 
 	actor->Update();
 }
@@ -98,7 +98,7 @@ void Player::SetState(PlayerState* state)
 
 void Player::AvtivatePlayerCam()
 {
-	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기
+	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기1
 	if (!DEBUGMODE && !isPlayerCam) 
 	{
 		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
@@ -114,7 +114,7 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
-	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기
+	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
 	POINT ptMouse;
 	ptMouse.x = App.GetHalfWidth();
 	ptMouse.y = App.GetHalfHeight();
@@ -125,12 +125,11 @@ void Player::AvtivatePlayerCam()
 	Camera::main->rotation.x += Rot.x;
 	ClientToScreen(App.GetHandle(), &ptMouse);
 	SetCursorPos(ptMouse.x, ptMouse.y);
+	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
 	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
 	
-	//카메라 레이 충돌
-	
-	
+	//카메라-터레인 레이 충돌
 	Ray PlayerCamRay;
 	PlayerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
 	Vector3 CamtoPlayer = actor->GetWorldPos() - actor->Find("PlayerCam")->GetWorldPos();
@@ -145,22 +144,16 @@ void Player::AvtivatePlayerCam()
 		ImGui::Text("%f camray z ", hit.z);
 		CamLastPos = actor->Find("PlayerCam")->GetWorldPos();
 		actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
-		//actor->Find("PlayerCam")->SetWorldPos(hit+(actor->Find("RootNode")->GetForward()));
 		CamtoTerrain = true;
 	}
 	else
 	{
-		if(CamtoTerrain)
+		/*if(CamtoTerrain)
 		{
-			//actor->Find("PlayerCam")->SetWorldPos(actor->Find("RootNode")->GetWorldPos() + actor->Find("RootNode")->GetForward());
-			//actor->Find("PlayerCam")->SetLocalPos(Vector3(0,3.5f,-5.0f));
-			//actor->Find("PlayerCam")->rotation.x = 10.0f * ToRadian;
+			actor->Find("PlayerCam")->SetWorldPos(actor->Find("FrustumCam")->GetWorldPos());
 			CamtoTerrain = false;
-		}
+		}*/
 	}
-	
-	
-	
 }
 
 void Player::PlayerControl()
