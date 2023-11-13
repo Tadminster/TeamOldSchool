@@ -66,11 +66,11 @@ void Birch::Release()
 void Birch::DestructionEvent()
 {
 	// 오브젝트 생성 (그루터기)
-	FeatureProto* stump = FeatureProto::Create(FeatureType::BirchStump);
+	FeatureProto* stump = FeatureProto::Create(FeatureType::BeechStump);
 	stump->GetActor()->SetWorldPos(this->actor->GetWorldPos());
 
 	// 오브젝트 생성 (통나무)
-	FeatureProto* log = FeatureProto::Create(FeatureType::BirchLog);
+	FeatureProto* log = FeatureProto::Create(FeatureType::BeechLog);
 	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
 	log->GetActor()->SetWorldPos(spawnPos);
 	//log->GetActor()->rotation = this->actor->rotation;

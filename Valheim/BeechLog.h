@@ -1,4 +1,6 @@
 #pragma once
+//#include "Prototype.h"
+//#include "FeatureProto.h"
 class BeechLog : public FeatureProto
 {
 
