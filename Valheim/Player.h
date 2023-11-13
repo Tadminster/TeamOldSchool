@@ -44,4 +44,6 @@ public:
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 	void TreeAttack(Prototype* tree);
+	Camera* GetFrustumCam(){return static_cast<Camera*>(actor->Find("FrustumCam"));
+	}
 };
