@@ -58,7 +58,7 @@ void ObjectManager::Update()
 		GenerateInstanceGrass();
 	}
 
-
+	// 리스트에서 요소 제거
 	objects.erase(
 		std::remove_if
 		(
@@ -66,11 +66,15 @@ void ObjectManager::Update()
 			objects.end(),
 			[](Prototype* object)
 			{
+				// 오브젝트의 파괴 조건 검사
 				if (object->IsDestroyed())
 				{
+					// 파괴 이벤트 호출
 					object->DestructionEvent();
+					// 리턴값 반환해서 리스트에서 제거
 					return true;
 				}
+				// 파괴 조건이 아니면 리스트에서 제거하지 않음
 				else false;
 			}
 		),
@@ -79,6 +83,7 @@ void ObjectManager::Update()
 
 
 	static float distanceCalCycle = 0;
+	// 최적화를 위해 일정 주기로 거리 계산
 	if (TIMER->GetTick(distanceCalCycle, 1.0f))
 	{
 		Vector3 CameraPos = Camera::main->GetWorldPos();
@@ -97,6 +102,7 @@ void ObjectManager::Update()
 
 				obj->Update();
 			}
+			// beech가 아니면 업데이트만
 			else
 				obj->Update();
 
@@ -126,7 +132,7 @@ void ObjectManager::LateUpdate()
 
 void ObjectManager::Render()
 {
-	// 디버그 모드
+	// 디버그 모드일 때
 	if (DEBUGMODE)
 	{
 		// 모든 오브젝트 렌더링
@@ -151,6 +157,7 @@ void ObjectManager::Render()
 
 void ObjectManager::RenderHierarchy()
 {
+	// 오브젝트 매니저 전용 하이어라이키
 	ImGui::Begin("TerrainHierarchy");
 	{
 		for (auto& obj : objects)
@@ -167,17 +174,18 @@ void ObjectManager::GenerateTree()
 	double frequencyScale = 1.0 / rowSize * 2;			// 맵 크기에 따른 주파수 스케일 조정
 	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));		// 난수 시드로 펄린노이즈 생성
 
-	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
-	Ray ray; Vector3 Hit;
-	ray.position = Vector3();
-	ray.direction = Vector3(0, -1, 0);
+	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;		// 맵의 버텍스 받아오기
+	Ray ray; Vector3 Hit;					// 레이와 레이가 맞은 지점을 저장할 변수
+	ray.position = Vector3();				// 레이 포지션 초기화(임시)
+	ray.direction = Vector3(0, -1, 0);		// 레이 방향(위에서 수직으로 내리꽂는 레이)
 
+	// 맵의 rowSize * rowSize 만큼 반복
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			int index = i * rowSize + j;
-			float positionY = vertices[index].position.y;
+			int index = i * rowSize + j;					// 인덱스 계산
+			float positionY = vertices[index].position.y;	// 높이값 받아오기
 
 			// 높이체크
 			// 높이가 -1 이하 인곳에서는 생성하지 않음
@@ -241,24 +249,29 @@ void ObjectManager::GenerateTree()
 			// 펄린노이즈 값이 0.2 이상이거나, 50분의 1 확률로 생성
 			if (noiseValue > -0.2f/* || RANDOM->Int(1, 50) == 1*/)
 			{
-				ray.position = vertices[index].position; +Vector3(0, 1000, 0);
+				// 레이의 위치 설정
+				ray.position = vertices[index].position; + Vector3(0, 1000, 0);	
 
+				// Compute Picking으로 레이와 맞은 지점을 Hit에 저장
 				if (MAP->ComputePicking(ray, Hit))
 				{
+					// 오브젝트를 생성하고 위치, 회전, 크기	
 					FeatureProto* treeBeech = FeatureProto::Create(FeatureType::Beech);
 					treeBeech->GetActor()->SetWorldPos(Hit);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
 					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));
+
+					// 생성된 오브젝트 리스트에 추가
 					objects.emplace_back(treeBeech);
 				}
 			}
 		}
 	}
 
+	// 생성된 오브젝트들 업데이트
 	for (auto& obj : objects)
 	{
 		obj->Update();
-		obj->Render();
 	}
 }
 
