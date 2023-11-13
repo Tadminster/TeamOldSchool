@@ -125,7 +125,8 @@ void Player::AvtivatePlayerCam()
 	Camera::main->rotation.x += Rot.x;
 	ClientToScreen(App.GetHandle(), &ptMouse);
 	SetCursorPos(ptMouse.x, ptMouse.y);
-
+	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
+	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
 	
 	//카메라 레이 충돌
 	
