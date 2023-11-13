@@ -43,6 +43,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StoneAxe.h" />
     <ClInclude Include="Beech.h" />
+    <ClInclude Include="Troll.h" />
     <ClInclude Include="Wood.h" />
   </ItemGroup>
   <ItemGroup>
@@ -67,6 +68,7 @@
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Beech.cpp" />
+    <ClCompile Include="Troll.cpp" />
     <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>

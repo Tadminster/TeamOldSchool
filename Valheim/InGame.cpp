@@ -11,6 +11,9 @@
 #include "GameOption.h"
 #include "Wood.h"
 #include "StoneAxe.h"
+
+#include "Troll.h"
+
 #include "InGame.h"
 
 InGame::InGame()
@@ -34,6 +37,7 @@ InGame::InGame()
 	wood = new Wood();
 	stoneAxe = new StoneAxe();
 
+	troll = new Troll();
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -51,6 +55,7 @@ InGame::~InGame()
 void InGame::Init()
 {
 	PLAYER->Init();
+	troll->Init();
 }
 
 void InGame::Release()
@@ -74,6 +79,7 @@ void InGame::Update()
 		MAP->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
+		troll->RenderHierarchy();
 		stoneAxe->RenderHierarchy();
 
 	}
@@ -107,6 +113,8 @@ void InGame::Update()
 	stoneAxe->Update();
 	
 	OBJ->Update();
+
+	troll->Update();
 	PLAYER->Update();
 
 
@@ -119,8 +127,10 @@ void InGame::LateUpdate()
 	wood->LateUpdate();
 	stoneAxe->LateUpdate();
 	
-	PLAYER->LateUpdate();
 	OBJ->LateUpdate();
+
+	troll->LateUpdate();
+	PLAYER->LateUpdate();
 }
 
 void InGame::PreRender()
@@ -149,12 +159,13 @@ void InGame::Render()
 	MAP->Render();
 	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
-	PLAYER->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();
 	wood->Render();
 	stoneAxe->Render();
 
+	troll->Render();
+	PLAYER->Render();
 
 }
 

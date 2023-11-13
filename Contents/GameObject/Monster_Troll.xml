@@ -1,8 +1,13 @@
-<Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
+<Root Name="Troll" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Troll/Monster_Troll.skel" BoneIndexCount="53"/>
     <Animations AnimSize="1" File0="Monster_Troll/Troll_Idle0.anim"/>
+    <Collider ColliderType="2" Visible="true">
+        <Position X="0" Y="2.6500001" Z="0.2"/>
+        <Scale X="2" Y="2.7" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
     <Transform>
-        <Position X="0" Y="0" Z="0"/>
+        <Position X="0" Y="29.766968" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -368,8 +373,19 @@
                                                 <Scale X="1" Y="1" Z="1"/>
                                                 <Rotation X="0.13798082" Y="-0.030467136" Z="-0.21805473"/>
                                             </Transform>
-                                            <Children Size="1"/>
-                                            <Child0 Name="mixamorig:RightHandIndex2" Visible="true" ObType="0" BoneIndex="36">
+                                            <Children Size="2"/>
+                                            <Child0 Name="TrollLog" Visible="true" ObType="1" BoneIndex="-1">
+                                                <Mesh File="Beech_log/log.mesh"/>
+                                                <Shader File="4.Cube.hlsl"/>
+                                                <Material File="Beech_log/beech_log.mtl"/>
+                                                <Transform>
+                                                    <Position X="65.000015" Y="15.000003" Z="-45.000008"/>
+                                                    <Scale X="2" Y="2" Z="2"/>
+                                                    <Rotation X="0" Y="1.74532" Z="0"/>
+                                                </Transform>
+                                                <Children Size="0"/>
+                                            </Child0>
+                                            <Child1 Name="mixamorig:RightHandIndex2" Visible="true" ObType="0" BoneIndex="36">
                                                 <Shader File="4.Cube.hlsl"/>
                                                 <Transform>
                                                     <Position X="0.0037417375" Y="17.652632" Z="-5.6843426e-14"/>
@@ -395,7 +411,7 @@
                                                         <Children Size="0"/>
                                                     </Child0>
                                                 </Child0>
-                                            </Child0>
+                                            </Child1>
                                         </Child0>
                                         <Child1 Name="mixamorig:RightHandRing1" Visible="true" ObType="0" BoneIndex="39">
                                             <Shader File="4.Cube.hlsl"/>
