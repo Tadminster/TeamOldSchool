@@ -1,8 +1,15 @@
 #pragma once
 
+enum class LodLevel
+{
+    LOD0,
+    LOD1,
+    LOD3
+};
+
 enum class FeatureType
 {
-    Beech, BeechStump, BeechLog, BeechHalfLog
+    Birch, Beech, BeechStump, BeechLog, BeechHalfLog
 };
 
 class FeatureProto : public Prototype

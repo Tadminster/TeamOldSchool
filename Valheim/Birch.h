@@ -1,11 +1,6 @@
 #pragma once
 #include "Prototype.h"
 #include "FeatureProto.h"
-enum class LodLevel
-{
-	LOD0,
-	LOD1
-};
 
 class Birch : public FeatureProto
 {

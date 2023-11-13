@@ -7,13 +7,6 @@
 //	INSTANCING
 //};
 
-enum class LodLevel
-{
-	LOD0,
-	LOD1,
-	LOD3
-};
-
 class Beech : public FeatureProto
 {
 private:

@@ -147,7 +147,8 @@ void ObjectManager::Render()
 		// 카메라와 충돌하는 오브젝트만 렌더링
 		for (auto& obj : objects)
 		{
-			if (PLAYER->GetPlayerCam()->Intersect(obj->GetActor()->GetWorldPos()))
+			
+			if (PLAYER->GetFrustumCam()->Intersect(obj->GetActor()->GetWorldPos()))
 			{
 				obj->Render();
 			}
@@ -256,7 +257,14 @@ void ObjectManager::GenerateTree()
 				if (MAP->ComputePicking(ray, Hit))
 				{
 					// 오브젝트를 생성하고 위치, 회전, 크기	
-					FeatureProto* treeBeech = FeatureProto::Create(FeatureType::Beech);
+					FeatureProto* treeBeech;
+					
+					if (RANDOM->Int(1, 10) == 1)
+						treeBeech = (FeatureProto*)FeatureProto::Create(FeatureType::Birch);
+					else
+						treeBeech = (FeatureProto*)FeatureProto::Create(FeatureType::Beech);
+
+
 					treeBeech->GetActor()->SetWorldPos(Hit);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
 					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));

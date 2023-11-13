@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Prototype.h"
 
+#include "Birch.h"
 #include "Beech.h"
 #include "BeechStump.h"
 #include "BeechLog.h"
@@ -12,6 +13,8 @@ FeatureProto* FeatureProto::Create(FeatureType type)
 {
 	switch (type)
 	{
+		case FeatureType::Birch:
+			return new Birch();
 		case FeatureType::Beech:
 			return new Beech();
 		case FeatureType::BeechStump:
