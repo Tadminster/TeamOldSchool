@@ -244,7 +244,7 @@ void ObjectManager::GenerateTree()
 			{
 				ray.position = vertices[index].position; +Vector3(0, 1000, 0);
 
-				if (MAP->ComPutePicking(ray, Hit))
+				if (MAP->ComputePicking(ray, Hit))
 				{
 					FeatureProto* treeBeech = FeatureProto::Create(FeatureType::Beech);
 					treeBeech->GetActor()->SetWorldPos(Hit);
@@ -385,7 +385,7 @@ void ObjectManager::GenerateInstanceGrass()
 			{
 				ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
 
-				if (MAP->ComPutePicking(ray, Hit))
+				if (MAP->ComputePicking(ray, Hit))
 				{
 					grassPos.emplace_back(Hit);
 				}
