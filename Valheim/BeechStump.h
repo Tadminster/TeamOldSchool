@@ -1,7 +1,6 @@
 #pragma once
-//#include "Prototype.h"
-//#include "FeatureProto.h"
-#pragma once
+#include "Prototype.h"
+#include "FeatureProto.h"
 class BeechStump : public FeatureProto
 {
 
