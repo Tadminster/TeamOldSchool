@@ -39,6 +39,10 @@ void BeechLog::Render()
 	actor->Render();
 }
 
+void BeechLog::Release()
+{
+}
+
 void BeechLog::RenderHierarchy()
 {
 	actor->RenderHierarchy();

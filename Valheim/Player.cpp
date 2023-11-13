@@ -82,6 +82,10 @@ void Player::Render()
 	actor->Render();
 }
 
+void Player::Release()
+{
+}
+
 void Player::RenderHierarchy()
 {
 	actor->RenderHierarchy();

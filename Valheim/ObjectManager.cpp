@@ -26,14 +26,27 @@ void ObjectManager::Init()
 
 void ObjectManager::Release()
 {
+	if (objects.empty()) return;
+
+	for (auto& obj : objects)
+	{
+		obj->Release();
+	}
+	objects.clear();
 }
 
 void ObjectManager::Update()
 {
 	//ImGui::Text("Object Count: %d", objects.size());
 
+	if (ImGui::Button("GeneratePerinNoiseMap"))
+	{
+		Release();
+		MAP->PerlinNoiseHeightMap();
+	}
 	if (ImGui::Button("GenerateTree"))
 	{
+		Release();
 		GenerateTree();
 	}
 	//if (ImGui::Button("GenerateInstance"))
@@ -78,10 +91,10 @@ void ObjectManager::Update()
 			{
 				// 거리에 따라 LOD 적용
 				float distance = Vector3::DistanceSquared(CameraPos, beech->GetActor()->GetWorldPos());
-				if (distance < 1000) beech->LodUpdate(LodLevel::LOD0);
-				else if (distance < 2000) beech->LodUpdate(LodLevel::LOD1);
-				else if (distance < 5000) beech->LodUpdate(LodLevel::LOD3);
-				else continue;
+				if (distance < 1000) beech->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
+				else if (distance < 2000) beech->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
+				else if (distance < 5000) beech->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
+				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
 
 				obj->Update();
 			}
@@ -94,15 +107,11 @@ void ObjectManager::Update()
 
 void ObjectManager::LateUpdate()
 {
-	//for (auto& obj : objects)
-	//{
-	//	obj->LateUpdate();
-	//}
-
 	for (auto& obj : objects)
 	{
 		if (PLAYER->GetActor()->Find("StoneAxe"))
 		{
+			// 오브젝트와 충돌 검사 (임시)
 			if (PLAYER->GetActor()->Find("StoneAxe")->collider->Intersect(obj->GetActor()->Find("Collider")->collider))
 			{
 				Beech* beech = dynamic_cast<Beech*>(obj);
@@ -118,15 +127,19 @@ void ObjectManager::LateUpdate()
 
 void ObjectManager::Render()
 {
+	// 디버그 모드
 	if (DEBUGMODE)
 	{
+		// 모든 오브젝트 렌더링
 		for (auto& obj : objects)
 		{
 			obj->Render();
 		}
 	}
+	// 디버그 모드가 아닐 때
 	else
 	{
+		// 카메라와 충돌하는 오브젝트만 렌더링
 		for (auto& obj : objects)
 		{
 			if (PLAYER->GetPlayerCam()->Intersect(obj->GetActor()->GetWorldPos()))
@@ -164,24 +177,61 @@ void ObjectManager::GenerateTree()
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			float positionY = vertices[i * rowSize + j].position.y;
+			int index = i * rowSize + j;
+			float positionY = vertices[index].position.y;
 
 			// 높이체크
 			// 높이가 -1 이하 인곳에서는 생성하지 않음
-			if (positionY < -1.0f) continue;
-			// 높이가 -1 ~ 1 이면, 100분의 1 확률로 생성
-			else if (positionY < 1.0f)
+			if (positionY < -1.0f)
 			{
-				if (RANDOM->Int(1, 100) != 1) continue;
+				continue;
 			}
-			// 높이가 1 ~ 10 이면, 50분의 1 확률로 생성
+			// 높이가 -1 ~ 1 이면, 100분의 1 확률로 생성
+			else if (positionY < 0.0f)
+			{
+				if (RANDOM->Int(1, 100) != 1)
+				{
+					continue;
+				}
+			}
+			// 높이가 1 ~ 3 이면, 80분의 1 확률로 생성
+			else if (positionY < 3.0f)
+			{
+				if (RANDOM->Int(1, 80) != 1)
+				{
+					continue;
+				}
+			}
+			// 높이가 3 ~ 5 이면, 70분의 1 확률로 생성
+			else if (positionY < 5.0f)
+			{
+				if (RANDOM->Int(1, 70) != 1)
+				{
+					continue;
+				}
+			}
+			// 높이가 5 ~ 7 이면, 60분의 1 확률로 생성
+			else if (positionY < 7.0f)
+			{
+				if (RANDOM->Int(1, 60) != 1)
+				{
+					continue;
+				}
+			}
+			// 높이가 7 ~ 10 이면, 50분의 1 확률로 생성
 			else if (positionY < 10.0f)
 			{
-				if (RANDOM->Int(1, 50) != 1) continue;
+				if (RANDOM->Int(1, 50) != 1)
+				{
+					continue;
+				}
 			}
-			else // 높이가 10 이상이면, 30분의 1 확률로 생성
+			else // 높이가 10 이상이면, 40분의 1 확률로 생성
 			{
-				if (RANDOM->Int(1, 40) != 1) continue;
+				if (RANDOM->Int(1, 40) != 1)
+				{
+					continue;
+				}
 			}
 
 			double x = (double)i * frequencyScale;
@@ -190,9 +240,9 @@ void ObjectManager::GenerateTree()
 			double noiseValue = perlin.noise3D(x, y, z);
 
 			// 펄린노이즈 값이 0.2 이상이거나, 50분의 1 확률로 생성
-			if (noiseValue > -0.2f || RANDOM->Int(1, 50) == 1)
+			if (noiseValue > -0.2f/* || RANDOM->Int(1, 50) == 1*/)
 			{
-				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 1000, 0);
+				ray.position = vertices[index].position; +Vector3(0, 1000, 0);
 
 				if (MAP->ComPutePicking(ray, Hit))
 				{
@@ -200,10 +250,16 @@ void ObjectManager::GenerateTree()
 					treeBeech->GetActor()->SetWorldPos(Hit);
 					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
 					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));
-					objects.emplace_back(move(treeBeech));
+					objects.emplace_back(treeBeech);
 				}
 			}
 		}
+	}
+
+	for (auto& obj : objects)
+	{
+		obj->Update();
+		obj->Render();
 	}
 }
 
@@ -359,5 +415,5 @@ void ObjectManager::GenerateInstanceGrass()
 
 void ObjectManager::AddObject(Prototype* object)
 {
-		objects.emplace_back(object);
+	objects.emplace_back(object);
 }

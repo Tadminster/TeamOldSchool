@@ -45,6 +45,10 @@ void FeatureProto::Render()
 {
 }
 
+void FeatureProto::Release()
+{
+}
+
 void FeatureProto::RenderHierarchy()
 {
 }

@@ -52,3 +52,7 @@ void BeechStump::DestructionEvent()
 void BeechStump::ReceivedDamageEvent(int damage)
 {
 }
+
+void BeechStump::Release()
+{
+}

@@ -12,12 +12,10 @@ public:
 	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
+	void Release() override;
 	void RenderHierarchy() override;
 
-	// FeatureProto을(를) 통해 상속됨
 	void DestructionEvent() override;
-
-	// FeatureProto을(를) 통해 상속됨
 	void ReceivedDamageEvent(int damage) override;
 };
 

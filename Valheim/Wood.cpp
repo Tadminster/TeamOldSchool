@@ -65,3 +65,7 @@ void Wood::RenderHierarchy()
 	}
 	ImGui::End();
 }
+
+void Wood::Release()
+{
+}

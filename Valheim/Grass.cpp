@@ -30,3 +30,7 @@ void Grass::Render()
 {
 	actor->Render();
 }
+
+void Grass::Release()
+{
+}

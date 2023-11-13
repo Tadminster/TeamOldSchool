@@ -16,7 +16,6 @@ Beech::Beech()
 
 Beech::~Beech()
 {
-	cout << "Beech destructor" << endl;
 }
 
 void Beech::Init()
@@ -60,6 +59,11 @@ void Beech::LodUpdate(LodLevel lv)
 void Beech::ReceivedDamageEvent(int damage)
 {
 	hitPoint -= damage;
+}
+
+void Beech::Release()
+{
+	Beech::~Beech();
 }
 
 void Beech::DestructionEvent()

@@ -21,9 +21,7 @@ public:
 	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
-
-
-	// ResourceItem을(를) 통해 상속됨
+	void Release() override;
 	void RenderHierarchy() override;
 
 };

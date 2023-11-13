@@ -34,5 +34,8 @@ public:
 	// FeatureProto을(를) 통해 상속됨
 	void DestructionEvent() override;
 	void ReceivedDamageEvent(int damage) override;
+
+	// FeatureProto을(를) 통해 상속됨
+	void Release() override;
 };
 

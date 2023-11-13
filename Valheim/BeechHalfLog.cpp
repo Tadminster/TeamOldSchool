@@ -33,6 +33,10 @@ void BeechHalfLog::Render()
 
 }
 
+void BeechHalfLog::Release()
+{
+}
+
 void BeechHalfLog::RenderHierarchy()
 {
 

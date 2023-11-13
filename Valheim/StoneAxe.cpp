@@ -51,3 +51,7 @@ void StoneAxe::RenderHierarchy()
 	}
 	ImGui::End();
 }
+
+void StoneAxe::Release()
+{
+}
