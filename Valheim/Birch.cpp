@@ -49,7 +49,7 @@ void Birch::LodUpdate(LodLevel lv)
 
 	if (lv == LodLevel::LOD0)
 		actor->Find("Lod0")->visible = true;
-	else if (lv == LodLevel::LOD1)
+	else if (lv == LodLevel::LOD1 || lv == LodLevel::LOD3)
 		actor->Find("Lod1")->visible = true;
 }
 

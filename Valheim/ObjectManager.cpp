@@ -4,6 +4,7 @@
 
 #include "Prototype.h"
 #include "FeatureProto.h"
+#include "Birch.h"
 #include "Beech.h"
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
@@ -102,6 +103,20 @@ void ObjectManager::Update()
 
 				obj->Update();
 			}
+
+			// Down Casting
+			Birch* birch = dynamic_cast<Birch*>(obj);
+			if (birch)
+			{
+				// 거리에 따라 LOD 적용
+				float distance = Vector3::DistanceSquared(CameraPos, birch->GetActor()->GetWorldPos());
+				if (distance < 1000) birch->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
+				else if (distance < 2000) birch->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
+				else if (distance < 5000) birch->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
+				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
+
+				obj->Update();
+			}
 			// beech가 아니면 업데이트만
 			else
 				obj->Update();
@@ -144,10 +159,13 @@ void ObjectManager::Render()
 	// 디버그 모드가 아닐 때
 	else
 	{
-		// 카메라와 충돌하는 오브젝트만 렌더링
+		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
-			
+			float distance = Vector3::DistanceSquared(CameraPos, obj->GetActor()->GetWorldPos());
+			if (distance > 2500) continue;
+
+			// 카메라와 충돌하는 오브젝트만 렌더링
 			if (PLAYER->GetFrustumCam()->Intersect(obj->GetActor()->GetWorldPos()))
 			{
 				obj->Render();
