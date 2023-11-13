@@ -30,3 +30,16 @@ void Grass::Render()
 {
 	actor->Render();
 }
+
+void Grass::Release()
+{
+}
+
+bool Grass::IsDestroyed()
+{
+	return false;
+}
+
+void Grass::DestructionEvent()
+{
+}

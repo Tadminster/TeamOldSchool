@@ -14,11 +14,12 @@ public:
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
+	void Release() override;
 	void Render() override;
-
-
-	// BattleItem을(를) 통해 상속됨
 	void RenderHierarchy() override;
 
+	// BattleItem을(를) 통해 상속됨
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };
 

@@ -82,6 +82,10 @@ void Player::Render()
 	actor->Render();
 }
 
+void Player::Release()
+{
+}
+
 void Player::RenderHierarchy()
 {
 	actor->RenderHierarchy();
@@ -247,6 +251,15 @@ void Player::EquipToHand(Prototype* item)
 void Player::ReleaseToHand()
 {
 	//
+}
+
+bool Player::IsDestroyed()
+{
+	return false;
+}
+
+void Player::DestructionEvent()
+{
 }
 
 void Player::TreeAttack(Prototype* tree)

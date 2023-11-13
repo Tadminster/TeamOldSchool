@@ -1,72 +1,69 @@
 #include "stdafx.h"
 #include "Prototype.h"
 #include "FeatureProto.h"
-#include "Beech.h"
+#include "Birch.h"
 
-Beech::Beech()
+Birch::Birch()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Beech.xml");
+	actor->LoadFile("Birch.xml");
 
 	static int index = 0;
-	actor->name = "Beech" + index++;
+	actor->name = "Birch" + index++;
 
 	hitPoint = 10;
 }
 
-Beech::~Beech()
+Birch::~Birch()
 {
 }
 
-void Beech::Init()
+void Birch::Init()
 {
 }
 
-void Beech::Update()
+void Birch::Update()
 {
 	FeatureProto::Update();
 	actor->Update();
 }
 
-void Beech::LateUpdate()
+void Birch::LateUpdate()
 {
 }
 
-void Beech::Render()
+void Birch::Render()
 {
 	actor->Render();
 }
 
-void Beech::RenderHierarchy()
+void Birch::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 }
 
-void Beech::LodUpdate(LodLevel lv)
+void Birch::LodUpdate(LodLevel lv)
 {
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
-	actor->Find("Lod3")->visible = false;
 
 	if (lv == LodLevel::LOD0)
 		actor->Find("Lod0")->visible = true;
 	else if (lv == LodLevel::LOD1)
 		actor->Find("Lod1")->visible = true;
-	else if (lv == LodLevel::LOD3)
-		actor->Find("Lod3")->visible = true;
 }
 
-void Beech::ReceivedDamageEvent(int damage)
+void Birch::ReceivedDamageEvent(int damage)
 {
 	hitPoint -= damage;
 }
 
-void Beech::Release()
+void Birch::Release()
 {
-	Beech::~Beech();
+	Birch::~Birch();
 }
 
-void Beech::DestructionEvent()
+void Birch::DestructionEvent()
 {
 	// 오브젝트 생성 (그루터기)
 	FeatureProto* stump = FeatureProto::Create(FeatureType::BeechStump);
@@ -84,5 +81,5 @@ void Beech::DestructionEvent()
 	OBJ->AddObject(log);
 
 	// 오브젝트 삭제 (나무)
-	Beech::~Beech();
+	Birch::~Birch();
 }

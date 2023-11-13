@@ -1,27 +1,20 @@
 #pragma once
 //#include "Prototype.h"
 //#include "FeatureProto.h"
-//enum class RenderType
-//{
-//	SINGLE,
-//	INSTANCING
-//};
-
 enum class LodLevel
 {
 	LOD0,
-	LOD1,
-	LOD3
+	LOD1
 };
 
-class Beech : public FeatureProto
+class Birch : public FeatureProto
 {
 private:
 	//RenderType type;
 
 public:
-	Beech();
-	~Beech() override;
+	Birch();
+	~Birch() override;
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;

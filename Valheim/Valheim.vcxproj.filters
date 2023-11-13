@@ -48,9 +48,6 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Grass.h">
-      <Filter>GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="Wood.h">
       <Filter>ItemAndInventory\ResourceItemList</Filter>
     </ClInclude>
@@ -64,6 +61,15 @@
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
     <ClInclude Include="BeechHalfLog.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Grass.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="BeechStump.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Birch.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
   </ItemGroup>
@@ -111,9 +117,6 @@
     <ClCompile Include="Wood.cpp">
       <Filter>ItemAndInventory\ResourceItemList</Filter>
     </ClCompile>
-    <ClCompile Include="Grass.cpp">
-      <Filter>GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="Beech.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
@@ -124,6 +127,15 @@
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
     <ClCompile Include="BeechHalfLog.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Grass.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechStump.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Birch.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>

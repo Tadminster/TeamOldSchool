@@ -22,11 +22,12 @@ class Player : public Prototype
 public:
 	Player();
 	~Player();
-	virtual void Init();
-	virtual void Update();
-	virtual void LateUpdate();
-	virtual void Render();
-	virtual void RenderHierarchy();
+	virtual void Init() override;
+	virtual void Update() override;
+	virtual void LateUpdate() override;
+	virtual void Render() override;
+	virtual void Release() override;
+	virtual void RenderHierarchy() override;
 
 	Actor* GetPlayer() { return actor; }
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
@@ -38,5 +39,9 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
+
+	// Prototype을(를) 통해 상속됨
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 	void TreeAttack(Prototype* tree);
 };

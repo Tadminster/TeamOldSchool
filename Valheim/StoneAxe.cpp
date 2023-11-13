@@ -51,3 +51,16 @@ void StoneAxe::RenderHierarchy()
 	}
 	ImGui::End();
 }
+
+bool StoneAxe::IsDestroyed()
+{
+	return false;
+}
+
+void StoneAxe::DestructionEvent()
+{
+}
+
+void StoneAxe::Release()
+{
+}

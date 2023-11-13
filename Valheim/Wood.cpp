@@ -65,3 +65,16 @@ void Wood::RenderHierarchy()
 	}
 	ImGui::End();
 }
+
+bool Wood::IsDestroyed()
+{
+	return false;
+}
+
+void Wood::DestructionEvent()
+{
+}
+
+void Wood::Release()
+{
+}

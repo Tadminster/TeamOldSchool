@@ -120,6 +120,7 @@ void InGame::LateUpdate()
 	stoneAxe->LateUpdate();
 	
 	PLAYER->LateUpdate();
+	OBJ->LateUpdate();
 }
 
 void InGame::PreRender()
