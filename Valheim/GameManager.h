@@ -7,7 +7,7 @@ public:
     class Player*           player;
     class ObjectManager*    objectManager;
 
-    bool 			    debugMode{ false };
+    bool 			    debugMode{ true };
 
 public:
     GameManager();

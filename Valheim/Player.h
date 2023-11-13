@@ -15,6 +15,7 @@ class Player : public Prototype
 	bool isLand = 0;
 	bool isJump = 0;
 	bool isPlayerCam = 1;
+	bool CamtoTerrain = 0;
 
 	int isEquip = 0;
 

@@ -121,6 +121,41 @@ void Player::AvtivatePlayerCam()
 	Camera::main->rotation.x += Rot.x;
 	ClientToScreen(App.GetHandle(), &ptMouse);
 	SetCursorPos(ptMouse.x, ptMouse.y);
+
+	
+	//카메라 레이 충돌
+	
+	
+	Ray PlayerCamRay;
+	PlayerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
+	Vector3 CamtoPlayer = actor->GetWorldPos() - actor->Find("PlayerCam")->GetWorldPos();
+	CamtoPlayer.Normalize();
+	PlayerCamRay.direction = CamtoPlayer;
+	Vector3 hit;
+	Vector3 CamLastPos;
+	if (Utility::RayIntersectMap(PlayerCamRay, MAP, hit))
+	{
+		ImGui::Text("%f camray x ", hit.x);
+		ImGui::Text("%f camray y", hit.y);
+		ImGui::Text("%f camray z ", hit.z);
+		CamLastPos = actor->Find("PlayerCam")->GetWorldPos();
+		actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
+		//actor->Find("PlayerCam")->SetWorldPos(hit+(actor->Find("RootNode")->GetForward()));
+		CamtoTerrain = true;
+	}
+	else
+	{
+		if(CamtoTerrain)
+		{
+			//actor->Find("PlayerCam")->SetWorldPos(actor->Find("RootNode")->GetWorldPos() + actor->Find("RootNode")->GetForward());
+			//actor->Find("PlayerCam")->SetLocalPos(Vector3(0,3.5f,-5.0f));
+			//actor->Find("PlayerCam")->rotation.x = 10.0f * ToRadian;
+			CamtoTerrain = false;
+		}
+	}
+	
+	
+	
 }
 
 void Player::PlayerControl()
