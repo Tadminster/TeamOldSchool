@@ -321,6 +321,7 @@ void Terrain::PerlinNoiseHeightMap()
 	mesh->UpdateBuffer();
 	UpdateNormal();
 	UpdateColor();
+	UpdateStructuredBuffer();
 }
 
 void Terrain::UpdateColor()
