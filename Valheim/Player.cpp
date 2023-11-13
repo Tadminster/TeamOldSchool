@@ -216,3 +216,12 @@ void Player::ReleaseToHand()
 {
 	//
 }
+
+bool Player::IsDestroyed()
+{
+	return false;
+}
+
+void Player::DestructionEvent()
+{
+}

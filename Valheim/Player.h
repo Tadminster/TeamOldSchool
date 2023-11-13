@@ -35,4 +35,8 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
+
+	// Prototype을(를) 통해 상속됨
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };

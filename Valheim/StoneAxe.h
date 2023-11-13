@@ -18,5 +18,8 @@ public:
 	void Render() override;
 	void RenderHierarchy() override;
 
+	// BattleItem을(를) 통해 상속됨
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };
 

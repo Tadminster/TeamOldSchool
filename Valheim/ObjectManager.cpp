@@ -66,13 +66,12 @@ void ObjectManager::Update()
 			objects.end(),
 			[](Prototype* object)
 			{
-				Beech* beech = dynamic_cast<Beech*>(object);
-				if (beech && beech->isDestroyed())
+				if (object->IsDestroyed())
 				{
-					beech->DestructionEvent();
+					object->DestructionEvent();
 					return true;
 				}
-				else return false;
+				else false;
 			}
 		),
 		objects.end()

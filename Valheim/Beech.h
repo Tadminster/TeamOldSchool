@@ -25,6 +25,7 @@ public:
 	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
+	void Release() override;
 	void RenderHierarchy() override;
 
 
@@ -34,8 +35,5 @@ public:
 	// FeatureProto을(를) 통해 상속됨
 	void DestructionEvent() override;
 	void ReceivedDamageEvent(int damage) override;
-
-	// FeatureProto을(를) 통해 상속됨
-	void Release() override;
 };
 

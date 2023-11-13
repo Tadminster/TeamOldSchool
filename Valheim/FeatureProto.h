@@ -23,7 +23,7 @@ public:
     virtual void RenderHierarchy() override;
 
 public:
-    bool isDestroyed() const { return hitPoint <= 0; }
-    virtual void DestructionEvent() = 0;
+    bool IsDestroyed() override { return hitPoint <= 0; }
+    virtual void DestructionEvent() override;
     virtual void ReceivedDamageEvent(int damage) = 0;
 };

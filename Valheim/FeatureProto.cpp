@@ -52,3 +52,7 @@ void FeatureProto::Release()
 void FeatureProto::RenderHierarchy()
 {
 }
+
+void FeatureProto::DestructionEvent()
+{
+}

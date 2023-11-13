@@ -13,5 +13,9 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override {};
+
+	// Prototype을(를) 통해 상속됨
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };
 
