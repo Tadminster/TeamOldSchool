@@ -335,15 +335,15 @@ void Terrain::UpdateColor()
 			return Color::Lerp(sandColor, grassColor, height);
 		};
 
-	// 높이의 최소값과 최대값을 찾기 위한 변수
-	double minHeight = DOUBLE_MAX;		// 최소값을 찾기위해 최대값 저장
-	double maxHeight = DOUBLE_MIN;		// 최대값을 찾기위해 최소값 저장
-
-	// 모든 정점을 순회하여 최소 높이와 최대 높이를 찾음
 	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
+	
+	// 높이의 최소값과 최대값을 찾기 위한 변수
+	double minHeight = 0;				// 최소 높이는 0으로 초기화 (0이하는 모래색)
+	double maxHeight = DOUBLE_MIN;		// 최대값을 찾기위해 최소값 저장
+	
+	// 모든 정점을 순회하여 최대 높이를 찾음
 	for (int i = 0; i < size; i++)
 	{
-		minHeight = min(minHeight, vertices[i].position.y);
 		maxHeight = max(maxHeight, vertices[i].position.y);
 	}
 
@@ -352,8 +352,8 @@ void Terrain::UpdateColor()
 	{
 		double height = vertices[i].position.y;
 		// 높이를 0에서 1 사이의 값으로 정규화
-		double normalizedHeight = (height - minHeight) / (maxHeight - minHeight);
-		vertices[i].color = GetColorForHeight(normalizedHeight);
+		double normalizedHeight = height < 0.0 ? 0 : (height - minHeight) / (maxHeight - minHeight);
+		vertices[i].color = GetColorForHeight(min(1.0f, normalizedHeight + 0.1f));
 	}
 
 	mesh->UpdateBuffer();
@@ -479,12 +479,6 @@ void Terrain::RenderDetail()
 				LoadHeightRaw(imageFile);
 
 			}
-
-			if (ImGui::Button("PerinNoise"))
-			{
-				PerlinNoiseHeightMap();
-			}
-
 			if (ImGui::Button("UpdateNormal"))
 			{
 				UpdateNormal();
@@ -594,6 +588,23 @@ double Terrain::IslandNoise(siv::PerlinNoise& perlin, double x, double y, double
 	double centralDistanceFactor = distanceFactor - (distanceFactor * 2) * (distanceToCenter / maxDistance);
 
 	return (noiseValue * amplitude * heightFactor - edgeFactor) + centralDistanceFactor;
+}
+
+void Terrain::ChangeColor(int index, float LerpValue)
+{
+	// 정점의 현재 색과 모래색을 보간한 색을 계산
+	auto GetLerpColor = [](Color color, float LerpValue) -> Color
+		{
+			Color currentColor(color.x, color.y, color.y);	// 현재 정점 색
+			Color sandColor(0.7608f, 0.6980f, 0.5020f);		// 모래색
+
+			// 높이에 따라 색상을 보간
+			return Color::Lerp(currentColor, sandColor, LerpValue);
+		};
+
+	// 해당 정점에 색을 적용
+	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
+	vertices[index].color = GetLerpColor(vertices[index].color, LerpValue);
 }
 
 bool Terrain::ComPutePicking(Ray WRay, OUT Vector3& HitPoint)

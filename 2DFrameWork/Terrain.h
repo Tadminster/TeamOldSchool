@@ -74,5 +74,6 @@ private:            // 펄린노이즈 지형생성
 public:
     void            PerlinNoiseHeightMap();
     double          IslandNoise(siv::PerlinNoise& perlin, double x, double y, double z, int i, int j);
+    void            ChangeColor(int index, float LerpValue);
 };
 
