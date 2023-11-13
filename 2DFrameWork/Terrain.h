@@ -63,7 +63,7 @@ public:
 	void			UpdateNormal();
 	void	        RenderDetail();
 
-    bool            ComPutePicking(Ray WRay, OUT Vector3& HitPoint);
+    bool            ComputePicking(Ray WRay, OUT Vector3& HitPoint);
 
 private:            // 펄린노이즈 지형생성
     double          baseFrequency   { 5.0 };            // 기본 주파수

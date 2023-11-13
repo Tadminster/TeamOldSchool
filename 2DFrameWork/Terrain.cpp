@@ -607,7 +607,7 @@ void Terrain::ChangeColor(int index, float LerpValue)
 	vertices[index].color = GetLerpColor(vertices[index].color, LerpValue);
 }
 
-bool Terrain::ComPutePicking(Ray WRay, OUT Vector3& HitPoint)
+bool Terrain::ComputePicking(Ray WRay, OUT Vector3& HitPoint)
 {
 	int triSize = (rowSize - 1) * (rowSize - 1) * 2;
 	//쉐이더부터 준비
