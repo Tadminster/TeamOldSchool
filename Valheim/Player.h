@@ -22,28 +22,29 @@ class Player : public Prototype
 public:
 	Player();
 	~Player();
-	virtual void Init() override;
-	virtual void Update() override;
-	virtual void LateUpdate() override;
-	virtual void Render() override;
-	virtual void Release() override;
-	virtual void RenderHierarchy() override;
+	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
+	void Render() override;
+	void Release() override;
+	void RenderHierarchy() override;
+	void DestructionEvent() override;
+	bool IsDestroyed() override;
 
 	Actor* GetPlayer() { return actor; }
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
+	Camera* GetFrustumCam() { return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	bool GetPlayerJump() { return isJump; }
-	void SetState(PlayerState* state);
+	bool CleanHit(Collider* object);
+	bool CleanFrame();
 
+	void SetState(PlayerState* state);
 	void AvtivatePlayerCam();
 	void PlayerControl();
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
-
-	// Prototype을(를) 통해 상속됨
-	bool IsDestroyed() override;
-	void DestructionEvent() override;
+	
 	void TreeAttack(Prototype* tree);
-	Camera* GetFrustumCam(){return static_cast<Camera*>(actor->Find("FrustumCam"));
-	}
+	
 };

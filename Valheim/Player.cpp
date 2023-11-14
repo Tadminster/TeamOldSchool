@@ -91,6 +91,33 @@ void Player::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
+bool Player::CleanHit(Collider* object)
+{
+	if (actor->Find("StoneAxe"))
+	{
+		return actor->Find("StoneAxe")->collider->Intersect(object);
+	}
+	else return false;
+}
+
+bool Player::CleanFrame()
+{
+	if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
+	{
+		return true;
+	}
+	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 58)
+	{
+		return true;
+	}
+	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
+	{
+		return true;
+	}
+	else return false;
+	//충돌 프레임 31 58 89
+}
+
 void Player::SetState(PlayerState* state)
 {
 	this->state = state;
@@ -269,5 +296,5 @@ void Player::TreeAttack(Prototype* tree)
 
 		}
 	}
-	//충돌 프레임 31 58 89
+	
 }
