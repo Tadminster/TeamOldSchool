@@ -19,12 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BattleItem.h" />
     <ClInclude Include="BeechHalfLog.h" />
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
-    <ClInclude Include="ConsumeItem.h" />
     <ClInclude Include="FeatureProto.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
@@ -32,27 +30,22 @@
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="InventoryUiPannel.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="LivingItem.h" />
+    <ClInclude Include="ItemProto.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Prototype.h" />
-    <ClInclude Include="ResourceItem.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StoneAxe.h" />
     <ClInclude Include="Beech.h" />
     <ClInclude Include="Troll.h" />
-    <ClInclude Include="Wood.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BattleItem.cpp" />
     <ClCompile Include="BeechHalfLog.cpp" />
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
-    <ClCompile Include="ConsumeItem.cpp" />
     <ClCompile Include="FeatureProto.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
@@ -60,16 +53,14 @@
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="InventoryUiPannel.cpp" />
-    <ClCompile Include="LivingItem.cpp" />
+    <ClCompile Include="ItemProto.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PlayerState.cpp" />
-    <ClCompile Include="ResourceItem.cpp" />
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Troll.cpp" />
-    <ClCompile Include="Wood.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

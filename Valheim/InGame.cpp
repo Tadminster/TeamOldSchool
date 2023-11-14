@@ -1,15 +1,10 @@
 #include "stdafx.h"
 #include "Prototype.h"
 
-#include "Item.h"
-#include "BattleItem.h"
-#include "LivingItem.h"
-#include "ConsumeItem.h"
-#include "ResourceItem.h"
+#include "ItemProto.h"
 #include "Inventory.h"
 #include "InventoryUiPannel.h"
 #include "GameOption.h"
-#include "Wood.h"
 #include "StoneAxe.h"
 
 #include "Troll.h"
@@ -33,8 +28,6 @@ InGame::InGame()
 	playerInventoryUI = new InventoryUiPannel();
 	playerOptionUI    = new GameOption();
 	
-	
-	wood = new Wood();
 	stoneAxe = new StoneAxe();
 
 	troll = new Troll();
@@ -111,7 +104,6 @@ void InGame::Update()
 	skyBox->Update();
 	playerInventoryUI->Update();
 	playerOptionUI->Update();
-	wood->Update();
 	stoneAxe->Update();
 	
 	SEA->Update();
@@ -127,7 +119,6 @@ void InGame::LateUpdate()
 {
 	playerInventoryUI->LateUpdate();
 	playerOptionUI->LateUpdate();
-	wood->LateUpdate();
 	stoneAxe->LateUpdate();
 	
 	OBJ->LateUpdate();
@@ -173,7 +164,6 @@ void InGame::Render()
 	OBJ->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();
-	wood->Render();
 	stoneAxe->Render();
 
 	troll->Render();

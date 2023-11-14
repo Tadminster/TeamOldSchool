@@ -1,21 +1,20 @@
 #include "stdafx.h"
-#include "Item.h"
-#include "BattleItem.h"
+#include "ItemProto.h"
 #include "StoneAxe.h"
 
-StoneAxe::StoneAxe(Vector3 spwanpos)
+StoneAxe::StoneAxe()
 {
+	static int index = 0;
 	actor = Actor::Create("StoneAxe");
 	actor->LoadFile("StoneAxe.xml");
-	actor->name = "StoneAxe";
-	actor->SetWorldPos(spwanpos);
+	actor->name = "StoneAxe" + index++;
 
-	itemName = "StoneAxe";
-	itemDurability = 100;
-	itemWeight = 2;
-
-	itemDamage = 10;
-	woodAdditionalDamage = 5;
+	//=========================
+	name		= "StoneAxe";
+	
+	damage		= 10;
+	durability	= 100;
+	weight		= 2;
 }
 
 StoneAxe::~StoneAxe()
@@ -26,6 +25,10 @@ StoneAxe::~StoneAxe()
 void StoneAxe::Init()
 {
 	
+}
+
+void StoneAxe::Release()
+{
 }
 
 void StoneAxe::Update()
@@ -61,6 +64,11 @@ void StoneAxe::DestructionEvent()
 {
 }
 
-void StoneAxe::Release()
+void StoneAxe::Use()
 {
 }
+
+void StoneAxe::Fix()
+{
+}
+
