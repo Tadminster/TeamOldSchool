@@ -116,7 +116,7 @@ extern Application App;//Extern Global
 #include "Grid.h"
 #include "Camara.h"
 #include "Terrain.h"
-#include "TerrainPerlin.h"
+//#include "AStar.h"
 #include "Sky.h"
 #include "UI.h"
 #include "PostEffect.h"
@@ -125,6 +125,8 @@ extern Application App;//Extern Global
 #include "Billboard.h"
 #include "SlashTrail.h"
 #include "Rain.h"
+//#include "Pop.h"
+#include "Water.h"
 
 #include "Utility.h"
 
