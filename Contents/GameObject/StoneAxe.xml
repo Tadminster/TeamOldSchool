@@ -1,20 +1,20 @@
 <Root Name="StoneAxe" Visible="true" ObType="1">
     <Collider ColliderType="2" Visible="true">
-        <Position X="2" Y="0" Z="45"/>
-        <Scale X="17" Y="10" Z="15"/>
+        <Position X="0" Y="0" Z="1.15"/>
+        <Scale X="0.40000001" Y="0.2" Z="0.25"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-18.04744" Y="16.322105" Z="38.774097"/>
-        <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
-        <Rotation X="0" Y="0.147" Z="0"/>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="RootNode" Visible="true" ObType="0">
         <Transform>
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0" Y="0" Z="-0"/>
+            <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <Children Size="1"/>
         <Child0 Name="AxeStone" Visible="true" ObType="0">
@@ -22,82 +22,19 @@
             <Transform>
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
-                <Rotation X="0" Y="0" Z="-0"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="1"/>
-            <Child0 Name="attach" Visible="true" ObType="0">
+            <Child0 Name="stoneaxe_Cube_004" Visible="true" ObType="0">
+                <Mesh File="AxeStone/stoneaxe_Cube_004.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
+                <Material File="AxeStone/weapons1.mtl"/>
                 <Transform>
-                    <Position X="0" Y="3.0999999" Z="32.400002"/>
-                    <Scale X="1" Y="1" Z="1"/>
-                    <Rotation X="0" Y="0" Z="-0"/>
+                    <Position X="0" Y="0" Z="0"/>
+                    <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                    <Rotation X="1.5707961" Y="0" Z="0"/>
                 </Transform>
-                <Children Size="4"/>
-                <Child0 Name="collider" Visible="true" ObType="0">
-                    <Shader File="4.Cube.hlsl"/>
-                    <Transform>
-                        <Position X="-0.40000081" Y="0" Z="-21.699999"/>
-                        <Scale X="0.43549854" Y="1" Z="0.84681952"/>
-                        <Rotation X="0" Y="0" Z="-0"/>
-                    </Transform>
-                    <Children Size="0"/>
-                </Child0>
-                <Child1 Name="collider__1_" Visible="true" ObType="0">
-                    <Shader File="4.Cube.hlsl"/>
-                    <Transform>
-                        <Position X="-2.4999976" Y="0" Z="-69.200005"/>
-                        <Scale X="1.2355672" Y="1.0664536" Z="0.16"/>
-                        <Rotation X="0" Y="0" Z="-0"/>
-                    </Transform>
-                    <Children Size="0"/>
-                </Child1>
-                <Child2 Name="equiped" Visible="true" ObType="0">
-                    <Shader File="4.Cube.hlsl"/>
-                    <Transform>
-                        <Position X="0" Y="0" Z="0"/>
-                        <Scale X="1" Y="1" Z="1"/>
-                        <Rotation X="0" Y="0" Z="-0"/>
-                    </Transform>
-                    <Children Size="1"/>
-                    <Child0 Name="trail" Visible="true" ObType="0">
-                        <Shader File="4.Cube.hlsl"/>
-                        <Transform>
-                            <Position X="0" Y="0" Z="0"/>
-                            <Scale X="1" Y="1" Z="1"/>
-                            <Rotation X="0" Y="0" Z="-0"/>
-                        </Transform>
-                        <Children Size="2"/>
-                        <Child0 Name="base" Visible="true" ObType="0">
-                            <Shader File="4.Cube.hlsl"/>
-                            <Transform>
-                                <Position X="0" Y="0" Z="-55.900002"/>
-                                <Scale X="1" Y="1" Z="1"/>
-                                <Rotation X="0" Y="0" Z="-0"/>
-                            </Transform>
-                            <Children Size="0"/>
-                        </Child0>
-                        <Child1 Name="tip" Visible="true" ObType="0">
-                            <Shader File="4.Cube.hlsl"/>
-                            <Transform>
-                                <Position X="0" Y="0" Z="-83"/>
-                                <Scale X="1" Y="1" Z="1"/>
-                                <Rotation X="0" Y="0" Z="-0"/>
-                            </Transform>
-                            <Children Size="0"/>
-                        </Child1>
-                    </Child0>
-                </Child2>
-                <Child3 Name="stoneaxe_Cube_004" Visible="true" ObType="0">
-                    <Mesh File="AxeStone/stoneaxe_Cube_004.mesh"/>
-                    <Shader File="4.Cube.hlsl"/>
-                    <Material File="AxeStone/weapons1.mtl"/>
-                    <Transform>
-                        <Position X="0" Y="0" Z="-55"/>
-                        <Scale X="0.30000001" Y="0.30000001" Z="0.30000001"/>
-                        <Rotation X="1.5707961" Y="0" Z="0"/>
-                    </Transform>
-                    <Children Size="0"/>
-                </Child3>
+                <Children Size="0"/>
             </Child0>
         </Child0>
     </Child0>
