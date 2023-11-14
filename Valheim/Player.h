@@ -44,7 +44,4 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
-	
-	void TreeAttack(Prototype* tree);
-	
 };
