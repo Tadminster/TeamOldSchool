@@ -40,11 +40,13 @@ InGame::InGame()
 	troll = new Troll();
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
 }
 
 InGame::~InGame()
@@ -77,6 +79,7 @@ void InGame::Update()
 		}
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
+		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		troll->RenderHierarchy();
@@ -140,9 +143,16 @@ void InGame::PreRender()
 
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
-	
-	//OBJ->Render();
 
+	// ¹°¹İ»ç ·»´õ¸µ
+	SEA->SetReflectionTarget();
+	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
+	MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
+	
+	// ¹°±¼Àı ·»´õ¸µ
+	SEA->SetRefractionTarget();
+	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
+	MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
 }
 
 void InGame::Render()
@@ -157,6 +167,7 @@ void InGame::Render()
 	}
 
 	MAP->Render();
+	SEA->Render();
 	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
 	playerInventoryUI->Render();

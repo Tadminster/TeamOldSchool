@@ -13,4 +13,5 @@
 #define OBJ			GM->objectManager
 #define DEBUGMODE	GM->debugMode
 #define MAP			GM->map
+#define SEA			GM->sea
 #define PLAYER		GM->player

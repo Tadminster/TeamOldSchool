@@ -18,6 +18,11 @@ cbuffer VS_Bones : register(b3)
 	matrix Bones[MAX_BONE];
 }
 
+cbuffer VS_ClipPlane : register(b4)
+{
+	float4 ClipPlane;
+}
+
 
 
 Texture2D TextureN : register(t0);

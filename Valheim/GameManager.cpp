@@ -4,13 +4,16 @@
 GameManager::GameManager()
 {
 	map = Terrain::Create("Terrain");
-	player = new Player();
-	objectManager = new ObjectManager();
-
-
 	map->LoadFile("TerrainPerlin.xml");
 	map->PerlinNoiseHeightMap();
 	map->CreateStructuredBuffer();
+
+	sea = Water::Create();
+	sea->LoadFile("Water.xml");
+
+	objectManager = new ObjectManager();
+
+	player = new Player();
 }
 
 GameManager::~GameManager()
