@@ -30,11 +30,25 @@ void Beech::Update()
 
 void Beech::LateUpdate()
 {
+	ray.position = actor->GetWorldPos();
+
+	if (MAP->ComputePicking(ray, rayCollisionPoint))
+	{
+		if (actor->GetWorldPos().y > rayCollisionPoint.y)
+		{
+			actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
+		}
+	}
 }
 
 void Beech::Render()
 {
 	actor->Render();
+}
+
+void Beech::Release()
+{
+	Beech::~Beech();
 }
 
 void Beech::RenderHierarchy()
@@ -56,14 +70,11 @@ void Beech::LodUpdate(LodLevel lv)
 		actor->Find("Lod3")->visible = true;
 }
 
+
+
 void Beech::ReceivedDamageEvent(int damage)
 {
 	hitPoint -= damage;
-}
-
-void Beech::Release()
-{
-	Beech::~Beech();
 }
 
 void Beech::DestructionEvent()
@@ -76,6 +87,7 @@ void Beech::DestructionEvent()
 	FeatureProto* log = FeatureProto::Create(FeatureType::BeechLog);
 	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
 	log->GetActor()->SetWorldPos(spawnPos);
+	log->Init();
 	//log->GetActor()->rotation = this->actor->rotation;
 	//log->GetActor()->scale = this->actor->scale;
 

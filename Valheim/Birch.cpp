@@ -53,14 +53,15 @@ void Birch::LodUpdate(LodLevel lv)
 		actor->Find("Lod1")->visible = true;
 }
 
-void Birch::ReceivedDamageEvent(int damage)
-{
-	hitPoint -= damage;
-}
 
 void Birch::Release()
 {
 	Birch::~Birch();
+}
+
+void Birch::ReceivedDamageEvent(int damage)
+{
+	hitPoint -= damage;
 }
 
 void Birch::DestructionEvent()

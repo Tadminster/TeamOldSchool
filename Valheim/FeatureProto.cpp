@@ -30,6 +30,7 @@ FeatureProto* FeatureProto::Create(FeatureType type)
 
 void FeatureProto::Init()
 {
+	ray.direction = Vector3(0.0f, -1.0f, 0.0f);
 }
 
 void FeatureProto::Update()
