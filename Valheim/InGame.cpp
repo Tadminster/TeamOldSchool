@@ -88,7 +88,6 @@ void InGame::Update()
 	}
 	ImGui::End();
 
-	// 디버그 모드
 	if (DEBUGMODE)
 	{
 		Camera::main = tempCamera;
@@ -115,6 +114,7 @@ void InGame::Update()
 	wood->Update();
 	stoneAxe->Update();
 	
+	SEA->Update();
 	OBJ->Update();
 
 	troll->Update();
