@@ -12,7 +12,7 @@ void AStar::CreateNode(Terrain* map, int size)
     map->Update();
     target = map;
     this->size = size;
-    scale = (float)map->garo / (float)size;
+    scale = (float)map->rowSize / (float)size;
 
     Tiles.resize(size);
     for (int z = 0; z < size; z++)
@@ -24,7 +24,7 @@ void AStar::CreateNode(Terrain* map, int size)
     Ray top;
     top.direction = Vector3(0, -1, 0);
 
-    float half = map->garo * 0.5f;
+    float half = map->rowSize * 0.5f;
     top.position = Vector3(-half, 10000, half);
 
     for (int z = 0; z < size; z++)
@@ -69,7 +69,7 @@ void AStar::ResizeNode(int size)
 
 
     this->size = size;
-    scale = (float)target->garo / (float)size;
+    scale = (float)target->rowSize / (float)size;
 
     Tiles.resize(size);
     for (int z = 0; z < this->size; z++)
@@ -81,7 +81,7 @@ void AStar::ResizeNode(int size)
     Ray top;
     top.direction = Vector3(0, -1, 0);
 
-    float half = target->garo * 0.5f;
+    float half = target->rowSize * 0.5f;
     top.position = Vector3(-half, 10000, half);
 
 
@@ -122,8 +122,8 @@ bool AStar::GetNearNode(Vector3 coord, int& idxX, int& idxZ)
 
     //Terrain 중심점 0,0,0이 가운데가 아닌 왼쪽상단이 0,0,0이 되게끔 이동
 
-   
-    float half = target->garo * 0.5f;
+
+    float half = target->rowSize * 0.5f;
     float TerrainIdxX, TerrainIdxZ;
     TerrainIdxX = coord.x + half;
     TerrainIdxZ = -coord.z + half ;
