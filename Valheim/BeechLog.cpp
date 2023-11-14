@@ -65,15 +65,15 @@ void BeechLog::DestructionEvent()
 {
 	// 오브젝트 생성 (반쪽통나무)
 	FeatureProto* halfLog1 = FeatureProto::Create(FeatureType::BeechHalfLog);
-	Vector3 spawnPos = this->actor->GetWorldPos();
-	halfLog1->GetActor()->SetWorldPos(spawnPos);
+	Vector3 spawnPos1 = this->actor->GetWorldPos();
+	halfLog1->GetActor()->SetWorldPos(spawnPos1);
 	//halfLog1->GetActor()->rotation = this->actor->rotation;
 	//halfLog1->GetActor()->scale = this->actor->scale;
 	halfLog1->Init();
 
 	FeatureProto* halfLog2 = FeatureProto::Create(FeatureType::BeechHalfLog);
-	Vector3 spawnPos = this->actor->GetWorldPos() + this->actor->GetUp() * 5;
-	halfLog2->GetActor()->SetWorldPos(spawnPos);
+	Vector3 spawnPos2 = this->actor->GetWorldPos() + this->actor->GetUp() * 5;
+	halfLog2->GetActor()->SetWorldPos(spawnPos2);
 	//halfLog2->GetActor()->rotation = this->actor->rotation;
 	//halfLog2->GetActor()->scale = this->actor->scale;
 	halfLog2->Init();
