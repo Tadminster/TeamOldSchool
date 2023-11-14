@@ -120,6 +120,13 @@
     <ClInclude Include="PerlinNoise.hpp">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="Pop.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="System">
@@ -257,5 +264,12 @@
     <ClCompile Include="Rain.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Pop.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Water.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="AStar.cpp" />
   </ItemGroup>
 </Project>
