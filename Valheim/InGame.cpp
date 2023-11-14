@@ -146,8 +146,9 @@ void InGame::PreRender()
 
 	// ¹°¹Ý»ç ·»´õ¸µ
 	SEA->SetReflectionTarget();
+	OBJ->RefractionRender();
 	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
-	MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
+	//MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
 	
 	// ¹°±¼Àý ·»´õ¸µ
 	SEA->SetRefractionTarget();

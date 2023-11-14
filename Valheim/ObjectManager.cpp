@@ -175,6 +175,16 @@ void ObjectManager::Render()
 	}
 }
 
+void ObjectManager::RefractionRender()
+{
+	Vector3 CameraPos = Camera::main->GetWorldPos();
+	for (auto& obj : objects)
+	{
+		float distance = Vector3::DistanceSquared(CameraPos, obj->GetActor()->GetWorldPos());
+		if (distance < 2000) obj->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
+	}
+}
+
 void ObjectManager::RenderHierarchy()
 {
 	// 오브젝트 매니저 전용 하이어라이키

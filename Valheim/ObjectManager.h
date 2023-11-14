@@ -14,6 +14,7 @@ public:
 	void	Update();
 	void	LateUpdate();
 	void	Render();
+	void	RefractionRender();
 	void    RenderHierarchy();
 	
 	void	GenerateTree();
