@@ -239,51 +239,53 @@ void Player::PlayerControl()
 
 void Player::PlayerMove()
 {
+	//상태값에 따른 이동속도
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
-
-	if (INPUT->KeyPress('W')) 
+	
+	//대각선 이동속도 보정
+	Vector3 normalize = {};
+	if (INPUT->KeyPress('W') && INPUT->KeyPress('A'))
 	{
-		if (INPUT->KeyPress('A'))
-		{
-			actor->MoveWorldPos((actor->GetForward() - actor->GetRight()) * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('D'))
-		{
-			actor->MoveWorldPos((actor->GetForward() + actor->GetRight()) * moveSpeed * DELTA);
-		}
-		else
-		{
-			actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
-		}
+		normalize = actor->GetForward() - actor->GetRight();
+		normalize.Normalize();
+		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
 	}
-	else if (INPUT->KeyPress('S'))
+	else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))
 	{
-		if (INPUT->KeyPress('A'))
-		{
-			actor->MoveWorldPos((-actor->GetForward() - actor->GetRight()) * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('D'))
-		{
-			actor->MoveWorldPos((-actor->GetForward() + actor->GetRight()) * moveSpeed * DELTA);
-		}
-		else
-		{
-			actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
-		}
+		normalize = actor->GetForward() + actor->GetRight();
+		normalize.Normalize();
+		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+	}
+	else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))
+	{
+		normalize = -actor->GetForward() - actor->GetRight();
+		normalize.Normalize();
+		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+	}
+	else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))
+	{
+		normalize = -actor->GetForward() + actor->GetRight();
+		normalize.Normalize();
+		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+	}
+	else if (INPUT->KeyPress('W'))
+	{
+		actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('A'))
 	{
 		actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
 	}
+	else if (INPUT->KeyPress('S'))
+	{
+		actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+	}
 	else if (INPUT->KeyPress('D'))
 	{
 		actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 	}
-	
-	
-	
 }
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
@@ -306,20 +308,4 @@ bool Player::IsDestroyed()
 
 void Player::DestructionEvent()
 {
-}
-
-void Player::TreeAttack(Prototype* tree)
-{
-	if (isEquip == 1)
-	{
-		if (state == SwingState::GetInstance())
-		{
-			if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 31)
-			{
-				
-			}
-
-		}
-	}
-	
 }
