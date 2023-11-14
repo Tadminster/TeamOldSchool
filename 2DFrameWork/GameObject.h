@@ -11,7 +11,8 @@ enum class ObType
 	Light,
 	Billboard,
 	Rain,
-	Pop
+	Pop,
+	Water
 };
 
 class GameObject : public Transform

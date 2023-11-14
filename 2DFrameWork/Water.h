@@ -1,16 +1,15 @@
 #pragma once
 class Water : public Actor
 {
+    friend class GameObject;
 private:
-    float uvScale = 20.0f;
     struct WaterBuffer
     {
         Vector2 velocity;
         float time;
         float padding;
-        Vector4 plane;
-        Vector4 refractionCam;
     }waterBufferDesc;
+    float uvScale = 20.0f;
     ID3D11Buffer* waterBuffer;
     ID3D11Buffer* clipPlaneBuffer;
 
@@ -29,6 +28,7 @@ public:
 
     void SetReflectionTarget();
     void SetRefractionTarget();
+    void UpdateUv();
 
 };
 
