@@ -9,8 +9,10 @@ Main::Main()
     cam1 = Camera::Create();
     cam1->LoadFile("Cam.xml");
     Camera::main = cam1;
-
+    
     temp = Actor::Create();
+    //temp->LoadFile("Monster_Elder.xml");
+
 
     ui = UI::Create("UI");
 }

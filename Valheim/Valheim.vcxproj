@@ -38,7 +38,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="StoneAxe.h" />
     <ClInclude Include="Beech.h" />
-    <ClInclude Include="Troll.h" />
+    <ClInclude Include="Elder.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
@@ -58,7 +58,7 @@
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Beech.cpp" />
-    <ClCompile Include="Troll.cpp" />
+    <ClCompile Include="Elder.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

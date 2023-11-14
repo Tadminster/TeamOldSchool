@@ -13,7 +13,7 @@ private:
     //class GameOption*               playerOptionUI;
     class StoneAxe*                 stoneAxe;
 
-    class Troll*                    troll;
+    class Elder*                    elder;
 public:
     InGame();
     ~InGame();
