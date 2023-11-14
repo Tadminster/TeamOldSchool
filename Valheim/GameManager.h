@@ -4,6 +4,7 @@ class GameManager : public Singleton<GameManager>
 {
 public:
     class Terrain*          map;
+    class Terrain*          sea;
     class Player*           player;
     class ObjectManager*    objectManager;
 
