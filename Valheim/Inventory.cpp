@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Item.h"
+#include "ItemProto.h"
 #include "Inventory.h"
 
 Inventory::Inventory()
@@ -12,7 +12,7 @@ Inventory::~Inventory()
 
 }
 
-void Inventory::AddItem(string name, Item* item)
+void Inventory::AddItem(string name, ItemProto* item)
 {
 
 }

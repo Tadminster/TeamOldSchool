@@ -1,25 +1,23 @@
 #pragma once
-class StoneAxe : public BattleItem
+#include "ItemProto.h"
+class StoneAxe : public WeaponProto
 {
 private:
-	int     woodAdditionalDamage;
-
-protected:
 
 public:
-	explicit StoneAxe(Vector3 spwanpos = Vector3 {});
+	explicit StoneAxe();
 	~StoneAxe();
 
-	// BattleItem을(를) 통해 상속됨
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
 	void Release() override;
 	void Render() override;
 	void RenderHierarchy() override;
-
-	// BattleItem을(를) 통해 상속됨
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
+
+	void Use() override;
+	void Fix() override;
 };
 

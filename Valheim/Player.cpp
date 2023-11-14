@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "PlayerState.h"
-#include "Item.h"
+#include "ItemProto.h"
 
 Player::Player()
 {

@@ -12,7 +12,6 @@ private:
    
     class InventoryUiPannel*        playerInventoryUI;
     class GameOption*               playerOptionUI;
-    class Wood*                     wood;
     class StoneAxe*                 stoneAxe;
 
     class Elder*                    elder;

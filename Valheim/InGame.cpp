@@ -1,15 +1,10 @@
 #include "stdafx.h"
 #include "Prototype.h"
 
-#include "Item.h"
-#include "BattleItem.h"
-#include "LivingItem.h"
-#include "ConsumeItem.h"
-#include "ResourceItem.h"
+#include "ItemProto.h"
 #include "Inventory.h"
 #include "InventoryUiPannel.h"
 #include "GameOption.h"
-#include "Wood.h"
 #include "StoneAxe.h"
 
 #include "Elder.h"
@@ -33,18 +28,18 @@ InGame::InGame()
 	playerInventoryUI = new InventoryUiPannel();
 	playerOptionUI    = new GameOption();
 	
-	
-	wood = new Wood();
 	stoneAxe = new StoneAxe();
 
 	elder = new Elder();
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
-	//RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
+	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
 }
 
 InGame::~InGame()
@@ -77,6 +72,7 @@ void InGame::Update()
 		}
 		skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
+		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		elder->RenderHierarchy();
@@ -85,7 +81,6 @@ void InGame::Update()
 	}
 	ImGui::End();
 
-	// µğ¹ö±× ¸ğµå
 	if (DEBUGMODE)
 	{
 		Camera::main = tempCamera;
@@ -109,9 +104,9 @@ void InGame::Update()
 	skyBox->Update();
 	playerInventoryUI->Update();
 	playerOptionUI->Update();
-	wood->Update();
 	stoneAxe->Update();
 	
+	SEA->Update();
 	OBJ->Update();
 
 	elder->Update();
@@ -124,7 +119,6 @@ void InGame::LateUpdate()
 {
 	playerInventoryUI->LateUpdate();
 	playerOptionUI->LateUpdate();
-	wood->LateUpdate();
 	stoneAxe->LateUpdate();
 	
 	OBJ->LateUpdate();
@@ -140,9 +134,17 @@ void InGame::PreRender()
 
 	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
-	
-	//OBJ->Render();
 
+	// ¹°¹İ»ç ·»´õ¸µ
+	SEA->SetReflectionTarget();
+	OBJ->RefractionRender();
+	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
+	//MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
+	
+	// ¹°±¼Àı ·»´õ¸µ
+	SEA->SetRefractionTarget();
+	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
+	MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
 }
 
 void InGame::Render()
@@ -157,11 +159,11 @@ void InGame::Render()
 	}
 
 	MAP->Render();
+	SEA->Render();
 	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
 	playerInventoryUI->Render();
 	playerOptionUI->Render();
-	wood->Render();
 	stoneAxe->Render();
 
 	elder->Render();
