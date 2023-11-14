@@ -3,7 +3,6 @@
 
 #include "ItemProto.h"
 #include "Inventory.h"
-#include "InventoryUiPannel.h"
 #include "GameOption.h"
 #include "StoneAxe.h"
 
@@ -25,8 +24,7 @@ InGame::InGame()
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
 
-	playerInventoryUI = new InventoryUiPannel();
-	playerOptionUI    = new GameOption();
+	inventory = new Inventory();
 	
 	stoneAxe = new StoneAxe();
 
@@ -102,8 +100,7 @@ void InGame::Update()
 
 	Camera::main->Update();
 	skyBox->Update();
-	playerInventoryUI->Update();
-	playerOptionUI->Update();
+	inventory->Update();
 	stoneAxe->Update();
 	
 	SEA->Update();
@@ -117,8 +114,7 @@ void InGame::Update()
 
 void InGame::LateUpdate()
 {
-	playerInventoryUI->LateUpdate();
-	playerOptionUI->LateUpdate();
+	inventory->LateUpdate();
 	stoneAxe->LateUpdate();
 	
 	OBJ->LateUpdate();
@@ -160,15 +156,13 @@ void InGame::Render()
 
 	MAP->Render();
 	SEA->Render();
-	//OBJ->FrustumCulling(tempCamera2);
 	OBJ->Render();
-	playerInventoryUI->Render();
-	playerOptionUI->Render();
-	stoneAxe->Render();
 
 	troll->Render();
 	PLAYER->Render();
 
+	inventory->Render();
+	stoneAxe->Render();
 }
 
 void InGame::ResizeScreen()

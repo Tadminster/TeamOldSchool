@@ -29,7 +29,6 @@
     <ClInclude Include="Grass.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
-    <ClInclude Include="InventoryUiPannel.h" />
     <ClInclude Include="ItemProto.h" />
     <ClInclude Include="Main.h" />
     <ClInclude Include="ObjectManager.h" />
@@ -52,7 +51,6 @@
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="InventoryUiPannel.cpp" />
     <ClCompile Include="ItemProto.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectManager.cpp" />

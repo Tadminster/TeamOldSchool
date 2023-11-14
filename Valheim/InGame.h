@@ -9,9 +9,8 @@ private:
 	Sky*                            skyBox;
         
     GameManager*                    gameManager;
-   
-    class InventoryUiPannel*        playerInventoryUI;
-    class GameOption*               playerOptionUI;
+    class Inventory*                inventory;
+    //class GameOption*               playerOptionUI;
     class StoneAxe*                 stoneAxe;
 
     class Troll*                    troll;

@@ -53,7 +53,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MapTool", "MapTool\MapTool.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", "{2C99B77E-2775-4066-AC03-9062F4F4FC4F}"
 	ProjectSection(SolutionItems) = preProject
-		Contents\GameObject\axe.xml = Contents\GameObject\axe.xml
 		Contents\GameObject\Beech.xml = Contents\GameObject\Beech.xml
 		Contents\GameObject\BeechInstance.xml = Contents\GameObject\BeechInstance.xml
 		Contents\GameObject\BeechLog.xml = Contents\GameObject\BeechLog.xml

@@ -12,7 +12,7 @@ Main::Main()
 
     temp = Actor::Create();
 
-
+    ui = UI::Create("UI");
 }
 
 Main::~Main()
@@ -39,6 +39,7 @@ void Main::Update()
     grid->RenderHierarchy();
     cam1->RenderHierarchy();
     temp->RenderHierarchy();
+    ui->RenderHierarchy();
     ImGui::End();
 
     ImGui::Begin("AssetImporter");
@@ -266,7 +267,19 @@ void Main::Update()
 
     grid->Update();
     temp->Update();
-  
+    ui->Update();
+
+    //if (ImGui::Button("changeName"))
+    //{
+    //    for (int i = 0; i < 32; i++)
+    //    {
+    //        string name;
+    //        if (i+1 > 9) name = "Slot" + to_string(i + 1);
+    //        else name = "Slot0" + to_string(i + 1);
+    //        
+    //        ui->Find("itemSlot" + to_string(i))->name = name;
+    //    }
+    //}
 }
 
 void Main::LateUpdate()
@@ -285,6 +298,7 @@ void Main::Render()
 
     grid->Render();
     temp->Render();
+    ui->Render();
    
 }
 

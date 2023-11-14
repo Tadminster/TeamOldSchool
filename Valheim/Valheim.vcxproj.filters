@@ -57,9 +57,6 @@
     <ClInclude Include="StoneAxe.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="InventoryUiPannel.h">
-      <Filter>Inventory</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -113,9 +110,6 @@
     </ClCompile>
     <ClCompile Include="StoneAxe.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="InventoryUiPannel.cpp">
-      <Filter>Inventory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

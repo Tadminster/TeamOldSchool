@@ -4,17 +4,23 @@ class Inventory
 {
 	friend class Player;
 private:
-	map<string, ItemProto*> playerInventory;
-	bool                     ItemIn = false;
-
-protected:
+	vector<ItemProto*>	inventory;
+	UI*					inventoryUI;
 
 public:
 	Inventory();
 	~Inventory();
 
-	void AddItem(string name, ItemProto* item);
-	void DeleteItem(string name);
-	void SlotChange();
+	void Init();
+	void Release();
+	void Update();
+	void LateUpdate();
+	void PreRender();
+	void Render();
+	void ResizeScreen();
+
+	void Add(ItemProto* item);
+	void Delete(string name);
+	void Change();
 };
 
