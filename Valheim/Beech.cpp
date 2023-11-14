@@ -30,6 +30,15 @@ void Beech::Update()
 
 void Beech::LateUpdate()
 {
+	ray.position = actor->GetWorldPos();
+
+	if (MAP->ComputePicking(ray, rayCollisionPoint))
+	{
+		if (actor->GetWorldPos().y > rayCollisionPoint.y)
+		{
+			actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
+		}
+	}
 }
 
 void Beech::Render()

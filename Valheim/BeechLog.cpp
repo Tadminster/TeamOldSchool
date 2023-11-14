@@ -31,7 +31,15 @@ void BeechLog::Update()
 
 void BeechLog::LateUpdate()
 {
+	ray.position = actor->GetWorldPos();
 
+	if (MAP->ComputePicking(ray, rayCollisionPoint))
+	{	
+		if (actor->GetWorldPos().y > rayCollisionPoint.y)
+		{
+			actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
+		}
+	}
 }
 
 void BeechLog::Render()
@@ -56,14 +64,19 @@ void BeechLog::ReceivedDamageEvent(int damage)
 void BeechLog::DestructionEvent()
 {
 	// 오브젝트 생성 (반쪽통나무)
-	FeatureProto* halfLog = FeatureProto::Create(FeatureType::BeechHalfLog);
+	FeatureProto* halfLog1 = FeatureProto::Create(FeatureType::BeechHalfLog);
 	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
-	halfLog->GetActor()->SetWorldPos(spawnPos);
+	halfLog1->GetActor()->SetWorldPos(spawnPos);
 	//halfLog->GetActor()->rotation = this->actor->rotation;
 	//halfLog->GetActor()->scale = this->actor->scale;
 
+	FeatureProto* halfLog2 = FeatureProto::Create(FeatureType::BeechHalfLog);
+	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
+	halfLog2->GetActor()->SetWorldPos(spawnPos);
+
 	// 리스트에 오브젝트 추가
-	OBJ->AddObject(halfLog);
+	OBJ->AddObject(halfLog1);
+	OBJ->AddObject(halfLog2);
 
 	// 오브젝트 삭제 (통나무)
 	BeechLog::~BeechLog();

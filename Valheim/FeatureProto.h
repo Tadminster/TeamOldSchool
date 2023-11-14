@@ -15,7 +15,11 @@ enum class FeatureType
 class FeatureProto : public Prototype
 {
 protected:
-    int hitPoint;
+    int     hitPoint;
+    float   gravity         { 10 };
+
+    Ray     ray;
+    Vector3 rayCollisionPoint;
 
 public:
 
