@@ -203,6 +203,16 @@ void GameObject::SaveObject(Xml::XMLElement* This, Xml::XMLDocument* doc)
 		pop->SetAttribute("gravity", PopOb->desc.gravity);
 		pop->SetAttribute("duration", PopOb->duration);
 	}
+	else if (type == ObType::Water)
+	{
+		Xml::XMLElement* water = doc->NewElement("Water");
+		This->LinkEndChild(water);
+		Water* WaterOb = dynamic_cast<Water*>(this);
+		water->SetAttribute("uvScale", WaterOb->uvScale);
+		water->SetAttribute("velocityX", WaterOb->waterBufferDesc.velocity.x);
+		water->SetAttribute("velocityY", WaterOb->waterBufferDesc.velocity.y);
+		
+	}
 
 	Xml::XMLElement* Chidren = doc->NewElement("Children");
 	This->LinkEndChild(Chidren);
@@ -373,6 +383,19 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		PopOb->duration = component->FloatAttribute("duration");
 		PopOb->Reset();
 	}
+
+
+	else if (type == ObType::Water)
+	{
+		Water* WaterOb = dynamic_cast<Water*>(this);
+		component = This->FirstChildElement("Water");
+		WaterOb->uvScale = component->FloatAttribute("uvScale");
+		WaterOb->waterBufferDesc.velocity.x = component->FloatAttribute("velocityX");
+		WaterOb->waterBufferDesc.velocity.y = component->FloatAttribute("velocityY");
+		WaterOb->UpdateUv();
+
+
+	}
 	component = This->FirstChildElement("Children");
 	int size = component->IntAttribute("Size");
 	for (int i = 0; i != size; i++)
@@ -440,6 +463,12 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		else if (Type == ObType::Pop)
 		{
 			Pop* temp = Pop::Create(childName);
+			AddChild(temp);
+			temp->LoadObject(ob);
+		}
+		else if (Type == ObType::Water)
+		{
+			Water* temp = Water::Create(childName);
 			AddChild(temp);
 			temp->LoadObject(ob);
 		}

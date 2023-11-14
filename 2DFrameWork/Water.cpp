@@ -4,7 +4,8 @@ Water* Water::Create(string name)
 {
     Water* temp = new Water();
     temp->name = name;
-    temp->LoadFile("water.xml");
+    //temp->LoadFile("water.xml");
+    temp->type = ObType::Water;
     return temp;
 }
 
@@ -70,13 +71,7 @@ void Water::RenderDetail()
         {
             if (ImGui::SliderFloat("UvScale", &uvScale, 1, 100))
             {
-                VertexModel* vertices = (VertexModel*)mesh->vertices;
-
-                vertices[0].uv = Vector2(0, uvScale);
-                vertices[1].uv = Vector2(0, 0);
-                vertices[2].uv = Vector2(uvScale, uvScale);
-                vertices[3].uv = Vector2(uvScale, 0);
-                mesh->UpdateBuffer();
+                UpdateUv();
             }
             if (ImGui::SliderFloat2("velocity", (float*)&waterBufferDesc.velocity, -10, 10))
             {
@@ -117,22 +112,10 @@ void Water::SetReflectionTarget()
 
 void Water::SetRefractionTarget()
 {
-    Vector3 Dir = GetWorldPos() - Camera::main->GetWorldPos();
-    float Distance = Dir.Length();
-    Dir.Normalize();
-    Vector3 refract = Vector3::Refract(Dir, GetUp(), 1.33f);
-
-
-    //refraction->position = GetWorldPos() + refract * Distance;
+    Plane pl(GetWorldPos(), -GetUp());
     refraction->position = Camera::main->GetWorldPos();
     refraction->SetTarget();
 
-    waterBufferDesc.refractionCam.x = refraction->position.x;
-    waterBufferDesc.refractionCam.y = refraction->position.y;
-    waterBufferDesc.refractionCam.z = refraction->position.z;
-
-
-    Plane pl(GetWorldPos(), -GetUp());
     {
         //상수버퍼
         D3D11_MAPPED_SUBRESOURCE mappedResource;
@@ -141,4 +124,15 @@ void Water::SetRefractionTarget()
         D3D->GetDC()->Unmap(clipPlaneBuffer, 0);
         D3D->GetDC()->VSSetConstantBuffers(4, 1, &clipPlaneBuffer);
     }
+}
+
+void Water::UpdateUv()
+{
+    VertexModel* vertices = (VertexModel*)mesh->vertices;
+
+    vertices[0].uv = Vector2(0, uvScale);
+    vertices[1].uv = Vector2(0, 0);
+    vertices[2].uv = Vector2(uvScale, uvScale);
+    vertices[3].uv = Vector2(uvScale, 0);
+    mesh->UpdateBuffer();
 }

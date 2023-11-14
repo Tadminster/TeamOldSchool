@@ -104,14 +104,17 @@ bool Player::CleanFrame()
 {
 	if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
 	{
+		actor->anim->currentAnimator.currentFrame++;
 		return true;
 	}
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 58)
 	{
+		actor->anim->currentAnimator.currentFrame++;
 		return true;
 	}
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
 	{
+		actor->anim->currentAnimator.currentFrame++;
 		return true;
 	}
 	else return false;
