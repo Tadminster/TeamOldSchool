@@ -174,12 +174,12 @@ void Player::AvtivatePlayerCam()
 	Vector3 hit2;
 	Ray PlayerReverseOriginCamRay;
 	PlayerReverseOriginCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
-	PlayerReverseOriginCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp());
+	PlayerReverseOriginCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp()*2.0f);
 	PlayerReverseOriginCamRay.direction.Normalize();
 	Vector3 hit3;
 	if (Utility::RayIntersectMap(PlayerCamRay, MAP, hit))
 	{
-		if ((actor->Find("PlayerCam")->GetWorldPos() - hit).Length() < 0.5f)
+		if ((actor->Find("PlayerCam")->GetWorldPos() - hit).Length() < 0.1f)
 		{
 			actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
 		}
@@ -188,7 +188,7 @@ void Player::AvtivatePlayerCam()
 	{
 		if (Utility::RayIntersectMap(PlayerReverseOriginCamRay, MAP, hit3))
 		{
-			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - hit3).Length() >= 0.5f)
+			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - hit3).Length() >= 0.1f)
 			{
 				ImGui::Text("hit3.y %f", hit3.y);
 				actor->Find("PlayerCam")->SetWorldPos(actor->Find("PlayerOriginCam")->GetWorldPos());
