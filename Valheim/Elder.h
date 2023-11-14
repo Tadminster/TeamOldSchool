@@ -1,13 +1,13 @@
 #pragma once
-class Troll : public Prototype
+class Elder : public Prototype
 {
 	float gravity = 0;
 
 	bool isLand = 0;
 
 public:
-	Troll();
-	~Troll();
+	Elder();
+	~Elder();
 	virtual void Init() override;
 	virtual void Update() override;
 	virtual void LateUpdate() override;

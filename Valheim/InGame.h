@@ -15,7 +15,7 @@ private:
     class Wood*                     wood;
     class StoneAxe*                 stoneAxe;
 
-    class Troll*                    troll;
+    class Elder*                    elder;
 public:
     InGame();
     ~InGame();

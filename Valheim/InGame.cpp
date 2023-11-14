@@ -12,7 +12,7 @@
 #include "Wood.h"
 #include "StoneAxe.h"
 
-#include "Troll.h"
+#include "Elder.h"
 
 #include "InGame.h"
 
@@ -37,7 +37,7 @@ InGame::InGame()
 	wood = new Wood();
 	stoneAxe = new StoneAxe();
 
-	troll = new Troll();
+	elder = new Elder();
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	//RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -55,7 +55,7 @@ InGame::~InGame()
 void InGame::Init()
 {
 	PLAYER->Init();
-	troll->Init();
+	elder->Init();
 }
 
 void InGame::Release()
@@ -79,7 +79,7 @@ void InGame::Update()
 		MAP->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
-		troll->RenderHierarchy();
+		elder->RenderHierarchy();
 		stoneAxe->RenderHierarchy();
 
 	}
@@ -114,7 +114,7 @@ void InGame::Update()
 	
 	OBJ->Update();
 
-	troll->Update();
+	elder->Update();
 	PLAYER->Update();
 
 
@@ -129,7 +129,7 @@ void InGame::LateUpdate()
 	
 	OBJ->LateUpdate();
 
-	troll->LateUpdate();
+	elder->LateUpdate();
 	PLAYER->LateUpdate();
 }
 
@@ -164,7 +164,7 @@ void InGame::Render()
 	wood->Render();
 	stoneAxe->Render();
 
-	troll->Render();
+	elder->Render();
 	PLAYER->Render();
 
 }

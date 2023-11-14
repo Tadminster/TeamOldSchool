@@ -159,31 +159,44 @@ void Player::AvtivatePlayerCam()
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
 	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
 	
-	//카메라-터레인 레이 충돌
+	//카메라-터레인 충돌 레이
 	Ray PlayerCamRay;
 	PlayerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
-	Vector3 CamtoPlayer = actor->GetWorldPos() - actor->Find("PlayerCam")->GetWorldPos();
-	CamtoPlayer.Normalize();
-	PlayerCamRay.direction = CamtoPlayer;
+	PlayerCamRay.direction = (actor->GetWorldPos()+Vector3(0,2.0f,0)) - actor->Find("PlayerCam")->GetWorldPos();
+	PlayerCamRay.direction.Normalize();
 	Vector3 hit;
-	Vector3 CamLastPos;
+	//카메라가 복귀할 조건, 좌표 레이
+	Ray PlayerOriginCamRay;
+	PlayerOriginCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
+	//PlayerOriginCamRay.direction = actor->GetWorldPos() - actor->Find("PlayerOriginCam")->GetWorldPos();
+	PlayerOriginCamRay.direction = (actor->GetWorldPos() + Vector3(0, 2.0f, 0)) - actor->Find("PlayerCam")->GetWorldPos();
+	PlayerOriginCamRay.direction.Normalize();
+	Vector3 hit2;
+	Ray PlayerReverseOriginCamRay;
+	PlayerReverseOriginCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
+	PlayerReverseOriginCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp());
+	PlayerReverseOriginCamRay.direction.Normalize();
+	Vector3 hit3;
 	if (Utility::RayIntersectMap(PlayerCamRay, MAP, hit))
 	{
-		ImGui::Text("%f camray x ", hit.x);
-		ImGui::Text("%f camray y", hit.y);
-		ImGui::Text("%f camray z ", hit.z);
-		CamLastPos = actor->Find("PlayerCam")->GetWorldPos();
-		actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
-		CamtoTerrain = true;
+		if ((actor->Find("PlayerCam")->GetWorldPos() - hit).Length() < 0.5f)
+		{
+			actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
+		}
 	}
 	else
 	{
-		/*if(CamtoTerrain)
+		if (Utility::RayIntersectMap(PlayerReverseOriginCamRay, MAP, hit3))
 		{
-			actor->Find("PlayerCam")->SetWorldPos(actor->Find("FrustumCam")->GetWorldPos());
-			CamtoTerrain = false;
-		}*/
+			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - hit3).Length() >= 0.5f)
+			{
+				ImGui::Text("hit3.y %f", hit3.y);
+				actor->Find("PlayerCam")->SetWorldPos(actor->Find("PlayerOriginCam")->GetWorldPos());
+			}
+		}
 	}
+	
+	
 }
 
 void Player::PlayerControl()

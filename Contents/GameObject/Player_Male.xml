@@ -7,30 +7,39 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="-18.214125" Y="0" Z="38.593147"/>
+        <Position X="0" Y="14.882751" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Rotation X="0" Y="1.4879799" Z="0"/>
     </Transform>
-    <Children Size="3"/>
+    <Children Size="4"/>
     <Child0 Name="FrustumCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
             <Position X="-0.16306116" Y="3.5" Z="-2.5"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.26179799" Y="0" Z="0"/>
+            <Rotation X="0.80779266" Y="1.4879799" Z="0"/>
         </Transform>
         <Camera Ortho="false" Fov="1.047192" Width="1273" Height="831" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1273" viewportH="831"/>
         <Children Size="0"/>
     </Child0>
     <Child1 Name="PlayerCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
-            <Position X="0" Y="3.5" Z="-4.9999995"/>
+            <Position X="2.9802322e-08" Y="2.5" Z="-4.9999995"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.26179799" Y="0" Z="0"/>
+            <Rotation X="0.80779266" Y="0" Z="0"/>
         </Transform>
-        <Camera Ortho="false" Fov="1.047192" Width="1280" Height="720" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1280" viewportH="720"/>
+        <Camera Ortho="false" Fov="1.047192" Width="1219" Height="783" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1219" viewportH="783"/>
         <Children Size="0"/>
     </Child1>
-    <Child2 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
+    <Child2 Name="PlayerOriginCam" Visible="true" ObType="2" BoneIndex="-1">
+        <Transform>
+            <Position X="0" Y="3.5" Z="-5"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Camera Ortho="false" Fov="1.047192" Width="1273" Height="831" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1273" viewportH="831"/>
+        <Children Size="0"/>
+    </Child2>
+    <Child3 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
         <Transform>
             <Position X="0" Y="0" Z="0"/>
             <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
@@ -489,5 +498,5 @@
                 </Child0>
             </Child2>
         </Child1>
-    </Child2>
+    </Child3>
 </Root>

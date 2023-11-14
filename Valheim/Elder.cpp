@@ -1,24 +1,24 @@
 #include "stdafx.h"
-#include "Troll.h"
+#include "Elder.h"
 
-Troll::Troll()
+Elder::Elder()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Monster_Troll.xml");
-	actor->name = "Troll";
+	actor->LoadFile("Monster_Elder.xml");
+	actor->name = "Elder";
 
 }
 
-Troll::~Troll()
+Elder::~Elder()
 {
 }
 
-void Troll::Init()
+void Elder::Init()
 {
 	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos());
 }
 
-void Troll::Update()
+void Elder::Update()
 {
 	//중력 구현
 	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
@@ -28,14 +28,14 @@ void Troll::Update()
 	actor->Update();
 }
 
-void Troll::LateUpdate()
+void Elder::LateUpdate()
 {
-	//Troll - Terrain 충돌판정
-	Ray trollTop;
-	trollTop.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
-	trollTop.direction = Vector3(0, -1, 0);
+	//Elder - Terrain 충돌판정
+	Ray ElderTop;
+	ElderTop.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
+	ElderTop.direction = Vector3(0, -1, 0);
 	Vector3 hit;
-	if (Utility::RayIntersectMap(trollTop, MAP, hit))
+	if (Utility::RayIntersectMap(ElderTop, MAP, hit))
 	{
 		if (actor->GetWorldPos().y - hit.y < 0.1f) {
 			actor->SetWorldPosY(hit.y);
@@ -45,25 +45,25 @@ void Troll::LateUpdate()
 	}
 }
 
-void Troll::Render()
+void Elder::Render()
 {
 	actor->Render();
 }
 
-void Troll::Release()
+void Elder::Release()
 {
 }
 
-void Troll::RenderHierarchy()
+void Elder::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 }
 
-bool Troll::IsDestroyed()
+bool Elder::IsDestroyed()
 {
 	return false;
 }
 
-void Troll::DestructionEvent()
+void Elder::DestructionEvent()
 {
 }

@@ -72,7 +72,7 @@
     <ClInclude Include="PlayerState.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Troll.h">
+    <ClInclude Include="Elder.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
   </ItemGroup>
@@ -141,7 +141,7 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="Troll.cpp">
+    <ClCompile Include="Elder.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
