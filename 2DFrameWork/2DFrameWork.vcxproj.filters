@@ -117,16 +117,13 @@
     <ClInclude Include="Rain.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="PerlinNoise.hpp">
-      <Filter>System</Filter>
-    </ClInclude>
+    <ClInclude Include="AStar.h" />
     <ClInclude Include="Pop.h">
       <Filter>GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Water.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="AStar.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="System">
@@ -264,12 +261,12 @@
     <ClCompile Include="Rain.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="AStar.cpp" />
     <ClCompile Include="Pop.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Water.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="AStar.cpp" />
   </ItemGroup>
 </Project>

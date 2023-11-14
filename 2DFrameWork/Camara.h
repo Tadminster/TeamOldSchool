@@ -28,4 +28,5 @@ public:
     void            ResizeScreen();
     void	        RenderDetail();
     bool            Intersect(Vector3 coord);
+    bool            Intersect(Collider* target); //컬라이더
 };
