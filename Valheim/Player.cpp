@@ -245,13 +245,35 @@ void Player::PlayerMove()
 
 	if (INPUT->KeyPress('W')) 
 	{
-		actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
+		if (INPUT->KeyPress('A'))
+		{
+			actor->MoveWorldPos((actor->GetForward() - actor->GetRight()) * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('D'))
+		{
+			actor->MoveWorldPos((actor->GetForward() + actor->GetRight()) * moveSpeed * DELTA);
+		}
+		else
+		{
+			actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
+		}
 	}
 	else if (INPUT->KeyPress('S'))
 	{
-		actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+		if (INPUT->KeyPress('A'))
+		{
+			actor->MoveWorldPos((-actor->GetForward() - actor->GetRight()) * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('D'))
+		{
+			actor->MoveWorldPos((-actor->GetForward() + actor->GetRight()) * moveSpeed * DELTA);
+		}
+		else
+		{
+			actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+		}
 	}
-	if (INPUT->KeyPress('A'))
+	else if (INPUT->KeyPress('A'))
 	{
 		actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
 	}
@@ -259,6 +281,9 @@ void Player::PlayerMove()
 	{
 		actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 	}
+	
+	
+	
 }
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
