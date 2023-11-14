@@ -87,6 +87,7 @@ void Beech::DestructionEvent()
 	FeatureProto* log = FeatureProto::Create(FeatureType::BeechLog);
 	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
 	log->GetActor()->SetWorldPos(spawnPos);
+	log->Init();
 	//log->GetActor()->rotation = this->actor->rotation;
 	//log->GetActor()->scale = this->actor->scale;
 
