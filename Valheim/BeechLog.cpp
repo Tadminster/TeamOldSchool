@@ -48,11 +48,24 @@ void BeechLog::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void BeechLog::DestructionEvent()
-{
-
-}
-
 void BeechLog::ReceivedDamageEvent(int damage)
 {
+	hitPoint -= damage;
 }
+
+void BeechLog::DestructionEvent()
+{
+	// 오브젝트 생성 (반쪽통나무)
+	FeatureProto* halfLog = FeatureProto::Create(FeatureType::BeechHalfLog);
+	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
+	halfLog->GetActor()->SetWorldPos(spawnPos);
+	//halfLog->GetActor()->rotation = this->actor->rotation;
+	//halfLog->GetActor()->scale = this->actor->scale;
+
+	// 리스트에 오브젝트 추가
+	OBJ->AddObject(halfLog);
+
+	// 오브젝트 삭제 (통나무)
+	BeechLog::~BeechLog();
+}
+

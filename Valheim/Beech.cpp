@@ -37,6 +37,11 @@ void Beech::Render()
 	actor->Render();
 }
 
+void Beech::Release()
+{
+	Beech::~Beech();
+}
+
 void Beech::RenderHierarchy()
 {
 	actor->RenderHierarchy();
@@ -56,14 +61,11 @@ void Beech::LodUpdate(LodLevel lv)
 		actor->Find("Lod3")->visible = true;
 }
 
+
+
 void Beech::ReceivedDamageEvent(int damage)
 {
 	hitPoint -= damage;
-}
-
-void Beech::Release()
-{
-	Beech::~Beech();
 }
 
 void Beech::DestructionEvent()
