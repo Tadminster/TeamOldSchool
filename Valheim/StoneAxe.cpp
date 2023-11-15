@@ -43,7 +43,7 @@ void StoneAxe::Release()
 void StoneAxe::Update()
 {
 
-	if (state == ItemState::OnGround)
+	if (state == ItemState::OnGround || state == ItemState::Equipped)
 	{
 		actor->Update();
 	}
@@ -62,7 +62,7 @@ void StoneAxe::LateUpdate()
 
 		if (MAP->ComputePicking(ray, rayCollisionPoint))
 		{
-			if (actor->GetWorldPos().y > rayCollisionPoint.y + 1)
+			if (actor->GetWorldPos().y > rayCollisionPoint.y + 0.5f)
 			{
 				actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
 			}
@@ -72,7 +72,7 @@ void StoneAxe::LateUpdate()
 
 void StoneAxe::Render()
 {
-	if (state == ItemState::OnGround)
+	if (state == ItemState::OnGround || state == ItemState::Equipped)
 	{
 		actor->Render();
 	}

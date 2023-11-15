@@ -1,7 +1,7 @@
 #pragma once
 
 //====================================================================================================
-enum class ItemState { OnGround, OnInventory };
+enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Tool, Armor, Food, Material };
 enum class ItemName 
 { 
