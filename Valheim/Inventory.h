@@ -1,12 +1,13 @@
 #pragma once
-#define INVENTORY_SIZE 32
+#define INVENTORY_SIZE	32		// 인벤토리 크기
+#define	BLUE_SLOT		32		// 블루슬롯의 인덱스
 
 class Inventory
 {
 	friend class Player;
 
 private:
-	ItemProto*			inventory[INVENTORY_SIZE];	// 인벤토리 (실제 아이템을 가리킬)
+	class ItemProto*	inventory[INVENTORY_SIZE];	// 인벤토리 (실제 아이템을 가리킬)
 
 	// 이미지===========================================================================================
 	UI*					inventoryUI;				// 인벤토리 UI

@@ -23,8 +23,6 @@ InGame::InGame()
 	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
-
-	inventory = new Inventory();
 	
 	stoneAxe = new StoneAxe();
 
@@ -98,11 +96,12 @@ void InGame::Update()
 
 	Camera::main->Update();
 	skyBox->Update();
-	inventory->Update();
 	stoneAxe->Update();
 	
 	SEA->Update();
 	OBJ->Update();
+
+	INVEN->Update();
 
 	elder->Update();
 	PLAYER->Update();
@@ -112,13 +111,12 @@ void InGame::Update()
 
 void InGame::LateUpdate()
 {
-	inventory->LateUpdate();
-	stoneAxe->LateUpdate();
-	
+	INVEN->LateUpdate();
 	OBJ->LateUpdate();
-
-	elder->LateUpdate();
 	PLAYER->LateUpdate();
+
+	stoneAxe->LateUpdate();
+	elder->LateUpdate();
 }
 
 void InGame::PreRender()
@@ -159,7 +157,7 @@ void InGame::Render()
 	elder->Render();
 	PLAYER->Render();
 
-	inventory->Render();
+	INVEN->Render();
 	stoneAxe->Render();
 }
 
