@@ -11,6 +11,12 @@ enum class ItemName
 class ItemProto : public Prototype
 {
 protected:
+	UI*			icon;		// 아이콘
+
+	float		gravity		{ 10 };
+	Ray			ray;		
+	Vector3		rayCollisionPoint;
+
 	string		name;		// 이름
 	ItemType	type;		// 종류
 	ItemState	state;		// 상태
@@ -20,6 +26,9 @@ public:
 	static ItemProto* Create(ItemName name);
 	virtual ~ItemProto() {};
 	virtual void Use() = 0;
+
+	void SetState(ItemState state) { this->state = state; }
+	UI*	GetIcon() { return icon; }
 };
 //====================================================================================================
 class ToolProto : public ItemProto

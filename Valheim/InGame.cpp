@@ -74,8 +74,6 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		elder->RenderHierarchy();
-		stoneAxe->RenderHierarchy();
-
 	}
 	ImGui::End();
 

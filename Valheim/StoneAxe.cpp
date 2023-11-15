@@ -8,7 +8,16 @@ StoneAxe::StoneAxe()
 	actor = Actor::Create("StoneAxe");
 	actor->LoadFile("StoneAxe.xml");
 	actor->name = "StoneAxe" + index++;
+	actor->SetWorldPos(Vector3(0, 50, 0));
 
+	icon = UI::Create("StoneAxeIcon");
+	icon->LoadFile("Icon_StoneAxe.xml");
+
+	ray.direction = Vector3(0, -1, 0);
+
+	//=========================
+	type = ItemType::Weapon;
+	state = ItemState::OnGround;
 	//=========================
 	name		= "StoneAxe";
 	
@@ -33,24 +42,52 @@ void StoneAxe::Release()
 
 void StoneAxe::Update()
 {
-	actor->Update();
+
+	if (state == ItemState::OnGround)
+	{
+		actor->Update();
+	}
+	else if (state == ItemState::OnInventory)
+	{
+		icon->Update();
+	}
+
 }
 
 void StoneAxe::LateUpdate()
 {
-	
+	if (state == ItemState::OnGround)
+	{
+		ray.position = actor->GetWorldPos();
+
+		if (MAP->ComputePicking(ray, rayCollisionPoint))
+		{
+			if (actor->GetWorldPos().y > rayCollisionPoint.y)
+			{
+				actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
+			}
+		}
+	}
 }
 
 void StoneAxe::Render()
 {
-	actor->Render();
+	if (state == ItemState::OnGround)
+	{
+		actor->Render();
+	}
+	else if (state == ItemState::OnInventory)
+	{
+		icon->Render();
+	}
 }
 
 void StoneAxe::RenderHierarchy()
 {
-	ImGui::Begin("Hierarchy");
+	ImGui::Begin("ItemHierarchy");
 	{
 		actor->RenderHierarchy();
+		icon->RenderHierarchy();
 	}
 	ImGui::End();
 }

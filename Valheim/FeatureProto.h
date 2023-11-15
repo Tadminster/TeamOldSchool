@@ -16,7 +16,7 @@ class FeatureProto : public Prototype
 {
 protected:
     int     hitPoint;
-    float   gravity         { 10 };
+    float   gravity         { 15 };
 
     Ray     ray;
     Vector3 rayCollisionPoint;

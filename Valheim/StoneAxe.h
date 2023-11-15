@@ -5,7 +5,7 @@ class StoneAxe : public WeaponProto
 private:
 
 public:
-	explicit StoneAxe();
+	StoneAxe();
 	~StoneAxe();
 
 	void Init() override;

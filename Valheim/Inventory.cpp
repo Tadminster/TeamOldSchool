@@ -6,6 +6,11 @@
 
 Inventory::Inventory()
 {
+	// 모든 인벤토리를 nullptr로 초기화
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+		inventory[i] = nullptr;
+
+	// 인벤토리 UI 생성 및 로드
 	inventoryUI = UI::Create("InventoryUI");
 	inventoryUI->LoadFile("InvenUI.xml");
 
@@ -54,6 +59,25 @@ void Inventory::Update()
 
 void Inventory::LateUpdate()
 {
+	// 마우스 오버시 슬롯 강조
+	MouseOverSlot();
+}
+
+void Inventory::PreRender()
+{
+}
+
+void Inventory::Render()
+{
+	inventoryUI->Render();
+}
+
+void Inventory::ResizeScreen()
+{
+}
+
+void Inventory::MouseOverSlot()
+{
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
 	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
 	{
@@ -83,27 +107,28 @@ void Inventory::LateUpdate()
 	}
 }
 
-void Inventory::PreRender()
+void Inventory::AddItem(ItemProto* item)
+{
+	// 인벤토리를 순회하며 빈 공간을 찾음
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		if (inventory[i] == nullptr)
+		{
+			// 인벤토리에 아이템 추가
+			inventory[i] = item;
+			item->GetIcon()->SetWorldPos(slot[i]->GetWorldPos());
+			break;
+		}
+	}
+
+	// 아이템의 상태를 인벤토리로 변경
+	item->SetState(ItemState::OnInventory);
+}
+
+void Inventory::DeleteItem(string name)
 {
 }
 
-void Inventory::Render()
-{
-	inventoryUI->Render();
-}
-
-void Inventory::ResizeScreen()
-{
-}
-
-void Inventory::Add(ItemProto* item)
-{
-}
-
-void Inventory::Delete(string name)
-{
-}
-
-void Inventory::Change()
+void Inventory::ChangeItem()
 {
 }
