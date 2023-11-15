@@ -2,8 +2,6 @@
 #include "ItemProto.h"
 #include "Inventory.h"
 
-#define	BLUE_SLOT		32
-
 Inventory::Inventory()
 {
 	// 모든 인벤토리를 nullptr로 초기화

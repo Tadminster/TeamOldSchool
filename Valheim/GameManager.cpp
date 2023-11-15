@@ -11,6 +11,8 @@ GameManager::GameManager()
 	sea = Water::Create();
 	sea->LoadFile("Water.xml");
 
+	inventory = new Inventory();
+
 	objectManager = new ObjectManager();
 
 	player = new Player();
