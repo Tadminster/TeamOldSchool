@@ -46,5 +46,6 @@ public:
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
 	void MoveBack();
-	void GetItem(Prototype* item)
+	void GetItem(ItemProto* item);
+	void GetItem(Prototype* item);
 };

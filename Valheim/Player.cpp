@@ -330,14 +330,38 @@ void Player::MoveBack()
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
+void Player::GetItem(ItemProto* item)
+{	
+	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
+	//Ray GetItem = Utility::MouseToRay(Camera::main);
+	Vector3 hit = {};
+	
+		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("stoneaxe_Cube_004"), hit))
+		{
+			if (INPUT->KeyDown('E'))
+			{
+				INVEN->AddItem(item);
+				cout << "item";
+
+			}
+			cout << 1;
+		}
+	
+	
+}
+
 void Player::GetItem(Prototype* item)
 {
-	//
-	Ray GetItem = Utility::MouseToRay(static_cast <Camera*>(actor->Find("PlayerCam")));
+	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
+	//Ray GetItem = Utility::MouseToRay(Camera::main);
 	Vector3 hit = {};
-	if (Utility::RayIntersectTri(GetItem, item->GetActor(), hit))
+
+	if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("gd_king_001"), hit))
 	{
-		//item->
+		//cout << hit.y;
+		cout << "item";
+		//INVEN->AddItem(item);
+
 	}
 }
 
