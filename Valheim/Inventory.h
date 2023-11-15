@@ -7,6 +7,9 @@ private:
 	vector<ItemProto*>	inventory;
 	UI*					inventoryUI;
 
+	UI*					pannel;
+	UI*					slot[33];
+
 public:
 	Inventory();
 	~Inventory();
@@ -18,6 +21,8 @@ public:
 	void PreRender();
 	void Render();
 	void ResizeScreen();
+
+	bool MouseOverSlot();
 
 	void Add(ItemProto* item);
 	void Delete(string name);
