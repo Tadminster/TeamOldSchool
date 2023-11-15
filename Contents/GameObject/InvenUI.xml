@@ -13,11 +13,11 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="25"/>
+        <Children Size="26"/>
         <Child0 Name="PANNEL" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="UI.mtl"/>
+            <Material File="Inventory/InventoryPannel.mtl"/>
             <Transform>
                 <Position X="-0.51999998" Y="0.52999997" Z="0"/>
                 <Scale X="0.44" Y="0.40000001" Z="1"/>
@@ -29,7 +29,7 @@
         <Child1 Name="Slot09" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.87" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -41,7 +41,7 @@
         <Child2 Name="Slot10" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.76999998" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -53,7 +53,7 @@
         <Child3 Name="Slot11" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.67000002" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -65,7 +65,7 @@
         <Child4 Name="Slot12" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.56999999" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -77,7 +77,7 @@
         <Child5 Name="Slot13" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.47" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -89,7 +89,7 @@
         <Child6 Name="Slot14" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.37" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -101,7 +101,7 @@
         <Child7 Name="Slot15" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.27000001" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -113,7 +113,7 @@
         <Child8 Name="Slot16" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.17" Y="0.63" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -125,7 +125,7 @@
         <Child9 Name="Slot17" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.87" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -137,7 +137,7 @@
         <Child10 Name="Slot18" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.76999998" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -149,7 +149,7 @@
         <Child11 Name="Slot19" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.67000002" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -161,7 +161,7 @@
         <Child12 Name="Slot20" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.56999999" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -173,7 +173,7 @@
         <Child13 Name="Slot21" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.47" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -185,7 +185,7 @@
         <Child14 Name="Slot22" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.37" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -197,7 +197,7 @@
         <Child15 Name="Slot23" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.27000001" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -209,7 +209,7 @@
         <Child16 Name="Slot24" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.17" Y="0.46000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -221,7 +221,7 @@
         <Child17 Name="Slot25" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.87" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -233,7 +233,7 @@
         <Child18 Name="Slot26" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.76999998" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -245,7 +245,7 @@
         <Child19 Name="Slot27" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.67000002" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -257,7 +257,7 @@
         <Child20 Name="Slot28" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.56999999" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -269,7 +269,7 @@
         <Child21 Name="Slot29" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.47" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -281,7 +281,7 @@
         <Child22 Name="Slot30" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.37" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -293,7 +293,7 @@
         <Child23 Name="Slot31" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.27000001" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -305,7 +305,7 @@
         <Child24 Name="Slot32" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.17" Y="0.28999999" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -314,6 +314,18 @@
             <UI PivotX="0" PivotY="0"/>
             <Children Size="0"/>
         </Child24>
+		<Child25 Name="Slot99" Visible="false" ObType="4">
+			<Mesh File="6.UI.mesh"/>
+			<Shader File="6.UI.hlsl"/>
+			<Material File="Inventory/InventorySlotBlue.mtl"/>
+			<Transform>
+				<Position X="-0.17" Y="0.28999999" Z="0"/>
+				<Scale X="0.050000001" Y="0.079999998" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<UI PivotX="0" PivotY="0"/>
+			<Children Size="0"/>
+		</Child25>
     </Child0>
     <Child1 Name="SlotTop" Visible="true" ObType="4">
         <Transform>
@@ -326,7 +338,7 @@
         <Child0 Name="Slot01" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.87" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -338,7 +350,7 @@
         <Child1 Name="Slot02" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.76999998" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -350,7 +362,7 @@
         <Child2 Name="Slot03" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.67000002" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -362,7 +374,7 @@
         <Child3 Name="Slot04" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.56999999" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -374,7 +386,7 @@
         <Child4 Name="Slot05" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.47" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -386,7 +398,7 @@
         <Child5 Name="Slot06" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.37" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -398,7 +410,7 @@
         <Child6 Name="Slot07" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.27000001" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
@@ -410,7 +422,7 @@
         <Child7 Name="Slot08" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
-            <Material File="mainSlot.mtl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
             <Transform>
                 <Position X="-0.17" Y="0.80000001" Z="0"/>
                 <Scale X="0.050000001" Y="0.079999998" Z="1"/>
