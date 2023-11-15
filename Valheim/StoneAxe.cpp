@@ -62,7 +62,7 @@ void StoneAxe::LateUpdate()
 
 		if (MAP->ComputePicking(ray, rayCollisionPoint))
 		{
-			if (actor->GetWorldPos().y > rayCollisionPoint.y)
+			if (actor->GetWorldPos().y > rayCollisionPoint.y + 1)
 			{
 				actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
 			}
