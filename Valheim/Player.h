@@ -11,6 +11,9 @@ class Player : public Prototype
 	Vector3					lastPos = {};
 	Vector3					moveDir = {};
 
+	Ray						slidingVector;
+	Vector3					slidingVectorHit = {};
+
 	float					moveSpeed = 0;
 	float					gravity = 0;
 	bool					isLand = 0;
@@ -21,6 +24,7 @@ class Player : public Prototype
 	int						isEquip = 0;
 
 public:
+	bool istouch = 0;
 	Player();
 	~Player();
 	void Init() override;
@@ -45,7 +49,6 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
-	void MoveBack();
+	void MoveBack(Actor* col);
 	void GetItem(ItemProto* item);
-	void GetItem(Prototype* item);
 };
