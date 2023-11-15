@@ -333,8 +333,8 @@ void Player::MoveBack(Actor* col)
 	
 	if (col->collider->Intersect(slidingVector, slidingVectorHit))
 	{
-		moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
-		//moveDir = moveDir - col->GetForward() * (moveDir - col->GetForward());
+		//moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
+		moveDir = moveDir - -col->GetForward() * (moveDir.Dot(-col->GetForward()));
 	}
 	moveDir.Normalize();
 	
