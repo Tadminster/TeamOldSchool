@@ -32,9 +32,9 @@ void Player::Update()
 	}
 	else isPlayerCam = false;
 	//중력 구현
-		actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
-		if (isLand) gravity = 0;
-		else gravity += GRAVITYPOWER * DELTA;
+	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
+	if (isLand) gravity = 0;
+	else gravity += GRAVITYPOWER * DELTA;
 
 	actor->Update();
 }
@@ -91,11 +91,11 @@ void Player::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-bool Player::CleanHit(Collider* object)
+bool Player::CleanHit(string name, Collider* object)
 {
-	if (actor->Find("StoneAxe"))
+	if (actor->Find(name))
 	{
-		return actor->Find("StoneAxe")->collider->Intersect(object);
+		return actor->Find(name)->collider->Intersect(object);
 	}
 	else return false;
 }
@@ -195,8 +195,6 @@ void Player::AvtivatePlayerCam()
 			}
 		}
 	}
-	
-	
 }
 
 void Player::PlayerControl()
@@ -258,56 +256,64 @@ void Player::PlayerMove()
 	//상태값에 따른 이동속도
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 	
-	//대각선 이동속도 보정
-	Vector3 normalize = {};
+	//이동 각도 계산
 	if (INPUT->KeyPress('W') && INPUT->KeyPress('A'))
 	{
-		normalize = actor->GetForward() - actor->GetRight();
-		normalize.Normalize();
-		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		moveDir = actor->GetForward() - actor->GetRight();
+		moveDir.Normalize();
+		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))
 	{
-		normalize = actor->GetForward() + actor->GetRight();
-		normalize.Normalize();
-		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		moveDir = actor->GetForward() + actor->GetRight();
+		moveDir.Normalize();
+		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))
 	{
-		normalize = -actor->GetForward() - actor->GetRight();
-		normalize.Normalize();
-		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		moveDir = -actor->GetForward() - actor->GetRight();
+		moveDir.Normalize();
+		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))
 	{
-		normalize = -actor->GetForward() + actor->GetRight();
-		normalize.Normalize();
-		actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		moveDir = -actor->GetForward() + actor->GetRight();
+		moveDir.Normalize();
+		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('W'))
 	{
-		actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
+		moveDir = actor->GetForward();
+		//actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('A'))
 	{
-		actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
+		moveDir = -actor->GetRight();
+		//actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('S'))
 	{
-		actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+		moveDir = -actor->GetForward();
+		//actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
 	}
 	else if (INPUT->KeyPress('D'))
 	{
-		actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
+		moveDir = actor->GetRight();
+		//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 	}
+	//실제 이동
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
 {
 	actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
-	actor->Find(item->GetActor()->name)->scale = Vector3(1, 1, 1);
+	actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
+	actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+	actor->Find(item->GetActor()->name)->rotation = Vector3(0, 90.0f, 0) * ToRadian;
 
 	isEquip = true;
 }
@@ -315,6 +321,13 @@ void Player::EquipToHand(Prototype* item)
 void Player::ReleaseToHand()
 {
 	//
+}
+
+void Player::MoveBack()
+{
+	moveDir -= actor->GetForward();
+	moveDir.Normalize();
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
 bool Player::IsDestroyed()

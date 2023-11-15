@@ -10,6 +10,8 @@
 #include "BeechHalfLog.h"
 #include "Grass.h"
 
+#include "Elder.h"
+
 #include "ObjectManager.h"
 
 ObjectManager::ObjectManager()
@@ -133,7 +135,7 @@ void ObjectManager::LateUpdate()
 		{
 			// 오브젝트와 충돌 검사 (임시)
 			//if (PLAYER->GetActor()->Find("StoneAxe")->collider->Intersect(obj->GetActor()->Find("Collider")->collider))
-			if (PLAYER->CleanHit(obj->GetActor()->Find("Collider")->collider) && PLAYER->CleanFrame())
+			if (PLAYER->CleanHit("StoneAxe",obj->GetActor()->Find("Collider")->collider) && PLAYER->CleanFrame())
 			{
 				Beech* beech = dynamic_cast<Beech*>(obj);
 				if (beech)

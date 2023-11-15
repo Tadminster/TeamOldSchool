@@ -5,8 +5,11 @@ Elder::Elder()
 {
 	actor = Actor::Create();
 	actor->LoadFile("Monster_Elder.xml");
-	actor->name = "Elder";
+	actor->name = "Monster_Elder";
 
+	bossStone = Actor::Create();
+	bossStone->LoadFile("Monster_Elder_BossStone.xml");
+	bossStone->name = "Monster_Elder_BossStone";
 }
 
 Elder::~Elder()
@@ -16,6 +19,7 @@ Elder::~Elder()
 void Elder::Init()
 {
 	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos());
+	bossStone->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos()+Vector3(5,0,0));
 }
 
 void Elder::Update()
@@ -26,11 +30,12 @@ void Elder::Update()
 	else gravity += GRAVITYPOWER * DELTA;
 
 	actor->Update();
+	bossStone->Update();
 }
 
 void Elder::LateUpdate()
 {
-	//Elder - Terrain 충돌판정
+	//Elder - Terrain 충돌판정---------------------------------------------------
 	Ray ElderTop;
 	ElderTop.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
 	ElderTop.direction = Vector3(0, -1, 0);
@@ -43,11 +48,32 @@ void Elder::LateUpdate()
 		}
 		else isLand = false;
 	}
+	
+	//Elder_BossStone - Terrain 충돌판정---------------------------------------------
+	Ray Elder_BossStoneTop;
+	Elder_BossStoneTop.position = bossStone->GetWorldPos() + Vector3(0, 1000, 0);
+	Elder_BossStoneTop.direction = Vector3(0, -1, 0);
+	Vector3 hit2;
+	if (Utility::RayIntersectMap(Elder_BossStoneTop, MAP, hit2))
+	{
+		bossStone->SetWorldPosY(hit2.y - 1.5f);
+	}
+
+	//
+	if (PLAYER->GetPlayer()->collider->Intersect(bossStone->collider))
+	{
+		PLAYER->MoveBack();
+	}
+	else
+	{
+
+	}
 }
 
 void Elder::Render()
 {
 	actor->Render();
+	bossStone->Render();
 }
 
 void Elder::Release()
@@ -57,6 +83,7 @@ void Elder::Release()
 void Elder::RenderHierarchy()
 {
 	actor->RenderHierarchy();
+	bossStone->RenderHierarchy();
 }
 
 bool Elder::IsDestroyed()
