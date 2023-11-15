@@ -4,7 +4,8 @@
 class Prototype
 {
 protected:
-	Actor* actor;
+	Actor*	actor;
+	Ray		groundRay;
 
 public:
 	virtual ~Prototype() 

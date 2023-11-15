@@ -14,3 +14,8 @@ ItemProto* ItemProto::Create(ItemName name)
 		throw std::invalid_argument("error");
 	}
 }
+
+void ItemProto::Init()
+{
+	groundRay.direction = Vector3(0.0f, -1.0f, 0.0f);
+}

@@ -13,7 +13,7 @@ StoneAxe::StoneAxe()
 	icon = UI::Create("StoneAxeIcon");
 	icon->LoadFile("Icon_StoneAxe.xml");
 
-	ray.direction = Vector3(0, -1, 0);
+	ItemProto::Init();
 
 	//=========================
 	type = ItemType::Weapon;
@@ -42,6 +42,12 @@ void StoneAxe::Release()
 
 void StoneAxe::Update()
 {
+	ImGui::Begin("ItemHierarchy");
+	{
+		actor->RenderHierarchy();
+		icon->RenderHierarchy();
+	}
+	ImGui::End();
 
 	if (state == ItemState::OnGround || state == ItemState::Equipped)
 	{
@@ -58,9 +64,10 @@ void StoneAxe::LateUpdate()
 {
 	if (state == ItemState::OnGround)
 	{
-		ray.position = actor->GetWorldPos();
+		groundRay.position = actor->GetWorldPos();
 
-		if (MAP->ComputePicking(ray, rayCollisionPoint))
+		if (Utility::RayIntersectMap(groundRay, MAP, rayCollisionPoint))
+		//if (MAP->ComputePicking(groundRay, rayCollisionPoint))
 		{
 			if (actor->GetWorldPos().y > rayCollisionPoint.y + 0.5f)
 			{
@@ -84,12 +91,7 @@ void StoneAxe::Render()
 
 void StoneAxe::RenderHierarchy()
 {
-	ImGui::Begin("ItemHierarchy");
-	{
-		actor->RenderHierarchy();
-		icon->RenderHierarchy();
-	}
-	ImGui::End();
+
 }
 
 bool StoneAxe::IsDestroyed()

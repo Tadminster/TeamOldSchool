@@ -31,9 +31,9 @@ void BeechLog::Update()
 
 void BeechLog::LateUpdate()
 {
-	ray.position = actor->GetWorldPos();
+	groundRay.position = actor->GetWorldPos();
 
-	if (MAP->ComputePicking(ray, rayCollisionPoint))
+	if (MAP->ComputePicking(groundRay, rayCollisionPoint))
 	{	
 		if (actor->GetWorldPos().y > rayCollisionPoint.y)
 		{
