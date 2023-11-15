@@ -7,17 +7,18 @@ class Player : public Prototype
 	friend class JumpState;
 	friend class SwingState;
 	
-	class PlayerState* state = nullptr;
-	Vector3 lastPos = {};
+	class PlayerState*		state = nullptr;
+	Vector3					lastPos = {};
+	Vector3					moveDir = {};
 
-	float moveSpeed = 0;
-	float gravity = 0;
-	bool isLand = 0;
-	bool isJump = 0;
-	bool isPlayerCam = 1;
-	bool CamtoTerrain = 0;
+	float					moveSpeed = 0;
+	float					gravity = 0;
+	bool					isLand = 0;
+	bool					isJump = 0;
+	bool					isPlayerCam = 1;
+	bool					CamtoTerrain = 0;
 
-	int isEquip = 0;
+	int						isEquip = 0;
 
 public:
 	Player();
@@ -35,7 +36,7 @@ public:
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam() { return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	bool GetPlayerJump() { return isJump; }
-	bool CleanHit(Collider* object);
+	bool CleanHit(string name, Collider* object);
 	bool CleanFrame();
 
 	void SetState(PlayerState* state);
@@ -44,4 +45,5 @@ public:
 	void PlayerMove();
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
+	void MoveBack();
 };

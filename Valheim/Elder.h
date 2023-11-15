@@ -1,6 +1,8 @@
 #pragma once
 class Elder : public Prototype
 {
+	Actor* bossStone = nullptr;
+
 	float gravity = 0;
 
 	bool isLand = 0;
