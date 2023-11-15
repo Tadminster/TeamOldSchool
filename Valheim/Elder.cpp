@@ -62,11 +62,12 @@ void Elder::LateUpdate()
 	//
 	if (PLAYER->GetPlayer()->collider->Intersect(bossStone->collider))
 	{
-		PLAYER->MoveBack();
+		PLAYER->istouch = true;
+		PLAYER->MoveBack(bossStone);
 	}
 	else
 	{
-
+		PLAYER->istouch = false;
 	}
 }
 

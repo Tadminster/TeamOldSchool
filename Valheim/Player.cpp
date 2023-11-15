@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "PlayerState.h"
 #include "ItemProto.h"
-
 Player::Player()
 {
 	actor = Actor::Create();
@@ -20,6 +19,8 @@ void Player::Init()
 {
 	actor->SetWorldPos(Vector3(0,20,0));
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+
+	slidingVector.direction = actor->GetForward();
 }
 
 void Player::Update()
@@ -102,6 +103,7 @@ bool Player::CleanHit(string name, Collider* object)
 
 bool Player::CleanFrame()
 {
+	//충돌 프레임 31 58 89
 	if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
 	{
 		actor->anim->currentAnimator.currentFrame++;
@@ -118,7 +120,6 @@ bool Player::CleanFrame()
 		return true;
 	}
 	else return false;
-	//충돌 프레임 31 58 89
 }
 
 void Player::SetState(PlayerState* state)
@@ -259,50 +260,53 @@ void Player::PlayerMove()
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 	
-	//이동 각도 계산
-	if (INPUT->KeyPress('W') && INPUT->KeyPress('A'))
+	if (!istouch)
 	{
-		moveDir = actor->GetForward() - actor->GetRight();
-		moveDir.Normalize();
-		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))
-	{
-		moveDir = actor->GetForward() + actor->GetRight();
-		moveDir.Normalize();
-		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))
-	{
-		moveDir = -actor->GetForward() - actor->GetRight();
-		moveDir.Normalize();
-		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))
-	{
-		moveDir = -actor->GetForward() + actor->GetRight();
-		moveDir.Normalize();
-		//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('W'))
-	{
-		moveDir = actor->GetForward();
-		//actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('A'))
-	{
-		moveDir = -actor->GetRight();
-		//actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('S'))
-	{
-		moveDir = -actor->GetForward();
-		//actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
-	}
-	else if (INPUT->KeyPress('D'))
-	{
-		moveDir = actor->GetRight();
-		//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
+		//이동 각도 계산
+		if (INPUT->KeyPress('W') && INPUT->KeyPress('A'))
+		{
+			moveDir = actor->GetForward() - actor->GetRight();
+			moveDir.Normalize();
+			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))
+		{
+			moveDir = actor->GetForward() + actor->GetRight();
+			moveDir.Normalize();
+			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))
+		{
+			moveDir = -actor->GetForward() - actor->GetRight();
+			moveDir.Normalize();
+			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))
+		{
+			moveDir = -actor->GetForward() + actor->GetRight();
+			moveDir.Normalize();
+			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('W'))
+		{
+			moveDir = actor->GetForward();
+			//actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('A'))
+		{
+			moveDir = -actor->GetRight();
+			//actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('S'))
+		{
+			moveDir = -actor->GetForward();
+			//actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
+		}
+		else if (INPUT->KeyPress('D'))
+		{
+			moveDir = actor->GetRight();
+			//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
+		}
 	}
 	//실제 이동
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
@@ -323,46 +327,32 @@ void Player::ReleaseToHand()
 	//
 }
 
-void Player::MoveBack()
+void Player::MoveBack(Actor* col)
 {
-	moveDir -= actor->GetForward();
+	slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
+	
+	if (col->collider->Intersect(slidingVector, slidingVectorHit))
+	{
+		moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
+		//moveDir = moveDir - col->GetForward() * (moveDir - col->GetForward());
+	}
 	moveDir.Normalize();
-	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+	
 }
 
 void Player::GetItem(ItemProto* item)
 {	
+	//매시 이름 통일되면 Find 손보기
+	//충돌값 트루일 때, 아이템 주을건지 ui생성
 	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
-	//Ray GetItem = Utility::MouseToRay(Camera::main);
 	Vector3 hit = {};
-	
 		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("stoneaxe_Cube_004"), hit))
 		{
 			if (INPUT->KeyDown('E'))
 			{
 				INVEN->AddItem(item);
-				cout << "item";
-
 			}
-			cout << 1;
 		}
-	
-	
-}
-
-void Player::GetItem(Prototype* item)
-{
-	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
-	//Ray GetItem = Utility::MouseToRay(Camera::main);
-	Vector3 hit = {};
-
-	if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("gd_king_001"), hit))
-	{
-		//cout << hit.y;
-		cout << "item";
-		//INVEN->AddItem(item);
-
-	}
 }
 
 bool Player::IsDestroyed()
