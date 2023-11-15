@@ -330,6 +330,17 @@ void Player::MoveBack()
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
+void Player::GetItem(Prototype* item)
+{
+	//
+	Ray GetItem = Utility::MouseToRay(static_cast <Camera*>(actor->Find("PlayerCam")));
+	Vector3 hit = {};
+	if (Utility::RayIntersectTri(GetItem, item->GetActor(), hit))
+	{
+		//item->
+	}
+}
+
 bool Player::IsDestroyed()
 {
 	return false;
