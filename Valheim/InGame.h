@@ -9,7 +9,7 @@ private:
 	Sky*                            skyBox;
         
     GameManager*                    gameManager;
-    class StoneAxe*                 stoneAxe;
+    class StoneAxe*                 stoneAxe[2];
 
     class Elder*                    elder;
 public:

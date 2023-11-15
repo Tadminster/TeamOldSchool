@@ -24,7 +24,8 @@ InGame::InGame()
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
 	
-	stoneAxe = new StoneAxe();
+	stoneAxe[0] = new StoneAxe();
+	stoneAxe[1] = new StoneAxe();
 
 	elder = new Elder();
 
@@ -72,7 +73,6 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		elder->RenderHierarchy();
-		stoneAxe->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -89,19 +89,22 @@ void InGame::Update()
 		//실험단계--------------------------
 		if (INPUT->KeyDown('1'))
 		{
-			PLAYER->EquipToHand(stoneAxe);
+			PLAYER->EquipToHand(stoneAxe[0]);
+			PLAYER->EquipToHand(stoneAxe[1]);
 		}
 	}
 		
 	//템줍 실험
-	PLAYER->GetItem(stoneAxe);
+	PLAYER->GetItem(stoneAxe[0]);
+	PLAYER->GetItem(stoneAxe[1]);
 	//PLAYER->GetItem(elder);
 
 	GM->Update();
 
 	Camera::main->Update();
 	skyBox->Update();
-	stoneAxe->Update();
+	stoneAxe[0]->Update();
+	stoneAxe[1]->Update();
 	
 	SEA->Update();
 	OBJ->Update();
@@ -120,7 +123,8 @@ void InGame::LateUpdate()
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
 
-	stoneAxe->LateUpdate();
+	stoneAxe[0]->LateUpdate();
+	stoneAxe[1]->LateUpdate();
 	elder->LateUpdate();
 }
 
@@ -163,7 +167,8 @@ void InGame::Render()
 	PLAYER->Render();
 
 	INVEN->Render();
-	stoneAxe->Render();
+	stoneAxe[0]->Render();
+	stoneAxe[1]->Render();
 }
 
 void InGame::ResizeScreen()

@@ -104,6 +104,23 @@ bool UI::MousePress(Camera* cam)
 	return false;
 }
 
+bool UI::MouseDown(Camera* cam)
+{
+	float left = GetWorldPos().x - S._11;
+	float right = GetWorldPos().x + S._11;
+	float top = GetWorldPos().y + S._22;
+	float bottom = GetWorldPos().y - S._22;
+
+	Vector3 ndcMouse = Utility::MouseToNDC(cam);
+	if (left < ndcMouse.x and ndcMouse.x < right
+		and bottom < ndcMouse.y and ndcMouse.y < top)
+	{
+		if (INPUT->KeyDown(VK_LBUTTON))
+			return true;
+	}
+	return false;
+}
+
 void UI::RenderDetail()
 {
 	Actor::RenderDetail();

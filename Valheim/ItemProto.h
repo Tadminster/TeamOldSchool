@@ -14,7 +14,6 @@ protected:
 	UI*			icon;		// 아이콘
 
 	float		gravity		{ 10 };
-	Ray			ray;		
 	Vector3		rayCollisionPoint;
 
 	string		name;		// 이름
@@ -25,7 +24,9 @@ protected:
 public:
 	static ItemProto* Create(ItemName name);
 	virtual ~ItemProto() {};
+	void Init() override;
 	virtual void Use() = 0;
+	
 
 	void SetState(ItemState state) { this->state = state; }
 	UI*	GetIcon() { return icon; }
