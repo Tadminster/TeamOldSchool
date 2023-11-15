@@ -107,6 +107,9 @@ void Inventory::MouseOverSlot()
 
 void Inventory::AddItem(ItemProto* item)
 {
+	// 아이템의 상태를 인벤토리로 변경
+	item->SetState(ItemState::OnInventory);
+
 	// 인벤토리를 순회하며 빈 공간을 찾음
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
@@ -118,9 +121,9 @@ void Inventory::AddItem(ItemProto* item)
 			break;
 		}
 	}
-
-	// 아이템의 상태를 인벤토리로 변경
-	item->SetState(ItemState::OnInventory);
+	//
+	item->Update();
+	
 }
 
 void Inventory::DeleteItem(string name)

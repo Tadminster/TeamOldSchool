@@ -72,6 +72,7 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		elder->RenderHierarchy();
+		stoneAxe->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -92,6 +93,10 @@ void InGame::Update()
 		}
 	}
 		
+	//템줍 실험
+	PLAYER->GetItem(stoneAxe);
+	//PLAYER->GetItem(elder);
+
 	GM->Update();
 
 	Camera::main->Update();
