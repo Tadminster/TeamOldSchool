@@ -5,8 +5,8 @@ class GameManager : public Singleton<GameManager>
 public:
     class Terrain*          map;
     class Water*            sea;
-    class Player*           player;
     class Inventory*        inventory;
+    class Player*           player;
     class ObjectManager*    objectManager;
 
     bool 			    debugMode{ true };
