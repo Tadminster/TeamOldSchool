@@ -124,6 +124,7 @@ void Inventory::LateUpdate()
 					{
 						// 다른 슬롯의 아이템을 드래그 중인 슬롯으로 이동
 						inventoryItem[onMouse.index] = inventoryItem[mLocation.index];
+						inventoryIcon[onMouse.index] = inventoryIcon[mLocation.index];
 						inventoryIcon[onMouse.index]->SetWorldPos(slot[onMouse.index]->GetWorldPos());
 					}
 					// 다른 슬롯에 아이템이 없다면 원래 슬롯을 비움
@@ -135,6 +136,7 @@ void Inventory::LateUpdate()
 
 					// 드래그 중인 아이템은 다른 슬롯으로 이동
 					inventoryItem[mLocation.index] = onMouse.item;
+					inventoryIcon[mLocation.index] = onMouse.image;
 					inventoryIcon[mLocation.index]->SetWorldPos(slot[mLocation.index]->GetWorldPos());
 
 					onMouse.item = nullptr;
