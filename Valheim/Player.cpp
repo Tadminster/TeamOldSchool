@@ -340,19 +340,20 @@ void Player::MoveBack(Actor* col)
 	
 }
 
-void Player::GetItem(ItemProto* item)
+bool Player::GetItem(ItemProto* item)
 {	
-	//매시 이름 통일되면 Find 손보기
 	//충돌값 트루일 때, 아이템 주을건지 ui생성
 	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
 	Vector3 hit = {};
-		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("stoneaxe_Cube_004"), hit))
+		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("Mesh"), hit))
 		{
 			if (INPUT->KeyDown('E'))
 			{
 				INVEN->AddItem(item);
+				return true;
 			}
 		}
+	return false;
 }
 
 bool Player::IsDestroyed()

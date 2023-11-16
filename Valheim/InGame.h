@@ -3,13 +3,11 @@ class InGame : public Scene
 {
 private:
     Camera*                         tempCamera;
-    Camera*                         tempCamera2;
 
     Grid*                           grid;
 	Sky*                            skyBox;
         
     GameManager*                    gameManager;
-    class StoneAxe*                 stoneAxe[2];
 
     class Elder*                    elder;
 public:

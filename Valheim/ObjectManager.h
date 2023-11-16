@@ -4,6 +4,9 @@ class ObjectManager
 {
 private:
 	list<Prototype*> objects;
+	list<ItemProto*> items;
+
+	ItemProto*		stoneAxe[5];
 
 public:
 	ObjectManager();
@@ -22,5 +25,6 @@ public:
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);
+	void	AddItem(ItemProto* item);
 };
 

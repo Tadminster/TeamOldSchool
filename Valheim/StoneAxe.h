@@ -3,11 +3,13 @@
 class StoneAxe : public WeaponProto
 {
 private:
+	friend class ItemProto;
 
-public:
+private:
 	StoneAxe();
 	~StoneAxe();
 
+public:
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;

@@ -10,12 +10,22 @@
 #include "BeechHalfLog.h"
 #include "Grass.h"
 
+#include "ItemProto.h"
+#include "StoneAxe.h"
+
 #include "Elder.h"
 
 #include "ObjectManager.h"
 
 ObjectManager::ObjectManager()
 {
+	for (auto& item : stoneAxe)
+	{
+		item = ItemProto::Create(ItemName::StoneAxe);
+		//item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+		item->GetActor()->SetWorldPos(Vector3(0, 50, 0));
+		AddItem(item);
+	}
 }
 
 ObjectManager::~ObjectManager()
@@ -40,7 +50,7 @@ void ObjectManager::Release()
 
 void ObjectManager::Update()
 {
-	//ImGui::Text("Object Count: %d", objects.size());
+
 
 	if (ImGui::Button("GeneratePerinNoiseMap"))
 	{
@@ -125,10 +135,21 @@ void ObjectManager::Update()
 
 		}
 	}
+
+	// 아이템 줍기(임시)
+	for (auto& item : items)
+		if (PLAYER->GetItem(item)) break;
+
+	// 아이템 업데이트
+	for (auto& item : items)
+		item->Update();
 }
 
 void ObjectManager::LateUpdate()
 {
+	for (auto& item : items)
+		item->LateUpdate();
+
 	for (auto& obj : objects)
 	{
 		if (PLAYER->GetActor()->Find("StoneAxe"))
@@ -175,6 +196,9 @@ void ObjectManager::Render()
 			}
 		}
 	}
+
+	for (auto& item : items)
+		item->Render();
 }
 
 void ObjectManager::RefractionRender()
@@ -445,7 +469,6 @@ void ObjectManager::GenerateInstanceGrass()
 	}
 
 	Grass* grass = new Grass(Vector3(0, 0, 0));
-	//Grass* grass = new Grass(Vector3(0, grassPos[0].y, 0));
 
 	UINT count = grassPos.size();
 	cout << "Grass " << count << "개 생성!" << endl;
@@ -467,4 +490,9 @@ void ObjectManager::GenerateInstanceGrass()
 void ObjectManager::AddObject(Prototype* object)
 {
 	objects.emplace_back(object);
+}
+
+void ObjectManager::AddItem(ItemProto* item)
+{
+	items.emplace_back(item);
 }

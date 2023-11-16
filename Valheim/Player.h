@@ -50,5 +50,5 @@ public:
 	void EquipToHand(Prototype* item);
 	void ReleaseToHand();
 	void MoveBack(Actor* col);
-	void GetItem(ItemProto* item);
+	bool GetItem(ItemProto* item);
 };
