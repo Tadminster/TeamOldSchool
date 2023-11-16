@@ -307,9 +307,9 @@ void Player::PlayerMove()
 			moveDir = actor->GetRight();
 			//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 		}
+		//실제 이동
+		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
-	//실제 이동
-	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
@@ -346,7 +346,7 @@ void Player::MoveBack(Actor* col)
 	ImGui::Text("%f angle y", col->collider->SlidingVector(slidingDir).y);
 	ImGui::Text("%f angle z", col->collider->SlidingVector(slidingDir).z);
 	//moveDir = moveDir - col->collider->SlidingVector(moveDir) * (moveDir.Dot(col->collider->SlidingVector(moveDir)));
-	
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
 bool Player::GetItem(ItemProto* item)
