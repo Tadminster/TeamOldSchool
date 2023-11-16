@@ -55,7 +55,7 @@ void StoneAxe::Update()
 	}
 	else if (state == ItemState::OnInventory)
 	{
-		icon->Update();
+		//icon->Update();
 	}
 
 }
@@ -85,7 +85,7 @@ void StoneAxe::Render()
 	}
 	else if (state == ItemState::OnInventory)
 	{
-		icon->Render();
+		//icon->Render();
 	}
 }
 

@@ -6,7 +6,10 @@ Inventory::Inventory()
 {
 	// 모든 인벤토리를 nullptr로 초기화
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
-		inventory[i] = nullptr;
+	{
+		inventoryItem[i] = nullptr;
+		inventoryIcon[i] = nullptr;
+	}
 
 	// 인벤토리 UI 생성 및 로드
 	inventoryUI = UI::Create("InventoryUI");
@@ -55,6 +58,8 @@ void Inventory::Update()
 	}
 
 	inventoryUI->Update();
+	for (auto icon : inventoryIcon)
+		if (icon) icon->Update();
 }
 
 void Inventory::LateUpdate()
@@ -67,12 +72,12 @@ void Inventory::LateUpdate()
 		if (INPUT->KeyDown(VK_LBUTTON) && slot[i]->MouseOver())
 		{
 			// 인벤토리에 아이템이 있으면
-			if (inventory[i])
+			if (inventoryItem[i])
 			{
 				cout << "아이템 집기" << endl;
 				// 해당 슬롯의 아이템과 인덱스를 저장
-				onMouse.item = inventory[i];
-				onMouse.image = inventory[i]->GetIcon();
+				onMouse.item = inventoryItem[i];
+				onMouse.image = inventoryIcon[i];
 				onMouse.index = i;
 			}
 		}
@@ -115,21 +120,22 @@ void Inventory::LateUpdate()
 				{
 					cout << "슬롯 변경" << endl;
 					// 다른 슬롯에 아이템이 있다면
-					if (inventory[mLocation.index])
+					if (inventoryItem[mLocation.index])
 					{
 						// 다른 슬롯의 아이템을 드래그 중인 슬롯으로 이동
-						inventory[onMouse.index] = inventory[mLocation.index];
-						inventory[onMouse.index]->GetIcon()->SetWorldPos(slot[onMouse.index]->GetWorldPos());
+						inventoryItem[onMouse.index] = inventoryItem[mLocation.index];
+						inventoryIcon[onMouse.index]->SetWorldPos(slot[onMouse.index]->GetWorldPos());
 					}
 					// 다른 슬롯에 아이템이 없다면 원래 슬롯을 비움
 					else
 					{
-						inventory[onMouse.index] = nullptr;
+						inventoryItem[onMouse.index] = nullptr;
+						inventoryIcon[onMouse.index] = nullptr;
 					}
 
 					// 드래그 중인 아이템은 다른 슬롯으로 이동
-					inventory[mLocation.index] = onMouse.item;
-					inventory[mLocation.index]->GetIcon()->SetWorldPos(slot[mLocation.index]->GetWorldPos());
+					inventoryItem[mLocation.index] = onMouse.item;
+					inventoryIcon[mLocation.index]->SetWorldPos(slot[mLocation.index]->GetWorldPos());
 
 					onMouse.item = nullptr;
 					//onMouse.image->SetWorldPos(slot[mLocation.index]->GetWorldPos());
@@ -148,7 +154,8 @@ void Inventory::LateUpdate()
 			else if (mLocation.location == UILocation::OnGround)
 			{
 				// 원래 슬롯을 비우고
-				inventory[onMouse.index] = nullptr;
+				inventoryItem[onMouse.index] = nullptr;
+				inventoryIcon[onMouse.index] = nullptr;
 				
 				// 아이템을 마우스 위치로 이동
 				Ray tempRay; Vector3 rayHitPoint;
@@ -180,6 +187,8 @@ void Inventory::PreRender()
 void Inventory::Render()
 {
 	inventoryUI->Render();
+	for (auto icon : inventoryIcon)
+		if (icon) icon->Render();
 }
 
 void Inventory::ResizeScreen()
@@ -258,11 +267,12 @@ void Inventory::AddItem(ItemProto* item)
 	// 인벤토리를 순회하며 빈 공간을 찾음
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
-		if (inventory[i] == nullptr)
+		if (inventoryItem[i] == nullptr)
 		{
 			// 인벤토리에 아이템 추가
-			inventory[i] = item;
-			item->GetIcon()->SetWorldPos(slot[i]->GetWorldPos());
+			inventoryItem[i] = item;
+			inventoryIcon[i] = item->GetIcon();
+			inventoryIcon[i]->SetWorldPos(slot[i]->GetWorldPos());
 			break;
 		}
 	}
