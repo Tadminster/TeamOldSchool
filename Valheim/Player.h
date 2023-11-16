@@ -8,11 +8,13 @@ class Player : public Prototype
 	friend class SwingState;
 	
 	class PlayerState*		state = nullptr;
+	Prototype*				equippedHand = nullptr;
+
 	Vector3					lastPos = {};
 	Vector3					moveDir = {};
-
-	Ray						slidingVector;
 	Vector3					slidingVectorHit = {};
+	Ray						slidingVector;
+
 
 	float					moveSpeed = 0;
 	float					gravity = 0;
@@ -40,7 +42,7 @@ public:
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam() { return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	bool GetPlayerJump() { return isJump; }
-	bool CleanHit(string name, Collider* object);
+	bool CleanHit(Collider* object);
 	bool CleanFrame();
 
 	void SetState(PlayerState* state);
