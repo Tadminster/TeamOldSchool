@@ -87,7 +87,7 @@ void InGame::Update()
 		//}
 	}
 
-
+	PLAYER->ReleaseToHand();
 
 	GM->Update();
 

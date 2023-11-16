@@ -259,7 +259,7 @@ void Player::PlayerMove()
 	}
 }
 
-void Player::EquipToHand(Prototype* item)
+void Player::EquipToHand(ItemProto* item)
 {
 	if (!equippedHand)
 	{
@@ -278,11 +278,11 @@ void Player::ReleaseToHand()
 	{
 		if (INPUT->KeyDown('1'))
 		{
-			actor->Find("mixamorig:RightHandIndex1")->children.clear();
-			INVEN->AddItem((ItemProto*)equippedHand);
+			equippedHand->GetActor()->scale = Vector3(1, 1, 1);
+			equippedHand->GetActor()->parent = equippedHand->GetActor();
+			equippedHand->SetState(ItemState::OnInventory);
 			equippedHand = nullptr;
 		}
-		
 	}
 }
 

@@ -8,7 +8,7 @@ class Player : public Prototype
 	friend class SwingState;
 	
 	class PlayerState*		state = nullptr;
-	Prototype*				equippedHand = nullptr;
+	ItemProto*				equippedHand = nullptr;
 	
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -56,7 +56,7 @@ public:
 	void AvtivatePlayerCam();
 	void PlayerControl();
 	void PlayerMove();
-	void EquipToHand(Prototype* item);
+	void EquipToHand(ItemProto* item);
 	void ReleaseToHand();
 	void MoveBack(Actor* col);
 	bool GetItem(ItemProto* item);
