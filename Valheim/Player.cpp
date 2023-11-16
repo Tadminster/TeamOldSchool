@@ -94,6 +94,7 @@ void Player::RenderHierarchy()
 
 bool Player::CleanHit(string name, Collider* object)
 {
+
 	if (actor->Find(name))
 	{
 		return actor->Find(name)->collider->Intersect(object);

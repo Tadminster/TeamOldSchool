@@ -67,6 +67,9 @@ void Inventory::LateUpdate()
 	// 마우스 오버시 슬롯 강조
 	MouseOverSlot();
 
+	// 아이템 사용하기
+	UseItem();
+
 	// 아이템 선택하기
 	ItemPickUp();
 
@@ -96,6 +99,7 @@ void Inventory::Render()
 
 void Inventory::ResizeScreen()
 {
+
 }
 
 void Inventory::MouseOverSlot()
@@ -155,7 +159,7 @@ void Inventory::ItemDrop()
 		// 아이템의 아이콘이 마우스를 따라다님
 		onMouse.image->SetWorldPos(Utility::MouseToNDC());
 
-		// 마우스 오른쪽 버튼을 누르면 아이템이 원래 위치로 돌아감
+		// 픽업중에 마우스 오른쪽 버튼을 누르면 아이템이 원래 위치로 돌아감
 		if (INPUT->KeyDown(VK_RBUTTON))
 		{
 			onMouse.item = nullptr;
@@ -164,6 +168,7 @@ void Inventory::ItemDrop()
 			onMouse.index = -1;
 		}
 
+		// 픽업중에 마우스 왼쪽 버튼을 떼면
 		if (INPUT->KeyUp(VK_LBUTTON))
 		{
 			Inventory::MouseLocation mLocation = CheckMouseLocation();
@@ -241,6 +246,22 @@ void Inventory::ItemDrop()
 				onMouse.item = nullptr;
 				onMouse.image = nullptr;
 				onMouse.index = -1;
+			}
+		}
+	}
+}
+
+void Inventory::UseItem()
+{
+	for (int i = 0; i < 32; i++)
+	{
+		if (INPUT->KeyDown(VK_RBUTTON) && slot[i]->MouseOver())
+		{
+			// 인벤토리에 아이템이 있으면
+			if (inventoryItem[i])
+			{
+				inventoryItem[i]->SetState(ItemState::Equipped);
+				PLAYER->EquipToHand(inventoryItem[i]);
 			}
 		}
 	}

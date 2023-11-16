@@ -50,6 +50,7 @@ public:
 	void MouseOverSlot();
 	void ItemPickUp();
 	void ItemDrop();
+	void UseItem();
 	Inventory::MouseLocation CheckMouseLocation();
 	// ==================================================================================================
 	void AddItem(ItemProto* item);
