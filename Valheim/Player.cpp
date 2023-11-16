@@ -247,14 +247,18 @@ void Player::PlayerMove()
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 
+
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
 	{
-		if (INPUT->KeyPress('W')) moveDir = actor->GetForward();
-		else if (INPUT->KeyPress('S')) moveDir = -actor->GetForward();
-		if (INPUT->KeyPress('A')) moveDir = -actor->GetRight();
-		else if (INPUT->KeyPress('D')) moveDir = actor->GetRight();
+		moveDir = Vector3();
+
+		if (INPUT->KeyPress('W')) moveDir += actor->GetForward();
+		else if (INPUT->KeyPress('S')) moveDir += -actor->GetForward();
+		if (INPUT->KeyPress('A')) moveDir += -actor->GetRight();
+		else if (INPUT->KeyPress('D')) moveDir += actor->GetRight();
 		moveDir.Normalize();
+
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
 }
