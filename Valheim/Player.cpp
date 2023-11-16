@@ -329,14 +329,23 @@ void Player::ReleaseToHand()
 
 void Player::MoveBack(Actor* col)
 {
-	slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
-	
-	if (col->collider->Intersect(slidingVector, slidingVectorHit))
-	{
-		//moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
-		moveDir = moveDir - -col->GetForward() * (moveDir.Dot(-col->GetForward()));
-	}
-	moveDir.Normalize();
+	//slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
+	//
+	//if (col->collider->Intersect(slidingVector, slidingVectorHit))
+	//{
+	//	//moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
+	//	moveDir = moveDir - -col->GetForward() * (moveDir.Dot(-col->GetForward()));
+	//}
+	//moveDir.Normalize();
+
+	Vector3 slidingDir = col->GetWorldPos() - actor->GetWorldPos();
+	slidingDir.y = 0;
+	slidingDir.Normalize();
+	moveDir = moveDir - col->collider->SlidingVector(slidingDir) * (moveDir.Dot(col->collider->SlidingVector(slidingDir)));
+	ImGui::Text("%f angle x", col->collider->SlidingVector(slidingDir).x);
+	ImGui::Text("%f angle y", col->collider->SlidingVector(slidingDir).y);
+	ImGui::Text("%f angle z", col->collider->SlidingVector(slidingDir).z);
+	//moveDir = moveDir - col->collider->SlidingVector(moveDir) * (moveDir.Dot(col->collider->SlidingVector(moveDir)));
 	
 }
 
