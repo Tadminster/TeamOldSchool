@@ -49,13 +49,17 @@ void StoneAxe::Update()
 	}
 	ImGui::End();
 
-	if (state == ItemState::OnGround || state == ItemState::Equipped)
+	if (state == ItemState::OnGround )
 	{
 		actor->Update();
 	}
 	else if (state == ItemState::OnInventory)
 	{
 		//icon->Update();
+	}
+	else if (state == ItemState::Equipped)
+	{
+		//actor->Update();
 	}
 
 }
@@ -79,13 +83,17 @@ void StoneAxe::LateUpdate()
 
 void StoneAxe::Render()
 {
-	if (state == ItemState::OnGround || state == ItemState::Equipped)
+	if (state == ItemState::OnGround)
 	{
 		actor->Render();
 	}
 	else if (state == ItemState::OnInventory)
 	{
 		//icon->Render();
+	}
+	else if (state == ItemState::Equipped)
+	{
+		if (DEBUGMODE) actor->Render();
 	}
 }
 
