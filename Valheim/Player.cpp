@@ -330,11 +330,12 @@ void Player::ReleaseToHand()
 void Player::MoveBack(Actor* col)
 {
 	slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
-	
+	ImGui::Text("ColliderForward (%f, %f, %f)", col->GetWorldPos().x, col->GetWorldPos().y, col->GetWorldPos().z);
 	if (col->collider->Intersect(slidingVector, slidingVectorHit))
 	{
-		//moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
-		moveDir = moveDir - -col->GetForward() * (moveDir.Dot(-col->GetForward()));
+		Vector3 normal = col->collider->GetNormalVector(PLAYER->GetActor()->GetWorldPos());
+		moveDir.Normalize();
+		moveDir = moveDir - normal * (moveDir.Dot(normal));
 	}
 	moveDir.Normalize();
 	

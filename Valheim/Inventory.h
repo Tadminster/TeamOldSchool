@@ -1,6 +1,7 @@
 #pragma once
-#define INVENTORY_SIZE	32		// 인벤토리 크기
-#define	BLUE_SLOT		32		// 블루슬롯의 인덱스
+#define INVENTORY_SIZE		32		// 인벤토리 크기
+#define INVENTORY_ROW_SIZE	8		// 인벤토리 1줄 크기
+#define	BLUE_SLOT			32		// 블루슬롯의 인덱스
 
 enum class UILocation
 {
@@ -47,6 +48,8 @@ public:
 
 	// ==================================================================================================
 	void MouseOverSlot();
+	void ItemPickUp();
+	void ItemDrop();
 	Inventory::MouseLocation CheckMouseLocation();
 	// ==================================================================================================
 	void AddItem(ItemProto* item);

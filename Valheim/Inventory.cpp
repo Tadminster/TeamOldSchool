@@ -67,6 +67,70 @@ void Inventory::LateUpdate()
 	// 마우스 오버시 슬롯 강조
 	MouseOverSlot();
 
+	// 아이템 선택하기
+	ItemPickUp();
+
+	// 아이템 드랍
+	ItemDrop();
+}
+
+void Inventory::PreRender()
+{
+}
+
+void Inventory::Render()
+{
+	inventoryUI->Render();
+
+	if (inventoryUI->Find("SlotBottom")->visible)
+	{
+		for (auto icon : inventoryIcon)
+			if (icon) icon->Render();
+	}
+	else
+	{
+		for (int i = 0; i < INVENTORY_ROW_SIZE; i++ )
+			if (inventoryIcon[i]) inventoryIcon[i]->Render();
+	}
+}
+
+void Inventory::ResizeScreen()
+{
+}
+
+void Inventory::MouseOverSlot()
+{
+	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
+	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
+	{
+		//	모든 인벤토리 슬롯을 순회
+		for (int i = 0; i < 32; i++)
+		{
+			// 마우스가 해당 슬롯 위에 있고,
+			if (slot[i]->MouseOver())
+			{
+				// 해당슬롯이 visible이라면
+				if (slot[i]->visible)
+				{
+					// 블루슬롯을 해당 슬롯 위치로 이동
+					slot[BLUE_SLOT]->SetLocalPos(slot[i]->GetLocalPos());
+					// 블루슬롯 visible, 해당 슬롯 invisible
+					slot[BLUE_SLOT]->visible = true;
+					slot[i]->visible = false;
+				}
+			}
+			// 마우스가 해당 슬롯 위에 없다면 해당슬롯 visible
+			else slot[i]->visible = true;
+		}
+	}
+	else
+	{
+		slot[BLUE_SLOT]->visible = false;
+	}
+}
+
+void Inventory::ItemPickUp()
+{
 	for (int i = 0; i < 32; i++)
 	{
 		if (INPUT->KeyDown(VK_LBUTTON) && slot[i]->MouseOver())
@@ -74,7 +138,6 @@ void Inventory::LateUpdate()
 			// 인벤토리에 아이템이 있으면
 			if (inventoryItem[i])
 			{
-				cout << "아이템 집기" << endl;
 				// 해당 슬롯의 아이템과 인덱스를 저장
 				onMouse.item = inventoryItem[i];
 				onMouse.image = inventoryIcon[i];
@@ -82,8 +145,11 @@ void Inventory::LateUpdate()
 			}
 		}
 	}
+}
 
-	// 클릭된 아이템이 있으면
+void Inventory::ItemDrop()
+{
+	// 픽업된 아이템이 있으면
 	if (onMouse.item)
 	{
 		// 아이템의 아이콘이 마우스를 따라다님
@@ -158,7 +224,7 @@ void Inventory::LateUpdate()
 				// 원래 슬롯을 비우고
 				inventoryItem[onMouse.index] = nullptr;
 				inventoryIcon[onMouse.index] = nullptr;
-				
+
 				// 아이템을 마우스 위치로 이동
 				Ray tempRay; Vector3 rayHitPoint;
 				tempRay.position = PLAYER->GetActor()->GetWorldPos() + PLAYER->GetActor()->GetForward() * 2 + PLAYER->GetActor()->GetUp() * 100;
@@ -167,7 +233,7 @@ void Inventory::LateUpdate()
 				{
 					onMouse.item->GetActor()->SetWorldPos(rayHitPoint + Vector3(0, 0.5f, 0));
 				}
-				
+
 				// 아이템의 상태를 OnGround로 변경
 				onMouse.item->SetState(ItemState::OnGround);
 
@@ -177,54 +243,6 @@ void Inventory::LateUpdate()
 				onMouse.index = -1;
 			}
 		}
-	}
-
-
-}
-
-void Inventory::PreRender()
-{
-}
-
-void Inventory::Render()
-{
-	inventoryUI->Render();
-	for (auto icon : inventoryIcon)
-		if (icon) icon->Render();
-}
-
-void Inventory::ResizeScreen()
-{
-}
-
-void Inventory::MouseOverSlot()
-{
-	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
-	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
-	{
-		//	모든 인벤토리 슬롯을 순회
-		for (int i = 0; i < 32; i++)
-		{
-			// 마우스가 해당 슬롯 위에 있고,
-			if (slot[i]->MouseOver())
-			{
-				// 해당슬롯이 visible이라면
-				if (slot[i]->visible)
-				{
-					// 블루슬롯을 해당 슬롯 위치로 이동
-					slot[BLUE_SLOT]->SetLocalPos(slot[i]->GetLocalPos());
-					// 블루슬롯 visible, 해당 슬롯 invisible
-					slot[BLUE_SLOT]->visible = true;
-					slot[i]->visible = false;
-				}
-			}
-			// 마우스가 해당 슬롯 위에 없다면 해당슬롯 visible
-			else slot[i]->visible = true;
-		}
-	}
-	else
-	{
-		slot[BLUE_SLOT]->visible = false;
 	}
 }
 
@@ -256,6 +274,8 @@ Inventory::MouseLocation Inventory::CheckMouseLocation()
 		return location;
 	}
 }
+
+
 
 void Inventory::AddItem(ItemProto* item)
 {
