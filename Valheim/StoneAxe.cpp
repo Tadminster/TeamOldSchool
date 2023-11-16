@@ -59,7 +59,7 @@ void StoneAxe::Update()
 	}
 	else if (state == ItemState::Equipped)
 	{
-		actor->Update();
+		//actor->Update();
 	}
 
 }
@@ -93,7 +93,7 @@ void StoneAxe::Render()
 	}
 	else if (state == ItemState::Equipped)
 	{
-		actor->Render();
+		if (DEBUGMODE) actor->Render();
 	}
 }
 

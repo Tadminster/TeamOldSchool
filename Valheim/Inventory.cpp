@@ -37,6 +37,11 @@ Inventory::~Inventory()
 
 void Inventory::Init()
 {
+	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	{
+		slot[i]->visible = true;
+	}
+	slot[BLUE_SLOT]->visible = false;
 }
 
 void Inventory::Release()
@@ -55,26 +60,33 @@ void Inventory::Update()
 	if (INPUT->KeyDown(VK_TAB))
 	{
 		inventoryUI->Find("SlotBottom")->visible = !inventoryUI->Find("SlotBottom")->visible;
+		
+		// 인벤토리가 닫혔을 때, 초기화
+		if (!inventoryUI->Find("SlotBottom")->visible) Init();
 	}
 
 	inventoryUI->Update();
-	for (auto icon : inventoryIcon)
+	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
 }
 
 void Inventory::LateUpdate()
 {
-	// 마우스 오버시 슬롯 강조
-	MouseOverSlot();
+	if (inventoryUI->Find("SlotBottom")->visible)
+	{
+		// 마우스 오버시 슬롯 강조
+		MouseOverSlot();
 
-	// 아이템 사용하기
-	UseItem();
+		// 아이템 사용하기
+		UseItem();
 
-	// 아이템 선택하기
-	ItemPickUp();
+		// 아이템 선택하기
+		ItemPickUp();
 
-	// 아이템 드랍
-	ItemDrop();
+		// 아이템 드랍
+		ItemDrop();
+	}
+
 }
 
 void Inventory::PreRender()
@@ -104,6 +116,8 @@ void Inventory::ResizeScreen()
 
 void Inventory::MouseOverSlot()
 {
+	bool isMouseOver = false;
+	
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
 	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
 	{
@@ -113,6 +127,7 @@ void Inventory::MouseOverSlot()
 			// 마우스가 해당 슬롯 위에 있고,
 			if (slot[i]->MouseOver())
 			{
+				isMouseOver = true;
 				// 해당슬롯이 visible이라면
 				if (slot[i]->visible)
 				{
@@ -128,6 +143,11 @@ void Inventory::MouseOverSlot()
 		}
 	}
 	else
+	{
+		slot[BLUE_SLOT]->visible = false;
+	}
+
+	if (!isMouseOver)
 	{
 		slot[BLUE_SLOT]->visible = false;
 	}

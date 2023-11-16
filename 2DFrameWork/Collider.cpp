@@ -17,6 +17,18 @@ Collider::Collider(ColliderType type)
 		break;
 	}
 	shader = RESOURCE->shaders.Load("1.Collider.hlsl");
+
+	Vector3 tmp = this->GetWorldPos() + Vector3(0, this->scale.y, 0);
+	slidingPos.push_back(tmp + (this->GetForward() * scale.z + this->GetRight() * scale.x + this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (this->GetForward() * scale.z - this->GetRight() * scale.x + this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (this->GetForward() * scale.z - this->GetRight() * scale.x - this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (this->GetForward() * scale.z + this->GetRight() * scale.x - this->GetUp() * scale.y));
+
+	slidingPos.push_back(tmp + (-this->GetForward() * scale.z + this->GetRight() * scale.x + this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (-this->GetForward() * scale.z - this->GetRight() * scale.x + this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (-this->GetForward() * scale.z - this->GetRight() * scale.x - this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (-this->GetForward() * scale.z + this->GetRight() * scale.x - this->GetUp() * scale.y));
+	
 }
 
 Collider::~Collider()

@@ -14,7 +14,7 @@ class Inventory
 
 private:
 	class ItemProto*	inventoryItem[INVENTORY_SIZE];	// 인벤토리 아이템
-	class UI*			inventoryIcon[INVENTORY_SIZE];	// 인벤토리 이미지
+	class UI*			inventoryIcon[INVENTORY_SIZE];	// 인벤토리 아이콘
 
 	// 이미지===========================================================================================
 	UI*					inventoryUI;					// 인벤토리 UI

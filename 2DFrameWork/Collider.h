@@ -14,6 +14,7 @@ public:
     shared_ptr<Shader>      shader;
     ColliderType            type;
     bool                    visible;
+    vector<Vector3>         slidingPos;
 public:
     Collider(ColliderType type);
     ~Collider();

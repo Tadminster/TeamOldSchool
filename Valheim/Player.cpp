@@ -92,12 +92,11 @@ void Player::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-bool Player::CleanHit(string name, Collider* object)
+bool Player::CleanHit(Collider* object)
 {
-
-	if (actor->Find(name))
+	if (equippedHand)
 	{
-		return actor->Find(name)->collider->Intersect(object);
+		return equippedHand->GetActor()->collider->Intersect(object);
 	}
 	else return false;
 }
@@ -318,6 +317,7 @@ void Player::PlayerMove()
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
 {
+	equippedHand = item;
 	actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
 	actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
 	actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
@@ -362,7 +362,6 @@ void Player::MoveBack(Actor* col)
 	//	moveDir = moveDir - normal * (moveDir.Dot(normal));
 	//}
 	//moveDir.Normalize();
-	
 }
 
 bool Player::GetItem(ItemProto* item)

@@ -29,6 +29,8 @@ void Elder::Update()
 	if (isLand) gravity = 0;
 	else gravity += GRAVITYPOWER * DELTA;
 
+	bossStone->collider->rotation.y = PLAYER->GetPlayer()->rotation.y;
+
 	actor->Update();
 	bossStone->Update();
 }
