@@ -307,9 +307,12 @@ void Player::PlayerMove()
 			moveDir = actor->GetRight();
 			//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
 		}
-		//실제 이동
+		
+
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
+	
+	//실제 이동
 }
 //나중에 인벤토리 클래스로 매개변수 바꾸기
 void Player::EquipToHand(Prototype* item)
@@ -329,12 +332,33 @@ void Player::ReleaseToHand()
 
 void Player::MoveBack(Actor* col)
 {
+	Vector3 slidingDir =  col->GetWorldPos() - actor->GetWorldPos();
+	slidingDir.y = 0;
+	slidingDir.Normalize();
+	Vector3 normal = col->collider->GetNormalVector(slidingDir);
+
+	moveDir = slidingDir - normal * (slidingDir.Dot(normal));
+	moveDir.Normalize();
+	moveDir = -moveDir;
+
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+
 	//slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
-	//
+	//Vector3 slidingDir = col->GetWorldPos() - actor->GetWorldPos();
+	//slidingDir.y = 0;
+	//slidingDir.Normalize();
+	//moveDir = moveDir - col->collider->SlidingVector(slidingDir) * (moveDir.Dot(col->collider->SlidingVector(slidingDir)));
+	//ImGui::Text("%f angle x", col->collider->SlidingVector(slidingDir).x);
+	//ImGui::Text("%f angle y", col->collider->SlidingVector(slidingDir).y);
+	//ImGui::Text("%f angle z", col->collider->SlidingVector(slidingDir).z);
+	////moveDir = moveDir - col->collider->SlidingVector(moveDir) * (moveDir.Dot(col->collider->SlidingVector(moveDir)));
+	//slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
+	//ImGui::Text("ColliderForward (%f, %f, %f)", col->GetWorldPos().x, col->GetWorldPos().y, col->GetWorldPos().z);
 	//if (col->collider->Intersect(slidingVector, slidingVectorHit))
 	//{
-	//	//moveDir = moveDir - slidingVectorHit.Forward * (moveDir - slidingVectorHit.Forward);
-	//	moveDir = moveDir - -col->GetForward() * (moveDir.Dot(-col->GetForward()));
+	//	Vector3 normal = col->collider->GetNormalVector(PLAYER->GetActor()->GetWorldPos());
+	//	moveDir.Normalize();
+	//	moveDir = moveDir - normal * (moveDir.Dot(normal));
 	//}
 	//moveDir.Normalize();
 
@@ -346,7 +370,7 @@ void Player::MoveBack(Actor* col)
 	ImGui::Text("%f angle y", col->collider->SlidingVector(slidingDir).y);
 	ImGui::Text("%f angle z", col->collider->SlidingVector(slidingDir).z);
 	//moveDir = moveDir - col->collider->SlidingVector(moveDir) * (moveDir.Dot(col->collider->SlidingVector(moveDir)));
-	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+	
 }
 
 bool Player::GetItem(ItemProto* item)

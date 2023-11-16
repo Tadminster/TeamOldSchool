@@ -284,3 +284,13 @@ Vector3 Collider::SlidingVector(Vector3 moveDir)
 		return -this->GetForward() * 1.5f;
 	}
 }
+
+Vector3 Collider::GetNormalVector(const Vector3 moveDir)
+{
+	float dotForward = this->GetForward().Dot(moveDir);
+	float dotRight = this->GetRight().Dot(moveDir);
+
+	if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
+	else return this->GetRight();
+
+}
