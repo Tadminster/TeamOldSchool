@@ -116,7 +116,6 @@ void GameObject::Release()
 	delete this;
 }
 
-
 void GameObject::AddChild(GameObject* child)
 {
 	if (root->Find(child->name))
@@ -351,6 +350,62 @@ bool Actor::DeleteAllObject(string Name)
 
 
 
+}
+
+bool Actor::ReleaseNode(string Name)
+{
+	if (Name == name) return false;
+
+	auto temp = obList.find(Name);
+
+	if (temp == obList.end())  return false;
+
+	//지워질대상,지워질대상의 부모 포인터
+	GameObject* Target = temp->second;
+	GameObject* Parent = temp->second->parent;
+	//부모리스트에서 타겟 비우기
+	Parent->children.erase(Parent->children.find(Name));
+
+	for (auto it = Target->children.begin();
+		it != Target->children.end(); it++)
+	{
+		Parent->children[it->second->name] = it->second;
+		it->second->parent = Parent;
+		//SafeRelease(it->second);
+	}
+	obList.erase(temp);
+	return true;
+}
+
+bool Actor::ReleaseAllNode(string Name)
+{
+	//루트삭제 방지
+	if (Name == name) return false;
+
+	//리스트에서 찾기
+	auto temp = obList.find(Name);
+	//없으면 되돌아기
+	if (temp == obList.end())  return false;
+
+	//지워질대상,지워질대상의 부모 포인터
+	GameObject* Target = temp->second;
+	GameObject* Parent = temp->second->parent;
+	//부모리스트에서 타겟 비우기
+	Parent->children.erase(Parent->children.find(Name));
+	root->obList.erase(root->obList.find(Name));
+
+	//number;
+
+	while (1)
+	{
+		if (Target->children.empty())break;
+
+		auto it = Target->children.begin();
+
+		ReleaseAllNode(it->first);
+	}
+	SafeDelete(Target);
+	return true;
 }
 
 void Actor::Render(shared_ptr<Shader> pShader)

@@ -30,6 +30,8 @@ void Player::Init()
 
 void Player::Update()
 {
+	
+
 	lastPos = actor->GetWorldPos();
 	if (!DEBUGMODE) 
 	{
@@ -282,8 +284,8 @@ void Player::ReleaseToHand()
 	{
 		if (INPUT->KeyDown('1'))
 		{
+			this->actor->ReleaseAllNode(equippedHand->GetActor()->name);
 			equippedHand->GetActor()->scale = Vector3(1, 1, 1);
-			equippedHand->GetActor()->parent = equippedHand->GetActor();
 			equippedHand->SetState(ItemState::OnInventory);
 			equippedHand = nullptr;
 		}

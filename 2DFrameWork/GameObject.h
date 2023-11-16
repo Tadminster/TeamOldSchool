@@ -99,6 +99,8 @@ public:
 	GameObject*		Find(string name);
 	bool            DeleteObject(string Name);
 	bool            DeleteAllObject(string Name);
+	virtual bool	ReleaseNode(string Name);
+	virtual bool	ReleaseAllNode(string Name);
 	virtual void	RenderDetail();
 	void			SaveFile(string file);
 	void			LoadFile(string file);

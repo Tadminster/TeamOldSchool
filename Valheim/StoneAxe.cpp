@@ -49,6 +49,8 @@ void StoneAxe::Update()
 	}
 	ImGui::End();
 
+	
+
 	if (state == ItemState::OnGround )
 	{
 		actor->Update();
