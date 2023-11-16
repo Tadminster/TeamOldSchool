@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "PlayerState.h"
 #include "ItemProto.h"
+
+
 Player::Player()
 {
 	actor = Actor::Create();
@@ -20,6 +22,9 @@ void Player::Init()
 	actor->SetWorldPos(Vector3(0,20,0));
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
+	
+	
+
 	slidingVector.direction = actor->GetForward();
 }
 
@@ -32,6 +37,7 @@ void Player::Update()
 		PlayerMove();
 	}
 	else isPlayerCam = false;
+
 	//중력 구현
 	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
 	if (isLand) gravity = 0;
@@ -55,10 +61,6 @@ void Player::LateUpdate()
 		}
 		else isLand = false;
     }
-
-	//ImGui::Text("%f actor y", actor->GetWorldPos().y);
-	//ImGui::Text("%f hit y", hit.y);
-	
     actor->Update();
 
 	//경사 충돌(자연스럽게 손보기)
@@ -94,9 +96,9 @@ void Player::RenderHierarchy()
 
 bool Player::CleanHit(Collider* object)
 {
-	if (actor->Find(equippedHand->GetActor()->name))
+	if (equippedHand)
 	{
-		return actor->Find(equippedHand->GetActor()->name)->collider->Intersect(object);
+		return equippedHand->GetActor()->collider->Intersect(object);
 	}
 	else return false;
 }
@@ -145,53 +147,42 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
+
 	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
-	POINT ptMouse;
 	ptMouse.x = App.GetHalfWidth();
 	ptMouse.y = App.GetHalfHeight();
-	Vector3 Rot;
 	Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
 	Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
 	actor->rotation.y += Rot.y;
 	Camera::main->rotation.x += Rot.x;
 	ClientToScreen(App.GetHandle(), &ptMouse);
 	SetCursorPos(ptMouse.x, ptMouse.y);
+
 	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
 	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
 	
 	//카메라-터레인 충돌 레이
-	Ray PlayerCamRay;
-	PlayerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
-	PlayerCamRay.direction = (actor->GetWorldPos()+Vector3(0,2.0f,0)) - actor->Find("PlayerCam")->GetWorldPos();
-	PlayerCamRay.direction.Normalize();
-	Vector3 hit;
-	//카메라가 복귀할 조건, 좌표 레이
-	Ray PlayerOriginCamRay;
-	PlayerOriginCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
-	//PlayerOriginCamRay.direction = actor->GetWorldPos() - actor->Find("PlayerOriginCam")->GetWorldPos();
-	PlayerOriginCamRay.direction = (actor->GetWorldPos() + Vector3(0, 2.0f, 0)) - actor->Find("PlayerCam")->GetWorldPos();
-	PlayerOriginCamRay.direction.Normalize();
-	Vector3 hit2;
-	Ray PlayerReverseOriginCamRay;
-	PlayerReverseOriginCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
-	PlayerReverseOriginCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp()*2.0f);
-	PlayerReverseOriginCamRay.direction.Normalize();
-	Vector3 hit3;
-	if (Utility::RayIntersectMap(PlayerCamRay, MAP, hit))
+	playerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
+	playerCamRay.direction = (actor->GetWorldPos()+Vector3(0,2.0f,0)) - actor->Find("PlayerCam")->GetWorldPos();
+	playerCamRay.direction.Normalize();
+	
+	playerReverseCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
+	playerReverseCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp()*2.0f);
+	playerReverseCamRay.direction.Normalize();
+
+	//컴퓨트피킹 쓰면 프레임 40정도 떨어짐 O_O
+	//가끔씩 원인 모를 이유 + 카메라 회전을 빨리 하면 간헐적으로 적용이 안되는 현상 존재
+	if (Utility::RayIntersectMap(playerCamRay, MAP, playerCamHit))
 	{
-		if ((actor->Find("PlayerCam")->GetWorldPos() - hit).Length() < 0.1f)
-		{
-			actor->Find("PlayerCam")->SetWorldPos(hit+(-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
-		}
+		actor->Find("PlayerCam")->SetWorldPos(playerCamHit + (-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
 	}
 	else
 	{
-		if (Utility::RayIntersectMap(PlayerReverseOriginCamRay, MAP, hit3))
+		if (Utility::RayIntersectMap(playerReverseCamRay, MAP, playerReverseCamRayHit))
 		{
-			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - hit3).Length() >= 0.1f)
+			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - playerReverseCamRayHit).Length() >= 0.1f)
 			{
-				ImGui::Text("hit3.y %f", hit3.y);
 				actor->Find("PlayerCam")->SetWorldPos(actor->Find("PlayerOriginCam")->GetWorldPos());
 			}
 		}
@@ -246,89 +237,53 @@ void Player::PlayerControl()
 	{
 		state->Swing();
 	}
-
-	//if (state == SwingState::GetInstance()) ImGui::Text("%d state", 1);
-	//else if (state == WalkState::GetInstance()) ImGui::Text("%d state", 2);
-	//else if (state == RunState::GetInstance()) ImGui::Text("%d state", 3);
 }
 
 void Player::PlayerMove()
 {
-	//상태값에 따른 이동속도
+	//상태값에 따른 이동속도(FSM완료후 다듬을 예정)
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
-	
+
+	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
 	{
-		//이동 각도 계산
-		if (INPUT->KeyPress('W') && INPUT->KeyPress('A'))
-		{
-			moveDir = actor->GetForward() - actor->GetRight();
-			moveDir.Normalize();
-			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))
-		{
-			moveDir = actor->GetForward() + actor->GetRight();
-			moveDir.Normalize();
-			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))
-		{
-			moveDir = -actor->GetForward() - actor->GetRight();
-			moveDir.Normalize();
-			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))
-		{
-			moveDir = -actor->GetForward() + actor->GetRight();
-			moveDir.Normalize();
-			//actor->MoveWorldPos(normalize * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('W'))
-		{
-			moveDir = actor->GetForward();
-			//actor->MoveWorldPos(actor->GetForward() * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('A'))
-		{
-			moveDir = -actor->GetRight();
-			//actor->MoveWorldPos(-actor->GetRight() * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('S'))
-		{
-			moveDir = -actor->GetForward();
-			//actor->MoveWorldPos(-actor->GetForward() * moveSpeed * DELTA);
-		}
-		else if (INPUT->KeyPress('D'))
-		{
-			moveDir = actor->GetRight();
-			//actor->MoveWorldPos(actor->GetRight() * moveSpeed * DELTA);
-		}
-		
-
+		if (INPUT->KeyPress('W')) moveDir = actor->GetForward();
+		else if (INPUT->KeyPress('S')) moveDir = -actor->GetForward();
+		if (INPUT->KeyPress('A')) moveDir = -actor->GetRight();
+		else if (INPUT->KeyPress('D')) moveDir = actor->GetRight();
+		moveDir.Normalize();
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
-	
-	//실제 이동
 }
-//나중에 인벤토리 클래스로 매개변수 바꾸기
+
 void Player::EquipToHand(Prototype* item)
 {
-	equippedHand = item;
-	actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
-	actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
-	actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
-	actor->Find(item->GetActor()->name)->rotation = Vector3(0, 90.0f, 0) * ToRadian;
-
-	isEquip = true;
+	if (!equippedHand)
+	{
+		//아이템 완성단계에서 스케일, 각도 조절하기
+		equippedHand = item;
+		actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
+		actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
+		actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+		actor->Find(item->GetActor()->name)->rotation = Vector3(0, 90.0f, 0) * ToRadian;
+	}
 }
 
 void Player::ReleaseToHand()
 {
-	//
+	if (equippedHand)
+	{
+		if (INPUT->KeyDown('1'))
+		{
+			actor->Find("mixamorig:RightHandIndex1")->children.clear();
+			INVEN->AddItem((ItemProto*)equippedHand);
+			equippedHand = nullptr;
+		}
+		
+	}
 }
 
 void Player::MoveBack(Actor* col)
@@ -343,25 +298,6 @@ void Player::MoveBack(Actor* col)
 	moveDir = -moveDir;
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-
-	//slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
-	//Vector3 slidingDir = col->GetWorldPos() - actor->GetWorldPos();
-	//slidingDir.y = 0;
-	//slidingDir.Normalize();
-	//moveDir = moveDir - col->collider->SlidingVector(slidingDir) * (moveDir.Dot(col->collider->SlidingVector(slidingDir)));
-	//ImGui::Text("%f angle x", col->collider->SlidingVector(slidingDir).x);
-	//ImGui::Text("%f angle y", col->collider->SlidingVector(slidingDir).y);
-	//ImGui::Text("%f angle z", col->collider->SlidingVector(slidingDir).z);
-	////moveDir = moveDir - col->collider->SlidingVector(moveDir) * (moveDir.Dot(col->collider->SlidingVector(moveDir)));
-	//slidingVector.position = actor->GetWorldPos() + Vector3(0, 1.5f, 0);
-	//ImGui::Text("ColliderForward (%f, %f, %f)", col->GetWorldPos().x, col->GetWorldPos().y, col->GetWorldPos().z);
-	//if (col->collider->Intersect(slidingVector, slidingVectorHit))
-	//{
-	//	Vector3 normal = col->collider->GetNormalVector(PLAYER->GetActor()->GetWorldPos());
-	//	moveDir.Normalize();
-	//	moveDir = moveDir - normal * (moveDir.Dot(normal));
-	//}
-	//moveDir.Normalize();
 }
 
 bool Player::GetItem(ItemProto* item)

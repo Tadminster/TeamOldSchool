@@ -238,71 +238,74 @@ bool Collider::Intersect(Ray Ray, Vector3& Hit)
 	return result;
 }
 
-Vector3 Collider::SlidingVector(Vector3 moveDir)
-{
-	float angle = this->GetForward().Dot(moveDir);
-	ImGui::Text("%f angle", angle);
-	if (angle <= -0.6f)
-	{
-		return this->GetForward() * 1.5f;
-	}
-	else if ((angle > -0.6f && angle < -0.4f) || (angle > 0.4f && angle < 0.6f))
-	{
-		if (angle == -0.5f)
-		{
-			if (this->GetRight().Dot(moveDir) >= 0)
-			{
-				Vector3 tmp = this->GetRight() + this->GetForward();
-				tmp.Normalize();
-				return tmp * 1.5f;
-			}
-			else
-			{
-				Vector3 tmp = -this->GetRight() + this->GetForward();
-				tmp.Normalize();
-				return tmp * 1.5f;
-			}
-		}
-		else if (angle == 0.5f)
-		{
-			if (this->GetRight().Dot(moveDir) >= 0)
-			{
-				Vector3 tmp = this->GetRight() - this->GetForward();
-				tmp.Normalize();
-				return tmp * 1.5f;
-			}
-			else
-			{
-				Vector3 tmp = -this->GetRight() - this->GetForward();
-				tmp.Normalize();
-				return tmp * 1.5f;
-			}
-		}
-		else
-		{
-			if (this->GetRight().Dot(moveDir) >= 0)
-			{
-				return this->GetRight() * 1.5f;
-			}
-			else return -this->GetRight() * 1.5f;
-		}
-	}
-	else if (angle >= -0.4f && angle <= 0.4f)
-	{
-		return this->GetRight() * 1.5f;
-	}
-	else if (angle>=0.6f)
-	{
-		return -this->GetForward() * 1.5f;
-	}
-}
-
 Vector3 Collider::GetNormalVector(const Vector3 moveDir)
 {
 	float dotForward = this->GetForward().Dot(moveDir);
 	float dotRight = this->GetRight().Dot(moveDir);
 
-	if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
-	else return this->GetRight();
+	/*if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
+	else return this->GetRight();*/
 
+	if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
+	else if (fabs(dotForward) < fabs(dotRight)) return this->GetRight();
+	else return this->GetForward() + this->GetRight();
 }
+
+//Vector3 Collider::SlidingVector(Vector3 moveDir)
+//{
+//	float angle = this->GetForward().Dot(moveDir);
+//	ImGui::Text("%f angle", angle);
+//	if (angle <= -0.6f)
+//	{
+//		return this->GetForward() * 1.5f;
+//	}
+//	else if ((angle > -0.6f && angle < -0.4f) || (angle > 0.4f && angle < 0.6f))
+//	{
+//		if (angle == -0.5f)
+//		{
+//			if (this->GetRight().Dot(moveDir) >= 0)
+//			{
+//				Vector3 tmp = this->GetRight() + this->GetForward();
+//				tmp.Normalize();
+//				return tmp * 1.5f;
+//			}
+//			else
+//			{
+//				Vector3 tmp = -this->GetRight() + this->GetForward();
+//				tmp.Normalize();
+//				return tmp * 1.5f;
+//			}
+//		}
+//		else if (angle == 0.5f)
+//		{
+//			if (this->GetRight().Dot(moveDir) >= 0)
+//			{
+//				Vector3 tmp = this->GetRight() - this->GetForward();
+//				tmp.Normalize();
+//				return tmp * 1.5f;
+//			}
+//			else
+//			{
+//				Vector3 tmp = -this->GetRight() - this->GetForward();
+//				tmp.Normalize();
+//				return tmp * 1.5f;
+//			}
+//		}
+//		else
+//		{
+//			if (this->GetRight().Dot(moveDir) >= 0)
+//			{
+//				return this->GetRight() * 1.5f;
+//			}
+//			else return -this->GetRight() * 1.5f;
+//		}
+//	}
+//	else if (angle >= -0.4f && angle <= 0.4f)
+//	{
+//		return this->GetRight() * 1.5f;
+//	}
+//	else if (angle>=0.6f)
+//	{
+//		return -this->GetForward() * 1.5f;
+//	}
+//}

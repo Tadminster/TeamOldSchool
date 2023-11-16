@@ -86,7 +86,7 @@ void InGame::Update()
 		//	PLAYER->EquipToHand(stoneAxe[1]);
 		//}
 	}
-		
+
 
 
 	GM->Update();

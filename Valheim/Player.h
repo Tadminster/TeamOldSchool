@@ -9,12 +9,19 @@ class Player : public Prototype
 	
 	class PlayerState*		state = nullptr;
 	Prototype*				equippedHand = nullptr;
+	
+	POINT					ptMouse;
+	Vector3					Rot;
 
 	Vector3					lastPos = {};
 	Vector3					moveDir = {};
-	Vector3					slidingVectorHit = {};
-	Ray						slidingVector;
 
+	Ray						slidingVector;
+	Vector3					slidingVectorHit = {};
+	Ray playerCamRay;
+	Vector3 playerCamHit;
+	Ray playerReverseCamRay;
+	Vector3 playerReverseCamRayHit;
 
 	float					moveSpeed = 0;
 	float					gravity = 0;
