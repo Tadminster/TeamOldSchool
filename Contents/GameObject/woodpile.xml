@@ -1,6 +1,6 @@
-<Root Name="Root" Visible="true" ObType="1">
+<Root Name="Woodpile" Visible="true" ObType="1">
     <Transform>
-        <Position X="0" Y="18.75" Z="0"/>
+        <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -9,17 +9,17 @@
         <Transform>
             <Position X="0" Y="0" Z="0"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0" Y="0" Z="-0"/>
+            <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <Children Size="1"/>
-        <Child0 Name="woodsplit" Visible="true" ObType="0">
-            <Mesh File="woodsplit/woodsplit.mesh"/>
+        <Child0 Name="Mesh" Visible="true" ObType="0">
+            <Mesh File="Woodpile/Woodpile.mesh"/>
             <Shader File="4.Cube.hlsl"/>
-            <Material File="woodsplit/wood_pile_Worn.mtl"/>
+            <Material File="Woodpile/Woodpile.mtl"/>
             <Transform>
-                <Position X="-1.9" Y="2.3" Z="-20.950001"/>
-                <Scale X="0.0024999999" Y="0.0024999999" Z="0.0024999999"/>
-                <Rotation X="0" Y="0" Z="-0"/>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="0"/>
         </Child0>
