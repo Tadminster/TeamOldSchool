@@ -267,9 +267,14 @@ void Player::PlayerMove()
 
 void Player::EquipToHand(ItemProto* item)
 {
+	if (equippedHand)
+	{
+		equippedHand->Use();
+		ReleaseToHand();
+	}
+
 	if (!equippedHand)
 	{
-		cout << "EquipToHand" << endl;
 		//아이템 완성단계에서 스케일, 각도 조절하기
 		equippedHand = item;
 		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedHand->GetActor());
@@ -283,7 +288,6 @@ void Player::ReleaseToHand()
 {
 	if (equippedHand)
 	{
-		cout << "ReleaseToHand" << endl;
 		actor->ReleaseNode(equippedHand->GetActor()->name);
 		equippedHand = nullptr;
 	}
