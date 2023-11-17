@@ -3,9 +3,6 @@ class Elder : public Unit
 {
 	Actor* bossStone = nullptr;
 
-	float gravity = 0;
-
-	bool isLand = 0;
 
 public:
 	Elder();

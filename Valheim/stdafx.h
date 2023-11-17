@@ -7,6 +7,7 @@
 #include "Inventory.h"
 
 #include "Prototype.h"
+#include "Unit.h"
 #include "Player.h"
 
 #include "ObjectManager.h"

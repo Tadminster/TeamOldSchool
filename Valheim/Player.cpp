@@ -41,29 +41,15 @@ void Player::Update()
 	else isPlayerCam = false;
 
 	//중력 구현
-	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
-	if (isLand) gravity = 0;
-	else gravity += GRAVITYPOWER * DELTA;
+	ApplyGravity();
 
 	actor->Update();
 }
 
 void Player::LateUpdate()
 {
-	//Player - Terrain 충돌판정
-    Ray playerTop;
-	playerTop.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
-    playerTop.direction = Vector3(0, -1, 0);
-    Vector3 hit;
-    if (Utility::RayIntersectMap(playerTop, MAP, hit))
-    {
-		if (actor->GetWorldPos().y - hit.y < 0.1f) {
-			actor->SetWorldPosY(hit.y);
-			isLand = true;
-		}
-		else isLand = false;
-    }
-    actor->Update();
+	//플레이어 - 터레인 충돌
+	SetonTerrain();
 
 	//경사 충돌(자연스럽게 손보기)
 	Vector3 dir = actor->GetWorldPos() - lastPos;
@@ -72,12 +58,12 @@ void Player::LateUpdate()
 	dir.Normalize();
 	dir2.Normalize();
 	float dot = dir.Dot(dir2);
-	if (state==WalkState::GetInstance())
+	if (moveSpeed != 0)
 	{
 		if (dot < 0.7 and (actor->GetWorldPos().y > lastPos.y))
 		{
-			actor->SetWorldPos(lastPos);
-			actor->Update();
+			//actor->SetWorldPos(lastPos);
+			//actor->Update();
 		}
 	}
 }
@@ -264,7 +250,7 @@ void Player::PlayerMove()
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
 	
-	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있아 싶어서 실험해봄(관련없음)
+	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있나 싶어 실험해봄(관련없음)
 	/*if (!istouch)
 	{
 		if (INPUT->KeyPress('W') && INPUT->KeyPress('A')) moveDir = actor->GetForward() - actor->GetRight();

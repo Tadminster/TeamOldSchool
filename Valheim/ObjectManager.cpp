@@ -13,7 +13,6 @@
 #include "ItemProto.h"
 #include "StoneAxe.h"
 
-#include "Unit.h"
 #include "Elder.h"
 
 #include "ObjectManager.h"
