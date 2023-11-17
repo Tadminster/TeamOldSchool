@@ -71,16 +71,16 @@ void Inventory::Update()
 	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
 
-	static float InitTime = 0.0f;
+	static float InitTime = 4.5f;
 	if (TIMER->GetTick(InitTime, 5.0f))
 	{
 		GM->ResizeScreen();
 		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
 		{
-			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 10;
+			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 30;
 			text_number[i].right = text_number[i].left + 1000;
 			text_number[i].top = 200;
-			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 15;
+			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 30;
 			text_number[i].bottom = text_number[i].top + 200;
 		}
 	}
@@ -122,9 +122,9 @@ void Inventory::Render()
 		DWRITE->RenderText(
 			to_wstring(i+1),
 			text_number[i],
-			15.0f,
+			20.0f,
 			L"Arial",
-			Color(1, 1, 1, 0),
+			Color(0.0f, 0.7f, 1.0f, 0.0f),
 			DWRITE_FONT_WEIGHT_SEMI_BOLD,
 			DWRITE_FONT_STYLE_ITALIC,
 			DWRITE_FONT_STRETCH_EXPANDED);
