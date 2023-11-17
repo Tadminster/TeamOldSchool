@@ -135,6 +135,7 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
+	//인벤 열리면 커서 고정 해제----------------------------------
 	if (!INVEN->isOpen)
 	{
 		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
@@ -237,7 +238,6 @@ void Player::PlayerMove()
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
-
 
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
