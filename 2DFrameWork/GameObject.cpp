@@ -366,9 +366,9 @@ bool Actor::ReleaseNode(string Name)
 
 	//부모리스트에서 타겟 비우기
 	Parent->children.erase(Parent->children.find(Name));
-	Parent = nullptr;
 
 	Target->root = this;
+	Target->parent = nullptr;
 
 	obList.erase(temp);
 	return true;
