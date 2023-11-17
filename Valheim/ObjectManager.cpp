@@ -20,13 +20,23 @@
 
 ObjectManager::ObjectManager()
 {
-	for (auto& item : stoneAxe)
+	// 테스트용 임시 아이템 생성
 	{
-		item = ItemProto::Create(ItemName::StoneAxe);
-		//item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
-		item->GetActor()->SetWorldPos(Vector3(0, 50, 0));
-		AddItem(item);
+		for (auto& item : stoneAxe)
+		{
+			item = ItemProto::Create(ItemName::StoneAxe);
+			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+			AddItem(item);
+		}
+
+		for (auto& item : woodpile)
+		{
+			item = ItemProto::Create(ItemName::Woodpile);
+			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+			AddItem(item);
+		}
 	}
+
 }
 
 ObjectManager::~ObjectManager()
