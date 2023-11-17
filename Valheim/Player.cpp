@@ -267,12 +267,6 @@ void Player::PlayerMove()
 
 void Player::EquipToHand(ItemProto* item)
 {
-	// 이미 장착중인 아이템이 있으면 해제
-	if (equippedHand)
-	{
-		equippedHand->Use();
-	}
-
 	if (!equippedHand)
 	{
 		//아이템 완성단계에서 스케일, 각도 조절하기

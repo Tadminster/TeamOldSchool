@@ -30,12 +30,13 @@ public:
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
-	virtual void Use() = 0;
-	void Drop();
-	
 
-	void SetState(ItemState state) { this->state = state; }
 	UI*	GetIcon() { return icon; }
+	ItemType GetType() { return type; }
+	void SetState(ItemState state) { this->state = state; }
+
+	void Drop();
+	virtual void Use() = 0;
 };
 //====================================================================================================
 class ToolProto : public ItemProto

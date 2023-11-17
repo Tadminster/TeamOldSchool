@@ -271,12 +271,32 @@ void Inventory::UseItem()
 			// 인벤토리에 아이템이 있으면
 			if (inventoryItem[i])
 			{
-				// 사용중인 아이템 체크
-				isUse[i] = !isUse[i];
+				// 아이템 타입 체크
+				ItemType type = inventoryItem[i]->GetType();
+				if (type == ItemType::Weapon)
+				{
+					// 이전에 이미 착용중인 무기가 있으면
+					if (equippedItem.Weapon != -1)
+					{
+						// 해당 슬롯을 원래 슬롯으로 변경
+						slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
 
-				// 아이템 사용중이면 블루슬롯으로 변경, 아니면 원래 슬롯으로 변경
-				if (isUse[i]) slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-				else slot[i]->material->LoadFile("Inventory/InventorySlot.mtl");
+						// 이전에 착용중이던 무기를 해제
+						inventoryItem[equippedItem.Weapon]->Use();
+					}
+
+					// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
+					slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+					equippedItem.Weapon = i;
+				}
+				else if (type == ItemType::Tool)
+				{
+					equippedItem.Weapon = i;
+				}
+				else if (type == ItemType::Armor)
+				{
+					equippedItem.Armor = i;
+				}
 
 				// 아이템 사용
 				inventoryItem[i]->Use();

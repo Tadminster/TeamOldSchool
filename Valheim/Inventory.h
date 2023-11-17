@@ -21,6 +21,11 @@ private:
 	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 알파슬롯, 32 블루슬롯)
 	bool				isUse[INVENTORY_SIZE];				// 사용중인(장착중인) 슬롯 확인용
 	// 아이템 조작===========================================================================================
+	struct EquippedItem
+	{
+		int		Weapon		{ -1 };
+		int		Armor		{ -1 };
+	};
 	struct OnMouseItem
 	{
 		ItemProto*	item	{ nullptr };	// 마우스에 들고있는 아이템
@@ -32,7 +37,8 @@ private:
 		UILocation	location;
 		int			index	{ -1 };
 	};
-	OnMouseItem onMouse;
+	OnMouseItem		onMouse;
+	EquippedItem	equippedItem;
 
 public:
 	Inventory();
