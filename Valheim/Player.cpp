@@ -11,6 +11,7 @@ Player::Player()
 	actor->anim->aniScale = 0.65f;
 	
 	state = IdleState::GetInstance();
+	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 }
 
 Player::~Player()
@@ -20,11 +21,6 @@ Player::~Player()
 void Player::Init()
 {
 	actor->SetWorldPos(Vector3(0,20,0));
-	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-
-	
-	
-
 	slidingVector.direction = actor->GetForward();
 }
 

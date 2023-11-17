@@ -13,8 +13,6 @@
 
 InGame::InGame()
 {
-	gameManager = new GameManager();
-
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
 
@@ -36,11 +34,12 @@ InGame::InGame()
 
 InGame::~InGame()
 {
-
+	
 }
 
 void InGame::Init()
 {
+	GM->Init();
 	PLAYER->Init();
 	elder->Init();
 }
