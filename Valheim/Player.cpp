@@ -273,8 +273,8 @@ void Player::EquipToHand(ItemProto* item)
 		equippedHand = item;
 		actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
 		actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
-		actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
 		actor->Find(item->GetActor()->name)->rotation = Vector3(0, 90.0f, 0) * ToRadian;
+		actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
 	}
 }
 
@@ -284,9 +284,8 @@ void Player::ReleaseToHand()
 	{
 		if (INPUT->KeyDown('1'))
 		{
+			equippedHand->Use();
 			this->actor->ReleaseAllNode(equippedHand->GetActor()->name);
-			equippedHand->GetActor()->scale = Vector3(1, 1, 1);
-			equippedHand->SetState(ItemState::OnInventory);
 			equippedHand = nullptr;
 		}
 	}

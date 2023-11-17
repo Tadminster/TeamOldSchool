@@ -86,7 +86,6 @@ void Inventory::LateUpdate()
 		// 아이템 드랍
 		ItemDrop();
 	}
-
 }
 
 void Inventory::PreRender()
@@ -250,17 +249,8 @@ void Inventory::ItemDrop()
 				inventoryItem[onMouse.index] = nullptr;
 				inventoryIcon[onMouse.index] = nullptr;
 
-				// 아이템을 마우스 위치로 이동
-				Ray tempRay; Vector3 rayHitPoint;
-				tempRay.position = PLAYER->GetActor()->GetWorldPos() + PLAYER->GetActor()->GetForward() * 2 + PLAYER->GetActor()->GetUp() * 100;
-				tempRay.direction = Vector3(0.0f, -1.0f, 0.f);
-				if (Utility::RayIntersectMap(tempRay, MAP, rayHitPoint))
-				{
-					onMouse.item->GetActor()->SetWorldPos(rayHitPoint + Vector3(0, 0.5f, 0));
-				}
-
-				// 아이템의 상태를 OnGround로 변경
-				onMouse.item->SetState(ItemState::OnGround);
+				// 드래그 중인 아이템을 땅에 떨어뜨림
+				onMouse.item->Drop();
 
 				//  들고 있는 아이템 정보를 초기화
 				onMouse.item = nullptr;
@@ -280,8 +270,7 @@ void Inventory::UseItem()
 			// 인벤토리에 아이템이 있으면
 			if (inventoryItem[i])
 			{
-				inventoryItem[i]->SetState(ItemState::Equipped);
-				PLAYER->EquipToHand(inventoryItem[i]);
+				inventoryItem[i]->Use();
 			}
 		}
 	}

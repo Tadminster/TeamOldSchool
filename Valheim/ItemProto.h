@@ -13,8 +13,10 @@ class ItemProto : public Prototype
 protected:
 	UI*			icon;		// 아이콘
 
-	float		gravity		{ 10 };
-	Vector3		rayCollisionPoint;
+	Vector3		moveDir		{};			// 이동 방향
+	float		gravity		{ 0.0f };	// 중력
+	float		forwardForce{ 0.0f };	// 앞으로 나아가는 힘
+	Vector3		rayCollisionPoint;		// 레이가 땅과 충돌하는 지점
 
 	string		name;		// 이름
 	ItemType	type;		// 종류
@@ -25,7 +27,10 @@ public:
 	static ItemProto* Create(ItemName name);
 	virtual ~ItemProto() {};
 	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
 	virtual void Use() = 0;
+	void Drop();
 	
 
 	void SetState(ItemState state) { this->state = state; }

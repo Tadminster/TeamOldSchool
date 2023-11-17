@@ -50,10 +50,10 @@ void StoneAxe::Update()
 	ImGui::End();
 
 	
-
+	ItemProto::Update();
 	if (state == ItemState::OnGround )
 	{
-		actor->Update();
+		//actor->Update();
 	}
 	else if (state == ItemState::OnInventory)
 	{
@@ -68,19 +68,7 @@ void StoneAxe::Update()
 
 void StoneAxe::LateUpdate()
 {
-	if (state == ItemState::OnGround)
-	{
-		groundRay.position = actor->GetWorldPos();
-
-		if (Utility::RayIntersectMap(groundRay, MAP, rayCollisionPoint))
-		//if (MAP->ComputePicking(groundRay, rayCollisionPoint))
-		{
-			if (actor->GetWorldPos().y > rayCollisionPoint.y + 0.5f)
-			{
-				actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
-			}
-		}
-	}
+	//ItemProto::LateUpdate();
 }
 
 void StoneAxe::Render()
@@ -115,9 +103,20 @@ void StoneAxe::DestructionEvent()
 
 void StoneAxe::Use()
 {
+	if (state == ItemState::OnInventory)
+	{
+		state = ItemState::Equipped;
+		PLAYER->EquipToHand(this);
+	}
+	else if (state == ItemState::Equipped)
+	{
+		state = ItemState::OnInventory;
+		PLAYER->ReleaseToHand();
+	}
 }
 
 void StoneAxe::Fix()
 {
+	durability = 100;
 }
 
