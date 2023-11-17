@@ -16,6 +16,7 @@ Inventory::Inventory()
 	inventoryUI = UI::Create("InventoryUI");
 	inventoryUI->LoadFile("InvenUI.xml");
 
+
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
 	pannel = static_cast<UI*>(inventoryUI->Find("PANNEL"));
 	for (int i = 1; i <= 32; i++)
@@ -27,8 +28,6 @@ Inventory::Inventory()
 		slot[i - 1] = static_cast<UI*>(inventoryUI->Find(slotName));
 	}
 	slot[BLUE_SLOT] = static_cast<UI*>(inventoryUI->Find("Slot99"));
-
-	
 }
 
 Inventory::~Inventory()
@@ -38,7 +37,7 @@ Inventory::~Inventory()
 
 void Inventory::Init()
 {
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		slot[i]->visible = true;
 	}
@@ -71,6 +70,20 @@ void Inventory::Update()
 	inventoryUI->Update();
 	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
+
+	static float InitTime = 0.0f;
+	if (TIMER->GetTick(InitTime, 5.0f))
+	{
+		GM->ResizeScreen();
+		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
+		{
+			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 10;
+			text_number[i].right = text_number[i].left + 1000;
+			text_number[i].top = 200;
+			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 15;
+			text_number[i].bottom = text_number[i].top + 200;
+		}
+	}
 }
 
 void Inventory::LateUpdate()
@@ -101,6 +114,21 @@ void Inventory::PreRender()
 void Inventory::Render()
 {
 	inventoryUI->Render();
+
+	for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
+	{
+
+
+		DWRITE->RenderText(
+			to_wstring(i+1),
+			text_number[i],
+			15.0f,
+			L"Arial",
+			Color(1, 1, 1, 0),
+			DWRITE_FONT_WEIGHT_SEMI_BOLD,
+			DWRITE_FONT_STYLE_ITALIC,
+			DWRITE_FONT_STRETCH_EXPANDED);
+	}
 
 	if (isOpen)
 	{
