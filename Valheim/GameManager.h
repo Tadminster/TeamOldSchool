@@ -7,6 +7,7 @@ public:
     class Water*            sea;
     class Inventory*        inventory;
     class Player*           player;
+    class MiniMap*        minimap;
     class ObjectManager*    objectManager;
 
     bool 			    debugMode{ true };

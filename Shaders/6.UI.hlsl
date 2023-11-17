@@ -30,5 +30,6 @@ float4 PS(PixelInput input) : SV_TARGET
 	{
 		discard;
 	}
+	
 	return result;
 }
