@@ -55,7 +55,8 @@ public:
 	void MouseOverSlot();
 	void ItemPickUp();
 	void ItemDrop();
-	void UseItem();
+	void UseItem(int shortcut = 99);
+	void InputShortcut();
 	Inventory::MouseLocation CheckMouseLocation();
 	// ==================================================================================================
 	void AddItem(ItemProto* item);

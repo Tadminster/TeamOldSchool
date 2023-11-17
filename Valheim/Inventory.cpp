@@ -75,17 +75,20 @@ void Inventory::LateUpdate()
 	if (inventoryUI->Find("SlotBottom")->visible)
 	{
 		// 마우스 오버시 슬롯 강조
-		MouseOverSlot();
+		MouseOverSlot();	
 
-		// 아이템 사용하기
+		// 아이템 사용
 		UseItem();
 
-		// 아이템 선택하기
+		// 아이템 선택
 		ItemPickUp();
 
 		// 아이템 드랍
 		ItemDrop();
 	}
+
+	// 단축키 입력으로 아이템 사용
+	InputShortcut();
 }
 
 void Inventory::PreRender()
@@ -278,54 +281,113 @@ void Inventory::ItemDrop()
 	}
 }
 
-void Inventory::UseItem()
+void Inventory::UseItem(int shortcut)
 {
-	for (int i = 0; i < 32; i++)
+	if (shortcut == 99)
 	{
-		if (INPUT->KeyDown(VK_RBUTTON) && slot[i]->MouseOver())
+		for (int i = 0; i < 32; i++)
 		{
-			// 인벤토리에 아이템이 있으면
-			if (inventoryItem[i])
+			if (INPUT->KeyDown(VK_RBUTTON) && slot[i]->MouseOver())
 			{
-				// 아이템 타입 체크
-				ItemType type = inventoryItem[i]->GetType();
-				if (type == ItemType::Weapon)
+				// 인벤토리에 아이템이 있으면
+				if (inventoryItem[i])
 				{
-					// 이전에 이미 착용중인 무기가 있으면
-					if (equippedItem.Weapon != -1)
+					// 아이템 타입 체크
+					ItemType type = inventoryItem[i]->GetType();
+					if (type == ItemType::Weapon)
 					{
-						// 해당 슬롯을 원래 슬롯으로 변경
-						slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
+						// 이전에 이미 착용중인 무기가 있으면
+						if (equippedItem.Weapon != -1)
+						{
+							// 해당 슬롯을 원래 슬롯으로 변경
+							slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
 
-						// 이전에 착용중이던 무기를 해제
-						inventoryItem[equippedItem.Weapon]->Use();
-					}
+							// 이전에 착용중이던 무기를 해제
+							inventoryItem[equippedItem.Weapon]->Use();
+						}
 
-					// 이전에 착용중인 무기가 자기 자신이면
-					if (equippedItem.Weapon == i)
-					{
-						equippedItem.Weapon = -1;
+						// 이전에 착용중인 무기가 자기 자신이면
+						if (equippedItem.Weapon == i)
+						{
+							equippedItem.Weapon = -1;
+						}
+						// 다른 무기라면
+						else
+						{
+							// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
+							slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+							inventoryItem[i]->Use();
+							equippedItem.Weapon = i;
+						}
 					}
-					// 다른 무기라면
-					else
+					else if (type == ItemType::Tool)
 					{
-						// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
-						slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-						inventoryItem[i]->Use();
 						equippedItem.Weapon = i;
 					}
-				}
-				else if (type == ItemType::Tool)
-				{
-					equippedItem.Weapon = i;
-				}
-				else if (type == ItemType::Armor)
-				{
-					equippedItem.Armor = i;
+					else if (type == ItemType::Armor)
+					{
+						equippedItem.Armor = i;
+					}
 				}
 			}
 		}
 	}
+	else
+	{
+		// 인벤토리에 아이템이 있으면
+		if (inventoryItem[shortcut])
+		{
+			// 아이템 타입 체크
+			ItemType type = inventoryItem[shortcut]->GetType();
+			if (type == ItemType::Weapon)
+			{
+				// 이전에 이미 착용중인 무기가 있으면
+				if (equippedItem.Weapon != -1)
+				{
+					// 해당 슬롯을 원래 슬롯으로 변경
+					slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
+
+					// 이전에 착용중이던 무기를 해제
+					inventoryItem[equippedItem.Weapon]->Use();
+				}
+
+				// 이전에 착용중인 무기가 자기 자신이면
+				if (equippedItem.Weapon == shortcut)
+				{
+					equippedItem.Weapon = -1;
+				}
+				// 다른 무기라면
+				else
+				{
+					// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
+					slot[shortcut]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+					inventoryItem[shortcut]->Use();
+					equippedItem.Weapon = shortcut;
+				}
+			}
+			else if (type == ItemType::Tool)
+			{
+				equippedItem.Weapon = shortcut;
+			}
+			else if (type == ItemType::Armor)
+			{
+				equippedItem.Armor = shortcut;
+			}
+		}
+	}
+
+}
+
+void Inventory::InputShortcut()
+{
+	if (INPUT->KeyDown('1')) UseItem(0);
+	else if (INPUT->KeyDown('2')) UseItem(1);
+	else if (INPUT->KeyDown('3')) UseItem(2);
+	else if (INPUT->KeyDown('4')) UseItem(3);
+	else if (INPUT->KeyDown('5')) UseItem(4);
+	else if (INPUT->KeyDown('6')) UseItem(5);
+	else if (INPUT->KeyDown('7')) UseItem(6);
+	else if (INPUT->KeyDown('8')) UseItem(7);
 }
 
 Inventory::MouseLocation Inventory::CheckMouseLocation()
