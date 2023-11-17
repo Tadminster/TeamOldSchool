@@ -75,7 +75,7 @@ void Woodpile::Render()
 			13.0f, 
 			L"Arial", 
 			Color(1, 1, 1, 0), 
-			DWRITE_FONT_WEIGHT_SEMI_BOLD, 
+			DWRITE_FONT_WEIGHT_REGULAR,
 			DWRITE_FONT_STYLE_ITALIC, 
 			DWRITE_FONT_STRETCH_EXPANDED);
 	}
