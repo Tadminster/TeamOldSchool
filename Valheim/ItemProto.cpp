@@ -24,15 +24,11 @@ void ItemProto::Update()
 {
 	if (state == ItemState::OnGround)
 	{
-		// 초기 이동방향은 Up 방향
-		moveDir = Vector3(0, 1, 0);
-
 		// forwardForce 가 0 이상이면
 		if (forwardForce > 0.0f)
 		{
 			// 이동방향에 Forward 방향을 더함
-			moveDir += actor->GetForward();
-			moveDir.Normalize();
+			actor->MoveWorldPos(forwardDir * veclocity * DELTA);
 
 			// forwardForce 감소
 			forwardForce -= 10.0f * DELTA;
@@ -46,7 +42,7 @@ void ItemProto::Update()
 			if (actor->GetWorldPos().y > rayCollisionPoint.y + 0.5f)
 			{
 				// 이동
-				actor->MoveWorldPos(moveDir * gravity * DELTA);
+				actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
 
 				// gravity 감소
 				gravity -= 20.0f * DELTA;
@@ -54,8 +50,9 @@ void ItemProto::Update()
 			// 충돌지점보다 낮게 있으면
 			else
 			{
-				// gravity 초기화
+				// 이동하지 않게 초기화
 				gravity = 0.0f;
+				forwardForce = 0.0f;
 			}
 		}
 
@@ -73,6 +70,7 @@ void ItemProto::Drop()
 	actor->scale	= Vector3(1, 1, 1);
 	actor->rotation = Vector3(0, PLAYER->GetActor()->rotation.y, 0);
 	actor->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0.0f, 1.0f, 0.0f));
+	forwardDir		= PLAYER->GetActor()->GetForward();
 
 	forwardForce	= 5.0f;
 	gravity			= 5.0f;

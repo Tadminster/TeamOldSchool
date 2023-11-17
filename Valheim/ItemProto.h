@@ -13,9 +13,10 @@ class ItemProto : public Prototype
 protected:
 	UI*			icon;		// 아이콘
 
-	Vector3		moveDir		{};			// 이동 방향
-	float		gravity		{ 0.0f };	// 중력
+	Vector3     forwardDir	{};			// 앞 방향
 	float		forwardForce{ 0.0f };	// 앞으로 나아가는 힘
+	float		veclocity	{ 5.0f };	// 속도
+	float		gravity		{ 0.0f };	// 중력
 	Vector3		rayCollisionPoint;		// 레이가 땅과 충돌하는 지점
 
 	string		name;		// 이름
