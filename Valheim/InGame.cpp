@@ -79,15 +79,7 @@ void InGame::Update()
 	else 
 	{
 		PLAYER->AvtivatePlayerCam();
-		//실험단계--------------------------
-		//if (INPUT->KeyDown('1'))
-		//{
-		//	PLAYER->EquipToHand(stoneAxe[0]);
-		//	PLAYER->EquipToHand(stoneAxe[1]);
-		//}
 	}
-
-	PLAYER->ReleaseToHand();
 
 	GM->Update();
 

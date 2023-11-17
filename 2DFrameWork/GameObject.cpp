@@ -360,19 +360,16 @@ bool Actor::ReleaseNode(string Name)
 
 	if (temp == obList.end())  return false;
 
-	//지워질대상,지워질대상의 부모 포인터
+	//지워질 대상, 지워질대상의 부모 포인터
 	GameObject* Target = temp->second;
 	GameObject* Parent = temp->second->parent;
+
 	//부모리스트에서 타겟 비우기
 	Parent->children.erase(Parent->children.find(Name));
+	Parent = nullptr;
 
-	for (auto it = Target->children.begin();
-		it != Target->children.end(); it++)
-	{
-		Parent->children[it->second->name] = it->second;
-		it->second->parent = Parent;
-		//SafeRelease(it->second);
-	}
+	Target->root = this;
+
 	obList.erase(temp);
 	return true;
 }

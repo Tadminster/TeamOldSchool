@@ -269,12 +269,13 @@ void Player::EquipToHand(ItemProto* item)
 {
 	if (!equippedHand)
 	{
+		cout << "EquipToHand" << endl;
 		//아이템 완성단계에서 스케일, 각도 조절하기
 		equippedHand = item;
-		actor->Find("mixamorig:RightHandIndex1")->AddChild(item->GetActor());
-		actor->Find(item->GetActor()->name)->scale = Vector3(50, 50, 50);
-		actor->Find(item->GetActor()->name)->rotation = Vector3(0, 90.0f, 0) * ToRadian;
-		actor->Find(item->GetActor()->name)->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedHand->GetActor());
+		equippedHand->GetActor()->scale = Vector3(50, 50, 50);
+		equippedHand->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
+		equippedHand->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
 	}
 }
 
@@ -282,12 +283,9 @@ void Player::ReleaseToHand()
 {
 	if (equippedHand)
 	{
-		if (INPUT->KeyDown('1'))
-		{
-			equippedHand->Use();
-			this->actor->ReleaseAllNode(equippedHand->GetActor()->name);
-			equippedHand = nullptr;
-		}
+		cout << "ReleaseToHand" << endl;
+		actor->ReleaseNode(equippedHand->GetActor()->name);
+		equippedHand = nullptr;
 	}
 }
 

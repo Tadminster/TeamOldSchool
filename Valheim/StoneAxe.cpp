@@ -106,11 +106,13 @@ void StoneAxe::Use()
 {
 	if (state == ItemState::OnInventory)
 	{
+		cout << "StoneAxe Use" << endl;
 		state = ItemState::Equipped;
 		PLAYER->EquipToHand(this);
 	}
 	else if (state == ItemState::Equipped)
 	{
+		cout << "StoneAxe UnUse" << endl;
 		state = ItemState::OnInventory;
 		PLAYER->ReleaseToHand();
 	}
