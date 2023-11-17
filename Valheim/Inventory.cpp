@@ -9,7 +9,6 @@ Inventory::Inventory()
 	{
 		inventoryItem[i] = nullptr;
 		inventoryIcon[i] = nullptr;
-		isUse[i] = false;
 	}
 
 	// 인벤토리 UI 생성 및 로드
@@ -250,6 +249,23 @@ void Inventory::ItemDrop()
 				inventoryItem[onMouse.index] = nullptr;
 				inventoryIcon[onMouse.index] = nullptr;
 
+				// 버릴 아이템의 타입 체크
+				ItemType type = onMouse.item->GetType();
+				// 무기라면
+				if (type == ItemType::Weapon)
+				{
+					// 지금 착용중인 무기인지 체크
+					if (onMouse.index == equippedItem.Weapon)
+					{
+						// 인벤토리 정보 업데이트
+						slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
+						equippedItem.Weapon = -1;
+
+						// 장착 해제
+						onMouse.item->Use();
+					}
+				}
+
 				// 드래그 중인 아이템을 땅에 떨어뜨림
 				onMouse.item->Drop();
 
@@ -283,8 +299,6 @@ void Inventory::UseItem()
 
 						// 이전에 착용중이던 무기를 해제
 						inventoryItem[equippedItem.Weapon]->Use();
-
-
 					}
 
 					// 이전에 착용중인 무기가 자기 자신이면
