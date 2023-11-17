@@ -60,6 +60,9 @@
     <ClInclude Include="Unit.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="ElderState.h">
+      <Filter>GameObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -115,6 +118,9 @@
       <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
+      <Filter>GameObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderState.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "ElderState.h"
 #include "Elder.h"
 
 Elder::Elder()
@@ -7,6 +8,8 @@ Elder::Elder()
 	actor->LoadFile("Monster_Elder.xml");
 	actor->LoadFile("Monster_Elder_BossStone.xml");
 	actor->name = "Monster_Elder";
+
+	state = Elder_OpeningState::GetInstance();
 }
 
 Elder::~Elder()
@@ -32,9 +35,13 @@ void Elder::LateUpdate()
 	SetonTerrain();
 
 	//보스 소환 임시
-	if (INPUT->KeyDown('Q')) actor->LoadFile("Monster_Elder.xml");
-	else if (INPUT->KeyDown('E')) actor->LoadFile("Monster_Elder_BossStone.xml");
+	if (INPUT->KeyDown('9')) actor->LoadFile("Monster_Elder.xml");
+	else if (INPUT->KeyDown('0')) actor->LoadFile("Monster_Elder_BossStone.xml");
+	if (INPUT->KeyDown(VK_F3)) state->Idle(this);
+	else if (INPUT->KeyDown(VK_F4)) state->Walk(this);
 
+	if (state == Elder_IdleState::GetInstance()) cout << 1;
+	else if (state == Elder_WalkState::GetInstance()) cout << 2;
 	//슬라이딩 벡터 초기작
 	if (PLAYER->GetPlayer()->collider->Intersect(actor->collider))
 	{
@@ -69,4 +76,9 @@ bool Elder::IsDestroyed()
 
 void Elder::DestructionEvent()
 {
+}
+
+void Elder::SetState(ElderState* state)
+{
+	this->state = state;
 }

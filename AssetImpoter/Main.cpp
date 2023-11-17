@@ -11,7 +11,7 @@ Main::Main()
     Camera::main = cam1;
     
     temp = Actor::Create();
-    //temp->LoadFile("Monster_Elder.xml");
+    temp->LoadFile("Monster_Elder.xml");
 
 
     ui = UI::Create("UI");

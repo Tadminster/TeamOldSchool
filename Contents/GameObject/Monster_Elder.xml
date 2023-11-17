@@ -1,5 +1,11 @@
 <Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Elder/Monster_Elder.skel" BoneIndexCount="68"/>
+    <Animations AnimSize="7" File0="/Elder_Opening0.anim" File1="/Elder_Idle0.anim" File2="/Elder_Walk0.anim" File3="/Elder_Stomp0.anim" File4="/Elder_VineShoot0.anim" File5="/Elder_Summon0.anim" File6="/Elder_Death0.anim"/>
+    <Collider ColliderType="2" Visible="true">
+        <Position X="0" Y="2.5" Z="0.15000001"/>
+        <Scale X="1.2" Y="2.5" Z="0.64999998"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>

@@ -1,9 +1,7 @@
 #pragma once
 class Elder : public Unit
 {
-	Actor* bossStone = nullptr;
-
-
+	class ElderState* state = nullptr;
 public:
 	Elder();
 	~Elder();
@@ -15,5 +13,7 @@ public:
 	void RenderHierarchy() override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
+
+	void SetState(ElderState* state);
 };
 
