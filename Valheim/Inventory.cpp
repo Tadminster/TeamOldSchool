@@ -257,6 +257,10 @@ void Inventory::ItemDrop()
 					// 지금 착용중인 무기인지 체크
 					if (onMouse.index == equippedItem.Weapon)
 					{
+						// 인벤토리 정보 업데이트
+						slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
+						equippedItem.Weapon = -1;
+
 						// 장착 해제
 						onMouse.item->Use();
 					}
