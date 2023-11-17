@@ -62,7 +62,7 @@ void Woodpile::Render()
 {
 	ItemProto::Render();
 
-	if (state == ItemState::OnInventory)
+	if (INVEN->isOpen && state == ItemState::OnInventory)
 	{
 		text_stack.left = App.GetWidth() * ((icon->GetWorldPos().x + 1) / 2) - 10;
 		text_stack.right = text_stack.left + 1000;
