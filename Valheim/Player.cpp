@@ -270,7 +270,6 @@ void Player::EquipToHand(ItemProto* item)
 	if (equippedHand)
 	{
 		equippedHand->Use();
-		ReleaseToHand();
 	}
 
 	if (!equippedHand)
