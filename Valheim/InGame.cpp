@@ -6,15 +6,12 @@
 #include "GameOption.h"
 #include "StoneAxe.h"
 
-#include "Unit.h"
 #include "Elder.h"
 
 #include "InGame.h"
 
 InGame::InGame()
 {
-	gameManager = new GameManager();
-
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
 
@@ -36,11 +33,12 @@ InGame::InGame()
 
 InGame::~InGame()
 {
-
+	
 }
 
 void InGame::Init()
 {
+	GM->Init();
 	PLAYER->Init();
 	elder->Init();
 }

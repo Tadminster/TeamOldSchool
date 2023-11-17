@@ -9,11 +9,13 @@ Inventory::Inventory()
 	{
 		inventoryItem[i] = nullptr;
 		inventoryIcon[i] = nullptr;
+		isUse[i] = false;
 	}
 
 	// 인벤토리 UI 생성 및 로드
 	inventoryUI = UI::Create("InventoryUI");
 	inventoryUI->LoadFile("InvenUI.xml");
+
 
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
 	pannel = static_cast<UI*>(inventoryUI->Find("PANNEL"));
@@ -26,8 +28,6 @@ Inventory::Inventory()
 		slot[i - 1] = static_cast<UI*>(inventoryUI->Find(slotName));
 	}
 	slot[BLUE_SLOT] = static_cast<UI*>(inventoryUI->Find("Slot99"));
-
-	
 }
 
 Inventory::~Inventory()
@@ -37,7 +37,7 @@ Inventory::~Inventory()
 
 void Inventory::Init()
 {
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		slot[i]->visible = true;
 	}
@@ -59,20 +59,36 @@ void Inventory::Update()
 	// Tab키를 누르면 인벤토리가 열림
 	if (INPUT->KeyDown(VK_TAB))
 	{
-		inventoryUI->Find("SlotBottom")->visible = !inventoryUI->Find("SlotBottom")->visible;
-		
-		// 인벤토리가 닫혔을 때, 초기화
-		if (!inventoryUI->Find("SlotBottom")->visible) Init();
+		isOpen = !isOpen;
+
+		if (isOpen) inventoryUI->Find("SlotBottom")->visible = true;
+		else inventoryUI->Find("SlotBottom")->visible = false;
+
+		Init();
 	}
 
 	inventoryUI->Update();
 	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
+
+	static float InitTime = 0.0f;
+	if (TIMER->GetTick(InitTime, 5.0f))
+	{
+		GM->ResizeScreen();
+		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
+		{
+			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 10;
+			text_number[i].right = text_number[i].left + 1000;
+			text_number[i].top = 200;
+			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 15;
+			text_number[i].bottom = text_number[i].top + 200;
+		}
+	}
 }
 
 void Inventory::LateUpdate()
 {
-	if (inventoryUI->Find("SlotBottom")->visible)
+	if (isOpen)
 	{
 		// 마우스 오버시 슬롯 강조
 		MouseOverSlot();	
@@ -99,7 +115,22 @@ void Inventory::Render()
 {
 	inventoryUI->Render();
 
-	if (inventoryUI->Find("SlotBottom")->visible)
+	for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
+	{
+
+
+		DWRITE->RenderText(
+			to_wstring(i+1),
+			text_number[i],
+			15.0f,
+			L"Arial",
+			Color(1, 1, 1, 0),
+			DWRITE_FONT_WEIGHT_SEMI_BOLD,
+			DWRITE_FONT_STYLE_ITALIC,
+			DWRITE_FONT_STRETCH_EXPANDED);
+	}
+
+	if (isOpen)
 	{
 		for (auto icon : inventoryIcon)
 			if (icon) icon->Render();
@@ -121,7 +152,7 @@ void Inventory::MouseOverSlot()
 	bool isMouseOver = false;
 	
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
-	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
+	if (isOpen && pannel->MouseOver())
 	{
 		//	모든 인벤토리 슬롯을 순회
 		for (int i = 0; i < 32; i++)
@@ -197,7 +228,6 @@ void Inventory::ItemDrop()
 
 			if (mLocation.location == UILocation::OnSlot)
 			{
-				cout << "OnSlot, " << mLocation.index << endl;
 				// 아이템을 드래그 중인 슬롯에 놓으면
 				if (mLocation.index == onMouse.index)
 				{
@@ -211,21 +241,67 @@ void Inventory::ItemDrop()
 				// 아이템을 다른 슬롯과 위치를 바꿈
 				else
 				{
-					cout << "슬롯 변경" << endl;
+					// 착용중인 아이템 인덱스 추적
+					equippedItem.swap(onMouse.index, mLocation.index);
+
 					// 다른 슬롯에 아이템이 있다면
 					if (inventoryItem[mLocation.index])
 					{
+						// 슬롯 색상 변경
+						{
+
+							// 원래 슬롯은 아이템 사용중, 다른 슬롯은 아이템 사용중이 아님
+							if (isUse[onMouse.index] && !isUse[mLocation.index])
+							{
+								// 원래슬롯은 일반슬롯으로 변경
+								slot[onMouse.index]->material->LoadFile("Inventory/InventorySlot.mtl");
+								isUse[onMouse.index] = false;
+
+								// 다른슬롯은 블루슬롯으로 변경
+								slot[mLocation.index]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+								isUse[mLocation.index] = true;
+							}
+							// 원래 슬롯은 아이템 사용중이 아님, 다른 슬롯은 아이템 사용중
+							else if (!isUse[onMouse.index] && isUse[mLocation.index])
+							{
+								// 원래슬롯은 블루슬롯으로 변경
+								slot[onMouse.index]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+								isUse[onMouse.index] = true;
+
+								// 다른슬롯은 일반슬롯으로 변경
+								slot[mLocation.index]->material->LoadFile("Inventory/InventorySlot.mtl");
+								isUse[mLocation.index] = false;
+							}
+
+						}
+
+
+
 						// 다른 슬롯의 아이템을 드래그 중인 슬롯으로 이동
 						inventoryItem[onMouse.index] = inventoryItem[mLocation.index];
 						inventoryIcon[onMouse.index] = inventoryIcon[mLocation.index];
 						inventoryIcon[onMouse.index]->SetWorldPos(slot[onMouse.index]->GetWorldPos());
 					}
-					// 다른 슬롯에 아이템이 없다면 원래 슬롯을 비움
+					// 다른 슬롯에 아이템이 없다면 
 					else
 					{
+						// 원래 슬롯이 사용중이었으면
+						if (isUse[onMouse.index])
+						{
+							// 원래 슬롯은 일반슬롯으로, 다른 슬롯은 블루슬롯으로 변경
+							slot[onMouse.index]->material->LoadFile("Inventory/InventorySlot.mtl");
+							isUse[onMouse.index] = false;
+
+							slot[mLocation.index]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+							isUse[mLocation.index] = true;
+						}
+
+						// 원래 슬롯을 비움
 						inventoryItem[onMouse.index] = nullptr;
 						inventoryIcon[onMouse.index] = nullptr;
 					}
+
+
 
 					// 드래그 중인 아이템은 다른 슬롯으로 이동
 					inventoryItem[mLocation.index] = onMouse.item;
@@ -233,7 +309,6 @@ void Inventory::ItemDrop()
 					inventoryIcon[mLocation.index]->SetWorldPos(slot[mLocation.index]->GetWorldPos());
 
 					onMouse.item = nullptr;
-					//onMouse.image->SetWorldPos(slot[mLocation.index]->GetWorldPos());
 					onMouse.image = nullptr;
 					onMouse.index = -1;
 				}
@@ -262,6 +337,7 @@ void Inventory::ItemDrop()
 					{
 						// 인벤토리 정보 업데이트
 						slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
+						isUse[equippedItem.Weapon] = false;
 						equippedItem.Weapon = -1;
 
 						// 장착 해제
@@ -299,24 +375,35 @@ void Inventory::UseItem(int shortcut)
 						// 이전에 이미 착용중인 무기가 있으면
 						if (equippedItem.Weapon != -1)
 						{
+							// 이전에 착용중이던 무기를 해제
+							inventoryItem[equippedItem.Weapon]->Use();
+
 							// 해당 슬롯을 원래 슬롯으로 변경
 							slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
 
-							// 이전에 착용중이던 무기를 해제
-							inventoryItem[equippedItem.Weapon]->Use();
+							// 해당	슬롯을 사용중이 아니라고 표시
+							isUse[equippedItem.Weapon] = false;
 						}
 
 						// 이전에 착용중인 무기가 자기 자신이면
 						if (equippedItem.Weapon == i)
 						{
+							// 무기 인덱스 초기화
 							equippedItem.Weapon = -1;
 						}
 						// 다른 무기라면
 						else
 						{
+							// 새로운 무기를 착용
+							inventoryItem[i]->Use();
+
 							// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
 							slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-							inventoryItem[i]->Use();
+
+							// 해당	슬롯을 사용중이라고 표시
+							isUse[i] = true;
+
+							// 새로 착용한 무기 인덱스 저장
 							equippedItem.Weapon = i;
 						}
 					}
@@ -344,11 +431,14 @@ void Inventory::UseItem(int shortcut)
 				// 이전에 이미 착용중인 무기가 있으면
 				if (equippedItem.Weapon != -1)
 				{
+					// 이전에 착용중이던 무기를 해제
+					inventoryItem[equippedItem.Weapon]->Use();
+
 					// 해당 슬롯을 원래 슬롯으로 변경
 					slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
 
-					// 이전에 착용중이던 무기를 해제
-					inventoryItem[equippedItem.Weapon]->Use();
+					// 해당	슬롯을 사용중이 아니라고 표시
+					isUse[equippedItem.Weapon] = false;
 				}
 
 				// 이전에 착용중인 무기가 자기 자신이면
@@ -359,10 +449,13 @@ void Inventory::UseItem(int shortcut)
 				// 다른 무기라면
 				else
 				{
-					// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
-					slot[shortcut]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+					// 아이템 착용
 					inventoryItem[shortcut]->Use();
+
+					// 인벤토리 데이터 업데이트
+					slot[shortcut]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
 					equippedItem.Weapon = shortcut;
+					isUse[shortcut] = true;
 				}
 			}
 			else if (type == ItemType::Tool)

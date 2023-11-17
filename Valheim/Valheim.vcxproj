@@ -23,6 +23,7 @@
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
+    <ClInclude Include="ElderState.h" />
     <ClInclude Include="FeatureProto.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameOption.h" />
@@ -41,12 +42,14 @@
     <ClInclude Include="Beech.h" />
     <ClInclude Include="Elder.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="Woodpile.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
+    <ClCompile Include="ElderState.cpp" />
     <ClCompile Include="FeatureProto.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameOption.cpp" />
@@ -63,6 +66,7 @@
     <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Elder.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="Woodpile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

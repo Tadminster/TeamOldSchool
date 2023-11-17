@@ -1,19 +1,24 @@
 #pragma once
-class Elder : public Unit
+#include "ItemProto.h"
+class Woodpile : public MaterialProto
 {
-	class ElderState* state = nullptr;
+private:
+	friend class ItemProto;
+
+private:
+	Woodpile();
+	~Woodpile();
+
 public:
-	Elder();
-	~Elder();
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
-	void Render() override;
 	void Release() override;
+	void Render() override;
 	void RenderHierarchy() override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 
-	void SetState(ElderState* state);
+	void Use() override;
 };
 

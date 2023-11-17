@@ -7,6 +7,7 @@ private:
 	list<ItemProto*> items;
 
 	ItemProto*		stoneAxe[5];
+	ItemProto*		woodpile[5];
 
 public:
 	ObjectManager();

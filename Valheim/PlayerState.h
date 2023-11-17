@@ -27,11 +27,11 @@ public:
 		if (instance == nullptr) instance = new IdleState();
 		return instance;
 	}
-	virtual void Idle();
-	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Swing();
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Swing() override;
 };
 //Walk 클래스----------------------------------------------------------
 class WalkState : public PlayerState
@@ -43,11 +43,11 @@ public:
 		if (instance == nullptr) instance = new WalkState();
 		return instance;
 	}
-	virtual void Idle();
-	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Swing();
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Swing() override;
 };
 //Run 클래스----------------------------------------------------------
 class RunState : public PlayerState
@@ -59,11 +59,11 @@ public:
 		if (instance == nullptr) instance = new RunState();
 		return instance;
 	}
-	virtual void Idle();
-	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Swing();
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Swing() override;
 };
 //Jump 클래스----------------------------------------------------------
 class JumpState : public PlayerState
@@ -75,11 +75,11 @@ public:
 		if (instance == nullptr) instance = new JumpState();
 		return instance;
 	}
-	virtual void Idle();
-	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Swing();
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Swing() override;
 };
 //Swing 클래스----------------------------------------------------------
 class SwingState : public PlayerState
@@ -91,9 +91,9 @@ public:
 		if (instance == nullptr) instance = new SwingState();
 		return instance;
 	}
-	virtual void Idle();
-	virtual void Walk();
-	virtual void Run();
-	virtual void Jump();
-	virtual void Swing();
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Swing() override;
 };

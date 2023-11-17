@@ -11,6 +11,7 @@ Player::Player()
 	actor->anim->aniScale = 0.65f;
 	
 	state = IdleState::GetInstance();
+	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 }
 
 Player::~Player()
@@ -20,50 +21,31 @@ Player::~Player()
 void Player::Init()
 {
 	actor->SetWorldPos(Vector3(0,20,0));
-	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-
-	
-	
-
 	slidingVector.direction = actor->GetForward();
 }
 
 void Player::Update()
 {
-	
-
 	lastPos = actor->GetWorldPos();
 	if (!DEBUGMODE) 
 	{
 		PlayerControl();
 		PlayerMove();
 	}
-	else isPlayerCam = false;
-
+	else
+	{
+		isPlayerCam = false;
+	}
 	//중력 구현
-	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
-	if (isLand) gravity = 0;
-	else gravity += GRAVITYPOWER * DELTA;
+	ApplyGravity();
 
 	actor->Update();
 }
 
 void Player::LateUpdate()
 {
-	//Player - Terrain 충돌판정
-    Ray playerTop;
-	playerTop.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
-    playerTop.direction = Vector3(0, -1, 0);
-    Vector3 hit;
-    if (Utility::RayIntersectMap(playerTop, MAP, hit))
-    {
-		if (actor->GetWorldPos().y - hit.y < 0.1f) {
-			actor->SetWorldPosY(hit.y);
-			isLand = true;
-		}
-		else isLand = false;
-    }
-    actor->Update();
+	//플레이어 - 터레인 충돌
+	SetonTerrain();
 
 	//경사 충돌(자연스럽게 손보기)
 	Vector3 dir = actor->GetWorldPos() - lastPos;
@@ -72,12 +54,12 @@ void Player::LateUpdate()
 	dir.Normalize();
 	dir2.Normalize();
 	float dot = dir.Dot(dir2);
-	if (state==WalkState::GetInstance())
+	if (moveSpeed != 0)
 	{
 		if (dot < 0.7 and (actor->GetWorldPos().y > lastPos.y))
 		{
-			actor->SetWorldPos(lastPos);
-			actor->Update();
+			//actor->SetWorldPos(lastPos);
+			//actor->Update();
 		}
 	}
 }
@@ -149,16 +131,20 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
-
-	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
-	ptMouse.x = App.GetHalfWidth();
-	ptMouse.y = App.GetHalfHeight();
-	Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
-	Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
-	actor->rotation.y += Rot.y;
-	Camera::main->rotation.x += Rot.x;
-	ClientToScreen(App.GetHandle(), &ptMouse);
-	SetCursorPos(ptMouse.x, ptMouse.y);
+	//인벤 열리면 커서 고정 해제----------------------------------
+	if (!INVEN->isOpen)
+	{
+		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
+		ptMouse.x = App.GetHalfWidth();
+		ptMouse.y = App.GetHalfHeight();
+		Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
+		Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
+		actor->rotation.y += Rot.y;
+		Camera::main->rotation.x += Rot.x;
+		ClientToScreen(App.GetHandle(), &ptMouse);
+		SetCursorPos(ptMouse.x, ptMouse.y);
+	}
+	
 
 	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
@@ -249,7 +235,6 @@ void Player::PlayerMove()
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 
-
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
 	{
@@ -264,7 +249,7 @@ void Player::PlayerMove()
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
 	
-	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있아 싶어서 실험해봄(관련없음)
+	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있나 싶어 실험해봄(관련없음)
 	/*if (!istouch)
 	{
 		if (INPUT->KeyPress('W') && INPUT->KeyPress('A')) moveDir = actor->GetForward() - actor->GetRight();
