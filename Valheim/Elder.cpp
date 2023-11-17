@@ -37,11 +37,10 @@ void Elder::LateUpdate()
 	//보스 소환 임시
 	if (INPUT->KeyDown('9')) actor->LoadFile("Monster_Elder.xml");
 	else if (INPUT->KeyDown('0')) actor->LoadFile("Monster_Elder_BossStone.xml");
+	
 	if (INPUT->KeyDown(VK_F3)) state->Idle(this);
 	else if (INPUT->KeyDown(VK_F4)) state->Walk(this);
 
-	if (state == Elder_IdleState::GetInstance()) cout << 1;
-	else if (state == Elder_WalkState::GetInstance()) cout << 2;
 	//슬라이딩 벡터 초기작
 	if (PLAYER->GetPlayer()->collider->Intersect(actor->collider))
 	{

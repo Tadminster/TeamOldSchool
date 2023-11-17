@@ -30,16 +30,16 @@ void Player::Init()
 
 void Player::Update()
 {
-	
-
 	lastPos = actor->GetWorldPos();
 	if (!DEBUGMODE) 
 	{
 		PlayerControl();
 		PlayerMove();
 	}
-	else isPlayerCam = false;
-
+	else
+	{
+		isPlayerCam = false;
+	}
 	//중력 구현
 	ApplyGravity();
 
@@ -135,16 +135,19 @@ void Player::AvtivatePlayerCam()
 		Camera::main->width = App.GetWidth();
 		Camera::main->height = App.GetHeight();
 	}
-
-	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
-	ptMouse.x = App.GetHalfWidth();
-	ptMouse.y = App.GetHalfHeight();
-	Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
-	Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
-	actor->rotation.y += Rot.y;
-	Camera::main->rotation.x += Rot.x;
-	ClientToScreen(App.GetHandle(), &ptMouse);
-	SetCursorPos(ptMouse.x, ptMouse.y);
+	if (!INVEN->isOpen)
+	{
+		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
+		ptMouse.x = App.GetHalfWidth();
+		ptMouse.y = App.GetHalfHeight();
+		Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
+		Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
+		actor->rotation.y += Rot.y;
+		Camera::main->rotation.x += Rot.x;
+		ClientToScreen(App.GetHandle(), &ptMouse);
+		SetCursorPos(ptMouse.x, ptMouse.y);
+	}
+	
 
 	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
