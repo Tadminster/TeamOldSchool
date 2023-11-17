@@ -16,6 +16,8 @@ GameManager::GameManager()
 	objectManager = new ObjectManager();
 
 	player = new Player();
+
+	minimap = new MiniMap();
 }
 
 GameManager::~GameManager()

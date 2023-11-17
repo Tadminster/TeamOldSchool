@@ -60,6 +60,9 @@
     <ClInclude Include="Unit.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>MiniMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -117,6 +120,9 @@
     <ClCompile Include="Unit.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>MiniMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -145,6 +151,9 @@
     </Filter>
     <Filter Include="Inventory">
       <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniMap">
+      <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
