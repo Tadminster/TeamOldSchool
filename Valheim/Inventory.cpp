@@ -283,11 +283,23 @@ void Inventory::UseItem()
 
 						// 이전에 착용중이던 무기를 해제
 						inventoryItem[equippedItem.Weapon]->Use();
+
+
 					}
 
-					// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
-					slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-					equippedItem.Weapon = i;
+					// 이전에 착용중인 무기가 자기 자신이면
+					if (equippedItem.Weapon == i)
+					{
+						equippedItem.Weapon = -1;
+					}
+					// 다른 무기라면
+					else
+					{
+						// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
+						slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+						inventoryItem[i]->Use();
+						equippedItem.Weapon = i;
+					}
 				}
 				else if (type == ItemType::Tool)
 				{
@@ -297,9 +309,6 @@ void Inventory::UseItem()
 				{
 					equippedItem.Armor = i;
 				}
-
-				// 아이템 사용
-				inventoryItem[i]->Use();
 			}
 		}
 	}
