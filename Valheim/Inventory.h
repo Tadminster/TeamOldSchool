@@ -15,11 +15,11 @@ class Inventory
 private:
 	class ItemProto*	inventoryItem[INVENTORY_SIZE];	// 인벤토리 아이템
 	class UI*			inventoryIcon[INVENTORY_SIZE];	// 인벤토리 아이콘
-
 	// 이미지===========================================================================================
-	UI*					inventoryUI;					// 인벤토리 UI
-	UI*					pannel;							// 인벤토리 패널을 가리킬 포인터
-	UI*					slot[INVENTORY_SIZE + 1];		// 슬롯을 가리킬 포인터(0~31 알파슬롯, 32 블루슬롯)
+	UI*					inventoryUI;						// 인벤토리 UI
+	UI*					pannel;								// 인벤토리 패널을 가리킬 포인터
+	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 알파슬롯, 32 블루슬롯)
+	bool				isUse[INVENTORY_SIZE];				// 사용중인(장착중인) 슬롯 확인용
 	// 아이템 조작===========================================================================================
 	struct OnMouseItem
 	{

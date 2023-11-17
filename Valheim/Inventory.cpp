@@ -9,6 +9,7 @@ Inventory::Inventory()
 	{
 		inventoryItem[i] = nullptr;
 		inventoryIcon[i] = nullptr;
+		isUse[i] = false;
 	}
 
 	// 인벤토리 UI 생성 및 로드
@@ -270,6 +271,14 @@ void Inventory::UseItem()
 			// 인벤토리에 아이템이 있으면
 			if (inventoryItem[i])
 			{
+				// 사용중인 아이템 체크
+				isUse[i] = !isUse[i];
+
+				// 아이템 사용중이면 블루슬롯으로 변경, 아니면 원래 슬롯으로 변경
+				if (isUse[i]) slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+				else slot[i]->material->LoadFile("Inventory/InventorySlot.mtl");
+
+				// 아이템 사용
 				inventoryItem[i]->Use();
 			}
 		}
