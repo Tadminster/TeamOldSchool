@@ -16,8 +16,9 @@ StoneAxe::StoneAxe()
 	ItemProto::Init();
 
 	//=========================
-	type = ItemType::Weapon;
-	state = ItemState::OnGround;
+	type		= ItemType::Weapon;
+	wType		= WeaponType::Axe;
+	state		= ItemState::OnGround;
 	//=========================
 	name		= "StoneAxe";
 	

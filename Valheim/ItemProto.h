@@ -43,11 +43,13 @@ class ToolProto : public ItemProto
 
 };
 //====================================================================================================
+enum class WeaponType { Sword, Axe, Pickaxes, Spear, Bow, Shield };
 class WeaponProto : public ItemProto
 {
 protected:
-	int		damage;			// 공격력
-	int		durability;		// 내구도
+	WeaponType	wType;			// 무기 종류
+	int			damage;			// 공격력
+	int			durability;		// 내구도
 
 public:
 	virtual void Fix() = 0;
