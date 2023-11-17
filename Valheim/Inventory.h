@@ -40,6 +40,9 @@ private:
 	EquippedItem	equippedItem;
 
 public:
+	bool 		isOpen	{ false };			// 인벤토리가 열려있는지 여부
+
+public:
 	Inventory();
 	~Inventory();
 

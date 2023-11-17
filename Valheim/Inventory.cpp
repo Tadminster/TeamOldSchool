@@ -59,10 +59,12 @@ void Inventory::Update()
 	// Tab키를 누르면 인벤토리가 열림
 	if (INPUT->KeyDown(VK_TAB))
 	{
-		inventoryUI->Find("SlotBottom")->visible = !inventoryUI->Find("SlotBottom")->visible;
-		
-		// 인벤토리가 닫혔을 때, 초기화
-		if (!inventoryUI->Find("SlotBottom")->visible) Init();
+		isOpen = !isOpen;
+
+		if (isOpen) inventoryUI->Find("SlotBottom")->visible = true;
+		else inventoryUI->Find("SlotBottom")->visible = false;
+
+		Init();
 	}
 
 	inventoryUI->Update();
@@ -72,7 +74,7 @@ void Inventory::Update()
 
 void Inventory::LateUpdate()
 {
-	if (inventoryUI->Find("SlotBottom")->visible)
+	if (isOpen)
 	{
 		// 마우스 오버시 슬롯 강조
 		MouseOverSlot();	
@@ -99,7 +101,7 @@ void Inventory::Render()
 {
 	inventoryUI->Render();
 
-	if (inventoryUI->Find("SlotBottom")->visible)
+	if (isOpen)
 	{
 		for (auto icon : inventoryIcon)
 			if (icon) icon->Render();
@@ -121,7 +123,7 @@ void Inventory::MouseOverSlot()
 	bool isMouseOver = false;
 	
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
-	if (inventoryUI->Find("SlotBottom")->visible && pannel->MouseOver())
+	if (isOpen && pannel->MouseOver())
 	{
 		//	모든 인벤토리 슬롯을 순회
 		for (int i = 0; i < 32; i++)
