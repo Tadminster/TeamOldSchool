@@ -263,6 +263,22 @@ void Player::PlayerMove()
 
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
+	
+	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있아 싶어서 실험해봄(관련없음)
+	/*if (!istouch)
+	{
+		if (INPUT->KeyPress('W') && INPUT->KeyPress('A')) moveDir = actor->GetForward() - actor->GetRight();
+		else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))moveDir = actor->GetForward() + actor->GetRight();
+		else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))moveDir = -actor->GetForward() - actor->GetRight();
+		else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))moveDir = -actor->GetForward() + actor->GetRight();
+		else if (INPUT->KeyPress('W')) moveDir = actor->GetForward();
+		else if (INPUT->KeyPress('S')) moveDir = -actor->GetForward();
+		else if (INPUT->KeyPress('A')) moveDir = -actor->GetRight();
+		else if (INPUT->KeyPress('D')) moveDir = actor->GetRight();
+		moveDir.Normalize();
+
+		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+	}*/
 }
 
 void Player::EquipToHand(ItemProto* item)

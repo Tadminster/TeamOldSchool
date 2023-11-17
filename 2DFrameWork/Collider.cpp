@@ -18,7 +18,8 @@ Collider::Collider(ColliderType type)
 	}
 	shader = RESOURCE->shaders.Load("1.Collider.hlsl");
 
-	Vector3 tmp = this->GetWorldPos() + Vector3(0, this->scale.y, 0);
+	//콜라이더 충돌 시 가장 가까운 세 정점 찾기(개발 중단)
+	/*Vector3 tmp = this->GetWorldPos() + Vector3(0, this->scale.y, 0);
 	slidingPos.push_back(tmp + (this->GetForward() * scale.z + this->GetRight() * scale.x + this->GetUp() * scale.y));
 	slidingPos.push_back(tmp + (this->GetForward() * scale.z - this->GetRight() * scale.x + this->GetUp() * scale.y));
 	slidingPos.push_back(tmp + (this->GetForward() * scale.z - this->GetRight() * scale.x - this->GetUp() * scale.y));
@@ -27,7 +28,7 @@ Collider::Collider(ColliderType type)
 	slidingPos.push_back(tmp + (-this->GetForward() * scale.z + this->GetRight() * scale.x + this->GetUp() * scale.y));
 	slidingPos.push_back(tmp + (-this->GetForward() * scale.z - this->GetRight() * scale.x + this->GetUp() * scale.y));
 	slidingPos.push_back(tmp + (-this->GetForward() * scale.z - this->GetRight() * scale.x - this->GetUp() * scale.y));
-	slidingPos.push_back(tmp + (-this->GetForward() * scale.z + this->GetRight() * scale.x - this->GetUp() * scale.y));
+	slidingPos.push_back(tmp + (-this->GetForward() * scale.z + this->GetRight() * scale.x - this->GetUp() * scale.y));*/
 	
 }
 

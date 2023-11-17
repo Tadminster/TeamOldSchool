@@ -1,11 +1,12 @@
 #include "stdafx.h"
-#include "Prototype.h"
+//#include "Prototype.h"
 
 #include "ItemProto.h"
-#include "Inventory.h"
+//#include "Inventory.h"
 #include "GameOption.h"
 #include "StoneAxe.h"
 
+#include "Unit.h"
 #include "Elder.h"
 
 #include "InGame.h"

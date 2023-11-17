@@ -2,7 +2,7 @@
 
 #include <list>
 
-#include "Prototype.h"
+//#include "Prototype.h"
 #include "FeatureProto.h"
 #include "Birch.h"
 #include "Beech.h"
@@ -13,6 +13,7 @@
 #include "ItemProto.h"
 #include "StoneAxe.h"
 
+#include "Unit.h"
 #include "Elder.h"
 
 #include "ObjectManager.h"

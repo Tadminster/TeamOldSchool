@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "Prototype.h"
+//#include "Prototype.h"
 #include "FeatureProto.h"
 #include "Birch.h"
 

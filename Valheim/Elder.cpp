@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Unit.h"
 #include "Elder.h"
 
 Elder::Elder()
@@ -28,8 +29,6 @@ void Elder::Update()
 	actor->MoveWorldPos(-actor->GetUp() * gravity * DELTA);
 	if (isLand) gravity = 0;
 	else gravity += GRAVITYPOWER * DELTA;
-
-	bossStone->collider->rotation.y = PLAYER->GetPlayer()->rotation.y;
 
 	actor->Update();
 	bossStone->Update();
@@ -61,7 +60,7 @@ void Elder::LateUpdate()
 		bossStone->SetWorldPosY(hit2.y - 1.5f);
 	}
 
-	//
+	//슬라이딩 벡터 초기작
 	if (PLAYER->GetPlayer()->collider->Intersect(bossStone->collider))
 	{
 		PLAYER->istouch = true;
