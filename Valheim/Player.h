@@ -1,14 +1,14 @@
 #pragma once
-#define GRAVITYPOWER 30
+
 
 //class PlayerState;
-class Player : public Prototype
+class Player : public Unit
 {
 	friend class JumpState;
 	friend class SwingState;
 	
 	class PlayerState*		state = nullptr;
-	ItemProto*				equippedHand = nullptr;
+	class ItemProto*				equippedHand = nullptr;
 	
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -24,8 +24,6 @@ class Player : public Prototype
 	Vector3 playerReverseCamRayHit;
 
 	float					moveSpeed = 0;
-	float					gravity = 0;
-	bool					isLand = 0;
 	bool					isJump = 0;
 	bool					isPlayerCam = 1;
 	bool					CamtoTerrain = 0;

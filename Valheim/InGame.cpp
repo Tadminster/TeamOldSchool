@@ -6,7 +6,6 @@
 #include "GameOption.h"
 #include "StoneAxe.h"
 
-#include "Unit.h"
 #include "Elder.h"
 
 #include "InGame.h"

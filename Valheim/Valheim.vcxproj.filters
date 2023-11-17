@@ -63,6 +63,9 @@
     <ClInclude Include="Woodpile.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
+    <ClInclude Include="ElderState.h">
+      <Filter>GameObject\Unit</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -122,6 +125,9 @@
     </ClCompile>
     <ClCompile Include="Woodpile.cpp">
       <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderState.cpp">
+      <Filter>GameObject\Unit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
