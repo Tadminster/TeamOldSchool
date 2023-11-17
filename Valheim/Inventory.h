@@ -19,11 +19,35 @@ private:
 	UI*					inventoryUI;						// 인벤토리 UI
 	UI*					pannel;								// 인벤토리 패널을 가리킬 포인터
 	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 알파슬롯, 32 블루슬롯)
+	bool			    isUse[INVENTORY_SIZE];				// 아이템 사용 여부
 	// 아이템 조작===========================================================================================
-	struct EquippedItem
+	struct EquippedItem						// 착용중인 아이템 인덱스 저장 구조체
 	{
 		int		Weapon		{ -1 };
 		int		Armor		{ -1 };
+		int*    array[2]	{ &Weapon, &Armor };
+
+		void swap(int index_x, int index_y)
+		{
+			int* matchX = nullptr;		// index_x와 일치하는 변수의 포인터
+			int* matchY = nullptr;		// index_y와 일치하는 변수의 포인터
+
+			// 각 인덱스와 일치하는 변수 찾기
+			for (int i = 0; i < 2; ++i)
+			{
+				if (*(array[i]) == index_x)
+					matchX = array[i];
+
+				if (*(array[i]) == index_y)
+					matchY = array[i];
+			}
+
+			// 교환 또는 변경
+			// 두 변수 모두 일치하는 경우 서로 교환
+			if (matchX && matchY) swap(*matchX, *matchY);
+			else if (matchX) *matchX = index_y;		// index_x만 일치하는 경우
+			else if (matchY) *matchY = index_x;		// index_y만 일치하는 경우
+		}
 	};
 	struct OnMouseItem
 	{
@@ -38,6 +62,9 @@ private:
 	};
 	OnMouseItem		onMouse;
 	EquippedItem	equippedItem;
+
+public:
+	bool 		isOpen	{ false };			// 인벤토리가 열려있는지 여부
 
 public:
 	Inventory();

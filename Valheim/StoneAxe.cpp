@@ -8,7 +8,6 @@ StoneAxe::StoneAxe()
 	actor = Actor::Create("StoneAxe");
 	actor->LoadFile("StoneAxe.xml");
 	actor->name = "StoneAxe" + index++;
-	actor->SetWorldPos(Vector3(0, 50, 0));
 
 	icon = UI::Create("StoneAxeIcon");
 	icon->LoadFile("Icon_StoneAxe.xml");
@@ -52,19 +51,6 @@ void StoneAxe::Update()
 
 	
 	ItemProto::Update();
-	if (state == ItemState::OnGround )
-	{
-		//actor->Update();
-	}
-	else if (state == ItemState::OnInventory)
-	{
-		//icon->Update();
-	}
-	else if (state == ItemState::Equipped)
-	{
-		//actor->Update();
-	}
-
 }
 
 void StoneAxe::LateUpdate()
@@ -74,18 +60,7 @@ void StoneAxe::LateUpdate()
 
 void StoneAxe::Render()
 {
-	if (state == ItemState::OnGround)
-	{
-		actor->Render();
-	}
-	else if (state == ItemState::OnInventory)
-	{
-		//icon->Render();
-	}
-	else if (state == ItemState::Equipped)
-	{
-		if (DEBUGMODE) actor->Render();
-	}
+	ItemProto::Render();
 }
 
 void StoneAxe::RenderHierarchy()

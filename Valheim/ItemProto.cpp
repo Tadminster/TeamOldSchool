@@ -2,6 +2,7 @@
 //#include "Prototype.h"
 
 #include "StoneAxe.h"
+#include "Woodpile.h"
 #include "ItemProto.h"
 
 ItemProto* ItemProto::Create(ItemName name)
@@ -10,6 +11,8 @@ ItemProto* ItemProto::Create(ItemName name)
 	{
 	case ItemName::StoneAxe:
 		return new StoneAxe();
+	case ItemName::Woodpile:
+		return new Woodpile();
 	default:
 		throw std::invalid_argument("error");
 	}
@@ -63,6 +66,22 @@ void ItemProto::Update()
 void ItemProto::LateUpdate()
 {
 
+}
+
+void ItemProto::Render()
+{
+	if (state == ItemState::OnGround)
+	{
+		actor->Render();
+	}
+	else if (state == ItemState::OnInventory)
+	{
+		//icon->Render();
+	}
+	else if (state == ItemState::Equipped)
+	{
+		if (DEBUGMODE) actor->Render();
+	}
 }
 
 void ItemProto::Drop()

@@ -5,7 +5,7 @@ enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Tool, Armor, Food, Material };
 enum class ItemName 
 { 
-	StoneAxe 
+	StoneAxe, Woodpile
 };
 //====================================================================================================
 class ItemProto : public Prototype
@@ -30,6 +30,7 @@ public:
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
+	void Render() override;
 
 	UI*	GetIcon() { return icon; }
 	ItemType GetType() { return type; }
@@ -76,5 +77,8 @@ protected:
 //====================================================================================================
 class MaterialProto : public ItemProto
 {
-
+protected:
+	RECT text_stack;	// 중첩수를 표시할 텍스트 영역
+	int currentStack;	// 현재 중첩수
+	int maxStack;		// 최대 중첩수
 };
