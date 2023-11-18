@@ -1,7 +1,13 @@
 #pragma once
 //엘더 헤더 cpp에 있는데 인식을 못함!
 #include "Elder.h"
+
+#define E_OPENING Elder_OpeningState::GetInstance()
+#define E_IDLE Elder_IdleState::GetInstance()
+#define E_WALK Elder_WalkState::GetInstance()
+#define E_STOMP Elder_StompState::GetInstance()
 class Elder;
+
 class ElderState
 {
 protected:
