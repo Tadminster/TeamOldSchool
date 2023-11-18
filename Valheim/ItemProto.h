@@ -11,7 +11,8 @@ enum class ItemName
 class ItemProto : public Prototype
 {
 protected:
-	UI*			icon;		// 아이콘
+	UI*			icon;					// 아이콘
+	float       tooltipBoxScaleY;		// 툴팁 박스의 스케일 Y
 
 	Vector3     forwardDir	{};			// 앞 방향
 	float		forwardForce{ 0.0f };	// 앞으로 나아가는 힘
@@ -32,10 +33,12 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 
-	UI*			GetIcon() { return icon; }
-	string		GetName() { return name; }
-	ItemType	GetType() { return type; }
-	void		SetState(ItemState state) { this->state = state; }
+	UI*				GetIcon() { return icon; }
+	string			GetName() { return name; }
+	virtual wstring	GetExplain() = 0;
+	ItemType		GetType() { return type; }
+	float			GetTooltipBoxScaleY() { return tooltipBoxScaleY; }
+	void			SetState(ItemState state) { this->state = state; }
 
 	void Drop();
 	virtual void Use() = 0;
@@ -53,7 +56,8 @@ class WeaponProto : public ItemProto
 protected:
 	WeaponType	wType;			// 무기 종류
 	int			damage;			// 공격력
-	int			durability;		// 내구도
+	int			curDurability;	// 내구도
+	int			maxDurability;	// 내구도
 
 public:
 	virtual void Fix() = 0;
@@ -63,7 +67,8 @@ class ArmorProto : public ItemProto
 {
 protected:
 	int		defense;		// 방어력
-	int		durability;		// 내구도
+	int		curDurability;	// 내구도
+	int		maxDurability;	// 내구도
 
 public:
 	virtual void Fix() = 0;
