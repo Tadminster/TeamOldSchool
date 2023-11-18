@@ -91,7 +91,8 @@ void Elder::LateUpdate()
 	}
 
 	//Elder - Player Ãæµ¹
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider))
+	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+		&& state == E_STOMP)
 	{
 		PLAYER->PlayerHit();
 	}
