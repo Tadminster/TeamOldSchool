@@ -186,6 +186,7 @@ void Inventory::ResizeScreen()
 void Inventory::MouseOverSlot()
 {
 	bool isMouseOver = false;
+	bool isMouseOverItem = false;
 	
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
 	if (isOpen && pannel->MouseOver())
@@ -210,6 +211,7 @@ void Inventory::MouseOverSlot()
 				// 해당슬롯에 아이템이 있다면
 				if (inventoryItem[i])
 				{
+					isMouseOverItem = true;
 					// 아이템에 따라 툴팁박스 크기 조절
 					tooltopBox->scale.y = inventoryItem[i]->GetTooltipBoxScaleY();
 					
@@ -248,6 +250,10 @@ void Inventory::MouseOverSlot()
 	{
 		onMouseItemIndex = -1;
 		slot[BLUE_SLOT]->visible = false;
+	}
+
+	if (!isMouseOverItem)
+	{
 		tooltopBox->visible = false;
 		isOnTooltip = false;
 	}
