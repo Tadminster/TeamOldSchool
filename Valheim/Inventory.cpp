@@ -212,7 +212,12 @@ void Inventory::MouseOverSlot()
 				if (inventoryItem[i])
 				{
 					isMouseOverItem = true;
-					// 아이템에 따라 툴팁박스 크기 조절
+
+					float screenRatio = 1300.0f / static_cast<float>(App.GetWidth());
+
+					// 화면 크기에 따라 툴팁박스 x크기 조절
+					tooltopBox->scale.x = screenRatio;
+					// 아이템에 따라 툴팁박스 y크기 조절
 					tooltopBox->scale.y = inventoryItem[i]->GetTooltipBoxScaleY();
 					
 					// 툴팁 박스를 마우스 위치로 이동
