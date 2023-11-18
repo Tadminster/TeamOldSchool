@@ -12,8 +12,6 @@
 
 InGame::InGame()
 {
-	gameManager = new GameManager();
-
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
 
@@ -35,11 +33,12 @@ InGame::InGame()
 
 InGame::~InGame()
 {
-
+	
 }
 
 void InGame::Init()
 {
+	GM->Init();
 	PLAYER->Init();
 	elder->Init();
 }
@@ -65,6 +64,7 @@ void InGame::Update()
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
+		MINIMAP->RenderHierarchy();
 		elder->RenderHierarchy();
 	}
 	ImGui::End();
@@ -93,6 +93,7 @@ void InGame::Update()
 
 	elder->Update();
 	PLAYER->Update();
+	MINIMAP->Update();
 
 
 }
@@ -102,6 +103,7 @@ void InGame::LateUpdate()
 	INVEN->LateUpdate();
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
+	MINIMAP->LateUpdate();
 
 	elder->LateUpdate();
 }
@@ -143,6 +145,7 @@ void InGame::Render()
 
 	elder->Render();
 	PLAYER->Render();
+	MINIMAP->Render();
 
 	INVEN->Render();
 }

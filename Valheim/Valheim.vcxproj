@@ -32,6 +32,7 @@
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="ItemProto.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="MiniMap.h" />
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="ItemProto.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="StoneAxe.cpp" />

@@ -9,7 +9,7 @@
 #include "Prototype.h"
 #include "Unit.h"
 #include "Player.h"
-
+#include "MiniMap.h"
 #include "ObjectManager.h"
 
 #define GM			GameManager::GetInstance()
@@ -19,3 +19,4 @@
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player
+#define MINIMAP    GM->minimap

@@ -18,9 +18,10 @@ private:
 	// 이미지===========================================================================================
 	UI*					inventoryUI;						// 인벤토리 UI
 	UI*					pannel;								// 인벤토리 패널을 가리킬 포인터
-	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 알파슬롯, 32 블루슬롯)
-	bool			    isUse[INVENTORY_SIZE];				// 아이템 사용 여부
+	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 일반슬롯, 32 블루슬롯)
+	RECT				text_number[INVENTORY_ROW_SIZE];	// 첫 줄의 슬롯들 숫자를 표시할 텍스트 영역
 	// 아이템 조작===========================================================================================
+	bool			    isUse[INVENTORY_SIZE];				// 아이템 사용 여부
 	struct EquippedItem						// 착용중인 아이템 인덱스 저장 구조체
 	{
 		int		Weapon		{ -1 };

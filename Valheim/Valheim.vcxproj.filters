@@ -66,6 +66,9 @@
     <ClInclude Include="ElderState.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>MiniMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -129,6 +132,9 @@
     <ClCompile Include="ElderState.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>MiniMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -160,6 +166,9 @@
     </Filter>
     <Filter Include="GameObject\Items\Material">
       <UniqueIdentifier>{f0676c0a-aa33-4121-b7e8-5f6095da14e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MiniMap">
+      <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

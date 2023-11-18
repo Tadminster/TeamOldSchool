@@ -62,7 +62,7 @@ void Woodpile::Render()
 {
 	ItemProto::Render();
 
-	if (state == ItemState::OnInventory)
+	if (INVEN->isOpen && state == ItemState::OnInventory)
 	{
 		text_stack.left = App.GetWidth() * ((icon->GetWorldPos().x + 1) / 2) - 10;
 		text_stack.right = text_stack.left + 1000;
@@ -75,7 +75,7 @@ void Woodpile::Render()
 			13.0f, 
 			L"Arial", 
 			Color(1, 1, 1, 0), 
-			DWRITE_FONT_WEIGHT_SEMI_BOLD, 
+			DWRITE_FONT_WEIGHT_REGULAR,
 			DWRITE_FONT_STYLE_ITALIC, 
 			DWRITE_FONT_STRETCH_EXPANDED);
 	}

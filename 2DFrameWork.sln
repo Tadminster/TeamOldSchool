@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F0
 		Shaders\5.Cube_Shadow.hlsl = Shaders\5.Cube_Shadow.hlsl
 		Shaders\5.Cube_Water.hlsl = Shaders\5.Cube_Water.hlsl
 		Shaders\5.MapEditor.hlsl = Shaders\5.MapEditor.hlsl
+		Shaders\6.colorUI.hlsl = Shaders\6.colorUI.hlsl
 		Shaders\6.Cube.hlsl = Shaders\6.Cube.hlsl
 		Shaders\6.PostEffect.hlsl = Shaders\6.PostEffect.hlsl
 		Shaders\6.Trail.hlsl = Shaders\6.Trail.hlsl
@@ -36,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F0
 		Shaders\7.Rain.hlsl = Shaders\7.Rain.hlsl
 		Shaders\Common.hlsl = Shaders\Common.hlsl
 		Shaders\ComputeShader.hlsl = Shaders\ComputeShader.hlsl
+		Shaders\MiniMap.hlsl = Shaders\MiniMap.hlsl
 		Shaders\PerlinNoise.hlsl = Shaders\PerlinNoise.hlsl
 	EndProjectSection
 EndProject
@@ -68,6 +70,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\Map.xml = Contents\GameObject\Map.xml
 		Contents\GameObject\MapSurface.xml = Contents\GameObject\MapSurface.xml
 		Contents\GameObject\Monster_Troll.xml = Contents\GameObject\Monster_Troll.xml
+		Contents\GameObject\player_iconUI.xml = Contents\GameObject\player_iconUI.xml
 		Contents\GameObject\Player_Male.xml = Contents\GameObject\Player_Male.xml
 		Contents\GameObject\PostEffect.xml = Contents\GameObject\PostEffect.xml
 		Contents\GameObject\Sky1.xml = Contents\GameObject\Sky1.xml

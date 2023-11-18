@@ -4,7 +4,7 @@
 GameManager::GameManager()
 {
 	map = Terrain::Create("Terrain");
-	map->LoadFile("TerrainPerlin.xml");
+	map->LoadFile("Terrain.xml");
 	map->PerlinNoiseHeightMap();
 	map->CreateStructuredBuffer();
 
@@ -16,6 +16,8 @@ GameManager::GameManager()
 	objectManager = new ObjectManager();
 
 	player = new Player();
+
+	minimap = new MiniMap();
 }
 
 GameManager::~GameManager()
