@@ -4,7 +4,7 @@
 GameManager::GameManager()
 {
 	map = Terrain::Create("Terrain");
-	map->LoadFile("TerrainPerlin.xml");
+	map->LoadFile("Terrain.xml");
 	map->PerlinNoiseHeightMap();
 	map->CreateStructuredBuffer();
 

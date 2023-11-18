@@ -11,7 +11,8 @@ enum class ItemName
 class ItemProto : public Prototype
 {
 protected:
-	UI*			icon;		// 아이콘
+	UI*			icon;					// 아이콘
+	float       tooltipBoxScaleY;		// 툴팁 박스의 스케일 Y
 
 	Vector3     forwardDir	{};			// 앞 방향
 	float		forwardForce{ 0.0f };	// 앞으로 나아가는 힘
@@ -32,12 +33,16 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 
-	UI*	GetIcon() { return icon; }
-	ItemType GetType() { return type; }
-	void SetState(ItemState state) { this->state = state; }
+	UI*				GetIcon() { return icon; }
+	string			GetName() { return name; }
+	virtual wstring	GetExplain() = 0;
+	ItemType		GetType() { return type; }
+	float			GetTooltipBoxScaleY() { return tooltipBoxScaleY; }
+	void			SetState(ItemState state) { this->state = state; }
 
 	void Drop();
 	virtual void Use() = 0;
+	//virtual bool IsDestroyed() override;
 };
 //====================================================================================================
 class ToolProto : public ItemProto
@@ -51,7 +56,8 @@ class WeaponProto : public ItemProto
 protected:
 	WeaponType	wType;			// 무기 종류
 	int			damage;			// 공격력
-	int			durability;		// 내구도
+	int			curDurability;	// 내구도
+	int			maxDurability;	// 내구도
 
 public:
 	virtual void Fix() = 0;
@@ -61,7 +67,8 @@ class ArmorProto : public ItemProto
 {
 protected:
 	int		defense;		// 방어력
-	int		durability;		// 내구도
+	int		curDurability;	// 내구도
+	int		maxDurability;	// 내구도
 
 public:
 	virtual void Fix() = 0;
@@ -79,6 +86,14 @@ class MaterialProto : public ItemProto
 {
 protected:
 	RECT text_stack;	// 중첩수를 표시할 텍스트 영역
+public:
 	int currentStack;	// 현재 중첩수
 	int maxStack;		// 최대 중첩수
+
+	// @brief	두 아이템의 중첩수 더하는 함수
+	// @brief	함수를 호출하는 객체는 수량이 줄어들 아이템
+	// @param	수량이 증가하는 대상이 되는 아이템
+	void StackMerge(MaterialProto* material);
+	void DestructionEvent();
+	virtual bool IsDestroyed() override;
 };

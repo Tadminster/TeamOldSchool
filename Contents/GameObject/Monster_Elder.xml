@@ -1,6 +1,6 @@
 <Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Elder/Monster_Elder.skel" BoneIndexCount="68"/>
-    <Animations AnimSize="7" File0="/Elder_Opening0.anim" File1="/Elder_Idle0.anim" File2="/Elder_Walk0.anim" File3="/Elder_Stomp0.anim" File4="/Elder_VineShoot0.anim" File5="/Elder_Summon0.anim" File6="/Elder_Death0.anim"/>
+    <Animations AnimSize="7" File0="Monster_Elder/Elder_Opening0.anim" File1="Monster_Elder/Elder_Idle0.anim" File2="Monster_Elder/Elder_Walk0.anim" File3="Monster_Elder/Elder_Stomp0.anim" File4="Monster_Elder/Elder_VineShoot0.anim" File5="Monster_Elder/Elder_Summon0.anim" File6="Monster_Elder/Elder_Death0.anim"/>
     <Collider ColliderType="2" Visible="true">
         <Position X="0" Y="2.5" Z="0.15000001"/>
         <Scale X="1.2" Y="2.5" Z="0.64999998"/>
@@ -48,6 +48,11 @@
                 <Children Size="1"/>
                 <Child0 Name="mixamorig:LeftLeg" Visible="true" ObType="0" BoneIndex="59">
                     <Shader File="4.Cube.hlsl"/>
+                    <Collider ColliderType="2" Visible="true">
+                        <Position X="0" Y="1399.9999" Z="0"/>
+                        <Scale X="450" Y="1500" Z="450"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Collider>
                     <Transform>
                         <Position X="-0.11645269" Y="2178.5562" Z="0.047253292"/>
                         <Scale X="1" Y="1" Z="1"/>
@@ -93,6 +98,11 @@
                 <Children Size="1"/>
                 <Child0 Name="mixamorig:RightLeg" Visible="true" ObType="0" BoneIndex="64">
                     <Shader File="4.Cube.hlsl"/>
+                    <Collider ColliderType="2" Visible="true">
+                        <Position X="0" Y="1400.0001" Z="0"/>
+                        <Scale X="450" Y="1500" Z="450"/>
+                        <Rotation X="0" Y="0" Z="0"/>
+                    </Collider>
                     <Transform>
                         <Position X="-0.0094026504" Y="2180.9614" Z="-0.047475517"/>
                         <Scale X="1" Y="0.99999994" Z="0.99999994"/>

@@ -1,7 +1,7 @@
 <Root Name="Water" Visible="true" ObType="10">
     <Mesh File="4.Plane.mesh"/>
     <Shader File="4.Water.hlsl"/>
-    <Material File="Water.mtl"/>
+    <Material File="Terrain/Water.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="200" Y="1" Z="300"/>

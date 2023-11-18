@@ -244,7 +244,7 @@ Vector3 Collider::GetNormalVector(const Vector3 moveDir)
 	float dotForward = this->GetForward().Dot(moveDir);
 	float dotRight = this->GetRight().Dot(moveDir);
 
-	if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
+	if (fabs(dotForward) < fabs(dotRight)) return this->GetForward();
 	else return this->GetRight();
 
 	//if (fabs(dotForward) > fabs(dotRight)) return this->GetForward();
