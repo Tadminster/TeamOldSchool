@@ -25,7 +25,6 @@ void Elder::Update()
 {
 	//중력 구현
 	ApplyGravity();
-	cout << actor->anim->GetPlayTime();
 	actor->Update();
 }
 
