@@ -1,5 +1,5 @@
 #include "stdafx.h"
-//#include "Prototype.h"
+#include "Prototype.h"
 
 #include "StoneAxe.h"
 #include "Woodpile.h"
@@ -95,4 +95,50 @@ void ItemProto::Drop()
 	gravity			= 5.0f;
 
 	state			= ItemState::OnGround;
+}
+
+//bool ItemProto::IsDestroyed()
+//{
+//	return false;
+//}
+//====================================================================================================
+void MaterialProto::StackMerge(MaterialProto* material)
+{
+	// 현재 아이템 스택과 대상 아이템 스택의 합이 최대 스택보다 작으면
+	if (this->currentStack + material->currentStack < maxStack)
+	{
+		// 대상 아이템에 현재 아이템스택을 더함
+		material->currentStack += this->currentStack;
+
+		// 현재 아이템스택은 0개로 초기화
+		this->currentStack = 0;
+	}
+	// 스택의 합이 최대 스택 이상이면
+	else
+	{
+		// 더하고 남은 스택을 계산
+		int remainStack = (this->currentStack + material->currentStack) - maxStack;
+		
+		// 현재 아이템은 남은 스택으로 초기화
+		this->currentStack = remainStack;
+
+		// 대상 아이템은 최대 스택으로 초기화
+		material->currentStack = maxStack;
+	}
+}
+
+void MaterialProto::DestructionEvent()
+{
+	cout << "stack: " << currentStack << endl;
+	cout << "stack 수가 0이하이므로 아이템 파괴" << endl;
+	MaterialProto::~MaterialProto();
+}
+
+bool MaterialProto::IsDestroyed()
+{
+	if (currentStack <= 0)
+	{
+		return true;
+	}
+	return false;
 }

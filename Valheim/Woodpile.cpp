@@ -12,6 +12,7 @@ Woodpile::Woodpile()
 
 	icon = UI::Create("WoodpileIcon");
 	icon->LoadFile("Icon_Woodpile.xml");
+	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();
 
@@ -86,14 +87,22 @@ void Woodpile::RenderHierarchy()
 
 }
 
-bool Woodpile::IsDestroyed()
+wstring Woodpile::GetExplain()
 {
-	return false;
+	wstring exp = L"건설에 사용할 수 있는 튼튼하고 \n좋은 나무입니다.\n";
+	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
+
+	return exp + exp_sub1;
 }
 
-void Woodpile::DestructionEvent()
-{
-}
+//bool Woodpile::IsDestroyed()
+//{
+//	return false;
+//}
+//
+//void Woodpile::DestructionEvent()
+//{
+//}
 
 void Woodpile::Use()
 {

@@ -16,6 +16,9 @@ public:
 	void Release() override;
 	void Render() override;
 	void RenderHierarchy() override;
+
+	wstring GetExplain() override;
+
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 
