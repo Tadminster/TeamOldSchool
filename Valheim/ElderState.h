@@ -72,3 +72,21 @@ public:
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
+//Stomp Å¬·¡½º----------------------------------------------------------
+class Elder_StompState : public ElderState
+{
+	static Elder_StompState* instance;
+public:
+	static Elder_StompState* GetInstance()
+	{
+		if (instance == nullptr) instance = new Elder_StompState();
+		return instance;
+	}
+	void Opening(Elder* elder) override;
+	void Idle(Elder* elder) override;
+	void Walk(Elder* elder) override;
+	void Stomp(Elder* elder) override;
+	void VineShoot(Elder* elder) override;
+	void Summon(Elder* elder) override;
+	void Death(Elder* elder) override;
+};

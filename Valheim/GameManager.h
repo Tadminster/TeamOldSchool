@@ -9,7 +9,7 @@ public:
     class Player*           player;
     class ObjectManager*    objectManager;
 
-    bool 			    debugMode{ true };
+    bool 			    debugMode{ true; };
 
 public:
     GameManager();

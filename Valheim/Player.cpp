@@ -22,9 +22,6 @@ void Player::Init()
 	actor->SetWorldPos(Vector3(0,20,0));
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
-	
-	
-
 	slidingVector.direction = actor->GetForward();
 }
 
