@@ -3,15 +3,27 @@
 class Unit : public Prototype
 {
 protected:
-	Ray UnitTopRay;
-	Vector3 UnitHit = {};
-
-	float gravity = 0;
-	bool isLand = 0;
-
+	//SetOnTerrain
+	Ray					UnitTopRay;
+	Vector3				UnitHit = {};
+	//ApplyGravity
+	float				gravity = 0;
+	bool				isLand = 0;
+	//MonsterMove
+	Vector3				moveDir = {};
+	float				moveTime = 0;
+	float				moveSpeed = 0;
+	float				srcRotation = 0;
+	float				destRotation = 0;
+	float				angleGap = 0;
+	float				rotationSpeed = 0;
+	float				rotationTime = 0;
+	float				rotationScale = 0.4f;
 public:
 	Unit();
-	void SetonTerrain();
+	void SetOnTerrain();
 	void ApplyGravity();
+	void RotationForMove();
+	void MonsterMove();
 };
 

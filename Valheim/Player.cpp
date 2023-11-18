@@ -38,6 +38,7 @@ void Player::Update()
 	{
 		isPlayerCam = false;
 	}
+	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
 
@@ -47,7 +48,7 @@ void Player::Update()
 void Player::LateUpdate()
 {
 	//플레이어 - 터레인 충돌
-	SetonTerrain();
+	SetOnTerrain();
 
 	//경사 충돌(자연스럽게 손보기)
 	Vector3 dir = actor->GetWorldPos() - lastPos;
@@ -250,22 +251,6 @@ void Player::PlayerMove()
 
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 	}
-	
-	//슬라이딩 벡터 충돌 살짝 이상해진게 관련있나 싶어 실험해봄(관련없음)
-	/*if (!istouch)
-	{
-		if (INPUT->KeyPress('W') && INPUT->KeyPress('A')) moveDir = actor->GetForward() - actor->GetRight();
-		else if (INPUT->KeyPress('W') && INPUT->KeyPress('D'))moveDir = actor->GetForward() + actor->GetRight();
-		else if (INPUT->KeyPress('S') && INPUT->KeyPress('A'))moveDir = -actor->GetForward() - actor->GetRight();
-		else if (INPUT->KeyPress('S') && INPUT->KeyPress('D'))moveDir = -actor->GetForward() + actor->GetRight();
-		else if (INPUT->KeyPress('W')) moveDir = actor->GetForward();
-		else if (INPUT->KeyPress('S')) moveDir = -actor->GetForward();
-		else if (INPUT->KeyPress('A')) moveDir = -actor->GetRight();
-		else if (INPUT->KeyPress('D')) moveDir = actor->GetRight();
-		moveDir.Normalize();
-
-		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-	}*/
 }
 
 void Player::EquipToHand(ItemProto* item)
@@ -300,7 +285,6 @@ void Player::MoveBack(Actor* col)
 	moveDir = slidingDir - normal * (slidingDir.Dot(normal));
 	moveDir.Normalize();
 	moveDir = -moveDir;
-
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
@@ -318,6 +302,16 @@ bool Player::GetItem(ItemProto* item)
 			}
 		}
 	return false;
+}
+
+void Player::PlayerHit()
+{
+	if (hitTime < 0)
+	{
+		cout << "PlayerHit!";
+		hitTime = 1.0f;
+		isHit = false;
+	}
 }
 
 bool Player::IsDestroyed()

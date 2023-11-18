@@ -1,6 +1,4 @@
 #pragma once
-
-
 //class PlayerState;
 class Player : public Unit
 {
@@ -23,13 +21,13 @@ class Player : public Unit
 	Ray playerReverseCamRay;
 	Vector3 playerReverseCamRayHit;
 
-	float					moveSpeed = 0;
+	bool					isHit = 0;
 	bool					isJump = 0;
 	bool					isPlayerCam = 1;
 	bool					CamtoTerrain = 0;
 
 	int						isEquip = 0;
-
+	float					hitTime = 0;
 public:
 	bool istouch = 0;
 	Player();
@@ -46,6 +44,7 @@ public:
 	Actor* GetPlayer() { return actor; }
 	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam() { return static_cast<Camera*>(actor->Find("FrustumCam")); }
+	Collider* GetCollider() { return actor->collider; }
 	bool GetPlayerJump() { return isJump; }
 	bool CleanHit(Collider* object);
 	bool CleanFrame();
@@ -58,4 +57,5 @@ public:
 	void ReleaseToHand();
 	void MoveBack(Actor* col);
 	bool GetItem(ItemProto* item);
+	void PlayerHit();
 };
