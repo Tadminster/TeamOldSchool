@@ -6,6 +6,8 @@
 #define E_IDLE Elder_IdleState::GetInstance()
 #define E_WALK Elder_WalkState::GetInstance()
 #define E_STOMP Elder_StompState::GetInstance()
+#define E_VINESHOOT Elder_VineShootState::GetInstance()
+#define E_SUMMON Elder_SummonState::GetInstance()
 class Elder;
 
 class ElderState
@@ -86,6 +88,42 @@ public:
 	static Elder_StompState* GetInstance()
 	{
 		if (instance == nullptr) instance = new Elder_StompState();
+		return instance;
+	}
+	void Opening(Elder* elder) override;
+	void Idle(Elder* elder) override;
+	void Walk(Elder* elder) override;
+	void Stomp(Elder* elder) override;
+	void VineShoot(Elder* elder) override;
+	void Summon(Elder* elder) override;
+	void Death(Elder* elder) override;
+};
+//VineShoot 클래스----------------------------------------------------------
+class Elder_VineShootState : public ElderState
+{
+	static Elder_VineShootState* instance;
+public:
+	static Elder_VineShootState* GetInstance()
+	{
+		if (instance == nullptr) instance = new Elder_VineShootState();
+		return instance;
+	}
+	void Opening(Elder* elder) override;
+	void Idle(Elder* elder) override;
+	void Walk(Elder* elder) override;
+	void Stomp(Elder* elder) override;
+	void VineShoot(Elder* elder) override;
+	void Summon(Elder* elder) override;
+	void Death(Elder* elder) override;
+};
+//Summon 클래스----------------------------------------------------------
+class Elder_SummonState : public ElderState
+{
+	static Elder_SummonState* instance;
+public:
+	static Elder_SummonState* GetInstance()
+	{
+		if (instance == nullptr) instance = new Elder_SummonState();
 		return instance;
 	}
 	void Opening(Elder* elder) override;
