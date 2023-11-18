@@ -86,14 +86,14 @@ void Woodpile::RenderHierarchy()
 
 }
 
-bool Woodpile::IsDestroyed()
-{
-	return false;
-}
-
-void Woodpile::DestructionEvent()
-{
-}
+//bool Woodpile::IsDestroyed()
+//{
+//	return false;
+//}
+//
+//void Woodpile::DestructionEvent()
+//{
+//}
 
 void Woodpile::Use()
 {

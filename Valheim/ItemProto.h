@@ -32,12 +32,14 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 
-	UI*	GetIcon() { return icon; }
-	ItemType GetType() { return type; }
-	void SetState(ItemState state) { this->state = state; }
+	UI*			GetIcon() { return icon; }
+	string		GetName() { return name; }
+	ItemType	GetType() { return type; }
+	void		SetState(ItemState state) { this->state = state; }
 
 	void Drop();
 	virtual void Use() = 0;
+	//virtual bool IsDestroyed() override;
 };
 //====================================================================================================
 class ToolProto : public ItemProto
@@ -79,6 +81,14 @@ class MaterialProto : public ItemProto
 {
 protected:
 	RECT text_stack;	// 중첩수를 표시할 텍스트 영역
+public:
 	int currentStack;	// 현재 중첩수
 	int maxStack;		// 최대 중첩수
+
+	// @brief	두 아이템의 중첩수 더하는 함수
+	// @brief	함수를 호출하는 객체는 수량이 줄어들 아이템
+	// @param	수량이 증가하는 대상이 되는 아이템
+	void StackMerge(MaterialProto* material);
+	void DestructionEvent();
+	virtual bool IsDestroyed() override;
 };

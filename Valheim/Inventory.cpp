@@ -516,16 +516,44 @@ Inventory::MouseLocation Inventory::CheckMouseLocation()
 
 void Inventory::AddItem(ItemProto* item)
 {
-	// 아이템의 위치를 임시로 변경
+	// 아이템의 액터위치를 임시로 변경
 	item->GetActor()->SetWorldPos(Vector3(0, -999, 0));
 	item->Update();
 
 	// 아이템의 상태를 인벤토리로 변경
 	item->SetState(ItemState::OnInventory);
 
+	// 아이템이 중첩 가능한 타입(재료, 음식)이면
+	if (item->GetType() == ItemType::Material || item->GetType() == ItemType::Food)
+	{
+		MaterialProto* mItem = dynamic_cast<MaterialProto*>(item);
+		if (mItem)
+		{
+			// 인벤토리를 전체를 순회해서 같은 아이템이 있는지 체크
+			for (int i = 0; i < INVENTORY_SIZE; ++i)
+			{
+				if (inventoryItem[i] == nullptr)
+				{
+					continue;
+				}
+				else if (inventoryItem[i]->GetName() == mItem->GetName())
+				{
+					MaterialProto* targetItem = static_cast<MaterialProto*>(inventoryItem[i]);
+					mItem->StackMerge(targetItem);
+				}
+
+				if (mItem->currentStack == 0)
+				{
+					return;
+				}
+			}
+		}
+	}
+		
 	// 인벤토리를 순회하며 빈 공간을 찾음
 	for (int i = 0; i < INVENTORY_SIZE; ++i)
 	{
+		// 빈 공간을 찾으면
 		if (inventoryItem[i] == nullptr)
 		{
 			// 인벤토리에 아이템 추가

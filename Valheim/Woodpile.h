@@ -16,8 +16,8 @@ public:
 	void Release() override;
 	void Render() override;
 	void RenderHierarchy() override;
-	bool IsDestroyed() override;
-	void DestructionEvent() override;
+	//bool IsDestroyed() override;
+	//void DestructionEvent() override;
 
 	void Use() override;
 };
