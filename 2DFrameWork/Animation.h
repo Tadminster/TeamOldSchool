@@ -33,7 +33,7 @@ class Animations
 		UINT  currentFrame = 0;
 		UINT  nextFrame = 1;
 		UINT  animIdx = 0;
-		AnimationState animState = AnimationState::LOOP;
+		AnimationState animState = AnimationState::STOP;
 	};
 	void AnimatorUpdate(Animator& Animator);
 public:

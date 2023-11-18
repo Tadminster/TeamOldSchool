@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Elder.h"
 #include "ElderState.h"
+
 Elder_OpeningState* Elder_OpeningState::instance;
 Elder_IdleState* Elder_IdleState::instance;
 Elder_WalkState* Elder_WalkState::instance;
@@ -10,18 +11,19 @@ Elder_StompState* Elder_StompState::instance;
 void Elder_OpeningState::Opening(Elder* elder)
 {
 	elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 0);
-	if (elder->GetActor()->anim->GetPlayTime()>=0.9f)
+	if (elder->GetActor()->anim->GetPlayTime() >= 0.95f)
 	{
-		elder->SetState(Elder_IdleState::GetInstance());
+		elder->SetState(E_IDLE);
 	}
 }
 void Elder_OpeningState::Idle(Elder* elder)
 {
-	if (elder->GetActor()->anim->currentAnimator.animIdx != 1)
+	//elder->GetState()->Idle(elder);
+	/*if (elder->GetActor()->anim->currentAnimator.animIdx != 1)
 	{
 		elder->GetActor()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
-	elder->SetState(Elder_IdleState::GetInstance());
+	elder->SetState(E_IDLE);*/
 }
 //Opening을 그냥 FSM에서 뺄까..?
 void Elder_OpeningState::Walk(Elder* elder) {}
@@ -29,6 +31,7 @@ void Elder_OpeningState::Stomp(Elder* elder) {}
 void Elder_OpeningState::VineShoot(Elder* elder) {}
 void Elder_OpeningState::Summon(Elder* elder) {}
 void Elder_OpeningState::Death(Elder* elder) {}
+
 //Idle 상태--------------------------------------------------------------------------
 void Elder_IdleState::Opening(Elder* elder) {}
 void Elder_IdleState::Idle(Elder* elder)
@@ -44,10 +47,11 @@ void Elder_IdleState::Walk(Elder* elder)
 	{
 		elder->GetActor()->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
+	elder->SetState(E_WALK);
 }
 void Elder_IdleState::Stomp(Elder* elder)
 {
-	elder->SetState(Elder_StompState::GetInstance());
+	elder->SetState(E_STOMP);
 }
 void Elder_IdleState::VineShoot(Elder* elder)
 {
@@ -66,7 +70,7 @@ void Elder_WalkState::Idle(Elder* elder)
 	{
 		elder->GetActor()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
-	elder->SetState(Elder_IdleState::GetInstance());
+	elder->SetState(E_IDLE);
 }
 void Elder_WalkState::Walk(Elder* elder)
 {
@@ -77,7 +81,7 @@ void Elder_WalkState::Walk(Elder* elder)
 }
 void Elder_WalkState::Stomp(Elder* elder)
 {
-	elder->SetState(Elder_StompState::GetInstance());
+	elder->SetState(E_STOMP);
 }
 void Elder_WalkState::VineShoot(Elder* elder)
 {
@@ -96,7 +100,7 @@ void Elder_StompState::Idle(Elder* elder)
 	{
 		elder->GetActor()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
-	elder->SetState(Elder_IdleState::GetInstance());
+	elder->SetState(E_IDLE);
 }
 
 void Elder_StompState::Walk(Elder* elder)

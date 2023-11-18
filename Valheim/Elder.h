@@ -15,5 +15,7 @@ public:
 	void DestructionEvent() override;
 
 	void SetState(ElderState* state);
+	ElderState* GetState() { return state; }
+	void BehaviorPatern();
 };
 
