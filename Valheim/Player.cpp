@@ -38,6 +38,7 @@ void Player::Update()
 	{
 		isPlayerCam = false;
 	}
+	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
 
@@ -305,13 +306,12 @@ bool Player::GetItem(ItemProto* item)
 
 void Player::PlayerHit()
 {
-	if (hitTime <= 0)
+	if (hitTime < 0)
 	{
 		cout << "PlayerHit!";
 		hitTime = 1.0f;
 		isHit = false;
 	}
-	hitTime -= DELTA;
 }
 
 bool Player::IsDestroyed()

@@ -50,7 +50,7 @@ void ElderPatern::StompPatern(Elder* elder)
 			if (elder->GetState() == E_STOMP && elder->GetActor()->anim->GetPlayTime() >= 1.0f)
 			{
 				elder->GetState()->Idle(elder);
-				elder->paternTime = 2.0f;
+				elder->paternTime = 2.5f;
 			}
 		}
 		
