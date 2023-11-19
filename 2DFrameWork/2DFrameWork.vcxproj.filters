@@ -114,14 +114,20 @@
       <Filter>Render</Filter>
     </ClInclude>
     <ClInclude Include="SlashTrail.h" />
-    <ClInclude Include="Rain.h">
+    <ClInclude Include="AStar.h" />
+    <ClInclude Include="Water.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="AStar.h" />
+    <ClInclude Include="Particle.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
     <ClInclude Include="Pop.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Water.h">
+    <ClInclude Include="Rain.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="BeechLeafDrop.h">
       <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
@@ -258,14 +264,20 @@
       <Filter>Render</Filter>
     </ClCompile>
     <ClCompile Include="SlashTrail.cpp" />
-    <ClCompile Include="Rain.cpp">
+    <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="Water.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="AStar.cpp" />
+    <ClCompile Include="Particle.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
     <ClCompile Include="Pop.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Water.cpp">
+    <ClCompile Include="Rain.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechLeafDrop.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
   </ItemGroup>

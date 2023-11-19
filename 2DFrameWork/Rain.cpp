@@ -1,41 +1,5 @@
 #include "framework.h"
 
-//길찾기,파티클
-
-
-//물반사물굴절
-//디퍼드렌더링
-//대기산란
-//테셀레이션
-
-void Particle::UpdateParticle()
-{
-	if (isPlaying)
-	{
-		playTime += DELTA;
-		if (playTime > duration)
-		{
-			Stop();
-		}
-	}
-}
-
-void Particle::Gui()
-{
-	if (ImGui::Button("Play"))
-	{
-		Play();
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("Stop"))
-	{
-		Stop();
-	}
-	//현재 재생 시간
-	ImGui::Text("Playtime : %f", PlayTime());
-	//총 재생할 시간
-	ImGui::SliderFloat("duration", &duration, 0.0f, 100.0f);
-}
 ID3D11Buffer* Rain::RainBuffer = nullptr;
 void Rain::CreateStaticMember()
 {
@@ -67,6 +31,7 @@ Rain* Rain::Create(string name)
 	temp->mesh->LoadFile("7.Billboard.mesh");
 	temp->shader = RESOURCE->shaders.Load("7.Rain.hlsl");
 	temp->shader->LoadGeometry();
+	//여기에서 머터리얼 생성후 불러오기
 	temp->Reset();
 	temp->Play();
 	temp->type = ObType::Rain;
