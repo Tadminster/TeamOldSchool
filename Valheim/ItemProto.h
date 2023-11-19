@@ -40,6 +40,8 @@ public:
 	float			GetTooltipBoxScaleY() { return tooltipBoxScaleY; }
 	void			SetState(ItemState state) { this->state = state; }
 
+	bool			ReceivedDamageEvent(int damage) override { return false; }
+
 	void Drop();
 	virtual void Use() = 0;
 	//virtual bool IsDestroyed() override;

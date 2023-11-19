@@ -70,13 +70,6 @@ void Beech::LodUpdate(LodLevel lv)
 		actor->Find("Lod3")->visible = true;
 }
 
-
-
-void Beech::ReceivedDamageEvent(int damage)
-{
-	hitPoint -= damage;
-}
-
 void Beech::DestructionEvent()
 {
 	// 오브젝트 생성 (그루터기)

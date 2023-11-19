@@ -6,7 +6,7 @@
 Elder::Elder()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Monster_Elder_BossStone.xml");
+	//actor->LoadFile("Monster_Elder_BossStone.xml");
 	actor->LoadFile("Monster_Elder.xml");
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
@@ -14,6 +14,9 @@ Elder::Elder()
 	state = Elder_OpeningState::GetInstance();
 
 	moveSpeed = 2.0f;
+
+	astar = new AStar();
+	astar->CreateNode(MAP, 200);
 }
 
 Elder::~Elder()
@@ -68,6 +71,7 @@ void Elder::Update()
 	//행동패턴
 	BehaviorPatern();
 	DoFSM();
+	Astar();
 
 	//중력 구현
 	ApplyGravity();
@@ -129,8 +133,9 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	if (paternTime >= 0) paternTime -= DELTA;
-	patern->StompPatern(this);
+	/*if (paternTime >= 0) paternTime -= DELTA;
+	patern->StompPatern(this);*/
+
 }
 
 void Elder::DoFSM()
@@ -159,6 +164,58 @@ void Elder::DoFSM()
 	{
 		state->Summon(this);
 	}
+}
+
+void Elder::Astar()
+{
+	//AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
+	//AstarRay.direction = Vector3(0, -1, 0);
+	//Vector3 target;
+	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
+	//	//if(MAP->ComputePicking(AstarRay,target))
+	//{
+	//	astar->PathFinding(actor->GetWorldPos(), target, way);
+	//}
+	//if (!way.empty())
+	//{
+	//	RotationForMove(way.back());
+	//	for (auto& it : way)
+	//	{
+	//		ImGui::Text("way x %f", it.x);
+	//		ImGui::Text("way y %f", it.y);
+	//		ImGui::Text("way z %f", it.z);
+	//	}
+	//	way.pop_back();
+	//}
+	
+	
+	/*AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
+	AstarRay.direction = Vector3(0, -1, 0);
+	Vector3 target;*/
+	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
+		//if(MAP->ComputePicking(AstarRay,target))
+	//{
+	//}
+	
+		astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
+		if (!way.empty())
+		{
+			RotationForMove(way.back());
+			MonsterMove();
+			for (auto& it : way)
+			{
+				ImGui::Text("way x %f", it.x);
+				ImGui::Text("way y %f", it.y);
+				ImGui::Text("way z %f", it.z);
+			}
+			if ((way.back() - actor->GetWorldPos()).Length() <= 1.5f)
+			{
+				way.pop_back();
+				cout << "pop";
+			}
+		}
+		if ((PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos()).Length() <= 1.5f) way.clear();
+	
 }
 
 

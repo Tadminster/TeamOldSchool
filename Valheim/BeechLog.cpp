@@ -56,24 +56,20 @@ void BeechLog::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void BeechLog::ReceivedDamageEvent(int damage)
-{
-	hitPoint -= damage;
-}
-
 void BeechLog::DestructionEvent()
 {
+	Vector3 tempPos = this->actor->GetWorldPos();
+	Vector3 tempDirUp = this->actor->GetUp();
+
 	// 오브젝트 생성 (반쪽통나무)
 	FeatureProto* halfLog1 = FeatureProto::Create(FeatureType::BeechHalfLog);
-	Vector3 spawnPos1 = this->actor->GetWorldPos();
-	halfLog1->GetActor()->SetWorldPos(spawnPos1);
+	halfLog1->GetActor()->SetWorldPos(tempPos - tempDirUp * 2.0f);
 	//halfLog1->GetActor()->rotation = this->actor->rotation;
 	//halfLog1->GetActor()->scale = this->actor->scale;
 	halfLog1->Init();
 
 	FeatureProto* halfLog2 = FeatureProto::Create(FeatureType::BeechHalfLog);
-	Vector3 spawnPos2 = this->actor->GetWorldPos() + this->actor->GetUp() * 5;
-	halfLog2->GetActor()->SetWorldPos(spawnPos2);
+	halfLog2->GetActor()->SetWorldPos(tempPos + tempDirUp * 2.3f);
 	//halfLog2->GetActor()->rotation = this->actor->rotation;
 	//halfLog2->GetActor()->scale = this->actor->scale;
 	halfLog2->Init();

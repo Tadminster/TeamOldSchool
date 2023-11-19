@@ -4,6 +4,7 @@
 
 Unit::Unit()
 {
+	
 }
 
 void Unit::SetOnTerrain()
@@ -55,6 +56,41 @@ void Unit::RotationForMove()
 	}
 }
 
+void Unit::RotationForMove(Vector3 targetPos)
+{
+	ImGui::Text("targetPos x %f", targetPos.x);
+	ImGui::Text("targetPos y %f", targetPos.y);
+	ImGui::Text("targetPos z %f", targetPos.z);
+
+	moveDir = targetPos - actor->GetWorldPos();
+	moveTime = moveDir.Length() / moveSpeed;
+	
+	moveDir.Normalize();
+	ImGui::Text("movedir x %f", moveDir.x);
+	ImGui::Text("movedir y %f", moveDir.y);
+	ImGui::Text("movedir z %f", moveDir.z);
+
+	actor->rotation.y = atan2f(moveDir.x, moveDir.z);
+
+	/*srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
+	destRotation = atan2f(moveDir.x, moveDir.z);
+	angleGap = destRotation - srcRotation;
+
+	if (angleGap > PI) srcRotation += PI * 2.0f;
+	else if (angleGap < -PI) srcRotation -= PI * 2.0f;
+	angleGap = destRotation - srcRotation;
+	rotationSpeed = angleGap > 0 ? PI : -PI;
+
+	actor->rotation.y = srcRotation;
+	rotationTime = fabs(angleGap) / fabs(rotationSpeed);
+
+	if (rotationTime > 0)
+	{
+		actor->rotation.y += rotationSpeed * DELTA * rotationScale;
+		rotationTime -= DELTA * rotationScale;
+	}*/
+}
+
 void Unit::MonsterMove()
 {
 	if (moveTime > 0)
@@ -62,4 +98,42 @@ void Unit::MonsterMove()
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 		moveTime -= DELTA;
 	}
+}
+
+void Unit::Init()
+{
+}
+
+void Unit::Update()
+{
+}
+
+void Unit::LateUpdate()
+{
+}
+
+void Unit::Render()
+{
+}
+
+void Unit::Release()
+{
+}
+
+void Unit::RenderHierarchy()
+{
+}
+
+bool Unit::ReceivedDamageEvent(int damage)
+{
+	return false;
+}
+
+bool Unit::IsDestroyed()
+{
+	return false;
+}
+
+void Unit::DestructionEvent()
+{
 }

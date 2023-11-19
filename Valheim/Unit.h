@@ -19,11 +19,27 @@ protected:
 	float				rotationSpeed = 0;
 	float				rotationTime = 0;
 	float				rotationScale = 0.4f;
+	//A Star
+	Ray					AstarRay;
+	vector<Vector3>		way = {};
+	AStar*				astar = nullptr;
 public:
 	Unit();
 	void SetOnTerrain();
 	void ApplyGravity();
 	void RotationForMove();
+	void RotationForMove(Vector3 targetPos);
 	void MonsterMove();
+
+	// Prototype을(를) 통해 상속됨
+	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
+	void Render() override;
+	void Release() override;
+	void RenderHierarchy() override;
+	bool ReceivedDamageEvent(int damage) override;
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };
 

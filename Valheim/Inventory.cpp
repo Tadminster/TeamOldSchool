@@ -213,27 +213,31 @@ void Inventory::MouseOverSlot()
 				{
 					isMouseOverItem = true;
 
-					float screenRatio = 1300.0f / static_cast<float>(App.GetWidth());
+					float appWidth = App.GetWidth();
+					float appHeight = App.GetHeight();
 
-					// 화면 크기에 따라 툴팁박스 x크기 조절
-					tooltopBox->scale.x = screenRatio;
-					// 아이템에 따라 툴팁박스 y크기 조절
-					tooltopBox->scale.y = inventoryItem[i]->GetTooltipBoxScaleY();
-					
+					// 화면 크기에 따라 툴팁박스 크기 조절할 가중치
+					float screenRatioX = 1300.0f / appWidth;
+					float screenRatioY = 850.0f / appHeight;
+
+					// 툴팁박스 x, y크기 조절
+					tooltopBox->scale.x = screenRatioX;
+					tooltopBox->scale.y = inventoryItem[i]->GetTooltipBoxScaleY() * screenRatioY;
+
 					// 툴팁 박스를 마우스 위치로 이동
 					tooltopBox->SetWorldPos(Utility::MouseToNDC());
 
 					// 툴팁 텍스트 위치 조절
 					Vector3 tooptipPos = tooltopBox->GetWorldPos();
 
-					text_itemName.left = App.GetWidth() * ((tooptipPos.x + 1) / 2) + 70;
+					text_itemName.left = appWidth * ((tooptipPos.x + 1) / 2) + 70;
 					text_itemName.right = text_itemName.left + 1000;
-					text_itemName.top = App.GetHeight() * ((1 - tooptipPos.y) / 2) + 10;
+					text_itemName.top = appHeight * ((1 - tooptipPos.y) / 2) + 10;
 					text_itemName.bottom = text_itemName.top + 200;
 
-					text_itemExplain.left = App.GetWidth() * ((tooptipPos.x + 1) / 2) + 10;
+					text_itemExplain.left = appWidth * ((tooptipPos.x + 1) / 2) + 10;
 					text_itemExplain.right = text_itemExplain.left + 1000;
-					text_itemExplain.top = App.GetHeight() * ((1 - tooptipPos.y) / 2) + 50;
+					text_itemExplain.top = appHeight * ((1 - tooptipPos.y) / 2) + 50;
 					text_itemExplain.bottom = text_itemExplain.top + 200;
 
 					// 툴팁 박스 visible
