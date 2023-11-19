@@ -25,7 +25,7 @@ Elder::~Elder()
 
 void Elder::Init()
 {
-	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos()+Vector3(10,0,0));
+	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos() + Vector3(10, 0, 0));
 }
 
 void Elder::Update()
@@ -105,7 +105,7 @@ void Elder::LateUpdate()
 void Elder::Render()
 {
 	actor->Render();
-	
+
 }
 
 void Elder::Release()
@@ -187,8 +187,8 @@ void Elder::Astar()
 	//	}
 	//	way.pop_back();
 	//}
-	
-	
+
+
 	/*AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
 	AstarRay.direction = Vector3(0, -1, 0);
 	Vector3 target;*/
@@ -196,26 +196,26 @@ void Elder::Astar()
 		//if(MAP->ComputePicking(AstarRay,target))
 	//{
 	//}
-	
-		astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
-		if (!way.empty())
+
+	astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
+	if (!way.empty())
+	{
+		RotationForMove(way.back());
+		MonsterMove();
+		for (auto& it : way)
 		{
-			RotationForMove(way.back());
-			MonsterMove();
-			for (auto& it : way)
-			{
-				ImGui::Text("way x %f", it.x);
-				ImGui::Text("way y %f", it.y);
-				ImGui::Text("way z %f", it.z);
-			}
-			if ((way.back() - actor->GetWorldPos()).Length() <= 1.5f)
-			{
-				way.pop_back();
-				cout << "pop";
-			}
+			ImGui::Text("way x %f", it.x);
+			ImGui::Text("way y %f", it.y);
+			ImGui::Text("way z %f", it.z);
 		}
-		if ((PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos()).Length() <= 1.5f) way.clear();
-	
+		if ((way.back() - actor->GetWorldPos()).Length() <= 1.5f)
+		{
+			way.pop_back();
+			//cout << "pop";
+		}
+	}
+	if ((PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos()).Length() <= 1.5f) way.clear();
+
 }
 
 

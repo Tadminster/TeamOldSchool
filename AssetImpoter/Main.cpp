@@ -12,9 +12,9 @@ Main::Main()
     
     temp = Actor::Create();
     //temp->LoadFile("Monster_Elder.xml");
-
-
     ui = UI::Create("UI");
+    rain = Rain::Create();
+
 }
 
 Main::~Main()
@@ -36,12 +36,14 @@ void Main::Update()
 {
     Camera::main->ControlMainCam();
     Camera::main->Update();
+    rain->Gui();
 
     ImGui::Begin("Hierarchy");
     grid->RenderHierarchy();
     cam1->RenderHierarchy();
     temp->RenderHierarchy();
     ui->RenderHierarchy();
+    rain->RenderHierarchy();
     ImGui::End();
 
     ImGui::Begin("AssetImporter");
@@ -270,6 +272,7 @@ void Main::Update()
     grid->Update();
     temp->Update();
     ui->Update();
+    rain->Update();
 
     //if (ImGui::Button("changeName"))
     //{
@@ -301,7 +304,7 @@ void Main::Render()
     grid->Render();
     temp->Render();
     ui->Render();
-   
+    rain->Render();
 }
 
 void Main::ResizeScreen()

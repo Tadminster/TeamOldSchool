@@ -9,6 +9,7 @@ private:
 
 	Actor*				temp;
 	UI*					ui;
+	Rain*               rain;
 	string				Modelfile;
 	string				Animfile;
 	//임포트해서 가져온 데이터
