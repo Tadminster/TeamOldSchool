@@ -70,7 +70,7 @@ void Elder::Update()
 	{
 		if (astar != nullptr) delete astar;
 		astar = new AStar();
-		astar->CreateNode(MAP, MAP->rowSize*2, OBJ->GetColliders());
+		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
 	}
 
 	//행동패턴
