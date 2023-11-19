@@ -57,6 +57,14 @@ void FeatureProto::RenderHierarchy()
 {
 }
 
+bool FeatureProto::ReceivedDamageEvent(int damage)
+{
+	if (hitPoint <= 0) return false;
+
+	hitPoint -= damage;
+	return true;
+}
+
 void FeatureProto::DestructionEvent()
 {
 }

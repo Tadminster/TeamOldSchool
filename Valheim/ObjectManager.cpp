@@ -185,17 +185,10 @@ void ObjectManager::LateUpdate()
 
 	for (auto& obj : objects)
 	{
-
-		// 오브젝트와 충돌 검사 (임시)
-		//if (PLAYER->GetActor()->Find("StoneAxe")->collider->Intersect(obj->GetActor()->Find("Collider")->collider))
 		if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
 		{
-			Beech* beech = dynamic_cast<Beech*>(obj);
-			if (beech)
-			{
-				cout << "Beech Hit" << endl;
-				beech->ReceivedDamageEvent(1);
-			}
+			obj->ReceivedDamageEvent(10);
+			continue;
 		}
 	}
 }

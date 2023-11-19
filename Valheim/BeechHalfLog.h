@@ -1,5 +1,6 @@
 #pragma once
 #include "Prototype.h"
+#include "ItemProto.h"
 #include "FeatureProto.h"
 class BeechHalfLog : public FeatureProto
 {
@@ -16,6 +17,5 @@ public:
 	void RenderHierarchy() override;
 
 	void DestructionEvent() override;
-	void ReceivedDamageEvent(int damage) override;
 };
 
