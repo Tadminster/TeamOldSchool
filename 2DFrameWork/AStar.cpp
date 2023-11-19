@@ -40,20 +40,20 @@ void AStar::CreateNode(Terrain* map, int size)
             Tiles[z][x].idxX = x;
             Tiles[z][x].idxZ = z;
 
-            for (auto k = map->children.begin(); k != map->children.end(); k++)
-            {
-                Tiles[z][x].pass = true;
-                if (k->second->collider)
-                {
-                    //k->second->Update();
-                    //ÄÝ¶óÀÌ´õ¶û ÁÂÇ¥¶û Ãæµ¹ÇÏ¸é º®À¸·Î ¸¸µê
-                    if (k->second->collider->Intersect(Pos))
-                    {
-                        Tiles[z][x].pass = false;
-                        //cout << Pos.x << "," << Pos.z << endl;
-                    }
-                }
-            }
+            //for (auto k = map->children.begin(); k != map->children.end(); k++)
+            //{
+            //    Tiles[z][x].pass = true;
+            //    if (k->second->collider)
+            //    {
+            //        //k->second->Update();
+            //        //ÄÝ¶óÀÌ´õ¶û ÁÂÇ¥¶û Ãæµ¹ÇÏ¸é º®À¸·Î ¸¸µê
+            //        if (k->second->collider->Intersect(Pos))
+            //        {
+            //            Tiles[z][x].pass = false;
+            //            //cout << Pos.x << "," << Pos.z << endl;
+            //        }
+            //    }
+            //}
         }
 
     }

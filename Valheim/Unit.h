@@ -30,6 +30,16 @@ public:
 	void RotationForMove();
 	void RotationForMove(Vector3 targetPos);
 	void MonsterMove();
-	virtual void Astar();
+	void Astar();
+
+	// Prototype을(를) 통해 상속됨
+	void Init() override;
+	void Update() override;
+	void LateUpdate() override;
+	void Render() override;
+	void Release() override;
+	void RenderHierarchy() override;
+	bool IsDestroyed() override;
+	void DestructionEvent() override;
 };
 

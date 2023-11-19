@@ -64,9 +64,15 @@ void Unit::RotationForMove(Vector3 targetPos)
 
 	moveDir = targetPos - actor->GetWorldPos();
 	moveTime = moveDir.Length() / moveSpeed;
+	
 	moveDir.Normalize();
+	ImGui::Text("movedir x %f", moveDir.x);
+	ImGui::Text("movedir y %f", moveDir.y);
+	ImGui::Text("movedir z %f", moveDir.z);
 
-	srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
+	actor->rotation.y = atan2f(moveDir.x, moveDir.z);
+
+	/*srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
 	destRotation = atan2f(moveDir.x, moveDir.z);
 	angleGap = destRotation - srcRotation;
 
@@ -82,7 +88,7 @@ void Unit::RotationForMove(Vector3 targetPos)
 	{
 		actor->rotation.y += rotationSpeed * DELTA * rotationScale;
 		rotationTime -= DELTA * rotationScale;
-	}
+	}*/
 }
 
 void Unit::MonsterMove()
@@ -94,29 +100,36 @@ void Unit::MonsterMove()
 	}
 }
 
-void Unit::Astar()
+void Unit::Init()
 {
-	AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
-	AstarRay.direction = Vector3(0, -1, 0);
-	Vector3 target;
-	if (Utility::RayIntersectMap(AstarRay, MAP, target))
-	//if(MAP->ComputePicking(AstarRay,target))
-	{
-		astar->PathFinding(actor->GetWorldPos(), target, way);
-		
-		
-	}
-	if (!way.empty())
-	{
-		//RotationForMove(way.back());
-		for (auto& it : way)
-		{
-			ImGui::Text("way x %f", it.x);
-			ImGui::Text("way y %f", it.y);
-			ImGui::Text("way z %f", it.z);
-		}
-		ImGui::Text("way size %d", way.size());
-		ImGui::Text("rotation %f", actor->rotation.y);
-		way.pop_back();
-	}
 }
+
+void Unit::Update()
+{
+}
+
+void Unit::LateUpdate()
+{
+}
+
+void Unit::Render()
+{
+}
+
+void Unit::Release()
+{
+}
+
+void Unit::RenderHierarchy()
+{
+}
+
+bool Unit::IsDestroyed()
+{
+	return false;
+}
+
+void Unit::DestructionEvent()
+{
+}
+

@@ -23,6 +23,6 @@ public:
 	ElderState* GetState() { return state; }
 	void BehaviorPatern();
 	void DoFSM();
-	void Astar() override;
+	void Astar();
 };
 
