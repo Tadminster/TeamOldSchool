@@ -62,10 +62,11 @@ void MiniMap::LateUpdate()
 	//-------------------------------------------------
 
 	//플레이어 아이콘 보는방향에따라 회전시키기
-	playerPosUI->rotation.z = PLAYER->GetActor()->rotation.y;
+	FollowPlayerViewPoint();
 
-	//플레이어 아이콘 플레이어 이동에따라 움직이기
-	//playerPosUI->MoveWorldPos();
+	//플레이어 아이콘 플레이어 이동에따라 움직이기 추후에 최적화가 가능하면 시간제어나 ex gettick
+	//등으로 꼭필요한곳에만 쓰이게 하기
+	FollowPlayerMovement();
 }
 
 void MiniMap::PreRender()
@@ -84,14 +85,13 @@ void MiniMap::ResizeScreen()
 
 Color MiniMap::GetColorForWeight(float normalizedHeight)
 {
+	if (normalizedHeight <= 0)
+		return Color(0.0f, 0.358f, 0.6f); //바다색
 	float minmapheight = normalizedHeight * normalizedHeight;
 	// 모래색에서 녹색으로 자연스럽게 보간
 	Color sandColor(0.7608f, 0.6980f, 0.5020f);    // 모래색
 	Color grassColor(0.0f, 0.4020f, 0.0f);         // 초록색
 
-	if (normalizedHeight < 0)
-		return Color(0.0f, 0.358f, 0.6f); //바다색
-	else
 	return Color::Lerp(sandColor, grassColor, minmapheight);
 }
 
@@ -163,5 +163,21 @@ void  MiniMap::DrawMiniMap(const string& filename)
 	}
 
 	file.close();
+}
+
+void MiniMap::FollowPlayerViewPoint()
+{
+	playerPosUI->rotation.z = PLAYER->GetActor()->rotation.y;
+}
+
+void MiniMap::FollowPlayerMovement()
+{
+	//정규화된 플레이어 위치
+	float playerPosX = (PLAYER->GetActor()->GetWorldPos().x + MAP->rowSize * 0.5f) / MAP->rowSize;
+	float playerPosZ = (PLAYER->GetActor()->GetWorldPos().z + MAP->rowSize * 0.5f) / MAP->rowSize;
+
+	// 플레이어 아이콘을 미니맵 상에서의 위치로 이동
+	playerPosUI->SetWorldPosX(miniMapMinScaleX + moveWeightX * playerPosX);
+	playerPosUI->SetWorldPosY(miniMapMaxScaleY - moveWeightY * playerPosZ);
 }
 

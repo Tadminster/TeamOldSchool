@@ -3,9 +3,9 @@
     <Shader File="6.UI.hlsl"/>
     <Material File="MiniMap/Player_icon.mtl"/>
     <Transform>
-        <Position X="0.64999998" Y="0.80000001" Z="0"/>
-        <Scale X="0.0099999998" Y="0.02" Z="1"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Position X="0.85000002" Y="0.80000001" Z="0"/>
+        <Scale X="0.02" Y="0.02" Z="1"/>
+        <Rotation X="0" Y="0" Z="1.4879799"/>
     </Transform>
     <UI PivotX="0" PivotY="0"/>
     <Children Size="0"/>
