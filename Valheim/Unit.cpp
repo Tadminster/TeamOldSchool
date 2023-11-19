@@ -63,3 +63,41 @@ void Unit::MonsterMove()
 		moveTime -= DELTA;
 	}
 }
+
+void Unit::Init()
+{
+}
+
+void Unit::Update()
+{
+}
+
+void Unit::LateUpdate()
+{
+}
+
+void Unit::Render()
+{
+}
+
+void Unit::Release()
+{
+}
+
+void Unit::RenderHierarchy()
+{
+}
+
+bool Unit::ReceivedDamageEvent(int damage)
+{
+	return false;
+}
+
+bool Unit::IsDestroyed()
+{
+	return false;
+}
+
+void Unit::DestructionEvent()
+{
+}
