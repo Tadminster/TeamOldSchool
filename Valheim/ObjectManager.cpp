@@ -130,7 +130,7 @@ void ObjectManager::Update()
 
 	static float distanceCalCycle = 0;
 	// 최적화를 위해 일정 주기로 거리 계산
-	if (TIMER->GetTick(distanceCalCycle, 1.0f))
+	if (TIMER->GetTick(distanceCalCycle, 0.1f))
 	{
 		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
@@ -143,7 +143,7 @@ void ObjectManager::Update()
 				float distance = Vector3::DistanceSquared(CameraPos, beech->GetActor()->GetWorldPos());
 				if (distance < 1000) beech->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
 				else if (distance < 2000) beech->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
-				else if (distance < 5000) beech->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
+				else if (distance < 4000) beech->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
 				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
 
 				obj->Update();
@@ -157,7 +157,7 @@ void ObjectManager::Update()
 				float distance = Vector3::DistanceSquared(CameraPos, birch->GetActor()->GetWorldPos());
 				if (distance < 1000) birch->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
 				else if (distance < 2000) birch->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
-				else if (distance < 5000) birch->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
+				else if (distance < 4000) birch->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
 				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
 
 				obj->Update();
