@@ -16,6 +16,5 @@ public:
 	void RenderHierarchy() override;
 
 	void DestructionEvent() override;
-	void ReceivedDamageEvent(int damage) override;
 };
 

@@ -112,6 +112,18 @@ void Unit::LateUpdate()
 {
 }
 
+void Unit::Init()
+{
+}
+
+void Unit::Update()
+{
+}
+
+void Unit::LateUpdate()
+{
+}
+
 void Unit::Render()
 {
 }
@@ -124,6 +136,11 @@ void Unit::RenderHierarchy()
 {
 }
 
+bool Unit::ReceivedDamageEvent(int damage)
+{
+	return false;
+}
+
 bool Unit::IsDestroyed()
 {
 	return false;
@@ -132,4 +149,3 @@ bool Unit::IsDestroyed()
 void Unit::DestructionEvent()
 {
 }
-

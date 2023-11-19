@@ -35,6 +35,11 @@ void Grass::Release()
 {
 }
 
+bool Grass::ReceivedDamageEvent(int damage)
+{
+	return false;
+}
+
 bool Grass::IsDestroyed()
 {
 	return false;

@@ -5,7 +5,13 @@
 
 BeechHalfLog::BeechHalfLog()
 {
+	actor = Actor::Create();
+	actor->LoadFile("BeechHalfLog.xml");
 
+	static int index = 0;
+	actor->name = "BeechHalfLog" + index++;
+
+	hitPoint = 10;
 }
 
 BeechHalfLog::~BeechHalfLog()
@@ -20,7 +26,7 @@ void BeechHalfLog::Init()
 
 void BeechHalfLog::Update()
 {
-
+	actor->Update();
 }
 
 void BeechHalfLog::LateUpdate()
@@ -30,7 +36,7 @@ void BeechHalfLog::LateUpdate()
 
 void BeechHalfLog::Render()
 {
-
+	actor->Render();
 }
 
 void BeechHalfLog::Release()
@@ -44,8 +50,9 @@ void BeechHalfLog::RenderHierarchy()
 
 void BeechHalfLog::DestructionEvent()
 {
-}
+	// 오브젝트 생성 (반쪽통나무)
+	ItemProto* item = ItemProto::Create(ItemName::Woodpile);
+	item->GetActor()->SetWorldPos(actor->GetWorldPos());
 
-void BeechHalfLog::ReceivedDamageEvent(int damage)
-{
+	BeechHalfLog::~BeechHalfLog();
 }

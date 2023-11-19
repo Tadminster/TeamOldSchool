@@ -48,11 +48,6 @@ void BeechStump::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void BeechStump::ReceivedDamageEvent(int damage)
-{
-	hitPoint -= damage;
-}
-
 void BeechStump::DestructionEvent()
 {
 	// 아이템 생성 (나뭇가지) (예정)

@@ -59,11 +59,6 @@ void Birch::Release()
 	Birch::~Birch();
 }
 
-void Birch::ReceivedDamageEvent(int damage)
-{
-	hitPoint -= damage;
-}
-
 void Birch::DestructionEvent()
 {
 	// 오브젝트 생성 (그루터기)
