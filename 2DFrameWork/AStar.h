@@ -35,11 +35,12 @@ private:
     vector<vector<Tile>>    Tiles;  //길찾기에 필요한 노드 2차원갯수
 public:
     AStar();
-    void    CreateNode(Terrain* map, int size);
+    //~AStar();
+    void    CreateNode(Terrain* map, int size, list<Collider*> col);
     void    ResizeNode(int size);
     bool    GetNearNode(Vector3 coord, int& idxX ,int& idxZ);
 
-
+    
     bool    PathFinding(Vector3 start, Vector3 end, OUT vector<Vector3>& way);
 
 };

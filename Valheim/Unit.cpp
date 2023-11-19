@@ -58,21 +58,11 @@ void Unit::RotationForMove()
 
 void Unit::RotationForMove(Vector3 targetPos)
 {
-	ImGui::Text("targetPos x %f", targetPos.x);
-	ImGui::Text("targetPos y %f", targetPos.y);
-	ImGui::Text("targetPos z %f", targetPos.z);
-
 	moveDir = targetPos - actor->GetWorldPos();
 	moveTime = moveDir.Length() / moveSpeed;
-	
 	moveDir.Normalize();
-	ImGui::Text("movedir x %f", moveDir.x);
-	ImGui::Text("movedir y %f", moveDir.y);
-	ImGui::Text("movedir z %f", moveDir.z);
-
-	actor->rotation.y = atan2f(moveDir.x, moveDir.z);
-
-	/*srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
+	
+	srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
 	destRotation = atan2f(moveDir.x, moveDir.z);
 	angleGap = destRotation - srcRotation;
 
@@ -88,7 +78,7 @@ void Unit::RotationForMove(Vector3 targetPos)
 	{
 		actor->rotation.y += rotationSpeed * DELTA * rotationScale;
 		rotationTime -= DELTA * rotationScale;
-	}*/
+	}
 }
 
 void Unit::MonsterMove()

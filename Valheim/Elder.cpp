@@ -13,10 +13,10 @@ Elder::Elder()
 
 	state = Elder_OpeningState::GetInstance();
 
-	moveSpeed = 2.0f;
+	moveSpeed = 10.0f;
 
-	astar = new AStar();
-	astar->CreateNode(MAP, 200);
+	/*astar = new AStar();
+	astar->CreateNode(MAP, 200);*/
 }
 
 Elder::~Elder()
@@ -65,13 +65,18 @@ void Elder::Update()
 	{
 		ImGui::Text("summon");
 	}
-	ImGui::Text("animplaytime %f", actor->anim->GetPlayTime());
-	ImGui::Text("paternTime %f", paternTime);
+
+	if (ImGui::Button("astar"))
+	{
+		if (astar != nullptr) delete astar;
+		astar = new AStar();
+		astar->CreateNode(MAP, MAP->rowSize*2, OBJ->GetColliders());
+	}
 
 	//행동패턴
 	BehaviorPatern();
 	DoFSM();
-	Astar();
+	if(astar!=nullptr) Astar();
 
 	//중력 구현
 	ApplyGravity();
@@ -95,11 +100,11 @@ void Elder::LateUpdate()
 	}
 
 	//Elder - Player 충돌
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
-		&& state == E_STOMP)
-	{
-		PLAYER->PlayerHit();
-	}
+	//if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+	//	&& state == E_STOMP)
+	//{
+	//	PLAYER->PlayerHit();
+	//}
 }
 
 void Elder::Render()
@@ -168,53 +173,19 @@ void Elder::DoFSM()
 
 void Elder::Astar()
 {
-	//AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
-	//AstarRay.direction = Vector3(0, -1, 0);
-	//Vector3 target;
-	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
-	//	//if(MAP->ComputePicking(AstarRay,target))
-	//{
-	//	astar->PathFinding(actor->GetWorldPos(), target, way);
-	//}
-	//if (!way.empty())
-	//{
-	//	RotationForMove(way.back());
-	//	for (auto& it : way)
-	//	{
-	//		ImGui::Text("way x %f", it.x);
-	//		ImGui::Text("way y %f", it.y);
-	//		ImGui::Text("way z %f", it.z);
-	//	}
-	//	way.pop_back();
-	//}
+	if(TIMER->GetTick(paternTime,2.5f))
+	astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
 	
-	
-	/*AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
-	AstarRay.direction = Vector3(0, -1, 0);
-	Vector3 target;*/
-	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
-		//if(MAP->ComputePicking(AstarRay,target))
-	//{
-	//}
-	
-		astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
-		if (!way.empty())
+	if (!way.empty())
+	{
+		if ((way.back() - actor->GetWorldPos()).Length() >= 1.0f)
 		{
 			RotationForMove(way.back());
 			MonsterMove();
-			for (auto& it : way)
-			{
-				ImGui::Text("way x %f", it.x);
-				ImGui::Text("way y %f", it.y);
-				ImGui::Text("way z %f", it.z);
-			}
-			if ((way.back() - actor->GetWorldPos()).Length() <= 1.5f)
-			{
-				way.pop_back();
-				cout << "pop";
-			}
 		}
-		if ((PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos()).Length() <= 1.5f) way.clear();
+		else
+		way.pop_back();
+	}
 	
 }
 

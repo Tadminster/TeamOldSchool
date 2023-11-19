@@ -18,7 +18,7 @@ InGame::InGame()
 	grid = Grid::Create();
 	skyBox = Sky::Create();
 	skyBox->LoadFile("Sky1.xml");
-	
+
 	elder = new Elder();
 
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();

@@ -7,9 +7,9 @@ AStar::AStar()
 }
 
 
-void AStar::CreateNode(Terrain* map, int size)
+void AStar::CreateNode(Terrain* map, int size, list<Collider*> col)
 {
-    map->Update();
+    //map->Update();
     target = map;
     this->size = size;
     scale = (float)map->rowSize / (float)size;
@@ -40,12 +40,21 @@ void AStar::CreateNode(Terrain* map, int size)
             Tiles[z][x].idxX = x;
             Tiles[z][x].idxZ = z;
 
+           
+            Tiles[z][x].pass = true;
+                
+            for (auto& k : col)
+            {
+                if(k->Intersect(Pos))
+                    Tiles[z][x].pass = false;
+            }
+            //¿øº» ÄÚµå-----------------------------------------------------------
             //for (auto k = map->children.begin(); k != map->children.end(); k++)
             //{
             //    Tiles[z][x].pass = true;
             //    if (k->second->collider)
             //    {
-            //        //k->second->Update();
+            //        k->second->Update();
             //        //ÄÝ¶óÀÌ´õ¶û ÁÂÇ¥¶û Ãæµ¹ÇÏ¸é º®À¸·Î ¸¸µê
             //        if (k->second->collider->Intersect(Pos))
             //        {

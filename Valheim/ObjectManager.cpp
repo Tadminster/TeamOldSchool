@@ -320,7 +320,6 @@ void ObjectManager::GenerateTree()
 					continue;
 				}
 			}
-
 			double x = (double)i * frequencyScale;
 			double y = (double)j * frequencyScale;
 			double z = 0.5;
@@ -519,4 +518,21 @@ void ObjectManager::AddObject(Prototype* object)
 void ObjectManager::AddItem(ItemProto* item)
 {
 	items.emplace_back(item);
+}
+
+list<Collider*> ObjectManager::GetColliders()
+{
+	
+	list<Collider*> colliders;
+
+	for (auto& obj : objects)
+	{
+		if (obj->GetActor()->collider)
+		{
+			obj->Update();
+			colliders.emplace_back(obj->GetActor()->collider);
+		}
+	}
+	return colliders;
+	
 }
