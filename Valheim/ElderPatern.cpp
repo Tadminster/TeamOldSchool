@@ -13,7 +13,6 @@ ElderPatern::~ElderPatern()
 
 void ElderPatern::StompPatern(Elder* elder)
 {
-	
 	if (elder->GetState() != E_OPENING)
 	{
 		if (elder->paternTime < 0)
@@ -37,6 +36,7 @@ void ElderPatern::StompPatern(Elder* elder)
 				elder->rotationScale = 0.4f;
 				elder->MonsterMove();
 				elder->RotationForMove();
+				
 			}
 
 			if (distance > 4.0f && elder->GetState() != E_STOMP)

@@ -14,6 +14,9 @@ Elder::Elder()
 	state = Elder_OpeningState::GetInstance();
 
 	moveSpeed = 2.0f;
+
+	astar = new AStar();
+	astar->CreateNode(MAP, 100);
 }
 
 Elder::~Elder()
@@ -129,8 +132,10 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	if (paternTime >= 0) paternTime -= DELTA;
-	patern->StompPatern(this);
+	/*if (paternTime >= 0) paternTime -= DELTA;
+	patern->StompPatern(this);*/
+	Astar();
+	//RotationForMove(PLAYER->GetPlayer()->GetWorldPos());
 }
 
 void Elder::DoFSM()
@@ -158,6 +163,30 @@ void Elder::DoFSM()
 	else if (state == E_SUMMON)
 	{
 		state->Summon(this);
+	}
+}
+
+void Elder::Astar()
+{
+	AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
+	AstarRay.direction = Vector3(0, -1, 0);
+	Vector3 target;
+	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
+	if(MAP->ComputePicking(AstarRay,target))
+	{
+		astar->PathFinding(actor->GetWorldPos(), target, way);
+	}
+	if (!way.empty())
+	{
+		RotationForMove(way.back());
+		for (auto& it : way)
+		{
+			ImGui::Text("way x %f", it.x);
+			ImGui::Text("way y %f", it.y);
+			ImGui::Text("way z %f", it.z);
+			
+		}
+		way.pop_back();
 	}
 }
 

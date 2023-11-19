@@ -19,11 +19,17 @@ protected:
 	float				rotationSpeed = 0;
 	float				rotationTime = 0;
 	float				rotationScale = 0.4f;
+	//A Star
+	Ray					AstarRay;
+	vector<Vector3>		way = {};
+	AStar*				astar = nullptr;
 public:
 	Unit();
 	void SetOnTerrain();
 	void ApplyGravity();
 	void RotationForMove();
+	void RotationForMove(Vector3 targetPos);
 	void MonsterMove();
+	virtual void Astar();
 };
 

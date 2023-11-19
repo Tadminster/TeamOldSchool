@@ -6,7 +6,7 @@ class Player : public Unit
 	friend class SwingState;
 	
 	class PlayerState*		state = nullptr;
-	class ItemProto*				equippedHand = nullptr;
+	class ItemProto*		equippedHand = nullptr;
 	
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -41,11 +41,13 @@ public:
 	void DestructionEvent() override;
 	bool IsDestroyed() override;
 
-	Actor* GetPlayer() { return actor; }
-	Camera* GetPlayerCam() { return static_cast<Camera*>(actor->Find("PlayerCam")); }
-	Camera* GetFrustumCam() { return static_cast<Camera*>(actor->Find("FrustumCam")); }
-	Collider* GetCollider() { return actor->collider; }
-	bool GetPlayerJump() { return isJump; }
+
+	Actor* GetPlayer()						{ return actor; }
+	const ItemProto* GetPlayerWeapon()		{ return equippedHand; }
+	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
+	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
+	Collider* GetCollider()					{ return actor->collider; }
+	bool GetPlayerJump()					{ return isJump; }
 	bool CleanHit(Collider* object);
 	bool CleanFrame();
 
