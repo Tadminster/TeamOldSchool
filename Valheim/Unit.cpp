@@ -112,18 +112,6 @@ void Unit::LateUpdate()
 {
 }
 
-void Unit::Init()
-{
-}
-
-void Unit::Update()
-{
-}
-
-void Unit::LateUpdate()
-{
-}
-
 void Unit::Render()
 {
 }
