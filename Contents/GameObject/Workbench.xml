@@ -1,0 +1,43 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Collider ColliderType="1" Visible="true">
+        <Position X="0" Y="0.5" Z="0"/>
+        <Scale X="1.5" Y="0.60000002" Z="0.60000002"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="3.1415758" Z="0"/>
+        </Transform>
+        <Children Size="2"/>
+        <Child0 Name="high" Visible="true" ObType="0">
+            <Mesh File="Workbench/high.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="Workbench/workbench.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+        <Child1 Name="low" Visible="false" ObType="0">
+            <Mesh File="Workbench/low.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="workbench/Workbench_mat.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child1>
+    </Child0>
+</Root>
