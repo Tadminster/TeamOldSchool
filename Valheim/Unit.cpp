@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Unit.h"
 
-
 Unit::Unit()
 {
 	
@@ -10,12 +9,13 @@ Unit::Unit()
 void Unit::SetOnTerrain()
 {
 	//유닛 - 터레인 충돌(지면 안착)
-	UnitTopRay.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
-	UnitTopRay.direction = Vector3(0, -1, 0);
-	if (Utility::RayIntersectMap(UnitTopRay, MAP, UnitHit))
+	groundRay.position = actor->GetWorldPos() + Vector3(0, 1000, 0);
+	groundRay.direction = Vector3(0, -1, 0);
+	if (Utility::RayIntersectMap(groundRay, MAP, groundHit))
 	{
-		if (actor->GetWorldPos().y - UnitHit.y < 0.1f) {
-			actor->SetWorldPosY(UnitHit.y);
+		if (actor->GetWorldPos().y - groundHit.y < 0.1f)
+		{
+			actor->SetWorldPosY(groundHit.y);
 			isLand = true;
 		}
 		else isLand = false;
@@ -33,6 +33,7 @@ void Unit::ApplyGravity()
 
 void Unit::RotationForMove()
 {
+	//이동할 방향으로 회전 보간(플레이어 전용)
 	moveDir = PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos();
 	moveTime = moveDir.Length() / moveSpeed;
 	moveDir.Normalize();
@@ -58,21 +59,12 @@ void Unit::RotationForMove()
 
 void Unit::RotationForMove(Vector3 targetPos)
 {
-	ImGui::Text("targetPos x %f", targetPos.x);
-	ImGui::Text("targetPos y %f", targetPos.y);
-	ImGui::Text("targetPos z %f", targetPos.z);
-
+	//이동할 방향으로 회전 보간(타겟 정해서 이동, 랜덤한 곳으로 이동해야 할 때 필요)
 	moveDir = targetPos - actor->GetWorldPos();
 	moveTime = moveDir.Length() / moveSpeed;
-	
 	moveDir.Normalize();
-	ImGui::Text("movedir x %f", moveDir.x);
-	ImGui::Text("movedir y %f", moveDir.y);
-	ImGui::Text("movedir z %f", moveDir.z);
-
-	actor->rotation.y = atan2f(moveDir.x, moveDir.z);
-
-	/*srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
+	
+	srcRotation = atan2f(actor->GetForward().x, actor->GetForward().z);
 	destRotation = atan2f(moveDir.x, moveDir.z);
 	angleGap = destRotation - srcRotation;
 
@@ -88,15 +80,39 @@ void Unit::RotationForMove(Vector3 targetPos)
 	{
 		actor->rotation.y += rotationSpeed * DELTA * rotationScale;
 		rotationTime -= DELTA * rotationScale;
-	}*/
+	}
 }
 
 void Unit::MonsterMove()
 {
+	//이동속도*이동시간
 	if (moveTime > 0)
 	{
 		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 		moveTime -= DELTA;
+	}
+}
+
+void Unit::Astar()
+{
+	if (astar != nullptr)
+	{
+		if (TIMER->GetTick(astarTime, 0.5f))
+		{
+			astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
+		}
+		if (!way.empty())
+		{
+			if ((way.back() - actor->GetWorldPos()).Length() >= 1.0f)
+			{
+				RotationForMove(way.back());
+				MonsterMove();
+			}
+			else
+			{
+				way.pop_back();
+			}
+		}
 	}
 }
 

@@ -27,5 +27,7 @@ public:
 
 	void	AddObject(Prototype* object);
 	void	AddItem(ItemProto* item);
+	list<Prototype*> GetObjects() { return objects; }
+	list<Collider*> GetColliders();
 };
 
