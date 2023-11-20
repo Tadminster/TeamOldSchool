@@ -169,9 +169,7 @@ void ObjectManager::Update()
 		}
 	}
 
-	// 아이템 줍기(임시)
-	for (auto& item : items)
-		if (PLAYER->GetItem(item)) break;
+
 
 	// 아이템 업데이트
 	for (auto& item : items)
@@ -182,6 +180,12 @@ void ObjectManager::LateUpdate()
 {
 	for (auto& item : items)
 		item->LateUpdate();
+
+	// 아이템 줍기(임시)
+	for (auto& item : items)
+	{
+		if (PLAYER->GetItem(item)) break;
+	}
 
 	for (auto& obj : objects)
 	{

@@ -290,24 +290,45 @@ void Player::MoveBack(Actor* col)
 
 bool Player::GetItem(ItemProto* item)
 {	
-	//충돌값 트루일 때, 아이템 주을건지 ui생성
-	Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
-	Vector3 hit = {};
+	// 아이템과 플레이어의 거리 계산
+	float distance = Vector3::DistanceSquared(actor->GetWorldPos(), item->GetActor()->GetWorldPos());
+
+	// 거리가 20 이하일 때
+	if (distance < 20)
+	{
+		// 카메라 위치 -> 마우스로 레이를 생성
+		Ray GetItem = Utility::MouseToRay((Camera*)(actor->Find("PlayerCam")));
+		Vector3 hit = {};
+
+		// 아이템과 레이가 충돌했을 때
 		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("Mesh"), hit))
 		{
+			// 아이템의 상호작용 가능 여부를 true로 설정
 			item->SetIsInteraction(true);
 
+			// E키를 누르면
 			if (INPUT->KeyDown('E'))
 			{
+				// 인벤토리에 아이템 추가하고	
 				INVEN->AddItem(item);
 				return true;
 			}
 		}
+		// 충돌하지 않았을 때
 		else
 		{
+			// 아이템의 상호작용 가능 여부를 false로 설정
 			item->SetIsInteraction(false);
+			return false;
 		}
-	return false;
+	}
+	// 거리가 20 이하일 때도
+	else
+	{
+		// 아이템의 상호작용 가능 여부를 false로 설정
+		item->SetIsInteraction(false);
+		return false;
+	}
 }
 
 void Player::PlayerHit()
