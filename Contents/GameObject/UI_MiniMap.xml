@@ -1,4 +1,4 @@
-<Root Name="miniMap_UI" Visible="true" ObType="4">
+<Root Name="UI_MiniMap" Visible="true" ObType="4">
     <Mesh File="6.UI.mesh"/>
     <Shader File="6.UI.hlsl"/>
     <Material File="MiniMap/Minimap_tile.mtl"/>

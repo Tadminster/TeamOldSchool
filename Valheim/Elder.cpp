@@ -15,8 +15,8 @@ Elder::Elder()
 
 	moveSpeed = 2.0f;
 
-	astar = new AStar();
-	astar->CreateNode(MAP, 200);
+	/*astar = new AStar();
+	astar->CreateNode(MAP, 200);*/
 }
 
 Elder::~Elder()
@@ -25,7 +25,7 @@ Elder::~Elder()
 
 void Elder::Init()
 {
-	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos() + Vector3(10, 0, 0));
+	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos()+Vector3(10,0,0));
 }
 
 void Elder::Update()
@@ -65,13 +65,18 @@ void Elder::Update()
 	{
 		ImGui::Text("summon");
 	}
-	ImGui::Text("animplaytime %f", actor->anim->GetPlayTime());
-	ImGui::Text("paternTime %f", paternTime);
 
-	//행동패턴
+	if (ImGui::Button("astar"))
+	{
+		if (astar != nullptr) delete astar;
+		astar = new AStar();
+		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
+	}
+
+	//행동패턴(astar 노드 생성 -> 트리 생성(역순은 astar노드생성 시간이 느려짐))
+	//기능은 두 경우 모두 정상작동함 확인
 	BehaviorPatern();
 	DoFSM();
-	Astar();
 
 	//중력 구현
 	ApplyGravity();
@@ -105,7 +110,7 @@ void Elder::LateUpdate()
 void Elder::Render()
 {
 	actor->Render();
-
+	
 }
 
 void Elder::Release()
@@ -133,9 +138,8 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	/*if (paternTime >= 0) paternTime -= DELTA;
-	patern->StompPatern(this);*/
-
+	if (paternTime >= 0) paternTime -= DELTA;
+	patern->StompPatern(this);
 }
 
 void Elder::DoFSM()
@@ -166,56 +170,5 @@ void Elder::DoFSM()
 	}
 }
 
-void Elder::Astar()
-{
-	//AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
-	//AstarRay.direction = Vector3(0, -1, 0);
-	//Vector3 target;
-	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
-	//	//if(MAP->ComputePicking(AstarRay,target))
-	//{
-	//	astar->PathFinding(actor->GetWorldPos(), target, way);
-	//}
-	//if (!way.empty())
-	//{
-	//	RotationForMove(way.back());
-	//	for (auto& it : way)
-	//	{
-	//		ImGui::Text("way x %f", it.x);
-	//		ImGui::Text("way y %f", it.y);
-	//		ImGui::Text("way z %f", it.z);
-	//	}
-	//	way.pop_back();
-	//}
-
-
-	/*AstarRay.position = PLAYER->GetPlayer()->GetWorldPos() + Vector3(0, 100, 0);
-	AstarRay.direction = Vector3(0, -1, 0);
-	Vector3 target;*/
-	//if (Utility::RayIntersectMap(AstarRay, MAP, target))
-		//if(MAP->ComputePicking(AstarRay,target))
-	//{
-	//}
-
-	astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
-	if (!way.empty())
-	{
-		RotationForMove(way.back());
-		MonsterMove();
-		for (auto& it : way)
-		{
-			ImGui::Text("way x %f", it.x);
-			ImGui::Text("way y %f", it.y);
-			ImGui::Text("way z %f", it.z);
-		}
-		if ((way.back() - actor->GetWorldPos()).Length() <= 1.5f)
-		{
-			way.pop_back();
-			//cout << "pop";
-		}
-	}
-	if ((PLAYER->GetPlayer()->GetWorldPos() - actor->GetWorldPos()).Length() <= 1.5f) way.clear();
-
-}
 
 

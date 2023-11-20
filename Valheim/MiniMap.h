@@ -4,8 +4,8 @@ class MiniMap : public Actor
 	friend class Terrain;
 	
 private:
-	UI*      miniMapUI;
-	UI*      playerPosUI;
+	UI*      miniMap;
+	UI*      playerIcon;
 	
 	//미니맵이미지의  x축최소값과 y축 최대값입니다 
 	float    miniMapMinScaleX = 0.75f;

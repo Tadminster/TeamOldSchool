@@ -5,13 +5,13 @@
 MiniMap::MiniMap()
 {
 
-	miniMapUI = UI::Create("miniMap_UI");
-	miniMapUI->LoadFile("miniMap_UI.xml");
-	miniMapUI->visible = true;
+	miniMap = UI::Create("UI_MiniMap");
+	miniMap->LoadFile("UI_MiniMap.xml");
+	miniMap->visible = true;
 
-	playerPosUI = UI::Create("player_iconUI");
-	playerPosUI->LoadFile("player_iconUI.xml");
-	playerPosUI->visible = true;
+	playerIcon = UI::Create("UI_Player_Icon");
+	playerIcon->LoadFile("UI_Player_Icon.xml");
+	playerIcon->visible = true;
 
 
 }
@@ -35,12 +35,12 @@ void MiniMap::Update()
 {
 	ImGui::Begin("Hierarchy");
 	{
-		miniMapUI->RenderHierarchy();
-		playerPosUI->RenderHierarchy();
+		miniMap->RenderHierarchy();
+		playerIcon->RenderHierarchy();
 	}
 	ImGui::End();
-	miniMapUI->Update();
-	playerPosUI->Update();
+	miniMap->Update();
+	playerIcon->Update();
 }
 
 void MiniMap::LateUpdate()
@@ -56,8 +56,8 @@ void MiniMap::LateUpdate()
 	if (ImGui::Button("MiniMapTextureLoad"))
 	{
 		string filepath = "MiniMap/DrawMiniMap.bmp";
-		SafeReset(miniMapUI->material->diffuseMap);
-		miniMapUI->material->diffuseMap = RESOURCE->textures.Load(filepath);
+		SafeReset(miniMap->material->diffuseMap);
+		miniMap->material->diffuseMap = RESOURCE->textures.Load(filepath);
 	}
 
 	//-------------------------------------------------
@@ -75,8 +75,8 @@ void MiniMap::PreRender()
 
 void MiniMap::Render()
 {
-	miniMapUI->Render();
-	playerPosUI->Render();
+	miniMap->Render();
+	playerIcon->Render();
 }
 
 void MiniMap::ResizeScreen()
@@ -167,7 +167,7 @@ void  MiniMap::DrawMiniMap(const string& filename)
 
 void MiniMap::FollowPlayerViewPoint()
 {
-	playerPosUI->rotation.z = PLAYER->GetActor()->rotation.y;
+	playerIcon->rotation.z = PLAYER->GetActor()->rotation.y;
 }
 
 void MiniMap::FollowPlayerMovement()
@@ -177,7 +177,7 @@ void MiniMap::FollowPlayerMovement()
 	float playerPosZ = (PLAYER->GetActor()->GetWorldPos().z + MAP->rowSize * 0.5f) / MAP->rowSize;
 
 	// 플레이어 아이콘을 미니맵 상에서의 위치로 이동
-	playerPosUI->SetWorldPosX(miniMapMinScaleX + moveWeightX * playerPosX);
-	playerPosUI->SetWorldPosY(miniMapMaxScaleY - moveWeightY * playerPosZ);
+	playerIcon->SetWorldPosX(miniMapMinScaleX + moveWeightX * playerPosX);
+	playerIcon->SetWorldPosY(miniMapMaxScaleY - moveWeightY * playerPosZ);
 }
 

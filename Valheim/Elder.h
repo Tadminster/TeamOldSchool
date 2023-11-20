@@ -3,10 +3,10 @@
 class Elder : public Unit
 {
 	friend class ElderPatern;
-	class ElderState* state = nullptr;
-	class ElderPatern* patern = nullptr;
+	class		 ElderPatern* patern = nullptr;
+	class		 ElderState*  state  = nullptr;
 
-	float paternTime = 0;
+	float					  paternTime = 0;
 public:
 	Elder();
 	~Elder();
@@ -23,6 +23,5 @@ public:
 	ElderState* GetState() { return state; }
 	void BehaviorPatern();
 	void DoFSM();
-	void Astar();
 };
 
