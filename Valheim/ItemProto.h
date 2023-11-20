@@ -26,7 +26,7 @@ protected:
 	int			weight;		// 무게
 
 	bool		isInteraction{ false };	// 상호작용 가능 여부
-	RECT		text_interaction = { 0, text_interaction.left + 1000, 0, text_interaction.top + 1000 };	// 상호작용 텍스트 영역
+	RECT		text_interaction = { 500, text_interaction.left + 1000, 500, text_interaction.top + 1000 };	// 상호작용 텍스트 영역
 
 public:
 	static ItemProto* Create(ItemName name);
