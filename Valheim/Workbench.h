@@ -1,20 +1,12 @@
 #pragma once
-#include "Prototype.h"
-#include "FeatureProto.h"
-//enum class RenderType
-//{
-//	SINGLE,
-//	INSTANCING
-//};
 
-class Beech : public FeatureProto
+class Workbench : public Prototype
 {
 private:
-	//RenderType type;
 
 public:
-	Beech();
-	~Beech() override;
+	Workbench();
+	~Workbench() override;
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;
@@ -22,7 +14,8 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
-	void LodUpdate(LodLevel lv);
+	bool ReceivedDamageEvent(int damage) override;
+	bool IsDestroyed() override;
 	void DestructionEvent() override;
 };
 

@@ -72,6 +72,9 @@
     <ClInclude Include="ElderPatern.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="Workbench.h">
+      <Filter>GameObject\Building</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -141,6 +144,9 @@
     <ClCompile Include="ElderPatern.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="Workbench.cpp">
+      <Filter>GameObject\Building</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -175,6 +181,9 @@
     </Filter>
     <Filter Include="MiniMap">
       <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Building">
+      <UniqueIdentifier>{2c8f386a-6c46-4778-b890-066b13e84316}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

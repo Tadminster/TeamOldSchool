@@ -44,6 +44,7 @@
     <ClInclude Include="Elder.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Woodpile.h" />
+    <ClInclude Include="Workbench.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
@@ -69,6 +70,7 @@
     <ClCompile Include="Elder.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Woodpile.cpp" />
+    <ClCompile Include="Workbench.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
