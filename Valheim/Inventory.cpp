@@ -13,10 +13,10 @@ Inventory::Inventory()
 	}
 
 	// 인벤토리 UI 생성 및 로드
-	inventoryUI = UI::Create("InventoryUI");
-	inventoryUI->LoadFile("InvenUI.xml");
+	inventoryUI = UI::Create("Inventory");
+	inventoryUI->LoadFile("UI_Inventory.xml");
 	tooltopBox = UI::Create("ToolTipBox");
-	tooltopBox->LoadFile("ToolTipBox.xml");
+	tooltopBox->LoadFile("UI_TooltipBox.xml");
 
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
 	panel = static_cast<UI*>(inventoryUI->Find("PANEL"));

@@ -1,4 +1,4 @@
-<Root Name="TooltipBox" Visible="true" ObType="4">
+<Root Name="UI_TooltipBox" Visible="true" ObType="4">
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
