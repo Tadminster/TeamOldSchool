@@ -73,6 +73,20 @@ void ItemProto::Render()
 	if (state == ItemState::OnGround)
 	{
 		actor->Render();
+
+		if (isInteraction)
+		{
+			DWRITE->RenderText(
+				//Utility::ToWString(item->GetName()),
+				L"Press E to get item",
+				text_interaction,
+				20.0f,
+				L"Arial",
+				Color(1.0f, 0.8f, 0.0f, 0.0f),
+				DWRITE_FONT_WEIGHT_SEMI_BOLD,
+				DWRITE_FONT_STYLE_ITALIC,
+				DWRITE_FONT_STRETCH_EXPANDED);
+		}
 	}
 	else if (state == ItemState::OnInventory)
 	{

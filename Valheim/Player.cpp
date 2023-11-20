@@ -295,11 +295,17 @@ bool Player::GetItem(ItemProto* item)
 	Vector3 hit = {};
 		if (Utility::RayIntersectTri(GetItem, item->GetActor()->Find("Mesh"), hit))
 		{
+			item->SetIsInteraction(true);
+
 			if (INPUT->KeyDown('E'))
 			{
 				INVEN->AddItem(item);
 				return true;
 			}
+		}
+		else
+		{
+			item->SetIsInteraction(false);
 		}
 	return false;
 }
