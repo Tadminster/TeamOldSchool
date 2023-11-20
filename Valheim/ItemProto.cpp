@@ -20,6 +20,10 @@ ItemProto* ItemProto::Create(ItemName name)
 
 void ItemProto::Init()
 {
+	text_interaction.left	= App.GetHalfWidth() * 1.05f;
+	text_interaction.top	= App.GetHalfHeight();
+	text_interaction.right	= text_interaction.left + 1000;
+	text_interaction.bottom = text_interaction.top + 1000;
 	groundRay.direction = Vector3(0.0f, -1.0f, 0.0f);
 }
 
@@ -77,14 +81,13 @@ void ItemProto::Render()
 		if (isInteraction)
 		{
 			DWRITE->RenderText(
-				//Utility::ToWString(item->GetName()),
-				L"Press E to get item",
+				Utility::ToWString(name) + L"\n[E] ащ╠Б" ,
 				text_interaction,
 				20.0f,
 				L"Arial",
-				Color(1.0f, 0.8f, 0.0f, 0.0f),
-				DWRITE_FONT_WEIGHT_SEMI_BOLD,
-				DWRITE_FONT_STYLE_ITALIC,
+				Color(1.0f, 1.0f, 1.0f, 0.0f),
+				DWRITE_FONT_WEIGHT_MEDIUM,
+				DWRITE_FONT_STYLE_NORMAL,
 				DWRITE_FONT_STRETCH_EXPANDED);
 		}
 	}
