@@ -4,8 +4,7 @@ class Unit : public Prototype
 {
 protected:
 	//SetOnTerrain
-	Ray					UnitTopRay;
-	Vector3				UnitHit = {};
+	Vector3				groundHit = {};
 	//ApplyGravity
 	float				gravity = 0;
 	bool				isLand = 0;
@@ -23,14 +22,9 @@ protected:
 	Ray					AstarRay;
 	vector<Vector3>		way = {};
 	AStar*				astar = nullptr;
+	float				astarTime = 0;
 public:
 	Unit();
-	void SetOnTerrain();
-	void ApplyGravity();
-	void RotationForMove();
-	void RotationForMove(Vector3 targetPos);
-	void MonsterMove();
-
 	// Prototype을(를) 통해 상속됨
 	void Init() override;
 	void Update() override;
@@ -41,5 +35,12 @@ public:
 	bool ReceivedDamageEvent(int damage) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
+
+	void SetOnTerrain();
+	void ApplyGravity();
+	void RotationForMove();
+	void RotationForMove(Vector3 targetPos);
+	void MonsterMove();
+	void Astar();
 };
 

@@ -13,7 +13,7 @@ Elder::Elder()
 
 	state = Elder_OpeningState::GetInstance();
 
-	moveSpeed = 10.0f;
+	moveSpeed = 2.0f;
 
 	/*astar = new AStar();
 	astar->CreateNode(MAP, 200);*/
@@ -73,10 +73,10 @@ void Elder::Update()
 		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
 	}
 
-	//행동패턴
+	//행동패턴(astar 노드 생성 -> 트리 생성(역순은 astar노드생성 시간이 느려짐))
+	//기능은 두 경우 모두 정상작동함 확인
 	BehaviorPatern();
 	DoFSM();
-	if(astar!=nullptr) Astar();
 
 	//중력 구현
 	ApplyGravity();
@@ -100,11 +100,11 @@ void Elder::LateUpdate()
 	}
 
 	//Elder - Player 충돌
-	//if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
-	//	&& state == E_STOMP)
-	//{
-	//	PLAYER->PlayerHit();
-	//}
+	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+		&& state == E_STOMP)
+	{
+		PLAYER->PlayerHit();
+	}
 }
 
 void Elder::Render()
@@ -138,9 +138,8 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	/*if (paternTime >= 0) paternTime -= DELTA;
-	patern->StompPatern(this);*/
-
+	if (paternTime >= 0) paternTime -= DELTA;
+	patern->StompPatern(this);
 }
 
 void Elder::DoFSM()
@@ -171,22 +170,5 @@ void Elder::DoFSM()
 	}
 }
 
-void Elder::Astar()
-{
-	if(TIMER->GetTick(paternTime,2.5f))
-	astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
-	
-	if (!way.empty())
-	{
-		if ((way.back() - actor->GetWorldPos()).Length() >= 1.0f)
-		{
-			RotationForMove(way.back());
-			MonsterMove();
-		}
-		else
-		way.pop_back();
-	}
-	
-}
 
 
