@@ -19,7 +19,7 @@ Inventory::Inventory()
 	tooltopBox->LoadFile("ToolTipBox.xml");
 
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
-	pannel = static_cast<UI*>(inventoryUI->Find("PANNEL"));
+	panel = static_cast<UI*>(inventoryUI->Find("PANEL"));
 	for (int i = 1; i <= 32; i++)
 	{
 		string slotName;
@@ -189,7 +189,7 @@ void Inventory::MouseOverSlot()
 	bool isMouseOverItem = false;
 	
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
-	if (isOpen && pannel->MouseOver())
+	if (isOpen && panel->MouseOver())
 	{
 		//	모든 인벤토리 슬롯을 순회
 		for (int i = 0; i < 32; i++)
@@ -394,7 +394,7 @@ void Inventory::ItemDrop()
 					selectedItem.index = -1;
 				}
 			}
-			else if (mLocation.location == UILocation::OnPannel)
+			else if (mLocation.location == UILocation::OnPanel)
 			{
 				// 아이템을 원래 슬롯으로
 				selectedItem.item = nullptr;
@@ -581,9 +581,9 @@ Inventory::MouseLocation Inventory::CheckMouseLocation()
 		}
 	}
 
-	if (pannel->MouseOver())
+	if (panel->MouseOver())
 	{
-		location.location = UILocation::OnPannel;
+		location.location = UILocation::OnPanel;
 		return location;
 	}
 	else
