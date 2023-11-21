@@ -23,6 +23,7 @@
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
+    <ClInclude Include="StructureProto.h" />
     <ClInclude Include="ElderPatern.h" />
     <ClInclude Include="ElderState.h" />
     <ClInclude Include="FeatureProto.h" />
@@ -51,6 +52,7 @@
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
+    <ClCompile Include="StructureProto.cpp" />
     <ClCompile Include="ElderPatern.cpp" />
     <ClCompile Include="ElderState.cpp" />
     <ClCompile Include="FeatureProto.cpp" />

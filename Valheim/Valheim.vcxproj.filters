@@ -73,7 +73,10 @@
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="Workbench.h">
-      <Filter>GameObject\Building</Filter>
+      <Filter>GameObject\Building Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureProto.h">
+      <Filter>GameObject\Building Structures</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +148,10 @@
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="Workbench.cpp">
-      <Filter>GameObject\Building</Filter>
+      <Filter>GameObject\Building Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureProto.cpp">
+      <Filter>GameObject\Building Structures</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -182,7 +188,7 @@
     <Filter Include="MiniMap">
       <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Building">
+    <Filter Include="GameObject\Building Structures">
       <UniqueIdentifier>{2c8f386a-6c46-4778-b890-066b13e84316}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
