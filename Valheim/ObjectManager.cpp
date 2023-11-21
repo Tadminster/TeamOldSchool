@@ -82,57 +82,9 @@ void ObjectManager::Update()
 		GenerateInstanceGrass();
 	}
 
-
 	ListEraser(objects);
 	ListEraser(items);
 	ListEraser(structures);
-
-	// 리스트에서 요소 제거
-	//objects.erase(
-	//	std::remove_if
-	//	(
-	//		objects.begin(),
-	//		objects.end(),
-	//		[](Prototype* object)
-	//		{
-	//			// 오브젝트의 파괴 조건 검사
-	//			if (object->IsDestroyed())
-	//			{
-	//				// 파괴 이벤트 호출
-	//				object->DestructionEvent();
-	//				// 리턴값 반환해서 리스트에서 제거
-	//				return true;
-	//			}
-	//			// 파괴 조건이 아니면 리스트에서 제거하지 않음
-	//			else false;
-	//		}
-	//	),
-	//	objects.end()
-	//);
-
-	// 리스트에서 요소 제거
-	//items.erase(
-	//	std::remove_if
-	//	(
-	//		items.begin(),
-	//		items.end(),
-	//		[](ItemProto* item)
-	//		{
-	//			// 오브젝트의 파괴 조건 검사
-	//			if (item->IsDestroyed())
-	//			{
-	//				// 파괴 이벤트 호출
-	//				item->DestructionEvent();
-	//				// 리턴값 반환해서 리스트에서 제거
-	//				return true;
-	//			}
-	//			// 파괴 조건이 아니면 리스트에서 제거하지 않음
-	//			else false;
-	//		}
-	//	),
-	//	items.end()
-	//);
-
 
 	static float distanceCalCycle = 0;
 	// 최적화를 위해 일정 주기로 거리 계산
