@@ -1,7 +1,7 @@
 #include "framework.h"
 bool& Utility::DebugMode()
 {
-	static bool debugMode = true;
+	static bool debugMode = false;
 	return debugMode;
 }
 

@@ -6,6 +6,7 @@ public:
     class Terrain*          map;
     class Water*            sea;
     class Inventory*        inventory;
+    class Craft*			craft;
     class Player*           player;
     class MiniMap*          minimap;
     class ObjectManager*    objectManager;

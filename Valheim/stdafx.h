@@ -5,6 +5,7 @@
 //싱글턴화를 위한 헤더, 매크로
 #include "GameManager.h"
 #include "Inventory.h"
+#include "Craft.h"
 
 #include "Prototype.h"
 #include "Unit.h"
@@ -14,6 +15,7 @@
 
 #define GM			GameManager::GetInstance()
 #define INVEN		GM->inventory
+#define CRAFT		GM->craft
 #define OBJ			GM->objectManager
 #define MAP			GM->map
 #define SEA			GM->sea

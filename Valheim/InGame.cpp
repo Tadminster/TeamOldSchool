@@ -69,6 +69,12 @@ void InGame::Update()
 	}
 	ImGui::End();
 
+	// F1 : 모드전환
+	if (INPUT->KeyDown(VK_F1))
+	{
+		DEBUGMODE = !DEBUGMODE;
+	}
+	// F2 : 카메라전환
 	if (INPUT->KeyDown(VK_F2))
 	{
 		if (DEBUGMODE)
@@ -83,16 +89,15 @@ void InGame::Update()
 		}
 	}
 
-
-	if (DEBUGMODE && isDebugCam)
+	// 디버그 모드에서 업데이트
+	if (DEBUGMODE)
 	{
-		Camera::main->ControlMainCam();
 		grid->Update();
 	}
-	else 
-	{
-		PLAYER->AvtivatePlayerCam();
-	}
+
+	// 카메라에 따른 조작
+	if (isDebugCam) Camera::main->ControlMainCam();
+	else PLAYER->AvtivatePlayerCam();
 
 	GM->Update();
 
@@ -103,6 +108,7 @@ void InGame::Update()
 	OBJ->Update();
 
 	INVEN->Update();
+	CRAFT->Update();
 
 	elder->Update();
 	PLAYER->Update();
@@ -161,6 +167,7 @@ void InGame::Render()
 	MINIMAP->Render();
 
 	INVEN->Render();
+	CRAFT->Render();
 }
 
 void InGame::ResizeScreen()
