@@ -10,8 +10,6 @@ public:
     class MiniMap*          minimap;
     class ObjectManager*    objectManager;
 
-    bool 			    debugMode{ true };
-
 public:
     GameManager();
     ~GameManager();

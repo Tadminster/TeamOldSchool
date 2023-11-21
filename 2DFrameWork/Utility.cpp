@@ -1,4 +1,10 @@
 #include "framework.h"
+bool& Utility::DebugMode()
+{
+	static bool debugMode = true;
+	return debugMode;
+}
+
 void Utility::Replace(string* str, string comp, string rep)
 {
     string temp = *str;

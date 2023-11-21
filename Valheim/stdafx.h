@@ -15,8 +15,7 @@
 #define GM			GameManager::GetInstance()
 #define INVEN		GM->inventory
 #define OBJ			GM->objectManager
-#define DEBUGMODE	GM->debugMode
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player
-#define MINIMAP    GM->minimap
+#define MINIMAP		GM->minimap

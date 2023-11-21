@@ -36,8 +36,7 @@ void GameManager::Update()
 {
 	if (INPUT->KeyDown(VK_F1))
 	{
-		debugMode = !debugMode;
-		ResizeScreen();
+		DEBUGMODE = !DEBUGMODE;
 	}
 }
 

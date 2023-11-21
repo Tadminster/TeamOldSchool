@@ -69,11 +69,24 @@ void InGame::Update()
 	}
 	ImGui::End();
 
-	if (DEBUGMODE)
+	if (INPUT->KeyDown(VK_F2))
 	{
-		Camera::main = tempCamera;
-		Camera::main->ControlMainCam();
+		if (DEBUGMODE)
+		{
+			Camera::main = tempCamera;
+			isDebugCam = true;
+		}
+		else
+		{
+			Camera::main = PLAYER->GetPlayerCam();
+			isDebugCam = false;
+		}
+	}
 
+
+	if (DEBUGMODE && isDebugCam)
+	{
+		Camera::main->ControlMainCam();
 		grid->Update();
 	}
 	else 

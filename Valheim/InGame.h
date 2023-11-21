@@ -3,6 +3,7 @@ class InGame : public Scene
 {
 private:
     Camera*                         tempCamera;
+    bool                            isDebugCam{ false };
 
     Grid*                           grid;
 	Sky*                            skyBox;

@@ -119,11 +119,11 @@ void Player::SetState(PlayerState* state)
 void Player::AvtivatePlayerCam()
 {
 	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기1
-	if (!DEBUGMODE && !isPlayerCam) 
-	{
-		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-		isPlayerCam = true;
-	}
+	//if (!DEBUGMODE && !isPlayerCam) 
+	//{
+	//	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+	//	isPlayerCam = true;
+	//}
 	//카메라 전환 시 화면 짤리는 부분 방지
 	{
 		Camera::main->viewport.x = 0.0f;
