@@ -81,6 +81,9 @@
     <ClInclude Include="Craft.h">
       <Filter>UI\Crafting</Filter>
     </ClInclude>
+    <ClInclude Include="Recipe.h">
+      <Filter>UI\Crafting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -157,6 +160,9 @@
       <Filter>GameObject\Building Structures</Filter>
     </ClCompile>
     <ClCompile Include="Craft.cpp">
+      <Filter>UI\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="Recipe.cpp">
       <Filter>UI\Crafting</Filter>
     </ClCompile>
   </ItemGroup>
