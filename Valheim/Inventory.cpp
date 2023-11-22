@@ -192,7 +192,7 @@ void Inventory::MouseOverSlot()
 	if (isOpen && panel->MouseOver())
 	{
 		//	모든 인벤토리 슬롯을 순회
-		for (int i = 0; i < 32; i++)
+		for (int i = 0; i < INVENTORY_SIZE; i++)
 		{
 			// 마우스가 해당 슬롯 위에 있고,
 			if (slot[i]->MouseOver())
@@ -270,7 +270,7 @@ void Inventory::MouseOverSlot()
 
 void Inventory::ItemPickUp()
 {
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		if (INPUT->KeyDown(VK_LBUTTON) && slot[i]->MouseOver())
 		{
