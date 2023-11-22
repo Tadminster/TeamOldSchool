@@ -5,6 +5,7 @@
 Recipe::Recipe()
 {
     // 발견한 아이템 목록 초기화 ================================================
+	discoveryItemList[Item::Stone] = false;
 	discoveryItemList[Item::StoneAxe] = false;
 	discoveryItemList[Item::Woodpile] = false;
 
@@ -13,7 +14,7 @@ Recipe::Recipe()
     //discoveryRecipeList["WorkBench"] = false;
 
     // 레시피 목록 초기화 ======================================================
-    recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile});          // 돌 도끼
+    recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});          // 돌 도끼
 }
 
 Recipe::~Recipe()
@@ -30,8 +31,13 @@ bool Recipe::DiscoveryItemUpdate(ItemProto* item)
         {
             // 발견한 아이템 목록에 추가함
             discoveryItemList[item->GetEnumName()] = true;
+
             // 아이템 발견 메세지 출력
             cout << "Item '" << item->GetStringName() << "' discovered." << endl;
+
+            // 레서피 업데이트
+            RecipeUpdate(item);
+
             return true;
         }
         else return false;

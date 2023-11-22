@@ -120,6 +120,7 @@ void InGame::Update()
 void InGame::LateUpdate()
 {
 	INVEN->LateUpdate();
+	CRAFT->LateUpdate();
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
 	MINIMAP->LateUpdate();
