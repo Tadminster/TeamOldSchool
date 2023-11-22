@@ -3,10 +3,14 @@
 class Elder : public Unit
 {
 	friend class ElderPatern;
+	friend class ElderStomp;
+	friend class ElderSummonSpear;
 	class		 ElderPatern* patern = nullptr;
 	class		 ElderState*  state  = nullptr;
 
+
 	float					  paternTime = 0;
+	
 public:
 	Elder();
 	~Elder();

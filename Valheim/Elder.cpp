@@ -6,17 +6,13 @@
 Elder::Elder()
 {
 	actor = Actor::Create();
-	//actor->LoadFile("Monster_Elder_BossStone.xml");
 	actor->LoadFile("Monster_Elder.xml");
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
 
-	state = Elder_OpeningState::GetInstance();
+	
 
-	moveSpeed = 2.0f;
-
-	/*astar = new AStar();
-	astar->CreateNode(MAP, 200);*/
+	patern = new ElderPatern(this);
 }
 
 Elder::~Elder()
@@ -25,14 +21,16 @@ Elder::~Elder()
 
 void Elder::Init()
 {
+	moveSpeed = 2.0f;
+	state = Elder_OpeningState::GetInstance();
 	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos()+Vector3(10,0,0));
 }
 
 void Elder::Update()
 {
 	//테스트용-------------------------------------
-	if (INPUT->KeyDown('9')) actor->LoadFile("Monster_Elder.xml");
-	else if (INPUT->KeyDown('0')) actor->LoadFile("Monster_Elder_BossStone.xml");
+	//if (INPUT->KeyDown('-')) actor->LoadFile("Monster_Elder.xml");
+	//else if (INPUT->KeyDown('=')) actor->LoadFile("Monster_Elder_BossStone.xml");
 
 	if (INPUT->KeyDown(VK_F3)) state->Opening(this);
 	else if (INPUT->KeyDown(VK_F4)) state->Idle(this);
@@ -65,7 +63,8 @@ void Elder::Update()
 	{
 		ImGui::Text("summon");
 	}
-
+	//행동패턴(astar 노드 생성 -> 트리 생성(역순은 astar노드생성 시간이 느려짐))
+	//기능은 두 경우 모두 정상작동함 확인
 	if (ImGui::Button("astar"))
 	{
 		if (astar != nullptr) delete astar;
@@ -73,14 +72,14 @@ void Elder::Update()
 		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
 	}
 
-	//행동패턴(astar 노드 생성 -> 트리 생성(역순은 astar노드생성 시간이 느려짐))
-	//기능은 두 경우 모두 정상작동함 확인
 	BehaviorPatern();
 	DoFSM();
 
 	//중력 구현
 	ApplyGravity();
 	actor->Update();
+	patern->Update();
+
 }
 
 void Elder::LateUpdate()
@@ -110,7 +109,7 @@ void Elder::LateUpdate()
 void Elder::Render()
 {
 	actor->Render();
-	
+	patern->Render();
 }
 
 void Elder::Release()
@@ -139,7 +138,9 @@ void Elder::SetState(ElderState* state)
 void Elder::BehaviorPatern()
 {
 	if (paternTime >= 0) paternTime -= DELTA;
-	patern->StompPatern(this);
+	//patern->StompPatern(this);
+	patern->SummonPatern(this);
+	
 }
 
 void Elder::DoFSM()

@@ -164,7 +164,7 @@ void Elder_SummonState::Summon(Elder* elder)
 {
 	if (elder->GetActor()->anim->currentAnimator.animIdx != 5)
 	{
-		elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 5);
+		elder->GetActor()->anim->ChangeAnimation(AnimationState::LOOP, 5);
 	}
 }
 void Elder_SummonState::Death(Elder* elder)
