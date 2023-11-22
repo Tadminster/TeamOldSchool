@@ -84,6 +84,9 @@
     <ClInclude Include="Recipe.h">
       <Filter>UI\Crafting</Filter>
     </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>GameObject\Items\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="Recipe.cpp">
       <Filter>UI\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
