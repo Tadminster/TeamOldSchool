@@ -213,5 +213,5 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			}
 		}
 	}
-
+	//
 }
