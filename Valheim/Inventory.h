@@ -5,7 +5,7 @@
 
 enum class UILocation
 {
-	OnSlot, OnPannel, OnGround
+	OnSlot, OnPanel, OnGround
 };
 
 class Inventory
@@ -18,7 +18,7 @@ private:
 	class UI*			inventoryIcon[INVENTORY_SIZE];	// 인벤토리 아이콘
 	// 이미지===========================================================================================
 	UI*					inventoryUI;						// 인벤토리 UI
-	UI*					pannel;								// 인벤토리 패널을 가리킬 포인터
+	UI*					panel;								// 인벤토리 패널을 가리킬 포인터
 	UI*					slot[INVENTORY_SIZE + 1];			// 슬롯을 가리킬 포인터(0~31 일반슬롯, 32 블루슬롯)
 	UI*					tooltopBox;							// 툴팁 박스(검은 배경)
 	RECT				text_itemName;						// 툴팁 박스(아이템 이름)

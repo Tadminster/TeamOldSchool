@@ -12,6 +12,7 @@ GameManager::GameManager()
 	sea->LoadFile("Water.xml");
 
 	inventory = new Inventory();
+	craft = new Craft();
 
 	objectManager = new ObjectManager();
 
@@ -34,11 +35,7 @@ void GameManager::Release()
 
 void GameManager::Update()
 {
-	if (INPUT->KeyDown(VK_F1))
-	{
-		debugMode = !debugMode;
-		ResizeScreen();
-	}
+
 }
 
 void GameManager::LateUpdate()

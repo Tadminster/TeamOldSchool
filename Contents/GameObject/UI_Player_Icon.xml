@@ -1,4 +1,4 @@
-<Root Name="Player_Icon" Visible="true" ObType="4">
+<Root Name="UI_Player_Icon" Visible="true" ObType="4">
     <Mesh File="6.UI.mesh"/>
     <Shader File="6.UI.hlsl"/>
     <Material File="MiniMap/Player_icon.mtl"/>

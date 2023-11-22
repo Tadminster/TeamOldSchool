@@ -1,4 +1,4 @@
-<Root Name="Inventory" Visible="true" ObType="4">
+<Root Name="UI_Inventory" Visible="true" ObType="4">
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
@@ -14,7 +14,7 @@
         </Transform>
         <UI PivotX="0" PivotY="0"/>
         <Children Size="26"/>
-        <Child0 Name="PANNEL" Visible="true" ObType="4">
+        <Child0 Name="PANEL" Visible="true" ObType="4">
             <Mesh File="6.UI.mesh"/>
             <Shader File="6.UI.hlsl"/>
             <Material File="Inventory/InventoryPannel.mtl"/>
