@@ -5,7 +5,8 @@ enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Tool, Armor, Food, Material };
 enum class Item
 {
-	StoneAxe, Woodpile
+	StoneAxe, 
+	Stone, Woodpile,
 };
 //====================================================================================================
 class ItemProto : public Prototype

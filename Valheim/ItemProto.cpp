@@ -2,6 +2,7 @@
 #include "Prototype.h"
 
 #include "StoneAxe.h"
+#include "Stone.h"
 #include "Woodpile.h"
 #include "ItemProto.h"
 
@@ -13,6 +14,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new StoneAxe();
 	case Item::Woodpile:
 		return new Woodpile();
+	case Item::Stone:
+		return new Stone();
 	default:
 		throw std::invalid_argument("error");
 	}
