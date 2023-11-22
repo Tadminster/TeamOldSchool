@@ -162,7 +162,7 @@ void ElderSummonSpear::Render()
 		spear[i]->Render();
 	}
 }
-
+//ÀÛ¾÷Áß
 void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 {
 	if (elder->GetState() != E_OPENING)
