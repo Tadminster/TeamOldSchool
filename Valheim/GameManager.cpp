@@ -13,6 +13,7 @@ GameManager::GameManager()
 
 	inventory = new Inventory();
 	craft = new Craft();
+	recipe = new Recipe();
 
 	objectManager = new ObjectManager();
 

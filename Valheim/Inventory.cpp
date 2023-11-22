@@ -151,7 +151,7 @@ void Inventory::Render()
 			tooltopBox->Render();
 
 			DWRITE->RenderText(
-				Utility::ToWString(inventoryItem[onMouseItemIndex]->GetName()),
+				Utility::ToWString(inventoryItem[onMouseItemIndex]->GetStringName()),
 				text_itemName,
 				20.0f,
 				L"Arial",
@@ -617,7 +617,7 @@ void Inventory::AddItem(ItemProto* item)
 				{
 					continue;
 				}
-				else if (inventoryItem[i]->GetName() == mItem->GetName())
+				else if (inventoryItem[i]->GetStringName() == mItem->GetStringName())
 				{
 					MaterialProto* targetItem = static_cast<MaterialProto*>(inventoryItem[i]);
 					mItem->StackMerge(targetItem);

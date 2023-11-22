@@ -17,10 +17,11 @@ Woodpile::Woodpile()
 	ItemProto::Init();
 
 	//=========================
+	enumName		= Item::Woodpile;
 	type			= ItemType::Material;
 	state			= ItemState::OnGround;
 	//=========================
-	name			= "Woodpile";
+	stringName		= "Woodpile";
 	weight			= 1;
 
 	currentStack	= RANDOM->Int(5, 20);

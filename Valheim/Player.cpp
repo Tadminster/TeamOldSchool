@@ -311,6 +311,10 @@ bool Player::GetItem(ItemProto* item)
 			{
 				// 인벤토리에 아이템 추가하고	
 				INVEN->AddItem(item);
+				// 찾아낸 아이템 목록 업데이트
+				RECIPE->DiscoveryItemUpdate(item);
+				// 아이템의 상호작용 가능 여부를 true로 설정
+				item->SetIsInteraction(false);
 				return true;
 			}
 		}

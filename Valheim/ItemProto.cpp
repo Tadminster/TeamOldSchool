@@ -5,13 +5,13 @@
 #include "Woodpile.h"
 #include "ItemProto.h"
 
-ItemProto* ItemProto::Create(ItemName name)
+ItemProto* ItemProto::Create(Item name)
 {
 	switch (name)
 	{
-	case ItemName::StoneAxe:
+	case Item::StoneAxe:
 		return new StoneAxe();
-	case ItemName::Woodpile:
+	case Item::Woodpile:
 		return new Woodpile();
 	default:
 		throw std::invalid_argument("error");
@@ -81,7 +81,7 @@ void ItemProto::Render()
 		if (isInteraction)
 		{
 			DWRITE->RenderText(
-				Utility::ToWString(name) + L"\n[E] 줍기" ,
+				Utility::ToWString(stringName) + L"\n[E] 줍기" ,
 				text_interaction,
 				20.0f,
 				L"Arial",

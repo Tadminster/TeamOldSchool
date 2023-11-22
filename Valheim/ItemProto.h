@@ -3,8 +3,8 @@
 //====================================================================================================
 enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Tool, Armor, Food, Material };
-enum class ItemName 
-{ 
+enum class Item
+{
 	StoneAxe, Woodpile
 };
 //====================================================================================================
@@ -20,16 +20,17 @@ protected:
 	float		gravity		{ 0.0f };	// 중력
 	Vector3		rayCollisionPoint;		// 레이가 땅과 충돌하는 지점
 
-	string		name;		// 이름
+	Item		enumName;	// 이름
 	ItemType	type;		// 종류
 	ItemState	state;		// 상태
+	string 		stringName; // 문자열 이름
 	int			weight;		// 무게
 
 	bool		isInteraction{ false };	// 상호작용 가능 여부
 	RECT		text_interaction;	// 상호작용 텍스트 영역
 
 public:
-	static ItemProto* Create(ItemName name);
+	static ItemProto* Create(Item name);
 	virtual ~ItemProto() {};
 	void Init() override;
 	void Update() override;
@@ -37,7 +38,8 @@ public:
 	void Render() override;
 
 	UI*				GetIcon() { return icon; }
-	string			GetName() { return name; }
+	Item			GetEnumName() { return enumName; }
+	string			GetStringName() { return stringName; }
 	virtual wstring	GetExplain() = 0;
 	ItemType		GetType() { return type; }
 	float			GetTooltipBoxScaleY() { return tooltipBoxScaleY; }
