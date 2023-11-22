@@ -96,7 +96,11 @@ void InGame::Update()
 	}
 
 	// 카메라에 따른 조작
-	if (isDebugCam) Camera::main->ControlMainCam();
+	if (isDebugCam)
+	{
+		if (INPUT->KeyDown(VK_F3)) isDebugCamControl = !isDebugCamControl;
+		if(isDebugCamControl) Camera::main->ControlMainCam();
+	}
 	else PLAYER->AvtivatePlayerCam();
 
 	GM->Update();

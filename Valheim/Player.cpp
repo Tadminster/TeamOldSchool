@@ -20,24 +20,21 @@ Player::~Player()
 
 void Player::Init()
 {
-	actor->SetWorldPos(Vector3(0,20,0));
-	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-
+	actor->SetWorldPos(Vector3(0,10,0));
+	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 }
 
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	if (!DEBUGMODE) 
-	{
-		PlayerControl();
-		PlayerMove();
-	}
-	else
+	PlayerControl();
+	PlayerMove();
+	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
 	}
+
 	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
@@ -125,6 +122,7 @@ void Player::AvtivatePlayerCam()
 	//	isPlayerCam = true;
 	//}
 	//카메라 전환 시 화면 짤리는 부분 방지
+	actor->Update();
 	{
 		Camera::main->viewport.x = 0.0f;
 		Camera::main->viewport.y = 0.0f;

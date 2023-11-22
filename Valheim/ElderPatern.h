@@ -1,6 +1,6 @@
 #pragma once
 #include "Elder.h"
-#define SPEARNUM 10
+#define BUNDLENUM 5
 class Elder;
 class ElderPatern
 {
@@ -19,7 +19,7 @@ public:
 	void VineShootPatern(Elder* elder);
 	void SummonPatern(Elder* elder);
 };
-
+//발 찍기 클래스-----------------------------------------------
 class ElderStomp
 {
 	
@@ -28,7 +28,7 @@ public:
 	~ElderStomp();
 	void ElderStompPatern(Elder* elder);
 };
-
+//Vine Shoot 클래스-----------------------------------------------
 class ElderVineShoot
 {
 
@@ -37,18 +37,20 @@ public:
 	~ElderVineShoot();
 	void ElderVineShootPatern(Elder* elder);
 };
-
+//창 소환 클래스-----------------------------------------------
 class ElderSummonSpear
 {
-	Actor*			spear[SPEARNUM] = {};
-	Ray				spearRay[SPEARNUM];
-	Vector3			spearY[SPEARNUM] = {};
+	vector<Actor*>  spearBundle = {};
+	Ray				spearRay;
+	Vector3			spearY = {};
 	Vector3			spearPosition = {};
 	Vector3			targetInfo = {};
 	Vector3			dir = {};
 	float			distance = 0;
 	
+	int				spearCount = 0;
 	int				spearIdx = 0;
+	int				subIdx = 0;
 	float			summonTime = 0;
 	float			summonToIdle = 0;
 	float			interval = 0;

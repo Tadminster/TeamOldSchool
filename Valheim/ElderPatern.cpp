@@ -36,7 +36,6 @@ void ElderPatern::SummonPatern(Elder* elder)
 ElderStomp::ElderStomp()
 {
 }
-
 ElderStomp::~ElderStomp()
 {
 }
@@ -132,15 +131,7 @@ void ElderVineShoot::ElderVineShootPatern(Elder* elder)
 //엘더 창 소환 클래스-----------------------------------------------------------
 ElderSummonSpear::ElderSummonSpear()
 {
-	for (int i = 0; i < SPEARNUM; i++)
-	{
-		spear[i] = Actor::Create();
-		spear[i]->LoadFile("SummonSpear.xml");
-		spear[i]->name = "spear" + to_string(i);
-
-		//spearRay[i].position = spear[spearIdx]->GetWorldPos() + Vector3(0, 1000, 0);
-		spearRay[i].direction = Vector3(0, -1, 0);
-	}
+	spearRay.direction = Vector3(0, -1, 0);
 }
 
 ElderSummonSpear::~ElderSummonSpear()
@@ -149,17 +140,17 @@ ElderSummonSpear::~ElderSummonSpear()
 
 void ElderSummonSpear::Update()
 {
-	for (int i = 0; i < 10; i++)
+	for (auto& it : spearBundle)
 	{
-		spear[i]->Update();
+		it->Update();
 	}
 }
 
 void ElderSummonSpear::Render()
 {
-	for (int i = 0; i < 10; i++)
+	for (auto& it : spearBundle)
 	{
-		spear[i]->Render();
+		it->Render();
 	}
 }
 
@@ -171,42 +162,56 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 		{
 			elder->state = E_SUMMON;
 			elder->RotationForMove();
-			targetInfo = PLAYER->GetPlayer()->GetWorldPos() - elder->GetActor()->GetWorldPos();
-			distance = targetInfo.Length();
-			targetInfo.Normalize();
-			dir = targetInfo;
-			
-			if (spearIdx < SPEARNUM)
+			//창이 끝까지 플레이어 따라오는 현상 방지
+			if (spearIdx < spearCount * 0.5f)
 			{
-				if (TIMER->GetTick(summonTime, 0.15f))
+				targetInfo = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
+				distance = targetInfo.Length();
+				targetInfo.Normalize();
+				dir = targetInfo;
+			}
+			//거리에 따른 소환할 창 갯수
+			spearCount = distance / 2.0f + 5;
+			if (spearBundle.size() < spearCount * BUNDLENUM)
+			{
+				if (TIMER->GetTick(summonTime, 0.2f))
 				{
-					spear[spearIdx]->SetWorldPos(elder->GetActor()->GetWorldPos() + dir * distance / SPEARNUM * (spearIdx + 1));
-					spear[spearIdx]->Update();
-					spearRay[spearIdx].position = spear[spearIdx]->GetWorldPos() + Vector3(0, 1000, 0);
-
-					if (Utility::RayIntersectMap(spearRay[spearIdx], MAP, spearY[spearIdx]))
+					for (int j = 0; j < BUNDLENUM; j++)
 					{
-						//spear[spearIdx]->SetWorldPosY(spearY[spearIdx].y - spear[spearIdx]->scale.y * 2.5f);
-						spear[spearIdx]->SetWorldPosY(spearY[spearIdx].y);
+						Actor* spear = Actor::Create();
+						spear->LoadFile("SummonSpear.xml");
+						spear->SetWorldPos
+						(elder->actor->GetWorldPos() + dir * 2.0f * (spearIdx + 1)+Vector3(RANDOM->Float(-1.0f,1.0f),0, RANDOM->Float(-1.0f, 1.0f)));
+						spear->Update();
+						//경사에 다른 창 기울기
+						if(dir.y>0)
+							spear->rotation.x = RANDOM->Float(50.0f, 70.0f) * ToRadian;
+						else
+							spear->rotation.x = RANDOM->Float(60.0f, 80.0f) * ToRadian;
+						spear->rotation.y = elder->actor->rotation.y;
+						spear->rotation.z = RANDOM->Float(-10.0f, 10.0f) * ToRadian;
+						spearRay.position = spear->GetWorldPos() + Vector3(0, 1000, 0);
+						if (Utility::RayIntersectMap(spearRay, MAP, spearY))
+						{
+							spear->SetWorldPosY(spearY.y);
+						}
+						spearBundle.emplace_back(spear);
 					}
 					spearIdx++;
 				}
 			}
-		}
-	}
-	if (spearIdx >= SPEARNUM-1)
-	{
-		summonToIdle += DELTA;
-		if (summonToIdle >= 3.5f)
-		{
-			elder->state = E_IDLE;
-			elder->paternTime = 2.5f;
-			spearIdx = 0;
-			for (int i = 0; i < SPEARNUM; i++)
+			else
 			{
-				spear[i]->SetWorldPos(spearPosition);
+				summonToIdle += DELTA;
+				if (summonToIdle > 4.0f)
+				{
+					elder->state = E_IDLE;
+					spearIdx = 0;
+					summonToIdle = 0;
+					spearBundle.clear();
+				}
 			}
-			summonToIdle = 0;
 		}
 	}
+
 }
