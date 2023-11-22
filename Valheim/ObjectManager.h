@@ -28,6 +28,7 @@ private:
 
 	ItemProto*		stoneAxe[5];
 	ItemProto*		woodpile[5];
+	ItemProto*		stone[5];
 
 public:
 	ObjectManager();

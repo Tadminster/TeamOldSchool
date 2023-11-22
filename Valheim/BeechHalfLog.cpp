@@ -51,7 +51,7 @@ void BeechHalfLog::RenderHierarchy()
 void BeechHalfLog::DestructionEvent()
 {
 	// 오브젝트 생성 (반쪽통나무)
-	ItemProto* item = ItemProto::Create(ItemName::Woodpile);
+	ItemProto* item = ItemProto::Create(Item::Woodpile);
 	item->GetActor()->SetWorldPos(actor->GetWorldPos());
 	OBJ->AddItem(item);
 

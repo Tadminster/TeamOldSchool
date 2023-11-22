@@ -1,48 +1,48 @@
 #include "stdafx.h"
 #include "ItemProto.h"
-#include "Woodpile.h"
+#include "Stone.h"
 
-Woodpile::Woodpile()
+Stone::Stone()
 {
 	static int index = 0;
-	actor = Actor::Create("Woodpile");
-	actor->LoadFile("Woodpile.xml");
-	actor->name = "Woodpile" + index++;
+	actor = Actor::Create("Stone");
+	actor->LoadFile("Stone.xml");
+	actor->name = "Stone" + index++;
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
-	icon = UI::Create("WoodpileIcon");
-	icon->LoadFile("Icon_Woodpile.xml");
+	icon = UI::Create("StoneIcon");
+	icon->LoadFile("Icon_Stone.xml");
 	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();
 
 	//=========================
-	enumName		= Item::Woodpile;
-	type			= ItemType::Material;
-	state			= ItemState::OnGround;
+	enumName = Item::Stone;
+	type = ItemType::Material;
+	state = ItemState::OnGround;
 	//=========================
-	stringName		= "Woodpile";
-	weight			= 1;
+	stringName = "Stone";
+	weight = 1;
 
-	currentStack	= RANDOM->Int(2, 10);
-	maxStack		= 100;
+	currentStack = RANDOM->Int(2, 3);
+	maxStack = 50;
 }
 
-Woodpile::~Woodpile()
+Stone::~Stone()
 {
 
 }
 
-void Woodpile::Init()
+void Stone::Init()
 {
 
 }
 
-void Woodpile::Release()
+void Stone::Release()
 {
 }
 
-void Woodpile::Update()
+void Stone::Update()
 {
 	ImGui::Begin("ItemHierarchy");
 	{
@@ -55,12 +55,12 @@ void Woodpile::Update()
 	ItemProto::Update();
 }
 
-void Woodpile::LateUpdate()
+void Stone::LateUpdate()
 {
 	//ItemProto::LateUpdate();
 }
 
-void Woodpile::Render()
+void Stone::Render()
 {
 	ItemProto::Render();
 
@@ -73,22 +73,22 @@ void Woodpile::Render()
 
 		DWRITE->RenderText(
 			to_wstring(currentStack) + L"/" + to_wstring(maxStack),
-			text_stack, 
-			13.0f, 
-			L"Arial", 
-			Color(1, 1, 1, 0), 
+			text_stack,
+			13.0f,
+			L"Arial",
+			Color(1, 1, 1, 0),
 			DWRITE_FONT_WEIGHT_REGULAR,
-			DWRITE_FONT_STYLE_ITALIC, 
+			DWRITE_FONT_STYLE_ITALIC,
 			DWRITE_FONT_STRETCH_EXPANDED);
 	}
 }
 
-void Woodpile::RenderHierarchy()
+void Stone::RenderHierarchy()
 {
 
 }
 
-wstring Woodpile::GetExplain()
+wstring Stone::GetExplain()
 {
 	wstring exp = L"건설에 사용할 수 있는 튼튼하고 \n좋은 나무입니다.\n";
 	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
@@ -96,16 +96,16 @@ wstring Woodpile::GetExplain()
 	return exp + exp_sub1;
 }
 
-//bool Woodpile::IsDestroyed()
+//bool Stone::IsDestroyed()
 //{
 //	return false;
 //}
 //
-//void Woodpile::DestructionEvent()
+//void Stone::DestructionEvent()
 //{
 //}
 
-void Woodpile::Use()
+void Stone::Use()
 {
 }
 

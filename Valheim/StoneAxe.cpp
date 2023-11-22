@@ -16,11 +16,12 @@ StoneAxe::StoneAxe()
 	ItemProto::Init();
 
 	//=========================
+	enumName	= Item::StoneAxe;
 	type		= ItemType::Weapon;
 	wType		= WeaponType::Axe;
 	state		= ItemState::OnGround;
 	//=========================
-	name		= "StoneAxe";
+	stringName		= "StoneAxe";
 	
 	damage			= 10;
 	maxDurability	= 100;

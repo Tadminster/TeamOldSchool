@@ -5,7 +5,7 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <UI PivotX="0" PivotY="0"/>
-    <Children Size="11"/>
+    <Children Size="22"/>
     <Child0 Name="0_Panel" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
@@ -138,4 +138,217 @@
         <UI PivotX="1" PivotY="-1"/>
         <Children Size="0"/>
     </Child10>
+    <Child11 Name="2_Btn_Recipe1" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="0.36000001" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe1_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child11>
+    <Child12 Name="2_Btn_Recipe2" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="0.23999999" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe2_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child12>
+    <Child13 Name="2_Btn_Recipe3" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="0.12" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe3_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child13>
+    <Child14 Name="2_Btn_Recipe4" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="0" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe4_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child14>
+    <Child15 Name="2_Btn_Recipe5" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="-0.12" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe5_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child15>
+    <Child16 Name="2_Btn_Recipe6" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="-0.23999999" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe6_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child16>
+    <Child17 Name="2_Btn_Recipe7" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="-0.36000001" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe7_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child17>
+    <Child18 Name="2_Btn_Recipe8" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="-0.47999999" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe8_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child18>
+    <Child19 Name="2_Btn_Recipe9" Visible="true" ObType="4">
+        <Transform>
+            <Position X="-0.34999999" Y="-0.60000002" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Recipe9_Icon" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Inventory/InventorySlot.mtl"/>
+            <Transform>
+                <Position X="-0.6538462" Y="0" Z="0"/>
+                <Scale X="0.30000001" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
+    </Child19>
+    <Child20 Name="2_Btn_Recipe98" Visible="false" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="Craft/RecipeMouseOver.mtl"/>
+        <Transform>
+            <Position X="-0.34999999" Y="-0.60000002" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="0"/>
+    </Child20>
+    <Child21 Name="2_Btn_Recipe99" Visible="false" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="Craft/RecipeSelect.mtl"/>
+        <Transform>
+            <Position X="-0.34999999" Y="-0.60000002" Z="0"/>
+            <Scale X="0.13" Y="0.059999999" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="0"/>
+    </Child21>
 </Root>
