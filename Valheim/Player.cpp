@@ -122,7 +122,8 @@ void Player::AvtivatePlayerCam()
 	//	isPlayerCam = true;
 	//}
 	//카메라 전환 시 화면 짤리는 부분 방지
-	actor->Update();
+	if(actor->anim->currentAnimator.animIdx==0)
+		actor->Update();
 	{
 		Camera::main->viewport.x = 0.0f;
 		Camera::main->viewport.y = 0.0f;

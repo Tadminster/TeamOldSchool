@@ -36,7 +36,7 @@ void Elder::Update()
 	else if (INPUT->KeyDown(VK_F4)) state->Idle(this);
 	else if (INPUT->KeyDown(VK_F5)) state->Walk(this);
 	else if (INPUT->KeyDown(VK_F6)) state->Stomp(this);
-	else if (INPUT->KeyDown(VK_F7)) state->VineShoot(this);
+	else if (INPUT->KeyDown(VK_F7)) state->JumpAttack(this);
 	else if (INPUT->KeyDown(VK_F8)) state->Summon(this);
 
 	if (state == Elder_OpeningState::GetInstance())
@@ -55,9 +55,9 @@ void Elder::Update()
 	{
 		ImGui::Text("stomp");
 	}
-	else if (state == Elder_VineShootState::GetInstance())
+	else if (state == Elder_JumpAttackState::GetInstance())
 	{
-		ImGui::Text("vineshoot");
+		ImGui::Text("JumpAttack");
 	}
 	else if (state == Elder_SummonState::GetInstance())
 	{
@@ -139,7 +139,8 @@ void Elder::BehaviorPatern()
 {
 	if (paternTime >= 0) paternTime -= DELTA;
 	//patern->StompPatern(this);
-	patern->SummonPatern(this);
+	//patern->SummonPatern(this);
+	patern->JumpAttackPatern(this);
 	
 }
 
@@ -161,9 +162,9 @@ void Elder::DoFSM()
 	{
 		state->Stomp(this);
 	}
-	else if (state == E_VINESHOOT)
+	else if (state == E_JumpAttack)
 	{
-		state->VineShoot(this);
+		state->JumpAttack(this);
 	}
 	else if (state == E_SUMMON)
 	{
