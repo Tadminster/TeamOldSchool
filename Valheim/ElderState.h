@@ -6,7 +6,7 @@
 #define E_IDLE Elder_IdleState::GetInstance()
 #define E_WALK Elder_WalkState::GetInstance()
 #define E_STOMP Elder_StompState::GetInstance()
-#define E_VINESHOOT Elder_VineShootState::GetInstance()
+#define E_JumpAttack Elder_JumpAttackState::GetInstance()
 #define E_SUMMON Elder_SummonState::GetInstance()
 class Elder;
 
@@ -22,7 +22,7 @@ public:
 	virtual void Idle(Elder* elder) = 0;
 	virtual void Walk(Elder* elder) = 0;
 	virtual void Stomp(Elder* elder) = 0;
-	virtual void VineShoot(Elder* elder) = 0;
+	virtual void JumpAttack(Elder* elder) = 0;
 	virtual void Summon(Elder* elder) = 0;
 	virtual void Death(Elder* elder) = 0;
 };
@@ -40,7 +40,7 @@ public:
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
@@ -58,7 +58,7 @@ public:
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
@@ -76,7 +76,7 @@ public:
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
@@ -94,25 +94,25 @@ public:
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
-//VineShoot 클래스----------------------------------------------------------
-class Elder_VineShootState : public ElderState
+//JumpAttack 클래스----------------------------------------------------------
+class Elder_JumpAttackState : public ElderState
 {
-	static Elder_VineShootState* instance;
+	static Elder_JumpAttackState* instance;
 public:
-	static Elder_VineShootState* GetInstance()
+	static Elder_JumpAttackState* GetInstance()
 	{
-		if (instance == nullptr) instance = new Elder_VineShootState();
+		if (instance == nullptr) instance = new Elder_JumpAttackState();
 		return instance;
 	}
 	void Opening(Elder* elder) override;
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };
@@ -130,7 +130,7 @@ public:
 	void Idle(Elder* elder) override;
 	void Walk(Elder* elder) override;
 	void Stomp(Elder* elder) override;
-	void VineShoot(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
 	void Summon(Elder* elder) override;
 	void Death(Elder* elder) override;
 };

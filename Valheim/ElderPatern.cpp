@@ -3,9 +3,13 @@
 #include "ElderState.h"
 #include "ElderPatern.h"
 
+ElderPatern::ElderPatern()
+{
+}
 ElderPatern::ElderPatern(Elder* elder)
 {
 	stomp = new ElderStomp();
+	jumpAttack = new ElderJumpAttack(elder);
 	summonSpear = new ElderSummonSpear();
 	
 }
@@ -15,24 +19,27 @@ ElderPatern::~ElderPatern()
 void ElderPatern::Update()
 {
 	summonSpear->Update();
+	jumpAttack->Update();
 }
 void ElderPatern::Render()
 {
 	summonSpear->Render();
+	jumpAttack->Render();
 }
 void ElderPatern::StompPatern(Elder* elder)
 {
 	stomp->ElderStompPatern(elder);
 }
-void ElderPatern::VineShootPatern(Elder* elder)
+void ElderPatern::JumpAttackPatern(Elder* elder)
 {
+	jumpAttack->ElderJumpAttackPatern(elder);
 }
 void ElderPatern::SummonPatern(Elder* elder)
 {
 	summonSpear->SummonSpearPatern(elder);
 }
 
-//엘더 내려찍기 클래스-----------------------------------------------------------
+//엘더 발찍기 클래스-----------------------------------------------------------
 ElderStomp::ElderStomp()
 {
 }
@@ -114,18 +121,133 @@ void ElderStomp::ElderStompPatern(Elder* elder)
 	}
 }
 
-//엘더 레이저? 클래스-----------------------------------------------------------
-ElderVineShoot::ElderVineShoot()
+//엘더 점프어택 클래스-----------------------------------------------------------
+ElderJumpAttack::ElderJumpAttack(Elder* elder)
 {
+	interval = RANDOM->Float(elder->GetActor()->scale.x, 3.0f);
+	spearRay.direction = Vector3(0, -1, 0);
 }
-
-ElderVineShoot::~ElderVineShoot()
+ElderJumpAttack::~ElderJumpAttack()
 {
+
 }
-
-void ElderVineShoot::ElderVineShootPatern(Elder* elder)
+void ElderJumpAttack::Update()
+{
+	for (auto& it : spearBundle)
+	{
+		it->Update();
+	}
+}
+void ElderJumpAttack::Render()
+{
+	for (auto& it : spearBundle)
+	{
+		it->Render();
+	}
+}
+void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 {
 
+	if (elder->GetState() != E_OPENING)
+	{
+		if (elder->paternTime < 0)
+		{
+			targetInfo = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
+			distance = targetInfo.Length();
+			targetInfo.Normalize();
+			dir = targetInfo;
+
+			elder->RotationForMove();
+			if (elder->rotationTime <= 0 )
+			{
+				if(elder->state != E_JumpAttack)
+					elder->state = E_JumpAttack;
+				//(할일)이동해야 할 프레임 조절
+				if (elder->actor->anim->currentAnimator.animState != AnimationState::STOP)
+					elder->GetActor()->MoveWorldPos(dir * distance / 3.0f * DELTA);
+			}
+			if (spearIdx <= 56)
+			{
+				if (elder->actor->anim->currentAnimator.animState == AnimationState::STOP)
+				{
+						Vector3 direction = {};
+						switch (spearIdx % 8)
+						{
+						case 0:
+							direction = elder->GetActor()->GetForward();
+							break;
+						case 1:
+							direction = -elder->GetActor()->GetForward();
+							break;
+						case 2:
+							direction = elder->GetActor()->GetRight();
+							break;
+						case 3:
+							direction = -elder->GetActor()->GetRight();
+							break;
+						case 4:
+							direction = elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
+							direction.Normalize();
+							break;
+						case 5:
+							direction = elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
+							direction.Normalize();
+							break;
+						case 6:
+							direction = -elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
+							direction.Normalize();
+							break;
+						case 7:
+							direction = -elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
+							direction.Normalize();
+							break;
+						}
+
+						Vector3 temp = { RANDOM->Float(-2.0f, 2.0f), 0, RANDOM->Float(-2.0f, 2.0f) };
+						Actor* spear = Actor::Create();
+						spear->LoadFile("SummonSpear.xml");
+						spear->SetWorldPos(elder->GetActor()->GetWorldPos() + direction * interval + temp);
+						spear->Update();
+						spear->rotation = direction;
+						spearRay.position = spear->GetWorldPos() + Vector3(0, 1000, 0);
+						if (Utility::RayIntersectMap(spearRay, MAP, spearY))
+						{
+							spear->SetWorldPosY(spearY.y);
+						}
+						
+						spearBundle.emplace_back(spear);
+					
+					spearIdx++;
+				}
+			}
+			else
+			{
+				respawnTime += DELTA;
+				
+				if (respawnTime >= 2.5f)
+				{
+					if (respawnPhase == 0)
+					{
+						respawnTime = 0;
+						spearIdx = 0;
+						interval = RANDOM->Float(3.0f, 6.0f);
+						respawnPhase++;
+						elder->jumpAttackMotion++;
+					}
+					else
+					{
+						respawnTime = 0;
+						spearIdx = 0;
+						respawnPhase = 0;
+						interval = RANDOM->Float(elder->GetActor()->scale.x, 3.0f);
+						elder->jumpAttackMotion = 0;
+						spearBundle.clear();
+						elder->state = E_IDLE;
+					}
+				}
+			}
+		}
+	}
 }
 
 //엘더 창 소환 클래스-----------------------------------------------------------
@@ -133,11 +255,9 @@ ElderSummonSpear::ElderSummonSpear()
 {
 	spearRay.direction = Vector3(0, -1, 0);
 }
-
 ElderSummonSpear::~ElderSummonSpear()
 {
 }
-
 void ElderSummonSpear::Update()
 {
 	for (auto& it : spearBundle)
@@ -145,7 +265,6 @@ void ElderSummonSpear::Update()
 		it->Update();
 	}
 }
-
 void ElderSummonSpear::Render()
 {
 	for (auto& it : spearBundle)
@@ -153,7 +272,6 @@ void ElderSummonSpear::Render()
 		it->Render();
 	}
 }
-//작업중
 void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 {
 	if (elder->GetState() != E_OPENING)
@@ -162,30 +280,41 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 		{
 			elder->state = E_SUMMON;
 			elder->RotationForMove();
+			//플레이어 추적을 제한하기 위한 조건
+			float chaseTime = 0;
+			if (distance >= 0 && distance < 15) chaseTime = 0.3f;
+			else if (distance >= 15 && distance < 30) chaseTime = 0.4f;
+			else chaseTime = 0.6f;
+
 			//창이 끝까지 플레이어 따라오는 현상 방지
-			if (spearIdx < spearCount * 0.5f)
+			if (spearIdx < spearCount * chaseTime)
 			{
 				targetInfo = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
 				distance = targetInfo.Length();
 				targetInfo.Normalize();
 				dir = targetInfo;
 			}
+			//거리에 따라 창 소환 속도 조절
+			float spearSpeed = 0;
+			if (distance >= 0 && distance < 15) spearSpeed = 0.4f;
+			else if (distance >= 15 && distance < 30) spearSpeed = 0.2f;
+			else spearSpeed = 0.15f;
 			//거리에 따른 소환할 창 갯수
 			spearCount = distance / 2.0f + 5;
 			if (spearBundle.size() < spearCount * BUNDLENUM)
 			{
-				if (TIMER->GetTick(summonTime, 0.2f))
+				if (TIMER->GetTick(summonTime, spearSpeed))
 				{
 					for (int j = 0; j < BUNDLENUM; j++)
 					{
 						Actor* spear = Actor::Create();
 						spear->LoadFile("SummonSpear.xml");
 						spear->SetWorldPos
-						(elder->actor->GetWorldPos() + dir * 2.0f * (spearIdx + 1)+Vector3(RANDOM->Float(-1.0f,1.0f),0, RANDOM->Float(-1.0f, 1.0f)));
+						(elder->actor->GetWorldPos() + dir * 2.0f * (spearIdx + 1)+Vector3(RANDOM->Float(-2.0f,2.0f),0, RANDOM->Float(-2.0f, 2.0f)));
 						spear->Update();
-						//경사에 다른 창 기울기
-						if(dir.y>0)
-							spear->rotation.x = RANDOM->Float(50.0f, 70.0f) * ToRadian;
+						//경사에 따른 창 기울기
+						if (dir.x > 0.5f)
+							spear->rotation.x = RANDOM->Float(25.0f, 45.0f) * ToRadian;
 						else
 							spear->rotation.x = RANDOM->Float(60.0f, 80.0f) * ToRadian;
 						spear->rotation.y = elder->actor->rotation.y;
@@ -203,7 +332,7 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			else
 			{
 				summonToIdle += DELTA;
-				if (summonToIdle > 4.0f)
+				if (summonToIdle > 3.0f)
 				{
 					elder->state = E_IDLE;
 					spearIdx = 0;

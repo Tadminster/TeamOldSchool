@@ -6,7 +6,7 @@ Elder_OpeningState* Elder_OpeningState::instance;
 Elder_IdleState* Elder_IdleState::instance;
 Elder_WalkState* Elder_WalkState::instance;
 Elder_StompState* Elder_StompState::instance;
-Elder_VineShootState* Elder_VineShootState::instance;
+Elder_JumpAttackState* Elder_JumpAttackState::instance;
 Elder_SummonState* Elder_SummonState::instance;
 
 //Opening 상태--------------------------------------------------------------------------
@@ -24,7 +24,7 @@ void Elder_OpeningState::Idle(Elder* elder)
 //Opening을 그냥 FSM에서 뺄까..?
 void Elder_OpeningState::Walk(Elder* elder) {}
 void Elder_OpeningState::Stomp(Elder* elder) {}
-void Elder_OpeningState::VineShoot(Elder* elder) {}
+void Elder_OpeningState::JumpAttack(Elder* elder) {}
 void Elder_OpeningState::Summon(Elder* elder) {}
 void Elder_OpeningState::Death(Elder* elder) {}
 
@@ -45,9 +45,9 @@ void Elder_IdleState::Stomp(Elder* elder)
 {
 	elder->SetState(E_STOMP);
 }
-void Elder_IdleState::VineShoot(Elder* elder)
+void Elder_IdleState::JumpAttack(Elder* elder)
 {
-	elder->SetState(E_VINESHOOT);
+	elder->SetState(E_JumpAttack);
 }
 void Elder_IdleState::Summon(Elder* elder)
 {
@@ -73,9 +73,9 @@ void Elder_WalkState::Stomp(Elder* elder)
 {
 	elder->SetState(E_STOMP);
 }
-void Elder_WalkState::VineShoot(Elder* elder)
+void Elder_WalkState::JumpAttack(Elder* elder)
 {
-	elder->SetState(E_VINESHOOT);
+	elder->SetState(E_JumpAttack);
 }
 void Elder_WalkState::Summon(Elder* elder)
 {
@@ -102,9 +102,9 @@ void Elder_StompState::Stomp(Elder* elder)
 		elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 3);
 	}
 }
-void Elder_StompState::VineShoot(Elder* elder)
+void Elder_StompState::JumpAttack(Elder* elder)
 {
-	elder->SetState(E_VINESHOOT);
+	elder->SetState(E_JumpAttack);
 }
 void Elder_StompState::Summon(Elder* elder)
 {
@@ -114,32 +114,43 @@ void Elder_StompState::Death(Elder* elder)
 {
 }
 
-//VineShoot 상태--------------------------------------------------------------------------
-void Elder_VineShootState::Opening(Elder* elder) {}
-void Elder_VineShootState::Idle(Elder* elder)
+//JumpAttack 상태--------------------------------------------------------------------------
+void Elder_JumpAttackState::Opening(Elder* elder) {}
+void Elder_JumpAttackState::Idle(Elder* elder)
 {
 	elder->SetState(E_IDLE);
 }
-void Elder_VineShootState::Walk(Elder* elder)
+void Elder_JumpAttackState::Walk(Elder* elder)
 {
 	elder->SetState(E_WALK);
 }
-void Elder_VineShootState::Stomp(Elder* elder)
+void Elder_JumpAttackState::Stomp(Elder* elder)
 {
 	elder->SetState(E_STOMP);
 }
-void Elder_VineShootState::VineShoot(Elder* elder)
+void Elder_JumpAttackState::JumpAttack(Elder* elder)
 {
-	if (elder->GetActor()->anim->currentAnimator.animIdx != 4)
+	if (elder->GetJumpAttackMotion() == 0)
 	{
-		elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 4);
+		if (elder->GetActor()->anim->currentAnimator.animIdx != 8)
+		{
+			elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 8);
+		}
 	}
+	else if (elder->GetJumpAttackMotion() == 1)
+	{
+		if (elder->GetActor()->anim->currentAnimator.animIdx != 11)
+		{
+			elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 11);
+		}
+	}
+	
 }
-void Elder_VineShootState::Summon(Elder* elder)
+void Elder_JumpAttackState::Summon(Elder* elder)
 {
 	elder->SetState(E_SUMMON);
 }
-void Elder_VineShootState::Death(Elder* elder)
+void Elder_JumpAttackState::Death(Elder* elder)
 {
 }
 //Summon 상태--------------------------------------------------------------------------
@@ -156,9 +167,9 @@ void Elder_SummonState::Stomp(Elder* elder)
 {
 	elder->SetState(E_STOMP);
 }
-void Elder_SummonState::VineShoot(Elder* elder)
+void Elder_SummonState::JumpAttack(Elder* elder)
 {
-	elder->SetState(E_VINESHOOT);
+	elder->SetState(E_JumpAttack);
 }
 void Elder_SummonState::Summon(Elder* elder)
 {

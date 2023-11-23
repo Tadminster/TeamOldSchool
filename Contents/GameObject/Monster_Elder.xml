@@ -1,6 +1,6 @@
 <Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Elder/Monster_Elder.skel" BoneIndexCount="68"/>
-    <Animations AnimSize="7" File0="Monster_Elder/Elder_Opening0.anim" File1="Monster_Elder/Elder_Idle0.anim" File2="Monster_Elder/Elder_Walk0.anim" File3="Monster_Elder/Elder_Stomp0.anim" File4="Monster_Elder/Elder_VineShoot0.anim" File5="Monster_Elder/Elder_Summon0.anim" File6="Monster_Elder/Elder_Death0.anim"/>
+    <Animations AnimSize="12" File0="Monster_Elder/Elder_Opening0.anim" File1="Monster_Elder/Elder_Idle0.anim" File2="Monster_Elder/Elder_Walk0.anim" File3="Monster_Elder/Elder_Stomp0.anim" File4="Monster_Elder/Elder_JumpAttack0.anim" File5="Monster_Elder/Elder_Summon0.anim" File6="Monster_Elder/Elder_VineShoot0.anim" File7="Monster_Elder/Elder_Death0.anim" File8="/jump10.anim" File9="/jump20.anim" File10="/jump30.anim" File11="/jump30.anim"/>
     <Collider ColliderType="2" Visible="true">
         <Position X="0" Y="2.5" Z="0.15000001"/>
         <Scale X="1.2" Y="2.5" Z="0.64999998"/>
