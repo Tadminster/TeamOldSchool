@@ -56,6 +56,27 @@ Craft::~Craft()
 
 void Craft::Init()
 {
+	// 초기화
+	selectedRecipe = nullptr;				// 선택된 레시피 초기화
+	for (int i = 0; i < RECIPE_SIZE; i++)
+	{
+		recipeItem[i] = nullptr;			// 레시피 정보 초기화
+		hasRecipe[i] = false;				// 레시피가 존재하는지 여부 초기화
+		IconChanger(iconRecipe[i]);			// 레시피 아이콘 초기화
+	}
+
+	for (int i = 0; i < MATERIAL_SIZE; i++)
+	{
+		needMaterial[i] = false;			// 재료가 필요한지 여부 초기화
+		IconChanger(iconMaterial[i]);			// 재료 아이콘 초기화
+	}
+
+	// 레시피 업데이트
+	RecipeUpdate();
+
+	// 상호작용 배경 초기화
+	btnRecipe[RECIPE_MOUSE_OVER]->visible = false;
+	btnRecipe[RECIPE_MOUSE_CLICK]->visible = false;
 }
 
 void Craft::Release()
@@ -71,34 +92,15 @@ void Craft::Update()
 	ImGui::End();
 
 	// 탭 키를 누르면 크래프팅 창 열기
-	if (INPUT->KeyDown(VK_TAB))
+	if (INPUT->KeyDown('C'))
 	{
 		// 크래프팅 창이 열려있다면 닫기
 		if (isOpen) isOpen = false;
 		// 크래프팅 창이 닫혀있다면
 		else
 		{
-			// 초기화
-			selectedRecipe = nullptr;				// 선택된 레시피 초기화
-			for (int i = 0; i < RECIPE_SIZE; i++)
-			{
-				recipeItem[i] = nullptr;			// 레시피 정보 초기화
-				hasRecipe[i] = false;				// 레시피가 존재하는지 여부 초기화
-				IconChanger(iconRecipe[i]);			// 레시피 아이콘 초기화
-			}
-
-			for (int i = 0; i < MATERIAL_SIZE; i++)
-			{
-				needMaterial[i] = false;			// 재료가 필요한지 여부 초기화
-				IconChanger(iconMaterial[i]);			// 재료 아이콘 초기화
-			}
-
-			// 레시피 업데이트
-			RecipeUpdate();
-
-			// 상호작용 배경 초기화
-			btnRecipe[RECIPE_MOUSE_OVER]->visible = false;
-			btnRecipe[RECIPE_MOUSE_CLICK]->visible = false;
+			// 초기화 후
+			Init();
 
 			// 열기
 			isOpen = true;
@@ -260,8 +262,8 @@ void Craft::MouseOverRecipe()
 {
 	bool isMouseOver = false;
 
-	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
-	if (isOpen && panel->MouseOver())
+	// 마우스가 인벤토리 패널 위에 있다면
+	if (panel->MouseOver())
 	{
 		//	모든 레서피 버튼을 순회
 		for (int i = 0; i < RECIPE_SIZE; i++)

@@ -48,21 +48,25 @@ public:
 	void Render();
 	void ResizeScreen();
 
-	// @brief 아이템 아이콘	변경
+	// 아이콘 관련	=======================================================================================
+	// @brief 아이템 아이콘	변경 함수
 	// @param icon 초기화할 아이콘
 	// @param path 아이콘 경로(default: Empty)
 	void IconChanger(UI* icon, string path = "Empty.png");
+	// @brief 아이템에 해당하는 아이콘 파일명 반환 함수
+	// @param item 아이콘의 파일명을 알고 싶은 아이템
+	string GetIconFileName(Item item);
 
+	// 레서피 창 관련=======================================================================================
 	void RecipeUpdate();								// 레시피 정보 업데이트
 	void RecipeIconUpdate(int BtnIndex);				// 레시피 아이콘 업데이트
 	void MouseOverRecipe();								// 레시피 마우스 오버
 	void RecipeSelect();								// 레시피 선택
-
+	// 디테일 창 관련=======================================================================================
 	void RecipeDetailUpdate();							// 레시피 상세정보 업데이트
 	void MaterialIconUpdate(RecipeInfo* recipeInfo);	// 재료 아이콘 업데이트
 	void CreateBtnUpdate();								// 제작 버튼 업데이트
 	bool ItemCreate();									// 아이템 제작
 
-	string GetIconFileName(Item item);
 };
 
