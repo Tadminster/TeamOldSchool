@@ -612,9 +612,6 @@ void Inventory::AddItem(ItemProto* item)
 	item->GetActor()->SetWorldPos(Vector3(0, -999, 0));
 	item->Update();
 
-	// 아이템의 상태를 인벤토리로 변경
-	item->SetState(ItemState::OnInventory);
-
 	// 아이템이 중첩 가능한 타입(재료, 음식)이면
 	if (item->GetType() == ItemType::Material || item->GetType() == ItemType::Food)
 	{
@@ -655,6 +652,9 @@ void Inventory::AddItem(ItemProto* item)
 			break;
 		}
 	}
+
+	// 아이템의 상태를 인벤토리로 변경
+	item->SetState(ItemState::OnInventory);
 }
 
 void Inventory::DeleteItem(string name)
