@@ -1,7 +1,9 @@
 #pragma once
+#include "ItemProto.h"
 #define INVENTORY_SIZE		32		// 인벤토리 크기
 #define INVENTORY_ROW_SIZE	8		// 인벤토리 1줄 크기
 #define	BLUE_SLOT			32		// 블루슬롯의 인덱스
+
 
 enum class UILocation
 {
@@ -40,7 +42,7 @@ private:
 			int* matchY = nullptr;		// index_y와 일치하는 변수의 포인터
 
 			// 각 인덱스와 일치하는 변수 찾기
-			for (int i = 0; i < 2; ++i)
+			for (int i = 0; i < 2; i++)
 			{
 				if (*(array[i]) == index_x)
 					matchX = array[i];
@@ -97,6 +99,9 @@ public:
 	void AddItem(ItemProto* item);
 	void DeleteItem(string name);
 	void ChangeItem();
+
+	bool CheckMaterial(Item item, int quantity);
+	void UseMaterial(Item item, int quantity);
 
 };
 

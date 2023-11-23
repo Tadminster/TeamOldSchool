@@ -88,7 +88,19 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="1"/>
+        <Child0 Name="3_Icon_Material1" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Item/Icon_Empty.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child0>
     </Child6>
     <Child7 Name="2_BG_Material2" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
@@ -100,31 +112,67 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
-    </Child7>
-    <Child8 Name="2_BG_Material3" Visible="true" ObType="4">
-        <Mesh File="6.UI.mesh"/>
-        <Shader File="6.UI.hlsl"/>
-        <Material File="Craft/Materials.mtl"/>
-        <Transform>
-            <Position X="0.18000001" Y="-0.46000001" Z="0"/>
-            <Scale X="0.050000001" Y="0.079999998" Z="1"/>
-            <Rotation X="0" Y="0" Z="0"/>
-        </Transform>
-        <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
-    </Child8>
-    <Child9 Name="2_BG_Material4" Visible="true" ObType="4">
-        <Mesh File="6.UI.mesh"/>
-        <Shader File="6.UI.hlsl"/>
-        <Material File="Craft/Materials.mtl"/>
-        <Transform>
-            <Position X="0.28" Y="-0.46000001" Z="0"/>
-            <Scale X="0.050000001" Y="0.079999998" Z="1"/>
-            <Rotation X="0" Y="0" Z="0"/>
-        </Transform>
-        <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+		<Children Size="1"/>
+		<Child0 Name="3_Icon_Material2" Visible="true" ObType="4">
+			<Mesh File="6.UI.mesh"/>
+			<Shader File="6.UI.hlsl"/>
+			<Material File="Item/Icon_Empty.mtl"/>
+			<Transform>
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<UI PivotX="0" PivotY="0"/>
+			<Children Size="0"/>
+		</Child0>
+	</Child7>
+	<Child8 Name="2_BG_Material3" Visible="true" ObType="4">
+		<Mesh File="6.UI.mesh"/>
+		<Shader File="6.UI.hlsl"/>
+		<Material File="Craft/Materials.mtl"/>
+		<Transform>
+			<Position X="0.18000001" Y="-0.46000001" Z="0"/>
+			<Scale X="0.050000001" Y="0.079999998" Z="1"/>
+			<Rotation X="0" Y="0" Z="0"/>
+		</Transform>
+		<UI PivotX="0" PivotY="0"/>
+		<Children Size="1"/>
+		<Child0 Name="3_Icon_Material3" Visible="true" ObType="4">
+			<Mesh File="6.UI.mesh"/>
+			<Shader File="6.UI.hlsl"/>
+			<Material File="Item/Icon_Empty.mtl"/>
+			<Transform>
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<UI PivotX="0" PivotY="0"/>
+			<Children Size="0"/>
+		</Child0>
+	</Child8>
+	<Child9 Name="2_BG_Material4" Visible="true" ObType="4">
+		<Mesh File="6.UI.mesh"/>
+		<Shader File="6.UI.hlsl"/>
+		<Material File="Craft/Materials.mtl"/>
+		<Transform>
+			<Position X="0.28" Y="-0.46000001" Z="0"/>
+			<Scale X="0.050000001" Y="0.079999998" Z="1"/>
+			<Rotation X="0" Y="0" Z="0"/>
+		</Transform>
+		<UI PivotX="0" PivotY="0"/>
+		<Children Size="1"/>
+		<Child0 Name="3_Icon_Material4" Visible="true" ObType="4">
+			<Mesh File="6.UI.mesh"/>
+			<Shader File="6.UI.hlsl"/>
+			<Material File="Item/Icon_Empty.mtl"/>
+			<Transform>
+				<Position X="0" Y="0" Z="0"/>
+				<Scale X="1" Y="1" Z="1"/>
+				<Rotation X="0" Y="0" Z="0"/>
+			</Transform>
+			<UI PivotX="0" PivotY="0"/>
+			<Children Size="0"/>
+		</Child0>
     </Child9>
     <Child10 Name="2_Btn_Crafting" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>

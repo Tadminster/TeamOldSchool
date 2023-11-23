@@ -68,11 +68,14 @@ bool Recipe::RecipeUpdate(ItemProto* item)
 			// 레서피를 발견한 아이템 목록에 추가함
             discoveryRecipeList[recipe.first] = true;
 
+            // 제작창에 레서피 추가
+            CRAFT->RecipeUpdate();
+
             // 레서피 발견 메시지 출력 (디버그용)
             cout << "Recipe ";
             switch (recipe.first)
             {
-                case Item::StoneAxe: cout << "'StoneAxe'"; break;
+            case Item::StoneAxe: cout << "'StoneAxe'"; break;
             }
             cout << " discovered." << endl;
 		}

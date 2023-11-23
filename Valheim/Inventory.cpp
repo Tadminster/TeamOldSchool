@@ -5,7 +5,7 @@
 Inventory::Inventory()
 {
 	// 모든 인벤토리를 nullptr로 초기화
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		inventoryItem[i] = nullptr;
 		inventoryIcon[i] = nullptr;
@@ -622,7 +622,7 @@ void Inventory::AddItem(ItemProto* item)
 		if (mItem)
 		{
 			// 인벤토리를 전체를 순회해서 같은 아이템이 있는지 체크
-			for (int i = 0; i < INVENTORY_SIZE; ++i)
+			for (int i = 0; i < INVENTORY_SIZE; i++)
 			{
 				if (inventoryItem[i] == nullptr)
 				{
@@ -643,7 +643,7 @@ void Inventory::AddItem(ItemProto* item)
 	}
 		
 	// 인벤토리를 순회하며 빈 공간을 찾음
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		// 빈 공간을 찾으면
 		if (inventoryItem[i] == nullptr)
@@ -663,4 +663,79 @@ void Inventory::DeleteItem(string name)
 
 void Inventory::ChangeItem()
 {
+}
+
+bool Inventory::CheckMaterial(Item item, int quantity)
+{
+	// 인벤토리를 순회해서 재료가 있는지 체크
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+
+		// 아이템이 있고, 재료 이름이 같으면
+		if (inventoryItem[i] && inventoryItem[i]->GetEnumName() == item)
+		{
+			// Down Casting
+			MaterialProto* material = dynamic_cast<MaterialProto*>(inventoryItem[i]);
+			if (material)
+			{
+				// 재료의 현재 중첩수가 필요한 수 이상이면 수량0으로 변경
+				if (material->currentStack >= quantity) quantity = 0;
+				// 재료의 현재 중첩수가 필요한 수 미만이면 필요한 수에서 현재 중첩수를 뺌
+				else quantity -= material->currentStack;
+			}
+		}
+
+		// 필요한 재료의 수가 0이하면 true 반환
+		if (quantity <= 0) return true;
+	}
+
+	return false;
+}
+
+void Inventory::UseMaterial(Item item, int quantity)
+{
+	// 인벤토리를 순회해서 재료가 있는지 체크
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+		// 아이템이 있고, 재료 이름이 같으면
+		if (inventoryItem[i] && inventoryItem[i]->GetEnumName() == item)
+		{
+			// Down Casting
+			MaterialProto* material = dynamic_cast<MaterialProto*>(inventoryItem[i]);
+			if (material)
+			{
+				// 재료의 현재 중첩수가 필요한 수 이상이면
+				if (material->currentStack >= quantity)
+				{
+					// 재료의 현재 중첩수에서 필요한 수를 뺌
+					material->currentStack -= quantity;
+					// 필요한 수를 0으로 변경
+					quantity = 0;
+
+					// 재료의 현재 중첩수가 0이면
+					if (material->currentStack == 0)
+					{
+						// 인벤토리에서 아이템 삭제
+						inventoryItem[i] = nullptr;
+						inventoryIcon[i] = nullptr;
+					}
+				}
+				// 재료의 현재 중첩수가 필요한 수 미만이면
+				else
+				{
+					// 필요한 수에서 재료의 현재 중첩수를 뺌
+					quantity -= material->currentStack;
+					// 재료의 현재 중첩수를 0으로 변경
+					material->currentStack = 0;
+
+					// 인벤토리에서 아이템 삭제
+					inventoryItem[i] = nullptr;
+					inventoryIcon[i] = nullptr;
+				}
+			}
+		}
+
+		// 필요한 재료의 수가 0이하면 true 반환
+		if (quantity <= 0) return;
+	}
 }

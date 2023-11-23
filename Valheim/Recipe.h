@@ -21,7 +21,7 @@ private:
 	map<Item, set<Item>>		recipeList;				// 레서피<레서피명, set<재료명>>
 
 private:
-	vector<RecipeInfo*> recipeInfo;						// 레서피 정보 목록
+	vector<RecipeInfo*>			recipeInfo;				// 레서피 정보 목록
 
 public:
 	Recipe();
