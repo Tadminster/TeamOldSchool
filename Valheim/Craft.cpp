@@ -96,6 +96,7 @@ void Craft::Update()
 			// 레시피 업데이트
 			RecipeUpdate();
 
+			// 상호작용 배경 초기화
 			btnRecipe[RECIPE_MOUSE_OVER]->visible = false;
 			btnRecipe[RECIPE_MOUSE_CLICK]->visible = false;
 
