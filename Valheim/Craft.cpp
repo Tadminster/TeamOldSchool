@@ -1,11 +1,14 @@
 #include "stdafx.h"
+#include "ItemProto.h"
+#include "Recipe.h"
 #include "Craft.h"
 
 Craft::Craft()
 {
-	// 모든 크래프팅을 nullptr로 초기화
+	// 모든 크래프팅을 변수 초기화
 	for (int i = 0; i < RECIPE_SIZE; ++i)
 	{
+		recipeItem[i] = Item::Empty;
 		hasRecipe[i] = false;
 	}
 
@@ -66,7 +69,10 @@ void Craft::Update()
 	ImGui::End();
 
 	if (INVEN->isOpen)
+	{
 		craftUI->Update();
+		RecipeUpdate();
+	}
 }
 
 void Craft::LateUpdate()
@@ -93,6 +99,25 @@ void Craft::Render()
 
 void Craft::ResizeScreen()
 {
+}
+
+void Craft::RecipeUpdate()
+{
+	map<Item, bool> discoveryRecipeList = RECIPE->GetRecipeList();
+
+	// 레서피 목록을 순회
+	for (int index = 0; auto recipe : discoveryRecipeList)
+	{
+		// 레시피가 해금되었다면
+		if (recipe.second)
+		{
+			// 레시피 아이템을 생성
+			recipeItem[index] = recipe.first;
+
+			// 레시피가 존재데이터 업데이트
+			hasRecipe[index] = true;
+		}
+	}
 }
 
 void Craft::MouseOverRecipe()
@@ -152,5 +177,46 @@ void Craft::RecipeSelect()
 				btnRecipe[RECIPE_MOUSE_CLICK]->visible = true;
 			}
 		}
+	}
+}
+
+void Craft::ApplyMaterialIcon(Recipe::RecipeInfo recipeInfo)
+{
+	int index = 1;
+	// 재료들을 순회 (아직 표시할 재료가 남아있다면)
+	for (auto& material : recipeInfo.material)
+	{
+		// 위치 설정
+		string targetName = "2_BG_Material" + to_string(index);
+		iconMaterial[index]->SetWorldPos(craftUI->Find(targetName)->GetWorldPos());
+
+		// 아이콘 변경
+		string iconFileName = GetIconFileName(recipeInfo.enumName);
+		SafeReset(iconMaterial[index]->material->diffuseMap);
+		iconMaterial[index]->material->diffuseMap = RESOURCE->textures.Load(iconFileName);
+
+		index++;
+	}
+
+	// 모든 재료 아이콘을 표시하고 남은 재료 아이콘이 있다면
+	if (index <= MATERIAL_SIZE)
+	{
+		// 남은 재료 아이콘은 Empty.png로 변경
+		for (int i = index; i <= MATERIAL_SIZE; i++)
+		{
+			SafeReset(iconMaterial[index]->material->diffuseMap);
+			iconMaterial[index]->material->diffuseMap = RESOURCE->textures.Load("Empty.png");
+		}
+	}
+}
+
+string Craft::GetIconFileName(Item item)
+{
+	switch (item)
+	{
+		case Item::StoneAxe:	return "StoneAxe.png"; break;
+		case Item::Woodpile:	return "Woodpile.png"; break;
+		case Item::Stone:		return "Stone.png"; break;
+		default:				return "ERROE: Undefined icon name";
 	}
 }

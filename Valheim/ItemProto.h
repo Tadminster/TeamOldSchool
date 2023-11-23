@@ -5,6 +5,7 @@ enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Tool, Armor, Food, Material };
 enum class Item
 {
+	Empty,
 	StoneAxe, 
 	Stone, Woodpile,
 };
