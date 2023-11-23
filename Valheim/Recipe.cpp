@@ -82,7 +82,7 @@ bool Recipe::RecipeUpdate(ItemProto* item)
     return false;
 }
 
-const Recipe::RecipeInfo* Recipe::GetRecipe(Item item)
+RecipeInfo* Recipe::GetRecipe(Item item)
 {
     // 레서피 목록 순회
     for (auto& recipe : recipeInfo)

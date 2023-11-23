@@ -18,6 +18,7 @@ Inventory::Inventory()
 	tooltopBox = UI::Create("ToolTipBox");
 	tooltopBox->LoadFile("UI_TooltipBox.xml");
 
+
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
 	panel = static_cast<UI*>(inventoryUI->Find("PANEL"));
 	for (int i = 1; i <= 32; i++)
@@ -69,12 +70,16 @@ void Inventory::Update()
 		Init();
 	}
 
-	inventoryUI->Update();
 	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
+
+	// 인벤토리 UI 업데이트
+	inventoryUI->Update();
+	
+	// 인벤토리가 열려있을 때
 	if (isOpen)
 	{
-		// 툴팁박스
+		// 툴팁박스 업데이트
 		if (isOnTooltip)
 		{
 			tooltopBox->Update();
@@ -85,12 +90,16 @@ void Inventory::Update()
 	if (TIMER->GetTick(InitTime, 5.0f))
 	{
 		GM->ResizeScreen();
+
+		// 인벤토리 첫번째 줄의 슬롯들 텍스트 위치 업데이트
 		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
 		{
-			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 30;
+			// App.GetWidth() = 슬롯의 위치를 NDC좌표계로 변환
+			// slot[i]->GetWorldPos().x + 1.0f) / 2.0f = 슬롯 위치(-1~1)를 (0~1)로 변환
+			// - 30 최종 결과값에서 30픽셀 이동(보정)
+			text_number[i].left = App.GetHalfWidth() * (slot[i]->GetWorldPos().x + 1.0f) + text_numberCorrect;
 			text_number[i].right = text_number[i].left + 1000;
-			text_number[i].top = 200;
-			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 30;
+			text_number[i].top = App.GetHalfHeight() * (1.0f - slot[i]->GetWorldPos().y) + text_numberCorrect;
 			text_number[i].bottom = text_number[i].top + 200;
 		}
 	}
@@ -213,12 +222,14 @@ void Inventory::MouseOverSlot()
 				{
 					isMouseOverItem = true;
 
-					float appWidth = App.GetWidth();
-					float appHeight = App.GetHeight();
+					float appHalfWidth = App.GetHalfWidth();
+					float appHalfHeight = App.GetHalfHeight();
+					float screenBaselineX = 650.0f;
+					float screenBaselineY = 425.0;
 
 					// 화면 크기에 따라 툴팁박스 크기 조절할 가중치
-					float screenRatioX = 1300.0f / appWidth;
-					float screenRatioY = 850.0f / appHeight;
+					float screenRatioX = screenBaselineX / appHalfWidth;
+					float screenRatioY = screenBaselineY / appHalfHeight;
 
 					// 툴팁박스 x, y크기 조절
 					tooltopBox->scale.x = screenRatioX;
@@ -230,14 +241,14 @@ void Inventory::MouseOverSlot()
 					// 툴팁 텍스트 위치 조절
 					Vector3 tooptipPos = tooltopBox->GetWorldPos();
 
-					text_itemName.left = appWidth * ((tooptipPos.x + 1) / 2) + 70;
+					text_itemName.left = appHalfWidth * (tooptipPos.x + 1) + 70;
 					text_itemName.right = text_itemName.left + 1000;
-					text_itemName.top = appHeight * ((1 - tooptipPos.y) / 2) + 10;
+					text_itemName.top = appHalfHeight * (1 - tooptipPos.y) + 10;
 					text_itemName.bottom = text_itemName.top + 200;
 
-					text_itemExplain.left = appWidth * ((tooptipPos.x + 1) / 2) + 10;
+					text_itemExplain.left = appHalfWidth * (tooptipPos.x + 1) + 10;
 					text_itemExplain.right = text_itemExplain.left + 1000;
-					text_itemExplain.top = appHeight * ((1 - tooptipPos.y) / 2) + 50;
+					text_itemExplain.top = appHalfHeight * (1 - tooptipPos.y) + 50;
 					text_itemExplain.bottom = text_itemExplain.top + 200;
 
 					// 툴팁 박스 visible

@@ -3,6 +3,14 @@
 #include "ItemProto.h"
 //enum class Item;
 
+struct RecipeInfo									// 실제 레서피 정보를 저장할 구조체
+{
+	Item			enumName;						// 레서피 이름(enum)
+	wstring			wstringName;					// 레서피 이름(wstring)
+	wstring			description;					// 레서피 설명
+	map<Item, int>	material;						// 레서피 재료<재료명, 개수>
+};
+
 class Recipe
 {
 	friend class Craft;
@@ -13,13 +21,6 @@ private:
 	map<Item, set<Item>>		recipeList;				// 레서피<레서피명, set<재료명>>
 
 private:
-	struct RecipeInfo									// 실제 레서피 정보
-	{
-		Item			enumName;						// 레서피 이름(enum)
-		wstring			wstringName;					// 레서피 이름(wstring)
-		wstring			description;					// 레서피 설명
-		map<Item, int>	material;						// 레서피 재료<재료명, 개수>
-	};
 	vector<RecipeInfo*> recipeInfo;						// 레서피 정보 목록
 
 public:
@@ -30,6 +31,6 @@ public:
 	bool RecipeUpdate(class ItemProto* item);			// 레서피 업데이트 (새로운 아이템 획득시 호출)
 
 	map<Item, bool>& GetRecipeList() { return discoveryRecipeList; }
-	const struct RecipeInfo* GetRecipe(Item item);
+	struct RecipeInfo* GetRecipe(Item item);
 };
 
