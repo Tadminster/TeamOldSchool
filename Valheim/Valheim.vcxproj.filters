@@ -87,11 +87,8 @@
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
-    <ClInclude Include="Rock.h">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClInclude>
-    <ClInclude Include="Leather.h">
-      <Filter>GameObject\Items\Material</Filter>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -177,11 +174,8 @@
     <ClCompile Include="Stone.cpp">
       <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
-    <ClCompile Include="Rock.cpp">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClCompile>
-    <ClCompile Include="Leather.cpp">
-      <Filter>GameObject\Items\Material</Filter>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

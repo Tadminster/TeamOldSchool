@@ -5,6 +5,7 @@ ParticleManager::ParticleManager()
 	//³Êµµ¹ã³ª¹« ÆÄ±«µÉ½Ã¿¡ ³ª¹µÀÙºÎºÐ¿¡¼­ ¶³¾îÁö´Â ÆÄÆ¼Å¬ È¿°ú
 	beechDrop = Pop::Create("beechDrop");
 	beechDrop->LoadFile("BeechLeafDrop.xml");
+	
 	//³Êµµ¹ã³ª¹« Å¸°Ý ÀÌÆåÆ® ÆÄÆ¼Å¬È¿°ú
 	hitBeech = Pop::Create("hitBeech");
 	hitBeech->LoadFile("hitBeech.xml");
@@ -38,7 +39,7 @@ void ParticleManager::Update()
 
 void ParticleManager::LateUpdate()
 {
-
+	
 }
 
 void ParticleManager::Render()
@@ -62,7 +63,33 @@ void ParticleManager::RenderHierarchy()
 	ImGui::End();
 }
 
-//Vector3 ParticleManager::SetParticlePos(Particle* effect, Vector3 startPos)
-//{
-//	effect->SetWorldPos(startPos);
-//}
+
+void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
+{
+	if (type == EffectType::BEECHDROP)
+	{
+		beechDrop->SetWorldPos(pos);
+		beechDrop->Play();
+		cout << "³ª¹µÀÙ ¶³¾îÁü" << endl;
+	}
+	if (type == EffectType::HITBEECH)
+	{
+		hitBeech->SetWorldPos(pos);
+		hitBeech->Play();
+		cout << "³ª¹« Å¸°Ý" << endl;
+	}
+	if (type == EffectType::WOODHITDUST)
+	{
+		woodHitDust->SetWorldPos(pos);
+		woodHitDust->Play();
+		cout << "³ª¹« Å¸°Ý ¸ÕÁö¹ß»ý" << endl;
+	}
+	if (type == EffectType::HITBLOOD)
+	{
+		hitBlood->SetWorldPos(pos);
+		hitBlood->Play();
+		cout << "ÇÇ ÅÍÁü" << endl;
+	}
+}
+
+

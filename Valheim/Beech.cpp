@@ -96,6 +96,12 @@ void Beech::DestructionEvent()
 	OBJ->AddObject(stump);
 	OBJ->AddObject(log);
 
+	//임시로 오브젝트 파괴시 파티클효과 추가합니다------------
+	//나무 자체 타격 이펙트 입니다
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
+	//나무 파괴시 나뭇잎이 떨어지는 이펙트입니다
+	//임시로 나무객체 위치에 높이 임의로 주었습니다
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, this->actor->GetWorldPos());
 	// 오브젝트 삭제 (나무)
 	Beech::~Beech();
 }
