@@ -6,7 +6,13 @@
 Rock::Rock()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Rock.xml");
+	if (RANDOM->Int(0, 1)) actor->LoadFile("Rock1.xml");
+	else actor->LoadFile("Rock2.xml");
+
+	float x = RANDOM->Float(0.8f, 1.4f);
+	float y = RANDOM->Float(0.8f, 1.4f);
+	float z = RANDOM->Float(0.8f, 1.2f);
+	actor->scale = Vector3(x, y, z);
 
 	static int index = 0;
 	actor->name = "Rock" + index++;
