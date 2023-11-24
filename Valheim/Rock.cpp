@@ -13,11 +13,11 @@ Rock::Rock()
 	float y = RANDOM->Float(1.0f, 3.0f);
 	float z = RANDOM->Float(1.0f, 2.0f);
 	actor->scale = Vector3(x, y, z);
-	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
+	//actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 	actor->collider->rotation = actor->rotation;
 
 	static int index = 0;
-	actor->name = "Rock" + index++;
+	actor->name = "Rock" + to_string(index++);
 
 	hitPoint = 10;
 }

@@ -90,6 +90,8 @@
     <ClInclude Include="ParticleManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Leather.h" />
+    <ClInclude Include="Rock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -177,6 +179,8 @@
     <ClCompile Include="ParticleManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Leather.cpp" />
+    <ClCompile Include="Rock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
