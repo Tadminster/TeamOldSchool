@@ -1,6 +1,6 @@
 #include "Common.hlsl"
 
-struct VertexInput
+struct VertexPT
 {
     float4 pos : POSITION;
     float2 uv : UV;
@@ -12,7 +12,7 @@ struct PixelInput
     float3 oPosition : Position;
 };
 
-PixelInput VS(VertexInput input)
+PixelInput VS(VertexPT input)
 {
     PixelInput output;
     

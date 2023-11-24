@@ -1,5 +1,5 @@
 #include "Common.hlsl"
-struct VertexInput
+struct VertexPT
 {
     float4 pos : POSITION;
     float2 uv : UV;
@@ -10,7 +10,7 @@ struct PixelInput
     float2 uv : UV;
 };
     
-PixelInput VS(VertexInput input)
+PixelInput VS(VertexPT input)
 {
     PixelInput output;
     output.pos = input.pos;

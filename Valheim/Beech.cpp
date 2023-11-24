@@ -5,11 +5,19 @@
 
 Beech::Beech()
 {
+	static int index = 0;
+
 	actor = Actor::Create();
 	actor->LoadFile("Beech.xml");
+	actor->name = "Beech" + to_string(index++);
 
-	static int index = 0;
-	actor->name = "Beech" + index++;
+	float x = RANDOM->Float(0.8f, 1.2f);
+	float y = RANDOM->Float(0.4f, 0.6f);
+	float z = RANDOM->Float(0.8f, 1.2f);
+	actor->scale = Vector3(x, y, z);
+	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
+
+
 
 	hitPoint = 10;
 }
@@ -88,6 +96,15 @@ void Beech::DestructionEvent()
 	OBJ->AddObject(stump);
 	OBJ->AddObject(log);
 
+	//임시로 오브젝트 파괴시 파티클효과 추가합니다------------
+	// PlayParticleEffect 함수의 이펙트의 타입과 Vector3 pos 이펙트 시작위치는 개인이원하는 위치에 지정해주시면 됩니다
+	//나무 자체 타격 이펙트 입니다
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
+	//나무 파괴시 나뭇잎이 떨어지는 이펙트입니다
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, this->actor->GetWorldPos());
+	//나무 타격시 발생하는 먼지 이펙트 입니다
+	PARTICLE->PlayParticleEffect(EffectType::WOODHITDUST, this->actor->GetWorldPos());
+	//-------------------------------------------------
 	// 오브젝트 삭제 (나무)
 	Beech::~Beech();
 }

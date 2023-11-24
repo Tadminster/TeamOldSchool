@@ -11,6 +11,7 @@
 #include "MiniMap.h"
 #include "ObjectManager.h"
 #include "ParticleManager.h"
+#include "WorldTimeManager.h"
 
 #include "Inventory.h"
 #include "Craft.h"
@@ -24,6 +25,7 @@
 #define RECIPE		GM->recipe
 #define OBJ			GM->objectManager
 #define PARTICLE    GM->particleManager
+#define WORLDTIME   GM->worldtimeManager
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player

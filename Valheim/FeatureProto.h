@@ -9,7 +9,8 @@ enum class LodLevel
 
 enum class FeatureType
 {
-    Birch, Beech, BeechStump, BeechLog, BeechHalfLog
+    Birch, Beech, BeechStump, BeechLog, BeechHalfLog,
+    Rock
 };
 
 class FeatureProto : public Prototype

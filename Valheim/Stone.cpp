@@ -7,11 +7,12 @@ Stone::Stone()
 	static int index = 0;
 	actor = Actor::Create("Stone");
 	actor->LoadFile("Stone.xml");
-	actor->name = "Stone" + index++;
+	actor->name = "Stone" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
 	icon = UI::Create("StoneIcon");
 	icon->LoadFile("Icon_Stone.xml");
+	icon->name = "StoneIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();

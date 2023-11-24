@@ -15,7 +15,7 @@ InGame::InGame()
 	grid = Grid::Create();
 	//skyBox = Sky::Create();
 	////skyBox->LoadFile("Sky1.xml");
-	scattering = new Scattering();
+	scattering = new Scattering;
 
 	elder = new Elder();
 
@@ -169,10 +169,10 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-	PARTICLE->Render();
 
 	elder->Render();
 	PLAYER->Render();
+	PARTICLE->Render();
 	MINIMAP->Render();
 
 	INVEN->Render();

@@ -4,6 +4,7 @@
 #include "StoneAxe.h"
 #include "Stone.h"
 #include "Woodpile.h"
+#include "Leather.h"
 #include "ItemProto.h"
 
 ItemProto* ItemProto::Create(Item name)
@@ -16,6 +17,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new Woodpile();
 	case Item::Stone:
 		return new Stone();
+	case Item::Leather:
+		return new Leather();
 	default:
 		throw std::invalid_argument("error");
 	}

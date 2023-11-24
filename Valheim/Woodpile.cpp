@@ -7,11 +7,12 @@ Woodpile::Woodpile()
 	static int index = 0;
 	actor = Actor::Create("Woodpile");
 	actor->LoadFile("Woodpile.xml");
-	actor->name = "Woodpile" + index++;
+	actor->name = "Woodpile" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
 	icon = UI::Create("WoodpileIcon");
 	icon->LoadFile("Icon_Woodpile.xml");
+	icon->name = "WoodpileIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();

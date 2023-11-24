@@ -1,10 +1,10 @@
 #pragma once
-class Scattering
+class Scattering 
 {
     struct ScatteringBuffer
     {
         Vector3 waveLength = Vector3(0.65f, 0.57f, 0.475f);
-        int sampleCount = 20;
+        int sampleCount = 1;
 
         Vector3 invWaveLength;
         float padding;
