@@ -1,4 +1,9 @@
-
+SamplerState SamplerDefault
+{
+    Filter = MIN_MAG_MIP_LINEAR;
+    AddressU = Wrap;
+    AddressV = Wrap;
+};
 cbuffer VS_W : register(b0)
 {
 	matrix World;

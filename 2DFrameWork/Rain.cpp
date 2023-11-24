@@ -26,14 +26,13 @@ Rain* Rain::Create(string name)
 {
 	Rain* temp = new Rain();
 	temp->name = name;
-
 	temp->mesh = make_shared<Mesh>();
 	temp->mesh->LoadFile("7.Billboard.mesh");
 	temp->shader = RESOURCE->shaders.Load("7.Rain.hlsl");
 	temp->shader->LoadGeometry();
 	//여기에서 머터리얼 생성후 불러오기
-	temp->Reset();
-	temp->Play();
+	/*temp->Reset();
+	temp->Play();*/
 	temp->type = ObType::Rain;
 	//temp->visible = false;
 
@@ -82,18 +81,20 @@ void Rain::Reset()
 		//4~8 사이값
 
 		//오차값
-		scale.x = RANDOM->Float(-particleScale.x, particleScale.x);
-		scale.y = RANDOM->Float(-particleScale.y, particleScale.y);
+		scale.x = 1.0f;
+		scale.y = 1.0f;
 		scale.x = S._11 + scale.x;
 		scale.y = S._22 + scale.y;
 		if (scale.x < 1.0f)scale.x = 1.0f;
 		if (scale.y < 1.0f)scale.y = 1.0f;
 
 		Vector3 position;
+		Vector3 rotation;
 		//생성될위치   //-4~8   ~ 4~ 8
 		position.x = RANDOM->Float(-desc.range.x, desc.range.x);
-		position.y = RANDOM->Float(-desc.range.y, desc.range.y);
+		position.y = 4.0f;
 		position.z = RANDOM->Float(-desc.range.z, desc.range.z);
+		
 
 		((VertexBillboard*)mesh->vertices)[i].position = position;
 		((VertexBillboard*)mesh->vertices)[i].size = scale;

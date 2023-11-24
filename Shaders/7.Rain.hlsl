@@ -1,17 +1,5 @@
 #include "Common.hlsl"
 
-struct VertexInput
-{
-	float4 Position : POSITION0;
-	float2 Mov : MOVE0;
-	float2 Size : SIZE0;
-};
-struct PixelInput
-{
-    float4 Position : SV_POSITION;
-    float2 Uv : UV0;
-};
-
 cbuffer VS_Data : register(b10)
 {
     float3 velocity;
@@ -19,7 +7,20 @@ cbuffer VS_Data : register(b10)
     
     float3 range;
     float time;
-}
+}   
+struct VertexInput
+{
+    float4 Position : POSITION0;
+    float2 Mov : MOVE0;
+    float2 Size : SIZE0;
+};
+struct PixelInput
+{
+    float4 Position : SV_POSITION;
+    float2 Uv : UV0;
+};
+
+
 VertexInput VS(VertexInput input)
 {
     VertexInput output;
@@ -29,14 +30,14 @@ VertexInput VS(VertexInput input)
     //                       중심 위치
     output.Position.xyz = World._41_42_43 +
     
-    (range.xyz + (input.Position.xyz + displace.xyz) % range.xyz) 
+    (range.xyz + (input.Position.xyz + displace.xyz) % range.xyz)
     % range.xyz - (range.xyz * 0.5f);
     
-	output.Position.w = 1.0f;
-	output.Position = mul(output.Position, View);
+    output.Position.w = 1.0f;
+    output.Position = mul(output.Position, View);
     
     output.Size = input.Size;
-	output.Mov = input.Mov;
+    output.Mov = input.Mov;
     return output;
 }
 
@@ -50,16 +51,16 @@ static const float2 TEXCOORD[4] =
 [maxvertexcount(4)]
 void GS(point VertexInput input[1], inout TriangleStream<PixelInput> output)
 {
-	float4 vertices[4];
+    float4 vertices[4];
 	
 	//// 왼 아래
-	vertices[0] = float4(input[0].Position.xy + input[0].Mov, input[0].Position.z, 1.0f);
+    vertices[0] = float4(input[0].Position.xy + input[0].Mov, input[0].Position.z, 1.0f);
 	// //왼쪽 위
-	vertices[1] = float4(vertices[0].x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
+    vertices[1] = float4(vertices[0].x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
 	// //오른 아래
-	vertices[2] = float4(vertices[0].x + input[0].Size.x, vertices[0].y, input[0].Position.z, 1.0f);
+    vertices[2] = float4(vertices[0].x + input[0].Size.x, vertices[0].y, input[0].Position.z, 1.0f);
 	// //오른 위
-	vertices[3] = float4(vertices[0].x + input[0].Size.x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
+    vertices[3] = float4(vertices[0].x + input[0].Size.x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
     
     PixelInput pixelInput;
     
@@ -67,7 +68,7 @@ void GS(point VertexInput input[1], inout TriangleStream<PixelInput> output)
     for (int i = 0; i < 4; i++)
     {
         //월드에서 다시 ndc까지 변환
-		pixelInput.Position = mul(vertices[i], GSProj);
+        pixelInput.Position = mul(vertices[i], GSProj);
         pixelInput.Uv = TEXCOORD[i];
         
         output.Append(pixelInput);

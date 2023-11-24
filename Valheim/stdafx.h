@@ -11,12 +11,14 @@
 #include "Player.h"
 #include "MiniMap.h"
 #include "ObjectManager.h"
+#include "ParticleManager.h"
 
 #define GM			GameManager::GetInstance()
 #define INVEN		GM->inventory
 #define OBJ			GM->objectManager
+#define PARTICLE    GM->particleManager
 #define DEBUGMODE	GM->debugMode
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player
-#define MINIMAP    GM->minimap
+#define MINIMAP     GM->minimap

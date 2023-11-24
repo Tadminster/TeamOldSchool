@@ -72,6 +72,9 @@
     <ClInclude Include="ElderPatern.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="ElderPatern.cpp">
       <Filter>GameObject\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

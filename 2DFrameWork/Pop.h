@@ -12,7 +12,7 @@ struct POP_DESC
     }
 };
 
-class Pop :  public Particle
+class Pop : public Particle
 {
     static ID3D11Buffer* PopBuffer;
 public:

@@ -10,7 +10,7 @@ protected:
     bool isPlaying = false;
 public:
     //ÃÑ Àç»ý½Ã°£
-    float duration = 10.0f;
+    float duration = 1.0f;
     virtual void    Play()
     {
         playTime = 0.0f;

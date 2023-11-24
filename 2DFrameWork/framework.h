@@ -120,6 +120,7 @@ extern Application App;//Extern Global
 #include "Sky.h"
 #include "UI.h"
 #include "PostEffect.h"
+#include "Scattering.h"
 
 #include "Light.h"
 #include "Billboard.h"
@@ -128,7 +129,7 @@ extern Application App;//Extern Global
 #include "Rain.h"
 #include "Pop.h"
 #include "Water.h"
-#include "BeechLeafDrop.h"
+
 
 #include "Utility.h"
 

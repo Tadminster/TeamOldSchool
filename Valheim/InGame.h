@@ -5,9 +5,11 @@ private:
     Camera*                         tempCamera;
 
     Grid*                           grid;
-	Sky*                            skyBox;
+	//Sky*                            skyBox;
+    Scattering*                     scattering;
         
     GameManager*                    gameManager;
+    
 
     class Elder*                    elder;
 public:

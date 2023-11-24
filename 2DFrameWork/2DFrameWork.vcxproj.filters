@@ -127,8 +127,8 @@
     <ClInclude Include="Rain.h">
       <Filter>GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="BeechLeafDrop.h">
-      <Filter>GameObject</Filter>
+    <ClInclude Include="Scattering.h">
+      <Filter>Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -277,8 +277,8 @@
     <ClCompile Include="Rain.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="BeechLeafDrop.cpp">
-      <Filter>GameObject</Filter>
+    <ClCompile Include="Scattering.cpp">
+      <Filter>Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

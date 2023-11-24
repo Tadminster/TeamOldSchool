@@ -31,8 +31,8 @@ void Elder::Init()
 void Elder::Update()
 {
 	//테스트용-------------------------------------
-	if (INPUT->KeyDown('9')) actor->LoadFile("Monster_Elder.xml");
-	else if (INPUT->KeyDown('0')) actor->LoadFile("Monster_Elder_BossStone.xml");
+	//if (INPUT->KeyDown('9')) actor->LoadFile("Monster_Elder.xml");
+	//else if (INPUT->KeyDown('0')) actor->LoadFile("Monster_Elder_BossStone.xml");
 
 	if (INPUT->KeyDown(VK_F3)) state->Opening(this);
 	else if (INPUT->KeyDown(VK_F4)) state->Idle(this);

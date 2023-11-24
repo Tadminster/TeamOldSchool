@@ -10,11 +10,13 @@ private:
 	Actor*				temp;
 	UI*					ui;
 	Rain*               rain;
+	Pop*                hitblood;
 	string				Modelfile;
 	string				Animfile;
 	//임포트해서 가져온 데이터
 	const aiScene*		scene;
 	Assimp::Importer	importer;
+
 public:
 	Main();
 	~Main();

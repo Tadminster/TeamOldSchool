@@ -1,13 +1,10 @@
 #include "stdafx.h"
 //#include "Prototype.h"
-
 #include "ItemProto.h"
 //#include "Inventory.h"
 #include "GameOption.h"
 #include "StoneAxe.h"
-
 #include "Elder.h"
-
 #include "InGame.h"
 
 InGame::InGame()
@@ -16,8 +13,9 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 
 	grid = Grid::Create();
-	skyBox = Sky::Create();
-	skyBox->LoadFile("Sky1.xml");
+	//skyBox = Sky::Create();
+	////skyBox->LoadFile("Sky1.xml");
+	scattering = new Scattering();
 
 	elder = new Elder();
 
@@ -49,6 +47,7 @@ void InGame::Release()
 
 void InGame::Update()
 {
+	scattering->RenderDetail();
 	LIGHT->RenderDetail();
 	
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
@@ -59,10 +58,11 @@ void InGame::Update()
 			grid->RenderHierarchy();
 			tempCamera->RenderHierarchy();
 		}
-		skyBox->RenderHierarchy();
+		//skyBox->RenderHierarchy();
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
+		PARTICLE->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		MINIMAP->RenderHierarchy();
 		elder->RenderHierarchy();
@@ -84,19 +84,20 @@ void InGame::Update()
 	GM->Update();
 
 	Camera::main->Update();
-	skyBox->Update();
+	//skyBox->Update();
 	
 	SEA->Update();
 	OBJ->Update();
+	PARTICLE->Update();
 
 	INVEN->Update();
 
 	elder->Update();
 	PLAYER->Update();
 	MINIMAP->Update();
-
-
 }
+
+
 
 void InGame::LateUpdate()
 {
@@ -104,6 +105,7 @@ void InGame::LateUpdate()
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
 	MINIMAP->LateUpdate();
+	PARTICLE->LateUpdate();
 
 	elder->LateUpdate();
 }
@@ -112,8 +114,8 @@ void InGame::PreRender()
 {
 	Camera::main->Set();
 	LIGHT->Set();
-
-	skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
+	scattering->DrawPass1();
+	//skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 
 	// ¹°¹İ»ç ·»´õ¸µ
@@ -132,7 +134,8 @@ void InGame::Render()
 {
 	Camera::main->Set();
 	LIGHT->Set();
-	skyBox->Render();
+	scattering->DrawPass2();
+	//skyBox->Render();
 
 	if (DEBUGMODE)
 	{
@@ -142,6 +145,7 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
+	PARTICLE->Render();
 
 	elder->Render();
 	PLAYER->Render();

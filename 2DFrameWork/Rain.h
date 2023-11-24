@@ -10,8 +10,8 @@ struct RAIN_DESC
     float time;
     RAIN_DESC()
     {
-        velocity = Vector3(0, -2, 0);
-        range = Vector3(10, 10, 10);
+        velocity = Vector3(0, -4, 0);
+        range = Vector3(3, 3, 3);
         time = 0.0f;
     }
 };
@@ -23,7 +23,7 @@ public:
 
     RAIN_DESC desc;
     Vector2             particleScale = Vector2(0, 0); //이미지 크기값
-    int                 particleCount = 100;
+    int                 particleCount = 10;
 
     static void         CreateStaticMember();
     static void         DeleteStaticMember();

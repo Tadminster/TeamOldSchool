@@ -4,6 +4,7 @@ class Mesh
     friend class GameObject;
     friend class Rain;
     friend class Pop;
+
 private:
     ID3D11Buffer*           vertexBuffer;
     ID3D11Buffer*           indexBuffer;

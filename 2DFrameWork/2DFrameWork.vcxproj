@@ -161,7 +161,6 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AStar.h" />
-    <ClInclude Include="BeechLeafDrop.h" />
     <ClInclude Include="Billboard.h" />
     <ClInclude Include="BinaryFile.h" />
     <ClInclude Include="BlendState.h" />
@@ -187,6 +186,7 @@
     <ClInclude Include="RasterState.h" />
     <ClInclude Include="RenderTarget.h" />
     <ClInclude Include="ResouceManager.h" />
+    <ClInclude Include="Scattering.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Skeleton.h" />
@@ -208,7 +208,6 @@
   <ItemGroup>
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AStar.cpp" />
-    <ClCompile Include="BeechLeafDrop.cpp" />
     <ClCompile Include="Billboard.cpp" />
     <ClCompile Include="BinaryFile.cpp" />
     <ClCompile Include="BlendState.cpp" />
@@ -235,6 +234,7 @@
     <ClCompile Include="RasterState.cpp" />
     <ClCompile Include="RenderTarget.cpp" />
     <ClCompile Include="ResouceManager.cpp" />
+    <ClCompile Include="Scattering.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skeleton.cpp" />
