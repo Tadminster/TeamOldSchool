@@ -24,7 +24,9 @@
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
     <ClInclude Include="Craft.h" />
+    <ClInclude Include="Leather.h" />
     <ClInclude Include="Recipe.h" />
+    <ClInclude Include="Rock.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="StructureProto.h" />
     <ClInclude Include="ElderPatern.h" />
@@ -58,7 +60,9 @@
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
     <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="Leather.cpp" />
     <ClCompile Include="Recipe.cpp" />
+    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="StructureProto.cpp" />
     <ClCompile Include="ElderPatern.cpp" />

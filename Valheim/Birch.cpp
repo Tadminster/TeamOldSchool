@@ -9,7 +9,13 @@ Birch::Birch()
 	actor->LoadFile("Birch.xml");
 
 	static int index = 0;
-	actor->name = "Birch" + index++;
+	actor->name = "Birch" + to_string(index++);
+
+	float x = RANDOM->Float(0.7f, 1.1f);
+	float y = RANDOM->Float(0.4f, 0.6f);
+	float z = RANDOM->Float(0.7f, 1.1f);
+	actor->scale = Vector3(x, y, z);
+	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 
 	hitPoint = 10;
 }

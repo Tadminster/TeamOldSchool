@@ -1,49 +1,49 @@
 #include "stdafx.h"
 #include "ItemProto.h"
-#include "Stone.h"
+#include "Leather.h"
 
-Stone::Stone()
+Leather::Leather()
 {
 	static int index = 0;
-	actor = Actor::Create("Stone");
-	actor->LoadFile("Stone.xml");
-	actor->name = "Stone" + to_string(index);
+	actor = Actor::Create("Leather");
+	actor->LoadFile("Leather.xml");
+	actor->name = "Leather" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
-	icon = UI::Create("StoneIcon");
-	icon->LoadFile("Icon_Stone.xml");
-	icon->name = "StoneIcon" + to_string(index++);
+	icon = UI::Create("LeatherIcon");
+	icon->LoadFile("Icon_Leather.xml");
+	icon->name = "LeatherIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();
 
 	//=========================
-	enumName = Item::Stone;
+	enumName = Item::Leather;
 	type = ItemType::Material;
 	state = ItemState::OnGround;
 	//=========================
-	stringName = "Stone";
+	stringName = "Leather";
 	weight = 1;
 
 	currentStack = RANDOM->Int(2, 3);
 	maxStack = 50;
 }
 
-Stone::~Stone()
+Leather::~Leather()
 {
 
 }
 
-void Stone::Init()
+void Leather::Init()
 {
 
 }
 
-void Stone::Release()
+void Leather::Release()
 {
 }
 
-void Stone::Update()
+void Leather::Update()
 {
 	ImGui::Begin("ItemHierarchy");
 	{
@@ -56,12 +56,12 @@ void Stone::Update()
 	ItemProto::Update();
 }
 
-void Stone::LateUpdate()
+void Leather::LateUpdate()
 {
 	//ItemProto::LateUpdate();
 }
 
-void Stone::Render()
+void Leather::Render()
 {
 	ItemProto::Render();
 
@@ -84,12 +84,12 @@ void Stone::Render()
 	}
 }
 
-void Stone::RenderHierarchy()
+void Leather::RenderHierarchy()
 {
 
 }
 
-wstring Stone::GetExplain()
+wstring Leather::GetExplain()
 {
 	wstring exp = L"건설에 사용할 수 있는 튼튼하고 \n좋은 나무입니다.\n";
 	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
@@ -97,16 +97,16 @@ wstring Stone::GetExplain()
 	return exp + exp_sub1;
 }
 
-//bool Stone::IsDestroyed()
+//bool Leather::IsDestroyed()
 //{
 //	return false;
 //}
 //
-//void Stone::DestructionEvent()
+//void Leather::DestructionEvent()
 //{
 //}
 
-void Stone::Use()
+void Leather::Use()
 {
 }
 
