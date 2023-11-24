@@ -103,7 +103,7 @@ void Elder::LateUpdate()
 	{
 		cout << "elder hit!" << endl;
 		cout << PLAYER->GetPlayer()->anim->currentAnimator.currentFrame << endl;
-		//
+		
 	}
 	
 }
