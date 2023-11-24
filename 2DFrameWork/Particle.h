@@ -1,9 +1,17 @@
 #pragma once
+enum class EffectType
+{
+    //너도밤나무 관련 파티클
+    BEECHDROP,
+    HITBEECH,
+    WOODHITDUST,
+    //피격 관련 파티클
+    HITBLOOD
+};
 
 class Particle : public Actor
 {
 protected:
-
     //현재 재생중인 시간
     float playTime = 0.0f;
     //재생중인가?

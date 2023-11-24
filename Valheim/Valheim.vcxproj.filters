@@ -87,6 +87,9 @@
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
+    <ClInclude Include="ParticleManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="Stone.cpp">
       <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleManager.cpp">
+      <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
