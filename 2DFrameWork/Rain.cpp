@@ -89,7 +89,7 @@ void Rain::Reset()
 		if (scale.y < 1.0f)scale.y = 1.0f;
 
 		Vector3 position;
-		Vector3 rotation;
+		
 		//생성될위치   //-4~8   ~ 4~ 8
 		position.x = RANDOM->Float(-desc.range.x, desc.range.x);
 		position.y = 4.0f;

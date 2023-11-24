@@ -338,6 +338,9 @@ void Player::PlayerHit()
 {
 	if (hitTime < 0)
 	{
+		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
+		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, this->GetActor()->GetWorldPos());
+		//----------------------------------------
 		cout << "PlayerHit!";
 		hitTime = 1.0f;
 		isHit = false;
