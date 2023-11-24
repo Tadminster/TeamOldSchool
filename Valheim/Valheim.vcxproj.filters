@@ -87,6 +87,9 @@
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
+    <ClInclude Include="Rock.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="Stone.cpp">
       <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Rock.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
