@@ -70,25 +70,25 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		beechDrop->SetWorldPos(pos);
 		beechDrop->Play();
-		cout << "파티클 작동함" << endl;
+		cout << "나뭇잎 떨어짐" << endl;
 	}
 	if (type == EffectType::HITBEECH)
 	{
 		hitBeech->SetWorldPos(pos);
 		hitBeech->Play();
-		cout << "파티클 작동함" << endl;
+		cout << "나무 타격" << endl;
 	}
 	if (type == EffectType::WOODHITDUST)
 	{
 		woodHitDust->SetWorldPos(pos);
 		woodHitDust->Play();
-		cout << "파티클 작동함" << endl;
+		cout << "나무 타격 먼지발생" << endl;
 	}
 	if (type == EffectType::HITBLOOD)
 	{
 		hitBlood->SetWorldPos(pos);
 		hitBlood->Play();
-		cout << "파티클 작동함" << endl;
+		cout << "피 터짐" << endl;
 	}
 }
 
