@@ -71,12 +71,6 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		beechDrop->SetWorldPos(pos);
 		beechDrop->Play();
 		cout << "파티클 작동함" << endl;
-		cout << "파티클위치 x :" << beechDrop->GetWorldPos().x << endl;
-		cout << "파티클위치 y :" << beechDrop->GetWorldPos().y << endl;
-		cout << "파티클위치 z :" << beechDrop->GetWorldPos().z << endl;
-		cout << "타격위치 x :" << pos.x << endl;
-		cout << "타격위치 y :" << pos.y << endl;
-		cout << "타격위치 z :" << pos.z << endl;
 	}
 	if (type == EffectType::HITBEECH)
 	{
