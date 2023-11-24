@@ -2,6 +2,8 @@
 #define GRAVITYPOWER 30
 class Unit : public Prototype
 {
+	
+
 protected:
 	//SetOnTerrain
 	Vector3				groundHit = {};

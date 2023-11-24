@@ -6,7 +6,7 @@ class Prototype
 protected:
 	Actor*	actor;
 	Ray		groundRay;
-
+	int     hitPoint;
 public:
 	virtual ~Prototype() 
 	{ 

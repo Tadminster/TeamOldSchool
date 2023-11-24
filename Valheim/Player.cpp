@@ -84,7 +84,7 @@ bool Player::CleanHit(Collider* object)
 	{
 		return equippedHand->GetActor()->collider->Intersect(object);
 	}
-	else return false;
+	return false;
 }
 
 bool Player::CleanFrame()
@@ -105,7 +105,7 @@ bool Player::CleanFrame()
 		actor->anim->currentAnimator.currentFrame++;
 		return true;
 	}
-	else return false;
+	return false;
 }
 
 void Player::SetState(PlayerState* state)
@@ -154,7 +154,7 @@ void Player::AvtivatePlayerCam()
 	
 	//카메라-터레인 충돌 레이
 	playerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
-	playerCamRay.direction = (actor->GetWorldPos()+Vector3(0,2.0f,0)) - actor->Find("PlayerCam")->GetWorldPos();
+	playerCamRay.direction = (actor->GetWorldPos() + Vector3(0, 2.0f, 0)) - actor->Find("PlayerCam")->GetWorldPos();
 	playerCamRay.direction.Normalize();
 	
 	playerReverseCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
@@ -259,7 +259,7 @@ void Player::EquipToHand(ItemProto* item)
 		//아이템 완성단계에서 스케일, 각도 조절하기
 		equippedHand = item;
 		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedHand->GetActor());
-		equippedHand->GetActor()->scale = Vector3(50, 50, 50);
+		equippedHand->GetActor()->scale = Vector3(100, 100, 100);
 		equippedHand->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
 		equippedHand->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
 	}

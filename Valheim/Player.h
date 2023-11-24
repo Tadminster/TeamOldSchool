@@ -16,6 +16,7 @@ class Player : public Unit
 
 	Ray						slidingVector;
 	Vector3					slidingVectorHit = {};
+	//(할일) 손보기
 	Ray playerCamRay;
 	Vector3 playerCamHit;
 	Ray playerReverseCamRay;
@@ -47,6 +48,7 @@ public:
 	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	Collider* GetCollider()					{ return actor->collider; }
+	float GetMoveSpeed()					{ return moveSpeed; }
 	bool GetPlayerJump()					{ return isJump; }
 	bool CleanHit(Collider* object);
 	bool CleanFrame();

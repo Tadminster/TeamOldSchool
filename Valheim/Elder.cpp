@@ -10,9 +10,9 @@ Elder::Elder()
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
 
-	
-
 	patern = new ElderPatern(this);
+
+	hitPoint = 5;
 }
 
 Elder::~Elder()
@@ -31,13 +31,6 @@ void Elder::Update()
 	//테스트용-------------------------------------
 	//if (INPUT->KeyDown('-')) actor->LoadFile("Monster_Elder.xml");
 	//else if (INPUT->KeyDown('=')) actor->LoadFile("Monster_Elder_BossStone.xml");
-
-	if (INPUT->KeyDown(VK_F3)) state->Opening(this);
-	else if (INPUT->KeyDown(VK_F4)) state->Idle(this);
-	else if (INPUT->KeyDown(VK_F5)) state->Walk(this);
-	else if (INPUT->KeyDown(VK_F6)) state->Stomp(this);
-	else if (INPUT->KeyDown(VK_F7)) state->JumpAttack(this);
-	else if (INPUT->KeyDown(VK_F8)) state->Summon(this);
 
 	if (state == Elder_OpeningState::GetInstance())
 	{
@@ -104,6 +97,14 @@ void Elder::LateUpdate()
 	{
 		PLAYER->PlayerHit();
 	}
+	
+
+	if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+	{
+		cout << "elder hit!" << endl;
+		cout << PLAYER->GetPlayer()->anim->currentAnimator.currentFrame << endl;
+	}
+	
 }
 
 void Elder::Render()
@@ -123,11 +124,13 @@ void Elder::RenderHierarchy()
 
 bool Elder::IsDestroyed()
 {
+	if (hitPoint <= 0) return true;
 	return false;
 }
 
 void Elder::DestructionEvent()
 {
+	//사망 상태 넣기
 }
 
 void Elder::SetState(ElderState* state)
@@ -137,11 +140,33 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	if (paternTime >= 0) paternTime -= DELTA;
-	//patern->StompPatern(this);
-	//patern->SummonPatern(this);
-	patern->JumpAttackPatern(this);
+	ImGui::Text("paterntype %d",paternType%2);
+	ImGui::Text("stompPatern %d",stompPatern);
+	//공격 한번 당 2.5초 쉼
+	if (paternTime >= 0 && state == E_IDLE)
+	{
+		paternTime -= DELTA;
+		paternType = RANDOM->Int(0, 99);
+	}
+	//패턴 한번 - 발찍기 한번 반복
+	if (stompPatern )
+	{
+		patern->StompPatern(this);
+	}
+	else
+	{
+		switch (paternType % 2)
+		{
+		case 0:
+			patern->JumpAttackPatern(this);
+			break;
+		case 1:
+			patern->SummonPatern(this);
+			break;
+		}
+	}
 	
+
 }
 
 void Elder::DoFSM()
