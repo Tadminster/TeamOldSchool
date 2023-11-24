@@ -88,6 +88,9 @@ void Beech::DestructionEvent()
 	OBJ->AddObject(stump);
 	OBJ->AddObject(log);
 
+	//임시로 오브젝트 파괴시 파티클효과 추가합니다
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
+
 	// 오브젝트 삭제 (나무)
 	Beech::~Beech();
 }

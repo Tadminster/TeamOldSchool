@@ -5,6 +5,7 @@ ParticleManager::ParticleManager()
 	//너도밤나무 파괴될시에 나뭇잎부분에서 떨어지는 파티클 효과
 	beechDrop = Pop::Create("beechDrop");
 	beechDrop->LoadFile("BeechLeafDrop.xml");
+	
 	//너도밤나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("hitBeech");
 	hitBeech->LoadFile("hitBeech.xml");
@@ -38,7 +39,7 @@ void ParticleManager::Update()
 
 void ParticleManager::LateUpdate()
 {
-
+	
 }
 
 void ParticleManager::Render()
@@ -62,7 +63,39 @@ void ParticleManager::RenderHierarchy()
 	ImGui::End();
 }
 
-//Vector3 ParticleManager::SetParticlePos(Particle* effect, Vector3 startPos)
-//{
-//	effect->SetWorldPos(startPos);
-//}
+
+void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
+{
+	if (type == EffectType::BEECHDROP)
+	{
+		beechDrop->SetWorldPos(pos);
+		beechDrop->Play();
+		cout << "파티클 작동함" << endl;
+		cout << "파티클위치 x :" << beechDrop->GetWorldPos().x << endl;
+		cout << "파티클위치 y :" << beechDrop->GetWorldPos().y << endl;
+		cout << "파티클위치 z :" << beechDrop->GetWorldPos().z << endl;
+		cout << "타격위치 x :" << pos.x << endl;
+		cout << "타격위치 y :" << pos.y << endl;
+		cout << "타격위치 z :" << pos.z << endl;
+	}
+	if (type == EffectType::HITBEECH)
+	{
+		hitBeech->SetWorldPos(pos);
+		hitBeech->Play();
+		cout << "파티클 작동함" << endl;
+	}
+	if (type == EffectType::WOODHITDUST)
+	{
+		woodHitDust->SetWorldPos(pos);
+		woodHitDust->Play();
+		cout << "파티클 작동함" << endl;
+	}
+	if (type == EffectType::HITBLOOD)
+	{
+		hitBlood->SetWorldPos(pos);
+		hitBlood->Play();
+		cout << "파티클 작동함" << endl;
+	}
+}
+
+

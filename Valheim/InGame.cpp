@@ -169,10 +169,10 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-	PARTICLE->Render();
 
 	elder->Render();
 	PLAYER->Render();
+	PARTICLE->Render();
 	MINIMAP->Render();
 
 	INVEN->Render();
