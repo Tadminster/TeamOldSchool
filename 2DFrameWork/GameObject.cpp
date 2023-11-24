@@ -214,8 +214,8 @@ void GameObject::Render(shared_ptr<Shader> pShader)
 
 			//부모하고 자식하고 셰이더를 공통으로 쓰는 부분
 		for (auto it = children.begin(); it != children.end(); it++)
-			it->second->Render();
-			//it->second->Render(shader);
+			if (DEBUGMODE) it->second->Render(shader);
+			else it->second->Render();
 	}
 
 	if (collider and pShader == nullptr)

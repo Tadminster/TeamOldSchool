@@ -1,7 +1,9 @@
 #pragma once
+#include "ItemProto.h"
 #define INVENTORY_SIZE		32		// 인벤토리 크기
 #define INVENTORY_ROW_SIZE	8		// 인벤토리 1줄 크기
 #define	BLUE_SLOT			32		// 블루슬롯의 인덱스
+
 
 enum class UILocation
 {
@@ -13,7 +15,7 @@ class Inventory
 	friend class Player;
 
 private:
-	// 실제 아이템과 아이콘===========================================================================================
+	// 실제 아이템과 아이콘=============================================================================
 	class ItemProto*	inventoryItem[INVENTORY_SIZE];	// 인벤토리 아이템
 	class UI*			inventoryIcon[INVENTORY_SIZE];	// 인벤토리 아이콘
 	// 이미지===========================================================================================
@@ -24,7 +26,8 @@ private:
 	RECT				text_itemName;						// 툴팁 박스(아이템 이름)
 	RECT				text_itemExplain;					// 툴팁 박스(아이템 설명)
 	RECT				text_number[INVENTORY_ROW_SIZE];	// 첫 줄의 슬롯들 숫자를 표시할 텍스트 영역
-	// 아이템 조작===========================================================================================
+	int					text_numberCorrect{ -30 };		// text_number 보정값
+	// 아이템 조작======================================================================================
 	bool			    isUse[INVENTORY_SIZE];				// 아이템 사용 여부
 	bool				isOnTooltip;						// 아이템 툴팁 표시 여부
 	struct EquippedItem						// 착용중인 아이템 인덱스 저장 구조체
@@ -39,7 +42,7 @@ private:
 			int* matchY = nullptr;		// index_y와 일치하는 변수의 포인터
 
 			// 각 인덱스와 일치하는 변수 찾기
-			for (int i = 0; i < 2; ++i)
+			for (int i = 0; i < 2; i++)
 			{
 				if (*(array[i]) == index_x)
 					matchX = array[i];
@@ -96,6 +99,9 @@ public:
 	void AddItem(ItemProto* item);
 	void DeleteItem(string name);
 	void ChangeItem();
+
+	bool CheckMaterial(Item item, int quantity);
+	void UseMaterial(Item item, int quantity);
 
 };
 

@@ -1,0 +1,32 @@
+<Root Name="Spear" Visible="true" ObType="1">
+    <Collider ColliderType="2" Visible="true">
+        <Position X="0" Y="1.15" Z="0"/>
+        <Scale X="0.2" Y="1.15" Z="0.2"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="-15.95" Y="16.299999" Z="-3.95"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="-0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="default" Visible="true" ObType="0">
+            <Mesh File="SummonSpear/default.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="SummonSpear/AncientSpear_mat.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.029999999" Y="0.0099999998" Z="0.029999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child0>
+</Root>

@@ -135,6 +135,7 @@ extern Application App;//Extern Global
 
 #include "PerlinNoise.hpp"
 
+
 //Singleton Macro
 #define	D3D			Direct3D11::GetInstance()
 #define	WIN			Window::GetInstance()
@@ -153,3 +154,5 @@ extern Application App;//Extern Global
 #define RESOURCE	ResourceManager::GetInstance()
 #define RASTER	    RasterState::GetInstance()
 #define PERLIN		PerlinNoise::GetInstance()
+#define DEBUGMODE	Utility::DebugMode()
+

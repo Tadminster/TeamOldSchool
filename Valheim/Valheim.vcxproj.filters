@@ -10,10 +10,10 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Inventory.h">
-      <Filter>Inventory</Filter>
+      <Filter>UI\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="GameOption.h">
-      <Filter>GameOptionUI</Filter>
+      <Filter>UI\GameOptionUI</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
@@ -67,13 +67,25 @@
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="MiniMap.h">
-      <Filter>MiniMap</Filter>
+      <Filter>UI\MiniMap</Filter>
     </ClInclude>
     <ClInclude Include="ElderPatern.h">
       <Filter>GameObject\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleManager.h">
-      <Filter>Managers</Filter>
+    <ClInclude Include="Workbench.h">
+      <Filter>GameObject\Building Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="StructureProto.h">
+      <Filter>GameObject\Building Structures</Filter>
+    </ClInclude>
+    <ClInclude Include="Craft.h">
+      <Filter>UI\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="Recipe.h">
+      <Filter>UI\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="Stone.h">
+      <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -82,10 +94,10 @@
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
-      <Filter>Inventory</Filter>
+      <Filter>UI\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="GameOption.cpp">
-      <Filter>GameOptionUI</Filter>
+      <Filter>UI\GameOptionUI</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Managers</Filter>
@@ -139,13 +151,25 @@
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="MiniMap.cpp">
-      <Filter>MiniMap</Filter>
+      <Filter>UI\MiniMap</Filter>
     </ClCompile>
     <ClCompile Include="ElderPatern.cpp">
       <Filter>GameObject\Unit</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleManager.cpp">
-      <Filter>Managers</Filter>
+    <ClCompile Include="Workbench.cpp">
+      <Filter>GameObject\Building Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="StructureProto.cpp">
+      <Filter>GameObject\Building Structures</Filter>
+    </ClCompile>
+    <ClCompile Include="Craft.cpp">
+      <Filter>UI\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="Recipe.cpp">
+      <Filter>UI\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="Stone.cpp">
+      <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +178,6 @@
     </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{e0c428c6-0d94-4784-bb3a-59d8180b610b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GameOptionUI">
-      <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
     </Filter>
     <Filter Include="Managers">
       <UniqueIdentifier>{324d54cc-7540-4438-9bed-1b0d48497f74}</UniqueIdentifier>
@@ -173,14 +194,26 @@
     <Filter Include="GameObject\Items\Weapon">
       <UniqueIdentifier>{2e9fc1ef-8119-4a60-ae2d-32b262ccfb35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Inventory">
-      <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Items\Material">
       <UniqueIdentifier>{f0676c0a-aa33-4121-b7e8-5f6095da14e0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="MiniMap">
+    <Filter Include="GameObject\Building Structures">
+      <UniqueIdentifier>{2c8f386a-6c46-4778-b890-066b13e84316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{548dfbc6-0fab-47df-9917-5f622b3291f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\MiniMap">
       <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Inventory">
+      <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\GameOptionUI">
+      <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Crafting">
+      <UniqueIdentifier>{0a969bf3-3fc8-4ff1-af6f-f3ce6cccae93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
