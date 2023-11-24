@@ -9,10 +9,12 @@ Rock::Rock()
 	if (RANDOM->Int(0, 1)) actor->LoadFile("Rock1.xml");
 	else actor->LoadFile("Rock2.xml");
 
-	float x = RANDOM->Float(0.8f, 1.4f);
-	float y = RANDOM->Float(0.8f, 1.4f);
-	float z = RANDOM->Float(0.8f, 1.2f);
+	float x = RANDOM->Float(1.0f, 3.0f);
+	float y = RANDOM->Float(1.0f, 3.0f);
+	float z = RANDOM->Float(1.0f, 2.0f);
 	actor->scale = Vector3(x, y, z);
+	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
+	actor->collider->rotation = actor->rotation;
 
 	static int index = 0;
 	actor->name = "Rock" + index++;

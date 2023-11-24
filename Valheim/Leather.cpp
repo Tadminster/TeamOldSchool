@@ -7,11 +7,12 @@ Leather::Leather()
 	static int index = 0;
 	actor = Actor::Create("Leather");
 	actor->LoadFile("Leather.xml");
-	actor->name = "Leather" + index++;
+	actor->name = "Leather" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
 	icon = UI::Create("LeatherIcon");
 	icon->LoadFile("Icon_Leather.xml");
+	icon->name = "LeatherIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.55f;
 
 	ItemProto::Init();

@@ -304,21 +304,25 @@ void ObjectManager::GenerateTree()
 				// Compute Picking으로 레이와 맞은 지점을 Hit에 저장
 				if (MAP->ComputePicking(ray, Hit))
 				{
-					// 오브젝트를 생성하고 위치, 회전, 크기	
-					FeatureProto* treeBeech;
+					FeatureProto* feature;
 					
 					if (RANDOM->Int(1, 10) == 1)
-						treeBeech = (FeatureProto*)FeatureProto::Create(FeatureType::Birch);
+					{
+						feature = FeatureProto::Create(FeatureType::Rock);
+					}
 					else
-						treeBeech = (FeatureProto*)FeatureProto::Create(FeatureType::Beech);
+					{
+						if (RANDOM->Int(2, 10) == 1)
+							feature = FeatureProto::Create(FeatureType::Birch);
+						else
+							feature = FeatureProto::Create(FeatureType::Beech);
+					}
 
-
-					treeBeech->GetActor()->SetWorldPos(Hit);
-					treeBeech->GetActor()->rotation.y = RANDOM->Float(0, 360) * ToRadian;
-					treeBeech->GetActor()->scale = Vector3(RANDOM->Float(0.8f, 1.2f), RANDOM->Float(0.4f, 0.6f), RANDOM->Float(0.8f, 1.2f));
+					// 오브젝트 위치 설정
+					feature->GetActor()->SetWorldPos(Hit);
 
 					// 생성된 오브젝트 리스트에 추가
-					objects.emplace_back(treeBeech);
+					objects.emplace_back(feature);
 				}
 			}
 		}

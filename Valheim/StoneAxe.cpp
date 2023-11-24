@@ -7,10 +7,11 @@ StoneAxe::StoneAxe()
 	static int index = 0;
 	actor = Actor::Create("StoneAxe");
 	actor->LoadFile("StoneAxe.xml");
-	actor->name = "StoneAxe" + index++;
+	actor->name = "StoneAxe" + to_string(index);
 
 	icon = UI::Create("StoneAxeIcon");
 	icon->LoadFile("Icon_StoneAxe.xml");
+	icon->name = "StoneAxeIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.8f;
 
 	ItemProto::Init();
