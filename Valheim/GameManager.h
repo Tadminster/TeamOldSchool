@@ -11,6 +11,7 @@ public:
     class Player*           player;
     class MiniMap*          minimap;
     class ObjectManager*    objectManager;
+    class ParticleManager*  particleManager;
 
 public:
     GameManager();

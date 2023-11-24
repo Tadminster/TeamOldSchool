@@ -33,7 +33,7 @@ public:
 	void DrawMiniMap(const std::string& filename);
 	// 플레이어 미니맵 아이콘이 플레이어의 회전값을받아서 보는방향을 보여줍니다
 	void FollowPlayerViewPoint();
-	//
+	// 플레이어의 이동에 맞는 위치에 미니맵 플레이어 아이콘도 이동합니다
 	void FollowPlayerMovement();
 };
 

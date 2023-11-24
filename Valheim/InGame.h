@@ -7,9 +7,11 @@ private:
     bool                            isDebugCamControl{ true };
 
     Grid*                           grid;
-	Sky*                            skyBox;
+	//Sky*                            skyBox;
+    Scattering*                     scattering;
         
     GameManager*                    gameManager;
+    
 
     class Elder*                    elder;
 public:

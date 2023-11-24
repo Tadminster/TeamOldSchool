@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GameManager.h"
+#include "ParticleManager.h"
 
 GameManager::GameManager()
 {
@@ -17,9 +18,13 @@ GameManager::GameManager()
 
 	objectManager = new ObjectManager();
 
+	particleManager = new ParticleManager();
+
 	player = new Player();
 
 	minimap = new MiniMap();
+
+
 }
 
 GameManager::~GameManager()

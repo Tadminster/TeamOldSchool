@@ -41,6 +41,7 @@
     <ClInclude Include="Main.h" />
     <ClInclude Include="MiniMap.h" />
     <ClInclude Include="ObjectManager.h" />
+    <ClInclude Include="ParticleManager.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
     <ClInclude Include="Prototype.h" />
@@ -75,6 +76,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MiniMap.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="ParticleManager.cpp" />
     <ClCompile Include="PlayerState.cpp" />
     <ClCompile Include="StoneAxe.cpp" />
     <ClCompile Include="Player.cpp" />

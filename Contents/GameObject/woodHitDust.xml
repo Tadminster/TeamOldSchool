@@ -1,0 +1,12 @@
+<Root Name="woodHitDust" Visible="true" ObType="8">
+    <Mesh File="7.Billboard.mesh"/>
+    <Shader File="7.Rain.hlsl"/>
+    <Material File="beechDust.mtl"/>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Rain particleScaleX="0" particleScaleY="0" particleCount="24" rangeX="1.3" rangeY="2" rangeZ="1.3" velocityX="0" velocityY="-0.5" velocityZ="0" duration="0.59500003"/>
+    <Children Size="0"/>
+</Root>

@@ -120,13 +120,16 @@ extern Application App;//Extern Global
 #include "Sky.h"
 #include "UI.h"
 #include "PostEffect.h"
+#include "Scattering.h"
 
 #include "Light.h"
 #include "Billboard.h"
 #include "SlashTrail.h"
+#include "Particle.h"
 #include "Rain.h"
 #include "Pop.h"
 #include "Water.h"
+
 
 #include "Utility.h"
 

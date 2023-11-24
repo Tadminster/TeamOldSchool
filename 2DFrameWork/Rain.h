@@ -1,31 +1,5 @@
 #pragma once
 
-class Particle : public Actor
-{
-protected:
-
-    //현재 재생중인 시간
-    float playTime = 0.0f;
-    //재생중인가?
-    bool isPlaying = false;
-public:
-    //총 재생시간
-    float duration = 10.0f;
-    virtual void    Play()
-    {
-        playTime = 0.0f;
-        isPlaying = true;
-    };
-    virtual void    Stop()
-    {
-        isPlaying = false;
-    };
-    void            UpdateParticle();
-    void            Gui();
-    float           PlayTime() { return playTime / duration; } //재생시간 비율
-    bool            IsPlaying() { return isPlaying; } //재생중인가?
-};
-
 //상수버퍼
 struct RAIN_DESC
 {
@@ -36,8 +10,8 @@ struct RAIN_DESC
     float time;
     RAIN_DESC()
     {
-        velocity = Vector3(0, -2, 0);
-        range = Vector3(10, 10, 10);
+        velocity = Vector3(0, -4, 0);
+        range = Vector3(3, 3, 3);
         time = 0.0f;
     }
 };
@@ -49,7 +23,7 @@ public:
 
     RAIN_DESC desc;
     Vector2             particleScale = Vector2(0, 0); //이미지 크기값
-    int                 particleCount = 100;
+    int                 particleCount = 10;
 
     static void         CreateStaticMember();
     static void         DeleteStaticMember();

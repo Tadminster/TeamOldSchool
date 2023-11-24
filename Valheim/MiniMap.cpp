@@ -52,6 +52,7 @@ void MiniMap::LateUpdate()
 		string test = "DrawMiniMap";
 		DrawMiniMap(test);
 	}
+	//미니맵 머터리얼에 디퓨즈맵 터레인맵이미지추가기능
 	if (ImGui::Button("MiniMapTextureLoad"))
 	{
 		string filepath = "MiniMap/DrawMiniMap.bmp";
@@ -63,7 +64,6 @@ void MiniMap::LateUpdate()
 
 	//플레이어 아이콘 보는방향에따라 회전시키기
 	FollowPlayerViewPoint();
-
 	//플레이어 아이콘 플레이어 이동에따라 움직이기 추후에 최적화가 가능하면 시간제어나 ex gettick
 	//등으로 꼭필요한곳에만 쓰이게 하기
 	FollowPlayerMovement();

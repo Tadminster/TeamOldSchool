@@ -3,28 +3,95 @@
 shared_ptr<Mesh> Mesh::CreateMesh()
 {
     shared_ptr<Mesh> temp = make_shared<Mesh>();
-    temp->vertexType = VertexType::BILLBOARD;
-    temp->primitiveTopology = D3D10_PRIMITIVE_TOPOLOGY_POINTLIST;
-    temp->byteWidth = sizeof(VertexBillboard);
+    temp->vertexType = VertexType::PT;
+    temp->primitiveTopology = D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+    temp->byteWidth = sizeof(VertexPT);
 
+    UINT domeCount = 32;
+    UINT latitude = 16;
+    float radius = 10.0f;
+    UINT longitude = domeCount;
 
-    //Á¤Á¡ °¹¼ö
-    temp->vertexCount = 1;
-    //ÀÎµ¦½º °¹¼ö
-    temp->indexCount = 1;
+    temp->vertexCount = longitude * latitude * 2;
+    temp->indexCount = (longitude - 1) * (latitude - 1) * 2 * 6;
 
-    VertexBillboard* Vertex = new VertexBillboard[temp->vertexCount];
+    VertexPT* vertices = new VertexPT[temp->vertexCount];
     temp->indices = new UINT[temp->indexCount];
 
-    Vertex[0].position = Vector3(0, 0, 0);
-    Vertex[0].mov = Vector2(0, 0);
-    Vertex[0].size = Vector2(0, 0);
-   
-    temp->indices[0] = 0;
+    UINT index = 0;
+    for (UINT i = 0; i < longitude; i++)
+    {
+        float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
 
+        for (UINT j = 0; j < latitude; j++)
+        {
+            float y = XM_PI * j / (latitude - 1);
 
+            vertices[index].position.x = sin(xz) * cos(y) * radius;
+            vertices[index].position.y = cos(xz) * radius;
+            vertices[index].position.z = sin(xz) * sin(y) * radius;
 
-    temp->vertices = Vertex;
+            vertices[index].uv.x = 0.5f / (float)longitude + i / (float)longitude;
+            vertices[index].uv.y = 0.5f / (float)latitude + j / (float)latitude;
+
+            index++;
+        }
+    }
+
+    for (UINT i = 0; i < longitude; i++)
+    {
+        float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
+
+        for (UINT j = 0; j < latitude; j++)
+        {
+            float y = (XM_PI * 2.0f) - (XM_PI * j / (latitude - 1));
+
+            vertices[index].position.x = sin(xz) * cos(y) * radius;
+            vertices[index].position.y = cos(xz) * radius;
+            vertices[index].position.z = sin(xz) * sin(y) * radius;
+
+            vertices[index].uv.x = 0.5f / (float)longitude + i / (float)longitude;
+            vertices[index].uv.y = 0.5f / (float)latitude + j / (float)latitude;
+
+            index++;
+        }
+    }
+
+    index = 0;
+
+    for (UINT i = 0; i < longitude - 1; i++)
+    {
+        for (UINT j = 0; j < latitude - 1; j++)
+        {
+            temp->indices[index++] = i * latitude + j;
+            temp->indices[index++] = (i + 1) * latitude + j;
+            temp->indices[index++] = (i + 1) * latitude + j + 1;
+
+            temp->indices[index++] = (i + 1) * latitude + j + 1;
+            temp->indices[index++] = i * latitude + j + 1;
+            temp->indices[index++] = i * latitude + j;
+        }
+    }
+
+    UINT offset = latitude * longitude;
+    for (UINT i = 0; i < longitude - 1; i++)
+    {
+        for (UINT j = 0; j < latitude - 1; j++)
+        {
+            temp->indices[index++] = offset + i * latitude + j;
+            temp->indices[index++] = offset + (i + 1) * latitude + j + 1;
+            temp->indices[index++] = offset + (i + 1) * latitude + j;
+
+            temp->indices[index++] = offset + i * latitude + j + 1;
+            temp->indices[index++] = offset + (i + 1) * latitude + j + 1;
+            temp->indices[index++] = offset + i * latitude + j;
+        }
+    }
+
+    /*mesh = new Mesh(vertices, sizeof(VertexUV), vertexCount,
+        indices, indexCount);*/
+
+    temp->vertices = vertices;
 
     //CreateVertexBuffer
     {
@@ -66,7 +133,7 @@ Mesh::Mesh()
     vertexBuffer = nullptr;
     indexBuffer = nullptr;
     instanceBuffer = nullptr;
-    vertexType = VertexType::P;
+    vertexType = VertexType::PT;
 }
 
 Mesh::Mesh(void* vertices, UINT vertexCount, UINT* indices, UINT indexCount, VertexType type)
@@ -663,7 +730,7 @@ void Mesh::InstanceEdit()
         if (ImGui::TreeNode(instanceCount.c_str()))
         {
             Matrix Local = instance[i].Transpose();
-            Vector3 s,r, t;
+            Vector3 s, r, t;
             Quaternion q;
             Local.Decompose(s, q, t);
             r = Utility::QuaternionToYawPtichRoll(q);
@@ -671,7 +738,7 @@ void Mesh::InstanceEdit()
             ImGui::DragFloat3("scale", (float*)&s, 0.05f);
             ImGui::InputFloat3("rot", (float*)&r);
             ImGui::DragFloat3("pos", (float*)&t, 0.05f);
-               // SetWorldPos(wol);
+            // SetWorldPos(wol);
             Matrix S = Matrix::CreateScale(s.x, s.y, s.z);
             // Ry*Rx*Rz
             Matrix R = Matrix::CreateFromYawPitchRoll(r.y, r.x, r.z);
@@ -690,7 +757,7 @@ void Mesh::InstanceEdit()
 
         //ÁÂÇ¥
         //ImGui::Text("X: %f Y: %f Z: %f", instance[i]._14, instance[i]._24, instance[i]._34);
-       
+
 
         /*if (ImGui::Button(instanceCount.c_str()))
         {

@@ -99,7 +99,7 @@ void Pop::Reset()
 		//내가 방향벡터를 3개축을 랜덤값으로 회전시켜 잡는다.
 		((VertexPSV*)mesh->vertices)[i].velocity = velocity;
 		((VertexPSV*)mesh->vertices)[i].position = position;
-		((VertexPSV*)mesh->vertices)[i].size = scale;
+		((VertexPSV*)mesh->vertices)[i].size = scale * 0.1f;
 		mesh->indices[i] = i;
 	}
 	SafeRelease(mesh->vertexBuffer);

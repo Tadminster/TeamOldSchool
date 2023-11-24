@@ -2,6 +2,7 @@
 class RenderTarget
 {
     friend class Deferred;
+    friend class Scattering;
 protected:
 
     int width, height;
@@ -32,7 +33,7 @@ public:
     void SetTarget(Color clear = Color(0, 0, 0, 1));
     void SetRGBTexture(int slot);
 
-  
+
     //창사이즈 조절
     void ResizeScreen(float width, float height);
 };
