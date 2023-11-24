@@ -23,6 +23,10 @@
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
+    <ClInclude Include="Craft.h" />
+    <ClInclude Include="Recipe.h" />
+    <ClInclude Include="Stone.h" />
+    <ClInclude Include="StructureProto.h" />
     <ClInclude Include="ElderPatern.h" />
     <ClInclude Include="ElderState.h" />
     <ClInclude Include="FeatureProto.h" />
@@ -45,12 +49,17 @@
     <ClInclude Include="Elder.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Woodpile.h" />
+    <ClInclude Include="Workbench.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
+    <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="Recipe.cpp" />
+    <ClCompile Include="Stone.cpp" />
+    <ClCompile Include="StructureProto.cpp" />
     <ClCompile Include="ElderPatern.cpp" />
     <ClCompile Include="ElderState.cpp" />
     <ClCompile Include="FeatureProto.cpp" />
@@ -71,6 +80,7 @@
     <ClCompile Include="Elder.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Woodpile.cpp" />
+    <ClCompile Include="Workbench.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

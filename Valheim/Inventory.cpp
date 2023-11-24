@@ -5,7 +5,7 @@
 Inventory::Inventory()
 {
 	// 모든 인벤토리를 nullptr로 초기화
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		inventoryItem[i] = nullptr;
 		inventoryIcon[i] = nullptr;
@@ -17,6 +17,7 @@ Inventory::Inventory()
 	inventoryUI->LoadFile("UI_Inventory.xml");
 	tooltopBox = UI::Create("ToolTipBox");
 	tooltopBox->LoadFile("UI_TooltipBox.xml");
+
 
 	// 매번 static_cast를 사용하지 않기 위해, 사용할 UI들을 미리 저장
 	panel = static_cast<UI*>(inventoryUI->Find("PANEL"));
@@ -69,12 +70,16 @@ void Inventory::Update()
 		Init();
 	}
 
-	inventoryUI->Update();
 	for (auto icon : inventoryIcon)	
 		if (icon) icon->Update();
+
+	// 인벤토리 UI 업데이트
+	inventoryUI->Update();
+	
+	// 인벤토리가 열려있을 때
 	if (isOpen)
 	{
-		// 툴팁박스
+		// 툴팁박스 업데이트
 		if (isOnTooltip)
 		{
 			tooltopBox->Update();
@@ -85,12 +90,16 @@ void Inventory::Update()
 	if (TIMER->GetTick(InitTime, 5.0f))
 	{
 		GM->ResizeScreen();
+
+		// 인벤토리 첫번째 줄의 슬롯들 텍스트 위치 업데이트
 		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
 		{
-			text_number[i].left = App.GetWidth() * ((slot[i]->GetWorldPos().x + 1.0f) / 2.0f) - 30;
+			// App.GetWidth() = 슬롯의 위치를 NDC좌표계로 변환
+			// slot[i]->GetWorldPos().x + 1.0f) / 2.0f = 슬롯 위치(-1~1)를 (0~1)로 변환
+			// - 30 최종 결과값에서 30픽셀 이동(보정)
+			text_number[i].left = App.GetHalfWidth() * (slot[i]->GetWorldPos().x + 1.0f) + text_numberCorrect;
 			text_number[i].right = text_number[i].left + 1000;
-			text_number[i].top = 200;
-			text_number[i].top = App.GetHeight() * ((1.0f - slot[i]->GetWorldPos().y) / 2.0f) - 30;
+			text_number[i].top = App.GetHalfHeight() * (1.0f - slot[i]->GetWorldPos().y) + text_numberCorrect;
 			text_number[i].bottom = text_number[i].top + 200;
 		}
 	}
@@ -151,7 +160,7 @@ void Inventory::Render()
 			tooltopBox->Render();
 
 			DWRITE->RenderText(
-				Utility::ToWString(inventoryItem[onMouseItemIndex]->GetName()),
+				Utility::ToWString(inventoryItem[onMouseItemIndex]->GetStringName()),
 				text_itemName,
 				20.0f,
 				L"Arial",
@@ -192,7 +201,7 @@ void Inventory::MouseOverSlot()
 	if (isOpen && panel->MouseOver())
 	{
 		//	모든 인벤토리 슬롯을 순회
-		for (int i = 0; i < 32; i++)
+		for (int i = 0; i < INVENTORY_SIZE; i++)
 		{
 			// 마우스가 해당 슬롯 위에 있고,
 			if (slot[i]->MouseOver())
@@ -213,12 +222,14 @@ void Inventory::MouseOverSlot()
 				{
 					isMouseOverItem = true;
 
-					float appWidth = App.GetWidth();
-					float appHeight = App.GetHeight();
+					float appHalfWidth = App.GetHalfWidth();
+					float appHalfHeight = App.GetHalfHeight();
+					float screenBaselineX = 650.0f;
+					float screenBaselineY = 425.0;
 
 					// 화면 크기에 따라 툴팁박스 크기 조절할 가중치
-					float screenRatioX = 1300.0f / appWidth;
-					float screenRatioY = 850.0f / appHeight;
+					float screenRatioX = screenBaselineX / appHalfWidth;
+					float screenRatioY = screenBaselineY / appHalfHeight;
 
 					// 툴팁박스 x, y크기 조절
 					tooltopBox->scale.x = screenRatioX;
@@ -230,14 +241,14 @@ void Inventory::MouseOverSlot()
 					// 툴팁 텍스트 위치 조절
 					Vector3 tooptipPos = tooltopBox->GetWorldPos();
 
-					text_itemName.left = appWidth * ((tooptipPos.x + 1) / 2) + 70;
+					text_itemName.left = appHalfWidth * (tooptipPos.x + 1) + 70;
 					text_itemName.right = text_itemName.left + 1000;
-					text_itemName.top = appHeight * ((1 - tooptipPos.y) / 2) + 10;
+					text_itemName.top = appHalfHeight * (1 - tooptipPos.y) + 10;
 					text_itemName.bottom = text_itemName.top + 200;
 
-					text_itemExplain.left = appWidth * ((tooptipPos.x + 1) / 2) + 10;
+					text_itemExplain.left = appHalfWidth * (tooptipPos.x + 1) + 10;
 					text_itemExplain.right = text_itemExplain.left + 1000;
-					text_itemExplain.top = appHeight * ((1 - tooptipPos.y) / 2) + 50;
+					text_itemExplain.top = appHalfHeight * (1 - tooptipPos.y) + 50;
 					text_itemExplain.bottom = text_itemExplain.top + 200;
 
 					// 툴팁 박스 visible
@@ -270,7 +281,7 @@ void Inventory::MouseOverSlot()
 
 void Inventory::ItemPickUp()
 {
-	for (int i = 0; i < 32; i++)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		if (INPUT->KeyDown(VK_LBUTTON) && slot[i]->MouseOver())
 		{
@@ -601,9 +612,6 @@ void Inventory::AddItem(ItemProto* item)
 	item->GetActor()->SetWorldPos(Vector3(0, -999, 0));
 	item->Update();
 
-	// 아이템의 상태를 인벤토리로 변경
-	item->SetState(ItemState::OnInventory);
-
 	// 아이템이 중첩 가능한 타입(재료, 음식)이면
 	if (item->GetType() == ItemType::Material || item->GetType() == ItemType::Food)
 	{
@@ -611,13 +619,13 @@ void Inventory::AddItem(ItemProto* item)
 		if (mItem)
 		{
 			// 인벤토리를 전체를 순회해서 같은 아이템이 있는지 체크
-			for (int i = 0; i < INVENTORY_SIZE; ++i)
+			for (int i = 0; i < INVENTORY_SIZE; i++)
 			{
 				if (inventoryItem[i] == nullptr)
 				{
 					continue;
 				}
-				else if (inventoryItem[i]->GetName() == mItem->GetName())
+				else if (inventoryItem[i]->GetStringName() == mItem->GetStringName())
 				{
 					MaterialProto* targetItem = static_cast<MaterialProto*>(inventoryItem[i]);
 					mItem->StackMerge(targetItem);
@@ -632,7 +640,7 @@ void Inventory::AddItem(ItemProto* item)
 	}
 		
 	// 인벤토리를 순회하며 빈 공간을 찾음
-	for (int i = 0; i < INVENTORY_SIZE; ++i)
+	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
 		// 빈 공간을 찾으면
 		if (inventoryItem[i] == nullptr)
@@ -644,6 +652,9 @@ void Inventory::AddItem(ItemProto* item)
 			break;
 		}
 	}
+
+	// 아이템의 상태를 인벤토리로 변경
+	item->SetState(ItemState::OnInventory);
 }
 
 void Inventory::DeleteItem(string name)
@@ -652,4 +663,79 @@ void Inventory::DeleteItem(string name)
 
 void Inventory::ChangeItem()
 {
+}
+
+bool Inventory::CheckMaterial(Item item, int quantity)
+{
+	// 인벤토리를 순회해서 재료가 있는지 체크
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+
+		// 아이템이 있고, 재료 이름이 같으면
+		if (inventoryItem[i] && inventoryItem[i]->GetEnumName() == item)
+		{
+			// Down Casting
+			MaterialProto* material = dynamic_cast<MaterialProto*>(inventoryItem[i]);
+			if (material)
+			{
+				// 재료의 현재 중첩수가 필요한 수 이상이면 수량0으로 변경
+				if (material->currentStack >= quantity) quantity = 0;
+				// 재료의 현재 중첩수가 필요한 수 미만이면 필요한 수에서 현재 중첩수를 뺌
+				else quantity -= material->currentStack;
+			}
+		}
+
+		// 필요한 재료의 수가 0이하면 true 반환
+		if (quantity <= 0) return true;
+	}
+
+	return false;
+}
+
+void Inventory::UseMaterial(Item item, int quantity)
+{
+	// 인벤토리를 순회해서 재료가 있는지 체크
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+		// 아이템이 있고, 재료 이름이 같으면
+		if (inventoryItem[i] && inventoryItem[i]->GetEnumName() == item)
+		{
+			// Down Casting
+			MaterialProto* material = dynamic_cast<MaterialProto*>(inventoryItem[i]);
+			if (material)
+			{
+				// 재료의 현재 중첩수가 필요한 수 이상이면
+				if (material->currentStack >= quantity)
+				{
+					// 재료의 현재 중첩수에서 필요한 수를 뺌
+					material->currentStack -= quantity;
+					// 필요한 수를 0으로 변경
+					quantity = 0;
+
+					// 재료의 현재 중첩수가 0이면
+					if (material->currentStack == 0)
+					{
+						// 인벤토리에서 아이템 삭제
+						inventoryItem[i] = nullptr;
+						inventoryIcon[i] = nullptr;
+					}
+				}
+				// 재료의 현재 중첩수가 필요한 수 미만이면
+				else
+				{
+					// 필요한 수에서 재료의 현재 중첩수를 뺌
+					quantity -= material->currentStack;
+					// 재료의 현재 중첩수를 0으로 변경
+					material->currentStack = 0;
+
+					// 인벤토리에서 아이템 삭제
+					inventoryItem[i] = nullptr;
+					inventoryIcon[i] = nullptr;
+				}
+			}
+		}
+
+		// 필요한 재료의 수가 0이하면 true 반환
+		if (quantity <= 0) return;
+	}
 }

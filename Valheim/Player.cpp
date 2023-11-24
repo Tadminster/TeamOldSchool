@@ -20,24 +20,21 @@ Player::~Player()
 
 void Player::Init()
 {
-	actor->SetWorldPos(Vector3(0,20,0));
-	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-
+	actor->SetWorldPos(Vector3(0,10,0));
+	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 }
 
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	if (!DEBUGMODE) 
-	{
-		PlayerControl();
-		PlayerMove();
-	}
-	else
+	PlayerControl();
+	PlayerMove();
+	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
 	}
+
 	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
@@ -119,12 +116,14 @@ void Player::SetState(PlayerState* state)
 void Player::AvtivatePlayerCam()
 {
 	//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기1
-	if (!DEBUGMODE && !isPlayerCam) 
-	{
-		Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
-		isPlayerCam = true;
-	}
+	//if (!DEBUGMODE && !isPlayerCam) 
+	//{
+	//	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+	//	isPlayerCam = true;
+	//}
 	//카메라 전환 시 화면 짤리는 부분 방지
+	if(actor->anim->currentAnimator.animIdx==0)
+		actor->Update();
 	{
 		Camera::main->viewport.x = 0.0f;
 		Camera::main->viewport.y = 0.0f;
@@ -311,6 +310,10 @@ bool Player::GetItem(ItemProto* item)
 			{
 				// 인벤토리에 아이템 추가하고	
 				INVEN->AddItem(item);
+				// 찾아낸 아이템 목록 업데이트
+				RECIPE->DiscoveryItemUpdate(item);
+				// 아이템의 상호작용 가능 여부를 true로 설정
+				item->SetIsInteraction(false);
 				return true;
 			}
 		}

@@ -1,13 +1,34 @@
 #pragma once
 
+template<typename T>
+void ListEraser(std::list<T*>& list) {
+	list.erase(
+		std::remove_if(
+			list.begin(),
+			list.end(),
+			[](T* element) {
+				if (element->IsDestroyed()) 
+				{
+					element->DestructionEvent();
+					return true;
+				}
+				else return false;
+			}
+		),
+		list.end()
+	);
+}
+
 class ObjectManager
 {
 private:
-	list<Prototype*> objects;
-	list<ItemProto*> items;
+	list<class Prototype*>		objects;
+	list<class ItemProto*>		items;
+	list<class StructureProto*>	structures;
 
 	ItemProto*		stoneAxe[5];
 	ItemProto*		woodpile[5];
+	ItemProto*		stone[5];
 
 public:
 	ObjectManager();
@@ -20,7 +41,7 @@ public:
 	void	Render();
 	void	RefractionRender();
 	void    RenderHierarchy();
-	
+
 	void	GenerateTree();
 	//void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
