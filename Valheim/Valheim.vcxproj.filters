@@ -90,8 +90,12 @@
     <ClInclude Include="ParticleManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
-    <ClInclude Include="Leather.h" />
-    <ClInclude Include="Rock.h" />
+    <ClInclude Include="Rock.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="Leather.h">
+      <Filter>GameObject\Items\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -179,8 +183,12 @@
     <ClCompile Include="ParticleManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
-    <ClCompile Include="Leather.cpp" />
-    <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="Rock.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="Leather.cpp">
+      <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
