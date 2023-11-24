@@ -19,7 +19,7 @@ shared_ptr<Mesh> Mesh::CreateMesh()
     temp->indices = new UINT[temp->indexCount];
 
     UINT index = 0;
-    for (UINT i = 0; i < longitude; i++)
+  /*  for (UINT i = 0; i < longitude; i++)
     {
         float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
 
@@ -36,11 +36,30 @@ shared_ptr<Mesh> Mesh::CreateMesh()
 
             index++;
         }
+    }*/
+    for (UINT i = 0; i < longitude; i++)
+    {
+        float xz = 2.0f * XM_PI * (i / static_cast<float>(longitude - 1));
+
+        for (UINT j = 0; j < latitude; j++)
+        {
+            float y = XM_PI * j / (latitude - 1);
+
+            vertices[index].position.x = sin(xz) * cos(y) * radius;
+            vertices[index].position.y = cos(xz) * radius;
+            vertices[index].position.z = sin(xz) * sin(y) * radius;
+
+            vertices[index].uv.x = i / static_cast<float>(longitude - 1);
+            vertices[index].uv.y = j / static_cast<float>(latitude - 1);
+
+            index++;
+        }
     }
 
     for (UINT i = 0; i < longitude; i++)
     {
-        float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
+        //float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
+        float xz = 2.0f * XM_PI * (i / static_cast<float>(longitude - 1));
 
         for (UINT j = 0; j < latitude; j++)
         {

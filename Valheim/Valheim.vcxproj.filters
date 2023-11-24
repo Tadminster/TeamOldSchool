@@ -90,6 +90,9 @@
     <ClInclude Include="ParticleManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="WorldTimeManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -175,6 +178,9 @@
       <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
     <ClCompile Include="ParticleManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldTimeManager.cpp">
       <Filter>Managers</Filter>
     </ClCompile>
   </ItemGroup>

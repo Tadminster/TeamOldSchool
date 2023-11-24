@@ -71,9 +71,13 @@ void Scattering::DrawPass2()
 
 void Scattering::RenderDetail()
 {
+    
     ImGui::SliderInt("SampleCount", &data.sampleCount, 1, 50);
     ImVec2 size(400, 400);
     ImGui::Image((void*)rayleighTarget->rgbResource, size);
     ImGui::Image((void*)mieTarget->rgbResource, size);
+    ImGui::SliderFloat("waveLength.x", &data.waveLength.x, -1.0f, 1.0f);
+    ImGui::SliderFloat("waveLength.y", &data.waveLength.y, -1.0f, 1.0f);
+    ImGui::SliderFloat("waveLength.z", &data.waveLength.z, -1.0f, 1.0f);
 
 }
