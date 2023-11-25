@@ -62,6 +62,7 @@ class ToolProto : public ItemProto
 enum class WeaponType { Sword, Axe, Pickaxes, Spear, Bow, Shield };
 class WeaponProto : public ItemProto
 {
+	friend class Player;
 protected:
 	WeaponType	wType;			// 무기 종류
 	int			damage;			// 공격력
