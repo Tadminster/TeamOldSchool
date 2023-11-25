@@ -1,4 +1,5 @@
 #pragma once
+#include "ItemProto.h"
 //class PlayerState;
 class Player : public Unit
 {
@@ -42,9 +43,10 @@ public:
 	void DestructionEvent() override;
 	bool IsDestroyed() override;
 
-
+	
 	Actor* GetPlayer()						{ return actor; }
 	const ItemProto* GetPlayerWeapon()		{ return equippedHand; }
+	Vector3 GetCollisionPoint()				{ return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); }
 	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	Collider* GetCollider()					{ return actor->collider; }

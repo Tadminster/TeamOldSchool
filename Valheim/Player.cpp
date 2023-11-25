@@ -38,7 +38,7 @@ void Player::Update()
 	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
-
+	
 	actor->Update();
 }
 
