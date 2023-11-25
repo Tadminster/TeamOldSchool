@@ -19,7 +19,7 @@ Beech::Beech()
 
 	rotation = &actor->Find("RootNode")->rotation;
 
-	hitPoint = 10;
+	hitPoint = 80;
 }
 
 Beech::~Beech()

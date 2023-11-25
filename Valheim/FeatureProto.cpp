@@ -64,22 +64,15 @@ void FeatureProto::RenderHierarchy()
 {
 }
 
-bool FeatureProto::ReceivedDamageEvent(int damage)
+bool FeatureProto::ReceivedDamageEvent()
 {
-	// HP가 0이하면 return false
-	if (hitPoint <= 0) return false;
+	float damage;
 
 	// 타격 이펙트 재생
-	// 무기 타격점 반환함수 만들어지면 생성 위치 변경해줄 예정
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
 	// 타격 애니메이션 재생시간 설정
 	hitAnimDuration = 0.3f;
-	
-	// HP 감소
-	hitPoint -= damage;
-
-	return true;
 }
 
 void FeatureProto::ReceivedDamageAnimation()

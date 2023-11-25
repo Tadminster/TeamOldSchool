@@ -17,7 +17,7 @@ Birch::Birch()
 	actor->scale = Vector3(x, y, z);
 	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 
-	hitPoint = 10;
+	hitPoint = 80;
 
 	rotation = &actor->Find("RootNode")->rotation;
 }

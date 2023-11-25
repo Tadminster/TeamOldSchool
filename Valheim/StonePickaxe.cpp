@@ -24,10 +24,10 @@ StonePickaxe::StonePickaxe()
 	//=========================
 	stringName = "StonePickaxe";
 
-	damage = 10;
-	maxDurability = 100;
-	curDurability = maxDurability;
-	weight = 2;
+	damage			= 10;
+	maxDurability	= 100;
+	curDurability	= maxDurability;
+	weight			= 2;
 }
 
 StonePickaxe::~StonePickaxe()
@@ -77,7 +77,7 @@ wstring StonePickaxe::GetExplain()
 	 
 	wstring exp = L"암석을 부술 수 있는 곡괭이. \n돌로 만들어져 쉽게 망가진다.\n";
 	wstring exp_sub1 = L"\n한손무기";
-	wstring exp_sub2 = L"\n무게: 2.0";
+	wstring exp_sub2 = L"\n무게: 3.0";
 	wstring exp_sub3 = L"\n내구도: " + to_wstring(curDurability) + L"/" + to_wstring(maxDurability);
 	wstring exp_sub4 = L"\n공격력: " + to_wstring(damage);
 

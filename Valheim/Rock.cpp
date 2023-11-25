@@ -17,7 +17,7 @@ Rock::Rock()
 	actor->scale = Vector3(x, y, z);
 	actor->collider->rotation = actor->rotation;
 
-	hitPoint = 10;
+	hitPoint = 80;
 
 	rotation = &actor->Find("RootNode")->rotation;
 }

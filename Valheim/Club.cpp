@@ -24,10 +24,10 @@ Club::Club()
 	//=========================
 	stringName = "Club";
 
-	damage = 10;
-	maxDurability = 100;
-	curDurability = maxDurability;
-	weight = 2;
+	damage			= 10;
+	maxDurability	= 100;
+	curDurability	= maxDurability;
+	weight			= 2;
 }
 
 Club::~Club()
