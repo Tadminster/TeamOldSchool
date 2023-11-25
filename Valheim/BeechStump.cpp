@@ -9,9 +9,11 @@ BeechStump::BeechStump()
 	actor->LoadFile("BeechStump.xml");
 
 	static int index = 0;
-	actor->name = "BeechStump" + index++;
+	actor->name = "BeechStump" + to_string(index++);
 
-	hitPoint = 10;
+	//==================================================
+	type = FeatureArmorType::Tree;
+	hitPoint = 50;
 }
 
 BeechStump::~BeechStump()

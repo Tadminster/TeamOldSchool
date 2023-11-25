@@ -19,6 +19,8 @@ Beech::Beech()
 
 	rotation = &actor->Find("RootNode")->rotation;
 
+	//==================================================
+	type = FeatureArmorType::Tree;
 	hitPoint = 80;
 }
 

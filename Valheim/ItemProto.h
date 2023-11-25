@@ -47,7 +47,7 @@ public:
 	void			SetState(ItemState state) { this->state = state; }
 	void			SetIsInteraction(bool isInteraction) { this->isInteraction = isInteraction; }
 
-	bool			ReceivedDamageEvent(float damage) override { return false; }
+	bool			ReceivedDamageEvent(float damage, WeaponType wType) override { return false; }
 
 	void Drop();
 	virtual void Use() = 0;
@@ -59,7 +59,7 @@ class ToolProto : public ItemProto
 
 };
 //====================================================================================================
-enum class WeaponType { Sword, Axe, Pickaxes, Tool, Spear, Bow, Shield };
+enum class WeaponType { Blunt, Axe, Pickaxe };
 class WeaponProto : public ItemProto
 {
 	friend class Player;

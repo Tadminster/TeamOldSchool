@@ -119,12 +119,13 @@ void ObjectManager::LateUpdate()
 		if (PLAYER->GetItem(item)) break;
 	}
 
+	// 오브젝트에 데미지 입히기
 	for (auto& obj : objects)
 	{
 		if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
 		{
-			obj->ReceivedDamageEvent(2);
-			continue;
+			obj->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
+			break;
 		}
 	}
 }

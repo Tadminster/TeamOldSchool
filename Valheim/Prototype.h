@@ -1,4 +1,5 @@
 #include "stdafx.h"
+enum class WeaponType;
 
 #pragma once
 class Prototype
@@ -24,7 +25,7 @@ public:
 
 	// @brief 오브젝트에 데미지를 줘야할 때 호출하는 함수
 	// @param damage 데미지량
-	virtual bool ReceivedDamageEvent(float damage) = 0;
+	virtual bool ReceivedDamageEvent(float damage, WeaponType wType) = 0;
 
 	// @brief 오브젝트가 파괴되는 조건을 검사하는 함수
 	// @brief 예를 들어, 체력이 0 이하이거나 아이템이 땅에 드랍되고 일정시간이 지났을 때

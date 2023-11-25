@@ -17,9 +17,11 @@ Rock::Rock()
 	actor->scale = Vector3(x, y, z);
 	actor->collider->rotation = actor->rotation;
 
-	hitPoint = 80;
-
 	rotation = &actor->Find("RootNode")->rotation;
+
+	//==================================================
+	type = FeatureArmorType::Rock;
+	hitPoint = 80;
 }
 
 Rock::~Rock()

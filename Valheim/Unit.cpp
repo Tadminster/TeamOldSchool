@@ -141,7 +141,7 @@ void Unit::RenderHierarchy()
 {
 }
 
-bool Unit::ReceivedDamageEvent(float damage)
+bool Unit::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	return false;
 }

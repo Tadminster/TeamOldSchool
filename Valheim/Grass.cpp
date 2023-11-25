@@ -35,7 +35,7 @@ void Grass::Release()
 {
 }
 
-bool Grass::ReceivedDamageEvent(float damage)
+bool Grass::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	return false;
 }
