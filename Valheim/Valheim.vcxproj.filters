@@ -102,6 +102,9 @@
     <ClInclude Include="WorldTimeManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
+    <ClInclude Include="Club.h">
+      <Filter>GameObject\Items\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -200,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="WorldTimeManager.cpp">
       <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Club.cpp">
+      <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

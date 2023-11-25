@@ -518,6 +518,7 @@ string Craft::GetIconFileName(Item item)
 {
 	switch (item)
 	{
+	case Item::Club:			return "club.png"; break;
 	case Item::StoneAxe:		return "axe_stone.png"; break;
 	case Item::StonePickaxe:	return "pickaxe_stone.png"; break;
 	case Item::Woodpile:		return "woodpile.png"; break;

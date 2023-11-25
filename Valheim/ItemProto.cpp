@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Prototype.h"
 
+#include "Club.h"
 #include "StoneAxe.h"
 #include "StonePickaxe.h"
 #include "Stone.h"
@@ -12,6 +13,8 @@ ItemProto* ItemProto::Create(Item name)
 {
 	switch (name)
 	{
+	case Item::Club:
+		return new Club();
 	case Item::StoneAxe:
 		return new StoneAxe();
 	case Item::StonePickaxe:

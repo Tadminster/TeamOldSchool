@@ -23,6 +23,7 @@
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
+    <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
     <ClInclude Include="Leather.h" />
     <ClInclude Include="Recipe.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
+    <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />
     <ClCompile Include="Leather.cpp" />
     <ClCompile Include="Recipe.cpp" />

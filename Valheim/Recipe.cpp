@@ -5,6 +5,7 @@
 Recipe::Recipe()
 {
     // 발견한 아이템 목록 초기화 ================================================
+    discoveryItemList[Item::Club] = false;
     discoveryItemList[Item::StoneAxe] = false;
     discoveryItemList[Item::StonePickaxe] = false;
 
@@ -13,23 +14,30 @@ Recipe::Recipe()
     discoveryItemList[Item::Leather] = false;
 
     // 발견한 레시피 목록 초기화 ==============================================
+    discoveryRecipeList[Item::Club] = false;
     discoveryRecipeList[Item::StoneAxe] = false;
     discoveryRecipeList[Item::StonePickaxe] = false;
 
     // 레시피 목록 초기화 ======================================================
-    recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});      // 돌 도끼
-    recipeList.emplace(Item::StonePickaxe,  set<Item>{Item::Woodpile, Item::Stone});      // 돌 곡괭이
+    recipeList.emplace(Item::Club,          set<Item>{Item::Woodpile});                 // 몽둥이
+    recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});    // 돌 도끼
+    recipeList.emplace(Item::StonePickaxe,  set<Item>{Item::Woodpile, Item::Stone});    // 돌 곡괭이
 
     // 레시피 데이터 초기화 ============================================================
+    recipeInfo.emplace_back(new RecipeInfo{ 
+		Item::Club, L"몽둥이", 
+		L"나무를 다듬어 만든 몽둥이. \n조잡하지만 유용합니다.",
+		{{Item::Woodpile, 3}} });
+
     recipeInfo.emplace_back(new RecipeInfo{ 
         Item::StoneAxe, L"돌 도끼", 
         L"나뭇가지와 돌을 줍다보면 쉽게 \n만들 수 있는 도끼.",
         {{Item::Woodpile, 5}, {Item::Stone, 2}} });
 
     recipeInfo.emplace_back(new RecipeInfo{
-    Item::StonePickaxe, L"돌 곡괭이",
-    L"암석을 부술 수 있는 곡괭이. \n돌로 만들어져 쉽게 망가진다.",
-    {{Item::Woodpile, 2}, {Item::Stone, 5}} });
+        Item::StonePickaxe, L"돌 곡괭이",
+        L"암석을 부술 수 있는 곡괭이. \n돌로 만들어져 쉽게 망가진다.",
+        {{Item::Woodpile, 2}, {Item::Stone, 5}} });
 }
 
 Recipe::~Recipe()
