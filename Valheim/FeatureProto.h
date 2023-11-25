@@ -32,7 +32,7 @@ public:
 public:
     virtual void LodUpdate(float distance) {};
 
-    virtual bool ReceivedDamageEvent();
+    virtual bool ReceivedDamageEvent(float damage);
     virtual void ReceivedDamageAnimation();
     bool IsDestroyed() override { return hitPoint <= 0; }
     virtual void DestructionEvent() override;

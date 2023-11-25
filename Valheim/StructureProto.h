@@ -18,7 +18,7 @@ public:
 	void LateUpdate() override;
 	void Render() override;
 
-	bool ReceivedDamageEvent(int damage) override;
+	bool ReceivedDamageEvent(float damage) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 

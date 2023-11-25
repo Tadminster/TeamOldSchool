@@ -35,7 +35,7 @@ void Grass::Release()
 {
 }
 
-bool Grass::ReceivedDamageEvent(int damage)
+bool Grass::ReceivedDamageEvent(float damage)
 {
 	return false;
 }

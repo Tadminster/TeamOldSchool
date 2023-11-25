@@ -34,7 +34,7 @@ void StructureProto::Render()
 	actor->Render();
 }
 
-bool StructureProto::ReceivedDamageEvent(int damage)
+bool StructureProto::ReceivedDamageEvent(float damage)
 {
 	return false;
 }

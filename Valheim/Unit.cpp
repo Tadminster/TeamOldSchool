@@ -140,7 +140,7 @@ void Unit::RenderHierarchy()
 {
 }
 
-bool Unit::ReceivedDamageEvent(int damage)
+bool Unit::ReceivedDamageEvent(float damage)
 {
 	return false;
 }

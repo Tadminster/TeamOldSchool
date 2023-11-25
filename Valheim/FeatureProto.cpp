@@ -64,15 +64,15 @@ void FeatureProto::RenderHierarchy()
 {
 }
 
-bool FeatureProto::ReceivedDamageEvent()
+bool FeatureProto::ReceivedDamageEvent(float damage)
 {
-	float damage;
-
 	// 타격 이펙트 재생
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
 	// 타격 애니메이션 재생시간 설정
 	hitAnimDuration = 0.3f;
+
+	return true;
 }
 
 void FeatureProto::ReceivedDamageAnimation()

@@ -44,7 +44,7 @@ void Workbench::RenderHierarchy()
 {
 }
 
-bool Workbench::ReceivedDamageEvent(int damage)
+bool Workbench::ReceivedDamageEvent(float damage)
 {
 	return false;
 }

@@ -34,7 +34,7 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
-	bool ReceivedDamageEvent(int damage) override;
+	bool ReceivedDamageEvent(float damage) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 

@@ -47,7 +47,7 @@ public:
 	void			SetState(ItemState state) { this->state = state; }
 	void			SetIsInteraction(bool isInteraction) { this->isInteraction = isInteraction; }
 
-	bool			ReceivedDamageEvent(int damage) override { return false; }
+	bool			ReceivedDamageEvent(float damage) override { return false; }
 
 	void Drop();
 	virtual void Use() = 0;
@@ -65,7 +65,7 @@ class WeaponProto : public ItemProto
 	friend class Player;
 protected:
 	WeaponType	wType;			// 무기 종류
-	int			damage;			// 공격력
+	float		damage;			// 공격력
 	int			curDurability;	// 내구도
 	int			maxDurability;	// 내구도
 
