@@ -1,5 +1,5 @@
 #pragma once
-class Scattering
+class Scattering 
 {
     struct ScatteringBuffer
     {

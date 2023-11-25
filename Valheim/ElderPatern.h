@@ -47,6 +47,7 @@ class ElderJumpAttack : public ElderPatern
 	float respawnTime = 0;
 	float interval = 0;
 	float jumpAttackToIdle = 0;
+	bool  totalRender = false;
 public:
 	ElderJumpAttack(Elder* elder);
 	~ElderJumpAttack();

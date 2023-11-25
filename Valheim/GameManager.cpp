@@ -20,6 +20,8 @@ GameManager::GameManager()
 
 	particleManager = new ParticleManager();
 
+	worldtimeManager = new WorldTimeManager();
+
 	player = new Player();
 
 	minimap = new MiniMap();

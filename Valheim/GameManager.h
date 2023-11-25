@@ -12,6 +12,7 @@ public:
     class MiniMap*          minimap;
     class ObjectManager*    objectManager;
     class ParticleManager*  particleManager;
+    class WorldTimeManager* worldtimeManager;
 
 public:
     GameManager();

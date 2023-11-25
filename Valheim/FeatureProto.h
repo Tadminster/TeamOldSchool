@@ -10,9 +10,10 @@ enum class FeatureType
 class FeatureProto : public Prototype
 {
 protected:
-    int         hitPoint;
-    float       gravity         { 15.0f };
-    Vector3     rayCollisionPoint;              // ray와 충돌 지점
+    
+    float   gravity         { 15.0f };
+
+    Vector3 rayCollisionPoint;                  // ray와 충돌 지점(높이값 계산용)
 
     float       hitAnimDuration { 0.0f };       // 타격 후 흔들림 애니메이션 재생 시간
     Vector3*    rotation;                       // 타격시 흔들림 조절용(actor->Find("RootNode")->rotation)

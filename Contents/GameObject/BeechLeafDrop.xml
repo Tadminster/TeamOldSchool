@@ -7,6 +7,6 @@
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="0" particleScaleY="0" particleCount="7" velocityScalar="10" duration="1" gravity="60"/>
+    <Pop particleScaleX="0" particleScaleY="0" particleCount="10" velocityScalar="10" duration="1" gravity="66.801003"/>
     <Children Size="0"/>
 </Root>
