@@ -352,6 +352,12 @@ bool Player::IsDestroyed()
 	return false;
 }
 
+Vector3 Player::GetCollisionPoint()
+{
+	if(equippedHand)
+		return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
+}
+
 void Player::DestructionEvent()
 {
 }
