@@ -64,13 +64,29 @@ void FeatureProto::RenderHierarchy()
 {
 }
 
-bool FeatureProto::ReceivedDamageEvent(float damage)
+bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	// 타격 이펙트 재생
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
 	// 타격 애니메이션 재생시간 설정
 	hitAnimDuration = 0.3f;
+	
+	// 데미지 계산
+	if (wType == WeaponType::Axe)
+	{
+		if (type == FeatureArmorType::Tree) damage *= 2.0f;
+	}
+	else if (wType == WeaponType::Pickaxe)
+	{
+		if (type == FeatureArmorType::Rock) damage *= 2.0f;
+	}
+
+	cout << "체력 : " << hitPoint << endl;
+	cout << "데미지 : " << damage << endl;
+	// 데미지 적용
+	hitPoint = max(0.0f, hitPoint - damage);
+	cout << "남은 체력 : " << hitPoint << endl;
 
 	return true;
 }

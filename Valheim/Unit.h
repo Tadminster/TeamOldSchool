@@ -36,7 +36,7 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
-	bool ReceivedDamageEvent(float damage) override;
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 	//유닛 공용 함수

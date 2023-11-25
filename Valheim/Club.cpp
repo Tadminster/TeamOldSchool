@@ -19,7 +19,7 @@ Club::Club()
 	//=========================
 	enumName = Item::Club;
 	type = ItemType::Weapon;
-	wType = WeaponType::Axe;
+	wType = WeaponType::Blunt;
 	state = ItemState::OnGround;
 	//=========================
 	stringName = "Club";

@@ -9,9 +9,11 @@ BeechHalfLog::BeechHalfLog()
 	actor->LoadFile("BeechHalfLog.xml");
 
 	static int index = 0;
-	actor->name = "BeechHalfLog" + index++;
+	actor->name = "BeechHalfLog" + to_string(index++);
 
-	hitPoint = 10;
+	//==================================================
+	type = FeatureArmorType::Tree;
+	hitPoint = 50;
 }
 
 BeechHalfLog::~BeechHalfLog()

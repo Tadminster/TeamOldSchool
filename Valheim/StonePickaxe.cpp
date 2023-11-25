@@ -19,7 +19,7 @@ StonePickaxe::StonePickaxe()
 	//=========================
 	enumName = Item::StonePickaxe;
 	type = ItemType::Weapon;
-	wType = WeaponType::Axe;
+	wType = WeaponType::Pickaxe;
 	state = ItemState::OnGround;
 	//=========================
 	stringName = "StonePickaxe";

@@ -34,7 +34,7 @@ void StructureProto::Render()
 	actor->Render();
 }
 
-bool StructureProto::ReceivedDamageEvent(float damage)
+bool StructureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	return false;
 }
