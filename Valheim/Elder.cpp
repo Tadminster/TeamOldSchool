@@ -28,7 +28,7 @@ void Elder::Init()
 
 void Elder::Update()
 {
-	//테스트용-------------------------------------
+	//테스트용------------------------------------
 	//if (INPUT->KeyDown('-')) actor->LoadFile("Monster_Elder.xml");
 	//else if (INPUT->KeyDown('=')) actor->LoadFile("Monster_Elder_BossStone.xml");
 

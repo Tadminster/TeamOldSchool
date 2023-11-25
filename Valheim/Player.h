@@ -7,7 +7,7 @@ class Player : public Unit
 	friend class SwingState;
 	
 	class PlayerState*		state = nullptr;
-	class ItemProto*		equippedHand = nullptr;
+	class WeaponProto*		equippedHand = nullptr;
 	
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -47,6 +47,7 @@ public:
 	Actor* GetPlayer()						{ return actor; }
 	const ItemProto* GetPlayerWeapon()		{ return equippedHand; }
 	Vector3 GetCollisionPoint();
+	WeaponType GetWeaponType();
 	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	Collider* GetCollider()					{ return actor->collider; }
@@ -59,7 +60,7 @@ public:
 	void AvtivatePlayerCam();
 	void PlayerControl();
 	void PlayerMove();
-	void EquipToHand(ItemProto* item);
+	void EquipToHand(WeaponProto* item);
 	void ReleaseToHand();
 	void MoveBack(Actor* col);
 	bool GetItem(ItemProto* item);

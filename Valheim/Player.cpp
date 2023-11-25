@@ -252,7 +252,7 @@ void Player::PlayerMove()
 	}
 }
 
-void Player::EquipToHand(ItemProto* item)
+void Player::EquipToHand(WeaponProto* item)
 {
 	if (!equippedHand)
 	{
@@ -356,6 +356,15 @@ Vector3 Player::GetCollisionPoint()
 {
 	if(equippedHand)
 		return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
+}
+
+WeaponType Player::GetWeaponType()
+{		
+	if (equippedHand)
+	{
+		return equippedHand->wType;
+	}
+	
 }
 
 void Player::DestructionEvent()
