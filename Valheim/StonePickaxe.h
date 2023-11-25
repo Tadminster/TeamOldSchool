@@ -1,14 +1,14 @@
 #pragma once
 #include "ItemProto.h"
 
-class StoneAxe : public WeaponProto
+class StonePickaxe : public WeaponProto
 {
 private:
 	friend class ItemProto;
 
 private:
-	StoneAxe();
-	~StoneAxe();
+	StonePickaxe();
+	~StonePickaxe();
 
 public:
 	void Init() override;

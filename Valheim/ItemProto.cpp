@@ -2,6 +2,7 @@
 #include "Prototype.h"
 
 #include "StoneAxe.h"
+#include "StonePickaxe.h"
 #include "Stone.h"
 #include "Woodpile.h"
 #include "Leather.h"
@@ -13,6 +14,8 @@ ItemProto* ItemProto::Create(Item name)
 	{
 	case Item::StoneAxe:
 		return new StoneAxe();
+	case Item::StonePickaxe:
+		return new StonePickaxe();
 	case Item::Woodpile:
 		return new Woodpile();
 	case Item::Stone:

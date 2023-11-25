@@ -2,10 +2,10 @@
 
 //====================================================================================================
 enum class ItemState { OnGround, OnInventory, Equipped };
-enum class ItemType  { Weapon, Tool, Armor, Food, Material };
+enum class ItemType  { Weapon, Armor, Food, Material };
 enum class Item
 {
-	StoneAxe, 
+	StoneAxe, StonePickaxe,
 	Stone, Woodpile, Leather
 };
 //====================================================================================================
@@ -59,7 +59,7 @@ class ToolProto : public ItemProto
 
 };
 //====================================================================================================
-enum class WeaponType { Sword, Axe, Pickaxes, Spear, Bow, Shield };
+enum class WeaponType { Sword, Axe, Pickaxes, Tool, Spear, Bow, Shield };
 class WeaponProto : public ItemProto
 {
 	friend class Player;
