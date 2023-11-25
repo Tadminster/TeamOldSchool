@@ -19,7 +19,7 @@ public:
 
 
 public:
-	void LodUpdate(LodLevel lv);
+	void LodUpdate(float distance);
 
 	// FeatureProto을(를) 통해 상속됨
 	void DestructionEvent() override;

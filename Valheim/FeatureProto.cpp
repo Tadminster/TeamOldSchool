@@ -42,6 +42,10 @@ void FeatureProto::Update()
 	{
 		DestructionEvent();
 	}
+
+	ReceivedDamageAnimation();
+
+	actor->Update();
 }
 
 void FeatureProto::LateUpdate()
@@ -69,10 +73,24 @@ bool FeatureProto::ReceivedDamageEvent(int damage)
 	// 무기 타격점 반환함수 만들어지면 생성 위치 변경해줄 예정
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
 
+	// 타격 애니메이션 재생시간 설정
+	hitAnimDuration = 0.3f;
+	
 	// HP 감소
 	hitPoint -= damage;
 
 	return true;
+}
+
+void FeatureProto::ReceivedDamageAnimation()
+{
+	if (hitAnimDuration <= 0.0f) return;
+
+	hitAnimDuration -= DELTA;
+
+	// 랜덤한 방향으로 흔들림
+	rotation->x = clamp(rotation->x + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
+	rotation->z = clamp(rotation->z + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
 }
 
 void FeatureProto::DestructionEvent()

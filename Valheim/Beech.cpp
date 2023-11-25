@@ -17,7 +17,7 @@ Beech::Beech()
 	actor->scale = Vector3(x, y, z);
 	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 
-
+	rotation = &actor->Find("RootNode")->rotation;
 
 	hitPoint = 10;
 }
@@ -32,8 +32,14 @@ void Beech::Init()
 
 void Beech::Update()
 {
+	//오브젝트와 카메라의 거리 계산
+	float distance = Vector3::DistanceSquared(Camera::main->GetWorldPos(), actor->GetWorldPos());
+	
+	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
+	if (distance > MAXMUM_UPDATE_DISTANCE) return;
+	else LodUpdate(distance);
+
 	FeatureProto::Update();
-	actor->Update();
 }
 
 void Beech::LateUpdate()
@@ -64,18 +70,16 @@ void Beech::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void Beech::LodUpdate(LodLevel lv)
+void Beech::LodUpdate(float distance)
 {
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
 	actor->Find("Lod3")->visible = false;
 
-	if (lv == LodLevel::LOD0)
-		actor->Find("Lod0")->visible = true;
-	else if (lv == LodLevel::LOD1)
-		actor->Find("Lod1")->visible = true;
-	else if (lv == LodLevel::LOD3)
-		actor->Find("Lod3")->visible = true;
+	if (distance < 1000) actor->Find("Lod0")->visible = true;			// 거리 1000 이하는 LOD0
+	else if (distance < 2000) actor->Find("Lod1")->visible = true;		// 거리 2000 이하는 LOD1
+	else if (distance < 3000) actor->Find("Lod3")->visible = true;		// 거리 5000 이하는 LOD3
+	else return;
 }
 
 void Beech::DestructionEvent()
