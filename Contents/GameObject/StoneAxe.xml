@@ -26,7 +26,15 @@
                 <Scale X="0.003" Y="0.003" Z="0.003"/>
                 <Rotation X="1.5707879" Y="0" Z="0"/>
             </Transform>
-            <Children Size="0"/>
+            <Children Size="1"/>
+            <Child0 Name="CollisionPoint" Visible="true" ObType="1">
+                <Transform>
+                    <Position X="66.666672" Y="233.33337" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
         </Child0>
     </Child0>
 </Root>
