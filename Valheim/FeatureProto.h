@@ -34,7 +34,7 @@ public:
     virtual void RenderHierarchy() override;
 
 public:
-    bool ReceivedDamageEvent(int damage) override;
+    virtual bool ReceivedDamageEvent(int damage) override;
     bool IsDestroyed() override { return hitPoint <= 0; }
     virtual void DestructionEvent() override;
 };

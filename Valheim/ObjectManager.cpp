@@ -157,7 +157,7 @@ void ObjectManager::LateUpdate()
 	{
 		if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
 		{
-			obj->ReceivedDamageEvent(10);
+			obj->ReceivedDamageEvent(2);
 			continue;
 		}
 	}

@@ -23,6 +23,7 @@ public:
 	void RenderHierarchy() override;
 
 	void LodUpdate(LodLevel lv);
+
 	void DestructionEvent() override;
 };
 
