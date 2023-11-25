@@ -16,8 +16,6 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
-
-	void LodUpdate(LodLevel lv);
 	void DestructionEvent() override;
 };
 
