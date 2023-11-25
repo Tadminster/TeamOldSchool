@@ -13,7 +13,7 @@
       <Filter>UI\Inventory</Filter>
     </ClInclude>
     <ClInclude Include="GameOption.h">
-      <Filter>UI\GameOptionUI</Filter>
+      <Filter>UI\GameOption</Filter>
     </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
@@ -105,6 +105,9 @@
     <ClInclude Include="Club.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="Notification.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -115,7 +118,7 @@
       <Filter>UI\Inventory</Filter>
     </ClCompile>
     <ClCompile Include="GameOption.cpp">
-      <Filter>UI\GameOptionUI</Filter>
+      <Filter>UI\GameOption</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Managers</Filter>
@@ -207,6 +210,9 @@
     <ClCompile Include="Club.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="Notification.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -245,11 +251,11 @@
     <Filter Include="UI\Inventory">
       <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\GameOptionUI">
-      <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
-    </Filter>
     <Filter Include="UI\Crafting">
       <UniqueIdentifier>{0a969bf3-3fc8-4ff1-af6f-f3ce6cccae93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\GameOption">
+      <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
