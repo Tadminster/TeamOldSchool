@@ -358,6 +358,12 @@ Vector3 Player::GetCollisionPoint()
 		return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
 }
 
+WeaponType Player::GetWeaponType()
+{
+	if (equippedHand)
+		return equippedHand->
+}
+
 void Player::DestructionEvent()
 {
 }

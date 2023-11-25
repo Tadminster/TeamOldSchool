@@ -47,6 +47,8 @@ public:
 	Actor* GetPlayer()						{ return actor; }
 	const ItemProto* GetPlayerWeapon()		{ return equippedHand; }
 	Vector3 GetCollisionPoint();
+	ItemType GetItemType();
+	WeaponType GetWeaponType();
 	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	Collider* GetCollider()					{ return actor->collider; }
