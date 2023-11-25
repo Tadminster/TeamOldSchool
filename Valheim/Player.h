@@ -23,12 +23,13 @@ class Player : public Unit
 	Ray playerReverseCamRay;
 	Vector3 playerReverseCamRayHit;
 
-	bool					isHit = 0;
-	bool					isJump = 0;
-	bool					isPlayerCam = 1;
-	bool					CamtoTerrain = 0;
-
+	bool					isJump = false;
+	bool					isPlayerCam = true;
+	bool					CamtoTerrain = false;
+	bool					isHit = false;
+	
 	int						isEquip = 0;
+
 	float					hitTime = 0;
 public:
 	bool istouch = 0;
@@ -43,16 +44,18 @@ public:
 	void DestructionEvent() override;
 	bool IsDestroyed() override;
 
+	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 이름 바꿀예정
+	Actor*			GetPlayer()						{ return actor; }
+	WeaponProto*	GetPlayerWeapon();
+	int				GetWeaponDMG()					{ return equippedHand->damage; }
+	WeaponType		GetWeaponType();
+	Vector3			GetCollisionPoint();
+	Camera*			GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
+	Camera*			GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
+	Collider*		GetCollider()					{ return actor->collider; }
+	float			GetMoveSpeed()					{ return moveSpeed; }
+	bool			GetPlayerJump()					{ return isJump; }
 	
-	Actor* GetPlayer()						{ return actor; }
-	const ItemProto* GetPlayerWeapon()		{ return equippedHand; }
-	Vector3 GetCollisionPoint();
-	WeaponType GetWeaponType();
-	Camera* GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
-	Camera* GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
-	Collider* GetCollider()					{ return actor->collider; }
-	float GetMoveSpeed()					{ return moveSpeed; }
-	bool GetPlayerJump()					{ return isJump; }
 	bool CleanHit(Collider* object);
 	bool CleanFrame();
 
@@ -64,5 +67,6 @@ public:
 	void ReleaseToHand();
 	void MoveBack(Actor* col);
 	bool GetItem(ItemProto* item);
-	void PlayerHit();
+	void PlayerHit(int damage = 1);
+
 };
