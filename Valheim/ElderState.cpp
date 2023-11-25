@@ -8,6 +8,7 @@ Elder_WalkState* Elder_WalkState::instance;
 Elder_StompState* Elder_StompState::instance;
 Elder_JumpAttackState* Elder_JumpAttackState::instance;
 Elder_SummonState* Elder_SummonState::instance;
+Elder_DeathState* Elder_DeathState::instance;
 
 //Opening 상태--------------------------------------------------------------------------
 void Elder_OpeningState::Opening(Elder* elder)
@@ -180,4 +181,21 @@ void Elder_SummonState::Summon(Elder* elder)
 }
 void Elder_SummonState::Death(Elder* elder)
 {
+}
+//Death 상태--------------------------------------------------------------------------
+void Elder_DeathState::Opening(Elder* elder) {}
+void Elder_DeathState::Idle(Elder* elder) {}
+void Elder_DeathState::Walk(Elder* elder){}
+void Elder_DeathState::Stomp(Elder* elder){}
+void Elder_DeathState::JumpAttack(Elder* elder){}
+void Elder_DeathState::Summon(Elder* elder){}
+void Elder_DeathState::Death(Elder* elder)
+{
+	if (elder->GetActor()->anim->currentAnimator.animIdx != 7)
+	{
+		elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 7);
+	}
+
+	elder->GetActor()->collider->SetLocalPos(Vector3(0, 1, -3.85f));
+	elder->GetActor()->collider->scale = Vector3(1.8f, 1, 3.8f);
 }

@@ -116,6 +116,7 @@ void Unit::Astar()
 	}
 }
 
+
 void Unit::Init()
 {
 }
