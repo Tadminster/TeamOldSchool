@@ -62,9 +62,16 @@ void FeatureProto::RenderHierarchy()
 
 bool FeatureProto::ReceivedDamageEvent(int damage)
 {
+	// HP가 0이하면 return false
 	if (hitPoint <= 0) return false;
 
+	// 타격 이펙트 재생
+	// 무기 타격점 반환함수 만들어지면 생성 위치 변경해줄 예정
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
+
+	// HP 감소
 	hitPoint -= damage;
+
 	return true;
 }
 
