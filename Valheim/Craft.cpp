@@ -218,7 +218,7 @@ void Craft::RecipeUpdate()
 	map<Item, bool> discoveryRecipeList = RECIPE->GetRecipeList();
 
 	// 레서피 목록을 순회
-	for (int index = 0; auto recipe : discoveryRecipeList)
+	for (int index = 0; auto& recipe : discoveryRecipeList)
 	{
 		// 레시피가 해금되었다면
 		if (recipe.second)
@@ -231,6 +231,8 @@ void Craft::RecipeUpdate()
 
 			// 레서피 선택 버튼 업데이트
 			RecipeIconUpdate(index);
+
+			index++;
 		}
 	}
 }
@@ -516,9 +518,11 @@ string Craft::GetIconFileName(Item item)
 {
 	switch (item)
 	{
-	case Item::StoneAxe:	return "axe_stone.png"; break;
-	case Item::Woodpile:	return "woodpile.png"; break;
-	case Item::Stone:		return "stone.png"; break;
-	default:				return "ERROE: Undefined icon name";
+	case Item::StoneAxe:		return "axe_stone.png"; break;
+	case Item::StonePickaxe:	return "pickaxe_stone.png"; break;
+	case Item::Woodpile:		return "woodpile.png"; break;
+	case Item::Stone:			return "stone.png"; break;
+	case Item::Leather:			return "leather.png"; break;
+	default:					return "ERROE: Undefined icon name";
 	}
 }

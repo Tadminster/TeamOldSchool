@@ -499,10 +499,10 @@ void Inventory::UseItem(int shortcut)
 							equippedItem.Weapon = i;
 						}
 					}
-					else if (type == ItemType::Tool)
-					{
-						equippedItem.Weapon = i;
-					}
+					//else if (type == ItemType::Tool)
+					//{
+					//	equippedItem.Weapon = i;
+					//}
 					else if (type == ItemType::Armor)
 					{
 						equippedItem.Armor = i;
@@ -550,10 +550,10 @@ void Inventory::UseItem(int shortcut)
 					isUse[shortcut] = true;
 				}
 			}
-			else if (type == ItemType::Tool)
-			{
-				equippedItem.Weapon = shortcut;
-			}
+			//else if (type == ItemType::Tool)
+			//{
+			//	equippedItem.Weapon = shortcut;
+			//}
 			else if (type == ItemType::Armor)
 			{
 				equippedItem.Armor = shortcut;
