@@ -85,7 +85,7 @@ void Craft::Release()
 
 void Craft::Update()
 {
-	ImGui::Begin("CraftHierarchy");
+	ImGui::Begin("UI Hierarchy");
 	{
 		craftUI->RenderHierarchy();
 	}

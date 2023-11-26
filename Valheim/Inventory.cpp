@@ -34,7 +34,19 @@ Inventory::Inventory()
 
 Inventory::~Inventory()
 {
+	// 저장한 UI 포인터들을 nullptr로 초기화
+	panel = nullptr;
+	tooltopBox = nullptr;
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+		slot[i] = nullptr;
+		inventoryItem[i] = nullptr;
+		inventoryIcon[i] = nullptr;
+	}
+	slot[BLUE_SLOT] = nullptr;
 
+	// 인벤토리 UI 해제
+	inventoryUI->Release();
 }
 
 void Inventory::Init()
@@ -52,10 +64,9 @@ void Inventory::Release()
 
 void Inventory::Update()
 {
-	ImGui::Begin("Hierarchy");
+	ImGui::Begin("UI Hierarchy");
 	{
 		inventoryUI->RenderHierarchy();
-		tooltopBox->RenderHierarchy();
 	}
 	ImGui::End();
 

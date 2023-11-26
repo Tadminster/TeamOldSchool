@@ -33,7 +33,7 @@ void MiniMap::Release()
 
 void MiniMap::Update()
 {
-	ImGui::Begin("Hierarchy");
+	ImGui::Begin("UI Hierarchy");
 	{
 		miniMap->RenderHierarchy();
 		playerIcon->RenderHierarchy();
