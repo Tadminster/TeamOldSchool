@@ -64,10 +64,9 @@ void Inventory::Release()
 
 void Inventory::Update()
 {
-	ImGui::Begin("Hierarchy");
+	ImGui::Begin("UI Hierarchy");
 	{
 		inventoryUI->RenderHierarchy();
-		tooltopBox->RenderHierarchy();
 	}
 	ImGui::End();
 

@@ -1,17 +1,22 @@
 #include "stdafx.h"
 #include "Notification.h"
 
-Notification::Notification(Item item)
+Notification::Notification(Item item, NotificationType type)
 {
 	notificationUI = UI::Create("UI_Notification");
 	notificationUI->LoadFile("UI_Notification.xml");
+	//notificationUI->SetWorldPos();
 
 	panel = static_cast<UI*>(notificationUI->Find("0_BackGround"));
 	icon = static_cast<UI*>(notificationUI->Find("1_Icon"));
 
-	this->item = item;
+	// 텍스트 설정
+	textSubject = SetTextSubject(type);
+	textItemName = SetTextItemName(item);
 
-	Init();
+	// 습득/해금한 아이템 아이콘 설정
+	string iconFileName = CRAFT->GetIconFileName(item);
+	CRAFT->IconChanger(icon, iconFileName);
 }
 
 Notification::~Notification()
@@ -24,9 +29,8 @@ Notification::~Notification()
 
 void Notification::Init()
 {
-	string iconFileName = CRAFT->GetIconFileName(item);
-	CRAFT->IconChanger(icon, iconFileName);
 }
+
 
 void Notification::Release()
 {
@@ -34,11 +38,18 @@ void Notification::Release()
 
 void Notification::Update()
 {
+	ImGui::Begin("UI Hierarchy");
+	{
+		notificationUI->RenderHierarchy();
+	}
+	ImGui::End();
+	
 	duration += DELTA;
 
-	if (duration >= 3.0f)
+	// 3.0초가 지나면 알림을 삭제
+	if (duration >= DURATION_LIMIT)
 	{
-		Notification::~Notification();
+		//Notification::~Notification();
 	}
 
 	notificationUI->Update();
@@ -70,33 +81,33 @@ void Notification::Render()
 		appHalfHeight * (1.0f - panel->GetWorldPos().y) };
 
 	// 텍스트 위치 설정
-	subject.left = Baseline.x - notiSize.x * 0.8f;
-	subject.right = subject.left + 1000;
-	subject.top = Baseline.y - notiSize.y * 0.85f;
-	subject.bottom = subject.top + 200;
+	rectSubject.left = Baseline.x - notiSize.x * 0.74f;
+	rectSubject.right = rectSubject.left + 1000;
+	rectSubject.top = Baseline.y - notiSize.y * 0.85f;
+	rectSubject.bottom = rectSubject.top + 200;
 
 	// 설명
-	itemName.left = Baseline.x - notiSize.x * 0.8f;
-	itemName.right = itemName.left + 1000;
-	itemName.top = Baseline.y - notiSize.y * 0.85f;
-	itemName.bottom = itemName.top + 1000;
+	rectItemName.left = Baseline.x - notiSize.x * 0.1f;
+	rectItemName.right = rectItemName.left + 1000;
+	rectItemName.top = Baseline.y;
+	rectItemName.bottom = rectItemName.top + 1000;
 
 	DWRITE->RenderText(
-		L"ㅁㅁㅁㅁ",
-		subject,
+		textSubject,
+		rectSubject,
 		20.0f,
 		L"Arial",
-		Color(0.0f, 0.7f, 1.0f, 0.0f),
+		Color(1.0f, 0.7f, 0.0f, 0.0f),
 		DWRITE_FONT_WEIGHT_SEMI_BOLD,
 		DWRITE_FONT_STYLE_ITALIC,
 		DWRITE_FONT_STRETCH_EXPANDED);
 
 	DWRITE->RenderText(
-		L"ㅇㅇㅇㅇㅇ",
-		itemName,
+		textItemName,
+		rectItemName,
 		20.0f,
 		L"Arial",
-		Color(0.0f, 0.7f, 1.0f, 0.0f),
+		Color(1.0f, 1.0f, 1.0f, 0.0f),
 		DWRITE_FONT_WEIGHT_SEMI_BOLD,
 		DWRITE_FONT_STYLE_ITALIC,
 		DWRITE_FONT_STRETCH_EXPANDED);
@@ -104,4 +115,26 @@ void Notification::Render()
 
 void Notification::ResizeScreen()
 {
+}
+
+wstring Notification::SetTextSubject(NotificationType type)
+{
+	switch (type)
+	{
+		case NotificationType::Discovery:	return textSubject = L"새로운 아이템 발견";
+		case NotificationType::Unlock:		return textSubject = L"새로운 레시피 해금";
+	}
+}
+
+wstring Notification::SetTextItemName(Item item)
+{
+	switch (item)
+	{
+		case Item::Club:			return textItemName = L"몽둥이"; 
+		case Item::StoneAxe:		return textItemName = L"돌 도끼";  
+		case Item::StonePickaxe:	return textItemName = L"돌 곡괭이";
+		case Item::Woodpile:		return textItemName = L"나무";
+		case Item::Stone:			return textItemName = L"돌";
+		case Item::Leather:			return textItemName = L"가죽";
+	}
 }

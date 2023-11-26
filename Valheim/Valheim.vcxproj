@@ -36,7 +36,6 @@
     <ClInclude Include="ElderState.h" />
     <ClInclude Include="FeatureProto.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="GameOption.h" />
     <ClInclude Include="Grass.h" />
     <ClInclude Include="InGame.h" />
     <ClInclude Include="Inventory.h" />
@@ -53,6 +52,7 @@
     <ClInclude Include="Beech.h" />
     <ClInclude Include="Elder.h" />
     <ClInclude Include="Unit.h" />
+    <ClInclude Include="UserInterfaceManager.h" />
     <ClInclude Include="Woodpile.h" />
     <ClInclude Include="Workbench.h" />
     <ClInclude Include="WorldTimeManager.h" />
@@ -75,7 +75,6 @@
     <ClCompile Include="ElderState.cpp" />
     <ClCompile Include="FeatureProto.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="GameOption.cpp" />
     <ClCompile Include="Grass.cpp" />
     <ClCompile Include="InGame.cpp" />
     <ClCompile Include="Inventory.cpp" />
@@ -90,6 +89,7 @@
     <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Elder.cpp" />
     <ClCompile Include="Unit.cpp" />
+    <ClCompile Include="UserInterfaceManager.cpp" />
     <ClCompile Include="Woodpile.cpp" />
     <ClCompile Include="Workbench.cpp" />
     <ClCompile Include="WorldTimeManager.cpp" />

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 //#include "ItemProto.h"
+#include "Notification.h"
 #include "Recipe.h"
 
 Recipe::Recipe()
@@ -56,7 +57,8 @@ bool Recipe::DiscoveryItemUpdate(ItemProto* item)
             discoveryItemList[item->GetEnumName()] = true;
 
             // 아이템 발견 메세지 출력
-            cout << "Item '" << item->GetStringName() << "' discovered." << endl;
+            //cout << "Item '" << item->GetStringName() << "' discovered." << endl;
+            UIM->AddNotification(item->GetEnumName(), NotificationType::Discovery);
 
             // 레서피 업데이트
             RecipeUpdate(item);
@@ -82,20 +84,15 @@ void Recipe::RecipeUpdate(ItemProto* item)
         // 레서피의 재료를 모든 재료를 획득했다면 (삭제되었다면)
         if (recipe.second.empty())
         {
+            // 레서피 발견 알림창 출력
+            UIM->AddNotification(recipe.first, NotificationType::Unlock);
+
 			// 레서피를 발견한 아이템 목록에 추가함
             discoveryRecipeList[recipe.first] = true;
 
             // 제작창에 레서피 추가
             CRAFT->RecipeUpdate();
 
-            // 레서피 발견 메시지 출력 (디버그용)
-            cout << "Recipe ";
-            switch (recipe.first)
-            {
-            case Item::StoneAxe: cout << "'StoneAxe'"; break;
-            case Item::StonePickaxe: cout << "'StonePickaxe'"; break;
-            }
-            cout << " discovered." << endl;
 		}
     }
 }
