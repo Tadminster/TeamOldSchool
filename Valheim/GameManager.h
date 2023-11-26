@@ -3,15 +3,15 @@
 class GameManager : public Singleton<GameManager>
 {
 public:
-    class Terrain*          map;
-    class Water*            sea;
+    class Terrain*              map;
+    class Water*                sea;
 
-    class Recipe*			recipe;
-    class Player*           player;
+    class Recipe*			    recipe;
+    class Player*               player;
 
-    class ObjectManager*    objectManager;
-    class ParticleManager*  particleManager;
-    class WorldTimeManager* worldtimeManager;
+    class ObjectManager*        objectManager;
+    class ParticleManager*      particleManager;
+    class WorldTimeManager*     worldtimeManager;
     class UserInterfaceManager* uiManager;
 
 public:

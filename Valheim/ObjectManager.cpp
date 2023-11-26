@@ -46,7 +46,6 @@ ObjectManager::ObjectManager()
 			AddItem(item);
 		}
 	}
-
 }
 
 ObjectManager::~ObjectManager()

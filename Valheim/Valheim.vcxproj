@@ -25,6 +25,8 @@
     <ClInclude Include="Birch.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
+    <ClInclude Include="Goblin.h" />
+    <ClInclude Include="GoblinState.h" />
     <ClInclude Include="DamageText.h" />
     <ClInclude Include="Leather.h" />
     <ClInclude Include="Notification.h" />
@@ -65,6 +67,8 @@
     <ClCompile Include="Birch.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="Goblin.cpp" />
+    <ClCompile Include="GoblinState.cpp" />
     <ClCompile Include="DamageText.cpp" />
     <ClCompile Include="Leather.cpp" />
     <ClCompile Include="Notification.cpp" />

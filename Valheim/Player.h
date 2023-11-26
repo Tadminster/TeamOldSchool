@@ -47,7 +47,7 @@ public:
 	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 이름 바꿀예정
 	Actor*			GetPlayer()						{ return actor; }
 	WeaponProto*	GetPlayerWeapon();
-	int				GetWeaponDMG()					{ return equippedHand->damage; }
+	float			GetWeaponDMG()					{ return equippedHand->damage; }
 	WeaponType		GetWeaponType();
 	Vector3			GetCollisionPoint();
 	Camera*			GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }

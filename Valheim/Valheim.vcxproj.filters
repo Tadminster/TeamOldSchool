@@ -36,15 +36,6 @@
     <ClInclude Include="Birch.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Elder.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
     <ClInclude Include="ItemProto.h">
       <Filter>GameObject\Items</Filter>
     </ClInclude>
@@ -56,12 +47,6 @@
     </ClInclude>
     <ClInclude Include="Woodpile.h">
       <Filter>GameObject\Items\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="ElderState.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="ElderPatern.h">
-      <Filter>GameObject\Unit</Filter>
     </ClInclude>
     <ClInclude Include="Workbench.h">
       <Filter>GameObject\Building Structures</Filter>
@@ -108,6 +93,27 @@
     <ClInclude Include="Inventory.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="Elder.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="ElderPatern.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="ElderState.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="GoblinState.h">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClInclude>
     <ClInclude Include="DamageText.h">
       <Filter>UI</Filter>
     </ClInclude>
@@ -144,15 +150,6 @@
     <ClCompile Include="Birch.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Elder.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
     <ClCompile Include="ItemProto.cpp">
       <Filter>GameObject\Items</Filter>
     </ClCompile>
@@ -164,12 +161,6 @@
     </ClCompile>
     <ClCompile Include="Woodpile.cpp">
       <Filter>GameObject\Items\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="ElderState.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="ElderPatern.cpp">
-      <Filter>GameObject\Unit</Filter>
     </ClCompile>
     <ClCompile Include="Workbench.cpp">
       <Filter>GameObject\Building Structures</Filter>
@@ -216,6 +207,27 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>UI</Filter>
     </ClCompile>
+    <ClCompile Include="Elder.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderPatern.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderState.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="GoblinState.cpp">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClCompile>
     <ClCompile Include="DamageText.cpp">
       <Filter>UI</Filter>
     </ClCompile>
@@ -253,6 +265,15 @@
     </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{764bce8e-0a20-4e36-8220-169378c0ab44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Unit\Elder">
+      <UniqueIdentifier>{a8db61c3-017f-4fe9-b083-276ad9e8b872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Unit\Player">
+      <UniqueIdentifier>{e17f4990-b921-45ef-a0c5-e07a7f81fe95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Unit\Goblin">
+      <UniqueIdentifier>{59a2af52-f892-4412-b4ed-7da96a9da438}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

@@ -20,11 +20,13 @@ protected:
 	float				rotationSpeed = 0;
 	float				rotationTime = 0;
 	float				rotationScale = 0.4f;
+
 	//A Star--------------------------------------
 	Ray					AstarRay;
 	vector<Vector3>		way = {};
 	AStar*				astar = nullptr;
 	float				astarTime = 0;
+
 	//Death-----------------------------------------
 	bool				isDeath = false;
 public:
@@ -46,5 +48,6 @@ public:
 	void RotationForMove(Vector3 targetPos);
 	void MonsterMove();
 	void Astar();
+	void Astar(Vector3 targetPos);
 };
 
