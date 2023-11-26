@@ -81,8 +81,9 @@ void Recipe::RecipeUpdate(ItemProto* item)
         // 레서피의 재료를 담은 Set에서 해당 아이템을 삭제함
         recipe.second.erase(item->GetEnumName());
 
+        // 발견되지 않은 리스트이고
         // 레서피의 재료를 모든 재료를 획득했다면 (삭제되었다면)
-        if (recipe.second.empty())
+        if (!discoveryRecipeList[recipe.first] &&recipe.second.empty())
         {
             // 레서피 발견 알림창 출력
             UIM->AddNotification(recipe.first, NotificationType::Unlock);
