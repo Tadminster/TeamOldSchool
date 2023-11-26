@@ -28,7 +28,7 @@ void Elder::Init()
 
 void Elder::Update()
 {
-	//테스트용-------------------------------------
+	//테스트용------------------------------------
 	//if (INPUT->KeyDown('-')) actor->LoadFile("Monster_Elder.xml");
 	//else if (INPUT->KeyDown('=')) actor->LoadFile("Monster_Elder_BossStone.xml");
 
@@ -65,13 +65,37 @@ void Elder::Update()
 		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
 	}
 
-	BehaviorPatern();
-	DoFSM();
+	if (hitPoint <= 0)
+	{
+		state = E_DEATH;
+		Ray deathRay;
+		deathRay.position = actor->GetWorldPos() + (-actor->GetForward()) * 10.0f + Vector3(0, 1000, 0);
+		deathRay.direction = Vector3(0, -1, 0);
+		Vector3 temp;
+		if (Utility::RayIntersectMap(deathRay, MAP, temp))
+		{
+			Vector3 dir = temp - actor->GetWorldPos();
+			dir.Normalize();
+			actor->rotation.x = asinf(dir.y);
+		}
+		
+		
+	}
+	else
+	{
+		BehaviorPatern();
+		ApplyGravity();
+	}
 
-	//중력 구현
-	ApplyGravity();
+	
+	
+	
+	DoFSM();
 	actor->Update();
 	patern->Update();
+	
+	
+	
 
 }
 
@@ -79,32 +103,33 @@ void Elder::LateUpdate()
 {
 	//Elder - Terrain 충돌
 	SetOnTerrain();
-
-	//Elder_BossStone - Player 충돌
-	if (PLAYER->GetCollider()->Intersect(actor->collider))
-	{
-		PLAYER->istouch = true;
-		PLAYER->MoveBack(actor);
-	}
-	else
-	{
-		PLAYER->istouch = false;
-	}
-
-	//Elder - Player 충돌
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
-		&& state == E_STOMP)
-	{
-		PLAYER->PlayerHit();
-	}
 	
+		//Elder_BossStone - Player 충돌
+		if (PLAYER->GetCollider()->Intersect(actor->collider))
+		{
+			PLAYER->istouch = true;
+			PLAYER->MoveBack(actor);
+		}
+		else
+		{
+			PLAYER->istouch = false;
+		}
 
-	if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
-	{
-		cout << "elder hit!" << endl;
-		cout << PLAYER->GetPlayer()->anim->currentAnimator.currentFrame << endl;
-		
-	}
+		//Elder 공격 -> Player 피격
+		if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+			&& state == E_STOMP)
+		{
+			PLAYER->PlayerHit();
+		}
+
+		//Player 공격 -> Elder 피격
+		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+		{
+			if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
+			{
+				this->hitPoint -= PLAYER->GetWeaponDMG();
+			}
+		}
 	
 }
 
@@ -131,7 +156,6 @@ bool Elder::IsDestroyed()
 
 void Elder::DestructionEvent()
 {
-	//사망 상태 넣기
 }
 
 void Elder::SetState(ElderState* state)
@@ -141,8 +165,6 @@ void Elder::SetState(ElderState* state)
 
 void Elder::BehaviorPatern()
 {
-	ImGui::Text("paterntype %d",paternType%2);
-	ImGui::Text("stompPatern %d",stompPatern);
 	//공격 한번 당 2.5초 쉼
 	if (paternTime >= 0 && state == E_IDLE)
 	{
@@ -195,6 +217,10 @@ void Elder::DoFSM()
 	else if (state == E_SUMMON)
 	{
 		state->Summon(this);
+	}
+	else if (state == E_DEATH)
+	{
+		state->Death(this);
 	}
 }
 

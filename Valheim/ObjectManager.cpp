@@ -94,48 +94,14 @@ void ObjectManager::Update()
 	ListEraser(items);
 	ListEraser(structures);
 
-	static float distanceCalCycle = 0;
-	// 최적화를 위해 일정 주기로 거리 계산
-	if (TIMER->GetTick(distanceCalCycle, 0.1f))
+	static float objUpdateCycle = 0;
+	//if (TIMER->GetTick(objUpdateCycle, 0.1f))
 	{
-		Vector3 CameraPos = Camera::main->GetWorldPos();
 		for (auto& obj : objects)
 		{
-			// Down Casting
-			Beech* beech = dynamic_cast<Beech*>(obj);
-			if (beech)
-			{
-				// 거리에 따라 LOD 적용
-				float distance = Vector3::DistanceSquared(CameraPos, beech->GetActor()->GetWorldPos());
-				if (distance < 1000) beech->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
-				else if (distance < 2000) beech->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
-				else if (distance < 4000) beech->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
-				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
-
-				obj->Update();
-			}
-
-			// Down Casting
-			Birch* birch = dynamic_cast<Birch*>(obj);
-			if (birch)
-			{
-				// 거리에 따라 LOD 적용
-				float distance = Vector3::DistanceSquared(CameraPos, birch->GetActor()->GetWorldPos());
-				if (distance < 1000) birch->LodUpdate(LodLevel::LOD0);			// 거리 1000 이하는 LOD0
-				else if (distance < 2000) birch->LodUpdate(LodLevel::LOD1);		// 거리 2000 이하는 LOD1
-				else if (distance < 4000) birch->LodUpdate(LodLevel::LOD3);		// 거리 5000 이하는 LOD3
-				else continue;													// 거리 5000 이상은 continue로 업데이트 생략
-
-				obj->Update();
-			}
-			// beech가 아니면 업데이트만
-			else
-				obj->Update();
-
+			obj->Update();
 		}
 	}
-
-
 
 	// 아이템 업데이트
 	for (auto& item : items)
@@ -153,12 +119,13 @@ void ObjectManager::LateUpdate()
 		if (PLAYER->GetItem(item)) break;
 	}
 
+	// 오브젝트에 데미지 입히기
 	for (auto& obj : objects)
 	{
 		if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
 		{
-			obj->ReceivedDamageEvent(10);
-			continue;
+			obj->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
+			break;
 		}
 	}
 }
@@ -312,7 +279,7 @@ void ObjectManager::GenerateTree()
 					}
 					else
 					{
-						if (RANDOM->Int(2, 10) == 1)
+						if (RANDOM->Int(1, 10) == 1)
 							feature = FeatureProto::Create(FeatureType::Birch);
 						else
 							feature = FeatureProto::Create(FeatureType::Beech);

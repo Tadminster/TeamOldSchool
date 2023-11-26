@@ -28,7 +28,7 @@ public:
 	~Recipe();
 
 	bool DiscoveryItemUpdate(class ItemProto* item);	// 아이템 발견 업데이트 (새로운 아이템 획득시 호출)
-	bool RecipeUpdate(class ItemProto* item);			// 레서피 업데이트 (새로운 아이템 획득시 호출)
+	void RecipeUpdate(class ItemProto* item);			// 레서피 업데이트 (새로운 아이템 획득시 호출)
 
 	map<Item, bool>& GetRecipeList() { return discoveryRecipeList; }
 	struct RecipeInfo* GetRecipe(Item item);

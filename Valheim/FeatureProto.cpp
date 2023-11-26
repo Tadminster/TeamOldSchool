@@ -42,6 +42,10 @@ void FeatureProto::Update()
 	{
 		DestructionEvent();
 	}
+
+	ReceivedDamageAnimation();
+
+	actor->Update();
 }
 
 void FeatureProto::LateUpdate()
@@ -60,12 +64,42 @@ void FeatureProto::RenderHierarchy()
 {
 }
 
-bool FeatureProto::ReceivedDamageEvent(int damage)
+bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
-	if (hitPoint <= 0) return false;
+	// 타격 이펙트 재생
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
-	hitPoint -= damage;
+	// 타격 애니메이션 재생시간 설정
+	hitAnimDuration = 0.3f;
+	
+	// 데미지 계산
+	if (wType == WeaponType::Axe)
+	{
+		if (type == FeatureArmorType::Tree) damage *= 2.0f;
+	}
+	else if (wType == WeaponType::Pickaxe)
+	{
+		if (type == FeatureArmorType::Rock) damage *= 2.0f;
+	}
+
+	cout << "체력 : " << hitPoint << endl;
+	cout << "데미지 : " << damage << endl;
+	// 데미지 적용
+	hitPoint = max(0.0f, hitPoint - damage);
+	cout << "남은 체력 : " << hitPoint << endl;
+
 	return true;
+}
+
+void FeatureProto::ReceivedDamageAnimation()
+{
+	if (hitAnimDuration <= 0.0f) return;
+
+	hitAnimDuration -= DELTA;
+
+	// 랜덤한 방향으로 흔들림
+	rotation->x = clamp(rotation->x + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
+	rotation->z = clamp(rotation->z + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
 }
 
 void FeatureProto::DestructionEvent()

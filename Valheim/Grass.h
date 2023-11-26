@@ -15,7 +15,7 @@ public:
 	void RenderHierarchy() override {};
 
 	// Prototype을(를) 통해 상속됨
-	bool ReceivedDamageEvent(int damage) override;
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 };

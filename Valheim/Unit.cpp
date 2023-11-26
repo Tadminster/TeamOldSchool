@@ -116,6 +116,7 @@ void Unit::Astar()
 	}
 }
 
+
 void Unit::Init()
 {
 }
@@ -140,7 +141,7 @@ void Unit::RenderHierarchy()
 {
 }
 
-bool Unit::ReceivedDamageEvent(int damage)
+bool Unit::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	return false;
 }

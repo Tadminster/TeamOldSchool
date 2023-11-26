@@ -8,6 +8,7 @@
 #define E_STOMP Elder_StompState::GetInstance()
 #define E_JumpAttack Elder_JumpAttackState::GetInstance()
 #define E_SUMMON Elder_SummonState::GetInstance()
+#define E_DEATH Elder_DeathState::GetInstance()
 class Elder;
 
 class ElderState
@@ -124,6 +125,24 @@ public:
 	static Elder_SummonState* GetInstance()
 	{
 		if (instance == nullptr) instance = new Elder_SummonState();
+		return instance;
+	}
+	void Opening(Elder* elder) override;
+	void Idle(Elder* elder) override;
+	void Walk(Elder* elder) override;
+	void Stomp(Elder* elder) override;
+	void JumpAttack(Elder* elder) override;
+	void Summon(Elder* elder) override;
+	void Death(Elder* elder) override;
+};
+//Death Å¬·¡½º----------------------------------------------------------
+class Elder_DeathState : public ElderState
+{
+	static Elder_DeathState* instance;
+public:
+	static Elder_DeathState* GetInstance()
+	{
+		if (instance == nullptr) instance = new Elder_DeathState();
 		return instance;
 	}
 	void Opening(Elder* elder) override;

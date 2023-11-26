@@ -11,7 +11,10 @@ Player::Player()
 	actor->anim->aniScale = 0.65f;
 	
 	state = IdleState::GetInstance();
+
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
+
+	hitPoint = 10;
 }
 
 Player::~Player()
@@ -28,6 +31,7 @@ void Player::Init()
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
+	
 	PlayerControl();
 	PlayerMove();
 	if (DEBUGMODE) 
@@ -38,7 +42,7 @@ void Player::Update()
 	if(hitTime >= 0) hitTime -= DELTA;
 	//중력 구현
 	ApplyGravity();
-
+	
 	actor->Update();
 }
 
@@ -103,6 +107,8 @@ bool Player::CleanFrame()
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
 	{
 		actor->anim->currentAnimator.currentFrame++;
+		//actor->anim->currentAnimator.currentFrame = 90;
+		//actor->anim->currentAnimator.currentFrame = actor->anim->currentAnimator.nextFrame;
 		return true;
 	}
 	return false;
@@ -122,8 +128,9 @@ void Player::AvtivatePlayerCam()
 	//	isPlayerCam = true;
 	//}
 	//카메라 전환 시 화면 짤리는 부분 방지
-	if(actor->anim->currentAnimator.animIdx==0)
-		actor->Update();
+
+	if(actor->anim->currentAnimator.animIdx==0) actor->Update();
+	
 	{
 		Camera::main->viewport.x = 0.0f;
 		Camera::main->viewport.y = 0.0f;
@@ -146,7 +153,6 @@ void Player::AvtivatePlayerCam()
 		ClientToScreen(App.GetHandle(), &ptMouse);
 		SetCursorPos(ptMouse.x, ptMouse.y);
 	}
-	
 
 	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
@@ -223,9 +229,12 @@ void Player::PlayerControl()
 		state->Jump();
 	}
 	//Swing--------------------------------------------------------------------------------------------
-	if (INPUT->KeyPress(VK_LBUTTON)) 
+	if (!INVEN->isOpen && !CRAFT->isOpen)
 	{
-		state->Swing();
+		if (INPUT->KeyPress(VK_LBUTTON)) 
+		{
+			state->Swing();
+		}
 	}
 }
 
@@ -234,8 +243,8 @@ void Player::PlayerMove()
 	//상태값에 따른 이동속도(FSM완료후 다듬을 예정)
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
-	else if (state == SwingState::GetInstance()) moveSpeed = 0;
 
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
@@ -252,7 +261,20 @@ void Player::PlayerMove()
 	}
 }
 
-void Player::EquipToHand(ItemProto* item)
+void Player::MoveBack(Actor* col)
+{
+	Vector3 slidingDir = col->GetWorldPos() - actor->GetWorldPos();
+	slidingDir.y = 0;
+	slidingDir.Normalize();
+	Vector3 normal = col->collider->GetNormalVector(slidingDir);
+
+	moveDir = slidingDir - normal * (slidingDir.Dot(normal));
+	moveDir.Normalize();
+	moveDir = -moveDir;
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+}
+
+void Player::EquipToHand(WeaponProto* item)
 {
 	if (!equippedHand)
 	{
@@ -274,18 +296,7 @@ void Player::ReleaseToHand()
 	}
 }
 
-void Player::MoveBack(Actor* col)
-{
-	Vector3 slidingDir =  col->GetWorldPos() - actor->GetWorldPos();
-	slidingDir.y = 0;
-	slidingDir.Normalize();
-	Vector3 normal = col->collider->GetNormalVector(slidingDir);
 
-	moveDir = slidingDir - normal * (slidingDir.Dot(normal));
-	moveDir.Normalize();
-	moveDir = -moveDir;
-	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-}
 
 bool Player::GetItem(ItemProto* item)
 {	
@@ -334,7 +345,7 @@ bool Player::GetItem(ItemProto* item)
 	}
 }
 
-void Player::PlayerHit()
+void Player::PlayerHit(int damage)
 {
 	if (hitTime < 0)
 	{
@@ -342,6 +353,7 @@ void Player::PlayerHit()
 		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, this->GetActor()->GetWorldPos());
 		//----------------------------------------
 		cout << "PlayerHit!";
+		hitPoint -= damage;
 		hitTime = 1.0f;
 		isHit = false;
 	}
@@ -350,6 +362,21 @@ void Player::PlayerHit()
 bool Player::IsDestroyed()
 {
 	return false;
+}
+
+WeaponProto* Player::GetPlayerWeapon()
+{
+	if (equippedHand) return equippedHand;
+}
+
+Vector3 Player::GetCollisionPoint()
+{
+	if(equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
+}
+
+WeaponType Player::GetWeaponType()
+{		
+	if (equippedHand) return equippedHand->wType;
 }
 
 void Player::DestructionEvent()

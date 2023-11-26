@@ -17,9 +17,11 @@ Beech::Beech()
 	actor->scale = Vector3(x, y, z);
 	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 
+	rotation = &actor->Find("RootNode")->rotation;
 
-
-	hitPoint = 10;
+	//==================================================
+	type = FeatureArmorType::Tree;
+	hitPoint = 80;
 }
 
 Beech::~Beech()
@@ -32,8 +34,14 @@ void Beech::Init()
 
 void Beech::Update()
 {
+	//오브젝트와 카메라의 거리 계산
+	float distance = Vector3::DistanceSquared(Camera::main->GetWorldPos(), actor->GetWorldPos());
+	
+	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
+	if (distance > MAXMUM_UPDATE_DISTANCE) return;
+	else LodUpdate(distance);
+
 	FeatureProto::Update();
-	actor->Update();
 }
 
 void Beech::LateUpdate()
@@ -64,18 +72,16 @@ void Beech::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void Beech::LodUpdate(LodLevel lv)
+void Beech::LodUpdate(float distance)
 {
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
 	actor->Find("Lod3")->visible = false;
 
-	if (lv == LodLevel::LOD0)
-		actor->Find("Lod0")->visible = true;
-	else if (lv == LodLevel::LOD1)
-		actor->Find("Lod1")->visible = true;
-	else if (lv == LodLevel::LOD3)
-		actor->Find("Lod3")->visible = true;
+	if (distance < 1000) actor->Find("Lod0")->visible = true;			// 거리 1000 이하는 LOD0
+	else if (distance < 2000) actor->Find("Lod1")->visible = true;		// 거리 2000 이하는 LOD1
+	else if (distance < 3000) actor->Find("Lod3")->visible = true;		// 거리 5000 이하는 LOD3
+	else return;
 }
 
 void Beech::DestructionEvent()
@@ -96,15 +102,9 @@ void Beech::DestructionEvent()
 	OBJ->AddObject(stump);
 	OBJ->AddObject(log);
 
-	//임시로 오브젝트 파괴시 파티클효과 추가합니다------------
-	// PlayParticleEffect 함수의 이펙트의 타입과 Vector3 pos 이펙트 시작위치는 개인이원하는 위치에 지정해주시면 됩니다
-	//나무 자체 타격 이펙트 입니다
-	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
-	//나무 파괴시 나뭇잎이 떨어지는 이펙트입니다
-	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, this->actor->GetWorldPos());
-	//나무 타격시 발생하는 먼지 이펙트 입니다
-	PARTICLE->PlayParticleEffect(EffectType::WOODHITDUST, this->actor->GetWorldPos());
-	//-------------------------------------------------
+	// 나무 파괴 이펙트 재생
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, spawnPos);
+	
 	// 오브젝트 삭제 (나무)
 	Beech::~Beech();
 }

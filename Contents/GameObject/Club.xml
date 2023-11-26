@@ -1,7 +1,7 @@
-<Root Name="StoneAxe" Visible="true" ObType="1">
+<Root Name="Club" Visible="true" ObType="1">
     <Collider ColliderType="2" Visible="true">
-        <Position X="0" Y="0" Z="0.69999999"/>
-        <Scale X="0.30000001" Y="0.2" Z="0.2"/>
+        <Position X="0" Y="0" Z="0.55000001"/>
+        <Scale X="0.12" Y="0.12" Z="0.54000002"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
@@ -18,18 +18,18 @@
         </Transform>
         <Children Size="1"/>
         <Child0 Name="Mesh" Visible="true" ObType="0">
-            <Mesh File="AxeStone/stoneaxe_Cube_004.mesh"/>
+            <Mesh File="Club/model.mesh"/>
             <Shader File="4.Cube.hlsl"/>
-            <Material File="AxeStone/weapons1.mtl"/>
+            <Material File="Club/Club.mtl"/>
             <Transform>
-                <Position X="0" Y="0" Z="0"/>
-                <Scale X="0.003" Y="0.003" Z="0.003"/>
-                <Rotation X="1.5707879" Y="0" Z="0"/>
+                <Position X="0" Y="0.00033378601" Z="0"/>
+                <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
+                <Rotation X="0" Y="3.1415758" Z="0"/>
             </Transform>
             <Children Size="1"/>
             <Child0 Name="CollisionPoint" Visible="true" ObType="1">
                 <Transform>
-                    <Position X="66.666672" Y="233.33337" Z="0"/>
+                    <Position X="0" Y="0" Z="-70"/>
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Transform>

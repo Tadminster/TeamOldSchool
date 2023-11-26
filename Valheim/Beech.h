@@ -22,7 +22,7 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
-	void LodUpdate(LodLevel lv);
+	void LodUpdate(float distance) override;
 	void DestructionEvent() override;
 };
 

@@ -17,7 +17,11 @@ Birch::Birch()
 	actor->scale = Vector3(x, y, z);
 	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
 
-	hitPoint = 10;
+	rotation = &actor->Find("RootNode")->rotation;
+
+	//==================================================
+	type = FeatureArmorType::Tree;
+	hitPoint = 80;
 }
 
 Birch::~Birch()
@@ -30,8 +34,15 @@ void Birch::Init()
 
 void Birch::Update()
 {
+	// 오브젝트와 카메라의 거리 계산
+	float distance = Vector3::DistanceSquared(Camera::main->GetWorldPos(), actor->GetWorldPos());
+
+	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
+	if (distance > MAXMUM_UPDATE_DISTANCE) return;
+	// 3000.0f 미만이면 Lod 적용
+	else LodUpdate(distance);
+
 	FeatureProto::Update();
-	actor->Update();
 }
 
 void Birch::LateUpdate()
@@ -48,15 +59,14 @@ void Birch::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
-void Birch::LodUpdate(LodLevel lv)
+void Birch::LodUpdate(float distance)
 {
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
 
-	if (lv == LodLevel::LOD0)
-		actor->Find("Lod0")->visible = true;
-	else if (lv == LodLevel::LOD1 || lv == LodLevel::LOD3)
-		actor->Find("Lod1")->visible = true;
+	if (distance < 1000) actor->Find("Lod0")->visible = true;
+	else if (distance < 3000) actor->Find("Lod1")->visible = true;
+	else return;
 }
 
 

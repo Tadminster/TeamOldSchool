@@ -18,7 +18,7 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
-	bool ReceivedDamageEvent(int damage) override;
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 

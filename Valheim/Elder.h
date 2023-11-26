@@ -10,7 +10,7 @@ class Elder : public Unit
 	class		 ElderPatern* patern = nullptr;
 	class		 ElderState*  state  = nullptr;
 
-
+	
 	int paternType = 0;
 	float					  paternTime = 0;
 	int						  jumpAttackMotion = 0;
