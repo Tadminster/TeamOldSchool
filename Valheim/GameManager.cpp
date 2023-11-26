@@ -14,7 +14,7 @@ GameManager::GameManager()
 
 	objectManager = new ObjectManager();
 	particleManager = new ParticleManager();
-	worldtimeManager = new WorldTimeManager();\
+	worldtimeManager = new WorldTimeManager();
 	uiManager = new UserInterfaceManager();
 
 	player = new Player();

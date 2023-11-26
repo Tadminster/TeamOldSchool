@@ -99,7 +99,7 @@ bool Player::CleanFrame()
 		actor->anim->currentAnimator.currentFrame++;
 		return true;
 	}
-	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 58)
+	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 59)
 	{
 		actor->anim->currentAnimator.currentFrame++;
 		return true;

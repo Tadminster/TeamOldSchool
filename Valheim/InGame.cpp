@@ -5,6 +5,7 @@
 #include "GameOption.h"
 #include "StoneAxe.h"
 #include "Elder.h"
+#include "Goblin.h"
 #include "InGame.h"
 
 InGame::InGame()
@@ -18,7 +19,8 @@ InGame::InGame()
 	scattering = new Scattering;
 
 	elder = new Elder();
-
+	goblin = new Goblin();
+	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -39,6 +41,7 @@ void InGame::Init()
 	GM->Init();
 	PLAYER->Init();
 	elder->Init();
+	goblin->Init();
 }
 
 void InGame::Release()
@@ -65,6 +68,7 @@ void InGame::Update()
 		PARTICLE->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
 		elder->RenderHierarchy();
+		goblin->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -110,7 +114,8 @@ void InGame::Update()
 	SEA->Update();
 	OBJ->Update();
 	PARTICLE->Update();
-	elder->Update();
+	//elder->Update();
+	goblin->Update();
 	PLAYER->Update();
 	UIM->Update();
 }
@@ -123,7 +128,8 @@ void InGame::LateUpdate()
 	PLAYER->LateUpdate();
 	PARTICLE->LateUpdate();
 
-	elder->LateUpdate();
+	//elder->LateUpdate();
+	goblin->LateUpdate();
 	UIM->LateUpdate();
 }
 
@@ -162,7 +168,8 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-	elder->Render();
+	//elder->Render();
+	goblin->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
 	UIM->Render();
