@@ -198,4 +198,6 @@ void Elder_DeathState::Death(Elder* elder)
 
 	elder->GetActor()->collider->SetLocalPos(Vector3(0, 1, -3.85f));
 	elder->GetActor()->collider->scale = Vector3(1.8f, 1, 3.8f);
+
+	
 }

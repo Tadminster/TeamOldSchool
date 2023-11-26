@@ -106,8 +106,9 @@ bool Player::CleanFrame()
 	}
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
 	{
-		//actor->anim->currentAnimator.currentFrame++;
-		actor->anim->currentAnimator.currentFrame = actor->anim->currentAnimator.nextFrame;
+		actor->anim->currentAnimator.currentFrame++;
+		//actor->anim->currentAnimator.currentFrame = 90;
+		//actor->anim->currentAnimator.currentFrame = actor->anim->currentAnimator.nextFrame;
 		return true;
 	}
 	return false;
