@@ -1,5 +1,5 @@
 #pragma once
-#define DURATION_LIMIT 3.0f 	// 알림이 사라질 시간
+#define DURATION_LIMIT 5.0f 	// 알림이 사라질 시간
 
 enum class NotificationType
 {
