@@ -68,15 +68,32 @@ void Elder::Update()
 	if (hitPoint <= 0)
 	{
 		state = E_DEATH;
+		Ray deathRay;
+		deathRay.position = actor->GetWorldPos() + (-actor->GetForward()) * 10.0f + Vector3(0, 1000, 0);
+		deathRay.direction = Vector3(0, -1, 0);
+		Vector3 temp;
+		if (Utility::RayIntersectMap(deathRay, MAP, temp))
+		{
+			Vector3 dir = temp - actor->GetWorldPos();
+			dir.Normalize();
+			actor->rotation.x = asinf(dir.y);
+		}
+		
+		
 	}
-	
+	else
+	{
+		BehaviorPatern();
+		ApplyGravity();
+	}
 
 	
-	BehaviorPatern();
-	ApplyGravity();
+	
+	
 	DoFSM();
 	actor->Update();
 	patern->Update();
+	
 	
 	
 
