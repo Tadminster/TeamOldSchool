@@ -49,11 +49,16 @@ void Billboard::RenderDetail()
     {
         if (ImGui::BeginTabItem("Billboard"))
         {
-            ImGui::SliderFloat2("mov", (float*)&rotation, -100.0f, 100.0f);
-            ImGui::SliderFloat2("size", (float*)&scale, 0.01f, 100.0f);
+            ImGui::DragFloat2("mov", (float*)&rotation, -100.0f, 100.0f);
+            ImGui::DragFloat2("size", (float*)&scale, 0.001f, 100.0f);
 
             ImGui::EndTabItem();
         }
         ImGui::EndTabBar();
     }
+
+    if (ImGui::Button("Load Geometry"))
+    {
+        if (this->shader) this->shader->LoadGeometry();
+    };
 }

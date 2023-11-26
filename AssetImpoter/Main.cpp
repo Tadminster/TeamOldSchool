@@ -15,6 +15,7 @@ Main::Main()
     ui = UI::Create("UI");
     rain = Rain::Create();
     hitblood = Pop::Create();
+    billboard = Billboard::Create();
 }
 
 Main::~Main()
@@ -46,6 +47,7 @@ void Main::Update()
     ui->RenderHierarchy();
     rain->RenderHierarchy();
     hitblood->RenderHierarchy();
+    billboard->RenderHierarchy();
     ImGui::End();
 
     ImGui::Begin("AssetImporter");
@@ -276,6 +278,7 @@ void Main::Update()
     ui->Update();
     rain->Update();
     hitblood->Update();
+    billboard->Update();
 
     //if (ImGui::Button("changeName"))
     //{
@@ -309,6 +312,7 @@ void Main::Render()
     ui->Render();
     rain->Render();
     hitblood->Render();
+    billboard->Render();
 }
 
 void Main::ResizeScreen()
