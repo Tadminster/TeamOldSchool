@@ -1,5 +1,5 @@
 #pragma once
-#define DURATION_LIMIT 5.0f 	// 알림이 사라질 시간
+#define TIME_LIMIT 5.0f 	// 알림이 사라질 시간
 
 enum class NotificationType
 {
@@ -18,25 +18,20 @@ private:
 	RECT		rectSubject;		// textSubject 영역
 	RECT		rectItemName;		// textItemName 영역
 	//==================================================================================================
-	float		duration{ 0.0f };	// 알림이 표시된 시간
+	float		lifeTime{ 0.0f };	// 알림이 표시된 시간
 
 public:
 	explicit Notification(Item item, NotificationType type);
 	~Notification();
 
-	void Init();
-	void Release();
 	void Update();
-	void LateUpdate();
-	void PreRender();
 	void Render();
-	void ResizeScreen();
 
 	UI* GetNotificationUI() { return notificationUI; }
 
 	wstring SetTextSubject(NotificationType type);
 	wstring SetTextItemName(Item item);
 
-	bool IsTimeOver() { return duration >= DURATION_LIMIT; }
+	bool IsTimeOver() { return lifeTime >= TIME_LIMIT; }
 };
 

@@ -25,6 +25,7 @@
     <ClInclude Include="Birch.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
+    <ClInclude Include="DamageText.h" />
     <ClInclude Include="Leather.h" />
     <ClInclude Include="Notification.h" />
     <ClInclude Include="Recipe.h" />
@@ -64,6 +65,7 @@
     <ClCompile Include="Birch.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />
+    <ClCompile Include="DamageText.cpp" />
     <ClCompile Include="Leather.cpp" />
     <ClCompile Include="Notification.cpp" />
     <ClCompile Include="Recipe.cpp" />

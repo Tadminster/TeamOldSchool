@@ -27,15 +27,6 @@ Notification::~Notification()
 	notificationUI->Release();
 }
 
-void Notification::Init()
-{
-}
-
-
-void Notification::Release()
-{
-}
-
 void Notification::Update()
 {
 	ImGui::Begin("UI Hierarchy");
@@ -53,14 +44,6 @@ void Notification::Update()
 	}
 
 	notificationUI->Update();
-}
-
-void Notification::LateUpdate()
-{
-}
-
-void Notification::PreRender()
-{
 }
 
 void Notification::Render()
@@ -111,10 +94,6 @@ void Notification::Render()
 		DWRITE_FONT_WEIGHT_SEMI_BOLD,
 		DWRITE_FONT_STYLE_ITALIC,
 		DWRITE_FONT_STRETCH_EXPANDED);
-}
-
-void Notification::ResizeScreen()
-{
 }
 
 wstring Notification::SetTextSubject(NotificationType type)

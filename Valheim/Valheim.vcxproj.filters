@@ -108,6 +108,9 @@
     <ClInclude Include="Inventory.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="DamageText.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -211,6 +214,9 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageText.cpp">
       <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
