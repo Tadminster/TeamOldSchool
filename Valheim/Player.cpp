@@ -201,7 +201,7 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
-	else if (state == SwingState::GetInstance())
+	else if (state == SwingState::GetInstance() || state == FistState::GetInstance())
 	{
 		if (INPUT->KeyUp(VK_LBUTTON))
 		{
@@ -231,7 +231,8 @@ void Player::PlayerControl()
 	{
 		if (INPUT->KeyPress(VK_LBUTTON)) 
 		{
-			state->Swing();
+			if (equippedHand) state->Swing();
+			else state->Fist();
 		}
 	}
 }
@@ -241,6 +242,7 @@ void Player::PlayerMove()
 	//상태값에 따른 이동속도(FSM완료후 다듬을 예정)
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 

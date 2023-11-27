@@ -9,6 +9,7 @@ public:
 	virtual void	Release();
 	virtual void	Update() override;
 	virtual void	Render(shared_ptr<Shader> pShader = nullptr) override;
+	virtual void	DepthRender(shared_ptr<Shader> pShader = nullptr);
 	virtual void	RenderDetail();
 };
 

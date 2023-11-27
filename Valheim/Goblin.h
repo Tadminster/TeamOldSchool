@@ -3,7 +3,7 @@
 class Goblin : public Unit
 {
 	class GoblinState* state = nullptr;
-
+	
 	float waitingTime = 0;
 	float attackTime = 0;
 	vector<Vector3> idlePos = {};
