@@ -99,9 +99,6 @@
     <ClInclude Include="StonePickaxe.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
-    <ClInclude Include="WorldTimeManager.h">
-      <Filter>Managers</Filter>
-    </ClInclude>
     <ClInclude Include="Club.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
@@ -200,9 +197,6 @@
     </ClCompile>
     <ClCompile Include="StonePickaxe.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
-    </ClCompile>
-    <ClCompile Include="WorldTimeManager.cpp">
-      <Filter>Managers</Filter>
     </ClCompile>
     <ClCompile Include="Club.cpp">
       <Filter>GameObject\Items\Weapon</Filter>

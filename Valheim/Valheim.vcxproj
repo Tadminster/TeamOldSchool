@@ -54,7 +54,6 @@
     <ClInclude Include="Unit.h" />
     <ClInclude Include="Woodpile.h" />
     <ClInclude Include="Workbench.h" />
-    <ClInclude Include="WorldTimeManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
@@ -90,7 +89,6 @@
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="Woodpile.cpp" />
     <ClCompile Include="Workbench.cpp" />
-    <ClCompile Include="WorldTimeManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
