@@ -25,5 +25,7 @@ public:
 
     void AddNotification(Item item, NotificationType type);
     void NotificationPositionSet();
+
+    void AddDamageText(int value, Vector3 spawnPos);
 };
 

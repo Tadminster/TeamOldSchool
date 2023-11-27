@@ -1,5 +1,5 @@
 #pragma once
-#define		TIME_LIMIT		3.0f 	// 알림이 사라질 시간
+#define		TIME_LIMIT		2.0f 	// 알림이 사라질 시간
 class DamageText
 {
 private:
@@ -11,6 +11,7 @@ public:
 	~DamageText();
 	void		Update();
 	void		Render();
+	void		Release();
 
 	bool IsTimeOver() { return lifeTime >= TIME_LIMIT; }
 };

@@ -38,8 +38,21 @@ void UserInterfaceManager::Update()
 		else iter++;
 	}
 
+	for (auto iter = damageTexts.begin(); iter != damageTexts.end();)
+	{
+		if ((*iter)->IsTimeOver())
+		{
+			(*iter)->Release();
+			iter = damageTexts.erase(iter);
+		}
+		else iter++;
+	}
+
 	for (auto& notice : notifications)
 		notice->Update();
+
+	for (auto& damageText : damageTexts)
+		damageText->Update();
 }
 
 void UserInterfaceManager::LateUpdate()
@@ -58,12 +71,15 @@ void UserInterfaceManager::PreRender()
 
 void UserInterfaceManager::Render()
 {
+	for (auto& notice : notifications)
+		notice->Render();
+
+	for (auto& damageText : damageTexts)
+		damageText->Render();
+
 	minimap->Render();
 	craft->Render();
 	inventory->Render();
-
-	for (auto& notice : notifications)
-		notice->Render();
 }
 
 void UserInterfaceManager::ResizeScreen()
@@ -87,5 +103,20 @@ void UserInterfaceManager::NotificationPositionSet()
 	for (auto& notice : notifications)
 	{
 		notice->GetNotificationUI()->SetWorldPosY(baselinePositionY + interval * i++);
+	}
+}
+
+void UserInterfaceManager::AddDamageText(int value, Vector3 spawnPos)
+{
+	string valueStr = to_string(value);
+	
+	spawnPos = spawnPos + Vector3(RANDOM->Float(-0.5f, 0.5f), RANDOM->Float(-0.5f, 0.5f), RANDOM->Float(-0.5f, 0.5f));
+	Vector3 interval = PLAYER->GetActor()->GetRight() * 0.2f;
+
+	for (int i = 0; i < valueStr.size(); i++)
+	{
+		value = valueStr[i] - '0';
+		DamageText* damageText = new DamageText(value, spawnPos + interval * i);
+		damageTexts.emplace_back(damageText);
 	}
 }

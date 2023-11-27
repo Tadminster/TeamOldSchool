@@ -94,7 +94,7 @@ void Notification::Release()
 
 	notificationUI->Release();
 
-	Notification::~Notification();
+	delete this;
 }
 
 wstring Notification::SetTextSubject(NotificationType type)
