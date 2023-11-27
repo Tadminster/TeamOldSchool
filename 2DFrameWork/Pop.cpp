@@ -75,8 +75,10 @@ void Pop::Reset()
 		scale.y = RANDOM->Float(-particleScale.y, particleScale.y);
 		scale.x = S._11 + scale.x;
 		scale.y = S._22 + scale.y;
-		if (scale.x < 1.0f)scale.x = 1.0f;
-		if (scale.y < 1.0f)scale.y = 1.0f;
+		scale.x = max(0.01f, scale.x);
+		scale.y = max(0.01f, scale.y);
+		//if (scale.x < 1.0f) scale.x = 1.0f;
+		//if (scale.y < 1.0f) scale.y = 1.0f;
 
 		Vector3 position = Vector3(0, 0, 0);
 
