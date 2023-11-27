@@ -26,8 +26,8 @@ GeometryInput VS(VertexInput input)
 	output.Uv = normalize(input.Position);
     //  o           =  i X W
     output.Position.xyz = mul(output.Position.xyz, (float3x3) World);
-	//output.Position.xyz = mul(output.Position.xyz, (float3x3) View);
-    //output.Position = mul(output.Position, Proj);
+	output.Position.xyz = mul(output.Position.xyz, (float3x3) View);
+    output.Position = mul(output.Position, Proj);
     return output;
 }
 

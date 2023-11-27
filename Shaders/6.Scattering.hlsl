@@ -65,6 +65,8 @@ float4 PS(PixelInput input) : SV_Target
     float3 mSamples = mieMap.Sample(SamplerDefault, input.uv);
     
     float3 color = 0;
+    float4 lightColor = DirColor.rgb;
+    
     color = GetRayleighPhase(temp2) * rSamples + GetMiePhase(temp, temp2) * mSamples;
     color = HDR(color);
     

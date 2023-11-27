@@ -50,7 +50,7 @@ void Billboard::RenderDetail()
         if (ImGui::BeginTabItem("Billboard"))
         {
             ImGui::SliderFloat2("mov", (float*)&rotation, -100.0f, 100.0f);
-            ImGui::SliderFloat2("size", (float*)&scale, 0.01f, 100.0f);
+            ImGui::SliderFloat2("size.x", (float*)&scale.x, 0.01f, 100.0f);
 
             ImGui::EndTabItem();
         }

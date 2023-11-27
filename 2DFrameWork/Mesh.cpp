@@ -39,6 +39,7 @@ shared_ptr<Mesh> Mesh::CreateMesh()
     }*/
     for (UINT i = 0; i < longitude; i++)
     {
+        //float xz = 100.0f * (i / (longitude - 1.0f)) * XM_PI / 180.0f;
         float xz = 2.0f * XM_PI * (i / static_cast<float>(longitude - 1));
 
         for (UINT j = 0; j < latitude; j++)

@@ -13,9 +13,9 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 
 	grid = Grid::Create();
-	//skyBox = Sky::Create();
-	////skyBox->LoadFile("Sky1.xml");
-	scattering = new Scattering;
+
+	scattering = new Scattering();
+	
 
 	elder = new Elder();
 
@@ -47,9 +47,8 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	scattering->RenderDetail();
 	LIGHT->RenderDetail();
-	
+	scattering->RenderDetail();
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
@@ -58,7 +57,7 @@ void InGame::Update()
 			grid->RenderHierarchy();
 			tempCamera->RenderHierarchy();
 		}
-		//skyBox->RenderHierarchy();
+		
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
@@ -106,7 +105,6 @@ void InGame::Update()
 	GM->Update();
 
 	Camera::main->Update();
-	//skyBox->Update();
 	
 	SEA->Update();
 	OBJ->Update();
@@ -137,9 +135,11 @@ void InGame::LateUpdate()
 void InGame::PreRender()
 {
 	Camera::main->Set();
-	LIGHT->Set();
+	
+
 	scattering->DrawPass1();
-	//skyBox->Render(RESOURCE->shaders.Load("0.Sky_CR.hlsl"));
+	LIGHT->Set();
+
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 
 	// 물반사 렌더링
@@ -157,9 +157,10 @@ void InGame::PreRender()
 void InGame::Render()
 {
 	Camera::main->Set();
-	LIGHT->Set();
+
 	scattering->DrawPass2();
-	//skyBox->Render();
+	LIGHT->Set();
+
 
 	if (DEBUGMODE)
 	{
