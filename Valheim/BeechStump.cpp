@@ -61,7 +61,7 @@ void BeechStump::DestructionEvent()
 	//OBJ->AddObject(halfLog);
 
 	// 오브젝트 삭제 (그루터기)
-	BeechStump::~BeechStump();
+	delete this;
 }
 
 

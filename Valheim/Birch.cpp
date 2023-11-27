@@ -93,5 +93,5 @@ void Birch::DestructionEvent()
 	OBJ->AddObject(log);
 
 	// 오브젝트 삭제 (나무)
-	Birch::~Birch();
+	delete this;
 }

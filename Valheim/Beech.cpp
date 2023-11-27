@@ -106,5 +106,5 @@ void Beech::DestructionEvent()
 	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, spawnPos);
 	
 	// 오브젝트 삭제 (나무)
-	Beech::~Beech();
+	delete this;
 }

@@ -83,5 +83,5 @@ void Rock::DestructionEvent()
 	OBJ->AddItem(rock);
 
 	// 오브젝트 삭제
-	Rock::~Rock();
+	delete this;
 }

@@ -81,6 +81,6 @@ void BeechLog::DestructionEvent()
 	OBJ->AddObject(halfLog2);
 
 	// 오브젝트 삭제 (통나무)
-	BeechLog::~BeechLog();
+	delete this;
 }
 

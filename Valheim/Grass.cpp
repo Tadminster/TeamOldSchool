@@ -47,4 +47,5 @@ bool Grass::IsDestroyed()
 
 void Grass::DestructionEvent()
 {
+	delete this;
 }
