@@ -7,6 +7,11 @@ enum class FeatureType
     Rock
 };
 
+enum class RenderType
+{
+	Normal, Instancing
+};
+
 enum class FeatureArmorType
 {
     Tree, Rock
@@ -24,7 +29,7 @@ protected:
     Vector3*            rotation;                       // 타격시 흔들림 조절용(actor->Find("RootNode")->rotation)
 public:
 
-    static FeatureProto* Create(FeatureType type);
+    static FeatureProto* Create(FeatureType featuretype, RenderType renderType = RenderType::Normal);
     virtual ~FeatureProto() {}
 
     virtual void Init() override;

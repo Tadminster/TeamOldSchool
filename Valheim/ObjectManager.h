@@ -44,6 +44,7 @@ public:
 
 	void	GenerateTree();
 	//void	GenerateInstanceTree();
+	void    GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);

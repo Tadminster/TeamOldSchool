@@ -80,10 +80,10 @@ void ObjectManager::Update()
 		Release();
 		GenerateTree();
 	}
-	//if (ImGui::Button("GenerateInstance"))
-	//{
-	//	GenerateInstanceTree();
-	//}
+	if (ImGui::Button("GenerateInstance"))
+	{
+		GenerateInstanceTree();
+	}
 	if (ImGui::Button("GenerateInstanceGrass"))
 	{
 		GenerateInstanceGrass();
@@ -301,7 +301,7 @@ void ObjectManager::GenerateTree()
 	}
 }
 
-/*
+
 void ObjectManager::GenerateInstanceTree()
 {
 	int rowSize = MAP->rowSize;
@@ -349,7 +349,7 @@ void ObjectManager::GenerateInstanceTree()
 			{
 				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 1000, 0);
 
-				if (MAP->ComPutePicking(ray, Hit))
+				if (MAP->ComputePicking(ray, Hit))
 				{
 					treePos.emplace_back(Hit);
 				}
@@ -357,7 +357,8 @@ void ObjectManager::GenerateInstanceTree()
 		}
 	}
 
-	Beech* treeBeech = new Beech(Vector3(0, 0, 0), RenderType::INSTANCING);
+	FeatureProto* beech = FeatureProto::Create(FeatureType::Beech, RenderType::Instancing);
+	beech->GetActor()->SetWorldPos(Vector3());
 
 	UINT count = treePos.size();
 	Matrix* ins = new Matrix[count];
@@ -370,16 +371,16 @@ void ObjectManager::GenerateInstanceTree()
 		idx++;
 	}
 
-	treeBeech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
+	beech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
 
-	objects.emplace_back(treeBeech);
+	objects.emplace_back(beech);
 }
-*/
+
 
 void ObjectManager::GenerateInstanceGrass()
 {

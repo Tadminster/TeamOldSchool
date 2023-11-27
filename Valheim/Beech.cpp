@@ -3,12 +3,15 @@
 #include "FeatureProto.h"
 #include "Beech.h"
 
-Beech::Beech()
+Beech::Beech(RenderType renderType)
 {
 	static int index = 0;
 
 	actor = Actor::Create();
-	actor->LoadFile("Feature_Beech.xml");
+	if (renderType == RenderType::Normal)
+		actor->LoadFile("Feature_Beech.xml");
+	else if (renderType == RenderType::Instancing)
+		actor->LoadFile("Feature_BeechInstance.xml");
 	actor->name = "Beech" + to_string(index++);
 
 	float x = RANDOM->Float(0.8f, 1.2f);
