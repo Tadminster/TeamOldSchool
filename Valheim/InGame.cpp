@@ -39,7 +39,9 @@ InGame::~InGame()
 void InGame::Init()
 {
 	GM->Init();
+	UIM->Init();
 	PLAYER->Init();
+
 	elder->Init();
 	goblin->Init();
 }
