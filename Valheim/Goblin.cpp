@@ -114,8 +114,6 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 	}
 
 	return false;
-
-	return false;
 }
 
 bool Goblin::IsDestroyed()

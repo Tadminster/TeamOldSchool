@@ -37,6 +37,7 @@ private:
     shared_ptr<Mesh> sphere;
     shared_ptr<Shader> pass2Shader;
     shared_ptr<Texture> pass2Diffuse;
+    shared_ptr<Texture> pass2Diffuse2;
 
 public:
     Scattering(UINT width = App.GetWidth(),
