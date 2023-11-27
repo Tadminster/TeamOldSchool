@@ -158,12 +158,12 @@ Matrix Animations::GetFrameBone(int boneIndex)
 				* (1.0f - nextAnimator.frameWeight)) * (Changedtime / blendtime);
 	}
 
-	return playList[currentAnimator.animIdx]->arrFrameBone[currentAnimator.nextFrame][boneIndex]
+	/*return playList[currentAnimator.animIdx]->arrFrameBone[currentAnimator.nextFrame][boneIndex]
 		* currentAnimator.frameWeight +
 		playList[currentAnimator.animIdx]->arrFrameBone[currentAnimator.currentFrame][boneIndex]
-		* (1.0f - currentAnimator.frameWeight);
-	/*return
-		playList[currentAnimator.animIdx]->arrFrameBone[currentAnimator.currentFrame][boneIndex];*/
+		* (1.0f - currentAnimator.frameWeight);*/
+	return
+		playList[currentAnimator.animIdx]->arrFrameBone[currentAnimator.currentFrame][boneIndex];
 }
 
 void Animations::ChangeAnimation(AnimationState state, UINT idx, float blendtime)

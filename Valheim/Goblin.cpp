@@ -42,12 +42,12 @@ void Goblin::Init()
 
 void Goblin::Update()
 {
-	if (ImGui::Button("astar"))
+	/*if (ImGui::Button("astar"))
 	{
 		if (astar != nullptr) delete astar;
 		astar = new AStar();
 		astar->CreateNode(MAP, MAP->rowSize * 2.5f, OBJ->GetColliders());
-	}
+	}*/
 
 	actor->Find("Hp_Red")->scale.x = hitPoint / 50.0f;
 	if (hitPoint <= 0) Death();
@@ -112,7 +112,7 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 		hitPoint -= damage;
 		cout << hitPoint << endl;
 	}
-
+	
 	return false;
 }
 
@@ -174,7 +174,7 @@ void Goblin::BehaviorPatern()
 		}
 		else
 		{
-			if (waitingTime > 2.1f)
+			if (waitingTime > 1.95f)
 			{
 				//Astar();
 				RotationForMove();

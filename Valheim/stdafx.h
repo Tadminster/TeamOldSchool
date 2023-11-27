@@ -27,6 +27,7 @@
 #define SEA			GM->sea
 #define PLAYER		GM->player
 #define UIM			GM->uiManager
+#define ASTAR		GM->astar
 #define INVEN		UIM->inventory
 #define CRAFT		UIM->craft
 #define MINIMAP		UIM->minimap

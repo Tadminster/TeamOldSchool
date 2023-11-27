@@ -56,14 +56,6 @@ void Elder::Update()
 	{
 		ImGui::Text("summon");
 	}
-	//행동패턴(astar 노드 생성 -> 트리 생성(역순은 astar노드생성 시간이 느려짐))
-	//기능은 두 경우 모두 정상작동함 확인
-	if (ImGui::Button("astar"))
-	{
-		if (astar != nullptr) delete astar;
-		astar = new AStar();
-		astar->CreateNode(MAP, MAP->rowSize*1.5f, OBJ->GetColliders());
-	}
 
 	if (hitPoint <= 0)
 	{

@@ -61,6 +61,7 @@ public:
 	bool CleanFrame();
 
 	void ResetHitFrame() { cleanHitFrame = false; }
+	
 	void SetState(PlayerState* state);
 	void AvtivatePlayerCam();
 	void PlayerControl();
