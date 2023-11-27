@@ -11,6 +11,7 @@ private:
 	UI*					ui;
 	Rain*               rain;
 	Pop*                hitblood;
+	Billboard*			billboard;
 	string				Modelfile;
 	string				Animfile;
 	//임포트해서 가져온 데이터

@@ -114,6 +114,9 @@
     <ClInclude Include="GoblinState.h">
       <Filter>GameObject\Unit\Goblin</Filter>
     </ClInclude>
+    <ClInclude Include="DamageText.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="GoblinState.cpp">
       <Filter>GameObject\Unit\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageText.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
