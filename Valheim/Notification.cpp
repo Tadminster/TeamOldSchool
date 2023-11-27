@@ -21,10 +21,7 @@ Notification::Notification(Item item, NotificationType type)
 
 Notification::~Notification()
 {
-	panel = nullptr;
-	icon = nullptr;
 
-	notificationUI->Release();
 }
 
 void Notification::Update()
@@ -35,13 +32,7 @@ void Notification::Update()
 	}
 	ImGui::End();
 	
-	duration += DELTA;
-
-	// 3.0초가 지나면 알림을 삭제
-	if (duration >= DURATION_LIMIT)
-	{
-		//Notification::~Notification();
-	}
+	lifeTime += DELTA;
 
 	notificationUI->Update();
 }
@@ -94,6 +85,16 @@ void Notification::Render()
 		DWRITE_FONT_WEIGHT_SEMI_BOLD,
 		DWRITE_FONT_STYLE_ITALIC,
 		DWRITE_FONT_STRETCH_EXPANDED);
+}
+
+void Notification::Release()
+{
+	panel = nullptr;
+	icon = nullptr;
+
+	notificationUI->Release();
+
+	Notification::~Notification();
 }
 
 wstring Notification::SetTextSubject(NotificationType type)

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Notification.h"
+#include "DamageText.h"
 #include "UserInterfaceManager.h"
 
 UserInterfaceManager::UserInterfaceManager()
@@ -47,8 +48,8 @@ void UserInterfaceManager::LateUpdate()
 	craft->LateUpdate();
 	minimap->LateUpdate();
 
-	for (auto& notice : notifications)
-		notice->LateUpdate();
+	/*for (auto& notice : notifications)
+		notice->LateUpdate();*/
 }
 
 void UserInterfaceManager::PreRender()

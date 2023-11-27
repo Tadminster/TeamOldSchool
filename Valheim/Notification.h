@@ -26,6 +26,7 @@ public:
 
 	void Update();
 	void Render();
+	void Release();
 
 	UI* GetNotificationUI() { return notificationUI; }
 

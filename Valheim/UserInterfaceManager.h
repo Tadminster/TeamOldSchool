@@ -5,6 +5,7 @@ class UserInterfaceManager
 {
 private:
     list<class Notification*>   notifications;
+    list<class DamageText*>     damageTexts;
 
 public:
     class Inventory*    inventory;

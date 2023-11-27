@@ -110,4 +110,7 @@ RecipeInfo* Recipe::GetRecipe(Item item)
             return recipe;
         }
     }
+
+    // 일치하는 레시피가 없으면
+    return nullptr;
 }
