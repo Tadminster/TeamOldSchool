@@ -109,14 +109,16 @@ void UserInterfaceManager::NotificationPositionSet()
 void UserInterfaceManager::AddDamageText(int value, Vector3 spawnPos)
 {
 	string valueStr = to_string(value);
-	
-	spawnPos = spawnPos + Vector3(RANDOM->Float(-0.5f, 0.5f), RANDOM->Float(-0.5f, 0.5f), RANDOM->Float(-0.5f, 0.5f));
 	Vector3 interval = PLAYER->GetActor()->GetRight() * 0.2f;
+	Billboard* parent = nullptr;
 
 	for (int i = 0; i < valueStr.size(); i++)
 	{
 		value = valueStr[i] - '0';
-		DamageText* damageText = new DamageText(value, spawnPos + interval * i);
+		DamageText* damageText = new DamageText(value, spawnPos);
+		damageText->SetParentNode(parent);
 		damageTexts.emplace_back(damageText);
+
+		parent = damageText->GetBillboard();
 	}
 }
