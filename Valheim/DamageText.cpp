@@ -62,7 +62,7 @@ void DamageText::Update()
 
 void DamageText::Render()
 {
-	damageText->Render();
+	damageText->DepthRender();
 }
 
 void DamageText::Release()
