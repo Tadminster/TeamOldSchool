@@ -1,7 +1,7 @@
 <Root Name="beechDrop" Visible="true" ObType="9">
     <Mesh File="8.Billboard.mesh"/>
     <Shader File="8.Pop.hlsl"/>
-    <Material File="beechLeafDrop.mtl"/>
+    <Material File="Particle/WoodLeafDrop.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>

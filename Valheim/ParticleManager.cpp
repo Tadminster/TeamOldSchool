@@ -2,20 +2,21 @@
 
 ParticleManager::ParticleManager()
 {
-	//너도밤나무 파괴될시에 나뭇잎부분에서 떨어지는 파티클 효과
-	beechDrop = Pop::Create("beechDrop");
-	beechDrop->LoadFile("BeechLeafDrop.xml");
+	//나무 파괴될 때에 나뭇잎 떨어지는 파티클 효과
+	beechDrop = Pop::Create("WoodLeafDrop");
+	beechDrop->LoadFile("WoodLeafDrop.xml");
 	
-	//너도밤나무 타격 이펙트 파티클효과
-	hitBeech = Pop::Create("hitBeech");
-	hitBeech->LoadFile("hitBeech.xml");
+	//나무 타격 이펙트 파티클효과
+	hitBeech = Pop::Create("Particle_HitWood");
+	hitBeech->LoadFile("Particle_HitWood.xml");
 	hitBeech->scale = { 0.1f, 0.1f };
 
-	woodHitDust = Rain::Create("woodHitDust");
+	woodHitDust = Rain::Create("Particle_WoodHitDust");
 
 	//플레이어 피격시 출혈 파티클 효과
-	hitBlood = Pop::Create("hitBlood");
-	hitBlood->LoadFile("hitBlood.xml");
+	hitBlood = Pop::Create("Particle_Blood");
+	hitBlood->LoadFile("Particle_Blood.xml");
+	hitBlood->scale = { 0.5f, 0.5f };
 }
 
 ParticleManager::~ParticleManager()

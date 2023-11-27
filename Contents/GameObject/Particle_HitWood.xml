@@ -1,4 +1,4 @@
-<Root Name="HitWood" Visible="true" ObType="9">
+<Root Name="Particle_HitWood" Visible="true" ObType="9">
     <Mesh File="8.Billboard.mesh"/>
     <Shader File="8.Pop.hlsl"/>
     <Material File="Particle/HitWood.mtl"/>

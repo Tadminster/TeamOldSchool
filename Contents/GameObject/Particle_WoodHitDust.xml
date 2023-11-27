@@ -1,7 +1,7 @@
-<Root Name="woodHitDust" Visible="true" ObType="8">
+<Root Name="Particle_WoodDust" Visible="true" ObType="8">
     <Mesh File="7.Billboard.mesh"/>
     <Shader File="7.Rain.hlsl"/>
-    <Material File="beechDust.mtl"/>
+    <Material File="WoodDust.mtl"/>
     <Transform>
         <Position X="11.8" Y="26.906" Z="-15.5"/>
         <Scale X="1" Y="1" Z="1"/>
