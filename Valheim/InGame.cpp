@@ -105,8 +105,6 @@ void InGame::Update()
 	}
 	else PLAYER->AvtivatePlayerCam();
 
-	GM->Update();
-
 	Camera::main->Update();
 	
 	SEA->Update();
