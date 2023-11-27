@@ -6,8 +6,8 @@ Stone::Stone()
 {
 	static int index = 0;
 	actor = Actor::Create("Stone");
-	actor->LoadFile("Stone.xml");
-	actor->name = "Stone" + to_string(index);
+	actor->LoadFile("Item_Stone.xml");
+	actor->name = "Item_Stone" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
 	icon = UI::Create("StoneIcon");

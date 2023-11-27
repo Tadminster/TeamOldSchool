@@ -3,8 +3,8 @@
 ParticleManager::ParticleManager()
 {
 	//나무 파괴될 때에 나뭇잎 떨어지는 파티클 효과
-	beechDrop = Pop::Create("WoodLeafDrop");
-	beechDrop->LoadFile("WoodLeafDrop.xml");
+	beechDrop = Pop::Create("Particle_WoodLeafDrop");
+	beechDrop->LoadFile("Particle_WoodLeafDrop.xml");
 	
 	//나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("Particle_HitWood");

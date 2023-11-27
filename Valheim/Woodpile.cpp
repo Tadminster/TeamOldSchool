@@ -6,8 +6,8 @@ Woodpile::Woodpile()
 {
 	static int index = 0;
 	actor = Actor::Create("Woodpile");
-	actor->LoadFile("Woodpile.xml");
-	actor->name = "Woodpile" + to_string(index);
+	actor->LoadFile("Item_Woodpile.xml");
+	actor->name = "Item_Woodpile" + to_string(index);
 	actor->SetWorldPos(Vector3(5, 50, 5));
 
 	icon = UI::Create("WoodpileIcon");

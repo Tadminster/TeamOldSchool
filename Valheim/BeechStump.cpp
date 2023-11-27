@@ -6,7 +6,7 @@
 BeechStump::BeechStump()
 {
 	actor = Actor::Create();
-	actor->LoadFile("BeechStump.xml");
+	actor->LoadFile("Feature_BeechStump.xml");
 
 	static int index = 0;
 	actor->name = "BeechStump" + to_string(index++);

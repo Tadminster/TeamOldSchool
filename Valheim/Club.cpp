@@ -6,8 +6,8 @@ Club::Club()
 {
 	static int index = 0;
 	actor = Actor::Create("Club");
-	actor->LoadFile("Club.xml");
-	actor->name = "Club" + to_string(index);
+	actor->LoadFile("Item_Club.xml");
+	actor->name = "Item_Club" + to_string(index);
 
 	icon = UI::Create("ClubIcon");
 	icon->LoadFile("Icon_Club.xml");

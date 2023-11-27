@@ -67,6 +67,7 @@ float4 PS(PixelInput input) : SV_Target
     float3 color = 0;
     
     float sun = GetMiePhase(temp, temp2);
+    //선생님이 만들어준 인공태양
     //color = GetRayleighPhase(temp2) * rSamples + float3(sun, sun, sun);
     color = GetRayleighPhase(temp2) * rSamples + sun * mSamples;
     color = HDR(color);

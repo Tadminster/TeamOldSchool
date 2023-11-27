@@ -6,8 +6,8 @@
 Rock::Rock()
 {
 	actor = Actor::Create();
-	if (RANDOM->Int(0, 1)) actor->LoadFile("Rock1.xml");
-	else actor->LoadFile("Rock2.xml");
+	if (RANDOM->Int(0, 1)) actor->LoadFile("Feature_Rock1.xml");
+	else actor->LoadFile("Feature_Rock2.xml");
 	static int index = 0;
 	actor->name = "Rock" + to_string(index++);
 
