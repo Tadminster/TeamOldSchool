@@ -9,6 +9,7 @@ ParticleManager::ParticleManager()
 	//너도밤나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("hitBeech");
 	hitBeech->LoadFile("hitBeech.xml");
+	hitBeech->scale = { 0.1f, 0.1f };
 
 	woodHitDust = Rain::Create("woodHitDust");
 
