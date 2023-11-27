@@ -20,6 +20,7 @@ GameManager::GameManager()
 
 	recipe = new Recipe();
 
+	astar = new AStar();
 }
 
 GameManager::~GameManager()
@@ -28,6 +29,8 @@ GameManager::~GameManager()
 
 void GameManager::Init()
 {
+	
+	astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
 }
 
 void GameManager::Release()
@@ -36,7 +39,6 @@ void GameManager::Release()
 
 void GameManager::Update()
 {
-
 }
 
 void GameManager::LateUpdate()

@@ -96,18 +96,18 @@ bool Player::CleanFrame()
 	//충돌 프레임 31 58 89
 	if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
 	{
-		cleanHitFrame = true;
-		return cleanHitFrame;
+		actor->anim->currentAnimator.currentFrame++;
+		return true;
 	}
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 59)
 	{
-		cleanHitFrame = true;
-		return cleanHitFrame;
+		actor->anim->currentAnimator.currentFrame++;
+		return true;
 	}
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
 	{
-		cleanHitFrame = true;
-		return cleanHitFrame;
+		actor->anim->currentAnimator.currentFrame++;
+		return true;
 	}
 	return false;
 }

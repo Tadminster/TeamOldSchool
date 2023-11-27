@@ -24,7 +24,6 @@ protected:
 	//A Star--------------------------------------
 	Ray					AstarRay;
 	vector<Vector3>		way = {};
-	AStar*				astar = nullptr;
 	float				astarTime = 0;
 
 	//Death-----------------------------------------

@@ -95,11 +95,11 @@ void Unit::MonsterMove()
 
 void Unit::Astar()
 {
-	if (astar != nullptr)
+	if (ASTAR != nullptr)
 	{
 		if (TIMER->GetTick(astarTime, 0.5f))
 		{
-			astar->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
+			ASTAR->PathFinding(actor->GetWorldPos(), PLAYER->GetPlayer()->GetWorldPos(), way);
 		}
 		if (!way.empty())
 		{
@@ -118,11 +118,11 @@ void Unit::Astar()
 
 void Unit::Astar(Vector3 targetPos)
 {
-	if (astar != nullptr)
+	if (ASTAR != nullptr)
 	{
 		if (TIMER->GetTick(astarTime, 0.5f))
 		{
-			astar->PathFinding(actor->GetWorldPos(), targetPos, way);
+			ASTAR->PathFinding(actor->GetWorldPos(), targetPos, way);
 		}
 		if (!way.empty())
 		{

@@ -140,6 +140,11 @@ void SwingState::Swing()
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 6);
 	}
 
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 136)
+	{
+		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 136;
+	}
+
 
 
 		/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
