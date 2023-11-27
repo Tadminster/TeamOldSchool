@@ -1,9 +1,11 @@
 #pragma once
+#define MOVINGSPACE 7
 class Goblin : public Unit
 {
 	class GoblinState* state = nullptr;
 
 	float waitingTime = 0;
+	float attackTime = 0;
 	vector<Vector3> idlePos = {};
 	int idlePosNum = 0;
 	bool isAngry = false;
@@ -23,5 +25,6 @@ public:
 	void SetState(GoblinState* state);
 	void BehaviorPatern();
 	void DoFSM();
+	void Death();
 };
 
