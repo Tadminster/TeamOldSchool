@@ -67,7 +67,7 @@ void InGame::Update()
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PARTICLE->RenderHierarchy();
-		PLAYER->GetActor()->RenderHierarchy();
+		PLAYER->RenderHierarchy();
 		elder->RenderHierarchy();
 		goblin->RenderHierarchy();
 	}

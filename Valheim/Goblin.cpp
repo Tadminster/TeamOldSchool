@@ -48,8 +48,10 @@ void Goblin::Update()
 		astar = new AStar();
 		astar->CreateNode(MAP, MAP->rowSize * 2.5f, OBJ->GetColliders());
 	}*/
-
+	
 	actor->Find("Hp_Red")->scale.x = hitPoint / 50.0f;
+	
+
 	if (hitPoint <= 0) Death();
 	else
 	{
@@ -73,11 +75,11 @@ void Goblin::LateUpdate()
 	{
 		PLAYER->PlayerHit();
 	}
-
 	//Player 공격 -> Goblin 피격
-	if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+	//if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
+	if(PLAYER->GetWeoponCollider(actor->collider))
 	{
-		if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
+		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
 		{
 			this->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
 			isAngry = true;
@@ -107,12 +109,16 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 		cout << "Blunt" << endl;
 		cout << hitPoint << endl;
 	}
+	else if(wType == WeaponType::Fist)
+	{
+		hitPoint -= PLAYER->GetFistDMG();
+		cout << hitPoint << endl;
+	}
 	else
 	{
 		hitPoint -= damage;
 		cout << hitPoint << endl;
 	}
-	
 	return false;
 }
 
@@ -132,8 +138,6 @@ void Goblin::SetState(GoblinState* state)
 
 void Goblin::BehaviorPatern()
 {
-	
-
 	if (!isAngry)
 	{
 		//Idle

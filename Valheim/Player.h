@@ -5,24 +5,25 @@ class Player : public Unit
 {
 	friend class JumpState;
 	friend class SwingState;
-	
+
 	class PlayerState*		state = nullptr;
 	class WeaponProto*		equippedHand = nullptr;
-	
+	//카메라 관련 변수
 	POINT					ptMouse;
 	Vector3					Rot;
-
+	//이동 관련 변수
 	Vector3					lastPos = {};
 	Vector3					moveDir = {};
-
+	//슬라이딩벡터 변수
 	Ray						slidingVector;
 	Vector3					slidingVectorHit = {};
-	//(할일) 손보기
+	//(할일) 손보기---------------------------------
 	Ray playerCamRay;
 	Vector3 playerCamHit;
 	Ray playerReverseCamRay;
 	Vector3 playerReverseCamRayHit;
-
+	//---------------------------------------------
+	UI* playerHp = nullptr;
 	bool					isJump = false;
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
@@ -32,6 +33,8 @@ class Player : public Unit
 	int						isEquip = 0;
 
 	float					hitTime = 0;
+
+	float					fistDMG = 5.0f;
 public:
 	bool istouch = 0;
 	Player();
@@ -47,29 +50,31 @@ public:
 
 	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 이름 바꿀예정
 	Actor*			GetPlayer()						{ return actor; }
+	float			GetFistDMG()					{ return fistDMG; }
 	WeaponProto*	GetPlayerWeapon();
-	float			GetWeaponDMG()					{ return equippedHand->damage; }
+	float			GetWeaponDMG();
 	WeaponType		GetWeaponType();
 	Vector3			GetCollisionPoint();
 	Camera*			GetPlayerCam()					{ return static_cast<Camera*>(actor->Find("PlayerCam")); }
 	Camera*			GetFrustumCam()					{ return static_cast<Camera*>(actor->Find("FrustumCam")); }
 	Collider*		GetCollider()					{ return actor->collider; }
+	bool			GetWeoponCollider(Collider* object);
 	float			GetMoveSpeed()					{ return moveSpeed; }
 	bool			GetPlayerJump()					{ return isJump; }
 	
-	bool CleanHit(Collider* object);
-	bool CleanFrame();
+	bool			CleanHit(Collider* object);
+	bool			CleanFrame();
 
-	void ResetHitFrame() { cleanHitFrame = false; }
+	void			ResetHitFrame() { cleanHitFrame = false; }
 	
-	void SetState(PlayerState* state);
-	void AvtivatePlayerCam();
-	void PlayerControl();
-	void PlayerMove();
-	void EquipToHand(WeaponProto* item);
-	void ReleaseToHand();
-	void MoveBack(Actor* col);
-	bool GetItem(ItemProto* item);
-	void PlayerHit(int damage = 1);
+	void			SetState(PlayerState* state);
+	void			AvtivatePlayerCam();
+	void			PlayerControl();
+	void			PlayerMove();
+	void			EquipToHand(WeaponProto* item);
+	void			ReleaseToHand();
+	void			MoveBack(Actor* col);
+	bool			GetItem(ItemProto* item);
+	void			PlayerHit(float damage = 1.0f);
 
 };

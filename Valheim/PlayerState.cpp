@@ -156,6 +156,11 @@ void FistState::Fist()
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 8);
 	}
+	
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 63)
+	{
+		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 63;
+	}
 }
 void FistState::Swing(){}
 
@@ -185,12 +190,10 @@ void SwingState::Swing()
 		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 136;
 	}
 
-
-
-		/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
-		{
-			PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
-		}*/
+	/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
+	{
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
+	}*/
 	
 }
 
