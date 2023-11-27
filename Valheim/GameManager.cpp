@@ -12,20 +12,14 @@ GameManager::GameManager()
 	sea = Water::Create();
 	sea->LoadFile("Water.xml");
 
-	inventory = new Inventory();
-	craft = new Craft();
-	recipe = new Recipe();
-
 	objectManager = new ObjectManager();
-
 	particleManager = new ParticleManager();
-
 	worldtimeManager = new WorldTimeManager();
+	uiManager = new UserInterfaceManager();
 
 	player = new Player();
 
-	minimap = new MiniMap();
-
+	recipe = new Recipe();
 
 }
 

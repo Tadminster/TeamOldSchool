@@ -12,6 +12,7 @@
 #include "ObjectManager.h"
 #include "ParticleManager.h"
 
+#include "UserInterfaceManager.h"
 #include "Inventory.h"
 #include "Craft.h"
 #include "Recipe.h"
@@ -19,12 +20,13 @@
 
 
 #define GM			GameManager::GetInstance()
-#define INVEN		GM->inventory
-#define CRAFT		GM->craft
 #define RECIPE		GM->recipe
 #define OBJ			GM->objectManager
 #define PARTICLE    GM->particleManager
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player
-#define MINIMAP		GM->minimap
+#define UIM			GM->uiManager
+#define INVEN		UIM->inventory
+#define CRAFT		UIM->craft
+#define MINIMAP		UIM->minimap

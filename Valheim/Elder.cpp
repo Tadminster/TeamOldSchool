@@ -104,32 +104,32 @@ void Elder::LateUpdate()
 	//Elder - Terrain 충돌
 	SetOnTerrain();
 	
-		//Elder_BossStone - Player 충돌
-		if (PLAYER->GetCollider()->Intersect(actor->collider))
-		{
-			PLAYER->istouch = true;
-			PLAYER->MoveBack(actor);
-		}
-		else
-		{
-			PLAYER->istouch = false;
-		}
+	//Elder_BossStone - Player 충돌
+	if (PLAYER->GetCollider()->Intersect(actor->collider))
+	{
+		PLAYER->istouch = true;
+		PLAYER->MoveBack(actor);
+	}
+	else
+	{
+		PLAYER->istouch = false;
+	}
 
-		//Elder 공격 -> Player 피격
-		if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
-			&& state == E_STOMP)
-		{
-			PLAYER->PlayerHit();
-		}
+	//Elder 공격 -> Player 피격
+	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+		&& state == E_STOMP)
+	{
+		PLAYER->PlayerHit();
+	}
 
-		//Player 공격 -> Elder 피격
-		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+	//Player 공격 -> Elder 피격
+	if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+	{
+		if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
 		{
-			if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
-			{
-				this->hitPoint -= PLAYER->GetWeaponDMG();
-			}
+			this->hitPoint -= PLAYER->GetWeaponDMG();
 		}
+	}
 	
 }
 

@@ -9,12 +9,6 @@
     <ClInclude Include="InGame.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Inventory.h">
-      <Filter>UI\Inventory</Filter>
-    </ClInclude>
-    <ClInclude Include="GameOption.h">
-      <Filter>UI\GameOptionUI</Filter>
-    </ClInclude>
     <ClInclude Include="GameManager.h">
       <Filter>Managers</Filter>
     </ClInclude>
@@ -42,15 +36,6 @@
     <ClInclude Include="Birch.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerState.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="Elder.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
     <ClInclude Include="ItemProto.h">
       <Filter>GameObject\Items</Filter>
     </ClInclude>
@@ -63,26 +48,11 @@
     <ClInclude Include="Woodpile.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
-    <ClInclude Include="ElderState.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
-    <ClInclude Include="MiniMap.h">
-      <Filter>UI\MiniMap</Filter>
-    </ClInclude>
-    <ClInclude Include="ElderPatern.h">
-      <Filter>GameObject\Unit</Filter>
-    </ClInclude>
     <ClInclude Include="Workbench.h">
       <Filter>GameObject\Building Structures</Filter>
     </ClInclude>
     <ClInclude Include="StructureProto.h">
       <Filter>GameObject\Building Structures</Filter>
-    </ClInclude>
-    <ClInclude Include="Craft.h">
-      <Filter>UI\Crafting</Filter>
-    </ClInclude>
-    <ClInclude Include="Recipe.h">
-      <Filter>UI\Crafting</Filter>
     </ClInclude>
     <ClInclude Include="Stone.h">
       <Filter>GameObject\Items\Material</Filter>
@@ -102,17 +72,53 @@
     <ClInclude Include="Club.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="UserInterfaceManager.h">
+      <Filter>Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="Recipe.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Craft.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Notification.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniMap.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Elder.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="ElderPatern.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="ElderState.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerState.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Goblin.h">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="GoblinState.h">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClInclude>
+    <ClInclude Include="DamageText.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="InGame.cpp">
       <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Inventory.cpp">
-      <Filter>UI\Inventory</Filter>
-    </ClCompile>
-    <ClCompile Include="GameOption.cpp">
-      <Filter>UI\GameOptionUI</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
       <Filter>Managers</Filter>
@@ -141,15 +147,6 @@
     <ClCompile Include="Birch.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="Elder.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
     <ClCompile Include="ItemProto.cpp">
       <Filter>GameObject\Items</Filter>
     </ClCompile>
@@ -162,26 +159,11 @@
     <ClCompile Include="Woodpile.cpp">
       <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
-    <ClCompile Include="ElderState.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
-    <ClCompile Include="MiniMap.cpp">
-      <Filter>UI\MiniMap</Filter>
-    </ClCompile>
-    <ClCompile Include="ElderPatern.cpp">
-      <Filter>GameObject\Unit</Filter>
-    </ClCompile>
     <ClCompile Include="Workbench.cpp">
       <Filter>GameObject\Building Structures</Filter>
     </ClCompile>
     <ClCompile Include="StructureProto.cpp">
       <Filter>GameObject\Building Structures</Filter>
-    </ClCompile>
-    <ClCompile Include="Craft.cpp">
-      <Filter>UI\Crafting</Filter>
-    </ClCompile>
-    <ClCompile Include="Recipe.cpp">
-      <Filter>UI\Crafting</Filter>
     </ClCompile>
     <ClCompile Include="Stone.cpp">
       <Filter>GameObject\Items\Material</Filter>
@@ -200,6 +182,48 @@
     </ClCompile>
     <ClCompile Include="Club.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInterfaceManager.cpp">
+      <Filter>Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Recipe.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Craft.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Notification.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniMap.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Elder.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderPatern.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="ElderState.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Goblin.cpp">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="GoblinState.cpp">
+      <Filter>GameObject\Unit\Goblin</Filter>
+    </ClCompile>
+    <ClCompile Include="DamageText.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,17 +257,17 @@
     <Filter Include="UI">
       <UniqueIdentifier>{548dfbc6-0fab-47df-9917-5f622b3291f2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\MiniMap">
-      <UniqueIdentifier>{74779dcc-3f29-4cbf-9772-35b3e9b0606c}</UniqueIdentifier>
+    <Filter Include="System">
+      <UniqueIdentifier>{764bce8e-0a20-4e36-8220-169378c0ab44}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Inventory">
-      <UniqueIdentifier>{3ee8e1de-a3f0-4fb1-9a17-0d3a974336b8}</UniqueIdentifier>
+    <Filter Include="GameObject\Unit\Elder">
+      <UniqueIdentifier>{a8db61c3-017f-4fe9-b083-276ad9e8b872}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\GameOptionUI">
-      <UniqueIdentifier>{1eef0c43-786d-4a1f-946b-0d058502bf26}</UniqueIdentifier>
+    <Filter Include="GameObject\Unit\Player">
+      <UniqueIdentifier>{e17f4990-b921-45ef-a0c5-e07a7f81fe95}</UniqueIdentifier>
     </Filter>
-    <Filter Include="UI\Crafting">
-      <UniqueIdentifier>{0a969bf3-3fc8-4ff1-af6f-f3ce6cccae93}</UniqueIdentifier>
+    <Filter Include="GameObject\Unit\Goblin">
+      <UniqueIdentifier>{59a2af52-f892-4412-b4ed-7da96a9da438}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

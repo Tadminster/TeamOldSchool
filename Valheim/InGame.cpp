@@ -5,6 +5,7 @@
 #include "GameOption.h"
 #include "StoneAxe.h"
 #include "Elder.h"
+#include "Goblin.h"
 #include "InGame.h"
 
 InGame::InGame()
@@ -18,7 +19,8 @@ InGame::InGame()
 	
 
 	elder = new Elder();
-
+	goblin = new Goblin();
+	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -39,6 +41,7 @@ void InGame::Init()
 	GM->Init();
 	PLAYER->Init();
 	elder->Init();
+	goblin->Init();
 }
 
 void InGame::Release()
@@ -63,8 +66,8 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PARTICLE->RenderHierarchy();
 		PLAYER->GetActor()->RenderHierarchy();
-		MINIMAP->RenderHierarchy();
 		elder->RenderHierarchy();
+		goblin->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -109,27 +112,23 @@ void InGame::Update()
 	SEA->Update();
 	OBJ->Update();
 	PARTICLE->Update();
-
-	INVEN->Update();
-	CRAFT->Update();
-
-	elder->Update();
+	//elder->Update();
+	goblin->Update();
 	PLAYER->Update();
-	MINIMAP->Update();
+	UIM->Update();
 }
 
 
 
 void InGame::LateUpdate()
 {
-	INVEN->LateUpdate();
-	CRAFT->LateUpdate();
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
-	MINIMAP->LateUpdate();
 	PARTICLE->LateUpdate();
 
-	elder->LateUpdate();
+	//elder->LateUpdate();
+	goblin->LateUpdate();
+	UIM->LateUpdate();
 }
 
 void InGame::PreRender()
@@ -147,7 +146,7 @@ void InGame::PreRender()
 	OBJ->RefractionRender();
 	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
 	//MAP->Render(RESOURCE->shaders.Load("5.Cube_Water.hlsl"));
-	
+
 	// ¹°±¼Àý ·»´õ¸µ
 	SEA->SetRefractionTarget();
 	PLAYER->GetActor()->Render(RESOURCE->shaders.Load("4.Instance_Water.hlsl"));
@@ -170,14 +169,11 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-
-	elder->Render();
+	//elder->Render();
+	goblin->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
-	MINIMAP->Render();
-
-	INVEN->Render();
-	CRAFT->Render();
+	UIM->Render();
 }
 
 void InGame::ResizeScreen()

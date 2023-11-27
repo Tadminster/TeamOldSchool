@@ -13,8 +13,9 @@ private:
         
     GameManager*                    gameManager;
     
-
+  
     class Elder*                    elder;
+    class Goblin*                   goblin;
 public:
     InGame();
     ~InGame();

@@ -82,11 +82,13 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 		if (type == FeatureArmorType::Rock) damage *= 2.0f;
 	}
 
-	cout << "체력 : " << hitPoint << endl;
-	cout << "데미지 : " << damage << endl;
+	//cout << "체력 : " << hitPoint << endl;
+	//cout << "데미지 : " << damage << endl;
 	// 데미지 적용
 	hitPoint = max(0.0f, hitPoint - damage);
-	cout << "남은 체력 : " << hitPoint << endl;
+
+	UIM->AddDamageText((int)damage, PLAYER->GetCollisionPoint());
+	//cout << "남은 체력 : " << hitPoint << endl;
 
 	return true;
 }

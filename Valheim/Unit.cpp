@@ -116,6 +116,29 @@ void Unit::Astar()
 	}
 }
 
+void Unit::Astar(Vector3 targetPos)
+{
+	if (astar != nullptr)
+	{
+		if (TIMER->GetTick(astarTime, 0.5f))
+		{
+			astar->PathFinding(actor->GetWorldPos(), targetPos, way);
+		}
+		if (!way.empty())
+		{
+			if ((way.back() - actor->GetWorldPos()).Length() >= 1.0f)
+			{
+				RotationForMove(way.back());
+				MonsterMove();
+			}
+			else
+			{
+				way.pop_back();
+			}
+		}
+	}
+}
+
 
 void Unit::Init()
 {
@@ -143,6 +166,15 @@ void Unit::RenderHierarchy()
 
 bool Unit::ReceivedDamageEvent(float damage, WeaponType wType)
 {
+	if (wType == WeaponType::Blunt)
+	{
+		hitPoint -= damage * 2.0f;
+	}
+	else
+	{
+		hitPoint -= damage;
+	}
+
 	return false;
 }
 

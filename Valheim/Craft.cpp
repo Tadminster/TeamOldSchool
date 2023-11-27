@@ -85,7 +85,7 @@ void Craft::Release()
 
 void Craft::Update()
 {
-	ImGui::Begin("CraftHierarchy");
+	ImGui::Begin("UI Hierarchy");
 	{
 		craftUI->RenderHierarchy();
 	}
@@ -508,6 +508,8 @@ bool Craft::ItemCreate()
 
 	// 인벤토리에 아이템을 추가
 	INVEN->AddItem(item);
+
+	RECIPE->DiscoveryItemUpdate(item);
 
 	// 인벤토리에 아이템이 추가되었다면 true 반환
 	return true;

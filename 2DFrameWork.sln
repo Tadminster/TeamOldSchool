@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F0
 		Shaders\6.Trail.hlsl = Shaders\6.Trail.hlsl
 		Shaders\6.UI.hlsl = Shaders\6.UI.hlsl
 		Shaders\7.Billboard.hlsl = Shaders\7.Billboard.hlsl
+		Shaders\7.Billboard2.hlsl = Shaders\7.Billboard2.hlsl
 		Shaders\7.Rain.hlsl = Shaders\7.Rain.hlsl
 		Shaders\8.Pop.hlsl = Shaders\8.Pop.hlsl
 		Shaders\Common.hlsl = Shaders\Common.hlsl
