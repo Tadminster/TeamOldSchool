@@ -6,7 +6,7 @@
 BeechLog::BeechLog()
 {
 	actor = Actor::Create();
-	actor->LoadFile("BeechLog.xml");
+	actor->LoadFile("Feature_BeechLog.xml");
 
 	static int index = 0;
 	actor->name = "BeechLog" + to_string(index++);

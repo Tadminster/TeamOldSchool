@@ -6,7 +6,7 @@
 BeechHalfLog::BeechHalfLog()
 {
 	actor = Actor::Create();
-	actor->LoadFile("BeechHalfLog.xml");
+	actor->LoadFile("Feature_BeechHalfLog.xml");
 
 	static int index = 0;
 	actor->name = "BeechHalfLog" + to_string(index++);

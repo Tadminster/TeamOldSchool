@@ -6,7 +6,7 @@
 Birch::Birch()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Birch.xml");
+	actor->LoadFile("Feature_Birch.xml");
 
 	static int index = 0;
 	actor->name = "Birch" + to_string(index++);
