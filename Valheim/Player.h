@@ -27,7 +27,8 @@ class Player : public Unit
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
 	bool					isHit = false;
-	
+	bool					cleanHitFrame = false;
+
 	int						isEquip = 0;
 
 	float					hitTime = 0;
@@ -59,6 +60,7 @@ public:
 	bool CleanHit(Collider* object);
 	bool CleanFrame();
 
+	void ResetHitFrame() { cleanHitFrame = false; }
 	void SetState(PlayerState* state);
 	void AvtivatePlayerCam();
 	void PlayerControl();

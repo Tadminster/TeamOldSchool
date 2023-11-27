@@ -140,6 +140,8 @@ void SwingState::Swing()
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 6);
 	}
 
+
+
 		/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
 		{
 			PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);

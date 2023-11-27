@@ -12,24 +12,24 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <Children Size="2"/>
-    <Child0 Name="Hp_Red" Visible="true" ObType="7" BoneIndex="-1">
+    <Child0 Name="Hp_Black" Visible="true" ObType="7" BoneIndex="-1">
         <Mesh File="7.Billboard.mesh"/>
         <Shader File="7.Billboard.hlsl"/>
-        <Material File="Monster_Goblin/Hp_Red.mtl"/>
+        <Material File="Monster_Goblin/Hp_Black.mtl"/>
         <Transform>
-            <Position X="0.5" Y="1.5" Z="0"/>
-            <Scale X="1" Y="0.1" Z="1"/>
-            <Rotation X="0" Y="0" Z="0"/>
+            <Position X="0" Y="1.6" Z="0"/>
+            <Scale X="1" Y="0.15000001" Z="1"/>
+            <Rotation X="-0.5" Y="0" Z="0"/>
         </Transform>
         <Children Size="1"/>
-        <Child0 Name="Hp_Black" Visible="true" ObType="7" BoneIndex="-1">
+        <Child0 Name="Hp_Red" Visible="true" ObType="7" BoneIndex="-1">
             <Mesh File="7.Billboard.mesh"/>
             <Shader File="7.Billboard.hlsl"/>
-            <Material File="Monster_Goblin/Hp_Black.mtl"/>
+            <Material File="Monster_Goblin/Hp_Red.mtl"/>
             <Transform>
-                <Position X="0" Y="-0.19999999" Z="0"/>
-                <Scale X="1" Y="0.15000001" Z="1"/>
-                <Rotation X="0" Y="0" Z="0"/>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="1" Y="0.1" Z="1"/>
+                <Rotation X="-0.5" Y="0.025" Z="0"/>
             </Transform>
             <Children Size="0"/>
         </Child0>
