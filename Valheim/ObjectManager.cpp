@@ -70,21 +70,21 @@ void ObjectManager::Release()
 
 void ObjectManager::Update()
 {
-	if (ImGui::Button("GeneratePerinNoiseMap"))
+	if (ImGui::Button("Generate PerinNoiseMap"))
 	{
 		Release();
 		MAP->PerlinNoiseHeightMap();
 	}
-	if (ImGui::Button("GenerateTree"))
+	if (ImGui::Button("Generate Tree"))
 	{
 		Release();
 		GenerateTree();
 	}
-	//if (ImGui::Button("GenerateInstance"))
-	//{
-	//	GenerateInstanceTree();
-	//}
-	if (ImGui::Button("GenerateInstanceGrass"))
+	if (ImGui::Button("Generate Instancing Tree"))
+	{
+		GenerateInstanceTree();
+	}
+	if (ImGui::Button("Generate Instance Grass"))
 	{
 		GenerateInstanceGrass();
 	}
@@ -93,13 +93,18 @@ void ObjectManager::Update()
 	ListEraser(items);
 	ListEraser(structures);
 
-	static float objUpdateCycle = 0;
-	//if (TIMER->GetTick(objUpdateCycle, 0.1f))
+	// 오브젝트 업데이트
 	{
 		for (auto& obj : objects)
 		{
 			obj->Update();
 		}
+	}
+
+	// 인스턴싱 오브젝트 업데이트
+	for (auto& instance : instancingObjects)
+	{
+		instance->Update();
 	}
 
 	// 아이템 업데이트
@@ -131,6 +136,12 @@ void ObjectManager::LateUpdate()
 
 void ObjectManager::Render()
 {
+	// 인스턴싱 오브젝트 렌더링
+	for (auto& instance : instancingObjects)
+	{
+		instance->Render();
+	}
+
 	// 디버그 모드일 때
 	if (DEBUGMODE)
 	{
@@ -157,6 +168,7 @@ void ObjectManager::Render()
 		}
 	}
 
+	// 아이템 렌더링
 	for (auto& item : items)
 		item->Render();
 }
@@ -301,7 +313,7 @@ void ObjectManager::GenerateTree()
 	}
 }
 
-/*
+
 void ObjectManager::GenerateInstanceTree()
 {
 	int rowSize = MAP->rowSize;
@@ -349,7 +361,7 @@ void ObjectManager::GenerateInstanceTree()
 			{
 				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 1000, 0);
 
-				if (MAP->ComPutePicking(ray, Hit))
+				if (MAP->ComputePicking(ray, Hit))
 				{
 					treePos.emplace_back(Hit);
 				}
@@ -357,7 +369,8 @@ void ObjectManager::GenerateInstanceTree()
 		}
 	}
 
-	Beech* treeBeech = new Beech(Vector3(0, 0, 0), RenderType::INSTANCING);
+	FeatureProto* beech = FeatureProto::Create(FeatureType::Beech, RenderType::Instancing);
+	beech->GetActor()->SetWorldPos(Vector3(0.0f, -20.0f, 0.0f));
 
 	UINT count = treePos.size();
 	Matrix* ins = new Matrix[count];
@@ -370,16 +383,16 @@ void ObjectManager::GenerateInstanceTree()
 		idx++;
 	}
 
-	treeBeech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
-	treeBeech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
+	beech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
+	//beech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
 
-	objects.emplace_back(treeBeech);
+	instancingObjects.emplace_back(beech);
 }
-*/
+
 
 void ObjectManager::GenerateInstanceGrass()
 {
@@ -453,6 +466,11 @@ void ObjectManager::GenerateInstanceGrass()
 void ObjectManager::AddObject(Prototype* object)
 {
 	objects.emplace_back(object);
+}
+
+void ObjectManager::AddInstancingObject(Prototype* object)
+{
+	instancingObjects.emplace_back(object);
 }
 
 void ObjectManager::AddItem(ItemProto* item)

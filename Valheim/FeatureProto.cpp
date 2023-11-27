@@ -10,14 +10,15 @@
 
 #include "FeatureProto.h"
 
-FeatureProto* FeatureProto::Create(FeatureType type)
+FeatureProto* FeatureProto::Create(FeatureType featuretype, RenderType renderType)
 {
-	switch (type)
+	switch (featuretype)
 	{
 		case FeatureType::Birch:
 			return new Birch();
 		case FeatureType::Beech:
-			return new Beech();
+			if (renderType == RenderType::Normal) return new Beech();
+			else return new Beech(renderType);
 		case FeatureType::BeechStump:
 			return new BeechStump();
 		case FeatureType::BeechLog:
@@ -71,7 +72,7 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
-	
+
 	// 데미지 계산
 	if (wType == WeaponType::Axe)
 	{

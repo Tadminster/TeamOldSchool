@@ -3,20 +3,27 @@
 #include "FeatureProto.h"
 #include "Beech.h"
 
-Beech::Beech()
+Beech::Beech(RenderType renderType)
 {
 	static int index = 0;
 
 	actor = Actor::Create();
-	actor->LoadFile("Feature_Beech.xml");
-	actor->name = "Beech" + to_string(index++);
+	if (renderType == RenderType::Normal)
+	{
+		actor->LoadFile("Feature_Beech.xml");
+		actor->name = "Beech" + to_string(index++);
 
-	float x = RANDOM->Float(0.8f, 1.2f);
-	float y = RANDOM->Float(0.4f, 0.6f);
-	float z = RANDOM->Float(0.8f, 1.2f);
-	actor->scale = Vector3(x, y, z);
-	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
-
+		float x = RANDOM->Float(0.8f, 1.2f);
+		float y = RANDOM->Float(0.4f, 0.6f);
+		float z = RANDOM->Float(0.8f, 1.2f);
+		actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
+		actor->scale = Vector3(x, y, z);
+	}
+	else if (renderType == RenderType::Instancing)
+	{
+		actor->LoadFile("Feature_BeechInstance.xml");
+		actor->name = "Beech_Instance";
+	}
 	rotation = &actor->Find("RootNode")->rotation;
 
 	//==================================================
@@ -48,13 +55,13 @@ void Beech::LateUpdate()
 {
 	groundRay.position = actor->GetWorldPos();
 
-	if (MAP->ComputePicking(groundRay, rayCollisionPoint))
-	{
-		if (actor->GetWorldPos().y > rayCollisionPoint.y)
-		{
-			actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
-		}
-	}
+	//if (MAP->ComputePicking(groundRay, rayCollisionPoint))
+	//{
+	//	if (actor->GetWorldPos().y > rayCollisionPoint.y)
+	//	{
+	//		actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
+	//	}
+	//}
 }
 
 void Beech::Render()

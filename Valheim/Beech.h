@@ -10,11 +10,12 @@
 class Beech : public FeatureProto
 {
 private:
-	//RenderType type;
+	friend class FeatureProto;
+	
+	Beech(RenderType renderType = RenderType::Normal);
+	~Beech() override;
 
 public:
-	Beech();
-	~Beech() override;
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;

@@ -23,6 +23,7 @@ class ObjectManager
 {
 private:
 	list<class Prototype*>		objects;
+	list<class Prototype*>		instancingObjects;
 	list<class ItemProto*>		items;
 	list<class StructureProto*>	structures;
 
@@ -44,9 +45,11 @@ public:
 
 	void	GenerateTree();
 	//void	GenerateInstanceTree();
+	void    GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);
+	void    AddInstancingObject(Prototype* object);
 	void	AddItem(ItemProto* item);
 	list<Prototype*> GetObjects() { return objects; }
 	list<Collider*> GetColliders();
