@@ -11,7 +11,6 @@ public:
 
     class ObjectManager*        objectManager;
     class ParticleManager*      particleManager;
-    class WorldTimeManager*     worldtimeManager;
     class UserInterfaceManager* uiManager;
 
 public:

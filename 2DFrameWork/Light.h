@@ -7,7 +7,7 @@ struct DirLight
 	DirLight()
 	{
 		direction = Vector4(1, -1, 0, 0);
-		color = Vector4(1, 1, 1, 1);
+		color = Vector4(1,1,0.8f,1);
 	};
 };
 
@@ -32,7 +32,7 @@ struct LightBuffer
 	//4
 	Color		color;
 	LightBuffer() :isActive(false), lightType((int)LightType::POINT), color(1, 1, 1),
-		radius(100), size(0)
+		radius(50), size(0)
 		, inner(84.0f), outer(44.0f), direction(0, -1, 0)
 	{
 

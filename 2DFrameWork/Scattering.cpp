@@ -24,6 +24,7 @@ Scattering::Scattering(UINT width, UINT height)
     }
 
     rect = RESOURCE->meshes.Load("6.UI.mesh");
+    //rect = RESOURCE->meshes.Load("6.Sphere.mesh");
     sphere = RESOURCE->meshes.Load("6.Scattering.mesh");
     pass1Shader = RESOURCE->shaders.Load("6.ScatteringTarget.hlsl");
     pass2Shader = RESOURCE->shaders.Load("6.Scattering.hlsl");
@@ -65,19 +66,19 @@ void Scattering::DrawPass2()
     D3D->GetDC()->PSSetShaderResources(11, 1, &srvs[1]);
     pass2Diffuse->Set(1);
     DEPTH->Set(false);
+    BLEND->Set(true);
     sphere->DrawCall();
     DEPTH->Set(true);
+    BLEND->Set(false);
 }
 
 void Scattering::RenderDetail()
 {
     
     ImGui::SliderInt("SampleCount", &data.sampleCount, 1, 50);
-    ImVec2 size(400, 400);
+    ImVec2 size(200, 200);
     ImGui::Image((void*)rayleighTarget->rgbResource, size);
     ImGui::Image((void*)mieTarget->rgbResource, size);
-    ImGui::SliderFloat("waveLength.x", &data.waveLength.x, -1.0f, 1.0f);
-    ImGui::SliderFloat("waveLength.y", &data.waveLength.y, -1.0f, 1.0f);
-    ImGui::SliderFloat("waveLength.z", &data.waveLength.z, -1.0f, 1.0f);
 
+    
 }
