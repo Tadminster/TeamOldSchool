@@ -6,8 +6,8 @@ StonePickaxe::StonePickaxe()
 {
 	static int index = 0;
 	actor = Actor::Create("StonePickaxe");
-	actor->LoadFile("StonePickaxe.xml");
-	actor->name = "StonePickaxe" + to_string(index);
+	actor->LoadFile("Item_StonePickaxe.xml");
+	actor->name = "Item_StonePickaxe" + to_string(index);
 
 	icon = UI::Create("StonePickaxeIcon");
 	icon->LoadFile("Icon_StonePickaxe.xml");
