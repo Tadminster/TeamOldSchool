@@ -29,6 +29,7 @@ Scattering::Scattering(UINT width, UINT height)
     pass1Shader = RESOURCE->shaders.Load("6.ScatteringTarget.hlsl");
     pass2Shader = RESOURCE->shaders.Load("6.Scattering.hlsl");
     pass2Diffuse = RESOURCE->textures.Load("Space.png");
+    pass2Diffuse2 = RESOURCE->textures.Load("Space2.png");
 }
 
 void Scattering::DrawPass1(Color clear)
@@ -63,7 +64,7 @@ void Scattering::DrawPass2()
     pass2Shader->Set();
 
     D3D->GetDC()->PSSetShaderResources(10, 1, &srvs[0]);
-    D3D->GetDC()->PSSetShaderResources(11, 1, &srvs[1]);
+    D3D->GetDC()->PSSetShaderResources(11, 1, &pass2Diffuse2->srv);
     pass2Diffuse->Set(1);
     DEPTH->Set(false);
     BLEND->Set(true);
