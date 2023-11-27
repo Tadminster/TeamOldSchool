@@ -5,7 +5,7 @@ Grass::Grass(Vector3 spawnPos)
 {
 	static int index = 0;
 	actor = Actor::Create("Grass" + index++);
-	actor->LoadFile("GrassGreen.xml");
+	actor->LoadFile("Feature_GrassGreen.xml");
 	actor->SetWorldPos(spawnPos);
 }
 

@@ -1,7 +1,7 @@
-<Root Name="hitBlood" Visible="true" ObType="9">
+<Root Name="ParticleBlood" Visible="true" ObType="9">
     <Mesh File="8.Billboard.mesh"/>
     <Shader File="8.Pop.hlsl"/>
-    <Material File="hitBlood.mtl"/>
+    <Material File="Particle/Blood.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="0.1" Y="0.1" Z="1"/>

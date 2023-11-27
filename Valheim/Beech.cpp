@@ -8,7 +8,7 @@ Beech::Beech()
 	static int index = 0;
 
 	actor = Actor::Create();
-	actor->LoadFile("Beech.xml");
+	actor->LoadFile("Feature_Beech.xml");
 	actor->name = "Beech" + to_string(index++);
 
 	float x = RANDOM->Float(0.8f, 1.2f);

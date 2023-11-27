@@ -69,7 +69,7 @@ private:            // 펄린노이즈 지형생성
     double          baseFrequency   { 5.0 };            // 기본 주파수
     double          amplitude       { 10.0 };           // 진폭
     double          edgeSteepness   { 5.0 };            // 가장자리 경사의 가파름 조절
-    double          distanceFactor  { 20 };             // 중앙과의 거리에 따른 높이 계수
+    double          distanceFactor  { 15 };             // 중앙과의 거리에 따른 높이 계수
 
 public:
     void            PerlinNoiseHeightMap();
