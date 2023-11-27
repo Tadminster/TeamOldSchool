@@ -17,8 +17,8 @@ FeatureProto* FeatureProto::Create(FeatureType featuretype, RenderType renderTyp
 		case FeatureType::Birch:
 			return new Birch();
 		case FeatureType::Beech:
-			if (renderType == RenderType::Normal) return new Birch();
-			else return new Birch(renderType);
+			if (renderType == RenderType::Normal) return new Beech();
+			else return new Beech(renderType);
 		case FeatureType::BeechStump:
 			return new BeechStump();
 		case FeatureType::BeechLog:
