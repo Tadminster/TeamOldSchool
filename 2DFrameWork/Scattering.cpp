@@ -24,6 +24,7 @@ Scattering::Scattering(UINT width, UINT height)
     }
 
     rect = RESOURCE->meshes.Load("6.UI.mesh");
+    //rect = RESOURCE->meshes.Load("6.Sphere.mesh");
     sphere = RESOURCE->meshes.Load("6.Scattering.mesh");
     pass1Shader = RESOURCE->shaders.Load("6.ScatteringTarget.hlsl");
     pass2Shader = RESOURCE->shaders.Load("6.Scattering.hlsl");

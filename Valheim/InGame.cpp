@@ -135,7 +135,6 @@ void InGame::PreRender()
 {
 	Camera::main->Set();
 	
-
 	scattering->DrawPass1();
 	LIGHT->Set();
 
@@ -156,7 +155,6 @@ void InGame::PreRender()
 void InGame::Render()
 {
 	Camera::main->Set();
-
 	scattering->DrawPass2();
 	LIGHT->Set();
 

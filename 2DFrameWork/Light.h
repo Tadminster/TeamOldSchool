@@ -6,7 +6,7 @@ struct DirLight
 	Color			color;
 	DirLight()
 	{
-		direction = Vector4(0, 1, 0, 0);
+		direction = Vector4(1, -1, 0, 0);
 		color = Vector4(1,1,0.8f,1);
 	};
 };
