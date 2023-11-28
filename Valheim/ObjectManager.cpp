@@ -45,6 +45,13 @@ ObjectManager::ObjectManager()
 			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
+
+		for (auto& item : woodShield)
+		{
+			item = ItemProto::Create(Item::WoodShield);
+			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+			AddItem(item);
+		}
 	}
 }
 
@@ -121,16 +128,6 @@ void ObjectManager::LateUpdate()
 	for (auto& item : items)
 	{
 		if (PLAYER->GetItem(item)) break;
-	}
-
-	// 오브젝트에 데미지 입히기
-	for (auto& obj : objects)
-	{
-		if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
-		{
-			obj->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
-			break;
-		}
 	}
 }
 
