@@ -68,10 +68,10 @@ void Scattering::DrawPass2()
     D3D->GetDC()->PSSetShaderResources(11, 1, &pass2Diffuse2->srv);
     pass2Diffuse->Set(1);
     DEPTH->Set(false);
-    BLEND->Set(false);
+    BLEND->Set(true);
     sphere->DrawCall();
     DEPTH->Set(true);
-    BLEND->Set(true);
+    BLEND->Set(false);
 }
 
 void Scattering::RenderDetail()
