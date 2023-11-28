@@ -97,15 +97,9 @@ void Elder::LateUpdate()
 	SetOnTerrain();
 	
 	//Elder_BossStone - Player 충돌
-	if (PLAYER->GetCollider()->Intersect(actor->collider))
-	{
-		PLAYER->istouch = true;
-		PLAYER->MoveBack(actor);
-	}
-	else
-	{
-		PLAYER->istouch = false;
-	}
+	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
+	
+	
 
 	//Elder 공격 -> Player 피격
 	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)

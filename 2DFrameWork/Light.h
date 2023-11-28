@@ -6,7 +6,7 @@ struct DirLight
 	Color			color;
 	DirLight()
 	{
-		direction = Vector4(1, -1, 0, 0);
+		direction = Vector4(1, -0.5f, 0, 0);
 		color = Vector4(1,1,0.8f,1);
 	};
 };
@@ -44,13 +44,13 @@ class Light : public Actor
 {
 
 public:
-	LightBuffer* light;
+	LightBuffer*    light;
 	~Light();
 	static Light*   Create(string name = "Light", int type =0);
 	virtual void	Release();
 	virtual void	Update() override;
 	virtual void	RenderDetail();
-
+	
 };
 
 #define MAX_LIGHT 16
@@ -65,5 +65,6 @@ public:
 	LightBuffer			light[MAX_LIGHT];
 	void				Set();
 	void                RenderDetail();
+	void                UpdateDirection(float time);
 	void				SetSize();
 };

@@ -18,6 +18,7 @@ public:
 	virtual void Fist() = 0;
 	virtual void Swing() = 0;
 	virtual void Axe() = 0;
+	virtual void Shield() = 0;
 	virtual void Death() = 0;
 };
 //Idle 클래스----------------------------------------------------------
@@ -37,6 +38,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Walk 클래스----------------------------------------------------------
@@ -56,6 +58,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Run 클래스----------------------------------------------------------
@@ -75,6 +78,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Jump 클래스----------------------------------------------------------
@@ -94,6 +98,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Fist 클래스----------------------------------------------------------
@@ -113,6 +118,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Swing 클래스----------------------------------------------------------
@@ -132,6 +138,7 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Axe 클래스----------------------------------------------------------
@@ -151,6 +158,27 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
+	void Death() override;
+};
+//Shield 클래스----------------------------------------------------------
+class ShieldState : public PlayerState
+{
+	static ShieldState* instance;
+public:
+	static ShieldState* GetInstance()
+	{
+		if (instance == nullptr) instance = new ShieldState();
+		return instance;
+	}
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Fist() override;
+	void Swing() override;
+	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };
 //Death 클래스----------------------------------------------------------
@@ -170,5 +198,6 @@ public:
 	void Fist() override;
 	void Swing() override;
 	void Axe() override;
+	void Shield() override;
 	void Death() override;
 };

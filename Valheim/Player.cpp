@@ -95,9 +95,9 @@ void Player::RenderHierarchy()
 
 bool Player::CleanHit(Collider* object)
 {
-	if (equippedHand)
+	if (equippedWeapon)
 	{
-		return equippedHand->GetActor()->collider->Intersect(object);
+		return equippedWeapon->GetActor()->collider->Intersect(object);
 	}
 	else
 	{
@@ -194,7 +194,7 @@ void Player::AvtivatePlayerCam()
 		Camera::main->height = App.GetHeight();
 	}
 	//인벤 열리면 커서 고정 해제----------------------------------
-	if (!INVEN->isOpen)
+	if (!INVEN->isOpen && !CRAFT->isOpen)
 	{
 		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
 		ptMouse.x = App.GetHalfWidth();
@@ -263,6 +263,13 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
+	else if (state == ShieldState::GetInstance())
+	{
+		/*if (!INPUT->KeyUp(VK_LBUTTON))
+		{
+			state->Idle();
+		}*/
+	}
 	//Walk && Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
 	{
@@ -286,13 +293,18 @@ void Player::PlayerControl()
 	{
 		if (INPUT->KeyPress(VK_LBUTTON)) 
 		{
-			if(!equippedHand) state->Fist();
+			if(!equippedWeapon) state->Fist();
 			else
 			{
-				if (equippedHand->wType == WeaponType::Blunt) state->Swing();
-				else if (equippedHand->wType == WeaponType::Axe || equippedHand->wType == WeaponType::Pickaxe) state->Axe();
+				if (equippedWeapon->wType == WeaponType::Blunt) state->Swing();
+				else if (equippedWeapon->wType == WeaponType::Axe || equippedWeapon->wType == WeaponType::Pickaxe) state->Axe();
 			}
 		}
+	}
+	//Shield--------------------------------------------------------------------------------------
+	if (!INVEN->isOpen && !CRAFT->isOpen)
+	{
+		if (INPUT->KeyPress(VK_RBUTTON)) if (equippedShield) state->Shield();
 	}
 }
 
@@ -304,20 +316,19 @@ void Player::PlayerMove()
 	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == AxeState::GetInstance()) moveSpeed = SWINGSPEED;
+	else if (state == ShieldState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
-	if (!istouch)
-	{
-		moveDir = Vector3();
+	moveDir = Vector3();
 
-		if (INPUT->KeyPress('W')) moveDir += actor->GetForward();
-		else if (INPUT->KeyPress('S')) moveDir += -actor->GetForward();
-		if (INPUT->KeyPress('A')) moveDir += -actor->GetRight();
-		else if (INPUT->KeyPress('D')) moveDir += actor->GetRight();
-		moveDir.Normalize();
+	if (INPUT->KeyPress('W')) moveDir += actor->GetForward();
+	else if (INPUT->KeyPress('S')) moveDir += -actor->GetForward();
+	if (INPUT->KeyPress('A')) moveDir += -actor->GetRight();
+	else if (INPUT->KeyPress('D')) moveDir += actor->GetRight();
+	moveDir.Normalize();
 
-		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-	}
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+	
 }
 
 void Player::MoveBack(Actor* col)
@@ -335,23 +346,49 @@ void Player::MoveBack(Actor* col)
 
 void Player::EquipToHand(WeaponProto* item)
 {
-	if (!equippedHand)
+	if (item->wType == WeaponType::Shield)
 	{
-		//아이템 완성단계에서 스케일, 각도 조절하기
-		equippedHand = item;
-		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedHand->GetActor());
-		equippedHand->GetActor()->scale = Vector3(100, 100, 100);
-		equippedHand->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
-		equippedHand->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+		if (!equippedShield)
+		{
+			equippedShield = item;
+			actor->Find("mixamorig:LeftHandIndex1")->AddChild(equippedShield->GetActor());
+			equippedShield->GetActor()->scale = Vector3(80, 80, 80);
+			//equippedShield->GetActor()->SetLocalPos(Vector3(-0.1f, 0, 0.05f));
+			equippedShield->GetActor()->SetLocalPos(Vector3(0, -0.1f, 0.05f));
+			equippedShield->GetActor()->rotation = Vector3(90.0f, 0, 0) * ToRadian;
+		}
+	}
+	else
+	{
+		if (!equippedWeapon)
+		{
+			//아이템 완성단계에서 스케일, 각도 조절하기
+			equippedWeapon = item;
+			actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedWeapon->GetActor());
+			equippedWeapon->GetActor()->scale = Vector3(100, 100, 100);
+			equippedWeapon->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
+			equippedWeapon->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+		}
 	}
 }
 
-void Player::ReleaseToHand()
+void Player::ReleaseToHand(WeaponProto* item)
 {
-	if (equippedHand)
+	if (item->wType == WeaponType::Shield)
 	{
-		actor->ReleaseNode(equippedHand->GetActor()->name);
-		equippedHand = nullptr;
+		if (equippedShield)
+		{
+			actor->ReleaseNode(equippedShield->GetActor()->name);
+			equippedShield = nullptr;
+		}
+	}
+	else
+	{
+		if (equippedWeapon)
+		{
+			actor->ReleaseNode(equippedWeapon->GetActor()->name);
+			equippedWeapon = nullptr;
+		}
 	}
 }
 
@@ -459,7 +496,7 @@ void Player::PlayerHealth()
 
 	if (healTime >= 5.0f)
 	{
-		if (hitPoint <= maxHitpoint)
+		if (hitPoint < maxHitpoint)
 		{
 			if (TIMER->GetTick(healGetTick, 2.0f))
 			{
@@ -479,26 +516,26 @@ bool Player::IsDestroyed()
 
 WeaponProto* Player::GetPlayerWeapon()
 {
-	if (equippedHand) return equippedHand;
+	if (equippedWeapon) return equippedWeapon;
 }
 
 float Player::GetWeaponDMG()
 {
-	if (equippedHand) return equippedHand->damage;
+	if (equippedWeapon) return equippedWeapon->damage;
 	else return fistDMG;
 }
 
 Vector3 Player::GetCollisionPoint()
 {
-	if (equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos();
+	if (equippedWeapon) return equippedWeapon->GetActor()->Find("CollisionPoint")->GetWorldPos();
 	else return actor->Find("mixamorig:LeftHand")->GetWorldPos();
 }
 
 bool Player::GetWeoponCollider(Collider* object)
 {
-	if (equippedHand)
+	if (equippedWeapon)
 	{
-		return equippedHand->actor->collider->Intersect(object);
+		return equippedWeapon->actor->collider->Intersect(object);
 	}
 	else
 	{
@@ -509,7 +546,7 @@ bool Player::GetWeoponCollider(Collider* object)
 
 WeaponType Player::GetWeaponType()
 {		
-	if (equippedHand) return equippedHand->wType;
+	if (equippedWeapon) return equippedWeapon->wType;
 	else return WeaponType::Fist;
 }
 
