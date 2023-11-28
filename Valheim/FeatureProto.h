@@ -28,6 +28,8 @@ protected:
 
     float               hitAnimDuration { 0.0f };       // 타격 후 흔들림 애니메이션 재생 시간
     Vector3*            rotation;                       // 타격시 흔들림 조절용(actor->Find("RootNode")->rotation)
+
+    float               playerDistance;                 // 플레이어와 오브젝트의 거리
 public:
 
     static FeatureProto* Create(FeatureType featureType);

@@ -60,7 +60,7 @@ class ToolProto : public ItemProto
 
 };
 //====================================================================================================
-enum class WeaponType { Blunt, Axe, Pickaxe, Fist };
+enum class WeaponType { Blunt, Axe, Pickaxe, Fist, Shield };
 class WeaponProto : public ItemProto
 {
 	friend class Player;
