@@ -110,7 +110,6 @@ void UserInterfaceManager::NotificationPositionSet()
 void UserInterfaceManager::AddDamageText(int value, Vector3 spawnPos)
 {
 	string valueStr = to_string(value);
-	Vector3 interval = PLAYER->GetActor()->GetRight() * 0.2f;
 	Billboard* parent = nullptr;
 
 	for (int i = 0; i < valueStr.size(); i++)

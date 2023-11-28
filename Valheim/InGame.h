@@ -12,7 +12,7 @@ private:
     
     GameManager*                    gameManager;
     
-    Timer*                          worldClock;
+    //Timer*                          worldClock;
     class Elder*                    elder;
     class Goblin*                   goblin;
 public:

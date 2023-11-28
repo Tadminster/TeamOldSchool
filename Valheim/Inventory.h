@@ -94,8 +94,7 @@ public:
 	void ItemPickUp();
 	void ItemDrop();
 	void CheckItem(int shortcut = 99);
-	template <typename T>
-	void UseItem(T& equippedItem, int inventoryIndex);
+	void UseItem(int equippedItem, int inventoryIndex);
 	void InputShortcut();
 	Inventory::MouseLocation CheckMouseLocation();
 	// ==================================================================================================

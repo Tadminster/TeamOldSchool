@@ -17,7 +17,7 @@ InGame::InGame()
 
 	scattering = new Scattering();
 	
-	worldClock = new Timer();
+	//worldClock = new Timer();
 
 	elder = new Elder();
 	goblin = new Goblin();
@@ -118,9 +118,9 @@ void InGame::Update()
 	PLAYER->Update();
 	UIM->Update();
 	
-	worldClock->Chronometry();
-	float currentTime = worldClock->GetWorldTime();
-	LIGHT->UpdateDirection(currentTime);
+	//worldClock->Chronometry();
+	//float currentTime = worldClock->GetWorldTime();
+	//LIGHT->UpdateDirection(TIMER->GetWorldTime());
 }
 
 
