@@ -462,7 +462,25 @@ void Inventory::ItemDrop()
 
 void Inventory::CheckItem(int shortcut)
 {
-	if (shortcut == 99)
+	// 단축키로 아이템 사용
+	if (shortcut != 99)
+	{
+		// 해당 인벤토리에 아이템이 있으면
+		if (inventoryItem[shortcut])
+		{
+			// 아이템 타입 체크
+			ItemType type = inventoryItem[shortcut]->GetType();
+			if (type == ItemType::Weapon)
+			{
+				UseItem(equippedItem.Weapon, shortcut);
+			}
+			else if (type == ItemType::Shield)
+			{
+				UseItem(equippedItem.Shield, shortcut);
+			}
+		}
+	}
+	else
 	{
 		for (int i = 0; i < 32; i++)
 		{
@@ -485,23 +503,7 @@ void Inventory::CheckItem(int shortcut)
 			}
 		}
 	}
-	else
-	{
-		// 인벤토리에 아이템이 있으면
-		if (inventoryItem[shortcut])
-		{
-			// 아이템 타입 체크
-			ItemType type = inventoryItem[shortcut]->GetType();
-			if (type == ItemType::Weapon)
-			{
-				UseItem(equippedItem.Weapon, shortcut);
-			}
-			else if (type == ItemType::Shield)
-			{
-				UseItem(equippedItem.Shield, shortcut);
-			}
-		}
-	}
+
 
 }
 
