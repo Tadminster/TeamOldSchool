@@ -81,12 +81,12 @@ void Inventory::Update()
 		Init();
 	}
 
-	for (auto icon : inventoryIcon)	
+	for (auto icon : inventoryIcon)
 		if (icon) icon->Update();
 
 	// 인벤토리 UI 업데이트
 	inventoryUI->Update();
-	
+
 	// 인벤토리가 열려있을 때
 	if (isOpen)
 	{
@@ -121,7 +121,7 @@ void Inventory::LateUpdate()
 	if (isOpen)
 	{
 		// 마우스 오버시 슬롯 강조
-		MouseOverSlot();	
+		MouseOverSlot();
 
 		// 아이템 사용
 		CheckItem();
@@ -150,7 +150,7 @@ void Inventory::Render()
 	for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
 	{
 		DWRITE->RenderText(
-			to_wstring(i+1),
+			to_wstring(i + 1),
 			text_number[i],
 			20.0f,
 			L"Arial",
@@ -193,7 +193,7 @@ void Inventory::Render()
 	}
 	else
 	{
-		for (int i = 0; i < INVENTORY_ROW_SIZE; i++ )
+		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
 			if (inventoryIcon[i]) inventoryIcon[i]->Render();
 	}
 }
@@ -207,7 +207,7 @@ void Inventory::MouseOverSlot()
 {
 	bool isMouseOver = false;
 	bool isMouseOverItem = false;
-	
+
 	// 인벤토리가 열려있을 때, 마우스가 인벤토리 위에 있다면
 	if (isOpen && panel->MouseOver())
 	{
@@ -346,7 +346,7 @@ void Inventory::ItemDrop()
 				else
 				{
 					// 착용중인 아이템 인덱스 추적
-					equippedItem.swap(selectedItem.index, mLocation.index);
+					equippedItem.IndexSwap(selectedItem.index, mLocation.index);
 
 					// 다른 슬롯에 아이템이 있다면
 					if (inventoryItem[mLocation.index])
@@ -447,6 +447,21 @@ void Inventory::ItemDrop()
 						selectedItem.item->Use();
 					}
 				}
+				// 방패라면
+				else if (type == ItemType::Shield)
+				{
+					// 지금 착용중인 방패인지 체크
+					if (selectedItem.index == equippedItem.Shield)
+					{
+						// 인벤토리 정보 업데이트
+						slot[equippedItem.Shield]->material->LoadFile("Inventory/InventorySlot.mtl");
+						isUse[equippedItem.Shield] = false;
+						equippedItem.Shield = -1;
+
+						// 장착 해제
+						selectedItem.item->Use();
+					}
+				}
 
 				// 드래그 중인 아이템을 땅에 떨어뜨림
 				selectedItem.item->Drop();
@@ -462,25 +477,7 @@ void Inventory::ItemDrop()
 
 void Inventory::CheckItem(int shortcut)
 {
-	// 단축키로 아이템 사용
-	if (shortcut != 99)
-	{
-		// 해당 인벤토리에 아이템이 있으면
-		if (inventoryItem[shortcut])
-		{
-			// 아이템 타입 체크
-			ItemType type = inventoryItem[shortcut]->GetType();
-			if (type == ItemType::Weapon)
-			{
-				UseItem(equippedItem.Weapon, shortcut);
-			}
-			else if (type == ItemType::Shield)
-			{
-				UseItem(equippedItem.Shield, shortcut);
-			}
-		}
-	}
-	else
+	if (shortcut == 99)
 	{
 		for (int i = 0; i < 32; i++)
 		{
@@ -503,11 +500,27 @@ void Inventory::CheckItem(int shortcut)
 			}
 		}
 	}
-
+	else
+	{
+		// 인벤토리에 아이템이 있으면
+		if (inventoryItem[shortcut])
+		{
+			// 아이템 타입 체크
+			ItemType type = inventoryItem[shortcut]->GetType();
+			if (type == ItemType::Weapon)
+			{
+				UseItem(equippedItem.Weapon, shortcut);
+			}
+			else if (type == ItemType::Shield)
+			{
+				UseItem(equippedItem.Shield, shortcut);
+			}
+		}
+	}
 
 }
 
-void Inventory::UseItem(int equippedItem, int inventoryIndex)
+void Inventory::UseItem(int& equippedItem, int inventoryIndex)
 {
 	// 이전에 이미 착용중인 무기가 있으면
 	if (equippedItem != -1)
@@ -528,6 +541,7 @@ void Inventory::UseItem(int equippedItem, int inventoryIndex)
 		// 무기 인덱스 초기화
 		equippedItem = -1;
 	}
+
 	// 다른 무기라면
 	else
 	{
@@ -620,7 +634,7 @@ void Inventory::AddItem(ItemProto* item)
 			}
 		}
 	}
-		
+
 	// 인벤토리를 순회하며 빈 공간을 찾음
 	for (int i = 0; i < INVENTORY_SIZE; i++)
 	{
