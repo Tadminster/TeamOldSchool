@@ -17,9 +17,10 @@ class Pop : public Particle
     static ID3D11Buffer* PopBuffer;
 public:
     POP_DESC			desc;
-    Vector2             particleScale = Vector2(0, 0); //이미지 크기값
+    Vector2             randomSize = Vector2(0, 0); //이미지 크기값
     int                 particleCount = 100;
     float               velocityScalar = 10.0f;
+    Vector3             randomPosition = Vector3(0, 0, 0);
 
     static void         CreateStaticMember();
     static void         DeleteStaticMember();

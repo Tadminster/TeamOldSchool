@@ -11,6 +11,7 @@ private:
 	Pop* beechDrop;
 	Pop* hitBeech;
 	Pop* hitBlood;
+	Pop* hitRock;
 
 public:
 	ParticleManager();

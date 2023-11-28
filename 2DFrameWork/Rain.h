@@ -22,7 +22,7 @@ public:
     //virtual ~Rain();
 
     RAIN_DESC desc;
-    Vector2             particleScale = Vector2(0, 0); //이미지 크기값
+    Vector2             randomSize = Vector2(0, 0); //이미지 크기값
     int                 particleCount = 10;
 
     static void         CreateStaticMember();

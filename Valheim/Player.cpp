@@ -409,7 +409,8 @@ void Player::PlayerHit(float damage)
 	if (hitTime < 0)
 	{
 		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, this->GetActor()->GetWorldPos());
+		Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
+		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
 		//------------------------------------------------------------
 		hitPoint -= damage;
 		hitTime = 1.0f;

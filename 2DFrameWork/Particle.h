@@ -6,7 +6,9 @@ enum class EffectType
     HITBEECH,
     WOODHITDUST,
     //피격 관련 파티클
-    HITBLOOD
+    HITBLOOD,
+    //바위 관련 파티클
+    HITROCK
 };
 
 class Particle : public Actor
