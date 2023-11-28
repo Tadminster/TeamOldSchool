@@ -5,10 +5,11 @@ class ParticleManager
 
 private:
 
-	Pop* beechDrop;
-	Pop* hitBeech;
 	Rain* woodHitDust;
 
+
+	Pop* beechDrop;
+	Pop* hitBeech;
 	Pop* hitBlood;
 
 public:

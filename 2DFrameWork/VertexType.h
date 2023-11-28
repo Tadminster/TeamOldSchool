@@ -155,15 +155,17 @@ struct VertexPSV
     VertexPSV()
     {
     };
-    VertexPSV(Vector3 pos, Vector2 size, Vector3 velocity)
+    VertexPSV(Vector3 pos, Vector2 size, Vector3 velocity, Vector3 rotation)
     {
         this->position = pos;
         this->size = size;
         this->velocity = velocity;
+        this->rotation = rotation;
     };
     Vector3 position;
     Vector2 size;
     Vector3 velocity;
+    Vector3 rotation;
 };
 
 struct VertexPSP

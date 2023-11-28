@@ -427,6 +427,7 @@ void Mesh::LoadFile(string file)
             vertex[i].position = in.vector3();
             vertex[i].size = in.vector2();
             vertex[i].velocity = in.vector3();
+            vertex[i].rotation = in.vector3();
         }
         break;
     }
