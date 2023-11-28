@@ -39,14 +39,15 @@ float GetRayleighPhase(float c)
     return 0.75f * (1.0f + c);
 }
 
+//태양의 크기를 결정
 float GetMiePhase(float c, float c2)
 {
     float3 result = 0;
     result.x = 1.5f * ((1.0f - g2) / (2.0f + g2));
     result.y = 1.0f + g2;
     result.z = 2.0f * g;
-    
-    return result.x * (1.0f + c2) / pow(result.y - result.z * c, 1.5f);
+ 
+    return (result.x * (1.0f + c2) / pow(result.y - result.z * c, 1.5f)) * 0.005f;
 }
 
 float3 HDR(float3 LDR)
@@ -64,13 +65,13 @@ float4 PS(PixelInput input) : SV_Target
     float3 rSamples = rayleighMap.Sample(SamplerDefault, input.uv);
     float3 mSamples = mieMap.Sample(SamplerDefault, input.uv);
     
-    float3 color = 0;
+    float3 color = (0, 0, 0);
     
     float sun = GetMiePhase(temp, temp2);
     //선생님이 만들어준 인공태양
     //color = GetRayleighPhase(temp2) * rSamples + float3(sun, sun, sun);
     color = GetRayleighPhase(temp2) * rSamples + sun * mSamples;
-    color = HDR(color);
+    //color = HDR(color);
     
     color += max(0, (1 - color.rgb)) * float3(0.05f, 0.05f, 0.1f);
     
