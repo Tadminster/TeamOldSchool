@@ -35,11 +35,12 @@ void Beech::Init()
 void Beech::Update()
 {
 	//오브젝트와 카메라의 거리 계산
-	float distance = Vector3::DistanceSquared(Camera::main->GetWorldPos(), actor->GetWorldPos());
+	playerDistance = Vector3::DistanceSquared(PLAYER->GetActor()->GetWorldPos(), actor->GetWorldPos());
 	
 	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
-	if (distance > MAXMUM_UPDATE_DISTANCE) return;
-	else LodUpdate(distance);
+	if (playerDistance > MAXMUM_UPDATE_DISTANCE) return;
+
+	LodUpdate(playerDistance);
 
 	FeatureProto::Update();
 }
@@ -48,13 +49,6 @@ void Beech::LateUpdate()
 {
 	groundRay.position = actor->GetWorldPos();
 
-	//if (MAP->ComputePicking(groundRay, rayCollisionPoint))
-	//{
-	//	if (actor->GetWorldPos().y > rayCollisionPoint.y)
-	//	{
-	//		actor->MoveWorldPos(actor->GetUp() * gravity * DELTA);
-	//	}
-	//}
 }
 
 void Beech::Render()

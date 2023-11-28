@@ -45,6 +45,13 @@ ObjectManager::ObjectManager()
 			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
+
+		for (auto& item : woodShield)
+		{
+			item = ItemProto::Create(Item::WoodShield);
+			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+			AddItem(item);
+		}
 	}
 }
 
@@ -121,26 +128,6 @@ void ObjectManager::LateUpdate()
 	for (auto& item : items)
 	{
 		if (PLAYER->GetItem(item)) break;
-	}
-
-	// 오브젝트에 데미지 입히기
-	for (auto& obj : objects)
-	{
-		//오브젝트 - 플레이어 거리 5이하일때만 충돌검사 시행
-		if ((PLAYER->GetPlayer()->GetWorldPos() - obj->GetActor()->GetWorldPos()).Length() <= 5.0f)
-		{
-			if (PLAYER->CleanHit(obj->GetActor()->collider) && PLAYER->CleanFrame())
-			{
-				obj->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
-				break;
-			}
-			//오브젝트 - 플레이어 슬라이딩 벡터 조건
-			if (PLAYER->GetCollider()->Intersect(obj->GetActor()->collider))
-			{
-				
-				PLAYER->MoveBack(obj->GetActor());
-			}
-		}
 	}
 }
 
