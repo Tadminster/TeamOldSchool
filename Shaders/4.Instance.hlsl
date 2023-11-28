@@ -37,12 +37,13 @@ PixelInput VS(VertexInput input)
 	else
 		world = World;
 		
-	output.Position = mul(input.Position, world);
+	//output.Position = mul(input.Position, world);
 	
-	output.Position.x += input.transform._41;
-	output.Position.y += input.transform._42;
-	output.Position.z += input.transform._43;
-	
+	//output.Position.x += input.transform._41;
+	//output.Position.y += input.transform._42;
+	//output.Position.z += input.transform._43;
+    output.Position = mul(input.Position, input.transform);
+    output.Position = mul(output.Position, World);
 	
 	output.wPosition = output.Position;
 	output.Position = mul(output.Position, View);

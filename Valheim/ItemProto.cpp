@@ -4,6 +4,7 @@
 #include "Club.h"
 #include "StoneAxe.h"
 #include "StonePickaxe.h"
+#include "WoodShield.h"
 #include "Stone.h"
 #include "Woodpile.h"
 #include "Leather.h"
@@ -19,6 +20,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new StoneAxe();
 	case Item::StonePickaxe:
 		return new StonePickaxe();
+	case Item::WoodShield:
+		return new WoodShield();
 	case Item::Woodpile:
 		return new Woodpile();
 	case Item::Stone:

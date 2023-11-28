@@ -117,6 +117,9 @@
     <ClInclude Include="BeechInstancing.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
+    <ClInclude Include="WoodShield.h">
+      <Filter>GameObject\Items\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="BeechInstancing.cpp">
       <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="WoodShield.cpp">
+      <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
