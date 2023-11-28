@@ -202,14 +202,29 @@ void FistState::Run() {}
 void FistState::Jump() {}
 void FistState::Fist() 
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 8)
+	if (PLAYER->equippedShield)
 	{
-		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 8);
+		if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 12)
+		{
+			PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 12);
+		}
+
+		if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 45)
+		{
+			PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 45;
+		}
 	}
-	
-	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 63)
+	else
 	{
-		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 63;
+		if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 8)
+		{
+			PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 8);
+		}
+
+		if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 63)
+		{
+			PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 63;
+		}
 	}
 }
 void FistState::Swing() {}
@@ -257,18 +272,9 @@ void AxeState::Idle()
 	}
 	SetPlayerState(IdleState::GetInstance());
 }
-void AxeState::Walk()
-{
-	SetPlayerState(WalkState::GetInstance());
-}
-void AxeState::Run()
-{
-	SetPlayerState(RunState::GetInstance());
-}
-void AxeState::Jump()
-{
-	SetPlayerState(JumpState::GetInstance());
-}
+void AxeState::Walk() {}
+void AxeState::Run() {}
+void AxeState::Jump() {}
 void AxeState::Fist() {}
 void AxeState::Swing() {}
 void AxeState::Axe()

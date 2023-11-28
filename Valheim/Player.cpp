@@ -99,6 +99,10 @@ bool Player::CleanHit(Collider* object)
 	{
 		return equippedWeapon->GetActor()->collider->Intersect(object);
 	}
+	else if(equippedShield)
+	{
+		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
+	}
 	else
 	{
 		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
@@ -138,15 +142,26 @@ bool Player::CleanFrame()
 	}
 	else if (state == FistState::GetInstance())
 	{
-		if (actor->anim->currentAnimator.currentFrame == 12)
+		if (equippedShield)
 		{
-			actor->anim->currentAnimator.currentFrame++;
-			return true;
+			if (actor->anim->currentAnimator.currentFrame == 12)
+			{
+				actor->anim->currentAnimator.currentFrame++;
+				return true;
+			}
 		}
-		else if (actor->anim->currentAnimator.currentFrame == 20)
+		else
 		{
-			actor->anim->currentAnimator.currentFrame++;
-			return true;
+			if (actor->anim->currentAnimator.currentFrame == 12)
+			{
+				actor->anim->currentAnimator.currentFrame++;
+				return true;
+			}
+			else if (actor->anim->currentAnimator.currentFrame == 20)
+			{
+				actor->anim->currentAnimator.currentFrame++;
+				return true;
+			}
 		}
 	}
 	return false;
@@ -315,8 +330,8 @@ void Player::PlayerMove()
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
 	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
-	else if (state == AxeState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == ShieldState::GetInstance()) moveSpeed = SWINGSPEED;
+	else if (state == AxeState::GetInstance()) moveSpeed = 0;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	moveDir = Vector3();
@@ -351,7 +366,7 @@ void Player::EquipToHand(ItemProto* item)
 		if (!equippedShield)
 		{
 			equippedShield = static_cast<ShieldProto*>(item);
-			actor->Find("mixamorig:LeftHandIndex1")->AddChild(equippedShield->GetActor());
+			actor->Find("mixamorig:LeftHand")->AddChild(equippedShield->GetActor());
 			equippedShield->GetActor()->scale = Vector3(80, 80, 80);
 			equippedShield->GetActor()->SetLocalPos(Vector3(0, 0.1f, 0.08f));
 			equippedShield->GetActor()->rotation = Vector3(90.0f, 0, 0) * ToRadian;
@@ -527,7 +542,7 @@ float Player::GetWeaponDMG()
 Vector3 Player::GetCollisionPoint()
 {
 	if (equippedWeapon) return equippedWeapon->GetActor()->Find("CollisionPoint")->GetWorldPos();
-	else return actor->Find("mixamorig:LeftHand")->GetWorldPos();
+	else return actor->Find("mixamorig:RightHand")->GetWorldPos();
 }
 
 bool Player::GetWeoponCollider(Collider* object)
@@ -535,6 +550,10 @@ bool Player::GetWeoponCollider(Collider* object)
 	if (equippedWeapon)
 	{
 		return equippedWeapon->actor->collider->Intersect(object);
+	}
+	else if(equippedShield)
+	{
+		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
 	}
 	else
 	{

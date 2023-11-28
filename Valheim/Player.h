@@ -5,6 +5,7 @@ class Player : public Unit
 {
 	friend class JumpState;
 	friend class SwingState;
+	friend class FistState;
 
 	class PlayerState*		state = nullptr;
 	class WeaponProto*		equippedWeapon = nullptr;

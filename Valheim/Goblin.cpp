@@ -45,40 +45,27 @@ void Goblin::Init()
 
 void Goblin::Update()
 {
-	/*if (ImGui::Button("astar"))
-	{
-		if (astar != nullptr) delete astar;
-		astar = new AStar();
-		astar->CreateNode(MAP, MAP->rowSize * 2.5f, OBJ->GetColliders());
-	}*/
-	
 	actor->Find("Hp_Red")->scale.x = hitPoint / maxHitpoint;
-	
-
 	if (hitPoint <= 0) Death();
 	else
 	{
 		BehaviorPatern();
 		ApplyGravity();
 	}
-
 	DoFSM();
 	SetOnTerrain();
-
-	
-
 	actor->Update();
 }
 
 void Goblin::LateUpdate()
 {
+	//플레이어 - 고블린 슬라이딩벡터
 	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
-
 	//Goblin 공격 -> Player 피격
 	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightHand")->collider)
 		&& state == G_ATTACK)
 	{
-		if(actor->anim->currentAnimator.currentFrame <= 30) PLAYER->PlayerHit(this->atk);
+		if (actor->anim->currentAnimator.currentFrame <= 30) PLAYER->PlayerHit(this->atk);
 	}
 	//Player 공격 -> Goblin 피격
 	if(PLAYER->GetWeoponCollider(actor->collider))
