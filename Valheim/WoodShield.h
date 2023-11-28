@@ -1,7 +1,7 @@
 #pragma once
 #include "ItemProto.h"
 
-class WoodShield : public WeaponProto
+class WoodShield : public ShieldProto
 {
 private:
 	friend class ItemProto;

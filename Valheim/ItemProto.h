@@ -2,7 +2,7 @@
 
 //====================================================================================================
 enum class ItemState { OnGround, OnInventory, Equipped };
-enum class ItemType  { Weapon, Armor, Food, Material };
+enum class ItemType  { Weapon, Shield, Armor, Food, Material };
 enum class Item
 {
 	StoneAxe, StonePickaxe, Club,
@@ -12,6 +12,7 @@ enum class Item
 //====================================================================================================
 class ItemProto : public Prototype
 {
+	friend class Inventory;
 protected:
 	UI*			icon;					// 아이콘
 	float       tooltipBoxScaleY;		// 툴팁 박스의 스케일 Y
@@ -60,10 +61,11 @@ class ToolProto : public ItemProto
 
 };
 //====================================================================================================
-enum class WeaponType { Blunt, Axe, Pickaxe, Fist, Shield };
+enum class WeaponType { Blunt, Axe, Pickaxe, Fist };
 class WeaponProto : public ItemProto
 {
 	friend class Player;
+	friend class Inventory;
 protected:
 	WeaponType	wType;			// 무기 종류
 	float		damage;			// 공격력
@@ -74,6 +76,20 @@ public:
 	virtual void Fix() = 0;
 };
 //====================================================================================================
+class ShieldProto : public ItemProto
+{
+	friend class Player;
+	friend class Inventory;
+protected:
+	float		damageReduced;	// 데미지 감소율(%)
+	int			curDurability;	// 내구도
+	int			maxDurability;	// 내구도
+
+public:
+	virtual void Fix() = 0;
+};
+//====================================================================================================
+
 class ArmorProto : public ItemProto
 {
 protected:

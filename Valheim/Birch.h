@@ -7,8 +7,7 @@ class Birch : public FeatureProto
 private:
 	friend class FeatureProto;
 
-	//Birch();
-	explicit Birch(RenderType renderType = RenderType::Normal);
+	Birch();
 	~Birch() override;
 public:
 	void Init() override;

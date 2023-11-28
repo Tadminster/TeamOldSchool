@@ -18,13 +18,12 @@ WoodShield::WoodShield()
 
 	//=========================
 	enumName = Item::WoodShield;
-	type = ItemType::Weapon;
-	wType = WeaponType::Shield;
+	type = ItemType::Shield;
 	state = ItemState::OnGround;
 	//=========================
 	stringName = "WoodShield";
 
-	damage = 10;
+	damageReduced = 0.7f;
 	maxDurability = 100;
 	curDurability = maxDurability;
 	weight = 2;
@@ -78,7 +77,7 @@ wstring WoodShield::GetExplain()
 	wstring exp_sub1 = L"\n한손무기";
 	wstring exp_sub2 = L"\n무게: 2.0";
 	wstring exp_sub3 = L"\n내구도: " + to_wstring(curDurability) + L"/" + to_wstring(maxDurability);
-	wstring exp_sub4 = L"\n공격력: " + to_wstring(damage);
+	wstring exp_sub4 = L"\n공격력: " + to_wstring(damageReduced);
 
 	return exp + exp_sub1 + exp_sub2 + exp_sub3 + exp_sub4;
 }

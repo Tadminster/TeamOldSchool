@@ -24,13 +24,10 @@
 //	hitPoint = 80;
 //}
 
-Birch::Birch(RenderType renderType)
+Birch::Birch()
 {
 	actor = Actor::Create();
-	if (renderType == RenderType::Normal)
-		actor->LoadFile("Feature_Birch.xml");
-	//else if (renderType == RenderType::Instancing)
-		//actor->LoadFile("Feature_BirchInstance.xml");
+	actor->LoadFile("Feature_Birch.xml");
 
 	static int index = 0;
 	actor->name = "Birch" + to_string(index++);

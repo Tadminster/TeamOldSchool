@@ -124,7 +124,7 @@ void Inventory::LateUpdate()
 		MouseOverSlot();	
 
 		// 아이템 사용
-		UseItem();
+		CheckItem();
 
 		// 아이템 선택
 		ItemPickUp();
@@ -460,7 +460,7 @@ void Inventory::ItemDrop()
 	}
 }
 
-void Inventory::UseItem(int shortcut)
+void Inventory::CheckItem(int shortcut)
 {
 	if (shortcut == 99)
 	{
@@ -475,48 +475,11 @@ void Inventory::UseItem(int shortcut)
 					ItemType type = inventoryItem[i]->GetType();
 					if (type == ItemType::Weapon)
 					{
-						// 이전에 이미 착용중인 무기가 있으면
-						if (equippedItem.Weapon != -1)
-						{
-							// 이전에 착용중이던 무기를 해제
-							inventoryItem[equippedItem.Weapon]->Use();
-
-							// 해당 슬롯을 원래 슬롯으로 변경
-							slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
-
-							// 해당	슬롯을 사용중이 아니라고 표시
-							isUse[equippedItem.Weapon] = false;
-						}
-
-						// 이전에 착용중인 무기가 자기 자신이면
-						if (equippedItem.Weapon == i)
-						{
-							// 무기 인덱스 초기화
-							equippedItem.Weapon = -1;
-						}
-						// 다른 무기라면
-						else
-						{
-							// 새로운 무기를 착용
-							inventoryItem[i]->Use();
-
-							// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
-							slot[i]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-
-							// 해당	슬롯을 사용중이라고 표시
-							isUse[i] = true;
-
-							// 새로 착용한 무기 인덱스 저장
-							equippedItem.Weapon = i;
-						}
+						UseItem(equippedItem.Weapon, i);
 					}
-					//else if (type == ItemType::Tool)
-					//{
-					//	equippedItem.Weapon = i;
-					//}
-					else if (type == ItemType::Armor)
+					else if (type == ItemType::Shield)
 					{
-						equippedItem.Armor = i;
+						UseItem(equippedItem.Shield, i);
 					}
 				}
 			}
@@ -531,59 +494,66 @@ void Inventory::UseItem(int shortcut)
 			ItemType type = inventoryItem[shortcut]->GetType();
 			if (type == ItemType::Weapon)
 			{
-				// 이전에 이미 착용중인 무기가 있으면
-				if (equippedItem.Weapon != -1)
-				{
-					// 이전에 착용중이던 무기를 해제
-					inventoryItem[equippedItem.Weapon]->Use();
-
-					// 해당 슬롯을 원래 슬롯으로 변경
-					slot[equippedItem.Weapon]->material->LoadFile("Inventory/InventorySlot.mtl");
-
-					// 해당	슬롯을 사용중이 아니라고 표시
-					isUse[equippedItem.Weapon] = false;
-				}
-
-				// 이전에 착용중인 무기가 자기 자신이면
-				if (equippedItem.Weapon == shortcut)
-				{
-					equippedItem.Weapon = -1;
-				}
-				// 다른 무기라면
-				else
-				{
-					// 아이템 착용
-					inventoryItem[shortcut]->Use();
-
-					// 인벤토리 데이터 업데이트
-					slot[shortcut]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
-					equippedItem.Weapon = shortcut;
-					isUse[shortcut] = true;
-				}
+				UseItem(equippedItem.Weapon, shortcut);
 			}
-			//else if (type == ItemType::Tool)
-			//{
-			//	equippedItem.Weapon = shortcut;
-			//}
-			else if (type == ItemType::Armor)
+			else if (type == ItemType::Shield)
 			{
-				equippedItem.Armor = shortcut;
+				UseItem(equippedItem.Shield, shortcut);
 			}
 		}
 	}
 
 }
 
+template <typename T>
+void Inventory::UseItem(T& equippedItem, int inventoryIndex)
+{
+	// 이전에 이미 착용중인 무기가 있으면
+	if (equippedItem != -1)
+	{
+		// 이전에 착용중이던 무기를 해제
+		inventoryItem[equippedItem]->Use();
+
+		// 해당 슬롯을 원래 슬롯으로 변경
+		slot[equippedItem]->material->LoadFile("Inventory/InventorySlot.mtl");
+
+		// 해당	슬롯을 사용중이 아니라고 표시
+		isUse[equippedItem] = false;
+	}
+
+	// 이전에 착용중인 무기가 자기 자신이면
+	if (equippedItem == inventoryIndex)
+	{
+		// 무기 인덱스 초기화
+		equippedItem = -1;
+	}
+	// 다른 무기라면
+	else
+	{
+		// 새로운 무기를 착용
+		inventoryItem[inventoryIndex]->Use();
+
+		// 새로 착용한 무기슬롯을 블루슬롯으로 변경하고 인덱스 저장
+		slot[inventoryIndex]->material->LoadFile("Inventory/InventorySlotBlue.mtl");
+
+		// 해당	슬롯을 사용중이라고 표시
+		isUse[inventoryIndex] = true;
+
+		// 새로 착용한 무기 인덱스 저장
+		equippedItem = inventoryIndex;
+	}
+}
+
 void Inventory::InputShortcut()
 {
-	if (INPUT->KeyDown('1')) UseItem(0);
-	else if (INPUT->KeyDown('2')) UseItem(1);
-	else if (INPUT->KeyDown('3')) UseItem(2);
-	else if (INPUT->KeyDown('4')) UseItem(3);
-	else if (INPUT->KeyDown('5')) UseItem(4);
-	else if (INPUT->KeyDown('6')) UseItem(5);
-	else if (INPUT->KeyDown('7')) UseItem(6);
-	else if (INPUT->KeyDown('8')) UseItem(7);
+	if (INPUT->KeyDown('1')) CheckItem(0);
+	else if (INPUT->KeyDown('2')) CheckItem(1);
+	else if (INPUT->KeyDown('3')) CheckItem(2);
+	else if (INPUT->KeyDown('4')) CheckItem(3);
+	else if (INPUT->KeyDown('5')) CheckItem(4);
+	else if (INPUT->KeyDown('6')) CheckItem(5);
+	else if (INPUT->KeyDown('7')) CheckItem(6);
+	else if (INPUT->KeyDown('8')) CheckItem(7);
 }
 
 Inventory::MouseLocation Inventory::CheckMouseLocation()
