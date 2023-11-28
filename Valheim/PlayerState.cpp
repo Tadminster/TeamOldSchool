@@ -251,6 +251,10 @@ void SwingState::Death() {}
 //Axe 클래스----------------------------------------------------------
 void AxeState::Idle()
 {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
+	}
 	SetPlayerState(IdleState::GetInstance());
 }
 void AxeState::Walk()
@@ -287,6 +291,10 @@ void AxeState::Death()
 //Shield 클래스----------------------------------------------------------
 void ShieldState::Idle()
 {
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
+	}
 	SetPlayerState(IdleState::GetInstance());
 }
 void ShieldState::Walk() {}
@@ -309,10 +317,20 @@ void ShieldState::Axe()
 }
 void ShieldState::Shield()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 10)
-	{
-		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 10);
-	}
+		if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
+		{
+			if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 11)
+			{
+				PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 11);
+			}
+		}
+		else
+		{
+			if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 10)
+			{
+				PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 10);
+			}
+		}
 }
 void ShieldState::Death()
 {

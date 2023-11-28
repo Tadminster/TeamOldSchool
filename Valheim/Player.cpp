@@ -256,7 +256,7 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
-	else if (state == SwingState::GetInstance() || state == FistState::GetInstance())
+	else if (state == SwingState::GetInstance() || state == AxeState::GetInstance() || state == FistState::GetInstance())
 	{
 		if (INPUT->KeyUp(VK_LBUTTON))
 		{
@@ -265,10 +265,10 @@ void Player::PlayerControl()
 	}
 	else if (state == ShieldState::GetInstance())
 	{
-		/*if (!INPUT->KeyUp(VK_LBUTTON))
+		if (INPUT->KeyUp(VK_RBUTTON))
 		{
 			state->Idle();
-		}*/
+		}
 	}
 	//Walk && Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
@@ -351,10 +351,9 @@ void Player::EquipToHand(WeaponProto* item)
 		if (!equippedShield)
 		{
 			equippedShield = item;
-			actor->Find("mixamorig:LeftHandIndex1")->AddChild(equippedShield->GetActor());
+			actor->Find("mixamorig:LeftHand")->AddChild(equippedShield->GetActor());
 			equippedShield->GetActor()->scale = Vector3(80, 80, 80);
-			//equippedShield->GetActor()->SetLocalPos(Vector3(-0.1f, 0, 0.05f));
-			equippedShield->GetActor()->SetLocalPos(Vector3(0, -0.1f, 0.05f));
+			equippedShield->GetActor()->SetLocalPos(Vector3(0, 0.1f, 0.08f));
 			equippedShield->GetActor()->rotation = Vector3(90.0f, 0, 0) * ToRadian;
 		}
 	}
