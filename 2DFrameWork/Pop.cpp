@@ -71,7 +71,6 @@ void Pop::Reset()
 	{
 		//이미지 크기 가로세로를 랜덤값
 		//4~8 사이값
-		Vector2 scale = Vector2();
 
 		scale.x = 0.0f;
 		scale.y = 0.0f;
@@ -90,8 +89,6 @@ void Pop::Reset()
 		rot.x = RANDOM->Float(0.0f, PI * 2.0f);
 		rot.z = RANDOM->Float(0.0f, PI * 2.0f);
 
-		Vector3 rotation = Vector3(0, 0, -0.7);
-
 		//임의의 회전행렬
 		Matrix matRot = Matrix::CreateFromYawPitchRoll(rot.y, rot.x, rot.z);
 		// v = v * R
@@ -103,7 +100,6 @@ void Pop::Reset()
 		((VertexPSV*)mesh->vertices)[i].velocity = velocity;
 		((VertexPSV*)mesh->vertices)[i].position = position;
 		((VertexPSV*)mesh->vertices)[i].size = scale;
-		((VertexPSV*)mesh->vertices)[i].rotation = rotation;
 		mesh->indices[i] = i;
 	}
 	SafeRelease(mesh->vertexBuffer);
@@ -164,9 +160,6 @@ void Pop::RenderDetail()
 			ImGui::SliderFloat2("particleSize", (float*)&scale, 0, 100);
 			ImGui::SliderFloat2("particleRandomSizeRange", (float*)&particleScale, 0, 100);
 			ImGui::SliderInt("particleCount", &particleCount, 1, 100);
-			ImGui::DragFloat("rotation.x", &rotation.x, 0.05f, -1.0f, 1.0f);
-			ImGui::DragFloat("rotation.y", &rotation.y, 0.05f, -1.0f, 1.0f);
-			ImGui::DragFloat("rotation.z", &rotation.z, 0.05f, -1.0f, 1.0f);
 
 			if (ImGui::Button("Reset"))
 			{
