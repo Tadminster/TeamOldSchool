@@ -8,7 +8,7 @@ class Player : public Unit
 
 	class PlayerState*		state = nullptr;
 	class WeaponProto*		equippedWeapon = nullptr;
-	class WeaponProto*		equippedShield = nullptr;
+	class ShieldProto*		equippedShield = nullptr;
 	//카메라 관련 변수
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -75,8 +75,8 @@ public:
 	void			AvtivatePlayerCam();
 	void			PlayerControl();
 	void			PlayerMove();
-	void			EquipToHand(WeaponProto* item);
-	void			ReleaseToHand(WeaponProto* item);
+	void			EquipToHand(ItemProto* item);
+	void			ReleaseToHand(ItemProto* item);
 	void			MoveBack(Actor* col);
 	bool			GetItem(ItemProto* item);
 	void			PlayerHit(float damage = 1.0f);

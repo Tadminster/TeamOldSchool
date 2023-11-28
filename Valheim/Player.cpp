@@ -344,13 +344,13 @@ void Player::MoveBack(Actor* col)
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 }
 
-void Player::EquipToHand(WeaponProto* item)
+void Player::EquipToHand(ItemProto* item)
 {
-	if (item->wType == WeaponType::Shield)
+	if (item->GetType() == ItemType::Shield)
 	{
 		if (!equippedShield)
 		{
-			equippedShield = item;
+			equippedShield = static_cast<ShieldProto*>(item);
 			actor->Find("mixamorig:LeftHandIndex1")->AddChild(equippedShield->GetActor());
 			equippedShield->GetActor()->scale = Vector3(80, 80, 80);
 			//equippedShield->GetActor()->SetLocalPos(Vector3(-0.1f, 0, 0.05f));
@@ -363,7 +363,7 @@ void Player::EquipToHand(WeaponProto* item)
 		if (!equippedWeapon)
 		{
 			//아이템 완성단계에서 스케일, 각도 조절하기
-			equippedWeapon = item;
+			equippedWeapon = static_cast<WeaponProto*>(item);;
 			actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedWeapon->GetActor());
 			equippedWeapon->GetActor()->scale = Vector3(100, 100, 100);
 			equippedWeapon->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
@@ -372,9 +372,9 @@ void Player::EquipToHand(WeaponProto* item)
 	}
 }
 
-void Player::ReleaseToHand(WeaponProto* item)
+void Player::ReleaseToHand(ItemProto* item)
 {
-	if (item->wType == WeaponType::Shield)
+	if (item->GetType() == ItemType::Shield)
 	{
 		if (equippedShield)
 		{
