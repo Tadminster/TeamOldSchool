@@ -505,8 +505,7 @@ void Inventory::CheckItem(int shortcut)
 
 }
 
-template <typename T>
-void Inventory::UseItem(T& equippedItem, int inventoryIndex)
+void Inventory::UseItem(int equippedItem, int inventoryIndex)
 {
 	// 이전에 이미 착용중인 무기가 있으면
 	if (equippedItem != -1)
