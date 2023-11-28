@@ -1,7 +1,7 @@
 <Root Name="UI" Visible="true" ObType="4">
     <Mesh File="6.UI.mesh"/>
     <Shader File="6.UI.hlsl"/>
-    <Material File="Item/Icon_Club.mtl"/>
+    <Material File="Item/Icon_WoodShield.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
         <Scale X="0.039999999" Y="0.059999999" Z="0.050000001"/>

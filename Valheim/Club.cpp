@@ -76,7 +76,7 @@ wstring Club::GetExplain()
 {
 	wstring exp = L"조잡하지만 유용한 무기입니다.\n";
 	wstring exp_sub1 = L"\n한손무기";
-	wstring exp_sub2 = L"\n무게: 2.0";
+	wstring exp_sub2 = L"\n무게: " + to_wstring(weight);
 	wstring exp_sub3 = L"\n내구도: " + to_wstring(curDurability) + L"/" + to_wstring(maxDurability);
 	wstring exp_sub4 = L"\n공격력: " + to_wstring(damage);
 
