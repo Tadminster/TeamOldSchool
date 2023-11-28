@@ -118,6 +118,7 @@ void Light::Update()
     Actor::Update();
     light->position = GetWorldPos();
     light->direction = Vector3::TransformNormal(GetForward(), W);
+   
 }
 
 void Light::RenderDetail()
@@ -142,4 +143,20 @@ void Light::RenderDetail()
         }
         ImGui::EndTabBar();
     }
+}
+
+void LightManager::UpdateDirection(float time)
+{
+    float dayCycleLength = 60.0f;
+
+    float nomalizedTime = fmod(time, dayCycleLength / dayCycleLength);
+
+    dirLight.direction.x = cos(time);
+    dirLight.direction.y = sin(time);
+    
+    // 버퍼 업데이트
+    D3D11_MAPPED_SUBRESOURCE mappedResource;
+    D3D->GetDC()->Map(dirLightBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+    memcpy_s(mappedResource.pData, sizeof(DirLight), &dirLight, sizeof(DirLight));
+    D3D->GetDC()->Unmap(dirLightBuffer, 0);
 }

@@ -13,6 +13,7 @@ ParticleManager::ParticleManager()
 	
 
 	woodHitDust = Rain::Create("Particle_WoodHitDust");
+	woodHitDust->LoadFile("Particle_WoodHitDust.xml");
 
 	//플레이어 피격시 출혈 파티클 효과
 	hitBlood = Pop::Create("Particle_Blood");
@@ -85,25 +86,25 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		beechDrop->Play();
 		cout << "나뭇잎 떨어짐" << endl;
 	}
-	if (type == EffectType::HITBEECH)
+	else if (type == EffectType::HITBEECH)
 	{
 		hitBeech->SetWorldPos(pos);
 		hitBeech->Play();
 		cout << "나무 타격" << endl;
 	}
-	if (type == EffectType::WOODHITDUST)
+	else if (type == EffectType::WOODHITDUST)
 	{
 		woodHitDust->SetWorldPos(pos);
 		woodHitDust->Play();
 		cout << "나무 타격 먼지발생" << endl;
 	}
-	if (type == EffectType::HITBLOOD)
+	else if (type == EffectType::HITBLOOD)
 	{
 		hitBlood->SetWorldPos(pos);
 		hitBlood->Play();
 		cout << "피 터짐" << endl;
 	}
-	if (type == EffectType::HITROCK)
+	else if (type == EffectType::HITROCK)
 	{
 		hitRock->SetWorldPos(pos);
 		hitRock->Play();
