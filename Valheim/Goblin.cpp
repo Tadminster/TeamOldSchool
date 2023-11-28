@@ -72,6 +72,8 @@ void Goblin::Update()
 
 void Goblin::LateUpdate()
 {
+	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
+
 	//Goblin 공격 -> Player 피격
 	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightHand")->collider)
 		&& state == G_ATTACK)

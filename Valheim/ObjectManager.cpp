@@ -137,12 +137,8 @@ void ObjectManager::LateUpdate()
 			//오브젝트 - 플레이어 슬라이딩 벡터 조건
 			if (PLAYER->GetCollider()->Intersect(obj->GetActor()->collider))
 			{
-				PLAYER->istouch = true;
+				
 				PLAYER->MoveBack(obj->GetActor());
-			}
-			else
-			{
-				PLAYER->istouch = false;
 			}
 		}
 	}

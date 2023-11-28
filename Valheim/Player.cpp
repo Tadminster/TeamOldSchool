@@ -95,9 +95,9 @@ void Player::RenderHierarchy()
 
 bool Player::CleanHit(Collider* object)
 {
-	if (equippedHand)
+	if (equippedWeapon)
 	{
-		return equippedHand->GetActor()->collider->Intersect(object);
+		return equippedWeapon->GetActor()->collider->Intersect(object);
 	}
 	else
 	{
@@ -286,11 +286,11 @@ void Player::PlayerControl()
 	{
 		if (INPUT->KeyPress(VK_LBUTTON)) 
 		{
-			if(!equippedHand) state->Fist();
+			if(!equippedWeapon) state->Fist();
 			else
 			{
-				if (equippedHand->wType == WeaponType::Blunt) state->Swing();
-				else if (equippedHand->wType == WeaponType::Axe || equippedHand->wType == WeaponType::Pickaxe) state->Axe();
+				if (equippedWeapon->wType == WeaponType::Blunt) state->Swing();
+				else if (equippedWeapon->wType == WeaponType::Axe || equippedWeapon->wType == WeaponType::Pickaxe) state->Axe();
 			}
 		}
 	}
@@ -306,18 +306,16 @@ void Player::PlayerMove()
 	else if (state == AxeState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
-	if (!istouch)
-	{
-		moveDir = Vector3();
+	moveDir = Vector3();
 
-		if (INPUT->KeyPress('W')) moveDir += actor->GetForward();
-		else if (INPUT->KeyPress('S')) moveDir += -actor->GetForward();
-		if (INPUT->KeyPress('A')) moveDir += -actor->GetRight();
-		else if (INPUT->KeyPress('D')) moveDir += actor->GetRight();
-		moveDir.Normalize();
+	if (INPUT->KeyPress('W')) moveDir += actor->GetForward();
+	else if (INPUT->KeyPress('S')) moveDir += -actor->GetForward();
+	if (INPUT->KeyPress('A')) moveDir += -actor->GetRight();
+	else if (INPUT->KeyPress('D')) moveDir += actor->GetRight();
+	moveDir.Normalize();
 
-		actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-	}
+	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+	
 }
 
 void Player::MoveBack(Actor* col)
@@ -335,23 +333,23 @@ void Player::MoveBack(Actor* col)
 
 void Player::EquipToHand(WeaponProto* item)
 {
-	if (!equippedHand)
+	if (!equippedWeapon)
 	{
 		//아이템 완성단계에서 스케일, 각도 조절하기
-		equippedHand = item;
-		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedHand->GetActor());
-		equippedHand->GetActor()->scale = Vector3(100, 100, 100);
-		equippedHand->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
-		equippedHand->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
+		equippedWeapon = item;
+		actor->Find("mixamorig:RightHandIndex1")->AddChild(equippedWeapon->GetActor());
+		equippedWeapon->GetActor()->scale = Vector3(100, 100, 100);
+		equippedWeapon->GetActor()->rotation = Vector3(0, 90.0f, 0) * ToRadian;
+		equippedWeapon->GetActor()->SetLocalPos(Vector3(-0.1f, 0, -0.05f));
 	}
 }
 
 void Player::ReleaseToHand()
 {
-	if (equippedHand)
+	if (equippedWeapon)
 	{
-		actor->ReleaseNode(equippedHand->GetActor()->name);
-		equippedHand = nullptr;
+		actor->ReleaseNode(equippedWeapon->GetActor()->name);
+		equippedWeapon = nullptr;
 	}
 }
 
@@ -479,26 +477,26 @@ bool Player::IsDestroyed()
 
 WeaponProto* Player::GetPlayerWeapon()
 {
-	if (equippedHand) return equippedHand;
+	if (equippedWeapon) return equippedWeapon;
 }
 
 float Player::GetWeaponDMG()
 {
-	if (equippedHand) return equippedHand->damage;
+	if (equippedWeapon) return equippedWeapon->damage;
 	else return fistDMG;
 }
 
 Vector3 Player::GetCollisionPoint()
 {
-	if (equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos();
+	if (equippedWeapon) return equippedWeapon->GetActor()->Find("CollisionPoint")->GetWorldPos();
 	else return actor->Find("mixamorig:LeftHand")->GetWorldPos();
 }
 
 bool Player::GetWeoponCollider(Collider* object)
 {
-	if (equippedHand)
+	if (equippedWeapon)
 	{
-		return equippedHand->actor->collider->Intersect(object);
+		return equippedWeapon->actor->collider->Intersect(object);
 	}
 	else
 	{
@@ -509,7 +507,7 @@ bool Player::GetWeoponCollider(Collider* object)
 
 WeaponType Player::GetWeaponType()
 {		
-	if (equippedHand) return equippedHand->wType;
+	if (equippedWeapon) return equippedWeapon->wType;
 	else return WeaponType::Fist;
 }
 
