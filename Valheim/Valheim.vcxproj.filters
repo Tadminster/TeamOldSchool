@@ -112,7 +112,10 @@
       <Filter>GameObject\Unit\Goblin</Filter>
     </ClInclude>
     <ClInclude Include="DamageText.h">
-      <Filter>UI</Filter>
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="BeechInstancing.h">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -223,7 +226,10 @@
       <Filter>GameObject\Unit\Goblin</Filter>
     </ClCompile>
     <ClCompile Include="DamageText.cpp">
-      <Filter>UI</Filter>
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechInstancing.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

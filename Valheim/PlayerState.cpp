@@ -5,6 +5,7 @@ IdleState* IdleState::instance;
 WalkState* WalkState::instance;
 RunState* RunState::instance;
 JumpState* JumpState::instance;
+FistState* FistState::instance;
 SwingState* SwingState::instance;
 
 
@@ -36,6 +37,10 @@ void IdleState::Swing()
 	//플레이어 상태 Idle -> Swing 전환
 	SetPlayerState(SwingState::GetInstance());
 }
+void IdleState::Fist()
+{
+	SetPlayerState(FistState::GetInstance());
+}
 
 //Walk 클래스----------------------------------------------------------
 void WalkState::Idle()
@@ -63,6 +68,10 @@ void WalkState::Jump()
 void WalkState::Swing()
 {
 	SetPlayerState(SwingState::GetInstance());
+}
+void WalkState::Fist()
+{
+	SetPlayerState(FistState::GetInstance());
 }
 
 //Run 클래스----------------------------------------------------------
@@ -93,6 +102,10 @@ void RunState::Swing()
 {
 	SetPlayerState(SwingState::GetInstance());
 }
+void RunState::Fist()
+{
+	SetPlayerState(FistState::GetInstance());
+}
 //Jump 클래스----------------------------------------------------------
 void JumpState::Idle() 
 {
@@ -118,10 +131,41 @@ void JumpState::Jump()
 	PLAYER->actor->anim->ChangeAnimation(AnimationState::ONCE_LAST, 4);
 	PLAYER->isJump = true;
 }
+void JumpState::Fist()
+{
+	//Jump에서 Fist으로 변할 수 없음
+}
 void JumpState::Swing()
 {
 	//Jump에서 Swing으로 변할 수 없음
 }
+//Fist 클래스----------------------------------------------------------
+void FistState::Idle() 
+{
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) {
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
+	}
+	SetPlayerState(IdleState::GetInstance());
+}
+void FistState::Walk() {}
+void FistState::Run() {}
+void FistState::Jump() {}
+void FistState::Fist() 
+{
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 8)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 8);
+	}
+	
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 63)
+	{
+		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 63;
+	}
+}
+void FistState::Swing(){}
+
+
+
 //Swing 클래스----------------------------------------------------------
 void SwingState::Idle()
 {
@@ -133,6 +177,7 @@ void SwingState::Idle()
 void SwingState::Walk() {}
 void SwingState::Run()  {}
 void SwingState::Jump() {}
+void SwingState::Fist() {}
 void SwingState::Swing()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 6) 
@@ -140,11 +185,18 @@ void SwingState::Swing()
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 6);
 	}
 
-		/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
-		{
-			PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
-		}*/
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 136)
+	{
+		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 136;
+	}
+
+	/*if (PLAYER->GetPlayer()->anim->GetPlayTime() >= 0.2f && PLAYER->GetPlayer()->anim->GetPlayTime() <= 0.7f)
+	{
+		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
+	}*/
 	
 }
+
+
 
 

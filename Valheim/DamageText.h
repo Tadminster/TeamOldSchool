@@ -4,6 +4,7 @@ class DamageText
 {
 private:
 	Billboard*	damageText;
+	Billboard*	parentNode;
 	float		lifeTime{ 0.0f };
 
 public:
@@ -12,6 +13,9 @@ public:
 	void		Update();
 	void		Render();
 	void		Release();
+	
+	Billboard*  GetBillboard() { return damageText; }
+	void		SetParentNode(Billboard* node) { parentNode = node; }
 
 	bool IsTimeOver() { return lifeTime >= TIME_LIMIT; }
 };

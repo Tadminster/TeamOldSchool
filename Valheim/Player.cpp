@@ -10,6 +10,10 @@ Player::Player()
 	actor->name = "Player";
 	actor->anim->aniScale = 0.65f;
 	
+	playerHp = UI::Create();
+	playerHp->LoadFile("Player_Hp.xml");
+	playerHp->name = "Player_Hp";
+
 	state = IdleState::GetInstance();
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
@@ -44,6 +48,7 @@ void Player::Update()
 	ApplyGravity();
 	
 	actor->Update();
+	playerHp->Update();
 }
 
 void Player::LateUpdate()
@@ -71,6 +76,7 @@ void Player::LateUpdate()
 void Player::Render()
 {
 	actor->Render();
+	playerHp->Render();
 }
 
 void Player::Release()
@@ -80,6 +86,7 @@ void Player::Release()
 void Player::RenderHierarchy()
 {
 	actor->RenderHierarchy();
+	playerHp->RenderHierarchy();
 }
 
 bool Player::CleanHit(Collider* object)
@@ -88,13 +95,50 @@ bool Player::CleanHit(Collider* object)
 	{
 		return equippedHand->GetActor()->collider->Intersect(object);
 	}
+	else
+	{
+		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
+		else if (actor->Find("mixamorig:LeftHand")->collider->Intersect(object)) return true;
+	}
 	return false;
 }
 
 bool Player::CleanFrame()
 {
 	//충돌 프레임 31 58 89
-	if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
+	if (state == SwingState::GetInstance())
+	{
+		if (actor->anim->currentAnimator.currentFrame == 31)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+		else if (actor->anim->currentAnimator.currentFrame == 59)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+		else if (actor->anim->currentAnimator.currentFrame == 89)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+	}
+	else if (state == FistState::GetInstance())
+	{
+		if (actor->anim->currentAnimator.currentFrame == 12)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+		else if (actor->anim->currentAnimator.currentFrame == 20)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+	}
+	return false;
+	/*if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
 	{
 		actor->anim->currentAnimator.currentFrame++;
 		return true;
@@ -107,11 +151,8 @@ bool Player::CleanFrame()
 	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
 	{
 		actor->anim->currentAnimator.currentFrame++;
-		//actor->anim->currentAnimator.currentFrame = 90;
-		//actor->anim->currentAnimator.currentFrame = actor->anim->currentAnimator.nextFrame;
 		return true;
-	}
-	return false;
+	}*/
 }
 
 void Player::SetState(PlayerState* state)
@@ -203,7 +244,7 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
-	else if (state == SwingState::GetInstance())
+	else if (state == SwingState::GetInstance() || state == FistState::GetInstance())
 	{
 		if (INPUT->KeyUp(VK_LBUTTON))
 		{
@@ -233,7 +274,8 @@ void Player::PlayerControl()
 	{
 		if (INPUT->KeyPress(VK_LBUTTON)) 
 		{
-			state->Swing();
+			if (equippedHand) state->Swing();
+			else state->Fist();
 		}
 	}
 }
@@ -243,6 +285,7 @@ void Player::PlayerMove()
 	//상태값에 따른 이동속도(FSM완료후 다듬을 예정)
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 
@@ -345,13 +388,13 @@ bool Player::GetItem(ItemProto* item)
 	}
 }
 
-void Player::PlayerHit(int damage)
+void Player::PlayerHit(float damage)
 {
 	if (hitTime < 0)
 	{
 		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
 		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, this->GetActor()->GetWorldPos());
-		//----------------------------------------
+		//------------------------------------------------------------
 		cout << "PlayerHit!";
 		hitPoint -= damage;
 		hitTime = 1.0f;
@@ -369,14 +412,34 @@ WeaponProto* Player::GetPlayerWeapon()
 	if (equippedHand) return equippedHand;
 }
 
+float Player::GetWeaponDMG()
+{
+	if (equippedHand) return equippedHand->damage;
+	else return fistDMG;
+}
+
 Vector3 Player::GetCollisionPoint()
 {
 	if(equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
 }
 
+bool Player::GetWeoponCollider(Collider* object)
+{
+	if (equippedHand)
+	{
+		return equippedHand->actor->collider->Intersect(object);
+	}
+	else
+	{
+		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
+		else if (actor->Find("mixamorig:LeftHand")->collider->Intersect(object)) return true;
+	}
+}
+
 WeaponType Player::GetWeaponType()
 {		
 	if (equippedHand) return equippedHand->wType;
+	else return WeaponType::Fist;
 }
 
 void Player::DestructionEvent()

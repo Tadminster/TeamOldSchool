@@ -1,5 +1,5 @@
 #pragma once
-
+#define ASTARNODENUM 2.5f
 class GameManager : public Singleton<GameManager>
 {
 public:
@@ -13,6 +13,7 @@ public:
     class ParticleManager*      particleManager;
     class UserInterfaceManager* uiManager;
 
+    class AStar*                astar;
 public:
     GameManager();
     ~GameManager();

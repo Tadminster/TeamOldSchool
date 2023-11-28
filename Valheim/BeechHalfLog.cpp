@@ -57,5 +57,5 @@ void BeechHalfLog::DestructionEvent()
 	item->GetActor()->SetWorldPos(actor->GetWorldPos());
 	OBJ->AddItem(item);
 
-	BeechHalfLog::~BeechHalfLog();
+	delete this;
 }

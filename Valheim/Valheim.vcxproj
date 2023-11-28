@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BeechHalfLog.h" />
+    <ClInclude Include="BeechInstancing.h" />
     <ClInclude Include="BeechLog.h" />
     <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
@@ -61,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BeechHalfLog.cpp" />
+    <ClCompile Include="BeechInstancing.cpp" />
     <ClCompile Include="BeechLog.cpp" />
     <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />

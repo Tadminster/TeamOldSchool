@@ -2,13 +2,13 @@
 #include "Prototype.h"
 #include "FeatureProto.h"
 
-class Beech : public FeatureProto
+class BeechInstancing : public FeatureProto
 {
 private:
 	friend class FeatureProto;
-	
-	Beech();
-	~Beech() override;
+
+	BeechInstancing();
+	~BeechInstancing() override;
 
 public:
 	void Init() override;
@@ -18,7 +18,6 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
-	void LodUpdate(float distance) override;
 	void DestructionEvent() override;
 };
 

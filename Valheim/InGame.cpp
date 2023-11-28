@@ -39,7 +39,9 @@ InGame::~InGame()
 void InGame::Init()
 {
 	GM->Init();
+	UIM->Init();
 	PLAYER->Init();
+
 	elder->Init();
 	goblin->Init();
 }
@@ -65,7 +67,7 @@ void InGame::Update()
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
 		PARTICLE->RenderHierarchy();
-		PLAYER->GetActor()->RenderHierarchy();
+		PLAYER->RenderHierarchy();
 		elder->RenderHierarchy();
 		goblin->RenderHierarchy();
 	}
@@ -104,8 +106,6 @@ void InGame::Update()
 		if(isDebugCamControl) Camera::main->ControlMainCam();
 	}
 	else PLAYER->AvtivatePlayerCam();
-
-	GM->Update();
 
 	Camera::main->Update();
 	

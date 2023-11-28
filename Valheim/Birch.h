@@ -5,11 +5,12 @@
 class Birch : public FeatureProto
 {
 private:
-	//RenderType type;
+	friend class FeatureProto;
 
-public:
-	Birch();
+	//Birch();
+	explicit Birch(RenderType renderType = RenderType::Normal);
 	~Birch() override;
+public:
 	void Init() override;
 	void Update() override;
 	void LateUpdate() override;

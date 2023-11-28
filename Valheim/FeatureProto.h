@@ -3,8 +3,14 @@
 
 enum class FeatureType
 {
-    Birch, Beech, BeechStump, BeechLog, BeechHalfLog,
+    Birch, 
+    Beech, BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
     Rock
+};
+
+enum class RenderType
+{
+	Normal, Instancing
 };
 
 enum class FeatureArmorType
@@ -24,7 +30,7 @@ protected:
     Vector3*            rotation;                       // 타격시 흔들림 조절용(actor->Find("RootNode")->rotation)
 public:
 
-    static FeatureProto* Create(FeatureType type);
+    static FeatureProto* Create(FeatureType featureType);
     virtual ~FeatureProto() {}
 
     virtual void Init() override;

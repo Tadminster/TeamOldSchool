@@ -3,10 +3,34 @@
 #include "FeatureProto.h"
 #include "Birch.h"
 
-Birch::Birch()
+//Birch::Birch()
+//{
+//	actor = Actor::Create();
+//	actor->LoadFile("Feature_Birch.xml");
+//
+//	static int index = 0;
+//	actor->name = "Birch" + to_string(index++);
+//
+//	float x = RANDOM->Float(0.7f, 1.1f);
+//	float y = RANDOM->Float(0.4f, 0.6f);
+//	float z = RANDOM->Float(0.7f, 1.1f);
+//	actor->scale = Vector3(x, y, z);
+//	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
+//
+//	rotation = &actor->Find("RootNode")->rotation;
+//
+//	//==================================================
+//	type = FeatureArmorType::Tree;
+//	hitPoint = 80;
+//}
+
+Birch::Birch(RenderType renderType)
 {
 	actor = Actor::Create();
-	actor->LoadFile("Feature_Birch.xml");
+	if (renderType == RenderType::Normal)
+		actor->LoadFile("Feature_Birch.xml");
+	//else if (renderType == RenderType::Instancing)
+		//actor->LoadFile("Feature_BirchInstance.xml");
 
 	static int index = 0;
 	actor->name = "Birch" + to_string(index++);
@@ -93,5 +117,5 @@ void Birch::DestructionEvent()
 	OBJ->AddObject(log);
 
 	// 오브젝트 삭제 (나무)
-	Birch::~Birch();
+	delete this;
 }

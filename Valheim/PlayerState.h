@@ -15,6 +15,7 @@ public:
 	virtual void Walk() = 0;
 	virtual void Run() = 0;
 	virtual void Jump() = 0;
+	virtual void Fist() = 0;
 	virtual void Swing() = 0;
 };
 //Idle 클래스----------------------------------------------------------
@@ -31,6 +32,7 @@ public:
 	void Walk() override;
 	void Run() override;
 	void Jump() override;
+	void Fist() override;
 	void Swing() override;
 };
 //Walk 클래스----------------------------------------------------------
@@ -47,6 +49,7 @@ public:
 	void Walk() override;
 	void Run() override;
 	void Jump() override;
+	void Fist() override;
 	void Swing() override;
 };
 //Run 클래스----------------------------------------------------------
@@ -63,6 +66,7 @@ public:
 	void Walk() override;
 	void Run() override;
 	void Jump() override;
+	void Fist() override;
 	void Swing() override;
 };
 //Jump 클래스----------------------------------------------------------
@@ -79,6 +83,24 @@ public:
 	void Walk() override;
 	void Run() override;
 	void Jump() override;
+	void Fist() override;
+	void Swing() override;
+};
+//Fist 클래스----------------------------------------------------------
+class FistState : public PlayerState
+{
+	static FistState* instance;
+public:
+	static FistState* GetInstance()
+	{
+		if (instance == nullptr) instance = new FistState();
+		return instance;
+	}
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Fist() override;
 	void Swing() override;
 };
 //Swing 클래스----------------------------------------------------------
@@ -95,5 +117,6 @@ public:
 	void Walk() override;
 	void Run() override;
 	void Jump() override;
+	void Fist() override;
 	void Swing() override;
 };

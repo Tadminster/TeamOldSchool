@@ -31,6 +31,7 @@ public:
 	Color GetColorForWeight(float normalizedHeight);
 	// 터레인 높이맵을 BMP 파일로 저장해서 미니맵 ui 에 diffusemap 생성하는함수
 	void DrawMiniMap(const std::string& filename);
+	void LoadMiniMap();
 	// 플레이어 미니맵 아이콘이 플레이어의 회전값을받아서 보는방향을 보여줍니다
 	void FollowPlayerViewPoint();
 	// 플레이어의 이동에 맞는 위치에 미니맵 플레이어 아이콘도 이동합니다

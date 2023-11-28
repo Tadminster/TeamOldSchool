@@ -23,8 +23,8 @@ MiniMap::~MiniMap()
 void MiniMap::Init()
 {
 	int textureSize = MAP->rowSize;
-
-
+	DrawMiniMap("DrawMiniMap");
+	LoadMiniMap();
 }
 
 void MiniMap::Release()
@@ -163,6 +163,13 @@ void  MiniMap::DrawMiniMap(const string& filename)
 	}
 
 	file.close();
+}
+
+void MiniMap::LoadMiniMap()
+{
+	string filepath = "MiniMap/DrawMiniMap.bmp";
+	SafeReset(miniMap->material->diffuseMap);
+	miniMap->material->diffuseMap = RESOURCE->textures.Load(filepath);
 }
 
 void MiniMap::FollowPlayerViewPoint()

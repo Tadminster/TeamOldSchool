@@ -3,6 +3,7 @@
 
 #include "Birch.h"
 #include "Beech.h"
+#include "BeechInstancing.h"
 #include "BeechStump.h"
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
@@ -10,14 +11,16 @@
 
 #include "FeatureProto.h"
 
-FeatureProto* FeatureProto::Create(FeatureType type)
+FeatureProto* FeatureProto::Create(FeatureType featureType)
 {
-	switch (type)
+	switch (featureType)
 	{
 		case FeatureType::Birch:
 			return new Birch();
 		case FeatureType::Beech:
 			return new Beech();
+		case FeatureType::BeechInstancing:
+			return new BeechInstancing();
 		case FeatureType::BeechStump:
 			return new BeechStump();
 		case FeatureType::BeechLog:
@@ -69,9 +72,9 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 	// 타격 이펙트 재생
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
-	// 타격 애니메이션 재생시간 설정
+	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
-	
+
 	// 데미지 계산
 	if (wType == WeaponType::Axe)
 	{
