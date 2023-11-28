@@ -10,10 +10,9 @@ private:
 	
     Scattering*                     scattering;
     
-        
     GameManager*                    gameManager;
     
-  
+    Timer*                          worldClock;
     class Elder*                    elder;
     class Goblin*                   goblin;
 public:

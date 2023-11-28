@@ -62,7 +62,7 @@ void GS(point VertexOutput input[1], inout TriangleStream<PixelInput> output)
     
     // 월드변환후 뷰 프로젝션변환
     
-  float3 up = float3(0, 1, 0);
+    float3 up = float3(0, 1, 0);
 	float3 forward = float3(0, 0, 1);
 	float3 right = float3(1, 0, 0);
     
