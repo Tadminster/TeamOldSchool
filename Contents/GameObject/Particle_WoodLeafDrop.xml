@@ -3,10 +3,10 @@
     <Shader File="8.Pop.hlsl"/>
     <Material File="Beech/beech_drop.mtl"/>
     <Transform>
-        <Position X="-3.5" Y="18.532265" Z="15.5"/>
-        <Scale X="2" Y="2" Z="1"/>
+        <Position X="7.9559999" Y="16.604923" Z="-2.391"/>
+        <Scale X="0.5" Y="0.5" Z="0"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="0" particleScaleY="0" particleCount="10" velocityScalar="10" duration="8.6920004" gravity="21.457001"/>
+    <Pop particleScaleX="1.3" particleScaleY="1.3" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="20" velocityScalar="10" duration="1.215" gravity="40"/>
     <Children Size="0"/>
 </Root>

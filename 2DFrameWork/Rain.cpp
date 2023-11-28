@@ -156,7 +156,7 @@ void Rain::RenderDetail()
 			ImGui::SliderFloat3("velocity", (float*)&desc.velocity, -1000, 1000);
 			ImGui::SliderFloat3("particleRange", (float*)&desc.range, 0, 1000);
 			ImGui::SliderFloat2("particleSize", (float*)&scale, 0, 100);
-			ImGui::SliderFloat2("particleRandomSizeRange", (float*)&particleScale, 0, 100);
+			ImGui::SliderFloat2("particleRandomSizeRange", (float*)&randomSize, 0, 100);
 			ImGui::SliderInt("particleCount", &particleCount, 1, 100);
 
 			if (ImGui::Button("Reset"))

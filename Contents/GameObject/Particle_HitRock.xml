@@ -1,0 +1,12 @@
+<Root Name="Particle_RockHit" Visible="true" ObType="9">
+    <Mesh File="8.Billboard.mesh"/>
+    <Shader File="8.Pop.hlsl"/>
+    <Material File="Particle/HitRock.mtl"/>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="0.1" Y="0.1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Pop particleScaleX="0.1" particleScaleY="0.1" particleCount="20" velocityScalar="10" duration="10.526" gravity="30"/>
+    <Children Size="0"/>
+</Root>

@@ -6,17 +6,25 @@ ParticleManager::ParticleManager()
 	beechDrop = Pop::Create("Particle_WoodLeafDrop");
 	beechDrop->LoadFile("Particle_WoodLeafDrop.xml");
 	
+	
 	//나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("Particle_HitWood");
 	hitBeech->LoadFile("Particle_HitWood.xml");
-	hitBeech->scale = { 0.1f, 0.1f };
+	
 
 	woodHitDust = Rain::Create("Particle_WoodHitDust");
 
 	//플레이어 피격시 출혈 파티클 효과
 	hitBlood = Pop::Create("Particle_Blood");
 	hitBlood->LoadFile("Particle_Blood.xml");
-	hitBlood->scale = { 0.5f, 0.5f };
+	
+
+	//바위 타격시 돌이 튀는 파티클 효과
+	hitRock = Pop::Create("Particle_RockHit");
+	hitRock->LoadFile("Particle_HitRock.xml");
+	
+	
+	
 }
 
 ParticleManager::~ParticleManager()
@@ -37,6 +45,7 @@ void ParticleManager::Update()
 	hitBeech->Update();
 	woodHitDust->Update();
 	hitBlood->Update();
+	hitRock->Update();
 }
 
 void ParticleManager::LateUpdate()
@@ -50,6 +59,7 @@ void ParticleManager::Render()
 	hitBeech->Render();
 	woodHitDust->Render();
 	hitBlood->Render();
+	hitRock->Render();
 }
 
 void ParticleManager::RenderHierarchy()
@@ -61,6 +71,7 @@ void ParticleManager::RenderHierarchy()
 		hitBeech->RenderHierarchy();
 		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
+		hitRock->RenderHierarchy();
 	}
 	ImGui::End();
 }
@@ -91,6 +102,12 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		hitBlood->SetWorldPos(pos);
 		hitBlood->Play();
 		cout << "피 터짐" << endl;
+	}
+	if (type == EffectType::HITROCK)
+	{
+		hitRock->SetWorldPos(pos);
+		hitRock->Play();
+		cout << "바위 타격" << endl;
 	}
 }
 
