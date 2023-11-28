@@ -33,8 +33,9 @@ private:
 	struct EquippedItem						// 착용중인 아이템 인덱스 저장 구조체
 	{
 		int		Weapon		{ -1 };
+		int     Shield		{ -1 };
 		int		Armor		{ -1 };
-		int*    array[2]	{ &Weapon, &Armor };
+		int*    array[3]	{ &Weapon, &Shield, &Armor, };
 
 		void swap(int index_x, int index_y)
 		{

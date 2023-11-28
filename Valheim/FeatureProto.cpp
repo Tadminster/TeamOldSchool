@@ -41,11 +41,30 @@ void FeatureProto::Init()
 
 void FeatureProto::Update()
 {
+	// 체력이 0 이하이면
 	if (hitPoint <= 0)
 	{
+		// 파괴 이벤트
 		DestructionEvent();
 	}
 
+	//// 거리가 5.0f 이하이면
+	if (playerDistance < 5.0f)
+	{
+		// 플레이어 공격 검사
+		if (PLAYER->CleanHit(this->GetActor()->collider) && PLAYER->CleanFrame())
+		{
+			ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
+		}
+
+		// 슬라이딩 벡터
+		if (PLAYER->GetCollider()->Intersect(this->GetActor()->collider))
+		{
+			PLAYER->MoveBack(this->GetActor());
+		}
+	}
+
+	// 데미지를 입었을 때 애니메이션 재생
 	ReceivedDamageAnimation();
 
 	actor->Update();

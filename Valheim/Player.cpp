@@ -490,7 +490,8 @@ float Player::GetWeaponDMG()
 
 Vector3 Player::GetCollisionPoint()
 {
-	if(equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos(); 
+	if (equippedHand) return equippedHand->GetActor()->Find("CollisionPoint")->GetWorldPos();
+	else return actor->Find("mixamorig:LeftHand")->GetWorldPos();
 }
 
 bool Player::GetWeoponCollider(Collider* object)
