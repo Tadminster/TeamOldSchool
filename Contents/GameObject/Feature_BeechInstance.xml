@@ -17,7 +17,7 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <Children Size="3"/>
-        <Child0 Name="Lod0" Visible="false" ObType="0">
+        <Child0 Name="Lod0" Visible="true" ObType="0">
             <Mesh File="Beech/Lod0.mesh"/>
             <Shader File="4.Instance.hlsl"/>
             <Material File="Beech/beech_leaf.mtl"/>

@@ -114,6 +114,9 @@
     <ClInclude Include="DamageText.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="BeechInstancing.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -224,6 +227,9 @@
     </ClCompile>
     <ClCompile Include="DamageText.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="BeechInstancing.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

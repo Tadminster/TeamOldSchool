@@ -192,6 +192,10 @@ void ObjectManager::RenderHierarchy()
 		{
 			obj->GetActor()->RenderHierarchy();
 		}
+		for (auto& objInstancing : instancingObjects)
+		{
+			objInstancing->GetActor()->RenderHierarchy();
+		}
 	}
 	ImGui::End();
 }
@@ -369,18 +373,18 @@ void ObjectManager::GenerateInstanceTree()
 		}
 	}
 
-	FeatureProto* beech = FeatureProto::Create(FeatureType::Beech, RenderType::Instancing);
-	beech->GetActor()->SetWorldPos(Vector3(0.0f, -20.0f, 0.0f));
+	FeatureProto* beech = FeatureProto::Create(FeatureType::BeechInstancing);
+	beech->GetActor()->SetWorldPos(Vector3(0.0f, -50.0f, 0.0f));
+	beech->Update();
+	float baseline = fabs(beech->GetActor()->GetWorldPos().y);
 
 	UINT count = treePos.size();
 	Matrix* ins = new Matrix[count];
-	int idx = 0;
-	for (int i = 1; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
-		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y, treePos[i].z);
-		ins[idx] = Matrix::CreateTranslation(treePos[i]);
-		ins[idx] = ins[idx].Transpose();
-		idx++;
+		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y + baseline, treePos[i].z);
+		ins[i] = Matrix::CreateTranslation(insPos);
+		ins[i] = ins[i].Transpose();
 	}
 
 	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);

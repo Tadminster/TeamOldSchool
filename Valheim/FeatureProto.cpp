@@ -3,6 +3,7 @@
 
 #include "Birch.h"
 #include "Beech.h"
+#include "BeechInstancing.h"
 #include "BeechStump.h"
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
@@ -10,15 +11,16 @@
 
 #include "FeatureProto.h"
 
-FeatureProto* FeatureProto::Create(FeatureType featuretype, RenderType renderType)
+FeatureProto* FeatureProto::Create(FeatureType featureType)
 {
-	switch (featuretype)
+	switch (featureType)
 	{
 		case FeatureType::Birch:
 			return new Birch();
 		case FeatureType::Beech:
-			if (renderType == RenderType::Normal) return new Beech();
-			else return new Beech(renderType);
+			return new Beech();
+		case FeatureType::BeechInstancing:
+			return new BeechInstancing();
 		case FeatureType::BeechStump:
 			return new BeechStump();
 		case FeatureType::BeechLog:
