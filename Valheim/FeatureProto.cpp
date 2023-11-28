@@ -69,8 +69,11 @@ void FeatureProto::RenderHierarchy()
 
 bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
+	//임시로 나무 타격시 이펙트발생위치 잡아두었습니다!
+	Vector3 leafDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 5, 0);
 	// 타격 이펙트 재생
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
 
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;

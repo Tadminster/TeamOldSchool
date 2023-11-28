@@ -178,8 +178,8 @@ void GameObject::SaveObject(Xml::XMLElement* This, Xml::XMLDocument* doc)
 		Xml::XMLElement* rain = doc->NewElement("Rain");
 		This->LinkEndChild(rain);
 		Rain* RainOb = dynamic_cast<Rain*>(this);
-		rain->SetAttribute("particleScaleX", RainOb->particleScale.x);
-		rain->SetAttribute("particleScaleY", RainOb->particleScale.y);
+		rain->SetAttribute("particleScaleX", RainOb->randomSize.x);
+		rain->SetAttribute("particleScaleY", RainOb->randomSize.y);
 		rain->SetAttribute("particleCount", RainOb->particleCount);
 		rain->SetAttribute("rangeX", RainOb->desc.range.x);
 		rain->SetAttribute("rangeY", RainOb->desc.range.y);
@@ -195,8 +195,11 @@ void GameObject::SaveObject(Xml::XMLElement* This, Xml::XMLDocument* doc)
 		Xml::XMLElement* pop = doc->NewElement("Pop");
 		This->LinkEndChild(pop);
 		Pop* PopOb = dynamic_cast<Pop*>(this);
-		pop->SetAttribute("particleScaleX", PopOb->particleScale.x);
-		pop->SetAttribute("particleScaleY", PopOb->particleScale.y);
+		pop->SetAttribute("particleScaleX", PopOb->randomSize.x);
+		pop->SetAttribute("particleScaleY", PopOb->randomSize.y);
+		pop->SetAttribute("randomPosX", PopOb->randomPosition.x);
+		pop->SetAttribute("randomPosY", PopOb->randomPosition.y);
+		pop->SetAttribute("randomPosZ", PopOb->randomPosition.z);
 		pop->SetAttribute("particleCount", PopOb->particleCount);
 		pop->SetAttribute("velocityScalar", PopOb->velocityScalar);
 		pop->SetAttribute("duration", PopOb->desc.duration);
@@ -358,8 +361,8 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		Rain* RainOb = dynamic_cast<Rain*>(this);
 		component = This->FirstChildElement("Rain");
 
-		RainOb->particleScale.x = component->FloatAttribute("particleScaleX");
-		RainOb->particleScale.y = component->FloatAttribute("particleScaleY");
+		RainOb->randomSize.x = component->FloatAttribute("particleScaleX");
+		RainOb->randomSize.y = component->FloatAttribute("particleScaleY");
 		RainOb->particleCount = component->IntAttribute("particleCount");
 		RainOb->desc.range.x = component->FloatAttribute("rangeX");
 		RainOb->desc.range.y = component->FloatAttribute("rangeY");
@@ -374,8 +377,11 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 	{
 		Pop* PopOb = dynamic_cast<Pop*>(this);
 		component = This->FirstChildElement("Pop");
-		PopOb->particleScale.x = component->FloatAttribute("particleScaleX");
-		PopOb->particleScale.y = component->FloatAttribute("particleScaleY");
+		PopOb->randomSize.x = component->FloatAttribute("particleScaleX");
+		PopOb->randomSize.y = component->FloatAttribute("particleScaleY");
+		PopOb->randomPosition.x = component->FloatAttribute("randomPosX");
+		PopOb->randomPosition.y = component->FloatAttribute("randomPosY");
+		PopOb->randomPosition.z = component->FloatAttribute("randomPosZ");
 		PopOb->particleCount = component->IntAttribute("particleCount");
 		PopOb->velocityScalar = component->FloatAttribute("velocityScalar");
 		PopOb->desc.duration = component->FloatAttribute("duration");

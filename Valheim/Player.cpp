@@ -18,7 +18,8 @@ Player::Player()
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
-	hitPoint = 10;
+	hitPoint = 30.0f;
+	maxHitpoint = 30.0f;
 }
 
 Player::~Player()
@@ -36,17 +37,20 @@ void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
 	
-	PlayerControl();
-	PlayerMove();
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
 	}
 
 	if(hitTime >= 0) hitTime -= DELTA;
-	//중력 구현
-	ApplyGravity();
 	
+	//기능 함수
+	PlayerControl();
+	PlayerMove();
+	PlayerHealth();
+	ApplyGravity();
+	GrowthAbility();
+
 	actor->Update();
 	playerHp->Update();
 }
@@ -119,6 +123,14 @@ bool Player::CleanFrame()
 			return true;
 		}
 		else if (actor->anim->currentAnimator.currentFrame == 89)
+		{
+			actor->anim->currentAnimator.currentFrame++;
+			return true;
+		}
+	}
+	else if (state == AxeState::GetInstance())
+	{
+		if (actor->anim->currentAnimator.currentFrame == 24)
 		{
 			actor->anim->currentAnimator.currentFrame++;
 			return true;
@@ -251,7 +263,7 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
-	//Walk & Run--------------------------------------------------------------------------------------------
+	//Walk && Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
 	{
 		if (INPUT->KeyPress(VK_SHIFT))
@@ -269,13 +281,17 @@ void Player::PlayerControl()
 		state = JumpState::GetInstance();
 		state->Jump();
 	}
-	//Swing--------------------------------------------------------------------------------------------
+	//Fist && Swing--------------------------------------------------------------------------------------------
 	if (!INVEN->isOpen && !CRAFT->isOpen)
 	{
 		if (INPUT->KeyPress(VK_LBUTTON)) 
 		{
-			if (equippedHand) state->Swing();
-			else state->Fist();
+			if(!equippedHand) state->Fist();
+			else
+			{
+				if (equippedHand->wType == WeaponType::Blunt) state->Swing();
+				else if (equippedHand->wType == WeaponType::Axe || equippedHand->wType == WeaponType::Pickaxe) state->Axe();
+			}
 		}
 	}
 }
@@ -287,8 +303,8 @@ void Player::PlayerMove()
 	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
 	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
+	else if (state == AxeState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
-
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	if (!istouch)
 	{
@@ -393,13 +409,67 @@ void Player::PlayerHit(float damage)
 	if (hitTime < 0)
 	{
 		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, this->GetActor()->GetWorldPos());
+		Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
+		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
 		//------------------------------------------------------------
-		cout << "PlayerHit!";
 		hitPoint -= damage;
 		hitTime = 1.0f;
 		isHit = false;
+		healTime = 0;
 	}
+}
+
+void Player::GrowthAbility()
+{
+	if (state == RunState::GetInstance())
+	{
+		actor->anim->aniScale = 0.7f;
+	}
+	else if (state == JumpState::GetInstance())
+	{
+		actor->anim->aniScale = 0.7f;
+	}
+	else if (state == FistState::GetInstance())
+	{
+		actor->anim->aniScale = 0.5f;
+	}
+	else if (state == SwingState::GetInstance())
+	{
+		actor->anim->aniScale = 0.6f;
+	}
+	else if (state == AxeState::GetInstance())
+	{
+		actor->anim->aniScale = 0.6f;
+	}
+	else
+	{
+		actor->anim->aniScale = 1.0f;
+	}
+}
+
+void Player::PlayerHealth()
+{
+	playerHp->scale.y = growthHp;
+	playerHp->Find("FrontHp")->scale.y = hitPoint / maxHitpoint;
+
+	if (hitTime < 0)
+	{
+		healTime += DELTA;
+	}
+
+	if (healTime >= 5.0f)
+	{
+		if (hitPoint <= maxHitpoint)
+		{
+			if (TIMER->GetTick(healGetTick, 2.0f))
+			{
+				hitPoint += 1.0f;
+				cout << "1회복!" << endl;
+			}
+		}
+	}
+	if (hitPoint > maxHitpoint) hitPoint = maxHitpoint;
+	
 }
 
 bool Player::IsDestroyed()
