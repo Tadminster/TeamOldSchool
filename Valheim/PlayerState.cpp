@@ -7,7 +7,8 @@ RunState* RunState::instance;
 JumpState* JumpState::instance;
 FistState* FistState::instance;
 SwingState* SwingState::instance;
-
+AxeState* AxeState::instance;
+DeathState* DeathState::instance;
 
 //Idle 클래스----------------------------------------------------------
 void IdleState::Idle()
@@ -41,6 +42,14 @@ void IdleState::Fist()
 {
 	SetPlayerState(FistState::GetInstance());
 }
+void IdleState::Axe()
+{
+	SetPlayerState(AxeState::GetInstance());
+}
+void IdleState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
+}
 
 //Walk 클래스----------------------------------------------------------
 void WalkState::Idle()
@@ -72,6 +81,14 @@ void WalkState::Swing()
 void WalkState::Fist()
 {
 	SetPlayerState(FistState::GetInstance());
+}
+void WalkState::Axe()
+{
+	SetPlayerState(AxeState::GetInstance());
+}
+void WalkState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
 }
 
 //Run 클래스----------------------------------------------------------
@@ -106,6 +123,14 @@ void RunState::Fist()
 {
 	SetPlayerState(FistState::GetInstance());
 }
+void RunState::Axe()
+{
+	SetPlayerState(AxeState::GetInstance());
+}
+void RunState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
+}
 //Jump 클래스----------------------------------------------------------
 void JumpState::Idle() 
 {
@@ -139,6 +164,14 @@ void JumpState::Swing()
 {
 	//Jump에서 Swing으로 변할 수 없음
 }
+void JumpState::Axe()
+{
+	//Jump에서 Axe으로 변할 수 없음
+}
+void JumpState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
+}
 //Fist 클래스----------------------------------------------------------
 void FistState::Idle() 
 {
@@ -162,10 +195,9 @@ void FistState::Fist()
 		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 63;
 	}
 }
-void FistState::Swing(){}
-
-
-
+void FistState::Swing() {}
+void FistState::Axe() {}
+void FistState::Death() {}
 //Swing 클래스----------------------------------------------------------
 void SwingState::Idle()
 {
@@ -194,9 +226,56 @@ void SwingState::Swing()
 	{
 		PLAYER->GetPlayer()->MoveWorldPos(PLAYER->GetPlayer()->GetForward() * SWINGSPEED * DELTA);
 	}*/
-	
 }
+void SwingState::Axe() {}
+void SwingState::Death() {}
+//Axe 클래스----------------------------------------------------------
+void AxeState::Idle()
+{
+	SetPlayerState(IdleState::GetInstance());
+}
+void AxeState::Walk()
+{
+	SetPlayerState(WalkState::GetInstance());
+}
+void AxeState::Run()
+{
+	SetPlayerState(RunState::GetInstance());
+}
+void AxeState::Jump()
+{
+	SetPlayerState(JumpState::GetInstance());
+}
+void AxeState::Fist() {}
+void AxeState::Swing() {}
+void AxeState::Axe()
+{
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 9)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 9);
+	}
 
-
-
-
+	if (PLAYER->GetPlayer()->anim->currentAnimator.currentFrame == 68)
+	{
+		PLAYER->GetPlayer()->anim->currentAnimator.nextFrame = 68;
+	}
+}
+void AxeState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
+}
+//Death 클래스----------------------------------------------------------
+void DeathState::Idle() {}
+void DeathState::Walk() {}
+void DeathState::Run() {}
+void DeathState::Jump() {}
+void DeathState::Fist() {}
+void DeathState::Swing() {}
+void DeathState::Axe() {}
+void DeathState::Death()
+{
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 7)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 7);
+	}
+}

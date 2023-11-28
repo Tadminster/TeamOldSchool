@@ -8,11 +8,14 @@ Goblin::Goblin(Vector3 spawnPos)
 	actor->LoadFile("Monster_Goblin.xml");
 	actor->name = "Monster_Goblin";
 	actor->SetWorldPos(spawnPos);
+	actor->anim->aniScale = 0.6f;
 
 	state = G_IDLE;
 
-	actor->anim->aniScale = 0.6f;
+	maxHitpoint = 50.0f;
 	hitPoint = 50.0f;
+
+	atk = 5.0f;
 	moveSpeed = 3.0f;
 	rotationScale = 1.0f;
 }
@@ -49,7 +52,7 @@ void Goblin::Update()
 		astar->CreateNode(MAP, MAP->rowSize * 2.5f, OBJ->GetColliders());
 	}*/
 	
-	actor->Find("Hp_Red")->scale.x = hitPoint / 50.0f;
+	actor->Find("Hp_Red")->scale.x = hitPoint / maxHitpoint;
 	
 
 	if (hitPoint <= 0) Death();
@@ -73,10 +76,9 @@ void Goblin::LateUpdate()
 	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightHand")->collider)
 		&& state == G_ATTACK)
 	{
-		PLAYER->PlayerHit();
+		if(actor->anim->currentAnimator.currentFrame <= 30) PLAYER->PlayerHit(this->atk);
 	}
 	//Player 공격 -> Goblin 피격
-	//if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
 	if(PLAYER->GetWeoponCollider(actor->collider))
 	{
 		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
@@ -106,18 +108,14 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 	if (wType == WeaponType::Blunt)
 	{
 		hitPoint -= damage * 2.0f;
-		cout << "Blunt" << endl;
-		cout << hitPoint << endl;
 	}
 	else if(wType == WeaponType::Fist)
 	{
 		hitPoint -= PLAYER->GetFistDMG();
-		cout << hitPoint << endl;
 	}
 	else
 	{
 		hitPoint -= damage;
-		cout << hitPoint << endl;
 	}
 	return false;
 }

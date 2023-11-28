@@ -17,6 +17,8 @@ public:
 	virtual void Jump() = 0;
 	virtual void Fist() = 0;
 	virtual void Swing() = 0;
+	virtual void Axe() = 0;
+	virtual void Death() = 0;
 };
 //Idle 클래스----------------------------------------------------------
 class IdleState : public PlayerState
@@ -34,6 +36,8 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };
 //Walk 클래스----------------------------------------------------------
 class WalkState : public PlayerState
@@ -51,6 +55,8 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };
 //Run 클래스----------------------------------------------------------
 class RunState : public PlayerState
@@ -68,6 +74,8 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };
 //Jump 클래스----------------------------------------------------------
 class JumpState : public PlayerState
@@ -85,6 +93,8 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };
 //Fist 클래스----------------------------------------------------------
 class FistState : public PlayerState
@@ -102,6 +112,8 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };
 //Swing 클래스----------------------------------------------------------
 class SwingState : public PlayerState
@@ -119,4 +131,44 @@ public:
 	void Jump() override;
 	void Fist() override;
 	void Swing() override;
+	void Axe() override;
+	void Death() override;
+};
+//Axe 클래스----------------------------------------------------------
+class AxeState : public PlayerState
+{
+	static AxeState* instance;
+public:
+	static AxeState* GetInstance()
+	{
+		if (instance == nullptr) instance = new AxeState();
+		return instance;
+	}
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Fist() override;
+	void Swing() override;
+	void Axe() override;
+	void Death() override;
+};
+//Death 클래스----------------------------------------------------------
+class DeathState : public PlayerState
+{
+	static DeathState* instance;
+public:
+	static DeathState* GetInstance()
+	{
+		if (instance == nullptr) instance = new DeathState();
+		return instance;
+	}
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Fist() override;
+	void Swing() override;
+	void Axe() override;
+	void Death() override;
 };

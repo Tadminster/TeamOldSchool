@@ -5,12 +5,14 @@ class Unit : public Prototype
 	
 
 protected:
+	float				atk = 0;
+	float				maxHitpoint = 0;
 	//SetOnTerrain--------------------------------------
 	Vector3				groundHit = {};
 	//ApplyGravity--------------------------------------
 	float				gravity = 0;
 	bool				isLand = 0;
-	//MonsterMove--------------------------------------
+	//MonsterMove---------------------------------------
 	Vector3				moveDir = {};
 	float				moveTime = 0;
 	float				moveSpeed = 0;
@@ -20,13 +22,11 @@ protected:
 	float				rotationSpeed = 0;
 	float				rotationTime = 0;
 	float				rotationScale = 0.4f;
-
-	//A Star--------------------------------------
+	//A Star-------------------------------------------
 	Ray					AstarRay;
 	vector<Vector3>		way = {};
 	float				astarTime = 0;
-
-	//Death-----------------------------------------
+	//Death--------------------------------------------
 	bool				isDeath = false;
 public:
 	Unit();
