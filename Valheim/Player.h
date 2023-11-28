@@ -76,7 +76,7 @@ public:
 	void			PlayerControl();
 	void			PlayerMove();
 	void			EquipToHand(WeaponProto* item);
-	void			ReleaseToHand();
+	void			ReleaseToHand(WeaponProto* item);
 	void			MoveBack(Actor* col);
 	bool			GetItem(ItemProto* item);
 	void			PlayerHit(float damage = 1.0f);

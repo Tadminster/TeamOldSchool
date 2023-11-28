@@ -103,7 +103,7 @@ void StonePickaxe::Use()
 	else if (state == ItemState::Equipped)
 	{
 		state = ItemState::OnInventory;
-		PLAYER->ReleaseToHand();
+		PLAYER->ReleaseToHand(this);
 	}
 }
 
