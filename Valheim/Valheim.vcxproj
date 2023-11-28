@@ -58,6 +58,7 @@
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UserInterfaceManager.h" />
     <ClInclude Include="Woodpile.h" />
+    <ClInclude Include="WoodShield.h" />
     <ClInclude Include="Workbench.h" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +99,7 @@
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UserInterfaceManager.cpp" />
     <ClCompile Include="Woodpile.cpp" />
+    <ClCompile Include="WoodShield.cpp" />
     <ClCompile Include="Workbench.cpp" />
   </ItemGroup>
   <ItemGroup>

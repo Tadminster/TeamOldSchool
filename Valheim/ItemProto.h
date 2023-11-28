@@ -6,6 +6,7 @@ enum class ItemType  { Weapon, Armor, Food, Material };
 enum class Item
 {
 	StoneAxe, StonePickaxe, Club,
+	WoodShield,
 	Stone, Woodpile, Leather
 };
 //====================================================================================================
