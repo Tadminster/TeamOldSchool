@@ -7,32 +7,32 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="0" Y="14.882751" Z="0"/>
+        <Position X="1.645614" Y="21.156921" Z="0.98718899"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="1.4879799" Z="0"/>
+        <Rotation X="0" Y="1.1859828" Z="0"/>
     </Transform>
     <Children Size="4"/>
     <Child0 Name="FrustumCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
             <Position X="-0.16306116" Y="3.5" Z="-2.5"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.80779266" Y="1.4879799" Z="0"/>
+            <Rotation X="0.32079831" Y="1.1859828" Z="0"/>
         </Transform>
         <Camera Ortho="false" Fov="1.047192" Width="1273" Height="831" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1273" viewportH="831"/>
         <Children Size="0"/>
     </Child0>
     <Child1 Name="PlayerCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
-            <Position X="2.9802322e-08" Y="2.5" Z="-4.9999995"/>
+            <Position X="-2.3841858e-07" Y="4" Z="-4"/>
             <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.80779266" Y="0" Z="0"/>
+            <Rotation X="0.32079831" Y="0" Z="0"/>
         </Transform>
-        <Camera Ortho="false" Fov="1.047192" Width="1219" Height="783" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1219" viewportH="783"/>
+        <Camera Ortho="false" Fov="0.95993108" Width="1140" Height="728" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1140" viewportH="728"/>
         <Children Size="0"/>
     </Child1>
     <Child2 Name="PlayerOriginCam" Visible="true" ObType="2" BoneIndex="-1">
         <Transform>
-            <Position X="0" Y="3.5" Z="-5"/>
+            <Position X="0" Y="4" Z="-4"/>
             <Scale X="1" Y="1" Z="1"/>
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>

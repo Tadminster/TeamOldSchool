@@ -16,7 +16,6 @@ InGame::InGame()
 	grid = Grid::Create();
 
 	scattering = new Scattering();
-	
 
 	elder = new Elder();
 	goblin = new Goblin();
@@ -54,6 +53,7 @@ void InGame::Update()
 {
 	LIGHT->RenderDetail();
 	scattering->RenderDetail();
+	
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
@@ -117,8 +117,8 @@ void InGame::Update()
 	PLAYER->Update();
 	UIM->Update();
 	
-	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
+	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	float currentTime = TIMER->GetWorldTime();
 	LIGHT->UpdateDirection(currentTime);
 }
@@ -142,7 +142,8 @@ void InGame::PreRender()
 	
 	scattering->DrawPass1();
 	LIGHT->Set();
-
+	
+	
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 
 	// 물반사 렌더링
@@ -162,7 +163,7 @@ void InGame::Render()
 	Camera::main->Set();
 	scattering->DrawPass2();
 	LIGHT->Set();
-
+	
 
 	if (DEBUGMODE)
 	{
