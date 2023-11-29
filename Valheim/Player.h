@@ -31,6 +31,7 @@ class Player : public Unit
 	bool					CamtoTerrain = false;
 	bool					isHit = false;
 	bool					cleanHitFrame = false;
+	bool					isGuard = false;
 
 	int						isEquip = 0;
 
@@ -66,7 +67,8 @@ public:
 	bool			GetWeoponCollider(Collider* object);
 	float			GetMoveSpeed()					{ return moveSpeed; }
 	bool			GetPlayerJump()					{ return isJump; }
-	
+	bool			GetPlayerHit(Collider* atkcol);
+
 	bool			CleanHit(Collider* object);
 	bool			CleanFrame();
 

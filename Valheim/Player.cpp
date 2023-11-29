@@ -93,6 +93,43 @@ void Player::RenderHierarchy()
 	playerHp->RenderHierarchy();
 }
 
+bool Player::GetPlayerHit(Collider* atkcol)
+{
+	if (equippedShield)
+	{
+		if (state == ShieldState::GetInstance())
+		{
+			if (equippedShield->GetActor()->collider->Intersect(atkcol))
+			{
+				if (!isGuard) isGuard = true;
+				return true;
+			}
+			else if (actor->collider->Intersect(atkcol))
+			{
+				isGuard = false;
+				return true;
+			}
+		}
+		else
+		{
+			if (actor->collider->Intersect(atkcol))
+			{
+				isGuard = false;
+				return true;
+			}
+		}
+	}
+	else
+	{
+		if (actor->collider->Intersect(atkcol))
+		{
+			isGuard = false;
+			return true;
+		}
+	}
+	return false;
+}
+
 bool Player::CleanHit(Collider* object)
 {
 	if (equippedWeapon)
@@ -343,7 +380,6 @@ void Player::PlayerMove()
 	moveDir.Normalize();
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-	
 }
 
 void Player::MoveBack(Actor* col)
@@ -459,14 +495,24 @@ void Player::PlayerHit(float damage)
 {
 	if (hitTime < 0)
 	{
-		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-		Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
-		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
-		//------------------------------------------------------------
-		hitPoint -= damage;
+		if (isGuard)
+		{
+			hitPoint -= damage * (1 - equippedShield->damageReduced);
+			cout << damage * (1 - equippedShield->damageReduced) << endl;
+		}
+		else
+		{
+			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
+			Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
+			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
+
+			hitPoint -= damage;
+			cout << damage << endl;
+		}
 		hitTime = 1.0f;
-		isHit = false;
 		healTime = 0;
+		isHit = false;
+		isGuard = false;
 	}
 }
 

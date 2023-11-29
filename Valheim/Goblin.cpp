@@ -62,8 +62,7 @@ void Goblin::LateUpdate()
 	//플레이어 - 고블린 슬라이딩벡터
 	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
 	//Goblin 공격 -> Player 피격
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightHand")->collider)
-		&& state == G_ATTACK)
+	if(PLAYER->GetPlayerHit(actor->Find("mixamorig:RightHand")->collider) && state == G_ATTACK)
 	{
 		if (actor->anim->currentAnimator.currentFrame <= 30) PLAYER->PlayerHit(this->atk);
 	}
