@@ -12,7 +12,7 @@ Rock::Rock()
 	actor->name = "Rock" + to_string(index++);
 
 	float x = RANDOM->Float(1.0f, 3.0f);
-	float y = RANDOM->Float(1.0f, 3.0f);
+	float y = RANDOM->Float(2.0f, 3.0f);
 	float z = RANDOM->Float(1.0f, 3.0f);
 	actor->scale = Vector3(x, y, z);
 	actor->collider->rotation = actor->rotation;
@@ -73,15 +73,19 @@ void Rock::RenderHierarchy()
 
 void Rock::DestructionEvent()
 {
-	// 아이템 생성 (stone)
-	ItemProto* rock = ItemProto::Create(Item::Stone);
-	Vector3 spawnPos = this->actor->GetWorldPos();
-	Vector3 randomPos = Vector3(RANDOM->Float(-0.5f, 0.5f), RANDOM->Float(0.0f, 1.0f), RANDOM->Float(-0.5f, 0.5f));
-	rock->GetActor()->SetWorldPos(spawnPos + randomPos);
+	// 돌 아이템 생성
+	for (int i = 0; i < RANDOM->Int(2, 3); i++)
+	{
+		ItemProto* item = ItemProto::Create(Item::Stone);
+		Vector3 randomPos = Vector3(RANDOM->Float(-1.0f, 1.0f), RANDOM->Float(1.0f, 2.0f), RANDOM->Float(-1.0f, 1.0f));
+		item->GetActor()->SetWorldPos(actor->GetWorldPos() + randomPos);
+		OBJ->AddItem(item);
+	}
 
-	// 리스트에 아이템 추가
-	OBJ->AddItem(rock);
+	// 돌 파괴 이펙트 재생
+	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 2.0f;
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, effectPos);
 
-	// 오브젝트 삭제
+	// 오브젝트 삭제 (나무)
 	delete this;
 }

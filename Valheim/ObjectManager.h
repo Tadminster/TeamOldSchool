@@ -31,6 +31,7 @@ private:
 	ItemProto*		woodpile[5];
 	ItemProto*		stone[5];
 	ItemProto*		woodShield[5];
+	ItemProto*		leather[5];
 
 public:
 	ObjectManager();

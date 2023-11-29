@@ -88,11 +88,11 @@ void FeatureProto::RenderHierarchy()
 
 bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
-	
-
-
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
+
+	// 타격 이펙트 재생
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
 
 	// 데미지 계산
 	if (wType == WeaponType::Axe)
@@ -104,13 +104,10 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 		if (type == FeatureArmorType::Rock) damage *= 2.0f;
 	}
 
-	//cout << "체력 : " << hitPoint << endl;
-	//cout << "데미지 : " << damage << endl;
 	// 데미지 적용
 	hitPoint = max(0.0f, hitPoint - damage);
 
 	UIM->AddDamageText((int)damage, PLAYER->GetCollisionPoint());
-	//cout << "남은 체력 : " << hitPoint << endl;
 
 	return true;
 }
@@ -124,13 +121,6 @@ void FeatureProto::ReceivedDamageAnimation()
 	// 랜덤한 방향으로 흔들림
 	rotation->x = clamp(rotation->x + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
 	rotation->z = clamp(rotation->z + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
-
-	//임시로 나무 타격시 이펙트발생위치 잡아두었습니다!
-	Vector3 leafDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 5, 0);
-	
-	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
-	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
-
 }
 
 void FeatureProto::DestructionEvent()
