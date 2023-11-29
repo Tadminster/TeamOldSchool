@@ -12,7 +12,7 @@ ParticleManager::ParticleManager()
 	hitBeech->LoadFile("Particle_HitWood.xml");
 	
 
-	woodHitDust = Rain::Create("Particle_WoodHitDust");
+	woodHitDust = Pop::Create("Particle_WoodHitDust");
 	woodHitDust->LoadFile("Particle_WoodHitDust.xml");
 
 	//플레이어 피격시 출혈 파티클 효과
@@ -23,7 +23,6 @@ ParticleManager::ParticleManager()
 	//바위 타격시 돌이 튀는 파티클 효과
 	hitRock = Pop::Create("Particle_RockHit");
 	hitRock->LoadFile("Particle_HitRock.xml");
-	
 	
 }
 
@@ -79,13 +78,13 @@ void ParticleManager::RenderHierarchy()
 
 void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 {
-	if (type == EffectType::BEECHDROP)
+	if (type == EffectType::WOODDROP)
 	{
 		beechDrop->SetWorldPos(pos);
 		beechDrop->Play();
 		cout << "나뭇잎 떨어짐" << endl;
 	}
-	else if (type == EffectType::HITBEECH)
+	else if (type == EffectType::HITWOOD)
 	{
 		hitBeech->SetWorldPos(pos);
 		hitBeech->Play();

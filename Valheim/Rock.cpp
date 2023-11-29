@@ -84,7 +84,7 @@ void Rock::DestructionEvent()
 
 	// 돌 파괴 이펙트 재생
 	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 2.0f;
-	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, effectPos);
+	PARTICLE->PlayParticleEffect(EffectType::HITROCK, effectPos);
 
 	// 오브젝트 삭제 (나무)
 	delete this;
