@@ -13,7 +13,7 @@ ParticleManager::ParticleManager()
 	
 
 	woodHitDust = Rain::Create("Particle_WoodHitDust");
-	//woodHitDust->LoadFile("Particle_WoodHitDust.xml");
+	woodHitDust->LoadFile("Particle_WoodHitDust.xml");
 
 	//플레이어 피격시 출혈 파티클 효과
 	hitBlood = Pop::Create("Particle_Blood");
@@ -23,7 +23,6 @@ ParticleManager::ParticleManager()
 	//바위 타격시 돌이 튀는 파티클 효과
 	hitRock = Pop::Create("Particle_RockHit");
 	hitRock->LoadFile("Particle_HitRock.xml");
-	
 	
 	
 }
@@ -44,7 +43,7 @@ void ParticleManager::Update()
 {
 	beechDrop->Update();
 	hitBeech->Update();
-	//woodHitDust->Update();
+	woodHitDust->Update();
 	hitBlood->Update();
 	hitRock->Update();
 }
