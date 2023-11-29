@@ -6,13 +6,17 @@
 Player::Player()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Player_Male.xml");
+	actor->LoadFile("/Unit/Player_Male.xml");
 	actor->name = "Player";
 	actor->anim->aniScale = 0.65f;
 	
 	playerHp = UI::Create();
-	playerHp->LoadFile("Player_Hp.xml");
+	playerHp->LoadFile("/Unit/Player_Hp.xml");
 	playerHp->name = "Player_Hp";
+
+	playerSt = UI::Create();
+	playerSt->LoadFile("/Unit/Player_St.xml");
+	playerSt->name = "Player_St";
 
 	state = IdleState::GetInstance();
 
@@ -48,11 +52,14 @@ void Player::Update()
 	PlayerControl();
 	PlayerMove();
 	PlayerHealth();
+	CleanFrame();
+	PlayerStaminar();
 	ApplyGravity();
 	GrowthAbility();
 
 	actor->Update();
 	playerHp->Update();
+	playerSt->Update();
 }
 
 void Player::LateUpdate()
@@ -81,6 +88,7 @@ void Player::Render()
 {
 	actor->Render();
 	playerHp->Render();
+	playerSt->Render();
 }
 
 void Player::Release()
@@ -91,6 +99,44 @@ void Player::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
+	playerSt->RenderHierarchy();
+}
+
+bool Player::GetPlayerHit(Collider* atkcol)
+{
+	if (equippedShield)
+	{
+		if (state == ShieldState::GetInstance())
+		{
+			if (equippedShield->GetActor()->collider->Intersect(atkcol))
+			{
+				if (!isGuard) isGuard = true;
+				return true;
+			}
+			else if (actor->collider->Intersect(atkcol))
+			{
+				isGuard = false;
+				return true;
+			}
+		}
+		else
+		{
+			if (actor->collider->Intersect(atkcol))
+			{
+				isGuard = false;
+				return true;
+			}
+		}
+	}
+	else
+	{
+		if (actor->collider->Intersect(atkcol))
+		{
+			isGuard = false;
+			return true;
+		}
+	}
+	return false;
 }
 
 bool Player::CleanHit(Collider* object)
@@ -118,16 +164,19 @@ bool Player::CleanFrame()
 	{
 		if (actor->anim->currentAnimator.currentFrame == 31)
 		{
+			staminar -= 5.0f;
 			actor->anim->currentAnimator.currentFrame++;
 			return true;
 		}
 		else if (actor->anim->currentAnimator.currentFrame == 59)
 		{
+			staminar -= 5.0f;
 			actor->anim->currentAnimator.currentFrame++;
 			return true;
 		}
 		else if (actor->anim->currentAnimator.currentFrame == 89)
 		{
+			staminar -= 5.0f;
 			actor->anim->currentAnimator.currentFrame++;
 			return true;
 		}
@@ -136,6 +185,7 @@ bool Player::CleanFrame()
 	{
 		if (actor->anim->currentAnimator.currentFrame == 24)
 		{
+			staminar -= 5.0f;
 			actor->anim->currentAnimator.currentFrame++;
 			return true;
 		}
@@ -146,6 +196,7 @@ bool Player::CleanFrame()
 		{
 			if (actor->anim->currentAnimator.currentFrame == 12)
 			{
+				staminar -= 5.0f;
 				actor->anim->currentAnimator.currentFrame++;
 				return true;
 			}
@@ -154,32 +205,19 @@ bool Player::CleanFrame()
 		{
 			if (actor->anim->currentAnimator.currentFrame == 12)
 			{
+				staminar -= 5.0f;
 				actor->anim->currentAnimator.currentFrame++;
 				return true;
 			}
 			else if (actor->anim->currentAnimator.currentFrame == 20)
 			{
+				staminar -= 5.0f;
 				actor->anim->currentAnimator.currentFrame++;
 				return true;
 			}
 		}
 	}
 	return false;
-	/*if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 31)
-	{
-		actor->anim->currentAnimator.currentFrame++;
-		return true;
-	}
-	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 59)
-	{
-		actor->anim->currentAnimator.currentFrame++;
-		return true;
-	}
-	else if (state == SwingState::GetInstance() && actor->anim->currentAnimator.currentFrame == 89)
-	{
-		actor->anim->currentAnimator.currentFrame++;
-		return true;
-	}*/
 }
 
 void Player::SetState(PlayerState* state)
@@ -285,41 +323,62 @@ void Player::PlayerControl()
 			state->Idle();
 		}
 	}
+	if (staminar <= 0)
+	{
+		state->Idle();
+		staminar = 0.1f;
+	}
+
 	//Walk && Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
 	{
-		if (INPUT->KeyPress(VK_SHIFT))
+		if (staminar > 0.1f)
 		{
-			state->Run();
+			if (INPUT->KeyPress(VK_SHIFT))
+			{
+				state->Run();
+			}
+			else
+			{
+				state->Walk();
+			}
 		}
-		else 
-		{
-			state->Walk();
-		}
+		else state->Walk();
+		
 	}
 	//Jump--------------------------------------------------------------------------------------------
-	if (INPUT->KeyDown(VK_SPACE) && !isJump) 
+	if (staminar > 0.1f)
 	{
-		state = JumpState::GetInstance();
-		state->Jump();
+		if (INPUT->KeyDown(VK_SPACE) && !isJump)
+		{
+			state = JumpState::GetInstance();
+			state->Jump();
+			staminar -= 10.0f;
+		}
 	}
 	//Fist && Swing--------------------------------------------------------------------------------------------
 	if (!INVEN->isOpen && !CRAFT->isOpen)
 	{
-		if (INPUT->KeyPress(VK_LBUTTON)) 
+		if (staminar > 0.1f)
 		{
-			if(!equippedWeapon) state->Fist();
-			else
+			if (INPUT->KeyPress(VK_LBUTTON))
 			{
-				if (equippedWeapon->wType == WeaponType::Blunt) state->Swing();
-				else if (equippedWeapon->wType == WeaponType::Axe || equippedWeapon->wType == WeaponType::Pickaxe) state->Axe();
+				if (!equippedWeapon) state->Fist();
+				else
+				{
+					if (equippedWeapon->wType == WeaponType::Blunt) state->Swing();
+					else if (equippedWeapon->wType == WeaponType::Axe || equippedWeapon->wType == WeaponType::Pickaxe) state->Axe();
+				}
 			}
 		}
 	}
 	//Shield--------------------------------------------------------------------------------------
 	if (!INVEN->isOpen && !CRAFT->isOpen)
 	{
-		if (INPUT->KeyPress(VK_RBUTTON)) if (equippedShield) state->Shield();
+		if (staminar > 0.1f)
+		{
+			if (INPUT->KeyPress(VK_RBUTTON)) if (equippedShield) state->Shield();
+		}
 	}
 }
 
@@ -343,7 +402,6 @@ void Player::PlayerMove()
 	moveDir.Normalize();
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
-	
 }
 
 void Player::MoveBack(Actor* col)
@@ -406,8 +464,6 @@ void Player::ReleaseToHand(ItemProto* item)
 	}
 }
 
-
-
 bool Player::GetItem(ItemProto* item)
 {	
 	// 아이템과 플레이어의 거리 계산
@@ -459,14 +515,24 @@ void Player::PlayerHit(float damage)
 {
 	if (hitTime < 0)
 	{
-		//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-		Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
-		PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
-		//------------------------------------------------------------
-		hitPoint -= damage;
+		if (isGuard)
+		{
+			hitPoint -= damage * (1 - equippedShield->damageReduced);
+			cout << damage * (1 - equippedShield->damageReduced) << endl;
+		}
+		else
+		{
+			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
+			Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
+			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
+
+			hitPoint -= damage;
+			cout << damage << endl;
+		}
 		hitTime = 1.0f;
-		isHit = false;
 		healTime = 0;
+		isHit = false;
+		isGuard = false;
 	}
 }
 
@@ -474,26 +540,35 @@ void Player::GrowthAbility()
 {
 	if (state == RunState::GetInstance())
 	{
-		actor->anim->aniScale = 0.7f;
+		if(actor->anim->aniScale != 0.7f) actor->anim->aniScale = 0.7f;
+		if(!staminarOn) staminarOn = true;
+		staminar -= 10.0f * DELTA;
 	}
 	else if (state == JumpState::GetInstance())
 	{
-		actor->anim->aniScale = 0.7f;
+		if (actor->anim->aniScale != 0.7f) actor->anim->aniScale = 0.7f;
+		if (!staminarOn) staminarOn = true;
+		
 	}
 	else if (state == FistState::GetInstance())
 	{
-		actor->anim->aniScale = 0.5f;
+		if (actor->anim->aniScale != 0.5f) actor->anim->aniScale = 0.5f;
+		if (!staminarOn) staminarOn = true;
+		
 	}
 	else if (state == SwingState::GetInstance())
 	{
-		actor->anim->aniScale = 0.6f;
+		if (actor->anim->aniScale != 0.6f) actor->anim->aniScale = 0.6f;
+		if (!staminarOn) staminarOn = true;
 	}
 	else if (state == AxeState::GetInstance())
 	{
-		actor->anim->aniScale = 0.6f;
+		if (actor->anim->aniScale != 0.6f) actor->anim->aniScale = 0.6f;
+		if (!staminarOn) staminarOn = true;
 	}
 	else
 	{
+		staminarOn = false;
 		actor->anim->aniScale = 1.0f;
 	}
 }
@@ -521,6 +596,28 @@ void Player::PlayerHealth()
 	}
 	if (hitPoint > maxHitpoint) hitPoint = maxHitpoint;
 	
+}
+
+void Player::PlayerStaminar()
+{
+	playerSt->scale.x = growthStaminar;
+	playerSt->Find("Front_St")->scale.x = staminar / maxStaminar;
+
+	if (staminarOn)
+	{
+		staminarTime = 0;
+	}
+	else
+	{
+		if(staminarTime < 1.0f)	staminarTime += DELTA;
+		else
+		{
+			if(staminar < maxStaminar) staminar += 5.0f * DELTA;
+		}
+		
+	}
+	if (staminar > maxStaminar) staminar = maxStaminar;
+	else if (staminar < 0) staminar = 0;
 }
 
 bool Player::IsDestroyed()

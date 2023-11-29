@@ -20,27 +20,36 @@ class Player : public Unit
 	Ray						slidingVector;
 	Vector3					slidingVectorHit = {};
 	UI*						playerHp = nullptr;
-	//(할일) 손보기---------------------------------
+	UI*						playerSt = nullptr;
+	//(할일) 손보기----------------------------------------
 	Ray playerCamRay;
 	Vector3 playerCamHit;
 	Ray playerReverseCamRay;
 	Vector3 playerReverseCamRayHit;
-	//---------------------------------------------
+	//Hp 변수----------------------------------------------
+	float					growthHp = 0.1f;
+	float					healTime = 0;
+	float					healGetTick = 0;
+	//St 변수----------------------------------------------
+	float					staminar = 20.0f;
+	float					maxStaminar = 20.0f;
+	float					growthStaminar = 0.05f;
+	float					staminarTime = 0;
+	bool					staminarOn = false;
+
 	bool					isJump = false;
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
 	bool					isHit = false;
 	bool					cleanHitFrame = false;
+	bool					isGuard = false;
 
 	int						isEquip = 0;
 
 	float					hitTime = 0;
-	float					healTime = 0;
-	float					healGetTick = 0;
 
 	float					fistDMG = 5.0f;
 
-	float					growthHp = 0.1f;
 public:
 	Player();
 	~Player();
@@ -66,7 +75,8 @@ public:
 	bool			GetWeoponCollider(Collider* object);
 	float			GetMoveSpeed()					{ return moveSpeed; }
 	bool			GetPlayerJump()					{ return isJump; }
-	
+	bool			GetPlayerHit(Collider* atkcol);
+
 	bool			CleanHit(Collider* object);
 	bool			CleanFrame();
 
@@ -82,5 +92,9 @@ public:
 	bool			GetItem(ItemProto* item);
 	void			PlayerHit(float damage = 1.0f);
 	void			GrowthAbility();
+	//Hp
 	void			PlayerHealth();
+	//St
+	void			PlayerStaminar();
+	float			GetStaminar() { return staminar; }
 };

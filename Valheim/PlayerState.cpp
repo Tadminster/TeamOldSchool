@@ -115,7 +115,7 @@ void RunState::Walk()
 }
 void RunState::Run()
 {
-	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3) 
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 3);
 	}

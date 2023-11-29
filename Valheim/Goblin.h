@@ -9,6 +9,8 @@ class Goblin : public Unit
 	vector<Vector3> idlePos = {};
 	int idlePosNum = 0;
 	bool isAngry = false;
+	bool firstHit = false;
+	float angryTime = 0;
 public:
 	Goblin(Vector3 spawnPos={});
 	~Goblin();

@@ -5,7 +5,7 @@
 Goblin::Goblin(Vector3 spawnPos)
 {
 	actor = Actor::Create();
-	actor->LoadFile("Monster_Goblin.xml");
+	actor->LoadFile("/Unit/Monster_Goblin.xml");
 	actor->name = "Monster_Goblin";
 	actor->SetWorldPos(spawnPos);
 	actor->anim->aniScale = 0.6f;
@@ -62,8 +62,7 @@ void Goblin::LateUpdate()
 	//플레이어 - 고블린 슬라이딩벡터
 	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
 	//Goblin 공격 -> Player 피격
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightHand")->collider)
-		&& state == G_ATTACK)
+	if(PLAYER->GetPlayerHit(actor->Find("mixamorig:RightHand")->collider) && state == G_ATTACK)
 	{
 		if (actor->anim->currentAnimator.currentFrame <= 30) PLAYER->PlayerHit(this->atk);
 	}
@@ -73,7 +72,7 @@ void Goblin::LateUpdate()
 		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
 		{
 			this->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
-			isAngry = true;
+			firstHit = true;
 		}
 	}
 }
@@ -139,6 +138,9 @@ void Goblin::BehaviorPatern()
 		{
 			state = G_IDLE2;
 		}
+
+		if (firstHit) angryTime += DELTA;
+		if (angryTime >= 0.5f) isAngry = true;
 	}
 	else
 	{
