@@ -91,13 +91,14 @@ void Beech::DestructionEvent()
 	log->Init();
 	//log->GetActor()->rotation = this->actor->rotation;
 	//log->GetActor()->scale = this->actor->scale;
+	
 
 	// 리스트에 오브젝트 추가
 	OBJ->AddObject(stump);
 	OBJ->AddObject(log);
 
 	// 나무 파괴 이펙트 재생
-	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, spawnPos);
+	
 	
 	// 오브젝트 삭제 (나무)
 	delete this;

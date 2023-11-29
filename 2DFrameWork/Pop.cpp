@@ -66,13 +66,17 @@ void Pop::Reset()
 
 	Vector2 scale = Vector2(0, 0);
 
+	cout << "This" << this << endl;
+	cout << "this->scale.x" << this->scale.x << endl;
+	cout << "this->scale.y" << this->scale.y << endl;
 
 	for (UINT i = 0; i < particleCount; i++)
 	{
 		//파티클의 크기
-		scale.x = max(0.05f, S._11 + RANDOM->Float(-randomSize.x, randomSize.x));
-		scale.y = max(0.05f, S._22 + RANDOM->Float(-randomSize.y, randomSize.y));
-
+		/*scale.x = max(0.05f,this->scale.x+ RANDOM->Float(-randomSize.x, randomSize.x));
+		scale.y = max(0.05f,this->scale.y+ RANDOM->Float(-randomSize.y, randomSize.y));*/
+		scale.x = this->scale.x;
+		scale.y = this->scale.y;
 
 		//위치
 		Vector3 position = Vector3(0, 0, 0);
