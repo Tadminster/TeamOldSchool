@@ -140,7 +140,7 @@ void Goblin::BehaviorPatern()
 		}
 
 		if (firstHit) angryTime += DELTA;
-		if (angryTime >= 0.5f) isAngry = true;
+		if (angryTime >= 0.3f) isAngry = true;
 	}
 	else
 	{

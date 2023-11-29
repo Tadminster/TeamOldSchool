@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "PlayerState.h"
+#include "PlayerStatus.h"
 #include "ItemProto.h"
 
 
@@ -19,6 +20,7 @@ Player::Player()
 	playerSt->name = "Player_St";
 
 	state = IdleState::GetInstance();
+	status = new PlayerStatus();
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
@@ -47,8 +49,9 @@ void Player::Update()
 	}
 	staminar = maxStaminar;
 	if(hitTime >= 0) hitTime -= DELTA;
-	
+
 	//기능 함수
+	status->RunExp();
 	PlayerControl();
 	PlayerMove();
 	PlayerHealth();
@@ -56,7 +59,6 @@ void Player::Update()
 	PlayerStaminar();
 	ApplyGravity();
 	GrowthAbility();
-
 	actor->Update();
 	playerHp->Update();
 	playerSt->Update();
@@ -403,7 +405,7 @@ void Player::PlayerMove()
 {
 	//상태값에 따른 이동속도(FSM완료후 다듬을 예정)
 	if (state == WalkState::GetInstance()) moveSpeed = WALKSPEED;
-	else if (state == RunState::GetInstance()) moveSpeed = RUNSPEED;
+	else if (state == RunState::GetInstance()) moveSpeed = status->runSpeed;
 	else if (state == FistState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == ShieldState::GetInstance()) moveSpeed = SWINGSPEED;
@@ -558,9 +560,9 @@ void Player::GrowthAbility()
 {
 	if (state == RunState::GetInstance())
 	{
-		if(actor->anim->aniScale != 0.7f) actor->anim->aniScale = 0.7f;
+		if(actor->anim->aniScale != status->runAnimSpeed) actor->anim->aniScale = status->runAnimSpeed;
 		if(!staminarOn) staminarOn = true;
-		staminar -= 10.0f * DELTA;
+		staminar -= status->runStaminar * DELTA;
 	}
 	else if (state == JumpState::GetInstance())
 	{
@@ -595,6 +597,9 @@ void Player::GrowthAbility()
 		staminarOn = false;
 		actor->anim->aniScale = 1.0f;
 	}
+
+	
+	
 }
 
 void Player::PlayerHealth()
@@ -656,8 +661,16 @@ WeaponProto* Player::GetPlayerWeapon()
 
 float Player::GetWeaponDMG()
 {
-	if (equippedWeapon) return equippedWeapon->damage;
-	else return fistDMG;
+	if (equippedWeapon)
+	{
+		randomDMG = RANDOM->Float(-equippedWeapon->damage * 0.2f, equippedWeapon->damage * 0.2f);
+		return equippedWeapon->damage + randomDMG;
+	}
+	else
+	{
+		randomDMG = RANDOM->Float(-fistDMG * 0.2f, fistDMG * 0.2f);
+		return fistDMG + randomDMG;
+	}
 }
 
 Vector3 Player::GetCollisionPoint()

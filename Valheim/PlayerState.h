@@ -1,7 +1,7 @@
 #pragma once
 #define SWINGSPEED 1
 #define WALKSPEED 3
-#define RUNSPEED 7
+
 //State 클래스들을 제어하기위한 추상클래스
 class PlayerState
 {
