@@ -9,7 +9,7 @@ private:
     Grid*                           grid;
 	
     Scattering*                     scattering;
-    
+   
     GameManager*                    gameManager;
     
    
