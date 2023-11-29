@@ -96,22 +96,49 @@ void Birch::Release()
 	Birch::~Birch();
 }
 
+bool Birch::ReceivedDamageEvent(float damage, WeaponType wType)
+{
+	// 타격 애니메이션(흔들림) 재생시간 설정
+	hitAnimDuration = 0.3f;
+
+	// 타격 이펙트 재생
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
+
+	// 데미지 계산
+	if (wType == WeaponType::Axe)
+	{
+		if (type == FeatureArmorType::Tree) damage *= 2.0f;
+	}
+	else if (wType == WeaponType::Pickaxe)
+	{
+		if (type == FeatureArmorType::Rock) damage *= 2.0f;
+	}
+
+	// Birch는 20데미지 무시
+	damage = max(0.0f, damage - 20.0f);
+
+	// 데미지 적용
+	hitPoint = max(0.0f, hitPoint - damage);
+
+	UIM->AddDamageText((int)damage, PLAYER->GetCollisionPoint());
+
+	return true;
+}
+
 void Birch::DestructionEvent()
 {
-	// 오브젝트 생성 (그루터기)
-	FeatureProto* stump = FeatureProto::Create(FeatureType::BeechStump);
-	stump->GetActor()->SetWorldPos(this->actor->GetWorldPos());
+	// 나무 아이템 생성
+	for (int i = 0; i < RANDOM->Int(3, 5); i++)
+	{
+		ItemProto* item = ItemProto::Create(Item::Woodpile);
+		Vector3 randomPos = Vector3(RANDOM->Float(-1.0f, 1.0f), RANDOM->Float(1.0f, 3.0f), RANDOM->Float(-1.0f, 1.0f));
+		item->GetActor()->SetWorldPos(actor->GetWorldPos() + randomPos);
+		OBJ->AddItem(item);
+	}
 
-	// 오브젝트 생성 (통나무)
-	FeatureProto* log = FeatureProto::Create(FeatureType::BeechLog);
-	Vector3 spawnPos = this->actor->GetWorldPos() + Vector3(0.0f, 5.0f, 0.0f);
-	log->GetActor()->SetWorldPos(spawnPos);
-	//log->GetActor()->rotation = this->actor->rotation;
-	//log->GetActor()->scale = this->actor->scale;
-
-	// 리스트에 오브젝트 추가
-	OBJ->AddObject(stump);
-	OBJ->AddObject(log);
+	// 나무 파괴 이펙트 재생
+	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 3.0f;
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, effectPos);
 
 	// 오브젝트 삭제 (나무)
 	delete this;

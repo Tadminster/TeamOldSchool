@@ -25,7 +25,7 @@ Recipe::Recipe()
     recipeList.emplace(Item::Club,          set<Item>{Item::Woodpile});                 // 몽둥이
     recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});    // 돌 도끼
     recipeList.emplace(Item::StonePickaxe,  set<Item>{Item::Woodpile, Item::Stone});    // 돌 곡괭이
-    recipeList.emplace(Item::StonePickaxe,  set<Item>{Item::Woodpile, Item::Stone, Item::Leather});    // 나무방패
+    recipeList.emplace(Item::WoodShield,    set<Item>{Item::Woodpile, Item::Stone, Item::Leather});    // 나무방패
 
     // 레시피 데이터 초기화 ============================================================
     recipeInfo.emplace_back(new RecipeInfo{ 
@@ -44,9 +44,9 @@ Recipe::Recipe()
         {{Item::Woodpile, 2}, {Item::Stone, 5}} });
 
     recipeInfo.emplace_back(new RecipeInfo{
-    Item::StonePickaxe, L"원형 나무 방패",
-    L"단순한 원형 방패지만 꽤나 \n단단하다.\n",
-    {{Item::Woodpile, 2}, {Item::Stone, 5}} });
+        Item::WoodShield, L"나무 방패",
+        L"단순한 원형 방패지만 꽤나 \n단단하다.\n",
+        {{Item::Woodpile, 5}, {Item::Stone, 2}, {Item::Leather, 2}} });
 }
 
 Recipe::~Recipe()

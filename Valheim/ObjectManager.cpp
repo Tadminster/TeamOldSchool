@@ -11,9 +11,10 @@
 #include "Grass.h"
 // 아이템 =============================================================
 #include "ItemProto.h"
-#include "Woodpile.h"
-#include "Stone.h"
-#include "StoneAxe.h"
+//#include "Woodpile.h"
+//#include "Stone.h"
+//#include "StoneAxe.h"
+
 // 건축구조물 ========================================================
 #include "StructureProto.h"
 // 유닛 ===============================================================
@@ -49,6 +50,13 @@ ObjectManager::ObjectManager()
 		for (auto& item : woodShield)
 		{
 			item = ItemProto::Create(Item::WoodShield);
+			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
+			AddItem(item);
+		}
+
+		for (auto& item : leather)
+		{
+			item = ItemProto::Create(Item::Leather);
 			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}

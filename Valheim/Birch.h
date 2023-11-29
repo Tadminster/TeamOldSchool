@@ -19,9 +19,9 @@ public:
 
 
 public:
-	void LodUpdate(float distance);
+	void LodUpdate(float distance) override;
 
-	// FeatureProto을(를) 통해 상속됨
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	void DestructionEvent() override;
 };
 

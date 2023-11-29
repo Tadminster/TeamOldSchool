@@ -45,7 +45,7 @@ void Player::Update()
 	{
 		isPlayerCam = false;
 	}
-
+	staminar = maxStaminar;
 	if(hitTime >= 0) hitTime -= DELTA;
 	
 	//기능 함수
@@ -255,40 +255,50 @@ void Player::AvtivatePlayerCam()
 		Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
 		Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
 		actor->rotation.y += Rot.y;
-		Camera::main->rotation.x += Rot.x;
+		if (Camera::main->rotation.x <= 60.0f * ToRadian && Camera::main->rotation.x >= -30.0f * ToRadian)
+		{
+			actor->rotation.x += Rot.x * 0.35f;
+			Camera::main->rotation.x += Rot.x;
+		}
+		if (Camera::main->rotation.x > 60.0f * ToRadian) Camera::main->rotation.x = 60.0f * ToRadian;
+		else if(Camera::main->rotation.x < -30.0f * ToRadian) Camera::main->rotation.x = -30.0f * ToRadian;
+		if (actor->rotation.x > 17.0f * ToRadian) actor->rotation.x = 17.0f * ToRadian;
+		else if (actor->rotation.x < -15.0f * ToRadian) actor->rotation.x = -15.0f * ToRadian;
 		ClientToScreen(App.GetHandle(), &ptMouse);
 		SetCursorPos(ptMouse.x, ptMouse.y);
 	}
-
+	actor->Find("PlayerCam")->SetLocalPosY(actor->Find("PlayerCam")->rotation.x * 1.5f + 4.0f);
+	actor->Find("PlayerCam")->SetLocalPosZ(actor->Find("PlayerCam")->rotation.x * 4.0f - 6.0f);
 	//프러스텀 컬링용 캠 로테이션 받아오기
+	actor->Find("FrustumCam")->SetLocalPos(actor->Find("PlayerCam")->GetLocalPos()+Vector3(0,0,-1.5f));
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
 	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
-	
-	//카메라-터레인 충돌 레이
-	playerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
-	playerCamRay.direction = (actor->GetWorldPos() + Vector3(0, 2.0f, 0)) - actor->Find("PlayerCam")->GetWorldPos();
-	playerCamRay.direction.Normalize();
-	
-	playerReverseCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
-	playerReverseCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp()*2.0f);
-	playerReverseCamRay.direction.Normalize();
+	//
+	////카메라-터레인 충돌 레이
+	//playerCamRay.position = actor->Find("PlayerCam")->GetWorldPos();
+	//playerCamRay.direction = (actor->GetWorldPos() + Vector3(0, 2.0f, 0)) - actor->Find("PlayerCam")->GetWorldPos();
+	//playerCamRay.direction.Normalize();
+	//
+	//playerReverseCamRay.position = actor->Find("PlayerOriginCam")->GetWorldPos();
+	//playerReverseCamRay.direction = -(actor->Find("PlayerOriginCam")->GetForward()+ actor->Find("PlayerOriginCam")->GetUp()*2.0f);
+	//playerReverseCamRay.direction.Normalize();
 
-	//컴퓨트피킹 쓰면 프레임 40정도 떨어짐 O_O
-	//가끔씩 원인 모를 이유 + 카메라 회전을 빨리 하면 간헐적으로 적용이 안되는 현상 존재
-	if (Utility::RayIntersectMap(playerCamRay, MAP, playerCamHit))
-	{
-		actor->Find("PlayerCam")->SetWorldPos(playerCamHit + (-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
-	}
-	else
-	{
-		if (Utility::RayIntersectMap(playerReverseCamRay, MAP, playerReverseCamRayHit))
-		{
-			if ((actor->Find("PlayerOriginCam")->GetWorldPos() - playerReverseCamRayHit).Length() >= 0.1f)
-			{
-				actor->Find("PlayerCam")->SetWorldPos(actor->Find("PlayerOriginCam")->GetWorldPos());
-			}
-		}
-	}
+	////컴퓨트피킹 쓰면 프레임 40정도 떨어짐 O_O
+	////가끔씩 원인 모를 이유 + 카메라 회전을 빨리 하면 간헐적으로 적용이 안되는 현상 존재
+	//if (Utility::RayIntersectMap(playerCamRay, MAP, playerCamHit))
+	//{
+	//	actor->Find("PlayerCam")->SetWorldPos(playerCamHit + (-actor->Find("RootNode")->GetForward() + actor->Find("RootNode")->GetUp()));
+	//}
+	//else
+	//{
+	//	if (Utility::RayIntersectMap(playerReverseCamRay, MAP, playerReverseCamRayHit))
+	//	{
+	//		if ((actor->Find("PlayerOriginCam")->GetWorldPos() - playerReverseCamRayHit).Length() >= 0.1f)
+	//		{
+	//			actor->Find("PlayerCam")->SetWorldPos(actor->Find("PlayerOriginCam")->GetWorldPos());
+	//		}
+	//	}
+	//}
 }
 
 void Player::PlayerControl()
@@ -325,8 +335,15 @@ void Player::PlayerControl()
 	}
 	if (staminar <= 0)
 	{
-		state->Idle();
-		staminar = 0.1f;
+		if (actor->anim->GetPlayTime() >= 0.9f)
+		{
+			state->Idle();
+			staminar = 0.1f;
+		}
+	}
+	if (state != JumpState::GetInstance() && isLand)
+	{
+		isJump = false;
 	}
 
 	//Walk && Run--------------------------------------------------------------------------------------------
@@ -518,7 +535,8 @@ void Player::PlayerHit(float damage)
 		if (isGuard)
 		{
 			hitPoint -= damage * (1 - equippedShield->damageReduced);
-			cout << damage * (1 - equippedShield->damageReduced) << endl;
+			staminar -= 10.0f;
+			cout << "가드! " << damage * (1 - equippedShield->damageReduced) << endl;
 		}
 		else
 		{
@@ -565,6 +583,12 @@ void Player::GrowthAbility()
 	{
 		if (actor->anim->aniScale != 0.6f) actor->anim->aniScale = 0.6f;
 		if (!staminarOn) staminarOn = true;
+	}
+	else if (state == ShieldState::GetInstance())
+	{
+		if (actor->anim->aniScale != 1.0f) actor->anim->aniScale = 1.0f;
+		if (!staminarOn) staminarOn = true;
+		staminar -= 3.0f * DELTA;
 	}
 	else
 	{
