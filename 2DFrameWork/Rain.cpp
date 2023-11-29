@@ -90,9 +90,9 @@ void Rain::Reset()
 		/*position.x = RANDOM->Float(-desc.range.x, desc.range.x);
 		position.y = 4.0f;
 		position.z = RANDOM->Float(-desc.range.z, desc.range.z);*/
-		position.x = 0.0f;
-		position.y = 0.0f;
-		position.z = 0.0f;
+		position.x = this->position.x;
+		position.y = this->position.y;
+		position.z = this->position.z;
 
 		((VertexBillboard*)mesh->vertices)[i].position = position;
 		((VertexBillboard*)mesh->vertices)[i].size = scale;

@@ -4,9 +4,9 @@
     <Material File="Beech/beech_drop.mtl"/>
     <Transform>
         <Position X="-7.1549616" Y="26.214619" Z="5.3833451"/>
-        <Scale X="0.80000001" Y="0.80000001" Z="0"/>
+        <Scale X="1.5" Y="1.5" Z="0"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="2" particleScaleY="2" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="20" velocityScalar="10" duration="1.215" gravity="40"/>
+    <Pop particleScaleX="2" particleScaleY="2" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="20" velocityScalar="2" duration="1.215" gravity="5"/>
     <Children Size="0"/>
 </Root>

@@ -2,8 +2,8 @@
 enum class EffectType
 {
     //너도밤나무 관련 파티클
-    BEECHDROP,
-    HITBEECH,
+    WOODDROP,
+    HITWOOD,
     WOODHITDUST,
     //피격 관련 파티클
     HITBLOOD,

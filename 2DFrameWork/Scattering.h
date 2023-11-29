@@ -4,7 +4,7 @@ class Scattering
     struct ScatteringBuffer
     {
         Vector3 waveLength = Vector3(0.65f, 0.57f, 0.475f);
-        int sampleCount = 1;
+        int sampleCount = 5;
 
         Vector3 invWaveLength;
         float padding;

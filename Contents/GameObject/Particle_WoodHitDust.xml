@@ -1,12 +1,12 @@
-<Root Name="Particle_WoodHitDust" Visible="true" ObType="8">
-    <Mesh File="7.Billboard.mesh"/>
-    <Shader File="7.Rain.hlsl"/>
+<Root Name="Particle_WoodHitDust" Visible="true" ObType="9">
+    <Mesh File="8.Billboard.mesh"/>
+    <Shader File="8.Pop.hlsl"/>
     <Material File="Beech/beech_dust.mtl"/>
     <Transform>
-        <Position X="0" Y="0" Z="0"/>
-        <Scale X="1" Y="1" Z="1"/>
+        <Position X="0" Y="1.85" Z="0"/>
+        <Scale X="2" Y="2" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Rain particleScaleX="0" particleScaleY="0" particleCount="1" rangeX="1" rangeY="0.12" rangeZ="1" velocityX="0" velocityY="-0.050000001" velocityZ="0" duration="1"/>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0.30000001" randomPosY="0" randomPosZ="0.30000001" particleCount="20" velocityScalar="0.050000001" duration="1" gravity="0.1"/>
     <Children Size="0"/>
 </Root>

@@ -29,7 +29,7 @@ PixelInput VS(VertexPT input)
 
 static const float g = -0.980f;
 static const float g2 = g * g;
-static const float Exposure = -2.0f;
+static const float Exposure = -1.5f;
 
 Texture2D rayleighMap : register(t10);
 Texture2D mieMap : register(t11);

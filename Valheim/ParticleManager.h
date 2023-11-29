@@ -7,7 +7,7 @@ private:
 
 public:
 
-	Rain* woodHitDust;
+	Pop* woodHitDust;
 
 	Pop* beechDrop;
 	Pop* hitBeech;

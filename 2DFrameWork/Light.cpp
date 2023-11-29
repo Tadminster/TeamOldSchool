@@ -150,10 +150,10 @@ void LightManager::UpdateDirection(float time)
     //하루의 주기 정하기
     float dayCycleLength = 60.0f;
 
-    float nomalizedTime = fmod(time, dayCycleLength / dayCycleLength);
+    float nomalizedTime = fmod(time, dayCycleLength);
 
-    dirLight.direction.x = cos(time * 0.1f);
-    dirLight.direction.y = sin(time * 0.1f);
+    dirLight.direction.x = cos(nomalizedTime * 0.1f);
+    dirLight.direction.y = sin(nomalizedTime * 0.1f);
     
     // 버퍼 업데이트
     D3D11_MAPPED_SUBRESOURCE mappedResource;

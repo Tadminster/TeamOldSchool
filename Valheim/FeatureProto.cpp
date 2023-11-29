@@ -127,10 +127,12 @@ void FeatureProto::ReceivedDamageAnimation()
 
 	//임시로 나무 타격시 이펙트발생위치 잡아두었습니다!
 	Vector3 leafDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 5, 0);
+	Vector3 dustDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 2, 0);
 	
 	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
-	PARTICLE->PlayParticleEffect(EffectType::WOODHITDUST, this->actor->GetWorldPos());
+	PARTICLE->PlayParticleEffect(EffectType::WOODHITDUST, dustDropPos);
+
 }
 
 void FeatureProto::DestructionEvent()
