@@ -45,7 +45,7 @@ void Player::Update()
 	{
 		isPlayerCam = false;
 	}
-
+	staminar = maxStaminar;
 	if(hitTime >= 0) hitTime -= DELTA;
 	
 	//기능 함수
@@ -255,11 +255,12 @@ void Player::AvtivatePlayerCam()
 		Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
 		Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
 		actor->rotation.y += Rot.y;
+		actor->rotation.x += Rot.x * 0.085f;
 		Camera::main->rotation.x += Rot.x;
 		ClientToScreen(App.GetHandle(), &ptMouse);
 		SetCursorPos(ptMouse.x, ptMouse.y);
 	}
-
+	//actor->Find("PlayerCam")->SetLocalPosY(actor->Find("PlayerCam")->rotation.x * 0.267f + 4.0f);
 	//프러스텀 컬링용 캠 로테이션 받아오기
 	actor->Find("FrustumCam")->rotation.x = actor->Find("PlayerCam")->rotation.x;
 	actor->Find("FrustumCam")->rotation.y = actor->rotation.y;
@@ -325,8 +326,15 @@ void Player::PlayerControl()
 	}
 	if (staminar <= 0)
 	{
-		state->Idle();
-		staminar = 0.1f;
+		if (actor->anim->GetPlayTime() >= 0.9f)
+		{
+			state->Idle();
+			staminar = 0.1f;
+		}
+	}
+	if (state != JumpState::GetInstance() && isLand)
+	{
+		isJump = false;
 	}
 
 	//Walk && Run--------------------------------------------------------------------------------------------
@@ -518,7 +526,8 @@ void Player::PlayerHit(float damage)
 		if (isGuard)
 		{
 			hitPoint -= damage * (1 - equippedShield->damageReduced);
-			cout << damage * (1 - equippedShield->damageReduced) << endl;
+			staminar -= 10.0f;
+			cout << "가드! " << damage * (1 - equippedShield->damageReduced) << endl;
 		}
 		else
 		{
@@ -565,6 +574,12 @@ void Player::GrowthAbility()
 	{
 		if (actor->anim->aniScale != 0.6f) actor->anim->aniScale = 0.6f;
 		if (!staminarOn) staminarOn = true;
+	}
+	else if (state == ShieldState::GetInstance())
+	{
+		if (actor->anim->aniScale != 1.0f) actor->anim->aniScale = 1.0f;
+		if (!staminarOn) staminarOn = true;
+		staminar -= 3.0f * DELTA;
 	}
 	else
 	{
