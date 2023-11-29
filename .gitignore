@@ -379,3 +379,4 @@ Build/
 !/Assets/*.obj
 /Valheim/window.ini
 /Contents/Texture/MiniMap/DrawMiniMap.bmp
+/Contents/Texture/skyCloud.dds
