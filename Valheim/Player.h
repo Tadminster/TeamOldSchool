@@ -20,6 +20,7 @@ class Player : public Unit
 	Ray						slidingVector;
 	Vector3					slidingVectorHit = {};
 	UI*						playerHp = nullptr;
+	UI*						playerSt = nullptr;
 	//(할일) 손보기---------------------------------
 	Ray playerCamRay;
 	Vector3 playerCamHit;

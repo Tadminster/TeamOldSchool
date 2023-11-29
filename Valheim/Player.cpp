@@ -14,6 +14,10 @@ Player::Player()
 	playerHp->LoadFile("Player_Hp.xml");
 	playerHp->name = "Player_Hp";
 
+	playerSt = UI::Create();
+	//playerSt->LoadFile("Player_Hp.xml");
+	playerSt->name = "Player_St";
+
 	state = IdleState::GetInstance();
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
@@ -53,6 +57,7 @@ void Player::Update()
 
 	actor->Update();
 	playerHp->Update();
+	playerSt->Update();
 }
 
 void Player::LateUpdate()
@@ -81,6 +86,7 @@ void Player::Render()
 {
 	actor->Render();
 	playerHp->Render();
+	playerSt->Render();
 }
 
 void Player::Release()
@@ -91,6 +97,7 @@ void Player::RenderHierarchy()
 {
 	actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
+	playerSt->RenderHierarchy();
 }
 
 bool Player::GetPlayerHit(Collider* atkcol)
@@ -442,8 +449,6 @@ void Player::ReleaseToHand(ItemProto* item)
 	}
 }
 
-
-
 bool Player::GetItem(ItemProto* item)
 {	
 	// 아이템과 플레이어의 거리 계산
@@ -503,7 +508,7 @@ void Player::PlayerHit(float damage)
 		else
 		{
 			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-			Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, 2, 0);
+			Vector3 playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
 			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
 
 			hitPoint -= damage;

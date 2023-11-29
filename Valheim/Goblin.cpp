@@ -72,7 +72,7 @@ void Goblin::LateUpdate()
 		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
 		{
 			this->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
-			isAngry = true;
+			firstHit = true;
 		}
 	}
 }
@@ -138,6 +138,9 @@ void Goblin::BehaviorPatern()
 		{
 			state = G_IDLE2;
 		}
+
+		if (firstHit) angryTime += DELTA;
+		if (angryTime >= 0.5f) isAngry = true;
 	}
 	else
 	{
