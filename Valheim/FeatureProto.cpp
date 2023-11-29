@@ -92,7 +92,7 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 	hitAnimDuration = 0.3f;
 
 	// 타격 이펙트 재생
-	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
+	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
 
 	// 데미지 계산
 	if (wType == WeaponType::Axe)
