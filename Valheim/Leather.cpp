@@ -22,7 +22,7 @@ Leather::Leather()
 	type = ItemType::Material;
 	state = ItemState::OnGround;
 	//=========================
-	stringName = "Leather";
+	stringName = "Goblin Leather";
 	weight = 1;
 
 	currentStack = RANDOM->Int(2, 3);
@@ -91,7 +91,7 @@ void Leather::RenderHierarchy()
 
 wstring Leather::GetExplain()
 {
-	wstring exp = L"건설에 사용할 수 있는 튼튼하고 \n좋은 나무입니다.\n";
+	wstring exp = L"고블린에게서 벗겨낸 \n가죽입니다.\n";
 	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
 
 	return exp + exp_sub1;
