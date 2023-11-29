@@ -247,7 +247,7 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		}
 	}
 
-	if ((component = This->FirstChildElement("Mesh") )and  (type != ObType::Pop))
+	if ((component = This->FirstChildElement("Mesh")) and (type != ObType::Pop) and (type != ObType::Rain))
 	{
 		file = component->Attribute("File");
 		SafeReset(mesh);

@@ -57,7 +57,7 @@ void ParticleManager::Render()
 {
 	beechDrop->Render();
 	hitBeech->Render();
-	//woodHitDust->Render();
+	woodHitDust->Render();
 	hitBlood->Render();
 	hitRock->Render();
 }
@@ -69,7 +69,7 @@ void ParticleManager::RenderHierarchy()
 	{
 		beechDrop->RenderHierarchy();
 		hitBeech->RenderHierarchy();
-		//woodHitDust->RenderHierarchy();
+		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
 		hitRock->RenderHierarchy();
 	}
@@ -91,12 +91,12 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		hitBeech->Play();
 		cout << "나무 타격" << endl;
 	}
-	//else if (type == EffectType::WOODHITDUST)
-	//{
-	//	woodHitDust->SetWorldPos(pos);
-	//	woodHitDust->Play();
-	//	cout << "나무 타격 먼지발생" << endl;
-	//}
+	else if (type == EffectType::WOODHITDUST)
+	{
+		woodHitDust->SetWorldPos(pos);
+		woodHitDust->Play();
+		cout << "나무 타격 먼지발생" << endl;
+	}
 	else if (type == EffectType::HITBLOOD)
 	{
 		hitBlood->SetWorldPos(pos);

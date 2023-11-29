@@ -81,12 +81,8 @@ void Rain::Reset()
 		//4~8 사이값
 
 		//오차값
-		scale.x = 1.0f;
-		scale.y = 1.0f;
-		scale.x = S._11 + scale.x;
-		scale.y = S._22 + scale.y;
-		if (scale.x < 1.0f)scale.x = 1.0f;
-		if (scale.y < 1.0f)scale.y = 1.0f;
+		scale.x = this->scale.x;
+		scale.y = this->scale.y;
 
 		Vector3 position;
 		

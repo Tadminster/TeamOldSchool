@@ -130,7 +130,7 @@ void FeatureProto::ReceivedDamageAnimation()
 	
 	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
 	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
-
+	PARTICLE->PlayParticleEffect(EffectType::WOODHITDUST, this->actor->GetWorldPos());
 }
 
 void FeatureProto::DestructionEvent()

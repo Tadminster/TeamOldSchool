@@ -66,10 +66,6 @@ void Pop::Reset()
 
 	Vector2 scale = Vector2(0, 0);
 
-	cout << "This" << this << endl;
-	cout << "this->scale.x" << this->scale.x << endl;
-	cout << "this->scale.y" << this->scale.y << endl;
-
 	for (UINT i = 0; i < particleCount; i++)
 	{
 		//파티클의 크기
