@@ -5,8 +5,9 @@ class ParticleManager
 
 private:
 
-	Rain* woodHitDust;
+public:
 
+	Rain* woodHitDust;
 
 	Pop* beechDrop;
 	Pop* hitBeech;

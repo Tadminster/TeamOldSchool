@@ -88,12 +88,8 @@ void FeatureProto::RenderHierarchy()
 
 bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
-	//임시로 나무 타격시 이펙트발생위치 잡아두었습니다!
-	Vector3 leafDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 5, 0);
-	// 타격 이펙트 재생
-	// 동시재생시 파티클이미지의 크기가 제대로 적용되지않음
-	//PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
-	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, PLAYER->GetCollisionPoint());
+	
+
 
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
@@ -128,6 +124,13 @@ void FeatureProto::ReceivedDamageAnimation()
 	// 랜덤한 방향으로 흔들림
 	rotation->x = clamp(rotation->x + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
 	rotation->z = clamp(rotation->z + (RANDOM->Int(0, 1) ? 0.01f : -0.01f), -0.01f, 0.01f);
+
+	//임시로 나무 타격시 이펙트발생위치 잡아두었습니다!
+	Vector3 leafDropPos = PLAYER->GetCollisionPoint() + Vector3(0, 5, 0);
+	
+	PARTICLE->PlayParticleEffect(EffectType::BEECHDROP, leafDropPos);
+	PARTICLE->PlayParticleEffect(EffectType::HITBEECH, this->actor->GetWorldPos());
+
 }
 
 void FeatureProto::DestructionEvent()

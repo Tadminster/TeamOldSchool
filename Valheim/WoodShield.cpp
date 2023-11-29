@@ -10,7 +10,7 @@ WoodShield::WoodShield()
 	actor->name = "Item_WoodShield" + to_string(index);
 
 	icon = UI::Create("WoodShieldIcon");
-	icon->LoadFile("Icon_StonePickaxe.xml");
+	icon->LoadFile("Icon_WoodShield.xml");
 	icon->name = "WoodShieldIcon" + to_string(index++);
 	tooltipBoxScaleY = 0.8f;
 
@@ -21,7 +21,7 @@ WoodShield::WoodShield()
 	type = ItemType::Shield;
 	state = ItemState::OnGround;
 	//=========================
-	stringName = "WoodShield";
+	stringName = "Wood Shield";
 
 	damageReduced = 0.7f;
 	maxDurability = 100;
@@ -73,11 +73,11 @@ void WoodShield::RenderHierarchy()
 
 wstring WoodShield::GetExplain()
 {
-	wstring exp = L"방패입니다. 임시.\n";
-	wstring exp_sub1 = L"\n한손무기";
-	wstring exp_sub2 = L"\n무게: 2.0";
+	wstring exp = L"단순한 원형 방패지만 꽤나 \n단단하다.\n";
+	wstring exp_sub1 = L"\n방패";
+	wstring exp_sub2 = L"\n무게: " + to_wstring(weight);
 	wstring exp_sub3 = L"\n내구도: " + to_wstring(curDurability) + L"/" + to_wstring(maxDurability);
-	wstring exp_sub4 = L"\n공격력: " + to_wstring(damageReduced);
+	wstring exp_sub4 = L"\n방어율: " + to_wstring(damageReduced);
 
 	return exp + exp_sub1 + exp_sub2 + exp_sub3 + exp_sub4;
 }

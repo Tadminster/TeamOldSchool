@@ -247,7 +247,7 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		}
 	}
 
-	if (component = This->FirstChildElement("Mesh"))
+	if ((component = This->FirstChildElement("Mesh") )and  (type != ObType::Pop))
 	{
 		file = component->Attribute("File");
 		SafeReset(mesh);
@@ -387,6 +387,11 @@ void GameObject::LoadObject(Xml::XMLElement* This)
 		PopOb->desc.duration = component->FloatAttribute("duration");
 		PopOb->desc.gravity = component->FloatAttribute("gravity");
 		PopOb->duration = component->FloatAttribute("duration");
+
+		//file = component->Attribute("File");
+		//SafeReset(mesh);
+		
+
 		PopOb->Reset();
 	}
 

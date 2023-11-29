@@ -113,6 +113,7 @@ wstring Notification::SetTextItemName(Item item)
 		case Item::Club:			return textItemName = L"¸ùµÕÀÌ"; 
 		case Item::StoneAxe:		return textItemName = L"µ¹ µµ³¢";  
 		case Item::StonePickaxe:	return textItemName = L"µ¹ °î±ªÀÌ";
+		case Item::WoodShield:		return textItemName = L"³ª¹« ¹æÆÐ";
 		case Item::Woodpile:		return textItemName = L"³ª¹«";
 		case Item::Stone:			return textItemName = L"µ¹";
 		case Item::Leather:			return textItemName = L"°¡Á×";

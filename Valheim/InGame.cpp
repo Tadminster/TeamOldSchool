@@ -17,7 +17,6 @@ InGame::InGame()
 
 	scattering = new Scattering();
 	
-	//worldClock = new Timer();
 
 	elder = new Elder();
 	goblin = new Goblin();
@@ -118,9 +117,10 @@ void InGame::Update()
 	PLAYER->Update();
 	UIM->Update();
 	
-	//worldClock->Chronometry();
-	//float currentTime = worldClock->GetWorldTime();
-	//LIGHT->UpdateDirection(TIMER->GetWorldTime());
+	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
+	
+	float currentTime = TIMER->GetWorldTime();
+	LIGHT->UpdateDirection(currentTime);
 }
 
 

@@ -3,10 +3,10 @@
     <Shader File="8.Pop.hlsl"/>
     <Material File="Particle/HitWood.mtl"/>
     <Transform>
-        <Position X="6.02" Y="15.9" Z="-4.033"/>
+        <Position X="2.5" Y="10.509285" Z="4.5"/>
         <Scale X="0.050000001" Y="0.050000001" Z="0"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="0.050000001" particleScaleY="0.050000001" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="10" duration="1" gravity="10.607"/>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="10" duration="1" gravity="10.607"/>
     <Children Size="0"/>
 </Root>
