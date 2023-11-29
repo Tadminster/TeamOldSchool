@@ -5,7 +5,7 @@
 Goblin::Goblin(Vector3 spawnPos)
 {
 	actor = Actor::Create();
-	actor->LoadFile("Monster_Goblin.xml");
+	actor->LoadFile("/Unit/Monster_Goblin.xml");
 	actor->name = "Monster_Goblin";
 	actor->SetWorldPos(spawnPos);
 	actor->anim->aniScale = 0.6f;

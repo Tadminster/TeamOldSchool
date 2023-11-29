@@ -229,7 +229,7 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 
 				Vector3 temp = { RANDOM->Float(-2.0f, 2.0f), 0, RANDOM->Float(-2.0f, 2.0f) };
 				Actor* spear = Actor::Create();
-				spear->LoadFile("SummonSpear.xml");
+				spear->LoadFile("/Unit/SummonSpear.xml");
 				spear->SetWorldPos(elder->GetActor()->GetWorldPos() + direction * interval + temp);
 				spear->rotation.y = spearDirection;
 				spear->rotation.x = RANDOM->Float(30.0f, 50.0f) * ToRadian;
@@ -346,7 +346,7 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 					for (int j = 0; j < BUNDLENUM; j++)
 					{
 						Actor* spear = Actor::Create();
-						spear->LoadFile("SummonSpear.xml");
+						spear->LoadFile("/Unit/SummonSpear.xml");
 						spear->SetWorldPos
 						(elder->actor->GetWorldPos() + dir * 2.0f * (spearIdx + 1)+Vector3(RANDOM->Float(-2.0f,2.0f),0, RANDOM->Float(-2.0f, 2.0f)));
 						spear->Update();

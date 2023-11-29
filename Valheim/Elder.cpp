@@ -6,7 +6,7 @@
 Elder::Elder()
 {
 	actor = Actor::Create();
-	actor->LoadFile("Monster_Elder.xml");
+	actor->LoadFile("/Unit/Monster_Elder.xml");
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
 
