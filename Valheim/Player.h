@@ -5,9 +5,11 @@ class Player : public Unit
 {
 	friend class JumpState;
 	friend class SwingState;
+	friend class FistState;
 
 	class PlayerState*		state = nullptr;
-	class WeaponProto*		equippedHand = nullptr;
+	class WeaponProto*		equippedWeapon = nullptr;
+	class ShieldProto*		equippedShield = nullptr;
 	//카메라 관련 변수
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -40,7 +42,6 @@ class Player : public Unit
 
 	float					growthHp = 0.1f;
 public:
-	bool istouch = 0;
 	Player();
 	~Player();
 	void Init() override;
@@ -75,8 +76,8 @@ public:
 	void			AvtivatePlayerCam();
 	void			PlayerControl();
 	void			PlayerMove();
-	void			EquipToHand(WeaponProto* item);
-	void			ReleaseToHand();
+	void			EquipToHand(ItemProto* item);
+	void			ReleaseToHand(ItemProto* item);
 	void			MoveBack(Actor* col);
 	bool			GetItem(ItemProto* item);
 	void			PlayerHit(float damage = 1.0f);
