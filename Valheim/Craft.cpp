@@ -502,6 +502,9 @@ bool Craft::ItemCreate()
 		else break;
 	}
 
+	// 제작 사운드 재생
+	SOUND->Play(CRAFTING);
+
 	// 아이템을 생성
 	ItemProto* item = ItemProto::Create(selectedRecipe->enumName);
 	OBJ->AddItem(item);
@@ -509,6 +512,7 @@ bool Craft::ItemCreate()
 	// 인벤토리에 아이템을 추가
 	INVEN->AddItem(item);
 
+	// 생성된 아이템을 발견목록에 추가
 	RECIPE->DiscoveryItemUpdate(item);
 
 	// 인벤토리에 아이템이 추가되었다면 true 반환

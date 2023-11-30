@@ -91,8 +91,7 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
 
-	// 타격 이펙트 재생
-	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
+
 
 	// 데미지 계산
 	if (wType == WeaponType::Axe)

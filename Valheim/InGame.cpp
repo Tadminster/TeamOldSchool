@@ -1,9 +1,7 @@
 #include "stdafx.h"
 //#include "Prototype.h"
 #include "ItemProto.h"
-//#include "Inventory.h"
-#include "GameOption.h"
-#include "StoneAxe.h"
+#include "SoundDB.h"
 #include "Elder.h"
 #include "Goblin.h"
 #include "InGame.h"
@@ -14,6 +12,8 @@ InGame::InGame()
 	tempCamera->LoadFile("Cam.xml");
 
 	grid = Grid::Create();
+
+	soundDB = new SoundDB();
 
 	scattering = new Scattering();
 
@@ -39,10 +39,12 @@ void InGame::Init()
 {
 	GM->Init();
 	UIM->Init();
+	soundDB->Init();
 	PLAYER->Init();
-
 	elder->Init();
 	goblin->Init();
+
+	SOUND->Play(BGM_HOMEBASE);
 }
 
 void InGame::Release()

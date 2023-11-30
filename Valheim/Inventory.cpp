@@ -75,8 +75,26 @@ void Inventory::Update()
 	{
 		isOpen = !isOpen;
 
-		if (isOpen) inventoryUI->Find("SlotBottom")->visible = true;
-		else inventoryUI->Find("SlotBottom")->visible = false;
+		// 인벤토리가 열렸으면
+		if (isOpen)
+		{
+			// 모든 슬롯을 보이게 함
+			inventoryUI->Find("SlotBottom")->visible = true;
+
+			// 열림 사운드 재생
+			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_SHOW_01, INVENTORY_SHOW_03));
+			SOUND->Play(randomPlay);
+		}
+		// 닫혔으면
+		else
+		{
+			// 아래쪽 슬롯을 숨김
+			inventoryUI->Find("SlotBottom")->visible = false;
+
+			// 닫힘 사운드 재생
+			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_HIDE_01, INVENTORY_HIDE_03));
+			SOUND->Play(randomPlay);
+		}
 
 		Init();
 	}
@@ -303,6 +321,9 @@ void Inventory::ItemPickUp()
 				selectedItem.item = inventoryItem[i];
 				selectedItem.image = inventoryIcon[i];
 				selectedItem.index = i;
+
+				// 아이템 선택 사운드 재생
+				SOUND->Play(INVENTORY_ITEM_PICK);
 			}
 		}
 	}
@@ -466,6 +487,9 @@ void Inventory::ItemDrop()
 				// 드래그 중인 아이템을 땅에 떨어뜨림
 				selectedItem.item->Drop();
 
+				// 아이템 버림 사운드 재생
+				SOUND->Play(INVENTORY_ITEM_DROP);
+
 				//  들고 있는 아이템 정보를 초기화
 				selectedItem.item = nullptr;
 				selectedItem.image = nullptr;
@@ -557,6 +581,10 @@ void Inventory::UseItem(int& equippedItem, int inventoryIndex)
 		// 새로 착용한 무기 인덱스 저장
 		equippedItem = inventoryIndex;
 	}
+
+	// 아이템 사용 사운드 재생
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_ITEM_USE_01, INVENTORY_ITEM_USE_04));
+	SOUND->Play(randomPlay);
 }
 
 void Inventory::InputShortcut()

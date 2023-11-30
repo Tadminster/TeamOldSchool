@@ -71,9 +71,24 @@ void Rock::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
+bool Rock::ReceivedDamageEvent(float damage, WeaponType wType)
+{
+	FeatureProto::ReceivedDamageEvent(damage, wType);
+
+	// 바위 타격 이펙트
+	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 2.0f;
+	PARTICLE->PlayParticleEffect(EffectType::HITROCK, effectPos);
+
+	// 바위 타격 사운드
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(ROCK_HIT_01, ROCK_HIT_02));
+	SOUND->Play(randomPlay);
+
+	return false;
+}
+
 void Rock::DestructionEvent()
 {
-	// 돌 아이템 생성
+	// 돌(stone) 아이템 생성
 	for (int i = 0; i < RANDOM->Int(2, 3); i++)
 	{
 		ItemProto* item = ItemProto::Create(Item::Stone);
@@ -82,9 +97,9 @@ void Rock::DestructionEvent()
 		OBJ->AddItem(item);
 	}
 
-	// 돌 파괴 이펙트 재생
-	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 2.0f;
-	PARTICLE->PlayParticleEffect(EffectType::HITROCK, effectPos);
+	// 바위 파괴 이펙트
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(ROCK_BREAK_01, ROCK_BREAK_04));
+	SOUND->Play(randomPlay);
 
 	// 오브젝트 삭제 (나무)
 	delete this;

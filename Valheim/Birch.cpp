@@ -33,7 +33,7 @@ Birch::Birch()
 	actor->name = "Birch" + to_string(index++);
 
 	float x = RANDOM->Float(0.7f, 1.1f);
-	float y = RANDOM->Float(0.4f, 0.6f);
+	float y = RANDOM->Float(0.8f, 1.0f);
 	float z = RANDOM->Float(0.7f, 1.1f);
 	actor->scale = Vector3(x, y, z);
 	actor->rotation.y = RANDOM->Float(0.0f, 360.0f) * ToRadian;
@@ -98,12 +98,6 @@ void Birch::Release()
 
 bool Birch::ReceivedDamageEvent(float damage, WeaponType wType)
 {
-	// 타격 애니메이션(흔들림) 재생시간 설정
-	hitAnimDuration = 0.3f;
-
-	// 타격 이펙트 재생
-	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
-
 	// 데미지 계산
 	if (wType == WeaponType::Axe)
 	{
@@ -122,6 +116,16 @@ bool Birch::ReceivedDamageEvent(float damage, WeaponType wType)
 
 	UIM->AddDamageText((int)damage, PLAYER->GetCollisionPoint());
 
+	// 타격 애니메이션(흔들림) 재생시간 설정
+	hitAnimDuration = 0.3f;
+
+	// 나무 타격 이펙트
+	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
+
+	// 나무 타격 사운드
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(TREE_HIT_01, TREE_HIT_07));
+	SOUND->Play(randomPlay);
+	
 	return true;
 }
 
@@ -136,9 +140,13 @@ void Birch::DestructionEvent()
 		OBJ->AddItem(item);
 	}
 
-	// 나무 파괴 이펙트 재생
-	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 3.0f;
+	// 나무 파괴 이펙트
+	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 8.0f;
 	PARTICLE->PlayParticleEffect(EffectType::WOODDROP, effectPos);
+
+	// 나무 파괴 사운드
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(TREE_FALL_01, TREE_FALL_05));
+	SOUND->Play(randomPlay);
 
 	// 오브젝트 삭제 (나무)
 	delete this;
