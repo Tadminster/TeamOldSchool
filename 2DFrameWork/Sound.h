@@ -1,4 +1,10 @@
 #pragma once
+
+enum class SoundName
+{
+
+};
+
 class Sound : public Singleton<Sound>
 {
 	struct SoundNode
@@ -8,7 +14,7 @@ class Sound : public Singleton<Sound>
         float volume = 1.0f;
     };
 
-	map<string, SoundNode*> SoundList;
+	map<SoundName, SoundNode*> SoundList;
 	FMOD::System * system;
 
 public:
@@ -16,19 +22,19 @@ public:
     Sound();
     ~Sound();
     //전역에서 사운드 추가 
-    bool AddSound(string File, string Key, bool loop = false);
+    bool AddSound(string File, SoundName name, bool loop = false);
     //전역에서 사운드 삭제
-    bool DeleteSound(string Key);
+    bool DeleteSound(SoundName name);
 
     //그리고 key를 매개변수로 두고 모두 제어
-    void Play(string Key);
-    void Stop(string Key);
+    void Play(SoundName name);
+    void Stop(SoundName name);
     //일시정지
-    void Pause(string Key);
+    void Pause(SoundName name);
     //일시정지 해제
-    void Resume(string Key);
+    void Resume(SoundName name);
 
-    void SetVolume(string Key, float scale);
+    void SetVolume(SoundName name, float scale);
     void SetMasterVolume();
     void PauseAll();
     void ResumeAll();
