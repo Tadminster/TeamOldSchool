@@ -86,7 +86,10 @@ SoundDB::~SoundDB()
 
 void SoundDB::Init()
 {
+	// 개별 사운드 소리 크기 조절
+	SOUND->SetVolume(BGM_HOMEBASE, 0.3f);
+
+	// 전체 소리 크기 조절
 	App.soundScale = 0.5f;
 	SOUND->SetMasterVolume();
-	//SOUND->SetVolume("bgm_hankroom", 0.5f);
 }

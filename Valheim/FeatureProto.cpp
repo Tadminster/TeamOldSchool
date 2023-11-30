@@ -8,6 +8,7 @@
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
 #include "Rock.h"
+#include "Shipwreck.h"
 
 #include "FeatureProto.h"
 
@@ -29,8 +30,11 @@ FeatureProto* FeatureProto::Create(FeatureType featureType)
 			return new BeechHalfLog();
 		case FeatureType::Rock:
 			return new Rock();
+		case FeatureType::Shipwreck:
+			return new Shipwreck();
 		default:
 			throw std::invalid_argument("error");
+			return nullptr;
 	}
 }
 

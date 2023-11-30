@@ -4,16 +4,10 @@
 //#include "Prototype.h"
 // 지형지물(나무, 돌) ===============================================
 #include "FeatureProto.h"
-#include "Birch.h"
-#include "Beech.h"
-#include "BeechLog.h"
-#include "BeechHalfLog.h"
 #include "Grass.h"
+
 // 아이템 =============================================================
 #include "ItemProto.h"
-//#include "Woodpile.h"
-//#include "Stone.h"
-//#include "StoneAxe.h"
 
 // 건축구조물 ========================================================
 #include "StructureProto.h"
@@ -70,6 +64,9 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
+	shipwreck = FeatureProto::Create(FeatureType::Shipwreck);
+	shipwreck->GetActor()->SetWorldPos(Vector3(0, 0, 0));
+	objects.emplace_back(shipwreck);
 }
 
 void ObjectManager::Release()

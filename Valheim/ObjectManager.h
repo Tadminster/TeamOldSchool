@@ -27,11 +27,12 @@ private:
 	list<class ItemProto*>		items;
 	list<class StructureProto*>	structures;
 
-	ItemProto*		stoneAxe[5];
-	ItemProto*		woodpile[5];
-	ItemProto*		stone[5];
-	ItemProto*		woodShield[5];
-	ItemProto*		leather[5];
+	class ItemProto*		stoneAxe[5];
+	class ItemProto*		woodpile[5];
+	class ItemProto*		stone[5];
+	class ItemProto*		woodShield[5];
+	class ItemProto*		leather[5];
+	class FeatureProto*		shipwreck;	// ³­ÆÄ¼±
 
 public:
 	ObjectManager();
