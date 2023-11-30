@@ -120,6 +120,9 @@
     <ClInclude Include="WoodShield.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerStatus.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -237,6 +240,9 @@
     <ClCompile Include="WoodShield.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
+    <ClCompile Include="PlayerStatus.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameObject">
@@ -285,5 +291,6 @@
   <ItemGroup>
     <None Include="imgui.ini" />
     <None Include="window.ini" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>

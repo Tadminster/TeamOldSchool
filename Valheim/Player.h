@@ -6,8 +6,10 @@ class Player : public Unit
 	friend class JumpState;
 	friend class SwingState;
 	friend class FistState;
+	friend class PlayerStatus;
 
 	class PlayerState*		state = nullptr;
+	class PlayerStatus*		status = nullptr;
 	class WeaponProto*		equippedWeapon = nullptr;
 	class ShieldProto*		equippedShield = nullptr;
 	//카메라 관련 변수
@@ -36,7 +38,11 @@ class Player : public Unit
 	float					growthStaminar = 0.05f;
 	float					staminarTime = 0;
 	bool					staminarOn = false;
+	//성장경험치 변수--------------------------------------
+	//float runAnimSpeed = 0.7f;
+	
 
+	//-----------------------------------------------------
 	bool					isJump = false;
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
@@ -50,6 +56,7 @@ class Player : public Unit
 
 	float					fistDMG = 5.0f;
 
+	float					randomDMG = 0;
 public:
 	Player();
 	~Player();
@@ -92,9 +99,9 @@ public:
 	bool			GetItem(ItemProto* item);
 	void			PlayerHit(float damage = 1.0f);
 	void			GrowthAbility();
-	//Hp
+	//Hp---------------------------------------------------------------
 	void			PlayerHealth();
-	//St
+	//St---------------------------------------------------------------
 	void			PlayerStaminar();
 	float			GetStaminar() { return staminar; }
 };

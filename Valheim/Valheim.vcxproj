@@ -31,6 +31,7 @@
     <ClInclude Include="DamageText.h" />
     <ClInclude Include="Leather.h" />
     <ClInclude Include="Notification.h" />
+    <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="Rock.h" />
     <ClInclude Include="Stone.h" />
@@ -74,6 +75,7 @@
     <ClCompile Include="DamageText.cpp" />
     <ClCompile Include="Leather.cpp" />
     <ClCompile Include="Notification.cpp" />
+    <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Stone.cpp" />
@@ -103,6 +105,7 @@
     <ClCompile Include="Workbench.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram.cd" />
     <None Include="imgui.ini" />
     <None Include="window.ini" />
   </ItemGroup>
