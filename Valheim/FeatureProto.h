@@ -1,11 +1,12 @@
 #pragma once
-#define MAXMUM_UPDATE_DISTANCE 3000.0f
+#define MAXMUM_UPDATE_DISTANCE 2000.0f
 
 enum class FeatureType
 {
     Birch, 
     Beech, BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
-    Rock
+    Rock,
+    Shipwreck
 };
 
 enum class RenderType

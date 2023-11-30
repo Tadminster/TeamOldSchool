@@ -11,9 +11,9 @@ Rock::Rock()
 	static int index = 0;
 	actor->name = "Rock" + to_string(index++);
 
-	float x = RANDOM->Float(1.0f, 3.0f);
-	float y = RANDOM->Float(2.0f, 3.0f);
-	float z = RANDOM->Float(1.0f, 3.0f);
+	float x = RANDOM->Float(2.0f, 3.0f);
+	float y = RANDOM->Float(3.0f, 4.0f);
+	float z = RANDOM->Float(2.0f, 3.0f);
 	actor->scale = Vector3(x, y, z);
 	actor->collider->rotation = actor->rotation;
 
@@ -37,7 +37,7 @@ void Rock::Update()
 	// 오브젝트와 카메라의 거리 계산
 	playerDistance = Vector3::DistanceSquared(PLAYER->GetActor()->GetWorldPos(), actor->GetWorldPos());
 
-	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
+	// 거리가 2000.0f 이상이면 리턴(업데이트 하지 않음)
 	if (playerDistance > MAXMUM_UPDATE_DISTANCE) return;
 
 	FeatureProto::Update();

@@ -126,6 +126,9 @@
     <ClInclude Include="SoundDB.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="Shipwreck.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -248,6 +251,9 @@
     </ClCompile>
     <ClCompile Include="SoundDB.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Shipwreck.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -40,6 +40,7 @@ void InGame::Init()
 	GM->Init();
 	UIM->Init();
 	soundDB->Init();
+	OBJ->Init();
 	PLAYER->Init();
 	elder->Init();
 	goblin->Init();

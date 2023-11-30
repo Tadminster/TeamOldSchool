@@ -1,0 +1,52 @@
+<Root Name="Shipwreck" Visible="true" ObType="1">
+    <Collider ColliderType="2" Visible="true">
+        <Position X="0" Y="0.2" Z="0"/>
+        <Scale X="1" Y="1.5" Z="3.5999999"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="-0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="Hull" Visible="true" ObType="0">
+            <Shader File="4.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="-0.5" Z="0"/>
+                <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="FrontHull" Visible="true" ObType="0">
+                <Mesh File="Shipwreck/FrontHull.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Shipwreck/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="0" Z="200"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="-0.34906399" Y="6.6030498e-06" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="RearHull" Visible="true" ObType="0">
+                <Mesh File="Shipwreck/RearHull.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Shipwreck/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="0" Z="-200"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0.34906399" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+        </Child0>
+    </Child0>
+</Root>

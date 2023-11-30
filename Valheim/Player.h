@@ -39,7 +39,7 @@ class Player : public Unit
 	float					staminarTime = 0;
 	bool					staminarOn = false;
 	//성장경험치 변수--------------------------------------
-	//float runAnimSpeed = 0.7f;
+	int						jumpCount = 0;
 	
 
 	//-----------------------------------------------------
