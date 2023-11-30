@@ -38,9 +38,9 @@ void PlayerStatus::RunExp()
 		if (runLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 1.2f;
 			runStaminar = 4.0f;
 			runSpeed = 13.0;
@@ -52,9 +52,9 @@ void PlayerStatus::RunExp()
 		if (runLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 1.1f;
 			runStaminar = 6.0f;
 			runSpeed = 11.0;
@@ -66,9 +66,9 @@ void PlayerStatus::RunExp()
 		if (runLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 1.0f;
 			runStaminar = 7.0f;
 			runSpeed = 9.0;
@@ -80,9 +80,9 @@ void PlayerStatus::RunExp()
 		if (runLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 0.9f;
 			runStaminar = 8.0f;
 			runSpeed = 7.0;
@@ -94,9 +94,9 @@ void PlayerStatus::RunExp()
 		if (runLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 0.8f;
 			runStaminar = 9.0f;
 			runSpeed = 6.0;
@@ -112,9 +112,9 @@ void PlayerStatus::JumpExp()
 		if (jumpLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			jumpStaminar = 5.0f;
 			jumpPower = 20.0f;
 			jumpLevel = 5;
@@ -126,9 +126,9 @@ void PlayerStatus::JumpExp()
 		if (jumpLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			jumpStaminar = 6.0f;
 			jumpPower = 17.0f;
 			jumpLevel = 4;
@@ -141,9 +141,9 @@ void PlayerStatus::JumpExp()
 		if (jumpLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			jumpStaminar = 7.0f;
 			jumpPower = 15.0f;
 			jumpLevel = 3;
@@ -156,9 +156,9 @@ void PlayerStatus::JumpExp()
 		if (jumpLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			jumpStaminar = 8.0f;
 			jumpPower = 13.0f;
 			jumpLevel = 2;
@@ -171,9 +171,9 @@ void PlayerStatus::JumpExp()
 		if (jumpLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			jumpStaminar = 9.0f;
 			jumpPower = 11.0f;
 			jumpLevel = 1;
@@ -189,9 +189,9 @@ void PlayerStatus::FistExp()
 		if (fistLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			fistAnimSpeed = 1.2f;
 			fistStaminar = 2.0f;
 			fistLevel = 5;
@@ -203,9 +203,9 @@ void PlayerStatus::FistExp()
 		if (fistLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			fistAnimSpeed = 1.1f;
 			fistStaminar = 2.5f;
 			fistLevel = 4;
@@ -217,9 +217,9 @@ void PlayerStatus::FistExp()
 		if (fistLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			fistAnimSpeed = 1.0f;
 			fistStaminar = 3.0f;
 			fistLevel = 3;
@@ -231,9 +231,9 @@ void PlayerStatus::FistExp()
 		if (fistLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			fistAnimSpeed = 0.9f;
 			fistStaminar = 3.5f;
 			fistLevel = 2;
@@ -245,9 +245,9 @@ void PlayerStatus::FistExp()
 		if (fistLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			fistAnimSpeed = 0.8f;
 			fistStaminar = 4.0f;
 			fistLevel = 1;
@@ -261,9 +261,9 @@ void PlayerStatus::SwingExp()
 		if (swingLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.2f;
 			swingStaminar = 2.0f;
 			swingLevel = 5;
@@ -275,9 +275,9 @@ void PlayerStatus::SwingExp()
 		if (swingLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.1f;
 			swingStaminar = 2.5f;
 			swingLevel = 4;
@@ -289,9 +289,9 @@ void PlayerStatus::SwingExp()
 		if (swingLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.0f;
 			swingStaminar = 3.0f;
 			swingLevel = 3;
@@ -303,9 +303,9 @@ void PlayerStatus::SwingExp()
 		if (swingLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 0.9f;
 			swingStaminar = 3.5f;
 			swingLevel = 2;
@@ -317,9 +317,9 @@ void PlayerStatus::SwingExp()
 		if (swingLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 0.8f;
 			swingStaminar = 4.0f;
 			swingLevel = 1;
@@ -334,9 +334,9 @@ void PlayerStatus::AxeExp()
 		if (axeLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.2f;
 			axeStaminar = 2.0f;
 			axeLevel = 5;
@@ -348,9 +348,9 @@ void PlayerStatus::AxeExp()
 		if (axeLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.1f;
 			axeStaminar = 2.5f;
 			axeLevel = 4;
@@ -362,9 +362,9 @@ void PlayerStatus::AxeExp()
 		if (axeLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.0f;
 			axeStaminar = 3.0f;
 			axeLevel = 3;
@@ -376,9 +376,9 @@ void PlayerStatus::AxeExp()
 		if (axeLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 0.9f;
 			axeStaminar = 3.5f;
 			axeLevel = 2;
@@ -390,9 +390,9 @@ void PlayerStatus::AxeExp()
 		if (axeLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 0.8f;
 			axeStaminar = 4.0f;
 			axeLevel = 1;
@@ -415,9 +415,9 @@ void PlayerStatus::ShieldExp()
 		if (shieldLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 4.0f;
 			shieldStaminar = 1.5f;
 			shieldLevel = 5;
@@ -428,9 +428,9 @@ void PlayerStatus::ShieldExp()
 		if (shieldLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 3.0f;
 			shieldStaminar = 2.0f;
 			shieldLevel = 4;
@@ -442,9 +442,9 @@ void PlayerStatus::ShieldExp()
 		if (shieldLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 2.5f;
 			shieldStaminar = 2.5f;
 			shieldLevel = 3;
@@ -456,9 +456,9 @@ void PlayerStatus::ShieldExp()
 		if (shieldLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 2.0f;
 			shieldStaminar = 3.0f;
 			shieldLevel = 2;
@@ -470,9 +470,9 @@ void PlayerStatus::ShieldExp()
 		if (shieldLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 1.5f;
 			shieldStaminar = 3.5f;
 			shieldLevel = 1;
@@ -487,9 +487,9 @@ void PlayerStatus::BlockExp()
 		if (blcokdLevel != 5)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			blockStaminar = 5.0f;
 			blockAbility = 20;
 			blcokdLevel = 5;
@@ -501,9 +501,9 @@ void PlayerStatus::BlockExp()
 		if (blcokdLevel != 4)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			blockStaminar = 6.0f;
 			blockAbility = 15;
 			blcokdLevel = 4;
@@ -515,9 +515,9 @@ void PlayerStatus::BlockExp()
 		if (blcokdLevel != 3)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			blockStaminar = 7.0f;
 			blockAbility = 10;
 			blcokdLevel = 3;
@@ -529,9 +529,9 @@ void PlayerStatus::BlockExp()
 		if (blcokdLevel != 2)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			blockStaminar = 8.0f;
 			blockAbility = 5;
 			blcokdLevel = 2;
@@ -543,9 +543,9 @@ void PlayerStatus::BlockExp()
 		if (blcokdLevel != 1)
 		{
 			PLAYER->maxHitpoint += 1.0f;
-			PLAYER->hitPoint = PLAYER->maxHitpoint;
+			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			PLAYER->staminar = PLAYER->maxStaminar;
+			//PLAYER->staminar = PLAYER->maxStaminar;
 			blockStaminar = 9.0f;
 			blockAbility = 2;
 			blcokdLevel = 1;

@@ -338,8 +338,19 @@ void Player::PlayerControl()
 	{
 		if (actor->anim->GetPlayTime() >= 0.9f)
 		{
-			state->Idle();
-			staminar = 0.1f;
+			if (state == JumpState::GetInstance())
+			{
+				if (isLand)
+				{
+					state->Idle();
+					staminar = 0.01f;
+				}
+			}
+			else
+			{
+				state->Idle();
+				staminar = 0.01f;
+			}
 		}
 	}
 	if (state != JumpState::GetInstance() && isLand)
@@ -642,6 +653,9 @@ void Player::PlayerStaminar()
 	}
 	if (staminar > maxStaminar) staminar = maxStaminar;
 	else if (staminar < 0) staminar = 0;
+
+	if (staminar == maxStaminar) playerSt->visible = false;
+	else playerSt->visible = true;
 }
 
 bool Player::IsDestroyed()
