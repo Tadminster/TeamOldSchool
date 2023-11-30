@@ -123,6 +123,9 @@
     <ClInclude Include="PlayerStatus.h">
       <Filter>GameObject\Unit\Player</Filter>
     </ClInclude>
+    <ClInclude Include="SoundDB.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp">
       <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundDB.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

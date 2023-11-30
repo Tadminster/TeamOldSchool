@@ -23,12 +23,12 @@ Sound::~Sound()
     SoundList.clear();
 }
 
-bool Sound::AddSound(string File, string Key, bool loop)
+bool Sound::AddSound(string File, SoundName name, bool loop)
 {
     string path = "../Contents/Sound/" + File;
 
     //key 중복 허용x
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 있다.
     if (iter != SoundList.end())
@@ -57,14 +57,14 @@ bool Sound::AddSound(string File, string Key, bool loop)
     }
 
     //맵에 할당한 배열 원소넣기
-    SoundList[Key] = temp;
+    SoundList[name] = temp;
 
     return true;
 }
 
-bool Sound::DeleteSound(string Key)
+bool Sound::DeleteSound(SoundName name)
 {
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 없다.
     if (iter == SoundList.end())
@@ -82,9 +82,11 @@ bool Sound::DeleteSound(string Key)
     return true;
 }
 
-void Sound::Play(string Key)
+void Sound::Play(SoundName name)
 {
-    auto iter = SoundList.find(Key);
+    Stop(name);
+
+    auto iter = SoundList.find(name);
 
     //중복된게 있을때
     if (iter != SoundList.end())
@@ -103,9 +105,9 @@ void Sound::Play(string Key)
     }
 }
 
-void Sound::Stop(string Key)
+void Sound::Stop(SoundName name)
 {
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 있을때
     if (iter != SoundList.end())
@@ -114,9 +116,9 @@ void Sound::Stop(string Key)
     }
 }
 
-void Sound::Pause(string Key)
+void Sound::Pause(SoundName name)
 {
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 있을때
     if (iter != SoundList.end())
@@ -125,9 +127,9 @@ void Sound::Pause(string Key)
     }
 }
 
-void Sound::Resume(string Key)
+void Sound::Resume(SoundName name)
 {
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 있을때
     if (iter != SoundList.end())
@@ -136,9 +138,9 @@ void Sound::Resume(string Key)
     }
 }
 
-void Sound::SetVolume(string Key, float scale)
+void Sound::SetVolume(SoundName name, float scale)
 {
-    auto iter = SoundList.find(Key);
+    auto iter = SoundList.find(name);
 
     //중복된게 있을때
     if (iter != SoundList.end())

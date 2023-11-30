@@ -19,6 +19,7 @@ public:
 	void RenderHierarchy() override;
 
 	void LodUpdate(float distance) override;
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	void DestructionEvent() override;
 };
 
