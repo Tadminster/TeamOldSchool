@@ -47,11 +47,10 @@ void Player::Update()
 	{
 		isPlayerCam = false;
 	}
-	staminar = maxStaminar;
+	
 	if(hitTime >= 0) hitTime -= DELTA;
 
 	//기능 함수
-	status->RunExp();
 	PlayerControl();
 	PlayerMove();
 	PlayerHealth();
@@ -59,6 +58,7 @@ void Player::Update()
 	PlayerStaminar();
 	ApplyGravity();
 	GrowthAbility();
+	status->Update();
 	actor->Update();
 	playerHp->Update();
 	playerSt->Update();
@@ -370,9 +370,11 @@ void Player::PlayerControl()
 	{
 		if (INPUT->KeyDown(VK_SPACE) && !isJump)
 		{
+			gravity = -status->jumpPower;
 			state = JumpState::GetInstance();
 			state->Jump();
-			staminar -= 10.0f;
+			staminar -= status->jumpStaminar;
+			jumpCount++;
 		}
 	}
 	//Fist && Swing--------------------------------------------------------------------------------------------
@@ -629,7 +631,6 @@ void Player::PlayerHealth()
 
 void Player::PlayerStaminar()
 {
-	playerSt->scale.x = growthStaminar;
 	playerSt->Find("Front_St")->scale.x = staminar / maxStaminar;
 
 	if (staminarOn)

@@ -165,7 +165,7 @@ void JumpState::Jump()
 {
 	PLAYER->actor->SetWorldPosY(PLAYER->actor->GetWorldPos().y + 0.3f);
 	PLAYER->isLand = false;
-	PLAYER->gravity = -10.0f;
+	//PLAYER->gravity = -10.0f;
 	PLAYER->actor->anim->ChangeAnimation(AnimationState::ONCE_LAST, 4);
 	PLAYER->isJump = true;
 }
