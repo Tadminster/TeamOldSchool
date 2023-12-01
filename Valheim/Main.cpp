@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "LoadingScene.h"
 #include "InGame.h"
 #include "Main.h"
 
@@ -13,8 +14,8 @@ Main::~Main()
 
 void Main::Init()
 {
-    SCENE->AddScene("InGame", new InGame);
-    SCENE->ChangeScene("InGame");
+    SCENE->AddScene("Loading", new LoadingScene);
+    SCENE->ChangeScene("Loading");
 }
 
 void Main::Release()

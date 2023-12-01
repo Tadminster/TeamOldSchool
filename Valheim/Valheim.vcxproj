@@ -30,10 +30,13 @@
     <ClInclude Include="GoblinState.h" />
     <ClInclude Include="DamageText.h" />
     <ClInclude Include="Leather.h" />
+    <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="Notification.h" />
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="Rock.h" />
+    <ClInclude Include="Shipwreck.h" />
+    <ClInclude Include="SoundDB.h" />
     <ClInclude Include="Stone.h" />
     <ClInclude Include="StonePickaxe.h" />
     <ClInclude Include="StructureProto.h" />
@@ -74,10 +77,13 @@
     <ClCompile Include="GoblinState.cpp" />
     <ClCompile Include="DamageText.cpp" />
     <ClCompile Include="Leather.cpp" />
+    <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="Notification.cpp" />
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="Shipwreck.cpp" />
+    <ClCompile Include="SoundDB.cpp" />
     <ClCompile Include="Stone.cpp" />
     <ClCompile Include="StonePickaxe.cpp" />
     <ClCompile Include="StructureProto.cpp" />

@@ -31,7 +31,7 @@ void BeechStump::Update()
 	// 오브젝트와 카메라의 거리 계산
 	playerDistance = Vector3::DistanceSquared(PLAYER->GetActor()->GetWorldPos(), actor->GetWorldPos());
 
-	// 거리가 3000.0f 이상이면 리턴(업데이트 하지 않음)
+	// 거리가 2000.0f 이상이면 리턴(업데이트 하지 않음)
 	if (playerDistance > MAXMUM_UPDATE_DISTANCE) return;
 
 	FeatureProto::Update();

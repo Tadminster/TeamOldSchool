@@ -6,6 +6,7 @@ class Player : public Unit
 	friend class JumpState;
 	friend class SwingState;
 	friend class FistState;
+	friend class BlockState;
 	friend class PlayerStatus;
 
 	class PlayerState*		state = nullptr;
@@ -38,11 +39,17 @@ class Player : public Unit
 	float					growthStaminar = 0.05f;
 	float					staminarTime = 0;
 	bool					staminarOn = false;
-	//성장경험치 변수--------------------------------------
-	//float runAnimSpeed = 0.7f;
-	
-
+	//경험치 변수--------------------------------------
+	int						jumpCount = 0;
+	int						fistCount = 0;
+	int						swingCount = 0;
+	int						axeCount = 0;
+	int						blockCount = 0;
+	//피격 파티클 위치
+	Vector3					playerhitPos = {};
 	//-----------------------------------------------------
+	bool isAttack = false;
+
 	bool					isJump = false;
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
@@ -69,7 +76,7 @@ public:
 	void DestructionEvent() override;
 	bool IsDestroyed() override;
 
-	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 이름 바꿀예정
+	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 바꿀예정
 	Actor*			GetPlayer()						{ return actor; }
 	float			GetFistDMG()					{ return fistDMG; }
 	WeaponProto*	GetPlayerWeapon();

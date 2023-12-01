@@ -123,6 +123,15 @@
     <ClInclude Include="PlayerStatus.h">
       <Filter>GameObject\Unit\Player</Filter>
     </ClInclude>
+    <ClInclude Include="SoundDB.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Shipwreck.h">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -242,6 +251,15 @@
     </ClCompile>
     <ClCompile Include="PlayerStatus.cpp">
       <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundDB.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Shipwreck.cpp">
+      <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
