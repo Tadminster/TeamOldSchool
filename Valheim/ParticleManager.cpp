@@ -24,6 +24,10 @@ ParticleManager::ParticleManager()
 	hitRock = Pop::Create("Particle_RockHit");
 	hitRock->LoadFile("Particle_HitRock.xml");
 	
+	//플레이어 레벨업 파티클 효과
+	levelUp = Pop::Create("Praticle_LevelUp");
+	levelUp->LoadFile("Particle_LevelUp.xml");
+
 }
 
 ParticleManager::~ParticleManager()
@@ -45,6 +49,7 @@ void ParticleManager::Update()
 	woodHitDust->Update();
 	hitBlood->Update();
 	hitRock->Update();
+	levelUp->Update();
 }
 
 void ParticleManager::LateUpdate()
@@ -59,6 +64,13 @@ void ParticleManager::Render()
 	woodHitDust->Render();
 	hitBlood->Render();
 	hitRock->Render();
+
+	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
+	BLEND->Set(true);
+	levelUp->desc2.alpha += DELTA * 0.1f;
+	if (levelUp->desc2.alpha >= 1.0f) levelUp->desc2.alpha = 0.0f;
+	levelUp->Render();
+	BLEND->Set(true);
 }
 
 void ParticleManager::RenderHierarchy()
@@ -71,8 +83,10 @@ void ParticleManager::RenderHierarchy()
 		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
 		hitRock->RenderHierarchy();
+		levelUp->RenderHierarchy();
 	}
 	ImGui::End();
+
 }
 
 
@@ -106,6 +120,13 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		hitRock->SetWorldPos(pos);
 		hitRock->Play();
+		cout << "바위 타격" << endl;
+	}
+	else if (type == EffectType::LEVELUP)
+	{
+		levelUp->desc2.alpha = 0.0f;
+		levelUp->SetWorldPos(pos);
+		levelUp->Play();
 		cout << "바위 타격" << endl;
 	}
 }

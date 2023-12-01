@@ -19,7 +19,7 @@ InGame::InGame()
 
 	elder = new Elder();
 	goblin = new Goblin();
-	
+
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -32,7 +32,7 @@ InGame::InGame()
 
 InGame::~InGame()
 {
-	
+
 }
 
 void InGame::Init()
@@ -53,16 +53,16 @@ void InGame::Update()
 {
 	LIGHT->RenderDetail();
 	scattering->RenderDetail();
-	
+
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if(DEBUGMODE)
+		if (DEBUGMODE)
 		{
 			grid->RenderHierarchy();
 			tempCamera->RenderHierarchy();
 		}
-		
+
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
@@ -103,12 +103,12 @@ void InGame::Update()
 	if (isDebugCam)
 	{
 		if (INPUT->KeyDown(VK_F3)) isDebugCamControl = !isDebugCamControl;
-		if(isDebugCamControl) Camera::main->ControlMainCam();
+		if (isDebugCamControl) Camera::main->ControlMainCam();
 	}
 	else PLAYER->AvtivatePlayerCam();
 
 	Camera::main->Update();
-	
+
 	SEA->Update();
 	OBJ->Update();
 	PARTICLE->Update();
@@ -116,8 +116,7 @@ void InGame::Update()
 	goblin->Update();
 	PLAYER->Update();
 	UIM->Update();
-	
-	
+
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	float currentTime = TIMER->GetWorldTime();
 	LIGHT->UpdateDirection(currentTime);
@@ -139,11 +138,11 @@ void InGame::LateUpdate()
 void InGame::PreRender()
 {
 	Camera::main->Set();
-	
+
 	scattering->DrawPass1();
 	LIGHT->Set();
-	
-	
+
+
 	MAP->Render(RESOURCE->shaders.Load("5.Cube_CR.hlsl"));
 
 	// 물반사 렌더링
@@ -163,7 +162,7 @@ void InGame::Render()
 	Camera::main->Set();
 	scattering->DrawPass2();
 	LIGHT->Set();
-	
+
 
 	if (DEBUGMODE)
 	{
