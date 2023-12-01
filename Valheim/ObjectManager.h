@@ -1,4 +1,5 @@
 #pragma once
+#define MINIMUM_FEATURE_COUNT 200
 
 template<typename T>
 void ListEraser(std::list<T*>& list) {
@@ -34,6 +35,9 @@ private:
 	class ItemProto*		leather[5];
 	class FeatureProto*		shipwreck;	// 난파선
 
+	int featureCount{ 0 };
+	Vector3* 				startingPosition{ nullptr };          // 플레이어 시작 위치
+
 public:
 	ObjectManager();
 	~ObjectManager();
@@ -54,7 +58,10 @@ public:
 	void	AddObject(Prototype* object);
 	void    AddInstancingObject(Prototype* object);
 	void	AddItem(ItemProto* item);
-	list<Prototype*> GetObjects() { return objects; }
-	list<Collider*> GetColliders();
+
+	list<Prototype*>	GetObjects() { return objects; }
+	list<Collider*>		GetColliders();
+	Vector3			GetStartingPosition() { return Vector3(startingPosition->x, startingPosition->y, startingPosition->z); }
+
 };
 

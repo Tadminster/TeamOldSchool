@@ -10,8 +10,8 @@ struct RAIN_DESC
     float time;
     RAIN_DESC()
     {
-        velocity = Vector3(0, -0.5f, 0);
-        range = Vector3(0, 1, 0);
+        velocity = Vector3(0, 10.0f, 0);
+        range = Vector3(3, 3, 3);
         time = 0.0f;
     }
 };

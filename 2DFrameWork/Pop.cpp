@@ -1,5 +1,6 @@
 #include "framework.h"
 ID3D11Buffer* Pop::PopBuffer = nullptr;
+ID3D11Buffer* Pop::PopPsBuffer = nullptr;
 void Pop::CreateStaticMember()
 {
 	{
@@ -11,6 +12,18 @@ void Pop::CreateStaticMember()
 		desc.MiscFlags = 0;
 		desc.StructureByteStride = 0;
 		HRESULT hr = D3D->GetDevice()->CreateBuffer(&desc, NULL, &PopBuffer);
+		assert(SUCCEEDED(hr));
+	}
+
+	{
+		D3D11_BUFFER_DESC desc = { 0 };
+		desc.ByteWidth = sizeof(POP_PS_DESC);
+		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;//상수버퍼
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		desc.MiscFlags = 0;
+		desc.StructureByteStride = 0;
+		HRESULT hr = D3D->GetDevice()->CreateBuffer(&desc, NULL, &PopPsBuffer);
 		assert(SUCCEEDED(hr));
 	}
 }
@@ -44,6 +57,15 @@ void Pop::Render()
 			sizeof(POP_DESC));
 		D3D->GetDC()->Unmap(PopBuffer, 0);
 		D3D->GetDC()->VSSetConstantBuffers(10, 1, &PopBuffer);
+	}
+
+	{
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(PopPsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(POP_PS_DESC), &desc2,
+			sizeof(POP_PS_DESC));
+		D3D->GetDC()->Unmap(PopPsBuffer, 0);
+		D3D->GetDC()->PSSetConstantBuffers(10, 1, &PopPsBuffer);
 	}
 	if (isPlaying)
 		Actor::Render();
@@ -134,6 +156,8 @@ void Pop::Reset()
 
 void Pop::Play()
 {
+	//팝 파티클의 알파값 파티클효과의 선명도 조절을위한 상수버퍼 변수
+	this->desc2.alpha = 0.0f;
 	Reset();
 	Particle::Play();
 }

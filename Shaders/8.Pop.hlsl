@@ -8,6 +8,12 @@ cbuffer VS_Data : register(b10)
 	float padding1;
 }
 
+cbuffer PS_Data : register(b10)
+{
+    float alpha;
+    float3 PsPadding;
+}
+
 struct VertexInput
 {
     float4 Position : POSITION0;
@@ -100,7 +106,13 @@ float4 PS(PixelInput input) : SV_TARGET
     
     float4 BaseColor = DiffuseMapping(input.Uv);
        
+    
     if (BaseColor.a == 0)
         discard;
+    
+    BaseColor.a -= alpha;
+    
+    saturate(BaseColor.a);
+    
     return BaseColor;
 }

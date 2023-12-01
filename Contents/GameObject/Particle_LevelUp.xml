@@ -1,0 +1,12 @@
+<Root Name="Praticle_LevelUp" Visible="true" ObType="9">
+    <Mesh File="8.Billboard.mesh"/>
+    <Shader File="8.Pop.hlsl"/>
+    <Material File="Particle/LevelUp.mtl"/>
+    <Transform>
+        <Position X="0" Y="2.8499999" Z="0"/>
+        <Scale X="0.050000001" Y="0.050000001" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="3" duration="1" gravity="-3"/>
+    <Children Size="0"/>
+</Root>

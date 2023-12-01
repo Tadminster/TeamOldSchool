@@ -309,6 +309,5 @@
   <ItemGroup>
     <None Include="imgui.ini" />
     <None Include="window.ini" />
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
 </Project>
