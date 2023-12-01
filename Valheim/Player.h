@@ -6,6 +6,7 @@ class Player : public Unit
 	friend class JumpState;
 	friend class SwingState;
 	friend class FistState;
+	friend class BlockState;
 	friend class PlayerStatus;
 
 	class PlayerState*		state = nullptr;
@@ -47,6 +48,8 @@ class Player : public Unit
 	//피격 파티클 위치
 	Vector3					playerhitPos = {};
 	//-----------------------------------------------------
+	bool isAttack = false;
+
 	bool					isJump = false;
 	bool					isPlayerCam = true;
 	bool					CamtoTerrain = false;
