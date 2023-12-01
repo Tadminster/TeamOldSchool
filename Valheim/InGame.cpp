@@ -136,8 +136,6 @@ void InGame::Update()
 	LIGHT->UpdateDirection(currentTime);
 }
 
-
-
 void InGame::LateUpdate()
 {
 	OBJ->LateUpdate();
