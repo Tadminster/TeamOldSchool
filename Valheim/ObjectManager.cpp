@@ -67,6 +67,9 @@ void ObjectManager::Init()
 	shipwreck = FeatureProto::Create(FeatureType::Shipwreck);
 	shipwreck->GetActor()->SetWorldPos(Vector3(0, 0, 0));
 	objects.emplace_back(shipwreck);
+
+	while (featureCount < MINIMUM_FEATURE_COUNT)
+		GenerateTree();
 }
 
 void ObjectManager::Release()
@@ -78,6 +81,8 @@ void ObjectManager::Release()
 		obj->Release();
 	}
 	objects.clear();
+
+	featureCount = 0;
 }
 
 void ObjectManager::Update()
@@ -218,6 +223,16 @@ void ObjectManager::GenerateTree()
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
+			int preI = clamp(i, 0, rowSize - 1); 
+			int postI = clamp(i, 0, rowSize + 1);
+			int preJ = clamp(j, 0, rowSize - 1);
+			int postJ = clamp(j, 0, rowSize + 1);
+			// 오브젝트가 이미 생성되어있거나, 
+			if (MAP->isThereFeature[i][j]) continue;
+			// 주변에 오브젝트가 생성되어있으면 생성하지 않음
+			else if (MAP->isThereFeature[i][preI] || MAP->isThereFeature[i][postI]) continue;
+			else if (MAP->isThereFeature[preJ][j] || MAP->isThereFeature[postJ][j]) continue;
+
 			int index = i * rowSize + j;					// 인덱스 계산
 			float positionY = vertices[index].position.y;	// 높이값 받아오기
 
@@ -283,13 +298,13 @@ void ObjectManager::GenerateTree()
 			if (noiseValue > -0.2f/* || RANDOM->Int(1, 50) == 1*/)
 			{
 				// 레이의 위치 설정
-				ray.position = vertices[index].position; + Vector3(0, 1000, 0);	
+				ray.position = vertices[index].position; +Vector3(0, 1000, 0);
 
 				// Compute Picking으로 레이와 맞은 지점을 Hit에 저장
 				if (MAP->ComputePicking(ray, Hit))
 				{
 					FeatureProto* feature;
-					
+
 					if (RANDOM->Int(1, 10) == 1)
 					{
 						feature = FeatureProto::Create(FeatureType::Rock);
@@ -304,6 +319,11 @@ void ObjectManager::GenerateTree()
 
 					// 오브젝트 위치 설정
 					feature->GetActor()->SetWorldPos(Hit);
+
+					// 오브젝트가 생성되었음을 표시
+					MAP->isThereFeature[i][j] = true;
+
+					featureCount++;
 
 					// 생성된 오브젝트 리스트에 추가
 					objects.emplace_back(feature);
@@ -365,7 +385,7 @@ void ObjectManager::GenerateInstanceTree()
 			// 펄린노이즈 값 체크
 			if (noiseValue > -0.2f)
 			{
-				ray.position = vertices[i * rowSize + j].position; + Vector3(0, 1000, 0);
+				ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
 
 				if (MAP->ComputePicking(ray, Hit))
 				{
@@ -486,7 +506,7 @@ void ObjectManager::AddItem(ItemProto* item)
 
 list<Collider*> ObjectManager::GetColliders()
 {
-	
+
 	list<Collider*> colliders;
 
 	for (auto& obj : objects)
@@ -498,5 +518,5 @@ list<Collider*> ObjectManager::GetColliders()
 		}
 	}
 	return colliders;
-	
+
 }

@@ -72,8 +72,36 @@ private:            // 펄린노이즈 지형생성
     double          distanceFactor  { 15 };             // 중앙과의 거리에 따른 높이 계수
 
 public:
+    float**         heightData{ nullptr };              // 지형의 높이 데이터를 저장할 배열
+    bool**          isThereFeature{ nullptr };          // 지형에 feature가 있는지 없는지를 저장할 배열
+
+public:
     void            PerlinNoiseHeightMap();
     double          IslandNoise(siv::PerlinNoise& perlin, double x, double y, double z, int i, int j);
     void            ChangeColor(int index, float LerpValue);
 };
 
+template<typename T>
+inline void Create2DArray(T**& array, int size)
+{
+    if (array)
+    {
+        for (int i = 0; i < size; i++) {
+            delete[] array[i];
+        }
+        delete[] array;
+	}
+
+	array = new T*[size];
+    for (int i = 0; i < size; i++)
+    {
+		array[i] = new T[size];
+	}
+
+    for (int i = 0; i < size; i++)
+    {
+        for (int j = 0; j < size; j++) {
+			array[i][j] = 0;
+		}
+	}
+}

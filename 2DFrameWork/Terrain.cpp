@@ -41,6 +41,9 @@ Terrain::Terrain()
 
 Terrain::~Terrain()
 {
+	for (int i = 0; i < size; i++) 
+		delete[] heightData[i]; // 각 행에 대한 메모리 해제
+	delete[] heightData; // 전체 배열에 대한 메모리 해제
 }
 
 
@@ -161,6 +164,10 @@ void Terrain::CreateMesh(int   rowSize)
 	VertexTerrain* vertices = new VertexTerrain[rowSize * rowSize];
 	//정점 갯수만큼 반복문
 	float half = rowSize * 0.5f;
+
+	// heightData, isThereFeature 배열 초기화
+	Create2DArray(heightData, rowSize);
+	Create2DArray(isThereFeature, rowSize);
 
 	for (int i = 0; i < rowSize; i++)
 	{
@@ -298,9 +305,9 @@ void Terrain::PerlinNoiseHeightMap()
 	CreateMesh(rowSize);
 
 	// 난수 시드를 사용하여 펄린 노이즈 생성
-	siv::PerlinNoise	perlin(RANDOM->Int(0, 10000));	
-
-	double				frequencyScale{ 1.0 / rowSize * 2 };    // 맵 크기에 따른 주파수 스케일 조정
+	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));	
+	// 맵 크기에 따른 주파수 스케일 조정
+	double frequencyScale{ 1.0 / rowSize * 2 };    
 
 	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 	for (int i = 0; i < rowSize; i++)
@@ -312,6 +319,9 @@ void Terrain::PerlinNoiseHeightMap()
 			double z = 0.5;								// 지형의 높이 변화에 영향
 
 			double noiseValueIsland = IslandNoise(perlin, x, y, z, i, j);		// i, j는 정점의 인덱스
+
+			// 높이 데이터에 저장
+			heightData[i][j] = noiseValueIsland;
 
 			// 최종 높이
 			vertices[i * rowSize + j].position.y = noiseValueIsland;

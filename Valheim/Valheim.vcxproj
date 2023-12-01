@@ -111,7 +111,6 @@
     <ClCompile Include="Workbench.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram.cd" />
     <None Include="imgui.ini" />
     <None Include="window.ini" />
   </ItemGroup>

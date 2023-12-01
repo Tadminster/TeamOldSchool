@@ -1,4 +1,5 @@
 #pragma once
+#define MINIMUM_FEATURE_COUNT 200
 
 template<typename T>
 void ListEraser(std::list<T*>& list) {
@@ -33,6 +34,9 @@ private:
 	class ItemProto*		woodShield[5];
 	class ItemProto*		leather[5];
 	class FeatureProto*		shipwreck;	// ³­ÆÄ¼±
+
+public:
+	int featureCount{ 0 };
 
 public:
 	ObjectManager();
