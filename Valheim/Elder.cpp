@@ -7,6 +7,7 @@ Elder::Elder()
 {
 	actor = Actor::Create();
 	actor->LoadFile("/Unit/Monster_Elder.xml");
+	actor->LoadFile("/Unit/Monster_Elder_BossStone.xml");
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
 
@@ -23,16 +24,12 @@ void Elder::Init()
 {
 	moveSpeed = 2.0f;
 	state = Elder_OpeningState::GetInstance();
-	actor->SetWorldPos(PLAYER->GetPlayer()->GetWorldPos()+Vector3(10,0,0));
+	actor->SetWorldPos(Vector3(0,0,0));
 }
 
 void Elder::Update()
 {
-	//테스트용------------------------------------
-	//if (INPUT->KeyDown('-')) actor->LoadFile("Monster_Elder.xml");
-	//else if (INPUT->KeyDown('=')) actor->LoadFile("Monster_Elder_BossStone.xml");
-
-	if (state == Elder_OpeningState::GetInstance())
+	/*if (state == Elder_OpeningState::GetInstance())
 	{
 		ImGui::Text("opening");
 	}
@@ -55,7 +52,7 @@ void Elder::Update()
 	else if (state == Elder_SummonState::GetInstance())
 	{
 		ImGui::Text("summon");
-	}
+	}*/
 
 	if (hitPoint <= 0)
 	{
@@ -75,47 +72,47 @@ void Elder::Update()
 	}
 	else
 	{
-		BehaviorPatern();
-		ApplyGravity();
+		if (isElder)
+		{
+			BehaviorPatern();
+			DoFSM();
+			ApplyGravity();
+		}
 	}
 
-	
-	
-	
-	DoFSM();
+	//Elder - Terrain 충돌
+	SetOnTerrain();
+
 	actor->Update();
 	patern->Update();
 	
-	
-	
-
 }
 
 void Elder::LateUpdate()
 {
-	//Elder - Terrain 충돌
-	SetOnTerrain();
-	
-	//Elder_BossStone - Player 충돌
-	if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
-	
-	
 
-	//Elder 공격 -> Player 피격
-	if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
-		&& state == E_STOMP)
+	if (isElder)
 	{
-		PLAYER->PlayerHit();
-	}
+		//Elder_BossStone - Player 충돌
+		if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
 
-	//Player 공격 -> Elder 피격
-	if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
-	{
-		if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
+		//Elder 공격 -> Player 피격
+		if (PLAYER->GetCollider()->Intersect(actor->Find("mixamorig:RightLeg")->collider)
+			&& state == E_STOMP)
 		{
-			this->hitPoint -= PLAYER->GetWeaponDMG();
+			PLAYER->PlayerHit();
+		}
+
+		//Player 공격 -> Elder 피격
+		if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+		{
+			if (actor->collider->Intersect(PLAYER->GetPlayerWeapon()->GetActor()->collider))
+			{
+				this->hitPoint -= PLAYER->GetWeaponDMG();
+			}
 		}
 	}
+	
 	
 }
 

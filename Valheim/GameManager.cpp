@@ -31,7 +31,7 @@ GameManager::~GameManager()
 
 void GameManager::Init()
 {
-	//astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
+	astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
 }
 
 void GameManager::Release()
@@ -40,6 +40,7 @@ void GameManager::Release()
 
 void GameManager::Update()
 {
+	
 }
 
 void GameManager::LateUpdate()
@@ -48,6 +49,7 @@ void GameManager::LateUpdate()
 
 void GameManager::Render()
 {
+
 }
 
 void GameManager::ResizeScreen()

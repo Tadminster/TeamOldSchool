@@ -13,7 +13,7 @@ class Goblin : public Unit
 	bool				firstHit = false;
 	float				angryTime = 0;
 public:
-	Goblin();
+	Goblin(Vector3 spawnPos);
 	~Goblin();
 	void Init() override;
 	void Update() override;

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "ItemProto.h"
 #include "SoundDB.h"
-#include "Elder.h"
-#include "Goblin.h"
+#include "MonsterManager.h"
 #include "InGame.h"
 
 extern int loadCount;
@@ -47,7 +46,7 @@ void InGame::Init()
 
 	OBJ->Init();
 	PLAYER->Init();
-
+	MONSTER->Init();
 	// 배경음악 재생
 	SOUND->Play(BGM_HOMEBASE);
 }
@@ -75,6 +74,7 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PARTICLE->RenderHierarchy();
 		PLAYER->RenderHierarchy();
+		MONSTER->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -113,23 +113,23 @@ void InGame::Update()
 	else PLAYER->AvtivatePlayerCam();
 
 	Camera::main->Update();
-
+	GM->Update();
 	SEA->Update();
 	OBJ->Update();
 	PARTICLE->Update();
 	PLAYER->Update();
 	UIM->Update();
-
+	MONSTER->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
-	
 }
 
 void InGame::LateUpdate()
 {
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
+	MONSTER->LateUpdate();
 	PARTICLE->LateUpdate();
 
 	UIM->LateUpdate();
@@ -166,13 +166,14 @@ void InGame::Render()
 	{
 		grid->Render();
 	}
-
+	GM->Render();
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
 	UIM->Render();
+	MONSTER->Render();
 }
 
 void InGame::ResizeScreen()

@@ -26,6 +26,7 @@
 #define MAP			GM->map
 #define SEA			GM->sea
 #define PLAYER		GM->player
+#define MONSTER		GM->monster
 #define UIM			GM->uiManager
 #define ASTAR		GM->astar
 #define INVEN		UIM->inventory

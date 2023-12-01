@@ -11,10 +11,11 @@ class Elder : public Unit
 	class		 ElderState*  state  = nullptr;
 
 	
-	int paternType = 0;
+	int						  paternType = 0;
 	float					  paternTime = 0;
 	int						  jumpAttackMotion = 0;
-	bool stompPatern = true;
+	bool					  stompPatern = true;
+	bool					  isElder = false;
 public:
 	Elder();
 	~Elder();
