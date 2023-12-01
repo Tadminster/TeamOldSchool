@@ -1,24 +1,32 @@
 #include "stdafx.h"
-//#include "Prototype.h"
 #include "ItemProto.h"
 #include "SoundDB.h"
 #include "Elder.h"
 #include "Goblin.h"
 #include "InGame.h"
 
+extern int loadCount;
+
 InGame::InGame()
 {
 	tempCamera = Camera::Create("tempCamera");
 	tempCamera->LoadFile("Cam.xml");
+	loadCount++; // 1
 
 	grid = Grid::Create();
+	loadCount++; // 2
 
 	soundDB = new SoundDB();
+	loadCount++; // 3
 
 	scattering = new Scattering();
+	loadCount++; // 4
 
 	elder = new Elder();
+	loadCount++; // 5
+
 	goblin = new Goblin();
+	loadCount++; // 6
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -28,6 +36,7 @@ InGame::InGame()
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
+	loadCount++; // 7
 }
 
 InGame::~InGame()
@@ -40,6 +49,7 @@ void InGame::Init()
 	GM->Init();
 	UIM->Init();
 	soundDB->Init();
+
 	OBJ->Init();
 	PLAYER->Init();
 	elder->Init();
