@@ -10,7 +10,8 @@ enum class EffectType
     //바위 관련 파티클
     HITROCK,
     //레벨업 파티클
-    LEVELUP
+    LEVELUP,
+    LEVELUPONHEAD
 };
 
 class Particle : public Actor

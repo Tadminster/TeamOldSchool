@@ -13,8 +13,7 @@ private:
     Scattering*                     scattering;
    
     GameManager*                    gameManager;
-    
-   
+                                    
     class Elder*                    elder;
     class Goblin*                   goblin;
 public:

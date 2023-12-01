@@ -14,7 +14,7 @@ struct POP_DESC
 
 struct POP_PS_DESC
 {
-    float alpha = 0.0f;		
+    float alpha = 0.0f;	
     Vector3 padding3;
 };
 
