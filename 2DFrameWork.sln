@@ -28,6 +28,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shaders", "Shaders", "{E3F0
 		Shaders\5.Cube_Shadow.hlsl = Shaders\5.Cube_Shadow.hlsl
 		Shaders\5.Cube_Water.hlsl = Shaders\5.Cube_Water.hlsl
 		Shaders\5.MapEditor.hlsl = Shaders\5.MapEditor.hlsl
+		Shaders\5.Ocean.hlsl = Shaders\5.Ocean.hlsl
 		Shaders\6.colorUI.hlsl = Shaders\6.colorUI.hlsl
 		Shaders\6.Cube.hlsl = Shaders\6.Cube.hlsl
 		Shaders\6.PostEffect.hlsl = Shaders\6.PostEffect.hlsl
