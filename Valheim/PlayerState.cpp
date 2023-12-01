@@ -10,6 +10,7 @@ SwingState* SwingState::instance;
 AxeState* AxeState::instance;
 ShieldState* ShieldState::instance;
 BlockState* BlockState::instance;
+BlockFailState* BlockFailState::instance;
 DeathState* DeathState::instance;
 
 //Idle 클래스----------------------------------------------------------
@@ -53,6 +54,10 @@ void IdleState::Shield()
 	SetPlayerState(ShieldState::GetInstance());
 }
 void IdleState::Block() {}
+void IdleState::BlockFail() 
+{
+	SetPlayerState(BlockFailState::GetInstance());
+}
 void IdleState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
@@ -98,6 +103,7 @@ void WalkState::Shield()
 	SetPlayerState(ShieldState::GetInstance());
 }
 void WalkState::Block() {}
+void WalkState::BlockFail() {}
 void WalkState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
@@ -144,6 +150,7 @@ void RunState::Shield()
 	SetPlayerState(ShieldState::GetInstance());
 }
 void RunState::Block() {}
+void RunState::BlockFail() {}
 void RunState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
@@ -190,6 +197,7 @@ void JumpState::Shield()
 	//Jump에서 Shield으로 변할 수 없음
 }
 void JumpState::Block() {}
+void JumpState::BlockFail() {}
 void JumpState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
@@ -236,6 +244,7 @@ void FistState::Swing() {}
 void FistState::Axe() {}
 void FistState::Shield() {}
 void FistState::Block() {}
+void FistState::BlockFail() {}
 void FistState::Death() {}
 //Swing 클래스----------------------------------------------------------
 void SwingState::Idle()
@@ -269,6 +278,7 @@ void SwingState::Swing()
 void SwingState::Axe() {}
 void SwingState::Shield() {}
 void SwingState::Block() {}
+void SwingState::BlockFail() {}
 void SwingState::Death() {}
 //Axe 클래스----------------------------------------------------------
 void AxeState::Idle()
@@ -298,6 +308,7 @@ void AxeState::Axe()
 }
 void AxeState::Shield() {}
 void AxeState::Block() {}
+void AxeState::BlockFail() {}
 void AxeState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
@@ -348,7 +359,11 @@ void ShieldState::Shield()
 }
 void ShieldState::Block()
 {
-
+	SetPlayerState(BlockState::GetInstance());
+}
+void ShieldState::BlockFail()
+{
+	SetPlayerState(BlockFailState::GetInstance());
 }
 void ShieldState::Death()
 {
@@ -372,13 +387,43 @@ void BlockState::Axe() {}
 void BlockState::Shield() {}
 void BlockState::Block() 
 {
+	cout << "block" << endl;
 	if (PLAYER->isGuard) PLAYER->GetPlayer()->anim->currentAnimator.currentFrame = 1;
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 14)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 14);
 	}
 }
+void BlockState::BlockFail()
+{
+	SetPlayerState(BlockFailState::GetInstance());
+}
 void BlockState::Death()
+{
+	SetPlayerState(DeathState::GetInstance());
+}
+//BlockFail 클래스----------------------------------------------------------
+void BlockFailState::Idle()
+{
+	SetPlayerState(IdleState::GetInstance());
+}
+void BlockFailState::Walk() {}
+void BlockFailState::Run() {}
+void BlockFailState::Jump() {}
+void BlockFailState::Fist() {}
+void BlockFailState::Swing() {}
+void BlockFailState::Axe() {}
+void BlockFailState::Shield() {}
+void BlockFailState::Block() {}
+void BlockFailState::BlockFail() 
+{
+	cout << "blockFail" << endl;
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 15)
+	{
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 15);
+	}
+}
+void BlockFailState::Death()
 {
 	SetPlayerState(DeathState::GetInstance());
 }
@@ -392,6 +437,7 @@ void DeathState::Swing() {}
 void DeathState::Axe() {}
 void DeathState::Shield() {}
 void DeathState::Block() {}
+void DeathState::BlockFail() {}
 void DeathState::Death()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 7)

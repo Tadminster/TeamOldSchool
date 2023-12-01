@@ -48,7 +48,8 @@ class Player : public Unit
 	//피격 파티클 위치
 	Vector3					playerhitPos = {};
 	//-----------------------------------------------------
-	bool isAttack = false;
+	float					fistDMG = 5.0f;
+	float					blockStaminar = 10.0f;
 
 	bool					isJump = false;
 	bool					isPlayerCam = true;
@@ -61,7 +62,6 @@ class Player : public Unit
 
 	float					hitTime = 0;
 
-	float					fistDMG = 5.0f;
 
 	float					randomDMG = 0;
 public:
