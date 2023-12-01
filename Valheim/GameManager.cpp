@@ -31,6 +31,7 @@ void GameManager::Init()
 {
 	
 	astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
+	
 }
 
 void GameManager::Release()

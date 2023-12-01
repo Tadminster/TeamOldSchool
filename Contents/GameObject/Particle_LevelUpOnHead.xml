@@ -3,10 +3,10 @@
     <Shader File="8.Pop.hlsl"/>
     <Material File="Particle/LevelUpOnHead.mtl"/>
     <Transform>
-        <Position X="0" Y="3.8499999" Z="0"/>
-        <Scale X="0.5" Y="0.5" Z="1"/>
+        <Position X="0" Y="3.5" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="1" velocityScalar="0.00050000002" duration="1.5" gravity="0.02"/>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="1" velocityScalar="0.001" duration="2" gravity="0.001"/>
     <Children Size="0"/>
 </Root>
