@@ -3,6 +3,7 @@ class TitleScene : public Scene
 {
 private:
     Camera*         titleCamera;
+    Terrain*        sea;
 
     UI*             btnStart;
     UI*             btnOption;

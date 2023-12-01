@@ -37,6 +37,7 @@ InGame::InGame()
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
 	loadCount++; // 7
+
 }
 
 InGame::~InGame()
