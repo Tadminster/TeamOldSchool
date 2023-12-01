@@ -81,8 +81,8 @@ void Elder::Update()
 
 	
 	
-	
 	DoFSM();
+	UpdateLight();
 	actor->Update();
 	patern->Update();
 	
@@ -132,6 +132,14 @@ void Elder::Release()
 void Elder::RenderHierarchy()
 {
 	actor->RenderHierarchy();
+}
+
+void Elder::UpdateLight()
+{
+	float lightRatio = max(0.2f, LIGHT->GetTimeRatio());
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
+	actor->Find("gd_king_001")->material->ambient = color;
+	actor->Find("gd_king_001")->material->diffuse = color;
 }
 
 bool Elder::IsDestroyed()

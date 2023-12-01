@@ -66,6 +66,8 @@ void Player::Update()
 	PlayerStaminar();
 	//// 플레이어 성장치 제어
 	GrowthAbility();
+	//// 플레이어 embient, diffuse 제어
+	UpdateLight();
 
 	status->Update();
 	actor->Update();
@@ -698,6 +700,12 @@ void Player::PlayerStaminar()
 bool Player::IsDestroyed()
 {
 	return false;
+}
+
+void Player::UpdateLight()
+{
+	float lightRatio = max(0.2f, LIGHT->GetTimeRatio());
+	actor->Find("body")->material->ambient = Color(lightRatio, lightRatio, lightRatio, 1.0f);
 }
 
 WeaponProto* Player::GetPlayerWeapon()

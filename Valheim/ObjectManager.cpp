@@ -98,10 +98,10 @@ void ObjectManager::Update()
 		Release();
 		GenerateTree();
 	}
-	if (ImGui::Button("Generate Instancing Tree"))
-	{
-		GenerateInstanceTree();
-	}
+	//if (ImGui::Button("Generate Instancing Tree"))
+	//{
+	//	GenerateInstanceTree();
+	//}
 	if (ImGui::Button("Generate Instance Grass"))
 	{
 		GenerateInstanceGrass();
@@ -355,84 +355,84 @@ void ObjectManager::GenerateTree()
 }
 
 
-void ObjectManager::GenerateInstanceTree()
-{
-	int rowSize = MAP->rowSize;
-	double frequencyScale = 1.0 / rowSize * 2;			// 맵 크기에 따른 주파수 스케일 조정
-	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));		// 난수 시드로 펄린노이즈 생성
-
-	vector<Vector3> treePos;							// 인스턴스 나무 위치 저장할 벡터
-
-	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
-	Ray ray; Vector3 Hit;
-	ray.position = Vector3();
-	ray.direction = Vector3(0, -1, 0);
-
-	for (int i = 0; i < rowSize; i++)
-	{
-		for (int j = 0; j < rowSize; j++)
-		{
-			float positionY = vertices[i * rowSize + j].position.y;
-
-			// 높이체크
-			// 높이가 -1 이하 인곳에서는 생성하지 않음
-			if (positionY < -1.0f) continue;
-			// 높이가 -1 ~ 1 이면, 50분의 1 확률로 생성
-			else if (positionY < 1.0f)
-			{
-				if (RANDOM->Int(1, 50) != 1) continue;
-			}
-			// 높이가 1 ~ 10 이면, 30분의 1 확률로 생성
-			else if (positionY < 10.0f)
-			{
-				if (RANDOM->Int(1, 30) != 1) continue;
-			}
-			else // 높이가 10 이상이면, 20분의 1 확률로 생성
-			{
-				if (RANDOM->Int(1, 20) != 1) continue;
-			}
-
-			double x = (double)i * frequencyScale;
-			double y = (double)j * frequencyScale;
-			double z = 0.5;
-			double noiseValue = perlin.noise3D(x, y, z);
-
-			// 펄린노이즈 값 체크
-			if (noiseValue > -0.2f)
-			{
-				ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
-
-				if (MAP->ComputePicking(ray, Hit))
-				{
-					treePos.emplace_back(Hit);
-				}
-			}
-		}
-	}
-
-	FeatureProto* beech = FeatureProto::Create(FeatureType::BeechInstancing);
-	beech->GetActor()->SetWorldPos(Vector3(0.0f, -50.0f, 0.0f));
-	beech->Update();
-	float baseline = fabs(beech->GetActor()->GetWorldPos().y);
-
-	UINT count = treePos.size();
-	Matrix* ins = new Matrix[count];
-	for (int i = 0; i < count; i++)
-	{
-		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y + baseline, treePos[i].z);
-		ins[i] = Matrix::CreateTranslation(insPos);
-		ins[i] = ins[i].Transpose();
-	}
-
-	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
-	beech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	//beech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
-	//beech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-	//beech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
-	//beech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-
-	instancingObjects.emplace_back(beech);
-}
+//void ObjectManager::GenerateInstanceTree()
+//{
+//	int rowSize = MAP->rowSize;
+//	double frequencyScale = 1.0 / rowSize * 2;			// 맵 크기에 따른 주파수 스케일 조정
+//	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));		// 난수 시드로 펄린노이즈 생성
+//
+//	vector<Vector3> treePos;							// 인스턴스 나무 위치 저장할 벡터
+//
+//	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
+//	Ray ray; Vector3 Hit;
+//	ray.position = Vector3();
+//	ray.direction = Vector3(0, -1, 0);
+//
+//	for (int i = 0; i < rowSize; i++)
+//	{
+//		for (int j = 0; j < rowSize; j++)
+//		{
+//			float positionY = vertices[i * rowSize + j].position.y;
+//
+//			// 높이체크
+//			// 높이가 -1 이하 인곳에서는 생성하지 않음
+//			if (positionY < -1.0f) continue;
+//			// 높이가 -1 ~ 1 이면, 50분의 1 확률로 생성
+//			else if (positionY < 1.0f)
+//			{
+//				if (RANDOM->Int(1, 50) != 1) continue;
+//			}
+//			// 높이가 1 ~ 10 이면, 30분의 1 확률로 생성
+//			else if (positionY < 10.0f)
+//			{
+//				if (RANDOM->Int(1, 30) != 1) continue;
+//			}
+//			else // 높이가 10 이상이면, 20분의 1 확률로 생성
+//			{
+//				if (RANDOM->Int(1, 20) != 1) continue;
+//			}
+//
+//			double x = (double)i * frequencyScale;
+//			double y = (double)j * frequencyScale;
+//			double z = 0.5;
+//			double noiseValue = perlin.noise3D(x, y, z);
+//
+//			// 펄린노이즈 값 체크
+//			if (noiseValue > -0.2f)
+//			{
+//				ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
+//
+//				if (MAP->ComputePicking(ray, Hit))
+//				{
+//					treePos.emplace_back(Hit);
+//				}
+//			}
+//		}
+//	}
+//
+//	FeatureProto* beech = FeatureProto::Create(FeatureType::BeechInstancing);
+//	beech->GetActor()->SetWorldPos(Vector3(0.0f, -50.0f, 0.0f));
+//	beech->Update();
+//	float baseline = fabs(beech->GetActor()->GetWorldPos().y);
+//
+//	UINT count = treePos.size();
+//	Matrix* ins = new Matrix[count];
+//	for (int i = 0; i < count; i++)
+//	{
+//		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y + baseline, treePos[i].z);
+//		ins[i] = Matrix::CreateTranslation(insPos);
+//		ins[i] = ins[i].Transpose();
+//	}
+//
+//	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
+//	beech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+//	//beech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
+//	//beech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+//	//beech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
+//	//beech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
+//
+//	instancingObjects.emplace_back(beech);
+//}
 
 
 void ObjectManager::GenerateInstanceGrass()

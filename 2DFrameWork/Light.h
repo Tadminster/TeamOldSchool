@@ -1,4 +1,6 @@
 #pragma once
+#define DAY_CYCLE		60.0f
+#define HALF_DAY_CYCLE	dayCycleLength * 0.5f
 
 struct DirLight
 {
@@ -58,15 +60,15 @@ public:
 class LightManager : public Singleton<LightManager>
 {
 public:
-	//바꿀수있는 현재의 하루 주기입니다
-	// dayCycleLength 12시간개념 해가뜨고 지기까지
-	float			dayCycleLength = 60.0f; 
-	bool			addTime = true;
-	float			currentTime = dayCycleLength * 0.5f;
-	float			timeRatio;
+	float			dayCycleLength = 60.0f;						// 현재의 하루 주기입니다
+	float			halfdayCycleLength = dayCycleLength * 0.5f;	// 반나절의 주기입니다
+	float			currentTime = dayCycleLength * 0.5f;		// 현재의 시간입니다
+	float			timeRatio;									// 현재의 시간비율입니다(0 ~ 1, 1:정오. 0:자정)
+
 private:
-	ID3D11Buffer* dirLightBuffer;
-	ID3D11Buffer* lightBuffer;
+	ID3D11Buffer*	dirLightBuffer;
+	ID3D11Buffer*	lightBuffer;
+
 public:
 	LightManager();
 	~LightManager();

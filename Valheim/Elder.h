@@ -24,6 +24,7 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
+	void UpdateLight() override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
 

@@ -41,6 +41,7 @@ void Rock::Update()
 	if (playerDistance > MAXMUM_UPDATE_DISTANCE) return;
 
 	FeatureProto::Update();
+
 }
 
 void Rock::LateUpdate()

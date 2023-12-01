@@ -20,14 +20,14 @@ FeatureProto* FeatureProto::Create(FeatureType featureType)
 			return new Birch();
 		case FeatureType::Beech:
 			return new Beech();
-		case FeatureType::BeechInstancing:
-			return new BeechInstancing();
-		case FeatureType::BeechStump:
-			return new BeechStump();
-		case FeatureType::BeechLog:
-			return new BeechLog();
-		case FeatureType::BeechHalfLog:
-			return new BeechHalfLog();
+		//case FeatureType::BeechInstancing:
+		//	return new BeechInstancing();
+		//case FeatureType::BeechStump:
+		//	return new BeechStump();
+		//case FeatureType::BeechLog:
+		////	return new BeechLog();
+		//case FeatureType::BeechHalfLog:
+		//	return new BeechHalfLog();
 		case FeatureType::Rock:
 			return new Rock();
 		case FeatureType::Shipwreck:
@@ -71,7 +71,7 @@ void FeatureProto::Update()
 	// 데미지를 입었을 때 애니메이션 재생
 	ReceivedDamageAnimation();
 
-	LightingUpdate();
+	UpdateLight();
 
 	actor->Update();
 }
@@ -130,9 +130,11 @@ void FeatureProto::DestructionEvent()
 {
 }
 
-void FeatureProto::LightingUpdate()
+void FeatureProto::UpdateLight()
 {
-	//float time = TIMER
+	float lightRatio = max(0.1f, LIGHT->GetTimeRatio());
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
 
-	//actor->material->diffuse = Vector4( , , , 1.0f);
+	actor->Find("Mesh")->material->diffuse = color;
+	actor->Find("Mesh")->material->ambient = color;
 }

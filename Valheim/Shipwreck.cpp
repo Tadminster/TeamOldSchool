@@ -57,6 +57,17 @@ void Shipwreck::RenderHierarchy()
 	actor->RenderHierarchy();
 }
 
+void Shipwreck::UpdateLight()
+{
+	float lightRatio = max(0.1f, LIGHT->GetTimeRatio());
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
+
+	actor->Find("FrontHull")->material->diffuse = color;
+	actor->Find("RearHull")->material->diffuse = color;
+	actor->Find("FrontHull")->material->ambient = color;
+	actor->Find("RearHull")->material->ambient = color;
+}
+
 bool Shipwreck::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	FeatureProto::ReceivedDamageEvent(damage, wType);

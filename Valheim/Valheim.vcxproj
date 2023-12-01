@@ -19,10 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BeechHalfLog.h" />
-    <ClInclude Include="BeechInstancing.h" />
-    <ClInclude Include="BeechLog.h" />
-    <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
@@ -69,10 +65,6 @@
     <ClInclude Include="Workbench.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BeechHalfLog.cpp" />
-    <ClCompile Include="BeechInstancing.cpp" />
-    <ClCompile Include="BeechLog.cpp" />
-    <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />

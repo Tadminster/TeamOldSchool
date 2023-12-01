@@ -26,7 +26,7 @@ void TitleScene::Init()
 {
 	SCENE->AddScene("Loading", new LoadingScene);
 
-	LIGHT->UpdateDirection();
+	//LIGHT->UpdateDirection();
 }
 
 void TitleScene::Release()

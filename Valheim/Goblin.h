@@ -21,6 +21,7 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
+	void UpdateLight() override;
 	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	bool IsDestroyed() override;
 	void DestructionEvent() override;
