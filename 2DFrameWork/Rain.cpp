@@ -81,18 +81,18 @@ void Rain::Reset()
 		//4~8 사이값
 
 		//오차값
-		scale.x = this->scale.x;
-		scale.y = this->scale.y;
+		
+		scale.x = 1.0f;
+		scale.y = RANDOM->Float(-randomSize.y, randomSize.y);
+		scale.x = S._11;
+		scale.y = S._22 + scale.y;
 
 		Vector3 position;
-		
 		//생성될위치   //-4~8   ~ 4~ 8
-		/*position.x = RANDOM->Float(-desc.range.x, desc.range.x);
-		position.y = 4.0f;
-		position.z = RANDOM->Float(-desc.range.z, desc.range.z);*/
-		position.x = this->position.x;
-		position.y = this->position.y;
-		position.z = this->position.z;
+		position.x = RANDOM->Float(-desc.range.x, desc.range.x);
+		position.y = RANDOM->Float(-desc.range.y, desc.range.y);
+		position.z = RANDOM->Float(-desc.range.z, desc.range.z);
+
 
 		((VertexBillboard*)mesh->vertices)[i].position = position;
 		((VertexBillboard*)mesh->vertices)[i].size = scale;

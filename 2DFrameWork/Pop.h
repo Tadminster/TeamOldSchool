@@ -12,11 +12,19 @@ struct POP_DESC
     }
 };
 
+struct POP_PS_DESC
+{
+    float alpha = 0.0f;	
+    Vector3 padding3;
+};
+
 class Pop : public Particle
 {
     static ID3D11Buffer* PopBuffer;
+    static ID3D11Buffer* PopPsBuffer;
 public:
     POP_DESC			desc;
+    POP_PS_DESC			desc2;
     Vector2             randomSize = Vector2(0, 0); //이미지 크기값
     int                 particleCount = 100;
     float               velocityScalar = 10.0f;

@@ -60,3 +60,5 @@ void Timer::Chronometry(UINT lock)
     }
     deltaScaleTime = deltaTime * App.deltaScale;
 }
+
+

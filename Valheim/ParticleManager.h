@@ -6,6 +6,8 @@ class ParticleManager
 private:
 
 public:
+	Pop* levelUp;
+	Pop* levelUpOnHead;
 
 	Pop* woodHitDust;
 

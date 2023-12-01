@@ -66,7 +66,6 @@ void Player::Update()
 	//// 플레이어 성장치 제어
 	GrowthAbility();
 	//// 정확한 프레임 단위로 데미지 주기
-	CleanFrame();
 
 	status->Update();
 	actor->Update();
@@ -145,8 +144,16 @@ bool Player::CleanHit(Collider* object)
 	}
 	else
 	{
-		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object)) return true;
-		else if (actor->Find("mixamorig:LeftHand")->collider->Intersect(object)) return true;
+		if (actor->Find("mixamorig:RightHand")->collider->Intersect(object))
+		{
+			
+			return true;
+		}
+		if (actor->Find("mixamorig:LeftHand")->collider->Intersect(object))
+		{
+			
+			return true;
+		}
 	}
 	return false;
 }
@@ -154,6 +161,7 @@ bool Player::CleanHit(Collider* object)
 bool Player::CleanFrame()
 {
 	//충돌 프레임 31 58 89
+	// 29~32 57~59 88~91
 	if (state == SwingState::GetInstance())
 	{
 		if (actor->anim->currentAnimator.currentFrame == 31)
@@ -188,6 +196,7 @@ bool Player::CleanFrame()
 			return true;
 		}
 	}
+	//11~13 // 19~21
 	else if (state == FistState::GetInstance())
 	{
 		if (equippedShield)
@@ -550,8 +559,12 @@ void Player::PlayerHit(float damage)
 		if (isGuard)
 		{
 			hitPoint -= damage * (1 - (equippedShield->damageReduced + status->blockAbility));
+			state = BlockState::GetInstance();
+			state->Block();
 			staminar -= status->blockStaminar;
 			blockCount++;
+			cout << damage * (1 - (equippedShield->damageReduced + status->blockAbility)) << endl;
+			cout << hitPoint << endl;
 		}
 		else
 		{
@@ -563,6 +576,7 @@ void Player::PlayerHit(float damage)
 		healTime = 0;
 		isHit = false;
 		isGuard = false;
+		state->Idle();
 	}
 }
 

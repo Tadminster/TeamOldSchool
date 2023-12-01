@@ -133,6 +133,8 @@ void Goblin::BehaviorPatern()
 		}
 		state = G_RUN;
 		Astar(idlePos[idlePosNum]);
+		/*RotationForMove(idlePos[idlePosNum]);
+		MonsterMove();*/
 
 		if ((Vector2(idlePos[idlePosNum].x, idlePos[idlePosNum].z) - Vector2(actor->GetWorldPos().x, actor->GetWorldPos().z)).Length() < 1.5f)
 		{

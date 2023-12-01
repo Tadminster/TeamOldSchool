@@ -1,5 +1,6 @@
 #include "framework.h"
 ID3D11Buffer* Pop::PopBuffer = nullptr;
+ID3D11Buffer* Pop::PopPsBuffer = nullptr;
 void Pop::CreateStaticMember()
 {
 	{
@@ -11,6 +12,18 @@ void Pop::CreateStaticMember()
 		desc.MiscFlags = 0;
 		desc.StructureByteStride = 0;
 		HRESULT hr = D3D->GetDevice()->CreateBuffer(&desc, NULL, &PopBuffer);
+		assert(SUCCEEDED(hr));
+	}
+
+	{
+		D3D11_BUFFER_DESC desc = { 0 };
+		desc.ByteWidth = sizeof(POP_PS_DESC);
+		desc.Usage = D3D11_USAGE_DYNAMIC;
+		desc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;//상수버퍼
+		desc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		desc.MiscFlags = 0;
+		desc.StructureByteStride = 0;
+		HRESULT hr = D3D->GetDevice()->CreateBuffer(&desc, NULL, &PopPsBuffer);
 		assert(SUCCEEDED(hr));
 	}
 }
@@ -45,6 +58,15 @@ void Pop::Render()
 		D3D->GetDC()->Unmap(PopBuffer, 0);
 		D3D->GetDC()->VSSetConstantBuffers(10, 1, &PopBuffer);
 	}
+
+	{
+		D3D11_MAPPED_SUBRESOURCE mappedResource;
+		D3D->GetDC()->Map(PopPsBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+		memcpy_s(mappedResource.pData, sizeof(POP_PS_DESC), &desc2,
+			sizeof(POP_PS_DESC));
+		D3D->GetDC()->Unmap(PopPsBuffer, 0);
+		D3D->GetDC()->PSSetConstantBuffers(10, 1, &PopPsBuffer);
+	}
 	if (isPlaying)
 		Actor::Render();
 }
@@ -76,7 +98,7 @@ void Pop::Reset()
 
 		//위치
 		Vector3 position = Vector3(0, 0, 0);
-		Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
+		//Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
 
 		//방향벡터 Right
 		Vector3 velocity = Vector3(1, 0, 0);
@@ -95,7 +117,7 @@ void Pop::Reset()
 
 		//내가 방향벡터를 3개축을 랜덤값으로 회전시켜 잡는다.
 		((VertexPSV*)mesh->vertices)[i].velocity = velocity;
-		((VertexPSV*)mesh->vertices)[i].position = position + randomPos;
+		((VertexPSV*)mesh->vertices)[i].position = position /*+ randomPos*/;
 		((VertexPSV*)mesh->vertices)[i].size = scale;
 		mesh->indices[i] = i;
 	}
@@ -134,6 +156,7 @@ void Pop::Reset()
 
 void Pop::Play()
 {
+	this->desc2.alpha = 0.0f;
 	Reset();
 	Particle::Play();
 }

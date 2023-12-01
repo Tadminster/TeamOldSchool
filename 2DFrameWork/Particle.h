@@ -8,7 +8,10 @@ enum class EffectType
     //피격 관련 파티클
     HITBLOOD,
     //바위 관련 파티클
-    HITROCK
+    HITROCK,
+    //레벨업 파티클
+    LEVELUP,
+    LEVELUPONHEAD
 };
 
 class Particle : public Actor

@@ -7,7 +7,7 @@ cbuffer VS_Data : register(b10)
     
     float3 range;
     float time;
-}   
+}
 struct VertexInput
 {
     float4 Position : POSITION0;
@@ -26,10 +26,9 @@ VertexInput VS(VertexInput input)
     VertexInput output;
     
     float3 displace = time * velocity;
-    float2 adjust = (input.Size.x * 0.5f, input.Size.y * 0.5f);
-    //중심 위치
     
-    output.Position.xyz = World._41_42_43 + 
+    //                       중심 위치
+    output.Position.xyz = World._41_42_43 +
     
     (range.xyz + (input.Position.xyz + displace.xyz) % range.xyz)
     % range.xyz - (range.xyz * 0.5f);
@@ -52,23 +51,16 @@ static const float2 TEXCOORD[4] =
 [maxvertexcount(4)]
 void GS(point VertexInput input[1], inout TriangleStream<PixelInput> output)
 {
-    float2 inputSize = input[0].Size;
-    float2 halfSize = input[0].Size * 0.5f;
-    
     float4 vertices[4];
- 
+	
 	//// 왼 아래
-    vertices[0] = float4(input[0].Position.x + input[0].Mov.x - inputSize.x, 
-                         input[0].Position.y + input[0].Mov.y - halfSize.y,
-                         input[0].Position.z, 1.0f);
+    vertices[0] = float4(input[0].Position.xy + input[0].Mov, input[0].Position.z, 1.0f);
 	// //왼쪽 위
     vertices[1] = float4(vertices[0].x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
 	// //오른 아래
     vertices[2] = float4(vertices[0].x + input[0].Size.x, vertices[0].y, input[0].Position.z, 1.0f);
 	// //오른 위
     vertices[3] = float4(vertices[0].x + input[0].Size.x, vertices[0].y + input[0].Size.y, input[0].Position.z, 1.0f);
-    
-   
     
     PixelInput pixelInput;
     
