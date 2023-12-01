@@ -29,8 +29,8 @@ ParticleManager::ParticleManager()
 	levelUp->LoadFile("Particle_LevelUp.xml");
 
 	levelUpOnHead = Pop::Create("Particle_LevelUpOnHead");
-	//levelUpOnHead->LoadFile("Particle_levelUpOnHead.xml");
-	//levelUp->desc2.alpha = 1.0f;
+	levelUpOnHead->LoadFile("Particle_levelUpOnHead.xml");
+	
 }
 
 ParticleManager::~ParticleManager()
@@ -39,6 +39,7 @@ ParticleManager::~ParticleManager()
 
 void ParticleManager::Init()
 {
+	levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
 }
 
 void ParticleManager::Release()
@@ -78,7 +79,7 @@ void ParticleManager::Render()
 
 	BLEND->Set(true);
 	levelUpOnHead->Render();
-	levelUpOnHead->desc2.alpha += DELTA * 0.1f;
+	levelUpOnHead->desc2.alpha += DELTA * 0.3f;
 	if (levelUpOnHead->desc2.alpha >= 1.0f) levelUpOnHead->desc2.alpha = 0.0f;
 	levelUpOnHead->Render();
 	BLEND->Set(false);

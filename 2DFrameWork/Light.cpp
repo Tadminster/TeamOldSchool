@@ -29,6 +29,7 @@ LightManager::LightManager()
 	}
 
 	light[0].size = 0;
+	
 }
 
 LightManager::~LightManager()
@@ -158,10 +159,10 @@ void LightManager::UpdateDirection()
 		addTime = true;
 		cout << TIMER->GetWorldTime() << endl;
 	}
-
+	
 	if (addTime) currentTime = min(currentTime + 1.0f * DELTA, dayCycleLength);
 	else currentTime = max(currentTime - 1.0f * DELTA, 0.0f);
-
+	
 	//0~1 ³·¹ã ºñÀ²
 	timeRatio = currentTime / dayCycleLength;
 
