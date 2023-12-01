@@ -43,7 +43,8 @@ void Player::Init()
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	
+	ImGui::Text("sta %f", staminar);
+	ImGui::Text("blocksta %f", blockStaminar);
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -65,7 +66,6 @@ void Player::Update()
 	PlayerStaminar();
 	//// 플레이어 성장치 제어
 	GrowthAbility();
-	//// 정확한 프레임 단위로 데미지 주기
 
 	status->Update();
 	actor->Update();
@@ -345,7 +345,7 @@ void Player::PlayerControl()
 	}
 	if (staminar <= 0)
 	{
-		if (actor->anim->GetPlayTime() >= 0.9f)
+		if (actor->anim->GetPlayTime() >= 0.95f)
 		{
 			if (state == JumpState::GetInstance())
 			{
@@ -366,6 +366,7 @@ void Player::PlayerControl()
 	{
 		isJump = false;
 	}
+	
 
 	//Walk && Run--------------------------------------------------------------------------------------------
 	if (INPUT->KeyPress('W') || INPUT->KeyPress('A') || INPUT->KeyPress('S') || INPUT->KeyPress('D'))
@@ -418,7 +419,11 @@ void Player::PlayerControl()
 	{
 		if (staminar > 0.1f)
 		{
-			if (INPUT->KeyPress(VK_RBUTTON)) if (equippedShield) state->Shield();
+			if (INPUT->KeyPress(VK_RBUTTON)) 
+				if (equippedShield && state!=BlockFailState::GetInstance())
+				{
+					state->Shield();
+				}
 		}
 	}
 }
@@ -559,12 +564,18 @@ void Player::PlayerHit(float damage)
 		if (isGuard)
 		{
 			hitPoint -= damage * (1 - (equippedShield->damageReduced + status->blockAbility));
-			state = BlockState::GetInstance();
-			state->Block();
-			staminar -= status->blockStaminar;
+			if (staminar >= blockStaminar)
+			{
+				state = BlockState::GetInstance();
+				state->Block();
+			}
+			else
+			{
+				state = BlockFailState::GetInstance();
+				state->BlockFail();
+			}
+			staminar -= blockStaminar;
 			blockCount++;
-			cout << damage * (1 - (equippedShield->damageReduced + status->blockAbility)) << endl;
-			cout << hitPoint << endl;
 		}
 		else
 		{
@@ -615,6 +626,18 @@ void Player::GrowthAbility()
 		if (actor->anim->aniScale != 1.0f) actor->anim->aniScale = 1.0f;
 		if (!staminarOn) staminarOn = true;
 		staminar -= status->shieldStaminar * DELTA;
+	}
+	else if (state == BlockState::GetInstance())
+	{
+		state->Block();
+		if (actor->anim->aniScale != 0.5f) actor->anim->aniScale = 0.5f;
+		if (!staminarOn) staminarOn = true;
+	}
+	else if (state == BlockFailState::GetInstance())
+	{
+		state->BlockFail();
+		if (actor->anim->aniScale != 0.5f) actor->anim->aniScale = 0.5f;
+		if (!staminarOn) staminarOn = true;
 	}
 	else
 	{

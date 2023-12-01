@@ -52,8 +52,8 @@ void FeatureProto::Update()
 		DestructionEvent();
 	}
 
-	//// 거리가 5.0f 이하이면
-	if (playerDistance < 5.0f)
+	//// 거리가 10.0f 이하이면
+	if (playerDistance < 10.0f)
 	{
 		// 플레이어 공격 검사
 		if (PLAYER->CleanHit(this->GetActor()->collider) && PLAYER->CleanFrame())
@@ -96,8 +96,6 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	// 타격 애니메이션(흔들림) 재생시간 설정
 	hitAnimDuration = 0.3f;
-
-
 
 	// 데미지 계산
 	if (wType == WeaponType::Axe)

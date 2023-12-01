@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameManager.h"
 #include "ParticleManager.h"
+#include "MonsterManager.h"
 
 GameManager::GameManager()
 {
@@ -17,6 +18,7 @@ GameManager::GameManager()
 	uiManager = new UserInterfaceManager();
 
 	player = new Player();
+	monster = new MonsterManager();
 
 	recipe = new Recipe();
 
@@ -29,8 +31,7 @@ GameManager::~GameManager()
 
 void GameManager::Init()
 {
-	
-	astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
+	//astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
 }
 
 void GameManager::Release()

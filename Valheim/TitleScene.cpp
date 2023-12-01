@@ -11,6 +11,10 @@ TitleScene::TitleScene()
 	sea = Terrain::Create();
 	sea->LoadFile("Terrain_sea.xml");
 	sea->CreateMesh(100);
+
+	openingPlayer = Actor::Create();
+	openingPlayer->LoadFile("Unit/PlayerforOpening.xml");
+	openingPlayer->name = "OpeningPlayer";
 }
 
 TitleScene::~TitleScene()
@@ -36,6 +40,7 @@ void TitleScene::Update()
 	{
 		titleCamera->RenderHierarchy();
 		sea->RenderHierarchy();
+		openingPlayer->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -50,6 +55,7 @@ void TitleScene::Update()
 	}
 
 	sea->Update();
+	openingPlayer->Update();
 
 	if (INPUT->KeyDown(VK_SPACE))
 	{
@@ -72,6 +78,7 @@ void TitleScene::Render()
 {
 	Camera::main->Set();
 	sea->Render();
+	openingPlayer->Render();
 }
 
 void TitleScene::ResizeScreen()
