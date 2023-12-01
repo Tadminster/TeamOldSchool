@@ -34,7 +34,7 @@ Player::~Player()
 
 void Player::Init()
 {
-	actor->SetWorldPos(Vector3(0,10,0));
+	actor->SetWorldPos(OBJ->GetStartingPosition());
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);

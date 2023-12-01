@@ -23,35 +23,30 @@ ObjectManager::ObjectManager()
 		for (auto& item : stoneAxe)
 		{
 			item = ItemProto::Create(Item::StoneAxe);
-			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
 
 		for (auto& item : woodpile)
 		{
 			item = ItemProto::Create(Item::Woodpile);
-			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
 
 		for (auto& item : stone)
 		{
 			item = ItemProto::Create(Item::Stone);
-			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
 
 		for (auto& item : woodShield)
 		{
 			item = ItemProto::Create(Item::WoodShield);
-			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
 
 		for (auto& item : leather)
 		{
 			item = ItemProto::Create(Item::Leather);
-			item->GetActor()->SetWorldPos(Vector3(RANDOM->Int(0, 10), 50, RANDOM->Int(0, 10)));
 			AddItem(item);
 		}
 	}
@@ -64,12 +59,18 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
-	shipwreck = FeatureProto::Create(FeatureType::Shipwreck);
-	shipwreck->GetActor()->SetWorldPos(Vector3(0, 0, 0));
-	objects.emplace_back(shipwreck);
-
 	while (featureCount < MINIMUM_FEATURE_COUNT)
 		GenerateTree();
+
+	shipwreck = FeatureProto::Create(FeatureType::Shipwreck);
+	shipwreck->Init();
+	objects.emplace_back(shipwreck);
+
+	for (auto& item : items)
+	{
+		Vector3 tempPos = Vector3(startingPosition->x + RANDOM->Int(-5, 5), 50, startingPosition->z + RANDOM->Int(-5, 5));
+		item->GetActor()->SetWorldPos(tempPos);
+	}
 }
 
 void ObjectManager::Release()
@@ -223,10 +224,12 @@ void ObjectManager::GenerateTree()
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			int preI = clamp(i, 0, rowSize - 1); 
+			// 전후좌우 탐색을 위한 인덱스 계산
+			int preI = clamp(i, 0, rowSize - 1);
 			int postI = clamp(i, 0, rowSize + 1);
 			int preJ = clamp(j, 0, rowSize - 1);
 			int postJ = clamp(j, 0, rowSize + 1);
+
 			// 오브젝트가 이미 생성되어있거나, 
 			if (MAP->isThereFeature[i][j]) continue;
 			// 주변에 오브젝트가 생성되어있으면 생성하지 않음
@@ -235,6 +238,18 @@ void ObjectManager::GenerateTree()
 
 			int index = i * rowSize + j;					// 인덱스 계산
 			float positionY = vertices[index].position.y;	// 높이값 받아오기
+
+			if (positionY > 0.2f && positionY < 0.5f)
+			{
+				if (!startingPosition) startingPosition = &vertices[index].position;
+				else
+				{
+					if (RANDOM->Int(1, 50) == 1)
+					{
+						startingPosition = &vertices[index].position;
+					}
+				}
+			}
 
 			// 높이체크
 			// 높이가 -1 이하 인곳에서는 생성하지 않음
