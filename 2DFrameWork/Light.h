@@ -60,8 +60,8 @@ public:
 class LightManager : public Singleton<LightManager>
 {
 public:
-	float			dayCycleLength = 60.0f;						// 현재의 하루 주기입니다
-	float			halfdayCycleLength = dayCycleLength * 0.5f;	// 반나절의 주기입니다
+	const float		dayCycleLength = 60.0f;						// 현재의 하루 주기입니다
+	const float		halfdayCycleLength = dayCycleLength * 0.5f;	// 반나절의 주기입니다
 	float			currentTime = dayCycleLength * 0.5f;		// 현재의 시간입니다
 	float			timeRatio;									// 현재의 시간비율입니다(0 ~ 1, 1:정오. 0:자정)
 

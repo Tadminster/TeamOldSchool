@@ -50,6 +50,7 @@ void InGame::Init()
 
 	// 배경음악 재생
 	SOUND->Play(BGM_HOMEBASE);
+	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 }
 
 void InGame::Release()
