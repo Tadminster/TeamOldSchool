@@ -326,10 +326,17 @@ float4 AddShadow(float4 BaseColor, float4 wPosition)
 			}
 		}
 	}
-	if (factor)
-	{
-		BaseColor.rgb = saturate(BaseColor.rgb * (1.0f - shadow));
-	}
+	//기존의코드
+    if (factor)
+    {
+        BaseColor.rgb = saturate(BaseColor.rgb * (1.0f - shadow));
+    }
+    //if (factor)
+    //{
+    //    float shadowStrength = 1.0f - shadow; // 그림자 강도 계산
+    //    shadowStrength = max(shadowStrength, 0.2f); // 최소 밝기 20% 유지
+    //    BaseColor.rgb *= shadowStrength;
+    //}
 	return BaseColor;
 }
 float4 Lighting(float4 BaseColor, float2 Uv, float3 Normal, float3 wPosition)

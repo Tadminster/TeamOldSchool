@@ -43,6 +43,7 @@ private:
 
     //copy¿ë
     ID3D11Resource*             result;
+
     //ray
     RayDesc                     ray;
     ID3D11Buffer*               rayBuffer;
@@ -76,7 +77,7 @@ public:
 
 public:
     void            PerlinNoiseHeightMap();
-    void			SaveHeightDate();
+    void            PerlinNoiseSea();
     double          IslandNoise(siv::PerlinNoise& perlin, double x, double y, double z, int i, int j);
     void            ChangeColor(int index, float LerpValue);
 };

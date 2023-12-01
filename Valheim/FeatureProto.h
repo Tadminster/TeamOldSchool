@@ -50,4 +50,6 @@ public:
     virtual void ReceivedDamageAnimation();
     bool IsDestroyed() override { return hitPoint <= 0; }
     virtual void DestructionEvent() override;
+    
+    void LightingUpdate();
 };

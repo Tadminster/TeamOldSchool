@@ -50,10 +50,10 @@ float GetMiePhase(float c, float c2)
     return (result.x * (1.0f + c2) / pow(result.y - result.z * c, 1.5f)) * 0.005f;
 }
 
-float3 HDR(float3 LDR)
-{
-    return 1.0f - exp(Exposure * LDR);
-}
+//float3 HDR(float3 LDR)
+//{
+//    return 1.0f - exp(Exposure * LDR);
+//}
 
 float4 PS(PixelInput input) : SV_Target
 {
@@ -68,7 +68,7 @@ float4 PS(PixelInput input) : SV_Target
     float3 color = (0, 0, 0);
     
     float sun = GetMiePhase(temp, temp2);
-    //선생님이 만들어준 인공태양
+    // 인공태양
     //color = GetRayleighPhase(temp2) * rSamples + float3(sun, sun, sun);
     color = GetRayleighPhase(temp2) * rSamples + sun * mSamples;
     //color = HDR(color);
@@ -78,4 +78,5 @@ float4 PS(PixelInput input) : SV_Target
     float intensity = saturate(DirLight.y);
     
     return float4(color, 1) + TextureD.Sample(SamplerDefault, input.uv) * intensity;
+    
 }

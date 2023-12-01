@@ -15,7 +15,7 @@ ParticleManager::ParticleManager()
 	woodHitDust = Pop::Create("Particle_WoodHitDust");
 	woodHitDust->LoadFile("Particle_WoodHitDust.xml");
 
-	//플레이어 피격시 출혈 파티클 효과
+	//플레이어 피격시 출혈 파티클 효과	
 	hitBlood = Pop::Create("Particle_Blood");
 	hitBlood->LoadFile("Particle_Blood.xml");
 	
@@ -28,6 +28,9 @@ ParticleManager::ParticleManager()
 	levelUp = Pop::Create("Praticle_LevelUp");
 	levelUp->LoadFile("Particle_LevelUp.xml");
 
+	levelUpOnHead = Pop::Create("Particle_LevelUpOnHead");
+	//levelUpOnHead->LoadFile("Particle_levelUpOnHead.xml");
+	//levelUp->desc2.alpha = 1.0f;
 }
 
 ParticleManager::~ParticleManager()
@@ -50,6 +53,7 @@ void ParticleManager::Update()
 	hitBlood->Update();
 	hitRock->Update();
 	levelUp->Update();
+	levelUpOnHead->Update();
 }
 
 void ParticleManager::LateUpdate()
@@ -64,13 +68,20 @@ void ParticleManager::Render()
 	woodHitDust->Render();
 	hitBlood->Render();
 	hitRock->Render();
+	levelUp->Render();
 
 	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
-	BLEND->Set(true);
+	/*BLEND->Set(true);
 	levelUp->desc2.alpha += DELTA * 0.1f;
 	if (levelUp->desc2.alpha >= 1.0f) levelUp->desc2.alpha = 0.0f;
-	levelUp->Render();
+	BLEND->Set(false);*/
+
 	BLEND->Set(true);
+	levelUpOnHead->Render();
+	levelUpOnHead->desc2.alpha += DELTA * 0.1f;
+	if (levelUpOnHead->desc2.alpha >= 1.0f) levelUpOnHead->desc2.alpha = 0.0f;
+	levelUpOnHead->Render();
+	BLEND->Set(false);
 }
 
 void ParticleManager::RenderHierarchy()
@@ -84,6 +95,7 @@ void ParticleManager::RenderHierarchy()
 		hitBlood->RenderHierarchy();
 		hitRock->RenderHierarchy();
 		levelUp->RenderHierarchy();
+		levelUpOnHead->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -124,10 +136,15 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	}
 	else if (type == EffectType::LEVELUP)
 	{
-		levelUp->desc2.alpha = 0.0f;
 		levelUp->SetWorldPos(pos);
 		levelUp->Play();
-		cout << "바위 타격" << endl;
+		cout << "레벨업 빛무리효과" << endl;
+	}
+	else if (type == EffectType::LEVELUPONHEAD)
+	{
+		levelUpOnHead->SetWorldPos(pos);
+		levelUpOnHead->Play();
+		cout << "레벨업 캐릭터 머리위 이펙트" << endl;
 	}
 }
 

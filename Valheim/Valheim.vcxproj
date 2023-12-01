@@ -61,6 +61,7 @@
     <ClInclude Include="StoneAxe.h" />
     <ClInclude Include="Beech.h" />
     <ClInclude Include="Elder.h" />
+    <ClInclude Include="TitleScene.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UserInterfaceManager.h" />
     <ClInclude Include="Woodpile.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Elder.cpp" />
+    <ClCompile Include="TitleScene.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UserInterfaceManager.cpp" />
     <ClCompile Include="Woodpile.cpp" />

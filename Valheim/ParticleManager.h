@@ -7,6 +7,7 @@ private:
 
 public:
 	Pop* levelUp;
+	Pop* levelUpOnHead;
 
 	Pop* woodHitDust;
 

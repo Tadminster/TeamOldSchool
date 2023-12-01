@@ -72,6 +72,7 @@ using namespace SimpleMath;
 #define	ToRadian			0.0174532f
 //Macro(WINAPI Style)
 #define	PI					3.1415926f	//180
+#define PI_2                3.1415926f * 2.0f // 360
 #define	HALFPI				1.5707963f	//90
 #define	QUATERPI			0.7853981f	//45
 
