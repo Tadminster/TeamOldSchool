@@ -11,6 +11,7 @@ public:
     class Inventory*    inventory;
     class Craft*        craft;
     class MiniMap*      minimap;
+    class Status*       status;
 
 public:
     UserInterfaceManager();

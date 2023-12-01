@@ -20,6 +20,7 @@ public:
 	virtual void Axe() = 0;
 	virtual void Shield() = 0;
 	virtual void Block() = 0;
+	virtual void BlockFail() = 0;
 	virtual void Death() = 0;
 };
 //Idle 클래스----------------------------------------------------------
@@ -41,6 +42,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Walk 클래스----------------------------------------------------------
@@ -62,6 +64,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Run 클래스----------------------------------------------------------
@@ -83,6 +86,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Jump 클래스----------------------------------------------------------
@@ -104,6 +108,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Fist 클래스----------------------------------------------------------
@@ -125,6 +130,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Swing 클래스----------------------------------------------------------
@@ -146,6 +152,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Axe 클래스----------------------------------------------------------
@@ -167,6 +174,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Shield 클래스----------------------------------------------------------
@@ -188,6 +196,7 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Block 클래스----------------------------------------------------------
@@ -209,6 +218,29 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
+	void Death() override;
+};
+//BlockFail 클래스----------------------------------------------------------
+class BlockFailState : public PlayerState
+{
+	static BlockFailState* instance;
+public:
+	static BlockFailState* GetInstance()
+	{
+		if (instance == nullptr) instance = new BlockFailState();
+		return instance;
+	}
+	void Idle() override;
+	void Walk() override;
+	void Run() override;
+	void Jump() override;
+	void Fist() override;
+	void Swing() override;
+	void Axe() override;
+	void Shield() override;
+	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };
 //Death 클래스----------------------------------------------------------
@@ -230,5 +262,6 @@ public:
 	void Axe() override;
 	void Shield() override;
 	void Block() override;
+	void BlockFail() override;
 	void Death() override;
 };

@@ -1,45 +1,13 @@
-<Root Name="Player" Visible="true" ObType="1" BoneIndex="0">
-    <Skeleton File="Player_Male/Player_Male.skel" BoneIndexCount="52"/>
-    <Animations AnimSize="16" File0="Player_Male/Player_Opening0.anim" File1="Player_Male/Player_Idle0.anim" File2="Player_Male/Player_Walk0.anim" File3="Player_Male/Player_Run0.anim" File4="Player_Male/Player_Jump0.anim" File5="Player_Male/Player_Fist0.anim" File6="Player_Male/Player_Swing0.anim" File7="Player_Male/Player_Death0.anim" File8="/Player_Fist0.anim" File9="/Player_Axe0.anim" File10="/Player_Shield0.anim" File11="/Player_ShieldMove0.anim" File12="/Player_ShieldFist0.anim" File13="/Player_OpeningStand0.anim" File14="/Player_Block0.anim" File15="/Player_BlockFail0.anim"/>
-    <Collider ColliderType="2" Visible="true">
-        <Position X="0.029999999" Y="0.85000002" Z="0"/>
-        <Scale X="0.22" Y="0.89999998" Z="0.2"/>
-        <Rotation X="0" Y="0" Z="0"/>
-    </Collider>
+<Root Name="OpeningPlayer" Visible="true" ObType="1" BoneIndex="0">
+    <Skeleton File="player/player.skel" BoneIndexCount="52"/>
+    <Animations AnimSize="1" File0="player/Player_OpeningStand0.anim"/>
     <Transform>
-        <Position X="1.645614" Y="21.156921" Z="0.98718899"/>
+        <Position X="-0.25" Y="9.6000004" Z="18.299999"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="1.1859828" Z="0"/>
+        <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Children Size="4"/>
-    <Child0 Name="FrustumCam" Visible="true" ObType="2" BoneIndex="-1">
-        <Transform>
-            <Position X="-0.16306116" Y="3.5" Z="-2.5"/>
-            <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.32079831" Y="1.1859828" Z="0"/>
-        </Transform>
-        <Camera Ortho="false" Fov="1.047192" Width="1273" Height="831" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1273" viewportH="831"/>
-        <Children Size="0"/>
-    </Child0>
-    <Child1 Name="PlayerCam" Visible="true" ObType="2" BoneIndex="-1">
-        <Transform>
-            <Position X="-2.3841858e-07" Y="4" Z="-4"/>
-            <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0.32079831" Y="0" Z="0"/>
-        </Transform>
-        <Camera Ortho="false" Fov="0.95993108" Width="1140" Height="728" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1140" viewportH="728"/>
-        <Children Size="0"/>
-    </Child1>
-    <Child2 Name="PlayerOriginCam" Visible="true" ObType="2" BoneIndex="-1">
-        <Transform>
-            <Position X="0" Y="4" Z="-4"/>
-            <Scale X="1" Y="1" Z="1"/>
-            <Rotation X="0" Y="0" Z="0"/>
-        </Transform>
-        <Camera Ortho="false" Fov="1.047192" Width="1273" Height="831" NearZ="0.1" FarZ="500" viewportX="0" viewportY="0" viewportW="1273" viewportH="831"/>
-        <Children Size="0"/>
-    </Child2>
-    <Child3 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
         <Transform>
             <Position X="0" Y="0" Z="0"/>
             <Scale X="0.0099999998" Y="0.0099999998" Z="0.0099999998"/>
@@ -47,7 +15,7 @@
         </Transform>
         <Children Size="2"/>
         <Child0 Name="body" Visible="true" ObType="0" BoneIndex="2">
-            <Mesh File="Player_Male/body.mesh"/>
+            <Mesh File="player/body.mesh"/>
             <Shader File="4.Cube.hlsl"/>
             <Material File="Player_Male/Player_Male.mtl"/>
             <Transform>
@@ -205,11 +173,6 @@
                                     <Children Size="1"/>
                                     <Child0 Name="mixamorig:LeftHand" Visible="true" ObType="0" BoneIndex="13">
                                         <Shader File="4.Cube.hlsl"/>
-                                        <Collider ColliderType="2" Visible="true">
-                                            <Position X="0" Y="30.000002" Z="0"/>
-                                            <Scale X="15" Y="35" Z="15"/>
-                                            <Rotation X="0" Y="0" Z="0"/>
-                                        </Collider>
                                         <Transform>
                                             <Position X="-8.8817853e-16" Y="23.2834" Z="1.4210856e-14"/>
                                             <Scale X="0.99999994" Y="1" Z="0.99999994"/>
@@ -381,11 +344,6 @@
                                     <Children Size="1"/>
                                     <Child0 Name="mixamorig:RightHand" Visible="true" ObType="0" BoneIndex="29">
                                         <Shader File="4.Cube.hlsl"/>
-                                        <Collider ColliderType="2" Visible="true">
-                                            <Position X="0" Y="30.000006" Z="0"/>
-                                            <Scale X="15" Y="35" Z="15"/>
-                                            <Rotation X="0" Y="0" Z="0"/>
-                                        </Collider>
                                         <Transform>
                                             <Position X="0" Y="23.28257" Z="1.4210855e-14"/>
                                             <Scale X="1" Y="1" Z="1"/>
@@ -508,5 +466,5 @@
                 </Child0>
             </Child2>
         </Child1>
-    </Child3>
+    </Child0>
 </Root>

@@ -192,7 +192,7 @@ void PlayerStatus::FistExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			fistAnimSpeed = 1.0f;
+			fistAnimSpeed = 1.2f;
 			fistStaminar = 2.0f;
 			fistLevel = 5;
 		}
@@ -206,7 +206,7 @@ void PlayerStatus::FistExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			fistAnimSpeed = 0.95f;
+			fistAnimSpeed = 1.1f;
 			fistStaminar = 2.5f;
 			fistLevel = 4;
 		}
@@ -220,7 +220,7 @@ void PlayerStatus::FistExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			fistAnimSpeed = 0.9f;
+			fistAnimSpeed = 1.0f;
 			fistStaminar = 3.0f;
 			fistLevel = 3;
 		}
@@ -234,7 +234,7 @@ void PlayerStatus::FistExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			fistAnimSpeed = 0.85f;
+			fistAnimSpeed = 0.9f;
 			fistStaminar = 3.5f;
 			fistLevel = 2;
 		}
@@ -490,7 +490,8 @@ void PlayerStatus::BlockExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			blockStaminar = 5.0f;
+			PLAYER->blockStaminar = 5.0f;
+			//blockStaminar = 5.0f;
 			blockAbility = 0.2f;
 			blcokdLevel = 5;
 		}
@@ -504,7 +505,8 @@ void PlayerStatus::BlockExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			blockStaminar = 6.0f;
+			PLAYER->blockStaminar = 6.0f;
+			//blockStaminar = 6.0f;
 			blockAbility = 0.15f;
 			blcokdLevel = 4;
 		}
@@ -518,7 +520,8 @@ void PlayerStatus::BlockExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			blockStaminar = 7.0f;
+			PLAYER->blockStaminar = 7.0f;
+			//blockStaminar = 7.0f;
 			blockAbility = 0.1f;
 			blcokdLevel = 3;
 		}
@@ -532,7 +535,8 @@ void PlayerStatus::BlockExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			blockStaminar = 8.0f;
+			PLAYER->blockStaminar = 8.0f;
+			//blockStaminar = 8.0f;
 			blockAbility = 0.05f;
 			blcokdLevel = 2;
 		}
@@ -546,7 +550,7 @@ void PlayerStatus::BlockExp()
 			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
 			//PLAYER->staminar = PLAYER->maxStaminar;
-			blockStaminar = 9.0f;
+			PLAYER->blockStaminar = 9.0f;
 			blockAbility = 0.02f;
 			blcokdLevel = 1;
 		}

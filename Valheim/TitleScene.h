@@ -4,7 +4,7 @@ class TitleScene : public Scene
 private:
     Camera*         titleCamera;
     Terrain*        sea;
-
+    Actor*          openingPlayer;
     UI*             btnStart;
     UI*             btnOption;
     UI*             btnExit;

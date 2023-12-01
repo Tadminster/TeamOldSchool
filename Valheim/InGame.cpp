@@ -22,12 +22,7 @@ InGame::InGame()
 	scattering = new Scattering();
 	loadCount++; // 4
 
-	elder = new Elder();
-	loadCount++; // 5
-
-	goblin = new Goblin();
-	loadCount++; // 6
-
+	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -36,9 +31,7 @@ InGame::InGame()
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
-	loadCount++; // 7
-
-
+	loadCount++; // 5
 }
 
 InGame::~InGame()
@@ -54,8 +47,7 @@ void InGame::Init()
 
 	OBJ->Init();
 	PLAYER->Init();
-	elder->Init();
-	goblin->Init();
+
 	// ¹è°æÀ½¾Ç Àç»ı
 	SOUND->Play(BGM_HOMEBASE);
 }
@@ -83,8 +75,6 @@ void InGame::Update()
 		OBJ->RenderHierarchy();
 		PARTICLE->RenderHierarchy();
 		PLAYER->RenderHierarchy();
-		elder->RenderHierarchy();
-		goblin->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -127,8 +117,6 @@ void InGame::Update()
 	SEA->Update();
 	OBJ->Update();
 	PARTICLE->Update();
-	//elder->Update();
-	goblin->Update();
 	PLAYER->Update();
 	UIM->Update();
 
@@ -144,8 +132,6 @@ void InGame::LateUpdate()
 	PLAYER->LateUpdate();
 	PARTICLE->LateUpdate();
 
-	//elder->LateUpdate();
-	goblin->LateUpdate();
 	UIM->LateUpdate();
 }
 
@@ -184,8 +170,6 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-	//elder->Render();
-	goblin->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
 	UIM->Render();

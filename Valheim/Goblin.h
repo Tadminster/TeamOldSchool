@@ -4,15 +4,16 @@ class Goblin : public Unit
 {
 	class GoblinState* state = nullptr;
 	
-	float waitingTime = 0;
-	float attackTime = 0;
-	vector<Vector3> idlePos = {};
-	int idlePosNum = 0;
-	bool isAngry = false;
-	bool firstHit = false;
-	float angryTime = 0;
+	vector<Vector3>		idlePos = {};
+	Vector3				spawnPos = {};
+	int					idlePosNum = 0;
+	float				waitingTime = 0;
+	float				attackTime = 0;
+	bool				isAngry = false;
+	bool				firstHit = false;
+	float				angryTime = 0;
 public:
-	Goblin(Vector3 spawnPos={});
+	Goblin();
 	~Goblin();
 	void Init() override;
 	void Update() override;

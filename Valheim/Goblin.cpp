@@ -2,12 +2,12 @@
 #include "GoblinState.h"
 #include "Goblin.h"
 
-Goblin::Goblin(Vector3 spawnPos)
+Goblin::Goblin()
 {
 	actor = Actor::Create();
 	actor->LoadFile("/Unit/Monster_Goblin.xml");
 	actor->name = "Monster_Goblin";
-	actor->SetWorldPos(spawnPos);
+	//actor->SetWorldPos(spawnPos);
 	actor->anim->aniScale = 0.6f;
 
 	state = G_IDLE;
@@ -22,25 +22,28 @@ Goblin::Goblin(Vector3 spawnPos)
 
 Goblin::~Goblin()
 {
-
+	
 }
 
 void Goblin::Init()
 {
+	spawnPos = OBJ->GetStartingPosition();
+	actor->SetWorldPos(spawnPos);
+
 	Vector3 temp = {};
-	idlePos.push_back(actor->GetWorldPos());
-	idlePos.push_back(actor->GetWorldPos()+actor->GetForward()* MOVINGSPACE);
-	idlePos.push_back(actor->GetWorldPos()-actor->GetForward()* MOVINGSPACE);
-	idlePos.push_back(actor->GetWorldPos()+actor->GetRight()* MOVINGSPACE);
-	idlePos.push_back(actor->GetWorldPos()-actor->GetRight()* MOVINGSPACE);
+	idlePos.push_back(spawnPos);
+	idlePos.push_back(spawnPos +actor->GetForward()* MOVINGSPACE);
+	idlePos.push_back(spawnPos -actor->GetForward()* MOVINGSPACE);
+	idlePos.push_back(spawnPos +actor->GetRight()* MOVINGSPACE);
+	idlePos.push_back(spawnPos -actor->GetRight()* MOVINGSPACE);
 	temp = actor->GetForward() + actor->GetRight();
 	temp.Normalize();
-	idlePos.push_back(actor->GetWorldPos() + temp * MOVINGSPACE);
-	idlePos.push_back(actor->GetWorldPos() - temp * MOVINGSPACE);
+	idlePos.push_back(spawnPos + temp * MOVINGSPACE);
+	idlePos.push_back(spawnPos - temp * MOVINGSPACE);
 	temp = actor->GetForward() - actor->GetRight();
 	temp.Normalize();
-	idlePos.push_back(actor->GetWorldPos() + temp * MOVINGSPACE);
-	idlePos.push_back(actor->GetWorldPos() - temp * MOVINGSPACE);
+	idlePos.push_back(spawnPos + temp * MOVINGSPACE);
+	idlePos.push_back(spawnPos - temp * MOVINGSPACE);
 }
 
 void Goblin::Update()
