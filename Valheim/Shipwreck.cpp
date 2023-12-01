@@ -8,6 +8,7 @@ Shipwreck::Shipwreck()
 	actor->LoadFile("Feature_Shipwreck.xml");
 	actor->name = "Shipwreck";
 
+	rotation = &actor->Find("RootNode")->rotation;
 	//==================================================
 	type = FeatureArmorType::Tree;
 	hitPoint = 100;
@@ -19,6 +20,9 @@ Shipwreck::~Shipwreck()
 
 void Shipwreck::Init()
 {
+	// 난파선 위치 설정
+	actor->SetWorldPos(OBJ->GetStartingPosition());
+	actor->Update();
 }
 
 void Shipwreck::Update()

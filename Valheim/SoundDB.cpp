@@ -7,6 +7,7 @@ SoundDB::SoundDB()
 	// 1. Contents/Sound/분류별폴더 에 사운드 파일을 넣음
 	// 2. Sound.h에서 enum class SoundName 에 사운드 이름을 추가
 	// 3. SoundDB.cpp에서 SOUND->AddSound("폴더/파일이름.확장자", enum SoundName, 반복재생여부) 추가
+	// 3-1. 사운드 파일 확장자는 ogg로 통일
 
 	// 사운드 재생 방법
 	// 0. SOUND->STOP() 은 호출하지 않음
@@ -70,7 +71,7 @@ SoundDB::SoundDB()
 		SOUND->AddSound("Inventory/Inventory_Item_Use_04.ogg", INVENTORY_ITEM_USE_04, false);
 	}
 
-	// System
+	// Crafting
 	SOUND->AddSound("System/Crafting.ogg", CRAFTING, false); // Craft
 
 

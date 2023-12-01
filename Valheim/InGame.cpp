@@ -57,6 +57,7 @@ void InGame::Init()
 	elder->Init();
 	goblin->Init();
 
+	// 배경음악 재생
 	SOUND->Play(BGM_HOMEBASE);
 }
 
