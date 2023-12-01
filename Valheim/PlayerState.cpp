@@ -405,7 +405,7 @@ void BlockState::Death()
 //BlockFail Å¬·¡½º----------------------------------------------------------
 void BlockFailState::Idle()
 {
-	SetPlayerState(IdleState::GetInstance());
+	//SetPlayerState(IdleState::GetInstance());
 }
 void BlockFailState::Walk() {}
 void BlockFailState::Run() {}
@@ -417,10 +417,19 @@ void BlockFailState::Shield() {}
 void BlockFailState::Block() {}
 void BlockFailState::BlockFail() 
 {
-	cout << "blockFail" << endl;
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 15)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 15);
+		PLAYER->GetPlayer()->anim->aniScale = 0.3f;
+	}
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animState == AnimationState::STOP)
+	{
+		PLAYER->GetPlayer()->anim->aniScale = 1.0f;
+		if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1)
+		{
+			PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
+		}
+		PLAYER->state = IdleState::GetInstance();
 	}
 }
 void BlockFailState::Death()

@@ -355,14 +355,6 @@ void Player::PlayerControl()
 					staminar = 0.01f;
 				}
 			}
-			else if (state == BlockFailState::GetInstance())
-			{
-				if (actor->anim->currentAnimator.animState == AnimationState::STOP)
-				{
-					state->Idle();
-					staminar = 0.01f;
-				}
-			}
 			else
 			{
 				state->Idle();

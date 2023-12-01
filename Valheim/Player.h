@@ -7,6 +7,7 @@ class Player : public Unit
 	friend class SwingState;
 	friend class FistState;
 	friend class BlockState;
+	friend class BlockFailState;
 	friend class PlayerStatus;
 
 	class PlayerState*		state = nullptr;

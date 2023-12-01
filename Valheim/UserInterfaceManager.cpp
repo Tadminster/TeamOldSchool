@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Notification.h"
 #include "DamageText.h"
+#include "Status.h"
 #include "UserInterfaceManager.h"
 
 UserInterfaceManager::UserInterfaceManager()
@@ -8,6 +9,7 @@ UserInterfaceManager::UserInterfaceManager()
 	inventory = new Inventory();
 	craft = new Craft();
 	minimap = new MiniMap();
+	status = new Status();
 }
 
 UserInterfaceManager::~UserInterfaceManager()
@@ -28,6 +30,7 @@ void UserInterfaceManager::Update()
 	inventory->Update();
 	craft->Update();
 	minimap->Update();
+	status->Update();
 
 	for (auto iter = notifications.begin(); iter != notifications.end();)
 	{
@@ -81,6 +84,7 @@ void UserInterfaceManager::Render()
 	minimap->Render();
 	craft->Render();
 	inventory->Render();
+	status->Render();
 }
 
 void UserInterfaceManager::ResizeScreen()
