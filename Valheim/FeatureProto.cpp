@@ -71,6 +71,8 @@ void FeatureProto::Update()
 	// 데미지를 입었을 때 애니메이션 재생
 	ReceivedDamageAnimation();
 
+	LightingUpdate();
+
 	actor->Update();
 }
 
@@ -128,4 +130,11 @@ void FeatureProto::ReceivedDamageAnimation()
 
 void FeatureProto::DestructionEvent()
 {
+}
+
+void FeatureProto::LightingUpdate()
+{
+	//float time = TIMER
+
+	//actor->material->diffuse = Vector4( , , , 1.0f);
 }

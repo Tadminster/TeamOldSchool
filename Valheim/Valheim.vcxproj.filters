@@ -132,6 +132,9 @@
     <ClInclude Include="LoadingScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="TitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -259,6 +262,9 @@
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
     <ClCompile Include="LoadingScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
