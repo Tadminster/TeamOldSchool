@@ -2,7 +2,7 @@
     <Skeleton File="jellyfish/jellyfish.skel" BoneIndexCount="43"/>
     <Animations AnimSize="12" File0="jellyfish/mdlVagrant0.anim" File1="jellyfish/mdlVagrant1.anim" File2="jellyfish/mdlVagrant2.anim" File3="jellyfish/mdlVagrant3.anim" File4="jellyfish/mdlVagrant4.anim" File5="jellyfish/mdlVagrant5.anim" File6="jellyfish/mdlVagrant6.anim" File7="jellyfish/mdlVagrant7.anim" File8="jellyfish/mdlVagrant8.anim" File9="jellyfish/mdlVagrant9.anim" File10="jellyfish/mdlVagrant10.anim" File11="jellyfish/mdlVagrant11.anim"/>
     <Transform>
-        <Position X="45" Y="-2" Z="40"/>
+        <Position X="42" Y="-3" Z="35"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="3.1415758" Y="0" Z="0"/>
     </Transform>
