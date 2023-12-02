@@ -38,7 +38,7 @@ void Player::Init()
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	//maxHitpoint = 200;
-	//treeCount = 3;
+	treeCount = 3;
 }
 
 void Player::Update()
