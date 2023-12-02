@@ -50,6 +50,7 @@ void Elder::Init()
 	ment2->visible = false;
 	ment3->visible = false;
 	ment4->visible = false;
+	hp->visible = false;
 }
 
 void Elder::Update()
@@ -209,8 +210,16 @@ void Elder::UpdateLight()
 {
 	float lightRatio = max(0.2f, LIGHT->GetTimeRatio());
 	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
-	actor->Find("gd_king_001")->material->ambient = color;
-	actor->Find("gd_king_001")->material->diffuse = color;
+	if (isElder)
+	{
+		actor->Find("gd_king_001")->material->ambient = color;
+		actor->Find("gd_king_001")->material->diffuse = color;
+	}
+	else
+	{
+		actor->Find("Model")->material->ambient = color;
+		actor->Find("Model")->material->diffuse = color;
+	}
 }
 
 bool Elder::IsDestroyed()
