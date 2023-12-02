@@ -101,7 +101,7 @@ void Birch::UpdateLight()
 
 void Birch::Release()
 {
-	Birch::~Birch();
+	delete this;
 }
 
 bool Birch::ReceivedDamageEvent(float damage, WeaponType wType)

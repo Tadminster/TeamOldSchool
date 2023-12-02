@@ -58,7 +58,7 @@ void Beech::Render()
 
 void Beech::Release()
 {
-	Beech::~Beech();
+	delete this;
 }
 
 void Beech::RenderHierarchy()

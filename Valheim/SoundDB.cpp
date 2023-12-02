@@ -16,6 +16,12 @@ SoundDB::SoundDB()
 	// BGM
 	SOUND->AddSound("BGM/Homebase.ogg", BGM_HOMEBASE, true); // 홈베이스 배경음악
 
+	// WOOD
+	SOUND->AddSound("Wood/Wood_Break_01.ogg", WOOD_BREAK_01, false); // 나무가 부서질 때
+	SOUND->AddSound("Wood/Wood_Break_02.ogg", WOOD_BREAK_02, false);
+	SOUND->AddSound("Wood/Wood_Break_03.ogg", WOOD_BREAK_03, false);
+	SOUND->AddSound("Wood/Wood_Break_04.ogg", WOOD_BREAK_04, false);
+
 	// TREE
 	{
 		// 나무를 칠 때 나는 소리

@@ -23,7 +23,6 @@ private:
     Vector3         playerRayHitPos;
     Vector3         karvePos{ 0.0f, 0.3f, 0.0f };
     Vector3         playerPos{ -2.0f, 0.3f, -1.5f };
-
     
     Actor*          jellyFish;
 
