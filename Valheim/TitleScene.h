@@ -2,6 +2,9 @@
 class TitleScene : public Scene
 {
 private:
+    // 배경
+    Actor*          background;
+
     // 타이틀 카메라
     Camera*         titleCamera;
     Ray             cameraRay;
@@ -13,10 +16,17 @@ private:
     Terrain*        ocean;
     UI*             underwater;
 
-    // 플레이어, 몬스터
-    Actor*          openingPlayer;
-    Actor*          jellyFish;
+    // 플레이어, 배, 몬스터    
+    Actor*          player;
+    Actor*          karve;
+    Ray             playerRay;
+    Vector3         playerRayHitPos;
+    Vector3         karvePos{ 0.0f, 0.3f, 0.0f };
+    Vector3         playerPos{ -2.0f, 0.3f, -1.5f };
+
     
+    Actor*          jellyFish;
+
     // 버튼
     UI*             btnStart;
     UI*             btnOption;
