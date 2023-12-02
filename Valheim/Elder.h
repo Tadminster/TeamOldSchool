@@ -35,6 +35,7 @@ public:
 	void RenderHierarchy() override;
 	void UpdateLight() override;
 	bool IsDestroyed() override;
+	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	void DestructionEvent() override;
 
 	void SetState(ElderState* state);

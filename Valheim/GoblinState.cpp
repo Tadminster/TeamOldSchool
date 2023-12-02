@@ -119,5 +119,5 @@ void Goblin_DeathState::Death(Goblin* goblin)
 		goblin->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 4);
 	}
 	if (goblin->deathTime < 3.0f) goblin->deathTime += DELTA;
-	//if (goblin->deathTime >= 3.0f) goblin->~Goblin();
+	if (goblin->deathTime >= 3.0f) goblin->Release();
 }
