@@ -2,6 +2,7 @@
 #include "Notification.h"
 #include "DamageText.h"
 #include "Status.h"
+#include "Setting.h"
 #include "UserInterfaceManager.h"
 
 UserInterfaceManager::UserInterfaceManager()
@@ -10,6 +11,7 @@ UserInterfaceManager::UserInterfaceManager()
 	craft = new Craft();
 	minimap = new MiniMap();
 	status = new Status();
+	setting = new Setting();
 }
 
 UserInterfaceManager::~UserInterfaceManager()
@@ -19,6 +21,7 @@ UserInterfaceManager::~UserInterfaceManager()
 void UserInterfaceManager::Init()
 {
 	minimap->Init();
+	setting->Init();
 }
 
 void UserInterfaceManager::Release()
@@ -31,6 +34,7 @@ void UserInterfaceManager::Update()
 	craft->Update();
 	minimap->Update();
 	status->Update();
+	setting->Update();
 
 	for (auto iter = notifications.begin(); iter != notifications.end();)
 	{
@@ -64,6 +68,7 @@ void UserInterfaceManager::LateUpdate()
 	inventory->LateUpdate();
 	craft->LateUpdate();
 	minimap->LateUpdate();
+	setting->LateUpdate();
 
 	/*for (auto& notice : notifications)
 		notice->LateUpdate();*/
@@ -85,6 +90,7 @@ void UserInterfaceManager::Render()
 	craft->Render();
 	inventory->Render();
 	status->Render();
+	setting->Render();
 }
 
 void UserInterfaceManager::ResizeScreen()

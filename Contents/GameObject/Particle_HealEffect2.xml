@@ -1,0 +1,12 @@
+<Root Name="Particle_HealEffect2" Visible="true" ObType="8">
+    <Mesh File="7.Billboard.mesh"/>
+    <Shader File="7.Rain.hlsl"/>
+    <Material File="Particle/HealEffect2.mtl"/>
+    <Transform>
+        <Position X="0" Y="1.55" Z="0"/>
+        <Scale X="0.050000001" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Rain particleScaleX="0" particleScaleY="0" particleCount="15" rangeX="4" rangeY="4" rangeZ="4" velocityX="0" velocityY="8" velocityZ="0" duration="0.80000001"/>
+    <Children Size="0"/>
+</Root>

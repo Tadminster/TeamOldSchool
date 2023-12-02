@@ -18,19 +18,10 @@
     <ClInclude Include="Beech.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
-    <ClInclude Include="BeechLog.h">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClInclude>
     <ClInclude Include="FeatureProto.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
-    <ClInclude Include="BeechHalfLog.h">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClInclude>
     <ClInclude Include="Grass.h">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClInclude>
-    <ClInclude Include="BeechStump.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
     <ClInclude Include="Birch.h">
@@ -114,9 +105,6 @@
     <ClInclude Include="DamageText.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="BeechInstancing.h">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClInclude>
     <ClInclude Include="WoodShield.h">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClInclude>
@@ -141,6 +129,9 @@
     <ClInclude Include="TitleScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -156,19 +147,10 @@
     <ClCompile Include="Beech.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
-    <ClCompile Include="BeechLog.cpp">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClCompile>
     <ClCompile Include="FeatureProto.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
-    <ClCompile Include="BeechHalfLog.cpp">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClCompile>
     <ClCompile Include="Grass.cpp">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClCompile>
-    <ClCompile Include="BeechStump.cpp">
       <Filter>GameObject\Terrain Features</Filter>
     </ClCompile>
     <ClCompile Include="Birch.cpp">
@@ -252,9 +234,6 @@
     <ClCompile Include="DamageText.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="BeechInstancing.cpp">
-      <Filter>GameObject\Terrain Features</Filter>
-    </ClCompile>
     <ClCompile Include="WoodShield.cpp">
       <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
@@ -278,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="TitleScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Setting.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

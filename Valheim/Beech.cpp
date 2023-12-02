@@ -71,11 +71,54 @@ void Beech::LodUpdate(float distance)
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
 	actor->Find("Lod3")->visible = false;
-
-	if (distance < 500) actor->Find("Lod0")->visible = true;			// 거리 1000 이하는 LOD0
-	else if (distance < 1000) actor->Find("Lod1")->visible = true;		// 거리 2000 이하는 LOD1
-	else if (distance < 2000) actor->Find("Lod3")->visible = true;		// 거리 5000 이하는 LOD3
+	
+	// 거리 500 이하는 LOD0
+	if (distance < 500)
+	{
+		lod = BeechLod::LOD0;
+		actor->Find("Lod0")->visible = true;		
+	}
+	// 거리 1000 이하는 LOD1
+	else if (distance < 1000)
+	{
+		lod = BeechLod::LOD1;
+		actor->Find("Lod1")->visible = true;		
+	}
+	// 거리 2000 이하는 LOD3
+	else if (distance < 2000)
+	{
+		lod = BeechLod::LOD3;
+		actor->Find("Lod3")->visible = true;		
+	}
 	else return;
+}
+
+void Beech::UpdateLight()
+{
+	float lightRatio = max(0.1f, LIGHT->GetTimeRatio());
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
+
+	if (lod == BeechLod::LOD0)
+	{
+		actor->Find("Lod0")->material->diffuse = color;
+		actor->Find("Lod0MeshObject1")->material->diffuse = color;
+		actor->Find("Lod0")->material->ambient = color;
+		actor->Find("Lod0MeshObject1")->material->ambient = color;
+	}
+	else if (lod == BeechLod::LOD1)
+	{
+		actor->Find("Lod1")->material->diffuse = color;
+		actor->Find("Lod1MeshObject1")->material->diffuse = color;
+		actor->Find("Lod1")->material->ambient = color;
+		actor->Find("Lod1MeshObject1")->material->ambient = color;
+	}
+	else if (lod == BeechLod::LOD3)
+	{
+		actor->Find("Lod3")->material->diffuse = color;
+		actor->Find("Lod3MeshObject1")->material->diffuse = color;
+		actor->Find("Lod3")->material->ambient = color;
+		actor->Find("Lod3MeshObject1")->material->ambient = color;
+	}
 }
 
 bool Beech::ReceivedDamageEvent(float damage, WeaponType wType)

@@ -2,6 +2,7 @@
 #include "FeatureProto.h"
 #include "Birch.h"
 
+
 Birch::Birch()
 {
 	actor = Actor::Create();
@@ -63,9 +64,38 @@ void Birch::LodUpdate(float distance)
 	actor->Find("Lod0")->visible = false;
 	actor->Find("Lod1")->visible = false;
 
-	if (distance < 1000) actor->Find("Lod0")->visible = true;
-	else if (distance < 2000) actor->Find("Lod1")->visible = true;
+	if (distance < 1000)
+	{
+		lod = BirchLod::LOD0;
+		actor->Find("Lod0")->visible = true;
+	}
+	else if (distance < 2000)
+	{
+		lod = BirchLod::LOD1;
+		 actor->Find("Lod1")->visible = true;
+	}
 	else return;
+}
+
+void Birch::UpdateLight()
+{
+	float lightRatio = clamp(LIGHT->GetTimeRatio(), 0.0f, 1.0f);
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
+
+	if (lod == BirchLod::LOD0)
+	{
+		actor->Find("Lod0")->material->diffuse = color;
+		actor->Find("Lod0.001MeshObject1")->material->diffuse = color;
+		actor->Find("Lod0")->material->ambient = color;
+		actor->Find("Lod0.001MeshObject1")->material->ambient = color;
+	}
+	else if (lod == BirchLod::LOD1)
+	{
+		actor->Find("Lod1")->material->diffuse = color;
+		actor->Find("Lod1.001MeshObject1")->material->diffuse = color;
+		actor->Find("Lod1")->material->ambient = color;
+		actor->Find("Lod1.001MeshObject1")->material->ambient = color;
+	}
 }
 
 

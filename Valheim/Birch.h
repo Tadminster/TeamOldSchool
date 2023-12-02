@@ -2,13 +2,21 @@
 #include "Prototype.h"
 #include "FeatureProto.h"
 
+enum class BirchLod
+{
+	LOD0, LOD1
+};
+
 class Birch : public FeatureProto
 {
 private:
 	friend class FeatureProto;
 
+private:
+	BirchLod lod;
 	Birch();
 	~Birch() override;
+
 public:
 	void Init() override;
 	void Update() override;
@@ -17,9 +25,8 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
-
-public:
 	void LodUpdate(float distance) override;
+	void UpdateLight() override;
 
 	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	void DestructionEvent() override;

@@ -4,7 +4,7 @@
 enum class FeatureType
 {
     Birch, 
-    Beech, BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
+    Beech, //BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
     Rock,
     Shipwreck
 };
@@ -52,5 +52,5 @@ public:
     bool IsDestroyed() override { return hitPoint <= 0; }
     virtual void DestructionEvent() override;
     
-    void LightingUpdate();
+    void UpdateLight() override;
 };

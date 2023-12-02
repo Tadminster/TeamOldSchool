@@ -139,6 +139,7 @@ void Elder::Update()
 
 	//Elder - Terrain Ãæµ¹
 	DoFSM();
+	UpdateLight();
 	SetOnTerrain();
 
 	actor->Update();
@@ -202,6 +203,14 @@ void Elder::RenderHierarchy()
 	if (ment2) ment2->RenderHierarchy();
 	if (ment3) ment3->RenderHierarchy();
 	if (ment4) ment4->RenderHierarchy();
+}
+
+void Elder::UpdateLight()
+{
+	float lightRatio = max(0.2f, LIGHT->GetTimeRatio());
+	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
+	actor->Find("gd_king_001")->material->ambient = color;
+	actor->Find("gd_king_001")->material->diffuse = color;
 }
 
 bool Elder::IsDestroyed()

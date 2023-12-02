@@ -80,6 +80,7 @@ public:
 	void RenderHierarchy() override;
 	void DestructionEvent() override;
 	bool IsDestroyed() override;
+	void UpdateLight() override;
 
 	//플레이어 쪽 오류 찾으려고 만듬. 나중에 GetActor로 바꿀예정
 	Actor*			GetPlayer()						{ return actor; }

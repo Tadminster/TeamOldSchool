@@ -150,23 +150,21 @@ void LightManager::UpdateDirection()
 {
 	if (currentTime >= dayCycleLength)
 	{
-		addTime = false;
 		cout << TIMER->GetWorldTime() << endl;
-	}
-	else if (currentTime <= 0.0f) 
-	{
-		addTime = true;
-		cout << TIMER->GetWorldTime() << endl;
+		currentTime = fmod(currentTime, dayCycleLength);
 	}
 
-	if (addTime) currentTime = min(currentTime + 1.0f * DELTA, dayCycleLength);
-	else currentTime = max(currentTime - 1.0f * DELTA, 0.0f);
+	currentTime += DELTA;
 
 	//0~1 ³·¹ã ºñÀ²
-	timeRatio = currentTime / dayCycleLength;
-
-	dirLight.direction.y = cos(timeRatio  * PI_2);
-	dirLight.direction.z = sin(timeRatio  * PI_2);
+	// ÇØÁú³è
+	if (currentTime > halfdayCycleLength)
+		timeRatio = (dayCycleLength - currentTime) / halfdayCycleLength;
+	// ÇØ¶ã³è
+	else timeRatio = currentTime / halfdayCycleLength;
+	
+	dirLight.direction.y = cos(currentTime / dayCycleLength * PI_2);
+	dirLight.direction.z = sin(currentTime / dayCycleLength * PI_2);
 
 	// ¹öÆÛ ¾÷µ¥ÀÌÆ®
 	D3D11_MAPPED_SUBRESOURCE mappedResource;

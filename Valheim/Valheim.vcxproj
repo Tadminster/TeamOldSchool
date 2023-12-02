@@ -19,10 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BeechHalfLog.h" />
-    <ClInclude Include="BeechInstancing.h" />
-    <ClInclude Include="BeechLog.h" />
-    <ClInclude Include="BeechStump.h" />
     <ClInclude Include="Birch.h" />
     <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
@@ -36,6 +32,7 @@
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="Rock.h" />
+    <ClInclude Include="Setting.h" />
     <ClInclude Include="Shipwreck.h" />
     <ClInclude Include="SoundDB.h" />
     <ClInclude Include="Status.h" />
@@ -69,10 +66,6 @@
     <ClInclude Include="Workbench.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BeechHalfLog.cpp" />
-    <ClCompile Include="BeechInstancing.cpp" />
-    <ClCompile Include="BeechLog.cpp" />
-    <ClCompile Include="BeechStump.cpp" />
     <ClCompile Include="Birch.cpp" />
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />
@@ -86,6 +79,7 @@
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="Setting.cpp" />
     <ClCompile Include="Shipwreck.cpp" />
     <ClCompile Include="SoundDB.cpp" />
     <ClCompile Include="Status.cpp" />

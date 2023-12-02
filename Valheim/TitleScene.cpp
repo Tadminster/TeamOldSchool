@@ -15,16 +15,24 @@ TitleScene::TitleScene()
 	openingPlayer = Actor::Create();
 	openingPlayer->LoadFile("Unit/PlayerforOpening.xml");
 	openingPlayer->name = "OpeningPlayer";
+
+	jellyFish = Actor::Create();
+	jellyFish->LoadFile("Unit/JellyFish.xml");
+	jellyFish->name = "jellyFish";
 }
 
 TitleScene::~TitleScene()
 {
 	titleCamera->Release();
+	openingPlayer->Release();
+	jellyFish->Release();
+	sea->Release();
 }
 
 void TitleScene::Init()
 {
 	SCENE->AddScene("Loading", new LoadingScene);
+	LIGHT->UpdateDirection();
 }
 
 void TitleScene::Release()
@@ -39,6 +47,7 @@ void TitleScene::Update()
 		titleCamera->RenderHierarchy();
 		sea->RenderHierarchy();
 		openingPlayer->RenderHierarchy();
+		jellyFish->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -54,6 +63,7 @@ void TitleScene::Update()
 
 	sea->Update();
 	openingPlayer->Update();
+	jellyFish->Update();
 
 	if (INPUT->KeyDown(VK_SPACE))
 	{
@@ -77,6 +87,7 @@ void TitleScene::Render()
 	Camera::main->Set();
 	sea->Render();
 	openingPlayer->Render();
+	jellyFish->Render();
 }
 
 void TitleScene::ResizeScreen()

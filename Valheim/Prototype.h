@@ -36,5 +36,8 @@ public:
 	// @brief 예를 들어, 나무가 파괴되면 나뭇잎 떨어지는 파티클을 재생하고, 통나무 오브젝트를 생성.
 	// @brief 몬스터가 파괴되면 아이템을 드랍.
 	virtual void DestructionEvent() = 0;
+
+	// @brief 빛에따라 embient, diffuse 값을 변경하는 함수
+	virtual void UpdateLight() {};
 };
 

@@ -18,6 +18,8 @@ public:
 	void Release() override;
 	void RenderHierarchy() override;
 
+	void UpdateLight() override;
+
 	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
 	void DestructionEvent() override;
 };
