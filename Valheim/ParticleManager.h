@@ -18,6 +18,8 @@ public:
 	Pop* hitBlood;
 	Pop* hitRock;
 
+	Pop* waterSplash;
+	Pop* waterWave;
 public:
 	ParticleManager();
 	~ParticleManager();

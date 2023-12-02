@@ -93,12 +93,12 @@ void Pop::Reset()
 		//파티클의 크기
 		/*scale.x = max(0.05f,this->scale.x+ RANDOM->Float(-randomSize.x, randomSize.x));
 		scale.y = max(0.05f,this->scale.y+ RANDOM->Float(-randomSize.y, randomSize.y));*/
-		scale.x = this->scale.x;
-		scale.y = this->scale.y;
+		scale.x =	this->scale.x;
+		scale.y =	this->scale.y;
 
 		//위치
 		Vector3 position = Vector3(0, 0, 0);
-		//Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
+		Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
 
 		//방향벡터 Right
 		Vector3 velocity = Vector3(1, 0, 0);
@@ -117,7 +117,7 @@ void Pop::Reset()
 
 		//내가 방향벡터를 3개축을 랜덤값으로 회전시켜 잡는다.
 		((VertexPSV*)mesh->vertices)[i].velocity = velocity;
-		((VertexPSV*)mesh->vertices)[i].position = position /*+ randomPos*/;
+		((VertexPSV*)mesh->vertices)[i].position = position + randomPos;
 		((VertexPSV*)mesh->vertices)[i].size = scale;
 		mesh->indices[i] = i;
 	}
@@ -156,7 +156,6 @@ void Pop::Reset()
 
 void Pop::Play()
 {
-	this->desc2.alpha = 0.0f;
 	Reset();
 	Particle::Play();
 }
@@ -164,6 +163,7 @@ void Pop::Play()
 void Pop::Stop()
 {
 	Particle::Stop();
+
 }
 
 

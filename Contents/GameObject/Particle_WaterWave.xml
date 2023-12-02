@@ -1,0 +1,12 @@
+<Root Name="Particle_WaterWave" Visible="true" ObType="9">
+    <Mesh File="8.Billboard.mesh"/>
+    <Shader File="8.Pop.hlsl"/>
+    <Material File="Particle/WaterWave.mtl"/>
+    <Transform>
+        <Position X="0" Y="3.75" Z="0"/>
+        <Scale X="1" Y="1" Z="24.402903"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="4" velocityScalar="0.0099999998" duration="7.3909998" gravity="0.0099999998"/>
+    <Children Size="0"/>
+</Root>
