@@ -25,7 +25,7 @@
 #define OBJ			GM->objectManager
 #define PARTICLE    GM->particleManager
 #define MAP			GM->map
-#define SEA			GM->sea
+#define SEA			GM->ocean
 #define PLAYER		GM->player
 #define ELDER		GM->elder
 #define MONSTER		GM->monster

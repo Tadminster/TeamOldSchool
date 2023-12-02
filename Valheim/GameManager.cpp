@@ -10,8 +10,8 @@ GameManager::GameManager()
 	map->PerlinNoiseHeightMap();
 	map->CreateStructuredBuffer();
 
-	sea = Water::Create();
-	sea->LoadFile("Water.xml");
+	ocean = Water::Create();
+	ocean->LoadFile("Water.xml");
 
 	objectManager	= new ObjectManager();
 	particleManager = new ParticleManager();

@@ -8,6 +8,7 @@
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
 #include "Rock.h"
+#include "Karve.h"
 #include "Shipwreck.h"
 
 #include "FeatureProto.h"
@@ -30,6 +31,8 @@ FeatureProto* FeatureProto::Create(FeatureType featureType)
 		//	return new BeechHalfLog();
 		case FeatureType::Rock:
 			return new Rock();
+		case FeatureType::Karve:
+			return new Karve();
 		case FeatureType::Shipwreck:
 			return new Shipwreck();
 		default:

@@ -1,13 +1,13 @@
 #pragma once
 #include "Prototype.h"
 
-class Shipwreck : public FeatureProto
+class Karve : public FeatureProto
 {
 private:
 	friend class FeatureProto;
 
-	Shipwreck();
-	~Shipwreck() override;
+	Karve();
+	~Karve() override;
 
 public:
 	void Init() override;
@@ -16,10 +16,5 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
-
-	void UpdateLight() override;
-
-	bool ReceivedDamageEvent(float damage, WeaponType wType) override;
-	void DestructionEvent() override;
 };
 

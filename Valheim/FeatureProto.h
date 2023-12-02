@@ -6,7 +6,7 @@ enum class FeatureType
     Birch, 
     Beech, //BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
     Rock,
-    Shipwreck
+    Karve, Shipwreck
 };
 
 enum class RenderType

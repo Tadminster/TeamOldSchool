@@ -1,0 +1,91 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="-0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="vfx_Destroyed_Karve" Visible="true" ObType="0">
+            <Shader File="4.Cube.hlsl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                <Rotation X="0" Y="0" Z="-0"/>
+            </Transform>
+            <Children Size="6"/>
+            <Child0 Name="FrontHull" Visible="true" ObType="0">
+                <Mesh File="Karve/FrontHull.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-22.999998" Z="9.094947e-13"/>
+                    <Scale X="0.70000011" Y="0.70000005" Z="0.70000005"/>
+                    <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="FrontPiece" Visible="true" ObType="0">
+                <Mesh File="Karve/FrontPiece.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-22.999998" Z="9.094947e-13"/>
+                    <Scale X="0.70000011" Y="0.70000005" Z="0.70000005"/>
+                    <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="RearHull" Visible="true" ObType="0">
+                <Mesh File="Karve/RearHull.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-22.999998" Z="9.094947e-13"/>
+                    <Scale X="0.70000011" Y="0.70000005" Z="0.70000005"/>
+                    <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="RearPiece" Visible="true" ObType="0">
+                <Mesh File="Karve/RearPiece.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-22.999998" Z="9.094947e-13"/>
+                    <Scale X="0.70000011" Y="0.70000005" Z="0.70000005"/>
+                    <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child3>
+            <Child4 Name="mast" Visible="true" ObType="0">
+                <Mesh File="Karve/mast.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/ship.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-19.5" Z="26.1"/>
+                    <Scale X="1.8592002" Y="1.8592" Z="1.8592002"/>
+                    <Rotation X="0" Y="1.570796" Z="-0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child4>
+            <Child5 Name="smallboat_001" Visible="true" ObType="0">
+                <Mesh File="Karve/smallboat_001.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="Karve/smallboat_worn.mtl"/>
+                <Transform>
+                    <Position X="0" Y="-22.999998" Z="9.094947e-13"/>
+                    <Scale X="0.70000011" Y="0.70000005" Z="0.70000005"/>
+                    <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child5>
+        </Child0>
+    </Child0>
+</Root>
