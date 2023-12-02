@@ -44,6 +44,7 @@ void Player::Init()
 void Player::Update()
 {
 	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
+	PARTICLE->SetWorldPos();
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -83,6 +84,7 @@ void Player::Render()
 	actor->Render();
 	playerHp->Render();
 	playerSt->Render();
+	status->Render();
 }
 
 void Player::Release()
@@ -94,6 +96,7 @@ void Player::RenderHierarchy()
 	actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();
+	status->RenderHierachy();
 }
 
 bool Player::GetPlayerHit(Collider* atkcol)

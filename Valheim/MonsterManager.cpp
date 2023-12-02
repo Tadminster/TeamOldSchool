@@ -9,7 +9,7 @@ MonsterManager::MonsterManager()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			goblin[i * 3 + j] = new Goblin(Vector3((i - 1) * 50.0f, 0, (j - 1) * 50.0f));
+			goblin[i * 3 + j] = new Goblin(Vector3((i - 1) * 50.0f, -1.0f, (j - 1) * 50.0f));
 			unit.emplace_back(goblin[i * 3 + j]);
 		}
 	}
@@ -17,7 +17,7 @@ MonsterManager::MonsterManager()
 	{
 		for (int j = 0; j < 2; j++)
 		{
-			goblin2[i * 2 + j] = new Goblin(Vector3((i * 2 - 1) * 25.0f, 0, (j * 2 - 1) * 25.0f));
+			goblin2[i * 2 + j] = new Goblin(Vector3((i * 2 - 1) * 25.0f, -1.0f, (j * 2 - 1) * 25.0f));
 			goblin2[i * 2 + j]->GetActor()->Find("goblin")->material->diffuseMap
 				= RESOURCE->textures.Load("Monster_Goblin/goblinBlue_d.png");
 			unit.emplace_back(goblin2[i * 2 + j]);

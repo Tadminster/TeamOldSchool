@@ -199,4 +199,10 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	}
 }
 
+void ParticleManager::SetWorldPos()
+{
+	levelUp->SetWorldPos(PLAYER->GetActor()->GetWorldPos());
+	healEffect2->SetWorldPos(PLAYER->GetActor()->GetWorldPos());
+}
+
 
