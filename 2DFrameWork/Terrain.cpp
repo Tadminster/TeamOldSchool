@@ -297,21 +297,19 @@ void Terrain::LoadHeightImage(string file)
 	mesh->UpdateBuffer();
 }
 
-void Terrain::PerlinNoiseSea()
+void Terrain::PerlinNoiseSea(siv::PerlinNoise perlin)
 {
-	// 난수 시드를 사용하여 펄린 노이즈 생성
-	siv::PerlinNoise perlin(1);
-	// 맵 크기에 따른 주파수 스케일 조정
-	
 	float time = TIMER->GetWorldTime();
+	double frequency = 0.1;  // 주파수 설정
+	double amplitude = 1.1;  // 진폭 설정
 
 	VertexTerrain* vertices = (VertexTerrain*)mesh->vertices;
 	for (int i = 0; i < rowSize; i++)
 	{
 		for (int j = 0; j < rowSize; j++)
 		{
-			double x = i * 0.1;
-			double y = j * 0.1;
+			double x = i * frequency;
+			double y = j * frequency;
 			double z = time * 0.2;
 
 			double noiseValueIsland = perlin.noise3D(x, y, z);
@@ -320,9 +318,7 @@ void Terrain::PerlinNoiseSea()
 		}
 	}
 
-	//mesh->UpdateBuffer();
 	UpdateNormal();
-	UpdateStructuredBuffer();
 }
 
 void Terrain::PerlinNoiseHeightMap()

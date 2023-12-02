@@ -24,7 +24,7 @@
 #define OBJ			GM->objectManager
 #define PARTICLE    GM->particleManager
 #define MAP			GM->map
-#define SEA			GM->sea
+#define SEA			GM->ocean
 #define PLAYER		GM->player
 #define UIM			GM->uiManager
 #define ASTAR		GM->astar

@@ -8,20 +8,35 @@ TitleScene::TitleScene()
 	titleCamera->LoadFile("Cam.xml");
 	Camera::main = titleCamera;
 
-	sea = Terrain::Create();
-	sea->LoadFile("Terrain_sea.xml");
-	sea->CreateMesh(100);
+	cameraRay.position = Vector3(45.0f, 100.0f, 45.0f);
+	cameraRay.direction = Vector3(0.0f, -1.0f, 0.0f);
+
+	underwaterRay.position = Vector3(44.5f, 100.0f, 44.5f);
+	underwaterRay.direction = Vector3(0.0f, -1.0f, 0.0f);
+
+	floor = Terrain::Create();
+	floor->LoadFile("Terrain_floor.xml");
+	floor->CreateMesh(100);
+
+	ocean = Terrain::Create();
+	ocean->LoadFile("Terrain_Ocean.xml");
+	ocean->CreateMesh(100);
+
+	underwater = UI::Create("UnderWater");
+	underwater->LoadFile("UI_UnderWater.xml");
 
 	openingPlayer = Actor::Create();
 	openingPlayer->LoadFile("Unit/PlayerforOpening.xml");
 	openingPlayer->name = "OpeningPlayer";
+	openingPlayer->name = "Player";
 }
 
 TitleScene::~TitleScene()
 {
 	titleCamera->Release();
 	openingPlayer->Release();
-	sea->Release();
+	ocean->Release();
+	floor->Release();
 }
 
 void TitleScene::Init()
@@ -40,8 +55,10 @@ void TitleScene::Update()
 	ImGui::Begin("Hierarchy");
 	{
 		titleCamera->RenderHierarchy();
-		sea->RenderHierarchy();
+		ocean->RenderHierarchy();
+		floor->RenderHierarchy();
 		openingPlayer->RenderHierarchy();
+		underwater->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -52,11 +69,13 @@ void TitleScene::Update()
 	static float waveCycle = 0.0f;
 	if (TIMER->GetTick(waveCycle, 0.05f))
 	{
-		sea->PerlinNoiseSea();
+		ocean->PerlinNoiseSea(perlin);
 	}
 
-	sea->Update();
+	ocean->Update();
+	floor->Update();
 	openingPlayer->Update();
+	underwater->Update();
 
 	if (INPUT->KeyDown(VK_SPACE))
 	{
@@ -66,7 +85,16 @@ void TitleScene::Update()
 
 void TitleScene::LateUpdate()
 {
+	// 카메라 위치를 물 표현으로 조절
+	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
+	{
+		titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
 
+		// 물속 표현
+		if (rayHitPos.y > titleCamera->GetWorldPos().y)
+			underwater->visible = true;
+		else underwater->visible = false;
+	}
 }
 
 void TitleScene::PreRender()
@@ -78,8 +106,15 @@ void TitleScene::PreRender()
 void TitleScene::Render()
 {
 	Camera::main->Set();
-	sea->Render();
+
+	floor->Render();
 	openingPlayer->Render();
+
+	BLEND->Set(true);
+	ocean->Render();
+	BLEND->Set(false);
+
+	underwater->Render();
 }
 
 void TitleScene::ResizeScreen()

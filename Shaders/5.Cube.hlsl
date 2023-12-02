@@ -91,6 +91,9 @@ float4 PS(PixelInput input):SV_TARGET
 	
 	BaseColor = AddShadow(BaseColor, input.wPosition);
    
+    if (BaseColor.a > Opacity)
+        BaseColor.a = Opacity;
+	
     BaseColor.rgb += input.Color * 0.2f;
     BaseColor.rgb = saturate(BaseColor.rgb);
 	
