@@ -17,7 +17,9 @@ public:
 	void Render() override;
 	void Release() override;
 	void RenderHierarchy() override;
-
+	
 	void DestructionEvent() override;
+
+	
 };
 

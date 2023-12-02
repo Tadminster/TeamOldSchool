@@ -8,6 +8,7 @@
 #include "BeechLog.h"
 #include "BeechHalfLog.h"
 #include "Rock.h"
+#include "Karve.h"
 #include "Shipwreck.h"
 
 #include "FeatureProto.h"
@@ -30,6 +31,8 @@ FeatureProto* FeatureProto::Create(FeatureType featureType)
 		//	return new BeechHalfLog();
 		case FeatureType::Rock:
 			return new Rock();
+		case FeatureType::Karve:
+			return new Karve();
 		case FeatureType::Shipwreck:
 			return new Shipwreck();
 		default:
@@ -65,6 +68,16 @@ void FeatureProto::Update()
 		if (PLAYER->GetCollider()->Intersect(this->GetActor()->collider))
 		{
 			PLAYER->MoveBack(this->GetActor());
+		}
+	}
+	if (ELDER->GetIsElder())
+	{
+		if ((ELDER->GetActor()->GetWorldPos() - actor->GetWorldPos()).Length() < 10.0f)
+		{
+			if (ELDER->GetActor()->collider->Intersect(this->GetActor()->collider))
+			{
+				ReceivedDamageEvent(100, WeaponType::Blunt, Vector3(0, 0, 0));
+			}
 		}
 	}
 
@@ -111,6 +124,32 @@ bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType)
 	hitPoint = max(0.0f, hitPoint - damage);
 
 	UIM->AddDamageText((int)damage, PLAYER->GetCollisionPoint());
+
+	return true;
+}
+
+bool FeatureProto::ReceivedDamageEvent(float damage, WeaponType wType, Vector3 dmgPos)
+{
+	// 타격 애니메이션(흔들림) 재생시간 설정
+	hitAnimDuration = 0.3f;
+
+	// 데미지 계산
+	if (wType == WeaponType::Axe)
+	{
+		if (type == FeatureArmorType::Tree) damage *= 2.0f;
+	}
+	else if (wType == WeaponType::Pickaxe)
+	{
+		if (type == FeatureArmorType::Rock) damage *= 2.0f;
+	}
+
+	// 데미지 적용
+	hitPoint = max(0.0f, hitPoint - damage);
+
+	//데미지 텍스트 출력 위치
+	if (dmgPos == Vector3()) dmgPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 0.5f, 0);
+	
+	UIM->AddDamageText((int)damage, dmgPos);
 
 	return true;
 }

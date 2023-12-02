@@ -1,0 +1,48 @@
+<Root Name="elder_hp" Visible="true" ObType="4">
+    <Mesh File="6.UI.mesh"/>
+    <Shader File="6.UI.hlsl"/>
+    <Material File="Monster_Elder/Elder_BackHp.mtl"/>
+    <Transform>
+        <Position X="0" Y="0.5" Z="0"/>
+        <Scale X="0.5" Y="0.07" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <UI PivotX="0" PivotY="0"/>
+    <Children Size="3"/>
+    <Child0 Name="front_hp" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="Monster_Elder/Elder_FrontHp.mtl"/>
+        <Transform>
+            <Position X="-1" Y="0" Z="0"/>
+            <Scale X="1" Y="1.25" Z="0.85000002"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="1" PivotY="0"/>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="logo" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="Monster_Elder/Elder_Logo.mtl"/>
+        <Transform>
+            <Position X="-0.89999998" Y="0.29999998" Z="0"/>
+            <Scale X="0.15000001" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child1>
+    <Child2 Name="name" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="Monster_Elder/Elder_name.mtl"/>
+        <Transform>
+            <Position X="0.1" Y="2" Z="0"/>
+            <Scale X="0.34999999" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child2>
+</Root>

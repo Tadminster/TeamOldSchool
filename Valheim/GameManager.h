@@ -4,10 +4,11 @@ class GameManager : public Singleton<GameManager>
 {
 public:
     class Terrain*              map;
-    class Water*                sea;
+    class Water*                ocean;
 
     class Recipe*			    recipe;
     class Player*               player;
+    class Elder*                elder;
     class MonsterManager*       monster;
 
     class ObjectManager*        objectManager;

@@ -55,17 +55,17 @@ void ElderStomp::ElderStompPatern(Elder* elder)
 		//한 패턴 후 다음패턴까지 휴식시간 = paternTime
 		if (elder->paternTime < 0)
 		{
-			float distance = (PLAYER->GetPlayer()->GetWorldPos() - elder->GetActor()->GetWorldPos()).Length();
+			distance = (PLAYER->GetPlayer()->GetWorldPos() - elder->GetActor()->GetWorldPos()).Length();
 
 			//엘더 공격 중
 			if (elder->GetState() == E_STOMP)
 			{
 				//발 내려찍기 전까진 이동, 회전값 적용
-				if (elder->actor->anim->GetPlayTime() <= 0.45f)
+				if (elder->actor->anim->GetPlayTime() <= 0.3f)
 				{
-					elder->moveSpeed = 1.0f;
-					elder->rotationScale = 1.0f;
-					elder->RotationForMove();
+					Vector3 moveDir = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
+					moveDir.Normalize();
+					elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);
 				}
 				//발 내려찍는 프레임에 타격 콜라이더 크기 확대
 				if (elder->actor->anim->currentAnimator.currentFrame >= 23
@@ -97,22 +97,24 @@ void ElderStomp::ElderStompPatern(Elder* elder)
 					elder->moveSpeed += DELTA;
 					if (elder->actor->anim->aniScale < 1.0f) elder->actor->anim->aniScale += DELTA * 0.05f;
 				}
-				elder->rotationScale = 0.4f;
+				elder->rotationScale = 0.6f;
+			}
+			
+			//엘더 - 플레이어 거리 4 이하면 공격해라
+			if (distance <= 4.0f)
+			{
+				if (elder->actor->anim->aniScale > 0.5f) elder->actor->anim->aniScale = 0.5f;
+				elder->GetState()->Stomp(elder);
 			}
 			//엘더 - 플레이어 거리 4 이상이면 쫓아가라
-			if (distance > 4.0f && elder->GetState() != E_STOMP)
+			else if (distance > 4.0f && elder->GetState() != E_STOMP)
 			{
 				elder->Astar();
 				elder->GetState()->Walk(elder);
 			}
-			//엘더 - 플레이어 거리 4 이하면 공격해라
-			else if (distance <= 4.0f)
-			{
-				if (elder->actor->anim->aniScale > 0.4f) elder->actor->anim->aniScale = 0.4f;
-				elder->GetState()->Stomp(elder);
-			}
+		
 			//엘더 공격 끝났으면 Idle로 복귀해라
-			if (elder->GetState() == E_STOMP && elder->GetActor()->anim->GetPlayTime() >= 1.0f)
+			if (elder->GetState() == E_STOMP && elder->GetActor()->anim->GetPlayTime() >= 0.95f)
 			{
 				elder->GetState()->Idle(elder);
 				elder->stompPatern = false;
@@ -156,13 +158,32 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 		if (elder->paternTime < 0)
 		{
 			//점프 뛰어서 내려찍고 나서는 방향 움직이지마라
-			if (elder->actor->anim->currentAnimator.currentFrame <= 50 &&
-				elder->jumpAttackMotion == 0)
+			//if (elder->actor->anim->currentAnimator.animIdx == 4)
 			{
-				elder->RotationForMove();
+				if (elder->actor->anim->currentAnimator.currentFrame <= 50 &&
+					elder->jumpAttackMotion == 0)
+				{
+					elder->RotationForMove();
+					/*Vector3 moveDir = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
+					moveDir.Normalize();
+					elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);*/
+				}
 			}
+
+			for (auto& it : spearBundle)
+			{
+				if (PLAYER->GetPlayerHit(it->collider))
+				{
+					if (TIMER->GetTick(spearHitTime, 0.1f))
+					{
+						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
+						PLAYER->hitPoint -= 0.05f;
+					}
+				}
+			}
+
 			//방향이 플레이어를 바라보면 점프 뛰어라
-			if (elder->rotationTime <= 0 )
+			if (elder->rotationTime <= 0.1f )
 			{
 				if(elder->state != E_JumpAttack)
 					elder->state = E_JumpAttack;
@@ -317,7 +338,10 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 		if (elder->paternTime < 0)
 		{
 			elder->state = E_SUMMON;
-			elder->RotationForMove();
+			if(spearBundle.size()==0) elder->RotationForMove();
+			/*Vector3 moveDir = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
+			moveDir.Normalize();
+			elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);*/
 			//플레이어 추적을 제한하기 위한 조건
 			float chaseTime = 0;
 			if (distance >= 0 && distance < 15) chaseTime = 0.3f;
@@ -339,6 +363,19 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			else spearSpeed = 0.15f;
 			//거리에 따른 소환할 창 갯수
 			spearCount = distance / 2.0f + 5;
+
+			for (auto& it : spearBundle)
+			{
+				if (PLAYER->GetPlayerHit(it->collider))
+				{
+					if (TIMER->GetTick(spearHitTime, 0.1f))
+					{
+						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
+						PLAYER->hitPoint -= 0.05f;
+					}
+				}
+			}
+
 			if (spearBundle.size() < spearCount * BUNDLENUM)
 			{
 				if (TIMER->GetTick(summonTime, spearSpeed))

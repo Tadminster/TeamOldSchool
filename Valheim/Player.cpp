@@ -37,14 +37,14 @@ void Player::Init()
 	actor->SetWorldPos(OBJ->GetStartingPosition());
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
-	playerhitPos = this->GetActor()->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
+	//maxHitpoint = 200;
+	//treeCount = 3;
 }
 
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	ImGui::Text("sta %f", staminar);
-	ImGui::Text("blocksta %f", blockStaminar);
+	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -582,7 +582,7 @@ void Player::PlayerHit(float damage)
 		else
 		{
 			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
+			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD,playerhitPos);
 			hitPoint -= damage;
 		}
 		hitTime = 1.0f;

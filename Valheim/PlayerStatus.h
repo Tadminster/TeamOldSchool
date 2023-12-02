@@ -45,6 +45,7 @@ public:
 	PlayerStatus();
 	~PlayerStatus();
 	void Update();
+	void Effect();
 	void RunExp();
 	void JumpExp();
 	void FistExp();

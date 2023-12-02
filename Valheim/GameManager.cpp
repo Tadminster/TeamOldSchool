@@ -10,19 +10,20 @@ GameManager::GameManager()
 	map->PerlinNoiseHeightMap();
 	map->CreateStructuredBuffer();
 
-	sea = Water::Create();
-	sea->LoadFile("Water.xml");
+	ocean = Water::Create();
+	ocean->LoadFile("Water.xml");
 
-	objectManager = new ObjectManager();
+	objectManager	= new ObjectManager();
 	particleManager = new ParticleManager();
-	uiManager = new UserInterfaceManager();
+	uiManager		= new UserInterfaceManager();
 
-	player = new Player();
-	monster = new MonsterManager();
+	player			= new Player();
+	elder			= new Elder();
+	monster			= new MonsterManager();
+	astar			= new AStar();
 
-	recipe = new Recipe();
+	recipe			= new Recipe();
 
-	astar = new AStar();
 }
 
 GameManager::~GameManager()
@@ -31,7 +32,7 @@ GameManager::~GameManager()
 
 void GameManager::Init()
 {
-	//astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
+	astar->CreateNode(MAP, MAP->rowSize * ASTARNODENUM, OBJ->GetColliders());
 }
 
 void GameManager::Release()
@@ -40,6 +41,7 @@ void GameManager::Release()
 
 void GameManager::Update()
 {
+	
 }
 
 void GameManager::LateUpdate()
@@ -48,6 +50,7 @@ void GameManager::LateUpdate()
 
 void GameManager::Render()
 {
+
 }
 
 void GameManager::ResizeScreen()

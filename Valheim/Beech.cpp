@@ -154,6 +154,9 @@ void Beech::DestructionEvent()
 	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(TREE_FALL_01, TREE_FALL_05));
 	SOUND->Play(randomPlay);
 	
+	//플레이어가 파괴한 나무 카운트++
+	PLAYER->SetTreeCount();
+
 	// 오브젝트 삭제 (나무)
 	delete this;
 }

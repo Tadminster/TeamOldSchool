@@ -1,10 +1,10 @@
-<Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
+<Root Name="jellyFish" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="jellyfish/jellyfish.skel" BoneIndexCount="43"/>
     <Animations AnimSize="12" File0="jellyfish/mdlVagrant0.anim" File1="jellyfish/mdlVagrant1.anim" File2="jellyfish/mdlVagrant2.anim" File3="jellyfish/mdlVagrant3.anim" File4="jellyfish/mdlVagrant4.anim" File5="jellyfish/mdlVagrant5.anim" File6="jellyfish/mdlVagrant6.anim" File7="jellyfish/mdlVagrant7.anim" File8="jellyfish/mdlVagrant8.anim" File9="jellyfish/mdlVagrant9.anim" File10="jellyfish/mdlVagrant10.anim" File11="jellyfish/mdlVagrant11.anim"/>
     <Transform>
-        <Position X="-6.3000002" Y="6.9499998" Z="0"/>
+        <Position X="42" Y="-3" Z="35"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Rotation X="3.1415758" Y="0" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
@@ -34,7 +34,7 @@
                     <Shader File="4.Cube.hlsl"/>
                     <Transform>
                         <Position X="0" Y="0.52249998" Z="-3.1993897e-17"/>
-                        <Scale X="1" Y="1" Z="1"/>
+                        <Scale X="2" Y="1" Z="2"/>
                         <Rotation X="0" Y="0" Z="-0"/>
                     </Transform>
                     <Children Size="1"/>
@@ -124,7 +124,7 @@
                     <Shader File="4.Cube.hlsl"/>
                     <Transform>
                         <Position X="0.5467" Y="-0.0137" Z="-0.30790001"/>
-                        <Scale X="0.99999994" Y="1" Z="1"/>
+                        <Scale X="3" Y="2" Z="3"/>
                         <Rotation X="0.066748895" Y="-1.0578895" Z="3.1415925"/>
                     </Transform>
                     <Children Size="1"/>
@@ -205,7 +205,7 @@
                     <Shader File="4.Cube.hlsl"/>
                     <Transform>
                         <Position X="-0.54000002" Y="-0.0137" Z="-0.3195"/>
-                        <Scale X="1" Y="0.99999994" Z="1"/>
+                        <Scale X="3" Y="2" Z="3"/>
                         <Rotation X="0.066747859" Y="1.0366538" Z="-3.1415925"/>
                     </Transform>
                     <Children Size="1"/>
@@ -286,7 +286,7 @@
                     <Shader File="4.Cube.hlsl"/>
                     <Transform>
                         <Position X="-0.0066999998" Y="-0.0137" Z="0.62739998"/>
-                        <Scale X="1" Y="0.99999994" Z="0.99999994"/>
+                        <Scale X="3" Y="2" Z="3"/>
                         <Rotation X="0.066747814" Y="-3.1415458" Z="-3.1408911"/>
                     </Transform>
                     <Children Size="1"/>

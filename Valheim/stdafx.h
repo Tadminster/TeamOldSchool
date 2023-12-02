@@ -8,6 +8,7 @@
 #include "Prototype.h"
 #include "Unit.h"
 #include "Player.h"
+#include "Elder.h"
 #include "MiniMap.h"
 #include "ObjectManager.h"
 #include "ParticleManager.h"
@@ -24,8 +25,10 @@
 #define OBJ			GM->objectManager
 #define PARTICLE    GM->particleManager
 #define MAP			GM->map
-#define SEA			GM->sea
+#define SEA			GM->ocean
 #define PLAYER		GM->player
+#define ELDER		GM->elder
+#define MONSTER		GM->monster
 #define UIM			GM->uiManager
 #define ASTAR		GM->astar
 #define INVEN		UIM->inventory

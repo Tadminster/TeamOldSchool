@@ -1,6 +1,5 @@
 #pragma once
 #include "Prototype.h"
-#include "Shipwreck.h"
 
 class Shipwreck : public FeatureProto
 {

@@ -22,7 +22,6 @@ void Elder_OpeningState::Idle(Elder* elder)
 {
 	elder->SetState(E_IDLE);
 }
-//Opening을 그냥 FSM에서 뺄까..?
 void Elder_OpeningState::Walk(Elder* elder) {}
 void Elder_OpeningState::Stomp(Elder* elder) {}
 void Elder_OpeningState::JumpAttack(Elder* elder) {}

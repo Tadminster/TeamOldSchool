@@ -6,7 +6,7 @@ enum class FeatureType
     Birch, 
     Beech, //BeechInstancing, BeechStump, BeechLog, BeechHalfLog,
     Rock,
-    Shipwreck
+    Karve, Shipwreck
 };
 
 enum class RenderType
@@ -47,6 +47,7 @@ public:
     virtual void LodUpdate(float distance) {};
 
     virtual bool ReceivedDamageEvent(float damage, WeaponType wType);
+    virtual bool ReceivedDamageEvent(float damage, WeaponType wType, Vector3 dmgPos);
     virtual void ReceivedDamageAnimation();
     bool IsDestroyed() override { return hitPoint <= 0; }
     virtual void DestructionEvent() override;
