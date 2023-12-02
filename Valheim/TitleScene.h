@@ -27,9 +27,7 @@ private:
     Actor*          jellyFish;
 
     // ¹öÆ°
-    UI*             btnStart;
-    UI*             btnOption;
-    UI*             btnExit;
+    class TitleUI*        titleUI;
 
 private:
     siv::PerlinNoise perlin;
