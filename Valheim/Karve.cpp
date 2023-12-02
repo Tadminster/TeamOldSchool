@@ -15,6 +15,7 @@ Karve::Karve()
 
 Karve::~Karve()
 {
+	delete this;
 }
 
 void Karve::Init()

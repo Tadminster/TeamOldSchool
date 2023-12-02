@@ -49,7 +49,7 @@ void Shipwreck::Render()
 
 void Shipwreck::Release()
 {
-	Shipwreck::~Shipwreck();
+	delete this;
 }
 
 void Shipwreck::RenderHierarchy()
@@ -76,7 +76,7 @@ bool Shipwreck::ReceivedDamageEvent(float damage, WeaponType wType)
 	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
 
 	// 나무 타격 사운드
-	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(TREE_HIT_01, TREE_HIT_07));
+	SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(WOOD_BREAK_01, WOOD_BREAK_04));
 	SOUND->Play(randomPlay);
 
 	return true;
@@ -93,10 +93,6 @@ void Shipwreck::DestructionEvent()
 		OBJ->AddItem(item);
 	}
 
-	// 나무 파괴 이펙트
-	Vector3 effectPos = this->actor->GetWorldPos() + this->actor->GetUp() * 8.0f;
-	PARTICLE->PlayParticleEffect(EffectType::WOODDROP, effectPos);
-
-	// 오브젝트 삭제 (나무)
-	delete this;
+	// 오브젝트 삭제
+	Release();
 }
