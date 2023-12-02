@@ -7,6 +7,6 @@
         <Scale X="0.03" Y="0.05" Z="0.03"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Rain particleScaleX="0" particleScaleY="0" particleCount="20" rangeX="1.5" rangeY="3.0" rangeZ="1.5" velocityX="0" velocityY="8" velocityZ="0" duration="1"/>
+    <Rain particleScaleX="0" particleScaleY="0" particleCount="35" rangeX="1.2" rangeY="4" rangeZ="1.5" velocityX="0" velocityY="8" velocityZ="0" duration="1.5"/>
     <Children Size="0"/>
 </Root>

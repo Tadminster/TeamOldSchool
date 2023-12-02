@@ -2,9 +2,13 @@
 class PlayerStatus
 {
 	friend class Player;
+
+	class UI*	skillLevelUp = nullptr;
+	bool		levelUpAnim = false;
+	float		animTime = 0;
 	int			totalLevel = 0;
 	//Run-------------------------------------------------------------
-	const float requiredExp_Run[5] = { 5.0f,10.0f,15.0f,20.0f,25.0f };
+	const float requiredExp_Run[5] = { 3.0f,7.0f,11.0f,15.0f,20.0f };
 	float		runExp = 0;
 	float		runAnimSpeed = 0.7f;
 	float		runSpeed = 5.0;
@@ -45,6 +49,9 @@ public:
 	PlayerStatus();
 	~PlayerStatus();
 	void Update();
+	void RenderHierachy();
+	void Render();
+	void UIoff();
 	void Effect();
 	void RunExp();
 	void JumpExp();

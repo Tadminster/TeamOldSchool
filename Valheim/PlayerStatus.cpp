@@ -4,7 +4,9 @@
 
 PlayerStatus::PlayerStatus()
 {
-	
+	skillLevelUp = UI::Create();
+	skillLevelUp->LoadFile("Unit/Skill_LevelUp.xml");
+	skillLevelUp->name = "skillLevelUp";
 }
 PlayerStatus::~PlayerStatus()
 {
@@ -22,12 +24,56 @@ void PlayerStatus::Update()
 		BlockExp();
 		totalLevel = runLevel + jumpLevel + fistLevel + swingLevel + axeLevel + shieldLevel + blcokdLevel;
 	}
+
+	if (levelUpAnim)
+	{
+		animTime += DELTA;
+		if (animTime < 5.0f)
+		{
+			if (skillLevelUp->GetWorldPos().x < -0.8f)
+			{
+				skillLevelUp->MoveWorldPos(skillLevelUp->GetRight() * 0.5f * DELTA);
+			}
+		}
+		else 
+		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			levelUpAnim = false;
+			skillLevelUp->Find("Icon")->visible = false;
+			skillLevelUp->Find("Jump")->visible = false;
+			skillLevelUp->Find("Fist")->visible = false;
+			skillLevelUp->Find("Axe")->visible = false;
+			skillLevelUp->Find("Swing")->visible = false;
+			skillLevelUp->Find("Shield")->visible = false;
+		}
+	
+	}
+
+	skillLevelUp->Update();
+}
+void PlayerStatus::RenderHierachy()
+{
+	skillLevelUp->RenderHierarchy();
+}
+void PlayerStatus::Render()
+{
+	skillLevelUp->Render();
+}
+void PlayerStatus::UIoff()
+{
+	skillLevelUp->Find("Icon")->visible = false;
+	skillLevelUp->Find("Jump")->visible = false;
+	skillLevelUp->Find("Fist")->visible = false;
+	skillLevelUp->Find("Axe")->visible = false;
+	skillLevelUp->Find("Swing")->visible = false;
+	skillLevelUp->Find("Shield")->visible = false;
 }
 void PlayerStatus::Effect()
 {
-	//PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
-	//PARTICLE->PlayParticleEffect(EffectType::LEVELUPONHEAD, PLAYER->actor->Find("mixamorig:Head")->GetWorldPos());
+	levelUpAnim = true;
 	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->GetWorldPos());
+	
 }
 void PlayerStatus::RunExp()
 {
@@ -43,6 +89,10 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Icon")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -56,6 +106,10 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Icon")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -69,6 +123,10 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Icon")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -82,6 +140,10 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Icon")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -95,6 +157,10 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Icon")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -112,6 +178,10 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Jump")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -125,6 +195,10 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Jump")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -139,6 +213,10 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Jump")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -153,6 +231,10 @@ void PlayerStatus::JumpExp()
 	
 		if (jumpLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Jump")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -167,6 +249,10 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Jump")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -184,6 +270,10 @@ void PlayerStatus::FistExp()
 		
 		if (fistLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Fist")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -197,6 +287,10 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Fist")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -210,6 +304,10 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Fist")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -223,6 +321,10 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Fist")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -236,6 +338,10 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Fist")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -251,6 +357,10 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Swing")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -264,6 +374,10 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Swing")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -277,6 +391,10 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Swing")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -290,6 +408,10 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Swing")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -303,6 +425,10 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Swing")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -319,6 +445,10 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Axe")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -332,6 +462,10 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Axe")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -345,6 +479,10 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Axe")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -358,6 +496,10 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Axe")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -371,6 +513,10 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Axe")->visible = true;
 			Effect();
 			PLAYER->maxHitpoint += 1.0f;
 			PLAYER->maxStaminar += 1.0f;
@@ -395,10 +541,13 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 4.0f;
 			shieldStaminar = 1.5f;
 			shieldLevel = 5;
@@ -408,10 +557,13 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 3.0f;
 			shieldStaminar = 2.0f;
 			shieldLevel = 4;
@@ -422,10 +574,13 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 2.5f;
 			shieldStaminar = 2.5f;
 			shieldLevel = 3;
@@ -436,10 +591,13 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 2.0f;
 			shieldStaminar = 3.0f;
 			shieldLevel = 2;
@@ -450,10 +608,13 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			shieldSpeed = 1.5f;
 			shieldStaminar = 3.5f;
 			shieldLevel = 1;
@@ -467,12 +628,14 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 5)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			PLAYER->blockStaminar = 5.0f;
-			//blockStaminar = 5.0f;
 			blockAbility = 0.2f;
 			blcokdLevel = 5;
 		}
@@ -482,12 +645,14 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 4)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			PLAYER->blockStaminar = 6.0f;
-			//blockStaminar = 6.0f;
 			blockAbility = 0.15f;
 			blcokdLevel = 4;
 		}
@@ -497,12 +662,14 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 3)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			PLAYER->blockStaminar = 7.0f;
-			//blockStaminar = 7.0f;
 			blockAbility = 0.1f;
 			blcokdLevel = 3;
 		}
@@ -512,12 +679,14 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 2)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			PLAYER->blockStaminar = 8.0f;
-			//blockStaminar = 8.0f;
 			blockAbility = 0.05f;
 			blcokdLevel = 2;
 		}
@@ -527,10 +696,13 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 1)
 		{
+			skillLevelUp->SetWorldPosX(-1.1f);
+			animTime = 0;
+			UIoff();
+			skillLevelUp->Find("Shield")->visible = true;
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			PLAYER->blockStaminar = 9.0f;
 			blockAbility = 0.02f;
 			blcokdLevel = 1;

@@ -78,6 +78,12 @@ void Elder::Update()
 			ApplyGravity();
 			if (hp->Find("front_hp")->scale.x < 0.1f) hp->Find("front_hp")->scale.x = 0;
 			else hp->Find("front_hp")->scale.x = hitPoint / maxHitpoint;
+
+			if ((PLAYER->GetActor()->GetWorldPos() - actor->GetWorldPos()).Length() <= 30.0f)
+			{
+				if (hp->visible == false) hp->visible = true;
+			}
+
 		}
 		if (PLAYER->GetTreeCount() >= 3)
 		{
@@ -90,7 +96,6 @@ void Elder::Update()
 				mentTime = 0;
 				actor->LoadFile("/Unit/Monster_Elder.xml");
 				isElder = true;
-				hp->visible = true;
 			}
 			//더이상 분노를 참을 수 없습니다!
 			else if (mentTime >= 5.0f)

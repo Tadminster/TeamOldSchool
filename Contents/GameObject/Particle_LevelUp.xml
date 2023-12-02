@@ -7,6 +7,6 @@
         <Scale X="0.050000001" Y="0.050000001" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="1.5" duration="1.5" gravity="-3"/>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="1.5" duration="3" gravity="-3"/>
     <Children Size="0"/>
 </Root>

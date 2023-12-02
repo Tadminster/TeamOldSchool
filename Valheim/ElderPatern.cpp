@@ -174,7 +174,7 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 			{
 				if (PLAYER->GetPlayerHit(it->collider))
 				{
-					if (TIMER->GetTick(spearHitTime, 0.1f))
+					if (TIMER->GetTick(spearHitTime, 0.2f))
 					{
 						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
 						PLAYER->hitPoint -= 0.05f;
@@ -185,8 +185,7 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 			//방향이 플레이어를 바라보면 점프 뛰어라
 			if (elder->rotationTime <= 0.1f )
 			{
-				if(elder->state != E_JumpAttack)
-					elder->state = E_JumpAttack;
+				if(elder->state != E_JumpAttack) elder->state = E_JumpAttack;
 				//이동시작 프레임 19, 정지 프레임 50
 				if (elder->actor->anim->currentAnimator.currentFrame >= 14 &&
 					elder->actor->anim->currentAnimator.currentFrame <= 50 &&
@@ -202,106 +201,108 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 				else elder->moveSpeed = 2.0f;
 			}
 			//8방향 * 7(방향당 소환할 창 갯수)
-			if (spearIdx < 56)
-			{
-				Vector3 direction = {};
-				float spearDirection = 0;
-				if (elder->actor->anim->GetPlayTime()>0.8f)
+			if (elder->state == E_JumpAttack) {
+				if (spearIdx < 56)
 				{
-				switch (spearIdx % 8)
-				{
-				case 0:
-					direction = elder->GetActor()->GetForward();
-					spearDirection = elder->GetActor()->rotation.y;
-					break;
-				case 1:
-					direction = -elder->GetActor()->GetForward();
-					spearDirection = -elder->GetActor()->rotation.y;
-					break;
-				case 2:
-					direction = elder->GetActor()->GetRight();
-					spearDirection = elder->GetActor()->rotation.y + 90.0f * ToRadian;
-					break;
-				case 3:
-					direction = -elder->GetActor()->GetRight();
-					spearDirection = -elder->GetActor()->rotation.y - 90.0f * ToRadian;
-					break;
-				case 4:
-					direction = elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
-					direction.Normalize();
-					spearDirection = elder->GetActor()->rotation.y + 45.0f * ToRadian;
-					break;
-				case 5:
-					direction = elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
-					direction.Normalize();
-					spearDirection = elder->GetActor()->rotation.y - 45.0f * ToRadian;
-					break;
-				case 6:
-					direction = -elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
-					direction.Normalize();
-					spearDirection = elder->GetActor()->rotation.y + 135.0f * ToRadian;
-					break;
-				case 7:
-					direction = -elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
-					direction.Normalize();
-					spearDirection = elder->GetActor()->rotation.y - 135.0f * ToRadian;
-					break;
-				}
-
-				Vector3 temp = { RANDOM->Float(-2.0f, 2.0f), 0, RANDOM->Float(-2.0f, 2.0f) };
-				Actor* spear = Actor::Create();
-				spear->LoadFile("/Unit/SummonSpear.xml");
-				spear->SetWorldPos(elder->GetActor()->GetWorldPos() + direction * interval + temp);
-				spear->rotation.y = spearDirection;
-				spear->rotation.x = RANDOM->Float(30.0f, 50.0f) * ToRadian;
-				spear->Update();
-				spearRay.position = spear->GetWorldPos() + Vector3(0, 1000, 0);
-				if (Utility::RayIntersectMap(spearRay, MAP, spearY))
-				{
-					spear->SetWorldPosY(spearY.y);
-				}
-				spearBundle.emplace_back(spear);
-
-				spearIdx++;
-				}
-			}
-			else
-			{
-				respawnTime += DELTA;
-				
-				if (respawnTime >= RANDOM->Float(1.5f,3.0f))
-				{
-					if (respawnPhase == 0)
+					Vector3 direction = {};
+					float spearDirection = 0;
+					if (elder->actor->anim->GetPlayTime() > 0.8f)
 					{
-						respawnTime = 0;
-						spearIdx = 0;
-						if (RANDOM->Int(0, 1))
+						switch (spearIdx % 8)
 						{
-							respawnPhase++;
-							interval = RANDOM->Float(5.0f, 7.0f);
-							elder->jumpAttackMotion++;
+						case 0:
+							direction = elder->GetActor()->GetForward();
+							spearDirection = elder->GetActor()->rotation.y;
+							break;
+						case 1:
+							direction = -elder->GetActor()->GetForward();
+							spearDirection = -elder->GetActor()->rotation.y;
+							break;
+						case 2:
+							direction = elder->GetActor()->GetRight();
+							spearDirection = elder->GetActor()->rotation.y + 90.0f * ToRadian;
+							break;
+						case 3:
+							direction = -elder->GetActor()->GetRight();
+							spearDirection = -elder->GetActor()->rotation.y - 90.0f * ToRadian;
+							break;
+						case 4:
+							direction = elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
+							direction.Normalize();
+							spearDirection = elder->GetActor()->rotation.y + 45.0f * ToRadian;
+							break;
+						case 5:
+							direction = elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
+							direction.Normalize();
+							spearDirection = elder->GetActor()->rotation.y - 45.0f * ToRadian;
+							break;
+						case 6:
+							direction = -elder->GetActor()->GetForward() + elder->GetActor()->GetRight();
+							direction.Normalize();
+							spearDirection = elder->GetActor()->rotation.y + 135.0f * ToRadian;
+							break;
+						case 7:
+							direction = -elder->GetActor()->GetForward() - elder->GetActor()->GetRight();
+							direction.Normalize();
+							spearDirection = elder->GetActor()->rotation.y - 135.0f * ToRadian;
+							break;
+						}
+
+						Vector3 temp = { RANDOM->Float(-2.0f, 2.0f), 0, RANDOM->Float(-2.0f, 2.0f) };
+						Actor* spear = Actor::Create();
+						spear->LoadFile("/Unit/SummonSpear.xml");
+						spear->SetWorldPos(elder->GetActor()->GetWorldPos() + direction * interval + temp);
+						spear->rotation.y = spearDirection;
+						spear->rotation.x = RANDOM->Float(30.0f, 50.0f) * ToRadian;
+						spear->Update();
+						spearRay.position = spear->GetWorldPos() + Vector3(0, 1000, 0);
+						if (Utility::RayIntersectMap(spearRay, MAP, spearY))
+						{
+							spear->SetWorldPosY(spearY.y);
+						}
+						spearBundle.emplace_back(spear);
+
+						spearIdx++;
+					}
+				}
+				else
+				{
+					respawnTime += DELTA;
+
+					if (respawnTime >= RANDOM->Float(1.5f, 3.0f))
+					{
+						if (respawnPhase == 0)
+						{
+							respawnTime = 0;
+							spearIdx = 0;
+							if (RANDOM->Int(0, 1))
+							{
+								respawnPhase++;
+								interval = RANDOM->Float(5.0f, 7.0f);
+								elder->jumpAttackMotion++;
+							}
+							else
+							{
+								respawnPhase = 0;
+								elder->jumpAttackMotion = 0;
+								spearBundle.clear();
+								elder->state = E_IDLE;
+								elder->stompPatern = true;
+								elder->paternTime = 2.5f;
+							}
 						}
 						else
 						{
+							respawnTime = 0;
+							spearIdx = 0;
 							respawnPhase = 0;
+							interval = RANDOM->Float(2.0f, 4.0f);
 							elder->jumpAttackMotion = 0;
 							spearBundle.clear();
 							elder->state = E_IDLE;
 							elder->stompPatern = true;
 							elder->paternTime = 2.5f;
 						}
-					}
-					else
-					{
-						respawnTime = 0;
-						spearIdx = 0;
-						respawnPhase = 0;
-						interval = RANDOM->Float(2.0f, 4.0f);
-						elder->jumpAttackMotion = 0;
-						spearBundle.clear();
-						elder->state = E_IDLE;
-						elder->stompPatern = true;
-						elder->paternTime = 2.5f;
 					}
 				}
 			}
@@ -368,7 +369,7 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			{
 				if (PLAYER->GetPlayerHit(it->collider))
 				{
-					if (TIMER->GetTick(spearHitTime, 0.1f))
+					if (TIMER->GetTick(spearHitTime, 0.2f))
 					{
 						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
 						PLAYER->hitPoint -= 0.05f;
