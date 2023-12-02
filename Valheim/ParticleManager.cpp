@@ -37,6 +37,11 @@ ParticleManager::ParticleManager()
 	healEffect2 = Rain::Create("Particle_HealEffect2");
 	healEffect2->LoadFile("Particle_HealEffect2.xml");
 
+	waterSplash = Pop::Create("Particle_WaterSplash");
+	waterSplash->LoadFile("Particle_WaterSplash.xml");
+
+	waterWave = Pop::Create("Particle_WaterWave");
+	waterWave->LoadFile("Particle_WaterWave.xml");
 }
 
 ParticleManager::~ParticleManager()
@@ -63,6 +68,9 @@ void ParticleManager::Update()
 	levelUpOnHead->Update();
 	healEffect->Update();
 	healEffect2->Update();
+	waterSplash->Update();
+	waterWave->Update();
+
 }
 
 void ParticleManager::LateUpdate()
@@ -80,6 +88,8 @@ void ParticleManager::Render()
 	levelUp->Render();
 	healEffect->Render();
 	healEffect2->Render();
+	waterSplash->Render();
+	waterWave->Render();
 
 	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
 	/*BLEND->Set(true);
@@ -93,6 +103,8 @@ void ParticleManager::Render()
 	if (levelUpOnHead->desc2.alpha >= 1.0f) levelUpOnHead->desc2.alpha = 0.0f;
 	levelUpOnHead->Render();
 	BLEND->Set(false);
+
+	//waterWave->scale += Vector3(0.2f, 0.2f, 0.2f) * DELTA;
 }
 
 void ParticleManager::RenderHierarchy()
@@ -109,6 +121,8 @@ void ParticleManager::RenderHierarchy()
 		levelUpOnHead->RenderHierarchy();
 		healEffect->RenderHierarchy();
 		healEffect2->RenderHierarchy();
+		waterSplash->RenderHierarchy();
+		waterWave->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -170,6 +184,18 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		healEffect2->SetWorldPos(pos);
 		healEffect2->Play();
 		cout << "캐릭터 회복 이펙트2" << endl;
+	}
+	else if (type == EffectType::WATERSPLASH)
+	{
+		waterSplash->SetWorldPos(pos);
+		waterSplash->Play();
+		cout << "파도 철썩임" << endl;
+	}
+	else if (type == EffectType::WATERWAVE)
+	{
+		waterWave->SetWorldPos(pos);
+		waterWave->Play();
+		cout << "파도 철썩임" << endl;
 	}
 }
 

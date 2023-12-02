@@ -93,26 +93,26 @@ void Pop::Reset()
 		//파티클의 크기
 		/*scale.x = max(0.05f,this->scale.x+ RANDOM->Float(-randomSize.x, randomSize.x));
 		scale.y = max(0.05f,this->scale.y+ RANDOM->Float(-randomSize.y, randomSize.y));*/
-		scale.x = this->scale.x;
-		scale.y = this->scale.y;
+		scale.x =	this->scale.x;
+		scale.y =	this->scale.y;
 
 		//위치
 		Vector3 position = Vector3(0, 0, 0);
-		//Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
+		/*Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), 0, RANDOM->Float(0, randomPosition.z));*/
 
 		//방향벡터 Right
-		Vector3 velocity = Vector3(1, 0, 0);
+		Vector3 velocity = Vector3(0, 0, 0);
 
 		//임의의 회전된 3개축
-		Vector3 rot;
-		rot.y = RANDOM->Float(0.0f, PI * 2.0f);
-		rot.x = RANDOM->Float(0.0f, PI * 2.0f);
-		rot.z = RANDOM->Float(0.0f, PI * 2.0f);
-		//임의의 회전행렬
-		Matrix matRot = Matrix::CreateFromYawPitchRoll(rot.y, rot.x, rot.z);
-		// v = v * R
-		velocity = Vector3::TransformNormal(velocity, matRot);
-		velocity *= velocityScalar;
+		//Vector3 rot;
+		//rot.y = RANDOM->Float(0.0f, PI * 0.5f);
+		//rot.x = RANDOM->Float(0.0f, PI * 0.5f);
+		//rot.z = RANDOM->Float(0.0f, PI * 0.5f);
+		////임의의 회전행렬
+		//Matrix matRot = Matrix::CreateFromYawPitchRoll(rot.y, rot.x, rot.z);
+		//// v = v * R
+		//velocity = Vector3::TransformNormal(velocity, matRot);
+		//velocity *= velocityScalar;
 
 
 		//내가 방향벡터를 3개축을 랜덤값으로 회전시켜 잡는다.
