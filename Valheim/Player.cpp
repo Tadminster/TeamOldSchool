@@ -43,8 +43,7 @@ void Player::Init()
 void Player::Update()
 {
 	lastPos = actor->GetWorldPos();
-	ImGui::Text("sta %f", staminar);
-	ImGui::Text("blocksta %f", blockStaminar);
+	
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;

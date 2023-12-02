@@ -13,16 +13,17 @@ GameManager::GameManager()
 	sea = Water::Create();
 	sea->LoadFile("Water.xml");
 
-	objectManager = new ObjectManager();
+	objectManager	= new ObjectManager();
 	particleManager = new ParticleManager();
-	uiManager = new UserInterfaceManager();
+	uiManager		= new UserInterfaceManager();
 
-	player = new Player();
-	monster = new MonsterManager();
+	player			= new Player();
+	elder			= new Elder();
+	monster			= new MonsterManager();
+	astar			= new AStar();
 
-	recipe = new Recipe();
+	recipe			= new Recipe();
 
-	astar = new AStar();
 }
 
 GameManager::~GameManager()

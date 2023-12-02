@@ -10,7 +10,13 @@ class Elder : public Unit
 	class		 ElderPatern* patern = nullptr;
 	class		 ElderState*  state  = nullptr;
 
+	class		 UI*		  ment1 = nullptr;
+	class		 UI*		  ment2 = nullptr;
+	class		 UI*		  ment3 = nullptr;
+	class		 UI*		  ment4 = nullptr;
 	
+	float					  mentTime = 0;
+
 	int						  paternType = 0;
 	float					  paternTime = 0;
 	int						  jumpAttackMotion = 0;
@@ -31,6 +37,7 @@ public:
 	void SetState(ElderState* state);
 	ElderState* GetState() { return state; }
 	int GetJumpAttackMotion() { return jumpAttackMotion; }
+	bool GetIsElder() { return isElder; }
 	void BehaviorPatern();
 	void DoFSM();
 };

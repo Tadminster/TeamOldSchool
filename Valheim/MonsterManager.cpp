@@ -24,17 +24,18 @@ MonsterManager::MonsterManager()
 		}
 	}
 
-	elder = new Elder();
+	
 
 }
 
 MonsterManager::~MonsterManager()
 {
+
 }
 
 void MonsterManager::Init()
 {
-	elder->Init();
+	ELDER->Init();
 
 	for (auto& it : unit)
 	{
@@ -57,7 +58,7 @@ void MonsterManager::Release()
 
 void MonsterManager::Update()
 {
-	elder->Update();
+	ELDER->Update();
 
 	for (auto& it : unit)
 	{
@@ -76,7 +77,7 @@ void MonsterManager::Update()
 
 void MonsterManager::LateUpdate()
 {
-	elder->LateUpdate();
+	ELDER->LateUpdate();
 
 	for (auto& it : unit)
 	{
@@ -87,7 +88,7 @@ void MonsterManager::LateUpdate()
 
 void MonsterManager::RenderHierarchy()
 {
-	elder->RenderHierarchy();
+	ELDER->RenderHierarchy();
 
 	for (auto& it : unit)
 	{
@@ -106,7 +107,7 @@ void MonsterManager::RenderHierarchy()
 
 void MonsterManager::Render()
 {
-	elder->Render();
+	ELDER->Render();
 
 	for (auto& it : unit)
 	{

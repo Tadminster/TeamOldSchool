@@ -40,17 +40,19 @@ class Player : public Unit
 	float					growthStaminar = 0.05f;
 	float					staminarTime = 0;
 	bool					staminarOn = false;
-	//경험치 변수--------------------------------------
+	//경험치 변수-------------------------------------------
 	int						jumpCount = 0;
 	int						fistCount = 0;
 	int						swingCount = 0;
 	int						axeCount = 0;
 	int						blockCount = 0;
-	//피격 파티클 위치
-	Vector3					playerhitPos = {};
-	//-----------------------------------------------------
+	//능력치-------------------------------------------------
 	float					fistDMG = 5.0f;
 	float					blockStaminar = 10.0f;
+	//피격 파티클 위치
+	Vector3					playerhitPos = {};
+	//파괴한 나무 카운트--------------------------------------
+	int						treeCount = 0;
 
 	bool					isJump = false;
 	bool					isPlayerCam = true;
@@ -91,6 +93,9 @@ public:
 	float			GetMoveSpeed()					{ return moveSpeed; }
 	bool			GetPlayerJump()					{ return isJump; }
 	bool			GetPlayerHit(Collider* atkcol);
+	int				GetTreeCount() { return treeCount; }
+	void			SetTreeCount() { treeCount++; }
+
 
 	bool			CleanHit(Collider* object);
 	bool			CleanFrame();

@@ -24,7 +24,6 @@ Goblin::Goblin(Vector3 spawnPos)
 
 Goblin::~Goblin()
 {
-	
 }
 
 void Goblin::Init()

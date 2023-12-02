@@ -2,6 +2,8 @@
 #define MOVINGSPACE 7
 class Goblin : public Unit
 {
+	friend class Goblin_DeathState;
+
 	class GoblinState* state = nullptr;
 	
 	vector<Vector3>		idlePos = {};
@@ -12,6 +14,7 @@ class Goblin : public Unit
 	bool				isAngry = false;
 	bool				firstHit = false;
 	float				angryTime = 0;
+	float				deathTime = 0;
 public:
 	Goblin(Vector3 spawnPos);
 	~Goblin();
