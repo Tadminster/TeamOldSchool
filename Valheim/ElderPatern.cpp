@@ -169,7 +169,19 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 					elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);*/
 				}
 			}
-			
+
+			for (auto& it : spearBundle)
+			{
+				if (PLAYER->GetPlayerHit(it->collider))
+				{
+					if (TIMER->GetTick(spearHitTime, 0.1f))
+					{
+						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
+						PLAYER->hitPoint -= 0.05f;
+					}
+				}
+			}
+
 			//방향이 플레이어를 바라보면 점프 뛰어라
 			if (elder->rotationTime <= 0.1f )
 			{
@@ -326,7 +338,7 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 		if (elder->paternTime < 0)
 		{
 			elder->state = E_SUMMON;
-			elder->RotationForMove();
+			if(spearBundle.size()==0) elder->RotationForMove();
 			/*Vector3 moveDir = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
 			moveDir.Normalize();
 			elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);*/
@@ -351,6 +363,19 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			else spearSpeed = 0.15f;
 			//거리에 따른 소환할 창 갯수
 			spearCount = distance / 2.0f + 5;
+
+			for (auto& it : spearBundle)
+			{
+				if (PLAYER->GetPlayerHit(it->collider))
+				{
+					if (TIMER->GetTick(spearHitTime, 0.1f))
+					{
+						PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, PLAYER->playerhitPos);
+						PLAYER->hitPoint -= 0.05f;
+					}
+				}
+			}
+
 			if (spearBundle.size() < spearCount * BUNDLENUM)
 			{
 				if (TIMER->GetTick(summonTime, spearSpeed))

@@ -9,6 +9,8 @@ class Player : public Unit
 	friend class BlockState;
 	friend class BlockFailState;
 	friend class PlayerStatus;
+	friend class ElderJumpAttack;
+	friend class ElderSummonSpear;
 
 	class PlayerState*		state = nullptr;
 	class PlayerStatus*		status = nullptr;

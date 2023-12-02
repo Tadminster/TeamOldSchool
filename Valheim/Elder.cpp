@@ -29,7 +29,12 @@ Elder::Elder()
 	ment4->LoadFile("/Unit/Elder_Ment4.xml");
 	ment4->name = "Ment4";
 
-	hitPoint = 10.0f;
+	hp = UI::Create();
+	hp->LoadFile("Unit/Elder_HP.xml");
+	hp->name = "elder_hp";
+	
+	hitPoint = 200;
+	maxHitpoint = 200;
 }
 
 Elder::~Elder()
@@ -62,14 +67,16 @@ void Elder::Update()
 			dir.Normalize();
 			actor->rotation.x = asinf(dir.y);
 		}
+		//hp->visible = false;
 	}
 	else
 	{
 		if (isElder)
 		{
 			BehaviorPatern();
-		
 			ApplyGravity();
+			if (hp->Find("front_hp")->scale.x < 0.1f) hp->Find("front_hp")->scale.x = 0;
+			else hp->Find("front_hp")->scale.x = hitPoint / maxHitpoint;
 		}
 		if (PLAYER->GetTreeCount() >= 3)
 		{
@@ -82,6 +89,7 @@ void Elder::Update()
 				mentTime = 0;
 				actor->LoadFile("/Unit/Monster_Elder.xml");
 				isElder = true;
+				hp->visible = true;
 			}
 			//더이상 분노를 참을 수 없습니다!
 			else if (mentTime >= 5.0f)
@@ -135,6 +143,7 @@ void Elder::Update()
 
 	actor->Update();
 	patern->Update();
+	hp->Update();
 	if (ment1) ment1->Update();
 	if (ment2) ment2->Update();
 	if (ment3) ment3->Update();
@@ -153,7 +162,10 @@ void Elder::LateUpdate()
 		{
 			PLAYER->PlayerHit(10.0f);
 		}
-		//else if()
+		else if (PLAYER->GetPlayerHit(actor->collider) && state == E_JumpAttack)
+		{
+			PLAYER->PlayerHit(15.0f);
+		}
 
 		//Player 공격 -> Elder 피격
 		if (PLAYER->GetWeoponCollider(actor->collider))
@@ -170,6 +182,7 @@ void Elder::Render()
 {
 	actor->Render();
 	patern->Render();
+	hp->Render();
 	if (ment1) ment1->Render();
 	if (ment2) ment2->Render();
 	if (ment3) ment3->Render();
@@ -183,6 +196,8 @@ void Elder::Release()
 void Elder::RenderHierarchy()
 {
 	actor->RenderHierarchy();
+	hp->RenderHierarchy();
+	
 	if (ment1) ment1->RenderHierarchy();
 	if (ment2) ment2->RenderHierarchy();
 	if (ment3) ment3->RenderHierarchy();

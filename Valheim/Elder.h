@@ -14,7 +14,9 @@ class Elder : public Unit
 	class		 UI*		  ment2 = nullptr;
 	class		 UI*		  ment3 = nullptr;
 	class		 UI*		  ment4 = nullptr;
-	
+
+	class		 UI*		  hp = nullptr;
+
 	float					  mentTime = 0;
 
 	int						  paternType = 0;

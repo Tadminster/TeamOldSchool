@@ -62,7 +62,7 @@ void MonsterManager::Update()
 
 	for (auto& it : unit)
 	{
-		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 40.0f)
+		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 30.0f)
 			it->Update();
 	}
 	/*for (int i = 0; i < 9; i++)
@@ -81,7 +81,7 @@ void MonsterManager::LateUpdate()
 
 	for (auto& it : unit)
 	{
-		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 40.0f)
+		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 30.0f)
 			it->LateUpdate();
 	}
 }
@@ -111,7 +111,7 @@ void MonsterManager::Render()
 
 	for (auto& it : unit)
 	{
-		if((PLAYER->GetActor()->GetWorldPos()-it->GetActor()->GetWorldPos()).Length()<40.0f)
+		if((PLAYER->GetActor()->GetWorldPos()-it->GetActor()->GetWorldPos()).Length()<30.0f)
 			it->Render();
 	}
 	/*for (int i = 0; i < 9; i++)

@@ -23,6 +23,11 @@ void PlayerStatus::Update()
 		totalLevel = runLevel + jumpLevel + fistLevel + swingLevel + axeLevel + shieldLevel + blcokdLevel;
 	}
 }
+void PlayerStatus::Effect()
+{
+	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
+	PARTICLE->PlayParticleEffect(EffectType::LEVELUPONHEAD, PLAYER->actor->Find("mixamorig:Head")->GetWorldPos());
+}
 void PlayerStatus::RunExp()
 {
 	if (runExp < requiredExp_Run[4])
@@ -93,10 +98,9 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 1)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			runAnimSpeed = 0.8f;
 			runStaminar = 9.0f;
 			runSpeed = 6.0;
@@ -260,10 +264,9 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 5)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.2f;
 			swingStaminar = 2.0f;
 			swingLevel = 5;
@@ -274,10 +277,9 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 4)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.1f;
 			swingStaminar = 2.5f;
 			swingLevel = 4;
@@ -288,10 +290,9 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 3)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 1.0f;
 			swingStaminar = 3.0f;
 			swingLevel = 3;
@@ -302,10 +303,9 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 2)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 0.9f;
 			swingStaminar = 3.5f;
 			swingLevel = 2;
@@ -316,10 +316,9 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 1)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			swingAnimSpeed = 0.8f;
 			swingStaminar = 4.0f;
 			swingLevel = 1;
@@ -333,10 +332,9 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 5)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.2f;
 			axeStaminar = 2.0f;
 			axeLevel = 5;
@@ -347,10 +345,9 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 4)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.1f;
 			axeStaminar = 2.5f;
 			axeLevel = 4;
@@ -361,10 +358,9 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 3)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 1.0f;
 			axeStaminar = 3.0f;
 			axeLevel = 3;
@@ -375,10 +371,9 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 2)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 0.9f;
 			axeStaminar = 3.5f;
 			axeLevel = 2;
@@ -389,10 +384,9 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 1)
 		{
+			Effect();
 			PLAYER->maxHitpoint += 1.0f;
-			//PLAYER->hitPoint = PLAYER->maxHitpoint;
 			PLAYER->maxStaminar += 1.0f;
-			//PLAYER->staminar = PLAYER->maxStaminar;
 			axeAnimSpeed = 0.8f;
 			axeStaminar = 4.0f;
 			axeLevel = 1;
