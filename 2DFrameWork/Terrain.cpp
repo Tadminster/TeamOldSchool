@@ -41,9 +41,13 @@ Terrain::Terrain()
 
 Terrain::~Terrain()
 {
-	for (int i = 0; i < size; i++) 
-		delete[] isThereFeature[i]; // 각 행에 대한 메모리 해제
-	delete[] isThereFeature; // 전체 배열에 대한 메모리 해제
+		//for (int i = 0; i < size; i++)
+		//{
+		//		// 각 행에 대한 메모리 해제
+		//		delete[] isThereFeature[i];
+		//}
+		//// 전체 배열에 대한 메모리 해제
+		//delete[] isThereFeature;
 }
 
 
