@@ -31,6 +31,12 @@ ParticleManager::ParticleManager()
 	levelUpOnHead = Pop::Create("Particle_LevelUpOnHead");
 	levelUpOnHead->LoadFile("Particle_levelUpOnHead.xml");
 	
+	healEffect = Pop::Create("Particle_HealEffect");
+	healEffect->LoadFile("Particle_HealEffect.xml");
+
+	healEffect2 = Rain::Create("Particle_HealEffect2");
+	healEffect2->LoadFile("Particle_HealEffect2.xml");
+
 }
 
 ParticleManager::~ParticleManager()
@@ -55,6 +61,8 @@ void ParticleManager::Update()
 	hitRock->Update();
 	levelUp->Update();
 	levelUpOnHead->Update();
+	healEffect->Update();
+	healEffect2->Update();
 }
 
 void ParticleManager::LateUpdate()
@@ -70,6 +78,8 @@ void ParticleManager::Render()
 	hitBlood->Render();
 	hitRock->Render();
 	levelUp->Render();
+	healEffect->Render();
+	healEffect2->Render();
 
 	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
 	/*BLEND->Set(true);
@@ -97,6 +107,8 @@ void ParticleManager::RenderHierarchy()
 		hitRock->RenderHierarchy();
 		levelUp->RenderHierarchy();
 		levelUpOnHead->RenderHierarchy();
+		healEffect->RenderHierarchy();
+		healEffect2->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -146,6 +158,18 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		levelUpOnHead->SetWorldPos(pos);
 		levelUpOnHead->Play();
 		cout << "레벨업 캐릭터 머리위 이펙트" << endl;
+	}
+	else if (type == EffectType::HEALEFFECT)
+	{
+		healEffect->SetWorldPos(pos);
+		healEffect->Play();
+		cout << "캐릭터 회복 이펙트" << endl;
+	}
+	else if (type == EffectType::HEALEFFECT2)
+	{
+		healEffect2->SetWorldPos(pos);
+		healEffect2->Play();
+		cout << "캐릭터 회복 이펙트2" << endl;
 	}
 }
 
