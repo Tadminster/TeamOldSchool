@@ -30,7 +30,13 @@ enum SoundName
     TREE_FALL_02, 
     TREE_FALL_03, 
     TREE_FALL_04, 
-    TREE_FALL_05,                       
+    TREE_FALL_05,    
+
+    WOOD_BREAK_01,          // 나무가 부서질 때
+    WOOD_BREAK_02,
+    WOOD_BREAK_03,
+    WOOD_BREAK_04,
+
     ROCK_HIT_01,            // 바위를 칠 때
     ROCK_HIT_02,            
     ROCK_BREAK_01,  	    // 바위가 부서질 때

@@ -64,7 +64,7 @@ void Rock::Render()
 
 void Rock::Release()
 {
-	Rock::~Rock();
+	delete this;
 }
 
 void Rock::RenderHierarchy()

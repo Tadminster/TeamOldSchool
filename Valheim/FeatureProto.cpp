@@ -99,6 +99,7 @@ void FeatureProto::Render()
 
 void FeatureProto::Release()
 {
+	delete this;
 }
 
 void FeatureProto::RenderHierarchy()
