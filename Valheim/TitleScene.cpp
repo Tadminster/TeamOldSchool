@@ -57,12 +57,20 @@ void TitleScene::Init()
 
 void TitleScene::Release()
 {
-	titleCamera->Release();
 	player->Release();
+	karve->Release();
+	jellyFish->Release();
+
+	titleCamera->Release();
+	
+	background->Release();
+	underwater->Release();
 	ocean->Release();
 	floor->Release();
-	jellyFish->Release();
-	karve->Release();
+
+	//btnStart->Release();
+	//btnOption->Release();
+	//btnExit->Release();
 }
 
 void TitleScene::Update()
