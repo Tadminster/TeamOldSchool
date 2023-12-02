@@ -32,6 +32,7 @@
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="Rock.h" />
+    <ClInclude Include="Setting.h" />
     <ClInclude Include="Shipwreck.h" />
     <ClInclude Include="SoundDB.h" />
     <ClInclude Include="Status.h" />
@@ -78,6 +79,7 @@
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="Rock.cpp" />
+    <ClCompile Include="Setting.cpp" />
     <ClCompile Include="Shipwreck.cpp" />
     <ClCompile Include="SoundDB.cpp" />
     <ClCompile Include="Status.cpp" />

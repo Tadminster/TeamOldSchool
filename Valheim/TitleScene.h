@@ -5,6 +5,7 @@ private:
     Camera*         titleCamera;
     Terrain*        sea;
     Actor*          openingPlayer;
+    Actor*          jellyFish;
     UI*             btnStart;
     UI*             btnOption;
     UI*             btnExit;
