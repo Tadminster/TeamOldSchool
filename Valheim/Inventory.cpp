@@ -99,6 +99,21 @@ void Inventory::Update()
 		Init();
 	}
 
+	// ESCÅ°¸¦ ´©¸£¸é ÀÎº¥Åä¸®°¡ ´ÝÈû
+	if (isOpen && INPUT->KeyDown(VK_ESCAPE))
+	{
+		isOpen = false;
+
+		// ¾Æ·¡ÂÊ ½½·ÔÀ» ¼û±è
+		inventoryUI->Find("SlotBottom")->visible = false;
+
+		// ´ÝÈû »ç¿îµå Àç»ý
+		SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_HIDE_01, INVENTORY_HIDE_03));
+		SOUND->Play(randomPlay);
+
+		Init();
+	}
+
 	for (auto icon : inventoryIcon)
 		if (icon) icon->Update();
 

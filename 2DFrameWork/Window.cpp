@@ -207,7 +207,7 @@ LRESULT Window::WndProc(HWND handle, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	if (message == WM_KEYDOWN)
 	{
-		if (wParam == VK_ESCAPE)
+		if (wParam == VK_F4)
 		{
 			//exit(0);
 			PostQuitMessage(0);
