@@ -101,7 +101,6 @@ void Goblin::UpdateLight()
 	float lightRatio = max(0.2f, LIGHT->GetTimeRatio());
 	Color color(lightRatio, lightRatio, lightRatio, 1.0f);
 	actor->Find("goblin")->material->ambient = color;
-	actor->Find("goblin")->material->diffuse = color;
 }
 
 bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
