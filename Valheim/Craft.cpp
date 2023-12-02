@@ -287,6 +287,8 @@ void Craft::MouseOverRecipe()
 
 				// 반투명 배경 visible
 				btnRecipe[RECIPE_MOUSE_OVER]->visible = true;
+
+				return;
 			}
 		}
 	}

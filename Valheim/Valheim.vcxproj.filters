@@ -136,6 +136,9 @@
     <ClInclude Include="Setting.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="TitleUI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -267,6 +270,9 @@
     </ClCompile>
     <ClCompile Include="Karve.cpp">
       <Filter>GameObject\Terrain Features</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleUI.cpp">
+      <Filter>UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

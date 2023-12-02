@@ -60,6 +60,7 @@
     <ClInclude Include="Beech.h" />
     <ClInclude Include="Elder.h" />
     <ClInclude Include="TitleScene.h" />
+    <ClInclude Include="TitleUI.h" />
     <ClInclude Include="Unit.h" />
     <ClInclude Include="UserInterfaceManager.h" />
     <ClInclude Include="Woodpile.h" />
@@ -106,6 +107,7 @@
     <ClCompile Include="Beech.cpp" />
     <ClCompile Include="Elder.cpp" />
     <ClCompile Include="TitleScene.cpp" />
+    <ClCompile Include="TitleUI.cpp" />
     <ClCompile Include="Unit.cpp" />
     <ClCompile Include="UserInterfaceManager.cpp" />
     <ClCompile Include="Woodpile.cpp" />
