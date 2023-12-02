@@ -13,7 +13,9 @@ enum class EffectType
     LEVELUP,
     LEVELUPONHEAD,
     HEALEFFECT,
-    HEALEFFECT2
+    HEALEFFECT2,
+    WATERSPLASH,
+    WATERWAVE
 };
 
 class Particle : public Actor
