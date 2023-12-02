@@ -11,7 +11,9 @@ enum class EffectType
     HITROCK,
     //레벨업 파티클
     LEVELUP,
-    LEVELUPONHEAD
+    LEVELUPONHEAD,
+    HEALEFFECT,
+    HEALEFFECT2
 };
 
 class Particle : public Actor

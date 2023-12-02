@@ -133,6 +133,9 @@
     <ClInclude Include="Karve.h">
       <Filter>GameObject\Terrain Features</Filter>
     </ClInclude>
+    <ClInclude Include="Setting.h">
+      <Filter>UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />

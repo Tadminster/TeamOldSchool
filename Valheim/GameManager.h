@@ -8,6 +8,7 @@ public:
 
     class Recipe*			    recipe;
     class Player*               player;
+    class Elder*                elder;
     class MonsterManager*       monster;
 
     class ObjectManager*        objectManager;

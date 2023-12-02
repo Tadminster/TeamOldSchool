@@ -4,9 +4,10 @@
 class Elder;
 class ElderPatern
 {
-	class ElderStomp* stomp;
-	class ElderJumpAttack* jumpAttack;
+	class ElderStomp*		stomp;
+	class ElderJumpAttack*	jumpAttack;
 	class ElderSummonSpear* summonSpear;
+
 
 protected:
 	Vector3			targetInfo = {};
@@ -19,6 +20,7 @@ protected:
 
 	int				spearCount = 0;
 	int				spearIdx = 0;
+	float			spearHitTime = 0;
 	
 
 public:

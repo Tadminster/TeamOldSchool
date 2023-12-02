@@ -21,6 +21,7 @@ UserInterfaceManager::~UserInterfaceManager()
 void UserInterfaceManager::Init()
 {
 	minimap->Init();
+	setting->Init();
 }
 
 void UserInterfaceManager::Release()

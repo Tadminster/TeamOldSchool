@@ -2,7 +2,7 @@
 #include "GoblinState.h"
 #include "Goblin.h"
 
-Goblin::Goblin()
+Goblin::Goblin(Vector3 spawnPos)
 {
 	actor = Actor::Create();
 	actor->LoadFile("/Unit/Monster_Goblin.xml");
@@ -18,16 +18,16 @@ Goblin::Goblin()
 	atk = 5.0f;
 	moveSpeed = 3.0f;
 	rotationScale = 1.0f;
+
+	this->spawnPos = spawnPos;
 }
 
 Goblin::~Goblin()
 {
-	
 }
 
 void Goblin::Init()
 {
-	spawnPos = OBJ->GetStartingPosition();
 	actor->SetWorldPos(spawnPos);
 
 	Vector3 temp = {};

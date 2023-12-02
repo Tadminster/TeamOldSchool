@@ -8,6 +8,8 @@ private:
 public:
 	Pop* levelUp;
 	Pop* levelUpOnHead;
+	Pop* healEffect;
+	Rain* healEffect2;
 
 	Pop* woodHitDust;
 
