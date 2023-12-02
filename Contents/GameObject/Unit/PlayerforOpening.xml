@@ -1,10 +1,10 @@
-<Root Name="OpeningPlayer" Visible="true" ObType="1" BoneIndex="0">
+<Root Name="Player" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="player/player.skel" BoneIndexCount="52"/>
     <Animations AnimSize="1" File0="player/Player_OpeningStand0.anim"/>
     <Transform>
-        <Position X="-0.25" Y="9.6000004" Z="18.299999"/>
+        <Position X="0" Y="0" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Rotation X="0" Y="4.2760339" Z="0"/>
     </Transform>
     <Children Size="1"/>
     <Child0 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">

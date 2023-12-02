@@ -25,6 +25,7 @@
     <ClInclude Include="Goblin.h" />
     <ClInclude Include="GoblinState.h" />
     <ClInclude Include="DamageText.h" />
+    <ClInclude Include="Karve.h" />
     <ClInclude Include="Leather.h" />
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MonsterManager.h" />
@@ -72,6 +73,7 @@
     <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="GoblinState.cpp" />
     <ClCompile Include="DamageText.cpp" />
+    <ClCompile Include="Karve.cpp" />
     <ClCompile Include="Leather.cpp" />
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MonsterManager.cpp" />
