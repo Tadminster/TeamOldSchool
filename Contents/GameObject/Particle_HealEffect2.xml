@@ -4,9 +4,9 @@
     <Material File="Particle/HealEffect2.mtl"/>
     <Transform>
         <Position X="0" Y="1.55" Z="0"/>
-        <Scale X="0.050000001" Y="1" Z="1"/>
+        <Scale X="0.03" Y="0.05" Z="0.03"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Rain particleScaleX="0" particleScaleY="0" particleCount="15" rangeX="4" rangeY="4" rangeZ="4" velocityX="0" velocityY="8" velocityZ="0" duration="0.80000001"/>
+    <Rain particleScaleX="0" particleScaleY="0" particleCount="20" rangeX="1.5" rangeY="2.5" rangeZ="1.5" velocityX="0" velocityY="8" velocityZ="0" duration="1"/>
     <Children Size="0"/>
 </Root>

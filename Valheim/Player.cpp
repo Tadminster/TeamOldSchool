@@ -583,6 +583,7 @@ void Player::PlayerHit(float damage)
 		{
 			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
 			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD,playerhitPos);
+			actor->SetWorldPos(actor->GetWorldPos() - actor->GetForward());
 			hitPoint -= damage;
 		}
 		hitTime = 1.0f;
@@ -665,7 +666,7 @@ void Player::PlayerHealth()
 			if (TIMER->GetTick(healGetTick, 2.0f))
 			{
 				hitPoint += 1.0f;
-				cout << "1회복!" << endl;
+				PARTICLE->PlayParticleEffect(EffectType::HEALEFFECT2, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
 			}
 		}
 	}

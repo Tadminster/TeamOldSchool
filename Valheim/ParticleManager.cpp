@@ -45,7 +45,7 @@ ParticleManager::~ParticleManager()
 
 void ParticleManager::Init()
 {
-	levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
+	//levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
 }
 
 void ParticleManager::Release()

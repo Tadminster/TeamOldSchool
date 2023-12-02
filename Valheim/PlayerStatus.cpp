@@ -25,7 +25,8 @@ void PlayerStatus::Update()
 }
 void PlayerStatus::Effect()
 {
-	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
+	//PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
+	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->GetWorldPos());
 	PARTICLE->PlayParticleEffect(EffectType::LEVELUPONHEAD, PLAYER->actor->Find("mixamorig:Head")->GetWorldPos());
 }
 void PlayerStatus::RunExp()

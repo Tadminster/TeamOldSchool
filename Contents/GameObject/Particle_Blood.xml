@@ -4,9 +4,9 @@
     <Material File="Particle/Blood.mtl"/>
     <Transform>
         <Position X="-6.9885192" Y="30.365" Z="-1.495726"/>
-        <Scale X="0.2" Y="0.2" Z="0.0099999998"/>
+        <Scale X="0.07" Y="0.14" Z="0.0099999998"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="2" particleScaleY="2" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="15" velocityScalar="5" duration="1" gravity="15"/>
+    <Pop particleScaleX="0.5" particleScaleY="1" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="25" velocityScalar="5" duration="1" gravity="15"/>
     <Children Size="0"/>
 </Root>
