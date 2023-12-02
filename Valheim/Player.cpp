@@ -43,7 +43,6 @@ void Player::Init()
 
 void Player::Update()
 {
-	lastPos = actor->GetWorldPos();
 	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
 	if (DEBUGMODE) 
 	{
@@ -450,6 +449,15 @@ void Player::PlayerMove()
 	moveDir.Normalize();
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+
+	if (actor->GetWorldPos().y < -1.5f)
+	{
+		actor->SetWorldPos(lastPos);
+	}
+	else
+	{
+		lastPos = actor->GetWorldPos();
+	}
 }
 
 void Player::MoveBack(Actor* col)

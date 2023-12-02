@@ -88,6 +88,7 @@ void Goblin::Render()
 
 void Goblin::Release()
 {
+	delete this;
 }
 
 void Goblin::RenderHierarchy()
