@@ -11,9 +11,6 @@ TitleScene::TitleScene()
 	cameraRay.position = Vector3(45.0f, 100.0f, 45.0f);
 	cameraRay.direction = Vector3(0.0f, -1.0f, 0.0f);
 
-	underwaterRay.position = Vector3(44.5f, 100.0f, 44.5f);
-	underwaterRay.direction = Vector3(0.0f, -1.0f, 0.0f);
-
 	floor = Terrain::Create();
 	floor->LoadFile("Terrain_floor.xml");
 	floor->CreateMesh(100);
@@ -27,8 +24,12 @@ TitleScene::TitleScene()
 
 	openingPlayer = Actor::Create();
 	openingPlayer->LoadFile("Unit/PlayerforOpening.xml");
-	openingPlayer->name = "OpeningPlayer";
 	openingPlayer->name = "Player";
+
+	jellyFish = Actor::Create();
+	jellyFish->LoadFile("Unit/Monster_JellyFish.xml");
+	jellyFish->name = "jellyFish";
+	jellyFish->anim->ChangeAnimation(AnimationState::LOOP, 2);
 }
 
 TitleScene::~TitleScene()
@@ -37,6 +38,7 @@ TitleScene::~TitleScene()
 	openingPlayer->Release();
 	ocean->Release();
 	floor->Release();
+	jellyFish->Release();
 }
 
 void TitleScene::Init()
@@ -59,6 +61,7 @@ void TitleScene::Update()
 		floor->RenderHierarchy();
 		openingPlayer->RenderHierarchy();
 		underwater->RenderHierarchy();
+		jellyFish->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -76,6 +79,7 @@ void TitleScene::Update()
 	floor->Update();
 	openingPlayer->Update();
 	underwater->Update();
+	jellyFish->Update();
 
 	if (INPUT->KeyDown(VK_SPACE))
 	{
@@ -109,6 +113,7 @@ void TitleScene::Render()
 
 	floor->Render();
 	openingPlayer->Render();
+	jellyFish->Render();
 
 	BLEND->Set(true);
 	ocean->Render();

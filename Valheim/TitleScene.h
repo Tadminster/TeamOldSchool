@@ -13,8 +13,9 @@ private:
     Terrain*        ocean;
     UI*             underwater;
 
-    // 플레이어
+    // 플레이어, 몬스터
     Actor*          openingPlayer;
+    Actor*          jellyFish;
     
     // 버튼
     UI*             btnStart;
