@@ -27,6 +27,7 @@ void TitleUI::Init()
 void TitleUI::Release()
 {
 	titleUI->Release();
+	fadeOut->Release();
 }
 
 void TitleUI::Update()
