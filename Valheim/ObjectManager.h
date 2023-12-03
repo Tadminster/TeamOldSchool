@@ -26,15 +26,15 @@ private:
 	list<class Prototype*>		objects;
 	list<class Prototype*>		instancingObjects;
 	list<class ItemProto*>		items;
-	list<class StructureProto*>	structures;
+	//list<class StructureProto*>	structures;
 
-	class ItemProto*		stoneAxe[5];
-	class ItemProto*		woodpile[5];
-	class ItemProto*		stone[5];
-	class ItemProto*		woodShield[5];
-	class ItemProto*		leather[5];
-	class ItemProto*        elderTrophy[5];
-	class ItemProto*        fineWood[5];
+	//class ItemProto*		stoneAxe[5];
+	//class ItemProto*		woodpile[5];
+	//class ItemProto*		stone[5];
+	//class ItemProto*		woodShield[5];
+	//class ItemProto*		leather[5];
+	//class ItemProto*      elderTrophy[5];
+	//class ItemProto*      fineWood[5];
 	class FeatureProto*		shipwreck;	// ³­ÆÄ¼±
 
 	int featureCount{ 0 };

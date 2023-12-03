@@ -1,5 +1,5 @@
 <Root Name="Root" Visible="true" ObType="1">
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0.1" Y="0" Z="0.69999999"/>
         <Scale X="0.31999999" Y="0.22" Z="0.22"/>
         <Rotation X="0" Y="0" Z="0"/>

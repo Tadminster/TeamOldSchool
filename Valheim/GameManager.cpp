@@ -36,6 +36,8 @@ void GameManager::Init()
 
 void GameManager::Release()
 {
+	map->Release();
+	ocean->Release();
 }
 
 void GameManager::Update()

@@ -1,5 +1,5 @@
 <Root Name="StonePickaxe" Visible="true" ObType="1">
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0.25" Y="0" Z="0.80000001"/>
         <Scale X="0.46000001" Y="0.2" Z="0.2"/>
         <Rotation X="0" Y="0" Z="0"/>

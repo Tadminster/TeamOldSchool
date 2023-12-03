@@ -53,6 +53,9 @@ void InGame::Init()
 
 void InGame::Release()
 {
+	OBJ->Release();
+	GM->Release();
+	UIM->Release();
 
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 	SOUND->Stop(BGM_HOMEBASE);
