@@ -108,11 +108,11 @@ void Player::Release()
 
 void Player::RenderHierarchy()
 {
-	actor->RenderHierarchy();
+	/*actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();
 	status->RenderHierachy();
-	mouseIcon->RenderHierarchy();
+	mouseIcon->RenderHierarchy();*/
 }
 
 bool Player::GetPlayerHit(Collider* atkcol)

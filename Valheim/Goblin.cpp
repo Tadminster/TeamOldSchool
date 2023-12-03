@@ -94,7 +94,7 @@ void Goblin::Release()
 
 void Goblin::RenderHierarchy()
 {
-	actor->RenderHierarchy();
+	
 }
 
 void Goblin::UpdateLight()

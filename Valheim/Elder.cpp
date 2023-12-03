@@ -206,13 +206,7 @@ void Elder::Release()
 
 void Elder::RenderHierarchy()
 {
-	actor->RenderHierarchy();
-	hp->RenderHierarchy();
-	
-	if (ment1) ment1->RenderHierarchy();
-	if (ment2) ment2->RenderHierarchy();
-	if (ment3) ment3->RenderHierarchy();
-	if (ment4) ment4->RenderHierarchy();
+
 }
 
 void Elder::UpdateLight()
@@ -226,8 +220,8 @@ void Elder::UpdateLight()
 	}
 	else
 	{
-		actor->Find("Model")->material->ambient = color;
-		actor->Find("Model")->material->diffuse = color;
+		//actor->Find("Model")->material->ambient = color;
+		//actor->Find("Model")->material->diffuse = color;
 	}
 }
 
@@ -238,6 +232,9 @@ bool Elder::IsDestroyed()
 		if (deathTime >= 5.0f)
 		{
 			DestructionEvent();
+			SOUND->Stop(ELDER_BGM_01);
+			SOUND->Play(BGM_HOMEBASE);
+			LIGHT->isBoss = false;
 			isDeath = true;
 			actor->visible = false;
 			return true;
