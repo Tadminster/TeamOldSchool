@@ -113,9 +113,13 @@ wstring Notification::SetTextItemName(Item item)
 		case Item::Club:			return textItemName = L"¸ùµÕÀÌ"; 
 		case Item::StoneAxe:		return textItemName = L"µ¹ µµ³¢";  
 		case Item::StonePickaxe:	return textItemName = L"µ¹ °î±ªÀÌ";
+		case Item::FineAxe:			return textItemName = L"°í±Þ µµ³¢";
 		case Item::WoodShield:		return textItemName = L"³ª¹« ¹æÆÐ";
 		case Item::Woodpile:		return textItemName = L"³ª¹«";
+		case Item::FineWood:		return textItemName = L"°í±Þ ³ª¹«";
 		case Item::Stone:			return textItemName = L"µ¹";
 		case Item::Leather:			return textItemName = L"°¡Á×";
+		case Item::ElderTrophy:		return textItemName = L"¿¤´õ Æ®·ÎÇÇ";
+		default:					return textItemName = L"null";
 	}
 }

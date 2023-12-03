@@ -139,10 +139,10 @@ bool Birch::ReceivedDamageEvent(float damage, WeaponType wType)
 
 void Birch::DestructionEvent()
 {
-	// 나무 아이템 생성
-	for (int i = 0; i < RANDOM->Int(3, 5); i++)
+	// 아이템 생성(질좋은 나무)
+	for (int i = 0; i < RANDOM->Int(2, 3); i++)
 	{
-		ItemProto* item = ItemProto::Create(Item::Woodpile);
+		ItemProto* item = ItemProto::Create(Item::FineWood);
 		Vector3 randomPos = Vector3(RANDOM->Float(-1.0f, 1.0f), RANDOM->Float(1.0f, 3.0f), RANDOM->Float(-1.0f, 1.0f));
 		item->GetActor()->SetWorldPos(actor->GetWorldPos() + randomPos);
 		OBJ->AddItem(item);

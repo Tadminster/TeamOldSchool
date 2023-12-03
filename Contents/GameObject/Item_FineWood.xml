@@ -1,0 +1,27 @@
+<Root Name="FineAxe" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="Mesh" Visible="true" ObType="0">
+            <Mesh File="FineWood/finewood.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="FineWood/finewood_item.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0060000001" Y="0.0049999999" Z="0.0060000001"/>
+                <Rotation X="0" Y="1.570796" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child0>
+</Root>

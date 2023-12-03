@@ -47,7 +47,7 @@ TitleScene::TitleScene()
 	jellyFish->name = "jellyFish";
 	jellyFish->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	
-	PARTICLE->waterSplash->rotation.y = -40.0f * ToRadian;
+	PARTICLE->waterSplash->rotation.y = -50.0f * ToRadian;
 }
 
 TitleScene::~TitleScene()

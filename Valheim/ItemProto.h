@@ -5,9 +5,9 @@ enum class ItemState { OnGround, OnInventory, Equipped };
 enum class ItemType  { Weapon, Shield, Armor, Food, Material };
 enum class Item
 {
-	StoneAxe, StonePickaxe, Club,
+	StoneAxe, FineAxe, StonePickaxe, Club,
 	WoodShield,
-	Stone, Woodpile, Leather,
+	Stone, Woodpile, FineWood, Leather,
 	ElderTrophy
 };
 //====================================================================================================
@@ -29,6 +29,8 @@ protected:
 	ItemState	state;		// 상태
 	string 		stringName; // 문자열 이름
 	int			weight;		// 무게
+	int			currentStack{ 1 };	// 현재 중첩수
+	int			maxStack	{ 1 };	// 최대 중첩수
 
 	bool		isInteraction{ false };	// 상호작용 가능 여부
 	RECT		text_interaction;	// 상호작용 텍스트 영역
@@ -40,6 +42,7 @@ public:
 	void Update() override;
 	void LateUpdate() override;
 	void Render() override;
+	void Release() override;
 
 	UI*				GetIcon() { return icon; }
 	Item			GetEnumName() { return enumName; }
@@ -51,6 +54,8 @@ public:
 	void			SetIsInteraction(bool isInteraction) { this->isInteraction = isInteraction; }
 
 	bool			ReceivedDamageEvent(float damage, WeaponType wType) override { return false; }
+	void			DestructionEvent();
+	virtual bool	IsDestroyed() override;
 
 	void Drop();
 	virtual void Use() = 0;
@@ -115,13 +120,10 @@ class MaterialProto : public ItemProto
 protected:
 	RECT text_stack;	// 중첩수를 표시할 텍스트 영역
 public:
-	int currentStack;	// 현재 중첩수
-	int maxStack;		// 최대 중첩수
+
 
 	// @brief	두 아이템의 중첩수 더하는 함수
 	// @brief	함수를 호출하는 객체는 수량이 줄어들 아이템
 	// @param	수량이 증가하는 대상이 되는 아이템
 	void StackMerge(MaterialProto* material);
-	void DestructionEvent();
-	virtual bool IsDestroyed() override;
 };
