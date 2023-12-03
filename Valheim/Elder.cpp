@@ -93,9 +93,12 @@ void Elder::Update()
 			{
 				delete ment4;
 				ment4 = nullptr;
-				mentTime = 0;
 				actor->LoadFile("/Unit/Monster_Elder.xml");
 				isElder = true;
+				SOUND->Stop(BGM_HOMEBASE);
+				SOUND->Play(ELDER_BGM_01);
+				LIGHT->isBoss = true;
+				mentTime = 0;
 			}
 			//더이상 분노를 참을 수 없습니다!
 			else if (mentTime >= 5.0f)

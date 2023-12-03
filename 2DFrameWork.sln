@@ -116,6 +116,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\UI_Notification.xml = Contents\GameObject\UI_Notification.xml
 		Contents\GameObject\UI_Player_Icon.xml = Contents\GameObject\UI_Player_Icon.xml
 		Contents\GameObject\UI_TooltipBox.xml = Contents\GameObject\UI_TooltipBox.xml
+		Contents\GameObject\UI_Volume_Icon.xml = Contents\GameObject\UI_Volume_Icon.xml
 		Contents\GameObject\Water.xml = Contents\GameObject\Water.xml
 		Contents\GameObject\Workbench.xml = Contents\GameObject\Workbench.xml
 	EndProjectSection

@@ -264,7 +264,7 @@ void Player::AvtivatePlayerCam()
 		Camera::main->height = App.GetHeight();
 	}
 	//인벤 열리면 커서 고정 해제----------------------------------
-	if (!INVEN->isOpen && !CRAFT->isOpen)
+	if (!INVEN->isOpen && !CRAFT->isOpen && !SETTING->isOpen && !STATUS->isOpen)
 	{
 		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
 		ptMouse.x = App.GetHalfWidth();
