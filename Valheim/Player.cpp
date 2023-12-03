@@ -38,13 +38,13 @@ void Player::Init()
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	//maxHitpoint = 200;
-	//treeCount = 3;
+	treeCount = 3;
 }
 
 void Player::Update()
 {
-	lastPos = actor->GetWorldPos();
 	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
+	PARTICLE->SetWorldPos();
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -84,6 +84,7 @@ void Player::Render()
 	actor->Render();
 	playerHp->Render();
 	playerSt->Render();
+	status->Render();
 }
 
 void Player::Release()
@@ -95,6 +96,7 @@ void Player::RenderHierarchy()
 	actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();
+	status->RenderHierachy();
 }
 
 bool Player::GetPlayerHit(Collider* atkcol)
@@ -450,6 +452,15 @@ void Player::PlayerMove()
 	moveDir.Normalize();
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
+
+	if (actor->GetWorldPos().y < -1.5f)
+	{
+		actor->SetWorldPos(lastPos);
+	}
+	else
+	{
+		lastPos = actor->GetWorldPos();
+	}
 }
 
 void Player::MoveBack(Actor* col)
@@ -583,6 +594,7 @@ void Player::PlayerHit(float damage)
 		{
 			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
 			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD,playerhitPos);
+			actor->SetWorldPos(actor->GetWorldPos() - actor->GetForward());
 			hitPoint -= damage;
 		}
 		hitTime = 1.0f;
@@ -665,7 +677,7 @@ void Player::PlayerHealth()
 			if (TIMER->GetTick(healGetTick, 2.0f))
 			{
 				hitPoint += 1.0f;
-				cout << "1회복!" << endl;
+				PARTICLE->PlayParticleEffect(EffectType::HEALEFFECT2, PLAYER->actor->Find("mixamorig:Hips")->GetWorldPos());
 			}
 		}
 	}

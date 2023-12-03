@@ -78,19 +78,24 @@ void Elder::Update()
 			ApplyGravity();
 			if (hp->Find("front_hp")->scale.x < 0.1f) hp->Find("front_hp")->scale.x = 0;
 			else hp->Find("front_hp")->scale.x = hitPoint / maxHitpoint;
+
+			if ((PLAYER->GetActor()->GetWorldPos() - actor->GetWorldPos()).Length() <= 30.0f)
+			{
+				if (hp->visible == false) hp->visible = true;
+			}
+
 		}
 		if (PLAYER->GetTreeCount() >= 3)
 		{
 			if (ment4) mentTime += DELTA;
 			//숲의 수호신 엘더가 깨어납니다!
-			if (mentTime >= 9.0f)
+			if (mentTime >= 10.0f)
 			{
 				delete ment4;
 				ment4 = nullptr;
 				mentTime = 0;
 				actor->LoadFile("/Unit/Monster_Elder.xml");
 				isElder = true;
-				hp->visible = true;
 			}
 			//더이상 분노를 참을 수 없습니다!
 			else if (mentTime >= 5.0f)
@@ -99,7 +104,7 @@ void Elder::Update()
 				ment3 = nullptr;
 				ment4->visible = true;
 				Camera::main->SetLocalPos
-				(Vector3(RANDOM->Float(-0.05f, 0.05f), RANDOM->Float(-0.05f, 0.05f) , RANDOM->Float(-0.05f, 0.05f)));
+				(Vector3(RANDOM->Float(-0.1f, 0.1f), RANDOM->Float(-0.1f, 0.1f) , RANDOM->Float(-0.1f, 0.1f)));
 			}
 			else if (mentTime >= 1.0f)
 			{
@@ -225,6 +230,26 @@ void Elder::UpdateLight()
 bool Elder::IsDestroyed()
 {
 	if (hitPoint <= 0) return true;
+	return false;
+}
+
+bool Elder::ReceivedDamageEvent(float damage, WeaponType wType)
+{
+	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
+
+	if (wType == WeaponType::Blunt)
+	{
+		hitPoint -= damage * 2.0f;
+	}
+	else if (wType == WeaponType::Fist)
+	{
+		hitPoint -= PLAYER->GetFistDMG();
+	}
+	else
+	{
+		hitPoint -= damage;
+	}
+	
 	return false;
 }
 

@@ -50,7 +50,7 @@ ParticleManager::~ParticleManager()
 
 void ParticleManager::Init()
 {
-	levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
+	//levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
 }
 
 void ParticleManager::Release()
@@ -197,6 +197,12 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		waterWave->Play();
 		cout << "ÆÄµµ Ã¶½âÀÓ" << endl;
 	}
+}
+
+void ParticleManager::SetWorldPos()
+{
+	levelUp->SetWorldPos(PLAYER->GetActor()->GetWorldPos());
+	healEffect2->SetWorldPos(PLAYER->GetActor()->GetWorldPos());
 }
 
 
