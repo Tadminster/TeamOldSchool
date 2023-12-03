@@ -1,7 +1,7 @@
 #pragma once
 class PlayerSound
 {
-
+	float soundTime = 0;
 public:
 	PlayerSound();
 	~PlayerSound();

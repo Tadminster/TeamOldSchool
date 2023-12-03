@@ -124,11 +124,14 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 
 bool Goblin::IsDestroyed()
 {
+	if (deathTime >= 3.0f) return true;
+
 	return false;
 }
 
 void Goblin::DestructionEvent()
 {
+
 }
 
 void Goblin::SetState(GoblinState* state)

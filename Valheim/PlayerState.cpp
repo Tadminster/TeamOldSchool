@@ -77,19 +77,11 @@ void WalkState::Walk()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2) 
 	{
-		if (PLAYER->GetActor()->GetWorldPos().y < 0)
-		{
-			SOUND->Play(PLAYER_WALK_WATER_01);
-		}
-		else SOUND->Play(PLAYER_WALK_01);
+		
 
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
-	if (PLAYER->GetActor()->GetWorldPos().y < 0)
-	{
-		SOUND->Stop(PLAYER_WALK_01);
-	}
-	else SOUND->Stop(PLAYER_WALK_WATER_01);
+	
 }
 void WalkState::Run()
 {
