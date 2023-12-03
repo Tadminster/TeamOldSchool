@@ -114,8 +114,9 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 	{
 		hitPoint -= PLAYER->GetFistDMG();
 	}
-	else
+	else if(wType == WeaponType::Axe)
 	{
+		SOUND->Play(PLAYER_AXE_HIT_01);
 		hitPoint -= damage;
 	}
 	return false;

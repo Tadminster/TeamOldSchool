@@ -1,0 +1,12 @@
+<Root Name="elderStomp" Visible="true" ObType="9">
+    <Mesh File="8.Billboard.mesh"/>
+    <Shader File="8.Pop.hlsl"/>
+    <Material File="Monster_Elder/Particle_Stomp.mtl"/>
+    <Transform>
+        <Position X="0" Y="2.5" Z="0"/>
+        <Scale X="0.3" Y="0.3" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Pop particleScaleX="0" particleScaleY="0" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="20" velocityScalar="10" duration="1.0" gravity="10"/>
+    <Children Size="0"/>
+</Root>

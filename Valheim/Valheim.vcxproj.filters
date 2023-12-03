@@ -139,6 +139,9 @@
     <ClInclude Include="TitleUI.h">
       <Filter>UI</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerSound.h">
+      <Filter>GameObject\Unit\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -273,6 +276,9 @@
     </ClCompile>
     <ClCompile Include="TitleUI.cpp">
       <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerSound.cpp">
+      <Filter>GameObject\Unit\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
