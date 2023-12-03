@@ -17,6 +17,7 @@
 #include "Inventory.h"
 #include "Craft.h"
 #include "Recipe.h"
+#include "Status.h"
 
 
 
@@ -33,4 +34,5 @@
 #define ASTAR		GM->astar
 #define INVEN		UIM->inventory
 #define CRAFT		UIM->craft
+#define STATUS		UIM->status
 #define MINIMAP		UIM->minimap

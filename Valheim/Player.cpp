@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "PlayerState.h"
 #include "PlayerStatus.h"
+#include "PlayerSound.h"
 #include "ItemProto.h"
 
 
@@ -21,6 +22,7 @@ Player::Player()
 
 	state = IdleState::GetInstance();
 	status = new PlayerStatus();
+	sound = new PlayerSound();
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
@@ -38,7 +40,7 @@ void Player::Init()
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	//maxHitpoint = 200;
-	treeCount = 3;
+	//treeCount = 3;
 }
 
 void Player::Update()
@@ -69,8 +71,9 @@ void Player::Update()
 	//// 플레이어 embient, diffuse 제어
 	UpdateLight();
 
-	status->Update();
 	actor->Update();
+	sound->Update();
+	status->Update();
 	playerHp->Update();
 	playerSt->Update();
 }

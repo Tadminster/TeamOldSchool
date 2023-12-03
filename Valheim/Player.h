@@ -11,9 +11,11 @@ class Player : public Unit
 	friend class PlayerStatus;
 	friend class ElderJumpAttack;
 	friend class ElderSummonSpear;
+	friend class PlayerSound;
 
 	class PlayerState*		state = nullptr;
 	class PlayerStatus*		status = nullptr;
+	class PlayerSound*		sound = nullptr;
 	class WeaponProto*		equippedWeapon = nullptr;
 	class ShieldProto*		equippedShield = nullptr;
 	//카메라 관련 변수

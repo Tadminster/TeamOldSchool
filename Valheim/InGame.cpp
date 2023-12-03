@@ -48,7 +48,7 @@ void InGame::Init()
 	PLAYER->Init();
 	MONSTER->Init();
 	// 배경음악 재생
-	SOUND->Play(BGM_HOMEBASE);
+	//SOUND->Play(BGM_HOMEBASE);
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 }
 

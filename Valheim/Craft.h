@@ -12,6 +12,7 @@ enum class BtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
 class Craft
 {
 	friend class Player;
+	friend class Status;
 
 private:
 	RecipeInfo*	recipeItem[RECIPE_SIZE];		// 레시피 정보

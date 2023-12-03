@@ -32,8 +32,8 @@ void UserInterfaceManager::Update()
 {
 	inventory->Update();
 	craft->Update();
-	minimap->Update();
 	status->Update();
+	minimap->Update();
 	setting->Update();
 
 	for (auto iter = notifications.begin(); iter != notifications.end();)
@@ -89,8 +89,8 @@ void UserInterfaceManager::Render()
 	minimap->Render();
 	craft->Render();
 	inventory->Render();
-	status->Render();
 	setting->Render();
+	status->Render();
 }
 
 void UserInterfaceManager::ResizeScreen()

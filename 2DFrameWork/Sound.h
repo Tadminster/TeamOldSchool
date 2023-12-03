@@ -44,6 +44,20 @@ enum SoundName
     ROCK_BREAK_03, 
     ROCK_BREAK_04,                                 
 
+    PLAYER_FIST_01,         // 플레이어 주먹
+    PLAYER_FIST_02,
+    PLAYER_FIST_03,
+
+    PLAYER_WALK_01,         // 플레이어 걷기
+    PLAYER_WALK_WATER_01,
+
+    PLAYER_RUN_01,          // 플레이어 뛰기
+    PLAYER_RUN_WATER_01,
+
+    PLAYER_AXE_SWING_01,    //플레이어 도끼
+    PLAYER_AXE_SWING_02,
+    PLAYER_AXE_SWING_03,
+    PLAYER_AXE_HIT_01,    
 
 };
 

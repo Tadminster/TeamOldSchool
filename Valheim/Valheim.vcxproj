@@ -33,6 +33,7 @@
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="Notification.h" />
+    <ClInclude Include="PlayerSound.h" />
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
     <ClInclude Include="Rock.h" />
@@ -85,6 +86,7 @@
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="Notification.cpp" />
+    <ClCompile Include="PlayerSound.cpp" />
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />
     <ClCompile Include="Rock.cpp" />

@@ -1,11 +1,13 @@
 #pragma once
+#define	JELLYFISHNUM 16
 class MonsterManager
 {
 	class Goblin* goblin[9] = {};
 	class Goblin* goblin2[4] = {};
 
-	
-	list<Prototype*> unit;
+	vector<Prototype*> unit;
+
+	Actor* jellyFish[JELLYFISHNUM] = {};
 
 public:
 	MonsterManager();

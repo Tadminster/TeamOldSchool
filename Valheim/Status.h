@@ -2,7 +2,6 @@
 class Status
 {
 	UI* bgIMG = nullptr;
-	UI* btnCreate = nullptr;
 	bool isOpen = false;
 public:
 	Status();

@@ -24,8 +24,12 @@ MonsterManager::MonsterManager()
 		}
 	}
 
-	
-
+	for (int i = 0; i < JELLYFISHNUM; i++)
+	{
+		jellyFish[i] = Actor::Create();
+		jellyFish[i]->LoadFile("Unit/Monster_JellyFish.xml");
+		jellyFish[i]->name = "JellyFish" + to_string(i+1);
+	}
 }
 
 MonsterManager::~MonsterManager()
@@ -42,14 +46,12 @@ void MonsterManager::Init()
 		it->Init();
 		it->Update();
 	}
-	/*for (int i = 0; i < 9; i++)
+
+	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		goblin[i]->Init();
+		jellyFish[i]->SetWorldPos(OBJ->GetStartingPosition());
+		jellyFish[i]->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		goblin2[i]->Init();
-	}*/
 }
 
 void MonsterManager::Release()
@@ -60,19 +62,28 @@ void MonsterManager::Update()
 {
 	ELDER->Update();
 
+	for (int i = 0; i < unit.size(); i++)
+	{
+		if (unit[i]->IsDestroyed())
+		{
+			unit[i]->Release();
+			unit.erase(unit.begin() + i);
+		}
+	}
+
+
 	for (auto& it : unit)
 	{
 		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 30.0f)
+		{
 			it->Update();
+		}
 	}
-	/*for (int i = 0; i < 9; i++)
+
+	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		goblin[i]->Update();
+		jellyFish[i]->Update();
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		goblin2[i]->Update();
-	}*/
 }
 
 void MonsterManager::LateUpdate()
@@ -82,7 +93,10 @@ void MonsterManager::LateUpdate()
 	for (auto& it : unit)
 	{
 		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 30.0f)
+		{
 			it->LateUpdate();
+		}
+			
 	}
 }
 
@@ -95,14 +109,10 @@ void MonsterManager::RenderHierarchy()
 		it->RenderHierarchy();
 	}
 
-	/*for (int i = 0; i < 9; i++)
+	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		goblin[i]->RenderHierarchy();
+		jellyFish[i]->RenderHierarchy();
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		goblin2[i]->RenderHierarchy();
-	}*/
 }
 
 void MonsterManager::Render()
@@ -111,15 +121,14 @@ void MonsterManager::Render()
 
 	for (auto& it : unit)
 	{
-		if((PLAYER->GetActor()->GetWorldPos()-it->GetActor()->GetWorldPos()).Length()<30.0f)
+		if ((PLAYER->GetActor()->GetWorldPos() - it->GetActor()->GetWorldPos()).Length() < 30.0f)
+		{
 			it->Render();
+		}
 	}
-	/*for (int i = 0; i < 9; i++)
+	
+	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		goblin[i]->Render();
+		jellyFish[i]->Render();
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		goblin2[i]->Render();
-	}*/
 }

@@ -80,8 +80,22 @@ SoundDB::SoundDB()
 	// Crafting
 	SOUND->AddSound("System/Crafting.ogg", CRAFTING, false); // Craft
 
-
-
+	// Player-----------------------------------------------------------------------------
+	// Fist-------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Fist_01.ogg", PLAYER_FIST_01, false);
+	SOUND->AddSound("Unit/Player_Fist_02.ogg", PLAYER_FIST_02, false);
+	SOUND->AddSound("Unit/Player_Fist_03.ogg", PLAYER_FIST_03, false);
+	// Walk-------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Walk_01.ogg", PLAYER_WALK_01, false);
+	SOUND->AddSound("Unit/Player_Walk_Water_01.ogg", PLAYER_WALK_WATER_01, false);
+	// Run--------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Run_01.ogg", PLAYER_RUN_01, true);
+	SOUND->AddSound("Unit/Player_Run_Water_01.ogg", PLAYER_RUN_WATER_01, true);
+	// Axe--------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Axe_Swing_01.ogg", PLAYER_AXE_SWING_01, false);
+	SOUND->AddSound("Unit/Player_Axe_Swing_02.ogg", PLAYER_AXE_SWING_02, false);
+	SOUND->AddSound("Unit/Player_Axe_Swing_03.ogg", PLAYER_AXE_SWING_03, false);
+	SOUND->AddSound("Unit/Player_Axe_Hit_01.ogg", PLAYER_AXE_HIT_01, false);
 
 	// ETC
 
