@@ -49,18 +49,32 @@ void Setting::Update()
 			if (INPUT->KeyDown(VK_ESCAPE))
 			{
 				settingPanel->visible = !settingPanel->visible;
+				isOpen = !isOpen;
 			}
 		}
 	}
+	//타이틀 씬에서 설정창 켜고 끄기
+	else if (SCENE->IsMacthScene(SceneName::Title))
+	{
+		if (INPUT->KeyDown(VK_ESCAPE))
+		{
+			settingPanel->visible = !settingPanel->visible;
+			isOpen = !isOpen;
+		}
+	}
 
-	settingPanel->Update();
+	if (isOpen)
+	{
+		settingPanel->Update();
+	}
 }
 
 void Setting::LateUpdate()
 {
+	
 	//설정창	패널위에 마우스가 올라가 있으면 
 	//버튼들의 상태체크
-	if (settingPanel->visible and settingPanel->MouseOver())
+	if (isOpen and settingPanel->MouseOver())
 	{
 		//볼륨 키우기 버튼 마우스 오버일때
 		if (volumeUp.button->MouseOver())
@@ -85,7 +99,6 @@ void Setting::LateUpdate()
 				}
 			}
 		}
-
 		//볼륨 줄이기 버튼 마우스 오버일때
 		if (volumeDown.button->MouseOver())
 		{
@@ -138,8 +151,10 @@ void Setting::LateUpdate()
 
 void Setting::Render()
 {
-
-	settingPanel->Render();
+	if (isOpen)
+	{
+		settingPanel->Render();
+	}
 }
 
 void Setting::BtnInitalize(SettingBtn& settingBtn)
@@ -177,4 +192,10 @@ void Setting::OnOffMasterVolume(bool OnAndOff)
 		App.soundScale = 0.5f;
 		SOUND->SetMasterVolume();
 	}
+}
+
+void Setting::OpenSetting()
+{
+	isOpen = true;
+	settingPanel->visible = true;
 }
