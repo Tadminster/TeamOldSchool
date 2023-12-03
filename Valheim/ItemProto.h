@@ -7,7 +7,8 @@ enum class Item
 {
 	StoneAxe, StonePickaxe, Club,
 	WoodShield,
-	Stone, Woodpile, Leather
+	Stone, Woodpile, Leather,
+	ElderTrophy
 };
 //====================================================================================================
 class ItemProto : public Prototype

@@ -49,6 +49,12 @@ ObjectManager::ObjectManager()
 			item = ItemProto::Create(Item::Leather);
 			AddItem(item);
 		}
+
+		for (auto& item : elderTrophy)
+		{
+			item = ItemProto::Create(Item::ElderTrophy);
+			AddItem(item);
+		}
 	}
 }
 

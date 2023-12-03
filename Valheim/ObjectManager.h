@@ -33,6 +33,7 @@ private:
 	class ItemProto*		stone[5];
 	class ItemProto*		woodShield[5];
 	class ItemProto*		leather[5];
+	class ItemProto*        elderTrophy[5];
 	class FeatureProto*		shipwreck;	// ³­ÆÄ¼±
 
 	int featureCount{ 0 };
@@ -52,7 +53,6 @@ public:
 
 	void	GenerateTree();
 	//void	GenerateInstanceTree();
-	void    GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);

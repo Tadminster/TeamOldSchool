@@ -111,6 +111,14 @@ void TitleUI::LateUpdate()
 			}
 		}
 	}
+	// 패널 위에 마우스가 없으면
+	else
+	{
+		// 버튼들의 상태를 초기화
+		BtnInitalize(infoStart);
+		BtnInitalize(infoOption);
+		BtnInitalize(infoExit);
+	}
 }
 
 void TitleUI::Render()
