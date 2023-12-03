@@ -23,7 +23,7 @@ Setting::~Setting()
 void Setting::Init()
 {
 	settingPanel->visible = false;
-	volumeIcon->visible = true;
+	volumeIcon->visible = false;
 
 	BtnInitalize(volumeUp);
 	BtnInitalize(volumeDown);
@@ -39,7 +39,7 @@ void Setting::Release()
 
 void Setting::Update()
 {
-	cout << App.soundScale << endl;
+
 	ImGui::Begin("UI Hierarchy");
 	{
 		settingPanel->RenderHierarchy();
@@ -55,6 +55,7 @@ void Setting::Update()
 		{
 			if (INPUT->KeyDown(VK_ESCAPE))
 			{
+				volumeIcon->visible = !volumeIcon->visible;
 				settingPanel->visible = !settingPanel->visible;
 				isOpen = !isOpen;
 			}
@@ -65,6 +66,7 @@ void Setting::Update()
 	{
 		if (INPUT->KeyDown(VK_ESCAPE))
 		{
+			volumeIcon->visible = !volumeIcon->visible;
 			settingPanel->visible = !settingPanel->visible;
 			isOpen = !isOpen;
 		}
@@ -73,8 +75,9 @@ void Setting::Update()
 	if (isOpen)
 	{
 		settingPanel->Update();
+		volumeIcon->Update();
 	}
-	volumeIcon->Update();
+
 }
 
 void Setting::LateUpdate()
@@ -163,42 +166,47 @@ void Setting::Render()
 	if (isOpen)
 	{
 		settingPanel->Render();
+		//======================================
+		//사운드 아이콘 볼륨바 조절
+		{
+			//초기사운드 또는 소리가 클때 3개다보임
+			if (App.soundScale > 0.6)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = true;
+				volumeIcon->Find("volumeStick2")->visible = true;
+				volumeIcon->Update();
+			}
+			// 1개만 보이기 소리가 조금이라도 켜져있을때
+			else if (App.soundScale > 0.0f and App.soundScale < 0.3f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = false;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+			//2개만 보일때 중간정도 소리
+			else if (App.soundScale > 0.3f and App.soundScale < 0.6f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = true;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+			// 소리가 음소거 상태일때 다안보임
+			else if (App.soundScale == 0.0f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = false;
+				volumeIcon->Find("volumeStick1")->visible = false;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+		}
+		volumeIcon->Render();
 	}
 
-	
-	//초기사운드 또는 소리가 클때 3개다보임
-	if (App.soundScale > 0.6)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = true;
-		volumeIcon->Find("volumeStick2")->visible = true;
-		volumeIcon->Update();
-	}
-	// 1개만 보이기 소리가 조금이라도 켜져있을때
-	else if (App.soundScale > 0.0f and App.soundScale < 0.3f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = false;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	//2개만 보일때 중간정도 소리
-	else if (App.soundScale > 0.3f and App.soundScale < 0.6f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = true;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	// 소리가 음소거 상태일때 다안보임
-	else if (App.soundScale == 0.0f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = false;
-		volumeIcon->Find("volumeStick1")->visible = false;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	volumeIcon->Render();
+
+
 }
 
 void Setting::BtnInitalize(SettingBtn& settingBtn)
@@ -242,4 +250,5 @@ void Setting::OpenSetting()
 {
 	isOpen = true;
 	settingPanel->visible = true;
+	volumeIcon->visible = true;
 }
