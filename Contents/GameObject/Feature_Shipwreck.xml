@@ -1,8 +1,8 @@
 <Root Name="Shipwreck" Visible="true" ObType="1">
     <Collider ColliderType="2" Visible="true">
-        <Position X="0" Y="0.2" Z="0"/>
-        <Scale X="1" Y="1.5" Z="3.5999999"/>
-        <Rotation X="0" Y="0" Z="0"/>
+        <Position X="-0.75" Y="0.5" Z="-0.1"/>
+        <Scale X="0.80000001" Y="1" Z="2.3"/>
+        <Rotation X="-0.26179799" Y="0.26179799" Z="0"/>
     </Collider>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
@@ -21,7 +21,7 @@
             <Shader File="4.Cube.hlsl"/>
             <Transform>
                 <Position X="0" Y="-0.5" Z="0"/>
-                <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                <Scale X="0.0040000002" Y="0.0040000002" Z="0.0040000002"/>
                 <Rotation X="0" Y="0" Z="0"/>
             </Transform>
             <Children Size="2"/>
@@ -30,9 +30,9 @@
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Shipwreck/smallboat_worn.mtl"/>
                 <Transform>
-                    <Position X="0" Y="0" Z="200"/>
+                    <Position X="-75" Y="-75" Z="249.99998"/>
                     <Scale X="1" Y="1" Z="1"/>
-                    <Rotation X="-0.34906399" Y="6.6030498e-06" Z="0"/>
+                    <Rotation X="-0.87265998" Y="-0.174532" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
             </Child0>
@@ -41,9 +41,9 @@
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Shipwreck/smallboat_worn.mtl"/>
                 <Transform>
-                    <Position X="0" Y="0" Z="-200"/>
+                    <Position X="-99.999962" Y="99.999962" Z="-75"/>
                     <Scale X="1" Y="1" Z="1"/>
-                    <Rotation X="0.34906399" Y="0" Z="0"/>
+                    <Rotation X="-0.26179799" Y="0.61086196" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
             </Child1>

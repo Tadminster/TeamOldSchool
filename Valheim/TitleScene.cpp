@@ -1,9 +1,12 @@
 #include "stdafx.h"
+#include "TitleUI.h"
 #include "LoadingScene.h"
 #include "TitleScene.h"
 
 TitleScene::TitleScene()
 {
+	titleUI = new TitleUI();
+
 	background = Actor::Create();
 	background->LoadFile("RECT_TitleBG.xml");
 	background->name = "Background";
@@ -57,6 +60,8 @@ void TitleScene::Init()
 
 void TitleScene::Release()
 {
+	titleUI->Release();
+
 	player->Release();
 	karve->Release();
 	jellyFish->Release();
@@ -78,6 +83,7 @@ void TitleScene::Update()
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
+		titleUI->RenderHierarchy();
 		background->RenderHierarchy();
 		titleCamera->RenderHierarchy();
 		ocean->RenderHierarchy();
@@ -99,6 +105,7 @@ void TitleScene::Update()
 		ocean->PerlinNoiseSea(perlin);
 	}
 
+	titleUI->Update();
 	background->Update();
 	ocean->Update();
 	floor->Update();
@@ -115,13 +122,13 @@ void TitleScene::Update()
 
 void TitleScene::LateUpdate()
 {
+
 	// 플레이어와 배 위치 설정
 	if (Utility::RayIntersectMap(playerRay, ocean, playerRayHitPos))
 	{
 		karve->SetWorldPos(playerRayHitPos + karvePos);
 		player->SetWorldPos(playerRayHitPos + playerPos);
 	}
-
 
 	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
 	{
@@ -133,10 +140,14 @@ void TitleScene::LateUpdate()
 			underwater->visible = true;
 		else underwater->visible = false;
 	}
+
+	titleUI->LateUpdate();
 }
 
 void TitleScene::PreRender()
 {
+	ResizeScreen();
+
 	Camera::main->Set();
 	LIGHT->Set();
 }
@@ -156,6 +167,8 @@ void TitleScene::Render()
 	BLEND->Set(false);
 
 	underwater->Render();
+
+	titleUI->Render();
 }
 
 void TitleScene::ResizeScreen()

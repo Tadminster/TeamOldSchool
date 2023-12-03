@@ -107,6 +107,13 @@ void Craft::Update()
 		}
 	}
 
+	// ESC 키를 누르면 크래프팅 창 닫기
+	if (isOpen && INPUT->KeyDown(VK_ESCAPE))
+	{
+		isOpen = false;
+	}
+
+	// 창이 열려있다면 업데이트
 	if (isOpen)
 	{
 		craftUI->Update();
@@ -280,6 +287,8 @@ void Craft::MouseOverRecipe()
 
 				// 반투명 배경 visible
 				btnRecipe[RECIPE_MOUSE_OVER]->visible = true;
+
+				return;
 			}
 		}
 	}
