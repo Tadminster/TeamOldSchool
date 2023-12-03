@@ -49,7 +49,7 @@ void MonsterManager::Init()
 
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		monster01[i]->SetWorldPos(OBJ->GetStartingPosition());
+		monsterPos[i] = Vector3(RANDOM->Float(-50.0f , 50.0f), RANDOM->Float(-3.0f, 0.0f), RANDOM->Float(-50.0f, 50.0f));
 		monster01[i]->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
 }
@@ -81,8 +81,13 @@ void MonsterManager::Update()
 		}
 	}
 
+	Vector3 dir = PLAYER->GetActor()->GetWorldPos();
+	dir.y = 0.0f;
+	dir.Normalize();
+
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
+		monster01[i]->SetWorldPos(dir * 150.0f + monsterPos[i]);
 		monster01[i]->Update();
 	}
 }
