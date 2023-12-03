@@ -1,6 +1,6 @@
 <Root Name="Karve" Visible="true" ObType="1">
     <Transform>
-        <Position X="30" Y="0.47255117" Z="25"/>
+        <Position X="30" Y="-0.4567852" Z="25"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0.90756637" Z="0"/>
     </Transform>
@@ -22,7 +22,7 @@
             <Children Size="7"/>
             <Child0 Name="Bow" Visible="true" ObType="1">
                 <Transform>
-                    <Position X="0" Y="150" Z="-474.99997"/>
+                    <Position X="0" Y="24.999994" Z="-425"/>
                     <Scale X="1" Y="1" Z="1"/>
                     <Rotation X="0" Y="0" Z="0"/>
                 </Transform>
