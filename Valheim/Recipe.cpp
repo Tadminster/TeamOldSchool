@@ -13,14 +13,15 @@ Recipe::Recipe()
 
     discoveryItemList[Item::Stone] = false;
     discoveryItemList[Item::Woodpile] = false;
+    discoveryItemList[Item::FineWood] = false;
     discoveryItemList[Item::Leather] = false;
 
+    discoveryItemList[Item::ElderTrophy] = false;
     // 발견한 레시피 목록 초기화 ==============================================
     discoveryRecipeList[Item::Club] = false;
     discoveryRecipeList[Item::StoneAxe] = false;
     discoveryRecipeList[Item::StonePickaxe] = false;
     discoveryRecipeList[Item::WoodShield] = false;
-
     // 레시피 목록 초기화 ======================================================
     recipeList.emplace(Item::Club,          set<Item>{Item::Woodpile});                 // 몽둥이
     recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});    // 돌 도끼

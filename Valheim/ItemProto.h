@@ -7,7 +7,7 @@ enum class Item
 {
 	StoneAxe, StonePickaxe, Club,
 	WoodShield,
-	Stone, Woodpile, Leather,
+	Stone, Woodpile, FineWood, Leather,
 	ElderTrophy
 };
 //====================================================================================================

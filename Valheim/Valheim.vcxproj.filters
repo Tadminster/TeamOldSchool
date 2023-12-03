@@ -142,6 +142,9 @@
     <ClInclude Include="ElderTrophy.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
+    <ClInclude Include="FineWood.h">
+      <Filter>GameObject\Items\Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -278,6 +281,9 @@
       <Filter>UI</Filter>
     </ClCompile>
     <ClCompile Include="ElderTrophy.cpp">
+      <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="FineWood.cpp">
       <Filter>GameObject\Items\Material</Filter>
     </ClCompile>
   </ItemGroup>

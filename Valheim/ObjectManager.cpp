@@ -55,6 +55,12 @@ ObjectManager::ObjectManager()
 			item = ItemProto::Create(Item::ElderTrophy);
 			AddItem(item);
 		}
+
+		for (auto& item : fineWood)
+		{
+			item = ItemProto::Create(Item::FineWood);
+			AddItem(item);
+		}
 	}
 }
 

@@ -7,6 +7,7 @@
 #include "WoodShield.h"
 #include "Stone.h"
 #include "Woodpile.h"
+#include "FineWood.h"
 #include "Leather.h"
 #include "ElderTrophy.h"
 #include "ItemProto.h"
@@ -25,6 +26,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new WoodShield();
 	case Item::Woodpile:
 		return new Woodpile();
+	case Item::FineWood:
+		return new FineWood();
 	case Item::Stone:
 		return new Stone();
 	case Item::Leather:

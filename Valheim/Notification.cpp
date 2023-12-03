@@ -115,7 +115,9 @@ wstring Notification::SetTextItemName(Item item)
 		case Item::StonePickaxe:	return textItemName = L"돌 곡괭이";
 		case Item::WoodShield:		return textItemName = L"나무 방패";
 		case Item::Woodpile:		return textItemName = L"나무";
+		case Item::FineWood:		return textItemName = L"질좋은 나무";
 		case Item::Stone:			return textItemName = L"돌";
 		case Item::Leather:			return textItemName = L"가죽";
+		case Item::ElderTrophy:		return textItemName = L"엘더 트로피";
 	}
 }
