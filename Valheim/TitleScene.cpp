@@ -97,26 +97,26 @@ void TitleScene::Release()
 
 void TitleScene::Update()
 {
-	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-	ImGui::Begin("Hierarchy");
-	{
-		titleUI->RenderHierarchy();
-		background->RenderHierarchy();
-		titleCamera->RenderHierarchy();
-		ocean->RenderHierarchy();
-		floor->RenderHierarchy();
-		underwater->RenderHierarchy();
-		player->RenderHierarchy();
-		karve->RenderHierarchy();
-		monster01->RenderHierarchy();
-		monster02->RenderHierarchy();
-		PARTICLE->waterSplash->RenderHierarchy();
-	}
-	ImGui::End();
+	//ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+	//ImGui::Begin("Hierarchy");
+	//{
+	//	titleUI->RenderHierarchy();
+	//	background->RenderHierarchy();
+	//	titleCamera->RenderHierarchy();
+	//	ocean->RenderHierarchy();
+	//	floor->RenderHierarchy();
+	//	underwater->RenderHierarchy();
+	//	player->RenderHierarchy();
+	//	karve->RenderHierarchy();
+	//	monster01->RenderHierarchy();
+	//	monster02->RenderHierarchy();
+	//	PARTICLE->waterSplash->RenderHierarchy();
+	//}
+	//ImGui::End();
 
 	// 메인 카메라 업데이트
-	Camera::main->ControlMainCam();
-	Camera::main->Update();
+	//Camera::main->ControlMainCam();
+	titleCamera->Update();
 	
 	// 물결 효과 (펄린노이즈)
 	static float waveCycle = 0.0f;
