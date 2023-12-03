@@ -59,6 +59,9 @@ void InGame::Release()
 
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 	SOUND->Stop(BGM_HOMEBASE);
+	PARTICLE->Release();
+	SETTING->Release();
+	delete scattering;
 }
 
 void InGame::Update()
