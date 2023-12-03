@@ -15,7 +15,7 @@ InGame::InGame()
 	loadCount++; // 2
 
 	scattering = new Scattering();
-	loadCount++; // 4
+	loadCount++; // 3
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -25,7 +25,7 @@ InGame::InGame()
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
-	loadCount++; // 5
+	loadCount++; // 4
 }
 
 InGame::~InGame()
