@@ -120,9 +120,9 @@ void InGame::Update()
 	OBJ->Update();
 	PARTICLE->Update();
 	PLAYER->Update();
+	SETTING->Update();
 	UIM->Update();
 	MONSTER->Update();
-	SETTING->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
@@ -134,7 +134,6 @@ void InGame::LateUpdate()
 	PLAYER->LateUpdate();
 	MONSTER->LateUpdate();
 	SETTING->LateUpdate();
-
 	UIM->LateUpdate();
 }
 
