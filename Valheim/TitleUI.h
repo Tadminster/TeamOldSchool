@@ -20,11 +20,12 @@ private:
     Vector3     btnBaseScale{ 0.14f, 0.06f, 0.0f };         // 버튼의 기본 크기
     Vector3     btnMouseOverScale{ 0.16f, 0.08f, 0.0f };	// 버튼의 마우스오버 크기
     // ==============================================================
-    class UI*   fadeOut = nullptr;	    // fadeout 효과를 위한 UI
-    float       fadeout = 5;            // fadeout의 opacity
-    bool        isPostQuit = false;	    // PostQuitMessage를 한번만 호출하기 위한 변수
+    class UI*   fadeOut{ nullptr };	    // fadeout 효과를 위한 UI
+    float       fadeout{ 0 };           // fadeout의 opacity
+    bool        isPostStart{false};	    // 시작 버튼을 눌렀는지 판별
     //==============================================================
     class       SoundDB* soundDB;
+
 public:
     TitleUI();
     ~TitleUI();

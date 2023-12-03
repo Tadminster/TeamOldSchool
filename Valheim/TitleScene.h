@@ -15,6 +15,7 @@ private:
     Terrain*        floor;
     Terrain*        ocean;
     UI*             underwater;
+    bool			isUnderwater{ false };
 
     // 플레이어, 배, 몬스터    
     Actor*          player;
@@ -28,7 +29,6 @@ private:
 
     // 버튼
     class TitleUI*  titleUI;
-    // 설정창
 
 private:
     siv::PerlinNoise perlin;

@@ -37,16 +37,11 @@ void TitleUI::Release()
 
 void TitleUI::Update()
 {
-	if (fadeout < FADEOUT)
+	if (isPostStart)
 	{
 		fadeout += DELTA;
 		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
 	}
-	else
-	{
-		if(isPostQuit) PostQuitMessage(0);
-	}
-	
 
 	fadeOut->Update();
 	titleUI->Update();
@@ -56,7 +51,7 @@ void TitleUI::LateUpdate()
 {
 	// 패널 위에 마우스가 올라가 있으면
 	// 버튼들의 마우스오버 상태를 체크
-	if (panel->MouseOver())
+	if (!SETTING->isOpen && panel->MouseOver())
 	{
 		// 시작 버튼 마우스오버
 		if (infoStart.btn->MouseOver())
@@ -81,9 +76,10 @@ void TitleUI::LateUpdate()
 				// 마우스 왼쪽 버튼을 떼면
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
+					isPostStart = true;
+
 					// 다음 씬으로 이동 (로딩 씬)
 					SCENE->ChangeScene(SceneName::Loading, FADEOUT);
-					fadeout = 0;
 				}
 			}
 		}
@@ -99,13 +95,18 @@ void TitleUI::LateUpdate()
 			{
 				BtnMouseOver(infoOption);
 			}
-			else if (infoStart.state == TitleBtnState::MOUSE_OVER)
+			else if (infoOption.state == TitleBtnState::MOUSE_OVER)
 			{
 				BtnMouseClick(infoOption);
 			}
-			else if (infoStart.state == TitleBtnState::MOUSE_CLICK)
+			else if (infoOption.state == TitleBtnState::MOUSE_CLICK)
 			{
-				// 옵션창 활성화
+				if (INPUT->KeyUp(VK_LBUTTON))
+				{
+					// 옵션창 활성화
+					SETTING->OpenSetting();
+					infoOption.state == TitleBtnState::MOUSE_OVER;
+				}
 			}
 		}
 		// 종료 버튼 마우스오버
@@ -129,8 +130,7 @@ void TitleUI::LateUpdate()
 				// 마우스 왼쪽 버튼을 떼면
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
-					fadeout = 0;
-					isPostQuit = true;
+					PostQuitMessage(0);
 				}
 			}
 		}

@@ -12,7 +12,7 @@ ElderTrophy::ElderTrophy()
 	icon = UI::Create("ElderTrophyIcon");
 	icon->LoadFile("Icon_ElderTrophy.xml");
 	icon->name = "ElderTrophyIcon" + to_string(index++);
-	tooltipBoxScaleY = 0.85f;
+	tooltipBoxScaleY = 0.95f;
 
 	ItemProto::Init();
 
@@ -90,7 +90,7 @@ void ElderTrophy::RenderHierarchy()
 
 wstring ElderTrophy::GetExplain()
 {
-	wstring exp = L"피와 뼈로 이루어진 이 작은 \n것아, 널 나뭇가지처럼 \n부러뜨렸어야 했는데! \n이제 나는 시들고 죽으니, \n큰 나무가 나를 가지게 하라... \n-Elder\n" ;
+	wstring exp = L"피와 뼈로 이루어진 이 작은 \n것아, 널 나뭇가지처럼 \n부러뜨렸어야 했는데! \n이제 나는 시들고 죽으니, \n빛이 가장 먼저 닿는곳으로 \n나를 인도하라... \n-Elder\n" ;
 	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
 
 	return exp + exp_sub1;
