@@ -245,12 +245,12 @@ void Setting::OnOffMasterVolume()
 	if (volumeOn)
 	{
 		App.soundScale = 0.0f;
-		SOUND->PauseAll();
+		SOUND->SetMasterVolume();
 	}
 	else
 	{
 		App.soundScale = 0.5f;
-		SOUND->ResumeAll();
+		SOUND->SetMasterVolume();
 	}
 }
 
