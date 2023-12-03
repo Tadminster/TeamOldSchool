@@ -41,6 +41,7 @@ void Setting::Update()
 	ImGui::End();
 
 	//패널 열기 닫기
+	// 인벤토리, 스탯창 제작창이 열려있지 않고 인게임 씬일때만 ESC 로 설정창 불러오기
 	if((not INVEN->isOpen) and (not STATUS->isOpen) and (not CRAFT->isOpen))
 	{
 		if (INPUT->KeyDown(VK_ESCAPE))
