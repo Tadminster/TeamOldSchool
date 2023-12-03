@@ -103,6 +103,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GameObject", "GameObject", 
 		Contents\GameObject\Unit\Player_Male.xml = Contents\GameObject\Unit\Player_Male.xml
 		Contents\GameObject\Unit\Player_St.xml = Contents\GameObject\Unit\Player_St.xml
 		Contents\GameObject\PostEffect.xml = Contents\GameObject\PostEffect.xml
+		Contents\GameObject\Unit\Skill_LevelUp.xml = Contents\GameObject\Unit\Skill_LevelUp.xml
 		Contents\GameObject\Sky1.xml = Contents\GameObject\Sky1.xml
 		Contents\GameObject\Sphere.xml = Contents\GameObject\Sphere.xml
 		Contents\GameObject\Unit\SummonSpear.xml = Contents\GameObject\Unit\SummonSpear.xml

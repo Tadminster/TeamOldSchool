@@ -152,8 +152,8 @@ void Setting::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					//볼륨을 키고 끕니다
-					volumeOn = !volumeOn;
-					OnOffMasterVolume(volumeOn);
+					//volumeOn = !volumeOn;
+					OnOffMasterVolume();
 					SOUND->Play(UI_CLICK);
 				}
 			}
@@ -236,15 +236,15 @@ void Setting::BtnMouseClick(SettingBtn& settingBtn)
 	}
 }
 
-void Setting::OnOffMasterVolume(bool OnAndOff)
+void Setting::OnOffMasterVolume()
 {
-	if (OnAndOff)
+	if (App.soundScale > 0.0f)
 	{
-		//소리가 켜져있을땐 꺼줍니다
+		//소리 켜져있을때 소리를 꺼줍니다
 		App.soundScale = 0.0f;
 		SOUND->SetMasterVolume();
 	}
-	else if (!OnAndOff)
+	else 
 	{
 		//소리가 꺼져있을땐 기본볼륨으로 바꿔줍니다
 		App.soundScale = 1.0f;

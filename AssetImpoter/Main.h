@@ -14,6 +14,7 @@ private:
 	Billboard*			billboard;
 	string				Modelfile;
 	string				Animfile;
+	UI* bgIMG = nullptr;
 	//임포트해서 가져온 데이터
 	const aiScene*		scene;
 	Assimp::Importer	importer;
