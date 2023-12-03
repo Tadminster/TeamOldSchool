@@ -111,7 +111,7 @@ void ParticleManager::RenderHierarchy()
 	
 	ImGui::Begin("Hierarchy");
 	{
-		beechDrop->RenderHierarchy();
+		/*beechDrop->RenderHierarchy();
 		hitBeech->RenderHierarchy();
 		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
@@ -121,7 +121,7 @@ void ParticleManager::RenderHierarchy()
 		healEffect->RenderHierarchy();
 		healEffect2->RenderHierarchy();
 		waterSplash->RenderHierarchy();
-		waterWave->RenderHierarchy();
+		waterWave->RenderHierarchy();*/
 		elderStomp->RenderHierarchy();
 		elderJumpAttack->RenderHierarchy();
 	}

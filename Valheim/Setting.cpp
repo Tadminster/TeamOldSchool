@@ -40,12 +40,12 @@ void Setting::Release()
 void Setting::Update()
 {
 
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		settingPanel->RenderHierarchy();
 		volumeIcon->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	//패널 열기 닫기
 	// 인벤토리, 스탯창 제작창이 열려있지 않고 인게임 씬일때만 ESC 로 설정창 불러오기

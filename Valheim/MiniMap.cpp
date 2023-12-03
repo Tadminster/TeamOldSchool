@@ -33,12 +33,12 @@ void MiniMap::Release()
 
 void MiniMap::Update()
 {
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		miniMap->RenderHierarchy();
 		playerIcon->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 	miniMap->Update();
 	playerIcon->Update();
 }
@@ -47,18 +47,18 @@ void MiniMap::LateUpdate()
 {
 
 	//터레인 맵의 높이에 따라 다른텍스쳐 색을가진 비트맵생성
-	if (ImGui::Button("DrawMiniMap"))
-	{
-		string test = "DrawMiniMap";
-		DrawMiniMap(test);
-	}
-	//미니맵 머터리얼에 디퓨즈맵 터레인맵이미지추가기능
-	if (ImGui::Button("MiniMapTextureLoad"))
-	{
-		string filepath = "MiniMap/DrawMiniMap.bmp";
-		SafeReset(miniMap->material->diffuseMap);
-		miniMap->material->diffuseMap = RESOURCE->textures.Load(filepath);
-	}
+	//if (ImGui::Button("DrawMiniMap"))
+	//{
+	//	string test = "DrawMiniMap";
+	//	DrawMiniMap(test);
+	//}
+	////미니맵 머터리얼에 디퓨즈맵 터레인맵이미지추가기능
+	//if (ImGui::Button("MiniMapTextureLoad"))
+	//{
+	//	string filepath = "MiniMap/DrawMiniMap.bmp";
+	//	SafeReset(miniMap->material->diffuseMap);
+	//	miniMap->material->diffuseMap = RESOURCE->textures.Load(filepath);
+	//}
 
 	//-------------------------------------------------
 
