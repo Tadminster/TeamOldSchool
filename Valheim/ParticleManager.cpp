@@ -6,7 +6,6 @@ ParticleManager::ParticleManager()
 	beechDrop = Pop::Create("Particle_WoodLeafDrop");
 	beechDrop->LoadFile("Particle_WoodLeafDrop.xml");
 	
-	
 	//나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("Particle_HitWood");
 	hitBeech->LoadFile("Particle_HitWood.xml");
@@ -39,6 +38,7 @@ ParticleManager::ParticleManager()
 
 	waterSplash = Pop::Create("Particle_WaterSplash");
 	waterSplash->LoadFile("Particle_WaterSplash.xml");
+	waterSplash->waveRange = 0.5f;
 
 	waterWave = Pop::Create("Particle_WaterWave");
 	waterWave->LoadFile("Particle_WaterWave.xml");
@@ -70,7 +70,6 @@ void ParticleManager::Update()
 	healEffect2->Update();
 	waterSplash->Update();
 	waterWave->Update();
-
 }
 
 void ParticleManager::LateUpdate()

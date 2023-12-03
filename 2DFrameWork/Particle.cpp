@@ -28,3 +28,5 @@ void Particle::Gui()
 	//총 재생할 시간
 	ImGui::SliderFloat("duration", &duration, 0.0f, 100.0f);
 }
+
+
