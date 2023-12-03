@@ -27,7 +27,7 @@ private:
     Actor*          jellyFish;
 
     // ¹öÆ°
-    class TitleUI*        titleUI;
+    class TitleUI*  titleUI;
 
 private:
     siv::PerlinNoise perlin;

@@ -1,5 +1,5 @@
 #pragma once
-
+#define FADEOUT 2.0f
 enum class TitleBtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
 struct BtnInfo
 {
@@ -19,7 +19,10 @@ private:
     // ==============================================================
     Vector3     btnBaseScale{ 0.14f, 0.06f, 0.0f };
     Vector3     btnMouseOverScale{ 0.16f, 0.08f, 0.0f };
-
+    // ==============================================================
+    class UI*   fadeOut = nullptr;
+    float       fadeout = 5;
+    bool        isPostQuit = false;
 public:
     TitleUI();
     ~TitleUI();

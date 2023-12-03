@@ -23,6 +23,14 @@ ParticleManager::ParticleManager()
 	//바위 타격시 돌이 튀는 파티클 효과
 	hitRock = Pop::Create("Particle_RockHit");
 	hitRock->LoadFile("Particle_HitRock.xml");
+
+	//엘더 발찍기
+	elderStomp = Pop::Create("ElderStomp");
+	elderStomp->LoadFile("Particle_HitRock.xml");
+
+	//엘더 점프공격
+	elderJumpAttack = Pop::Create("ElderJumpAttack");
+	elderJumpAttack->LoadFile("Particle_HitRock.xml");
 	
 	//플레이어 레벨업 파티클 효과
 	levelUp = Pop::Create("Praticle_LevelUp");
@@ -70,6 +78,8 @@ void ParticleManager::Update()
 	healEffect2->Update();
 	waterSplash->Update();
 	waterWave->Update();
+	elderStomp->Update();
+	elderJumpAttack->Update();
 
 }
 
@@ -90,6 +100,8 @@ void ParticleManager::Render()
 	healEffect2->Render();
 	waterSplash->Render();
 	waterWave->Render();
+	elderStomp->Render();
+	elderJumpAttack->Render();
 
 	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
 	/*BLEND->Set(true);
@@ -123,6 +135,8 @@ void ParticleManager::RenderHierarchy()
 		healEffect2->RenderHierarchy();
 		waterSplash->RenderHierarchy();
 		waterWave->RenderHierarchy();
+		elderStomp->RenderHierarchy();
+		elderJumpAttack->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -160,6 +174,18 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 		hitRock->SetWorldPos(pos);
 		hitRock->Play();
 		cout << "바위 타격" << endl;
+	}
+	else if (type == EffectType::ELDERSTOMP)
+	{
+		elderStomp->SetWorldPos(pos);
+		elderStomp->Play();
+		cout << "엘더 발찍기" << endl;
+	}
+	else if (type == EffectType::ELDERATTACK)
+	{
+		elderJumpAttack->SetWorldPos(pos);
+		elderJumpAttack->Play();
+		cout << "엘더 점프어택" << endl;
 	}
 	else if (type == EffectType::LEVELUP)
 	{
