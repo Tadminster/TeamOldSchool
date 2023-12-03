@@ -4,7 +4,7 @@
     <Material File="UI/SettingPane.mtl"/>
     <Transform>
         <Position X="0" Y="0" Z="0"/>
-        <Scale X="1" Y="1" Z="1"/>
+        <Scale X="0.5" Y="0.60000002" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <UI PivotX="0" PivotY="0"/>

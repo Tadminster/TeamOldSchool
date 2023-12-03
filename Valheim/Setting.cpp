@@ -16,9 +16,9 @@ Setting::~Setting()
 void Setting::Init()
 {
 	settingPanel->visible = false;
-	//settingPanel->rotation.z = 90.0f;
+	
 
-	float appHalfWidth = App.GetHalfWidth();
+	/*float appHalfWidth = App.GetHalfWidth();
 	float appHalfHeight = App.GetHalfHeight();
 
 	float panelSizeX = 378.0f;
@@ -28,7 +28,7 @@ void Setting::Init()
 	settingPanel->SetWorldPosY(App.GetHalfHeight() + panelSizeY * 0.5f / App.GetHeight());
 
 	settingPanel->scale.x = panelSizeX / appHalfWidth;
-	settingPanel->scale.y = panelSizeY / appHalfHeight;
+	settingPanel->scale.y = panelSizeY / appHalfHeight;*/
 
 }
 
