@@ -82,7 +82,7 @@ void Inventory::Update()
 			inventoryUI->Find("SlotBottom")->visible = true;
 
 			// 열림 사운드 재생
-			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_SHOW_01, INVENTORY_SHOW_03));
+			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(UI_SHOW_01, UI_SHOW_03));
 			SOUND->Play(randomPlay);
 		}
 		// 닫혔으면
@@ -92,7 +92,7 @@ void Inventory::Update()
 			inventoryUI->Find("SlotBottom")->visible = false;
 
 			// 닫힘 사운드 재생
-			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_HIDE_01, INVENTORY_HIDE_03));
+			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(UI_HIDE_01, UI_HIDE_03));
 			SOUND->Play(randomPlay);
 		}
 
@@ -108,7 +108,7 @@ void Inventory::Update()
 		inventoryUI->Find("SlotBottom")->visible = false;
 
 		// 닫힘 사운드 재생
-		SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(INVENTORY_HIDE_01, INVENTORY_HIDE_03));
+		SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(UI_HIDE_01, UI_HIDE_03));
 		SOUND->Play(randomPlay);
 
 		Init();
@@ -338,7 +338,7 @@ void Inventory::ItemPickUp()
 				selectedItem.index = i;
 
 				// 아이템 선택 사운드 재생
-				SOUND->Play(INVENTORY_ITEM_PICK);
+				SOUND->Play(UI_CLICK);
 			}
 		}
 	}
