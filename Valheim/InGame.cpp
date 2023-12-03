@@ -60,8 +60,8 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	LIGHT->RenderDetail();
-	scattering->RenderDetail();
+	//LIGHT->RenderDetail();
+	//scattering->RenderDetail();
 
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");

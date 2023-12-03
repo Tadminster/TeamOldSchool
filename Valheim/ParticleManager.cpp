@@ -111,7 +111,7 @@ void ParticleManager::RenderHierarchy()
 	
 	ImGui::Begin("Hierarchy");
 	{
-		beechDrop->RenderHierarchy();
+		/*beechDrop->RenderHierarchy();
 		hitBeech->RenderHierarchy();
 		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
@@ -121,7 +121,7 @@ void ParticleManager::RenderHierarchy()
 		healEffect->RenderHierarchy();
 		healEffect2->RenderHierarchy();
 		waterSplash->RenderHierarchy();
-		waterWave->RenderHierarchy();
+		waterWave->RenderHierarchy();*/
 		elderStomp->RenderHierarchy();
 		elderJumpAttack->RenderHierarchy();
 	}
@@ -136,79 +136,66 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		beechDrop->SetWorldPos(pos);
 		beechDrop->Play();
-		cout << "³ª¹µÀÙ ¶³¾îÁü" << endl;
 	}
 	else if (type == EffectType::HITWOOD)
 	{
 		hitBeech->SetWorldPos(pos);
 		hitBeech->Play();
-		cout << "³ª¹« Å¸°Ý" << endl;
 	}
 	else if (type == EffectType::WOODHITDUST)
 	{
 		woodHitDust->SetWorldPos(pos);
 		woodHitDust->Play();
-		cout << "³ª¹« Å¸°Ý ¸ÕÁö¹ß»ý" << endl;
 	}
 	else if (type == EffectType::HITBLOOD)
 	{
 		hitBlood->SetWorldPos(pos);
 		hitBlood->Play();
-		cout << "ÇÇ ÅÍÁü" << endl;
 	}
 	else if (type == EffectType::HITROCK)
 	{
 		hitRock->SetWorldPos(pos);
 		hitRock->Play();
-		cout << "¹ÙÀ§ Å¸°Ý" << endl;
 	}
 	else if (type == EffectType::ELDERSTOMP)
 	{
 		elderStomp->SetWorldPos(pos);
 		elderStomp->Play();
-		cout << "¿¤´õ ¹ßÂï±â" << endl;
 	}
 	else if (type == EffectType::ELDERATTACK)
 	{
 		elderJumpAttack->SetWorldPos(pos);
 		elderJumpAttack->Play();
-		cout << "¿¤´õ Á¡ÇÁ¾îÅÃ" << endl;
 	}
 	else if (type == EffectType::LEVELUP)
 	{
 		levelUp->SetWorldPos(pos);
 		levelUp->Play();
-		cout << "·¹º§¾÷ ºû¹«¸®È¿°ú" << endl;
 	}
 	else if (type == EffectType::LEVELUPONHEAD)
 	{
 		levelUpOnHead->SetWorldPos(pos);
 		levelUpOnHead->Play();
-		cout << "·¹º§¾÷ Ä³¸¯ÅÍ ¸Ó¸®À§ ÀÌÆåÆ®" << endl;
 	}
 	else if (type == EffectType::HEALEFFECT)
 	{
 		healEffect->SetWorldPos(pos);
 		healEffect->Play();
-		cout << "Ä³¸¯ÅÍ È¸º¹ ÀÌÆåÆ®" << endl;
 	}
 	else if (type == EffectType::HEALEFFECT2)
 	{
 		healEffect2->SetWorldPos(pos);
 		healEffect2->Play();
-		cout << "Ä³¸¯ÅÍ È¸º¹ ÀÌÆåÆ®2" << endl;
 	}
 	else if (type == EffectType::WATERSPLASH)
 	{
 		waterSplash->SetWorldPos(pos);
 		waterSplash->Play();
-		cout << "ÆÄµµ Ã¶½âÀÓ" << endl;
 	}
 	else if (type == EffectType::WATERWAVE)
 	{
 		waterWave->SetWorldPos(pos);
 		waterWave->Play();
-		cout << "ÆÄµµ Ã¶½âÀÓ" << endl;
 	}
 }
 
