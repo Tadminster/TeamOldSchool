@@ -129,7 +129,7 @@ void TitleScene::LateUpdate()
 		static float waterEffectCycle = 4.9f;
 		if (TIMER->GetTick(waterEffectCycle, 5.0f))
 		{
-			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos);
+			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos + Vector3(0,1.0f,0));
 		}
 	}
 

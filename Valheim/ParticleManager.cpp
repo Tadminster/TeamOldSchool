@@ -46,7 +46,7 @@ ParticleManager::ParticleManager()
 
 	waterSplash = Pop::Create("Particle_WaterSplash");
 	waterSplash->LoadFile("Particle_WaterSplash.xml");
-	
+	waterSplash->waveRange = 0.45f;
 
 	waterWave = Pop::Create("Particle_WaterWave");
 	waterWave->LoadFile("Particle_WaterWave.xml");

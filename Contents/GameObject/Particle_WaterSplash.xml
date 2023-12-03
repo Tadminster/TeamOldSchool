@@ -3,10 +3,10 @@
     <Shader File="8.Pop.hlsl"/>
     <Material File="Particle/WaterSplash.mtl"/>
     <Transform>
-        <Position X="30" Y="0.88700002" Z="25"/>
+        <Position X="30" Y="1.5859544" Z="25"/>
         <Scale X="1.5" Y="1.5" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
-    <Pop particleScaleX="5" particleScaleY="5" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="100" velocityScalar="2" duration="1.5" gravity="1"/>
+    <Pop particleScaleX="5" particleScaleY="5" randomPosX="0" randomPosY="0" randomPosZ="0" particleCount="56" velocityScalar="2" duration="1.5" gravity="1"/>
     <Children Size="0"/>
 </Root>

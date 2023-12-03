@@ -101,7 +101,7 @@ void Pop::Reset()
 		Vector3 randomPos = Vector3(RANDOM->Float(0, randomPosition.x), RANDOM->Float(0, randomPosition.y), RANDOM->Float(0, randomPosition.z));
 
 		//방향벡터 Right
-		Vector3 velocity = Vector3(1, 0, 0);
+		Vector3 velocity = Vector3(-0.5f, 0, 0);
 
 		//임의의 회전된 3개축
 		Vector3 rot;
