@@ -9,6 +9,7 @@ Recipe::Recipe()
     discoveryItemList[Item::Club] = false;
     discoveryItemList[Item::StoneAxe] = false;
     discoveryItemList[Item::StonePickaxe] = false;
+    discoveryItemList[Item::FineAxe] = false;
     discoveryItemList[Item::WoodShield] = false;
 
     discoveryItemList[Item::Stone] = false;
@@ -21,12 +22,14 @@ Recipe::Recipe()
     discoveryRecipeList[Item::Club] = false;
     discoveryRecipeList[Item::StoneAxe] = false;
     discoveryRecipeList[Item::StonePickaxe] = false;
+    discoveryRecipeList[Item::FineAxe] = false;
     discoveryRecipeList[Item::WoodShield] = false;
     // 레시피 목록 초기화 ======================================================
     recipeList.emplace(Item::Club,          set<Item>{Item::Woodpile});                 // 몽둥이
     recipeList.emplace(Item::StoneAxe,      set<Item>{Item::Woodpile, Item::Stone});    // 돌 도끼
     recipeList.emplace(Item::StonePickaxe,  set<Item>{Item::Woodpile, Item::Stone});    // 돌 곡괭이
     recipeList.emplace(Item::WoodShield,    set<Item>{Item::Woodpile, Item::Stone, Item::Leather});    // 나무방패
+    recipeList.emplace(Item::FineAxe,       set<Item>{Item::StoneAxe, Item::FineWood});    // 고급 도끼
 
     // 레시피 데이터 초기화 ============================================================
     recipeInfo.emplace_back(new RecipeInfo{ 
@@ -48,6 +51,12 @@ Recipe::Recipe()
         Item::WoodShield, L"나무 방패",
         L"단순한 원형 방패지만 꽤나 \n단단하다.\n",
         {{Item::Woodpile, 5}, {Item::Stone, 2}, {Item::Leather, 2}} });
+
+    recipeInfo.emplace_back(new RecipeInfo{
+		Item::FineAxe, L"고급 도끼",
+		L"나무를 더욱 효율적으로 채취할 수 있는 \n고급 도끼.\n",
+		{{Item::StoneAxe, 1}, {Item::FineWood, 5}} });
+
 }
 
 Recipe::~Recipe()

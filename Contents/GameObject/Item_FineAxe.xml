@@ -1,0 +1,32 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Collider ColliderType="2" Visible="true">
+        <Position X="-0.1" Y="0" Z="-0.69999999"/>
+        <Scale X="0.31999999" Y="0.22" Z="0.22"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Collider>
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="-0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="Mesh" Visible="true" ObType="0">
+            <Mesh File="FineAxe/fineaxe.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="FineAxe/fineaxe.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.003" Y="0.003" Z="0.003"/>
+                <Rotation X="1.5707961" Y="3.1415758" Z="0"/>
+            </Transform>
+            <Children Size="0"/>
+        </Child0>
+    </Child0>
+</Root>

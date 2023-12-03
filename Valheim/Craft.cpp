@@ -536,12 +536,14 @@ string Craft::GetIconFileName(Item item)
 	case Item::Club:			return "club.png"; break;
 	case Item::StoneAxe:		return "axe_stone.png"; break;
 	case Item::StonePickaxe:	return "pickaxe_stone.png"; break;
+	case Item::FineAxe:			return "axe_fine.png"; break;
 	case Item::WoodShield:		return "shield_wood.png"; break;
 	case Item::Woodpile:		return "woodpile.png"; break;
 	case Item::FineWood:		return "finewood.png"; break;
 	case Item::Stone:			return "stone.png"; break;
 	case Item::Leather:			return "leather.png"; break;
 	case Item::ElderTrophy:		return "trophy_elder.png"; break;
+
 	default:					return "ERROE: Undefined icon name";
 	}
 }

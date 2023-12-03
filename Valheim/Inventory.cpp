@@ -722,6 +722,11 @@ bool Inventory::CheckMaterial(Item item, int quantity)
 				// 재료의 현재 중첩수가 필요한 수 미만이면 필요한 수에서 현재 중첩수를 뺌
 				else quantity -= material->currentStack;
 			}
+			WeaponProto* weapon = dynamic_cast<WeaponProto*>(inventoryItem[i]);
+			if (weapon)
+			{
+				return true;
+			}
 		}
 
 		// 필요한 재료의 수가 0이하면 true 반환
@@ -739,6 +744,18 @@ void Inventory::UseMaterial(Item item, int quantity)
 		// 아이템이 있고, 재료 이름이 같으면
 		if (inventoryItem[i] && inventoryItem[i]->GetEnumName() == item)
 		{
+			// Down Casting
+			WeaponProto* weapon = dynamic_cast<WeaponProto*>(inventoryItem[i]);
+			if (weapon)
+			{
+				weapon->currentStack = 0;
+
+				inventoryItem[i] = nullptr;
+				inventoryIcon[i] = nullptr;
+
+				return;
+			}
+
 			// Down Casting
 			MaterialProto* material = dynamic_cast<MaterialProto*>(inventoryItem[i]);
 			if (material)

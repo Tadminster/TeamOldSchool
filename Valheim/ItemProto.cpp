@@ -4,6 +4,7 @@
 #include "Club.h"
 #include "StoneAxe.h"
 #include "StonePickaxe.h"
+#include "FineAxe.h"
 #include "WoodShield.h"
 #include "Stone.h"
 #include "Woodpile.h"
@@ -22,6 +23,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new StoneAxe();
 	case Item::StonePickaxe:
 		return new StonePickaxe();
+	case Item::FineAxe:
+		return new FineAxe();
 	case Item::WoodShield:
 		return new WoodShield();
 	case Item::Woodpile:
@@ -122,6 +125,28 @@ void ItemProto::Render()
 	}
 }
 
+void ItemProto::Release()
+{
+	icon->Release();
+	delete this;
+}
+
+void ItemProto::DestructionEvent()
+{
+	cout << "stack: " << currentStack << endl;
+	cout << "stack 수가 0이하이므로 아이템 파괴" << endl;
+	this->Release();
+}
+
+bool ItemProto::IsDestroyed()
+{
+	if (currentStack <= 0)
+	{
+		return true;
+	}
+	return false;
+}
+
 void ItemProto::Drop()
 {
 	actor->scale	= Vector3(1, 1, 1);
@@ -163,20 +188,4 @@ void MaterialProto::StackMerge(MaterialProto* material)
 		// 대상 아이템은 최대 스택으로 초기화
 		material->currentStack = maxStack;
 	}
-}
-
-void MaterialProto::DestructionEvent()
-{
-	cout << "stack: " << currentStack << endl;
-	cout << "stack 수가 0이하이므로 아이템 파괴" << endl;
-	MaterialProto::~MaterialProto();
-}
-
-bool MaterialProto::IsDestroyed()
-{
-	if (currentStack <= 0)
-	{
-		return true;
-	}
-	return false;
 }

@@ -145,6 +145,9 @@
     <ClInclude Include="FineWood.h">
       <Filter>GameObject\Items\Material</Filter>
     </ClInclude>
+    <ClInclude Include="FineAxe.h">
+      <Filter>GameObject\Items\Weapon</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -285,6 +288,9 @@
     </ClCompile>
     <ClCompile Include="FineWood.cpp">
       <Filter>GameObject\Items\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="FineAxe.cpp">
+      <Filter>GameObject\Items\Weapon</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
