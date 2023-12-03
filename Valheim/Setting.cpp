@@ -71,7 +71,7 @@ void Setting::Update()
 
 void Setting::LateUpdate()
 {
-	
+
 	//설정창	패널위에 마우스가 올라가 있으면 
 	//버튼들의 상태체크
 	if (isOpen and settingPanel->MouseOver())
@@ -93,7 +93,7 @@ void Setting::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					// 전체볼륨을 올려줍니다
-					App.soundScale += 0.1f;
+					App.soundScale = clamp(App.soundScale + 0.1f, 0.0f, 1.0f);
 					SOUND->SetMasterVolume();
 					SOUND->Play(UI_CLICK);
 				}
@@ -116,7 +116,7 @@ void Setting::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					// 전체볼륨을 줄여줍니다
-					App.soundScale -= 0.1f;
+					App.soundScale = clamp(App.soundScale - 0.1f, 0.0f, 1.0f);
 					SOUND->SetMasterVolume();
 					SOUND->Play(UI_CLICK);
 				}
@@ -186,10 +186,10 @@ void Setting::OnOffMasterVolume(bool OnAndOff)
 		App.soundScale = 0.0f;
 		SOUND->SetMasterVolume();
 	}
-	else
+	else if (!OnAndOff)
 	{
 		//소리가 꺼져있을땐 기본볼륨으로 바꿔줍니다
-		App.soundScale = 0.5f;
+		App.soundScale = 1.0f;
 		SOUND->SetMasterVolume();
 	}
 }
