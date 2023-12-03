@@ -72,8 +72,8 @@ void PlayerStatus::UIoff()
 void PlayerStatus::Effect()
 {
 	levelUpAnim = true;
-	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->GetWorldPos());
-	
+	SOUND->Play(PLAYER_LEVELUP_01);
+	PARTICLE->PlayParticleEffect(EffectType::LEVELUP, PLAYER->actor->GetWorldPos());	
 }
 void PlayerStatus::RunExp()
 {

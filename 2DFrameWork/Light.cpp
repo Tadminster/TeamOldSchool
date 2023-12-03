@@ -148,13 +148,14 @@ void Light::RenderDetail()
 
 void LightManager::UpdateDirection()
 {
+	if (isBoss) currentTime = 0;
+	else currentTime += DELTA;
+
 	if (currentTime >= dayCycleLength)
 	{
 		cout << TIMER->GetWorldTime() << endl;
 		currentTime = fmod(currentTime, dayCycleLength);
 	}
-
-	currentTime += DELTA;
 
 	//0~1 ³·¹ã ºñÀ²
 	// ÇØÁú³è

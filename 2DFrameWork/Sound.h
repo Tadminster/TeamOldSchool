@@ -80,6 +80,12 @@ enum SoundName
     PLAYER_BLOCK_01,         //플레이어 방패막기
     PLAYER_BLOCK_02,
     PLAYER_BLOCK_03,
+
+    PLAYER_LEVELUP_01,       //플레이어 레벨업
+
+    ELDER_BGM_01,       //엘더 BGM
+    ELDER_STOMP,       //엘더 Stomp
+    ELDER_JUMPATTACK,       //엘더 JumpAttack
 };
 
 class Sound : public Singleton<Sound>

@@ -72,6 +72,7 @@ private:
 public:
 	LightManager();
 	~LightManager();
+	bool				isBoss{ false };
 	DirLight			dirLight;
 	LightBuffer			light[MAX_LIGHT];
 	void				Set();
