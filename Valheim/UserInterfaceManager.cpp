@@ -26,6 +26,16 @@ void UserInterfaceManager::Init()
 
 void UserInterfaceManager::Release()
 {
+	for(auto& notice : notifications)
+		notice->Release();
+	notifications.clear();
+
+	for (auto& damageText : damageTexts)
+		damageText->Release();
+	damageTexts.clear();
+
+	craft->Release();
+	inventory->Release();
 }
 
 void UserInterfaceManager::Update()

@@ -60,6 +60,22 @@ void Inventory::Init()
 
 void Inventory::Release()
 {
+	for (int i = 0; i < INVENTORY_SIZE; i++)
+	{
+		SafeDelete(inventoryItem[i]);
+		SafeDelete(inventoryIcon[i]);
+	}
+	// =========
+
+	panel= nullptr;
+	tooltopBox = nullptr;
+	for (int i = 0; i < INVENTORY_SIZE + 1; i++)
+	{
+		slot[i] = nullptr;
+	}
+
+
+	inventoryUI->Release();
 }
 
 void Inventory::Update()

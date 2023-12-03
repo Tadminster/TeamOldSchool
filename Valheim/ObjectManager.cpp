@@ -18,7 +18,8 @@
 
 ObjectManager::ObjectManager()
 {
-	// 테스트용 임시 아이템 생성
+	 //테스트용 임시 아이템 생성
+	/*
 	{
 		for (auto& item : stoneAxe)
 		{
@@ -62,6 +63,7 @@ ObjectManager::ObjectManager()
 			AddItem(item);
 		}
 	}
+	*/
 }
 
 ObjectManager::~ObjectManager()
@@ -95,6 +97,15 @@ void ObjectManager::Release()
 	}
 	objects.clear();
 
+	for (auto& item : items)
+	{
+		item->Release();
+	}
+	items.clear();
+
+
+
+
 	featureCount = 0;
 }
 
@@ -121,7 +132,7 @@ void ObjectManager::Update()
 
 	ListEraser(objects);
 	ListEraser(items);
-	ListEraser(structures);
+	//ListEraser(structures);
 
 	// 오브젝트 업데이트
 	{
