@@ -19,7 +19,7 @@ void LoadingScene::Init()
     backgroundImg = UI::Create();
     backgroundImg->LoadFile("UI_Loading.xml");
 
-    thread1 = new thread(CreateInGameScene);
+    thread2 = new thread(CreateInGameScene);
   
     textPos.left = App.GetWidth() * 0.9f;
     textPos.top = App.GetHeight() * 0.95f;
@@ -34,14 +34,14 @@ void LoadingScene::Release()
     loadingCam->Release();
     backgroundImg->Release();
 
-    thread1->join();
-    delete thread1;
+    thread2->join();
+    delete thread2;
 }
 
 void LoadingScene::Update()
 {
     float maximumPercent = min(99.0f, 100.0f * ((float)loadCount / (MAX_LOADCOUNT - 1)));
-    loadingProgress = min(loadingProgress + LOADIND_RATE, maximumPercent);
+    loadingProgress = clamp(loadingProgress + LOADIND_RATE, (float)loadCount * 19.0f, maximumPercent);
 
     if (loadCount == MAX_LOADCOUNT)
     {

@@ -8,6 +8,7 @@ TitleUI::TitleUI()
 	titleUI->LoadFile("UI_Title.xml");
 
 	panel = static_cast<UI*>(titleUI->Find("0_Panel"));
+	arrow = static_cast<UI*>(titleUI->Find("1_Arrow"));
 	infoStart.btn = static_cast<UI*>(titleUI->Find("1_Btn_Start"));
 	infoOption.btn = static_cast<UI*>(titleUI->Find("1_Btn_Option"));
 	infoExit.btn = static_cast<UI*>(titleUI->Find("1_Btn_Exit"));
@@ -145,6 +146,8 @@ void TitleUI::LateUpdate()
 		BtnInitalize(infoStart);
 		BtnInitalize(infoOption);
 		BtnInitalize(infoExit);
+
+		arrow->visible = false;
 	}
 }
 
@@ -180,6 +183,10 @@ void TitleUI::BtnMouseOver(BtnInfo& btnInfo)
 {
 	// 버튼 스케일을 마우스오버 스케일로 변경
 	btnInfo.btn->scale = btnMouseOverScale;
+
+	// 화살표 위치 이동
+	arrow->visible = true;
+	arrow->SetWorldPos(btnInfo.btn->GetWorldPos());
 
 	// 버튼 상태를 마우스오버로 변경
 	btnInfo.state = TitleBtnState::MOUSE_OVER;
