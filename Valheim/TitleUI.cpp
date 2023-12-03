@@ -37,16 +37,11 @@ void TitleUI::Release()
 
 void TitleUI::Update()
 {
-	if (fadeout < FADEOUT)
+	if (isPostStart)
 	{
 		fadeout += DELTA;
 		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
 	}
-	else
-	{
-		if(isPostQuit) PostQuitMessage(0);
-	}
-	
 
 	fadeOut->Update();
 	titleUI->Update();
@@ -81,9 +76,10 @@ void TitleUI::LateUpdate()
 				// ¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» ¶¼¸é
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
+					isPostStart = true;
+
 					// ´ÙÀ½ ¾ÀÀ¸·Î ÀÌµ¿ (·Îµù ¾À)
 					SCENE->ChangeScene(SceneName::Loading, FADEOUT);
-					fadeout = 0;
 				}
 			}
 		}
@@ -134,8 +130,7 @@ void TitleUI::LateUpdate()
 				// ¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» ¶¼¸é
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
-					fadeout = 0;
-					isPostQuit = true;
+					PostQuitMessage(0);
 				}
 			}
 		}

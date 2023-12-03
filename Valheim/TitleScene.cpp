@@ -80,9 +80,6 @@ void TitleScene::Release()
 
 	PARTICLE->waterSplash->rotation.y = 0.0f;
 	SOUND->Stop(BGM_OCEANWAVE);
-	//btnStart->Release();
-	//btnOption->Release();
-	//btnExit->Release();
 }
 
 void TitleScene::Update()
@@ -144,12 +141,28 @@ void TitleScene::LateUpdate()
 	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
 	{
 		// 카메라 위치를 물 표면으로 설정
-		//titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
+		titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
 
 		// 물속 표현
 		if (rayHitPos.y > titleCamera->GetWorldPos().y)
-			underwater->visible = true;
-		else underwater->visible = false;
+		{
+			if (!isUnderwater)
+			{
+				isUnderwater = true;
+				underwater->visible = true;
+
+				SoundName randomPlay1 = static_cast<SoundName>(RANDOM->Int(UNDERWATER_WAVE_PASS_BY_01, UNDERWATER_WAVE_PASS_BY_04));
+				SOUND->Play(randomPlay1);
+
+				SoundName randomPlay2 = static_cast<SoundName>(RANDOM->Int(UNDERWATER_HURT_01, UNDERWATER_HURT_03));
+				SOUND->Play(randomPlay2);
+			}
+		}
+		else
+		{
+			isUnderwater = false;
+			underwater->visible = false;
+		}
 	}
 
 	titleUI->LateUpdate();
