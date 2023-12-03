@@ -5,7 +5,7 @@ Setting::Setting()
 {
 	settingPanel = UI::Create("SettingPanel");
 	settingPanel->LoadFile("UI_SettingPanel.xml");
-	
+
 	volumeUp.button = static_cast<UI*>(settingPanel->Find("volumeUp"));
 	volumeDown.button = static_cast<UI*>(settingPanel->Find("volumeDown"));
 	turnAndOffvolume.button = static_cast<UI*>(settingPanel->Find("turnAndOffvolume"));
@@ -20,7 +20,7 @@ Setting::~Setting()
 void Setting::Init()
 {
 	settingPanel->visible = false;
-	
+
 	BtnInitalize(volumeUp);
 	BtnInitalize(volumeDown);
 	BtnInitalize(turnAndOffvolume);
@@ -41,14 +41,13 @@ void Setting::Update()
 	ImGui::End();
 
 	//패널 열기 닫기
-	if (INPUT->KeyDown(VK_F8))
+	if((not INVEN->isOpen) and (not STATUS->isOpen) and (not CRAFT->isOpen))
 	{
-		settingPanel->visible = !settingPanel->visible;
-
+		if (INPUT->KeyDown(VK_ESCAPE))
+		{
+			settingPanel->visible = !settingPanel->visible;
+		}
 	}
-
-
-
 
 	settingPanel->Update();
 }
@@ -132,7 +131,7 @@ void Setting::LateUpdate()
 
 void Setting::Render()
 {
-	
+
 	settingPanel->Render();
 }
 

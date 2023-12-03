@@ -47,6 +47,7 @@ void InGame::Init()
 	OBJ->Init();
 	PLAYER->Init();
 	MONSTER->Init();
+	SETTING->Init();
 	// 배경음악 재생
 	//SOUND->Play(BGM_HOMEBASE);
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
@@ -121,6 +122,7 @@ void InGame::Update()
 	PLAYER->Update();
 	UIM->Update();
 	MONSTER->Update();
+	SETTING->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
@@ -131,7 +133,7 @@ void InGame::LateUpdate()
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
 	MONSTER->LateUpdate();
-	PARTICLE->LateUpdate();
+	SETTING->LateUpdate();
 
 	UIM->LateUpdate();
 }
@@ -175,6 +177,7 @@ void InGame::Render()
 	PARTICLE->Render();
 	UIM->Render();
 	MONSTER->Render();
+	SETTING->Render();
 }
 
 void InGame::ResizeScreen()

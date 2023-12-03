@@ -12,7 +12,6 @@ public:
     class Craft*        craft;
     class MiniMap*      minimap;
     class Status*       status;
-    class Setting*      setting;
 
 public:
     UserInterfaceManager();

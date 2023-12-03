@@ -1,11 +1,11 @@
 #pragma once
 enum class SettingBtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
-struct SettingBtn : public Singleton<SettingBtn>
+struct SettingBtn
 {
 	UI* button;
 	SettingBtnState state{ SettingBtnState::NONE };
 };
-class Setting
+class Setting : public Singleton<Setting>
 {
 public:
 	bool	mouseOnPanel = false;	//설정창 온오프 판별

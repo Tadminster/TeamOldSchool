@@ -28,6 +28,8 @@ private:
 
     // 버튼
     class TitleUI*  titleUI;
+    // 설정창
+
 private:
     siv::PerlinNoise perlin;
 

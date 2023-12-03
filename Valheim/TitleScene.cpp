@@ -58,7 +58,7 @@ void TitleScene::Init()
 {
 	SCENE->AddScene("Loading", new LoadingScene);
 	LIGHT->UpdateDirection();
-	
+	SETTING->Init();
 }
 
 void TitleScene::Release()
@@ -119,6 +119,7 @@ void TitleScene::Update()
 	karve->Update();
 	jellyFish->Update();
 	PARTICLE->Update();
+	SETTING->Update();
 }
 
 void TitleScene::LateUpdate()
@@ -149,6 +150,7 @@ void TitleScene::LateUpdate()
 	}
 
 	titleUI->LateUpdate();
+	SETTING->LateUpdate();
 }
 
 void TitleScene::PreRender()
@@ -177,6 +179,7 @@ void TitleScene::Render()
 	underwater->Render();
 
 	titleUI->Render();
+	SETTING->Render();
 }
 
 void TitleScene::ResizeScreen()

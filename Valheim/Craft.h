@@ -35,6 +35,7 @@ private:
 	// 크래프팅 창 조작=================================================================================
 	bool		hasRecipe[RECIPE_SIZE];			// 레시피가 존재하는지 여부
 	bool		needMaterial[MATERIAL_SIZE];	// 재료가 필요한지 여부
+public:
 	bool		isOpen{ false };				// 크래프팅 창이 열려있는지 여부
 
 public:
