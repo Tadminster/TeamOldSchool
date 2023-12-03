@@ -7,7 +7,7 @@ int loadCount = 0;
 
 void CreateInGameScene()
 {
-    SCENE->AddScene("InGame", new InGame());
+    SCENE->AddScene(SceneName::InGame, new InGame());
 }
 
 void LoadingScene::Init()
@@ -47,7 +47,7 @@ void LoadingScene::Update()
 
     if (loadCount == MAX_LOADCOUNT)
     {
-        SCENE->ChangeScene("InGame");
+        SCENE->ChangeScene(SceneName::InGame);
     }
 }
 

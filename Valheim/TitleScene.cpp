@@ -56,7 +56,7 @@ TitleScene::~TitleScene()
 
 void TitleScene::Init()
 {
-	SCENE->AddScene("Loading", new LoadingScene);
+	SCENE->AddScene(SceneName::Loading, new LoadingScene);
 	LIGHT->UpdateDirection();
 	
 }

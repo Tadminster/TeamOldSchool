@@ -77,7 +77,7 @@ void TitleUI::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					// ´ÙÀ½ ¾ÀÀ¸·Î ÀÌµ¿ (·Îµù ¾À)
-					SCENE->ChangeScene("Loading", FADEOUT);
+					SCENE->ChangeScene(SceneName::Loading, FADEOUT);
 					fadeout = 0;
 				}
 			}
