@@ -26,6 +26,12 @@ Player::Player()
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
+	mouseIcon = UI::Create();
+	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
+	
+	mouseIcon2 = UI::Create();
+	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
+	
 	hitPoint = 30.0f;
 	maxHitpoint = 30.0f;
 }
@@ -36,6 +42,7 @@ Player::~Player()
 
 void Player::Init()
 {
+	mouseIcon2->visible = false;
 	actor->SetWorldPos(OBJ->GetStartingPosition());
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
@@ -47,6 +54,7 @@ void Player::Update()
 {
 	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
 	PARTICLE->SetWorldPos();
+	mouseIcon2->SetWorldPos(Utility::MouseToNDC() + Vector3(0, -0.01f, 0));
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -76,6 +84,8 @@ void Player::Update()
 	status->Update();
 	playerHp->Update();
 	playerSt->Update();
+	mouseIcon->Update();
+	mouseIcon2->Update();
 }
 
 void Player::LateUpdate()
@@ -88,6 +98,8 @@ void Player::Render()
 	playerHp->Render();
 	playerSt->Render();
 	status->Render();
+	mouseIcon->Render();
+	mouseIcon2->Render();
 }
 
 void Player::Release()
@@ -100,6 +112,7 @@ void Player::RenderHierarchy()
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();
 	status->RenderHierachy();
+	mouseIcon->RenderHierarchy();
 }
 
 bool Player::GetPlayerHit(Collider* atkcol)
@@ -266,6 +279,8 @@ void Player::AvtivatePlayerCam()
 	//인벤 열리면 커서 고정 해제----------------------------------
 	if (!INVEN->isOpen && !CRAFT->isOpen && !SETTING->isOpen && !STATUS->isOpen)
 	{
+		mouseIcon->visible = true;
+		mouseIcon2->visible = false;
 		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
 		ptMouse.x = App.GetHalfWidth();
 		ptMouse.y = App.GetHalfHeight();
@@ -283,6 +298,11 @@ void Player::AvtivatePlayerCam()
 		else if (actor->rotation.x < -15.0f * ToRadian) actor->rotation.x = -15.0f * ToRadian;
 		ClientToScreen(App.GetHandle(), &ptMouse);
 		SetCursorPos(ptMouse.x, ptMouse.y);
+	}
+	else
+	{
+		mouseIcon->visible = false;
+		mouseIcon2->visible = true;
 	}
 	actor->Find("PlayerCam")->SetLocalPosY(actor->Find("PlayerCam")->rotation.x * 1.5f + 4.0f);
 	actor->Find("PlayerCam")->SetLocalPosZ(actor->Find("PlayerCam")->rotation.x * 4.0f - 6.0f);
@@ -398,7 +418,6 @@ void Player::PlayerControl()
 		if (INPUT->KeyDown(VK_SPACE) && !isJump)
 		{
 			gravity = -status->jumpPower;
-			cout << gravity;
 			state = JumpState::GetInstance();
 			state->Jump();
 			staminar -= status->jumpStaminar;

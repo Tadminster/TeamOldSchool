@@ -89,6 +89,7 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 5)
 		{
+			STATUS->bgIMG->Find("run5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -106,6 +107,7 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 4)
 		{
+			STATUS->bgIMG->Find("run4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -123,6 +125,7 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 3)
 		{
+			STATUS->bgIMG->Find("run3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -140,6 +143,7 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 2)
 		{
+			STATUS->bgIMG->Find("run2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -157,6 +161,7 @@ void PlayerStatus::RunExp()
 	{
 		if (runLevel != 1)
 		{
+			STATUS->bgIMG->Find("run1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -178,6 +183,7 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 5)
 		{
+			STATUS->bgIMG->Find("jump5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -195,6 +201,7 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 4)
 		{
+			STATUS->bgIMG->Find("jump4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -213,6 +220,7 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 3)
 		{
+			STATUS->bgIMG->Find("jump3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -231,6 +239,7 @@ void PlayerStatus::JumpExp()
 	
 		if (jumpLevel != 2)
 		{
+			STATUS->bgIMG->Find("jump2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -249,6 +258,7 @@ void PlayerStatus::JumpExp()
 		
 		if (jumpLevel != 1)
 		{
+			STATUS->bgIMG->Find("jump1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -270,6 +280,7 @@ void PlayerStatus::FistExp()
 		
 		if (fistLevel != 5)
 		{
+			STATUS->bgIMG->Find("fist5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -287,6 +298,7 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 4)
 		{
+			STATUS->bgIMG->Find("fist4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -304,6 +316,7 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 3)
 		{
+			STATUS->bgIMG->Find("fist3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -321,6 +334,7 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 2)
 		{
+			STATUS->bgIMG->Find("fist2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -338,6 +352,7 @@ void PlayerStatus::FistExp()
 	{
 		if (fistLevel != 1)
 		{
+			STATUS->bgIMG->Find("fist1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -357,6 +372,7 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 5)
 		{
+			STATUS->bgIMG->Find("swing5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -374,6 +390,7 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 4)
 		{
+			STATUS->bgIMG->Find("swing4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -391,6 +408,7 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 3)
 		{
+			STATUS->bgIMG->Find("swing3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -408,6 +426,7 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 2)
 		{
+			STATUS->bgIMG->Find("swing2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -425,6 +444,7 @@ void PlayerStatus::SwingExp()
 	{
 		if (swingLevel != 1)
 		{
+			STATUS->bgIMG->Find("swing1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -445,6 +465,7 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 5)
 		{
+			STATUS->bgIMG->Find("axe5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -462,6 +483,7 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 4)
 		{
+			STATUS->bgIMG->Find("axe4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -479,6 +501,7 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 3)
 		{
+			STATUS->bgIMG->Find("axe3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -496,6 +519,7 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 2)
 		{
+			STATUS->bgIMG->Find("axe2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -513,6 +537,7 @@ void PlayerStatus::AxeExp()
 	{
 		if (axeLevel != 1)
 		{
+			STATUS->bgIMG->Find("axe1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -541,6 +566,7 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 5)
 		{
+			STATUS->bgIMG->Find("shield5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -557,6 +583,7 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 4)
 		{
+			STATUS->bgIMG->Find("shield4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -574,6 +601,7 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 3)
 		{
+			STATUS->bgIMG->Find("shield3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -591,6 +619,7 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 2)
 		{
+			STATUS->bgIMG->Find("shield2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -608,6 +637,7 @@ void PlayerStatus::ShieldExp()
 	{
 		if (shieldLevel != 1)
 		{
+			STATUS->bgIMG->Find("shield1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -628,6 +658,7 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 5)
 		{
+			STATUS->bgIMG->Find("shield5")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -645,6 +676,7 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 4)
 		{
+			STATUS->bgIMG->Find("shield4")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -662,6 +694,7 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 3)
 		{
+			STATUS->bgIMG->Find("shield3")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -679,6 +712,7 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 2)
 		{
+			STATUS->bgIMG->Find("shield2")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();
@@ -696,6 +730,7 @@ void PlayerStatus::BlockExp()
 	{
 		if (blcokdLevel != 1)
 		{
+			STATUS->bgIMG->Find("shield1")->visible = true;
 			skillLevelUp->SetWorldPosX(-1.1f);
 			animTime = 0;
 			UIoff();

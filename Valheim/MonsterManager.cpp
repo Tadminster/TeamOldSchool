@@ -60,7 +60,7 @@ void MonsterManager::Release()
 
 void MonsterManager::Update()
 {
-	ELDER->Update();
+	if (!ELDER->GetIsDeath()) ELDER->Update();
 
 	for (int i = 0; i < unit.size(); i++)
 	{
@@ -71,6 +71,7 @@ void MonsterManager::Update()
 		}
 	}
 
+	ELDER->IsDestroyed();
 
 	for (auto& it : unit)
 	{
@@ -88,7 +89,7 @@ void MonsterManager::Update()
 
 void MonsterManager::LateUpdate()
 {
-	ELDER->LateUpdate();
+	if(!ELDER->GetIsDeath()) ELDER->LateUpdate();
 
 	for (auto& it : unit)
 	{
@@ -117,7 +118,7 @@ void MonsterManager::RenderHierarchy()
 
 void MonsterManager::Render()
 {
-	ELDER->Render();
+	if (!ELDER->GetIsDeath()) ELDER->Render();
 
 	for (auto& it : unit)
 	{

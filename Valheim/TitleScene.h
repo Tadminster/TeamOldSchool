@@ -32,6 +32,8 @@ private:
     // ¹öÆ°
     class TitleUI*  titleUI;
 
+    UI*             mouseIcon;
+
 private:
     siv::PerlinNoise perlin;
 

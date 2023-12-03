@@ -168,11 +168,11 @@ void InGame::Render()
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
-	PLAYER->Render();
 	PARTICLE->Render();
-	UIM->Render();
 	MONSTER->Render();
+	UIM->Render();
 	SETTING->Render();
+	PLAYER->Render();
 }
 
 void InGame::ResizeScreen()

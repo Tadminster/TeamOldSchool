@@ -166,13 +166,11 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		elderStomp->SetWorldPos(pos);
 		elderStomp->Play();
-		cout << "¿¤´õ ¹ßÂï±â" << endl;
 	}
 	else if (type == EffectType::ELDERATTACK)
 	{
 		elderJumpAttack->SetWorldPos(pos);
 		elderJumpAttack->Play();
-		cout << "¿¤´õ Á¡ÇÁ¾îÅÃ" << endl;
 	}
 	else if (type == EffectType::LEVELUP)
 	{

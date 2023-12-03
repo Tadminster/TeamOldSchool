@@ -58,6 +58,10 @@ TitleScene::TitleScene()
 	monster02->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	
 	PARTICLE->waterSplash->rotation.y = -50.0f * ToRadian;
+
+	mouseIcon = UI::Create();
+	mouseIcon->LoadFile("Unit/Mouse_Torch.xml");
+	mouseIcon->name = "mouse";
 }
 
 TitleScene::~TitleScene()
@@ -68,7 +72,7 @@ void TitleScene::Init()
 {
 	SCENE->AddScene(SceneName::Loading, new LoadingScene);
 	LIGHT->UpdateDirection();
-
+	ShowCursor(false);
 	SOUND->Play(BGM_OCEANWAVE);
 	SETTING->Init();
 }
@@ -87,7 +91,7 @@ void TitleScene::Release()
 	underwater->Release();
 	ocean->Release();
 	floor->Release();
-
+	mouseIcon->Release();
 	PARTICLE->waterSplash->rotation.y = 0.0f;
 	SOUND->Stop(BGM_OCEANWAVE);
 }
@@ -107,9 +111,12 @@ void TitleScene::Update()
 		karve->RenderHierarchy();
 		monster01->RenderHierarchy();
 		monster02->RenderHierarchy();
+		mouseIcon->RenderHierarchy();
 		PARTICLE->waterSplash->RenderHierarchy();
 	}
 	ImGui::End();
+
+	mouseIcon->SetWorldPos(Utility::MouseToNDC()+Vector3(0,-0.01f,0));
 
 	// 메인 카메라 업데이트
 	Camera::main->ControlMainCam();
@@ -146,6 +153,7 @@ void TitleScene::Update()
 	karve->Update();
 	monster01->Update();
 	monster02->Update();
+	mouseIcon->Update();
 	PARTICLE->Update();
 	SETTING->Update();
 }
@@ -228,6 +236,7 @@ void TitleScene::Render()
 	underwater->Render();
 
 	titleUI->Render();
+	mouseIcon->Render();
 	SETTING->Render();
 }
 

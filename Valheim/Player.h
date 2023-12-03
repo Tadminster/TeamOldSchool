@@ -18,6 +18,9 @@ class Player : public Unit
 	class PlayerSound*		sound = nullptr;
 	class WeaponProto*		equippedWeapon = nullptr;
 	class ShieldProto*		equippedShield = nullptr;
+
+	UI* mouseIcon;
+	UI* mouseIcon2;
 	//카메라 관련 변수
 	POINT					ptMouse;
 	Vector3					Rot;

@@ -391,7 +391,6 @@ void BlockState::Axe() {}
 void BlockState::Shield() {}
 void BlockState::Block() 
 {
-	cout << "block" << endl;
 	if (PLAYER->isGuard) PLAYER->GetPlayer()->anim->currentAnimator.currentFrame = 1;
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 14)
 	{

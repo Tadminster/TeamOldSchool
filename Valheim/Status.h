@@ -1,6 +1,7 @@
 #pragma once
 class Status
 {
+	friend class PlayerStatus;
 private:
 	UI* bgIMG = nullptr;
 

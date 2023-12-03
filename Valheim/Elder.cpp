@@ -7,7 +7,6 @@ Elder::Elder()
 {
 	actor = Actor::Create();
 	actor->LoadFile("/Unit/Monster_Elder.xml");
-	actor->LoadFile("/Unit/Monster_Elder_BossStone.xml");
 	actor->name = "Monster_Elder";
 	actor->anim->aniScale = 0.4f;
 
@@ -57,6 +56,7 @@ void Elder::Update()
 {
 	if (hitPoint <= 0)
 	{
+		deathTime += DELTA;
 		state = E_DEATH;
 		Ray deathRay;
 		deathRay.position = actor->GetWorldPos() + (-actor->GetForward()) * 10.0f + Vector3(0, 1000, 0);
@@ -162,7 +162,7 @@ void Elder::Update()
 
 void Elder::LateUpdate()
 {
-	if (isElder)
+	if (isElder && hitPoint > 0)
 	{
 		//Elder_BossStone - Player Ãæµ¹
 		if (PLAYER->GetCollider()->Intersect(actor->collider)) PLAYER->MoveBack(actor);
@@ -201,6 +201,7 @@ void Elder::Render()
 
 void Elder::Release()
 {
+	delete this;
 }
 
 void Elder::RenderHierarchy()
@@ -232,14 +233,24 @@ void Elder::UpdateLight()
 
 bool Elder::IsDestroyed()
 {
-	if (hitPoint <= 0) return true;
-	return false;
+	if (!isDeath)
+	{
+		if (deathTime >= 5.0f)
+		{
+			DestructionEvent();
+			isDeath = true;
+			actor->visible = false;
+			return true;
+		}
+		return false;
+	}
+	
 }
 
 bool Elder::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	PARTICLE->PlayParticleEffect(EffectType::HITWOOD, PLAYER->GetCollisionPoint());
-
+	SOUND->Play(PLAYER_AXE_HIT_01);
 	if (wType == WeaponType::Blunt)
 	{
 		hitPoint -= damage * 2.0f;
@@ -258,6 +269,9 @@ bool Elder::ReceivedDamageEvent(float damage, WeaponType wType)
 
 void Elder::DestructionEvent()
 {
+	ItemProto* item = ItemProto::Create(Item::ElderTrophy);
+	item->GetActor()->SetWorldPos(actor->GetWorldPos() - actor->GetForward() * actor->scale.y * 0.5f);
+	OBJ->AddItem(item);
 }
 
 void Elder::SetState(ElderState* state)

@@ -9,7 +9,7 @@
     </Transform>
     <UI PivotX="0" PivotY="-1"/>
     <Children Size="9"/>
-    <Child0 Name="Skill" Visible="true" ObType="4">
+    <Child0 Name="Skill" Visible="false" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="Player_Male/Player_SkillNormal.mtl"/>
@@ -31,7 +31,79 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="axe1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="axe2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="axe3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="axe4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="6.0185184" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="axe5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="axeBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child1>
     <Child2 Name="Skill_Fist" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
@@ -43,7 +115,79 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="fist1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="fist2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="fist3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="fist4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="5.9444447" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="fist5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="fistBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child2>
     <Child3 Name="Skill_Highlight" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
@@ -67,9 +211,81 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="jump1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="jump2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="jump3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="jump4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="5.9444447" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="jump5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="jumpBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child4>
-    <Child5 Name="Skill_Pressed" Visible="true" ObType="4">
+    <Child5 Name="Skill_Pressed" Visible="false" ObType="4">
         <Mesh File="6.UI.mesh"/>
         <Shader File="6.UI.hlsl"/>
         <Material File="Player_Male/Player_SkillPressed.mtl"/>
@@ -91,7 +307,79 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="run1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="run2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="run3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="run4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="5.9444447" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="run5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="runBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child6>
     <Child7 Name="Skill_Shield" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
@@ -103,7 +391,79 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="shield1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="shield2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="shield3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="shield4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="5.9444447" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="shield5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="shieldBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child7>
     <Child8 Name="Skill_Swing" Visible="true" ObType="4">
         <Mesh File="6.UI.mesh"/>
@@ -115,6 +475,78 @@
             <Rotation X="0" Y="0" Z="0"/>
         </Transform>
         <UI PivotX="0" PivotY="0"/>
-        <Children Size="0"/>
+        <Children Size="2"/>
+        <Child0 Name="swing1" Visible="false" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_Level.mtl"/>
+            <Transform>
+                <Position X="2.75" Y="0" Z="0"/>
+                <Scale X="0.89999998" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="4"/>
+            <Child0 Name="swing2" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="2.0370371" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="swing3" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="3.9814816" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child1>
+            <Child2 Name="swing4" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="5.9444447" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child2>
+            <Child3 Name="swing5" Visible="false" ObType="4">
+                <Mesh File="6.UI.mesh"/>
+                <Shader File="6.UI.hlsl"/>
+                <Material File="Player_Male/Skill_Level.mtl"/>
+                <Transform>
+                    <Position X="7.9629631" Y="0" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <UI PivotX="0" PivotY="0"/>
+                <Children Size="0"/>
+            </Child3>
+        </Child0>
+        <Child1 Name="swingBG" Visible="true" ObType="4">
+            <Mesh File="6.UI.mesh"/>
+            <Shader File="6.UI.hlsl"/>
+            <Material File="Player_Male/Skill_LevelBG.mtl"/>
+            <Transform>
+                <Position X="6.333333" Y="0" Z="0"/>
+                <Scale X="4.5" Y="1" Z="1"/>
+                <Rotation X="0" Y="0" Z="0"/>
+            </Transform>
+            <UI PivotX="0" PivotY="0"/>
+            <Children Size="0"/>
+        </Child1>
     </Child8>
 </Root>

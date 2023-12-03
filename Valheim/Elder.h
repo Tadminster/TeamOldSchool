@@ -24,7 +24,9 @@ class Elder : public Unit
 	int						  jumpAttackMotion = 0;
 	bool					  stompPatern = true;
 	bool					  isElder = false;
+	bool					  isDeath = false;
 public:
+	float					  deathTime = 0;
 	Elder();
 	~Elder();
 	void Init() override;
@@ -42,6 +44,7 @@ public:
 	ElderState* GetState() { return state; }
 	int GetJumpAttackMotion() { return jumpAttackMotion; }
 	bool GetIsElder() { return isElder; }
+	bool GetIsDeath() { return isDeath; }
 	void BehaviorPatern();
 	void DoFSM();
 };
