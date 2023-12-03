@@ -81,7 +81,7 @@ void Setting::LateUpdate()
 					// 전체볼륨을 올려줍니다
 					App.soundScale += 0.1f;
 					SOUND->SetMasterVolume();
-					SOUND->Play(INVENTORY_ITEM_PICK);
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
@@ -105,7 +105,7 @@ void Setting::LateUpdate()
 					// 전체볼륨을 줄여줍니다
 					App.soundScale -= 0.1f;
 					SOUND->SetMasterVolume();
-					SOUND->Play(INVENTORY_ITEM_PICK);
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
@@ -129,7 +129,7 @@ void Setting::LateUpdate()
 					//볼륨을 키고 끕니다
 					volumeOn = !volumeOn;
 					OnOffMasterVolume(volumeOn);
-					SOUND->Play(INVENTORY_ITEM_PICK);
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
