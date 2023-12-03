@@ -85,7 +85,7 @@ void Elder::Update()
 			}
 
 		}
-		if (PLAYER->GetTreeCount() >= 3)
+		if (PLAYER->GetTreeCount() >= 10)
 		{
 			if (ment4) mentTime += DELTA;
 			//½£ÀÇ ¼öÈ£½Å ¿¤´õ°¡ ±ú¾î³³´Ï´Ù!
@@ -115,7 +115,7 @@ void Elder::Update()
 			}
 		}
 		//½£ÀÌ ºÐ³ëÇÕ´Ï´Ù.
-		else if (PLAYER->GetTreeCount() >= 2)
+		else if (PLAYER->GetTreeCount() >= 6)
 		{
 			if (ment2) mentTime += DELTA;
 			if (mentTime >= 7.0f)
@@ -130,7 +130,7 @@ void Elder::Update()
 			}
 		}	
 		//½£ÀÌ ¾ðÂ¨¾Æ ÇÏ°í ÀÖ½À´Ï´Ù.
-		else if (PLAYER->GetTreeCount() >= 1)
+		else if (PLAYER->GetTreeCount() >= 3)
 		{
 			if(ment1) mentTime += DELTA;
 			if (mentTime >= 7.0f)
