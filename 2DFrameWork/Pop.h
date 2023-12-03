@@ -20,8 +20,8 @@ struct POP_PS_DESC
 
 class Pop : public Particle
 {
-    static ID3D11Buffer* PopBuffer;
-    static ID3D11Buffer* PopPsBuffer;
+    static ID3D11Buffer*    PopBuffer;
+    static ID3D11Buffer*    PopPsBuffer;
 public:
     POP_DESC			desc;
     POP_PS_DESC			desc2;
@@ -29,6 +29,7 @@ public:
     int                 particleCount = 100;
     float               velocityScalar = 10.0f;
     Vector3             randomPosition = Vector3(0, 0, 0);
+    float               waveRange = 2.0f;
 
     static void         CreateStaticMember();
     static void         DeleteStaticMember();
@@ -39,7 +40,6 @@ public:
     void                Reset();
     virtual void        Play();
     virtual void        Stop();
-
 
 };
 

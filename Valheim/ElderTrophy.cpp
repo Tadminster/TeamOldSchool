@@ -1,48 +1,48 @@
 #include "stdafx.h"
 #include "ItemProto.h"
-#include "Stone.h"
+#include "ElderTrophy.h"
 
-Stone::Stone()
+ElderTrophy::ElderTrophy()
 {
 	static int index = 0;
-	actor = Actor::Create("Stone");
-	actor->LoadFile("Item_Stone.xml");
-	actor->name = "Item_Stone" + to_string(index);
+	actor = Actor::Create("ElderTrophy");
+	actor->LoadFile("Item_ElderTrophy.xml");
+	actor->name = "Item_ElderTrophy" + to_string(index);
 
-	icon = UI::Create("StoneIcon");
-	icon->LoadFile("Icon_Stone.xml");
-	icon->name = "StoneIcon" + to_string(index++);
-	tooltipBoxScaleY = 0.55f;
+	icon = UI::Create("ElderTrophyIcon");
+	icon->LoadFile("Icon_ElderTrophy.xml");
+	icon->name = "ElderTrophyIcon" + to_string(index++);
+	tooltipBoxScaleY = 0.85f;
 
 	ItemProto::Init();
 
 	//=========================
-	enumName = Item::Stone;
+	enumName = Item::ElderTrophy;
 	type = ItemType::Material;
 	state = ItemState::OnGround;
 	//=========================
-	stringName = "Stone";
-	weight = 1;
+	stringName = "Elder Trophy";
+	weight = 5;
 
-	currentStack = RANDOM->Int(2, 3);
-	maxStack = 50;
+	currentStack = 1;
+	maxStack = 1;
 }
 
-Stone::~Stone()
+ElderTrophy::~ElderTrophy()
 {
 
 }
 
-void Stone::Init()
+void ElderTrophy::Init()
 {
 
 }
 
-void Stone::Release()
+void ElderTrophy::Release()
 {
 }
 
-void Stone::Update()
+void ElderTrophy::Update()
 {
 	ImGui::Begin("ItemHierarchy");
 	{
@@ -55,12 +55,12 @@ void Stone::Update()
 	ItemProto::Update();
 }
 
-void Stone::LateUpdate()
+void ElderTrophy::LateUpdate()
 {
 	//ItemProto::LateUpdate();
 }
 
-void Stone::Render()
+void ElderTrophy::Render()
 {
 	ItemProto::Render();
 
@@ -83,29 +83,29 @@ void Stone::Render()
 	}
 }
 
-void Stone::RenderHierarchy()
+void ElderTrophy::RenderHierarchy()
 {
 
 }
 
-wstring Stone::GetExplain()
+wstring ElderTrophy::GetExplain()
 {
-	wstring exp = L"건설에 사용할 수 있는 튼튼하고 \n좋은 나무입니다.\n";
+	wstring exp = L"피와 뼈로 이루어진 이 작은 \n것아, 널 나뭇가지처럼 \n부러뜨렸어야 했는데! \n이제 나는 시들고 죽으니, \n큰 나무가 나를 가지게 하라... \n-Elder\n" ;
 	wstring exp_sub1 = L"\n무게: " + to_wstring(weight * currentStack);
 
 	return exp + exp_sub1;
 }
 
-//bool Stone::IsDestroyed()
+//bool ElderTrophy::IsDestroyed()
 //{
 //	return false;
 //}
 //
-//void Stone::DestructionEvent()
+//void ElderTrophy::DestructionEvent()
 //{
 //}
 
-void Stone::Use()
+void ElderTrophy::Use()
 {
 }
 

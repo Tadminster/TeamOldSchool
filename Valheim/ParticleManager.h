@@ -1,6 +1,6 @@
 #pragma once
 
-class ParticleManager
+class ParticleManager : public Singleton<ParticleManager>
 {
 
 private:

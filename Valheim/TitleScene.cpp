@@ -46,6 +46,8 @@ TitleScene::TitleScene()
 	jellyFish->LoadFile("Unit/Monster_JellyFish.xml");
 	jellyFish->name = "jellyFish";
 	jellyFish->anim->ChangeAnimation(AnimationState::LOOP, 2);
+	
+	PARTICLE->waterSplash->rotation.y = -40.0f * ToRadian;
 }
 
 TitleScene::~TitleScene()
@@ -56,6 +58,7 @@ void TitleScene::Init()
 {
 	SCENE->AddScene("Loading", new LoadingScene);
 	LIGHT->UpdateDirection();
+	
 }
 
 void TitleScene::Release()
@@ -73,6 +76,7 @@ void TitleScene::Release()
 	ocean->Release();
 	floor->Release();
 
+	PARTICLE->waterSplash->rotation.y = 0.0f;
 	//btnStart->Release();
 	//btnOption->Release();
 	//btnExit->Release();
@@ -92,6 +96,7 @@ void TitleScene::Update()
 		player->RenderHierarchy();
 		karve->RenderHierarchy();
 		jellyFish->RenderHierarchy();
+		PARTICLE->waterSplash->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -113,12 +118,7 @@ void TitleScene::Update()
 	player->Update();
 	karve->Update();
 	jellyFish->Update();
-	
-
-	if (INPUT->KeyDown(VK_SPACE))
-	{
-		SCENE->ChangeScene("Loading",1.0f);
-	}
+	PARTICLE->Update();
 }
 
 void TitleScene::LateUpdate()
@@ -129,12 +129,18 @@ void TitleScene::LateUpdate()
 	{
 		karve->SetWorldPos(playerRayHitPos + karvePos);
 		player->SetWorldPos(playerRayHitPos + playerPos);
+
+		static float waterEffectCycle = 1.9f;
+		if (TIMER->GetTick(waterEffectCycle, 2.0f))
+		{
+			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, karve->Find("Bow")->GetWorldPos());
+		}
 	}
 
 	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
 	{
 		// 카메라 위치를 물 표면으로 설정
-		titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
+		//titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
 
 		// 물속 표현
 		if (rayHitPos.y > titleCamera->GetWorldPos().y)
@@ -156,6 +162,7 @@ void TitleScene::PreRender()
 void TitleScene::Render()
 {
 	Camera::main->Set();
+	PARTICLE->Render();
 
 	background->Render();
 	floor->Render();

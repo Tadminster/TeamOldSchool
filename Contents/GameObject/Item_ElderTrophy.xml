@@ -1,0 +1,49 @@
+<Root Name="Root" Visible="true" ObType="1">
+    <Transform>
+        <Position X="0" Y="0" Z="0"/>
+        <Scale X="1" Y="1" Z="1"/>
+        <Rotation X="0" Y="0" Z="0"/>
+    </Transform>
+    <Children Size="1"/>
+    <Child0 Name="RootNode" Visible="true" ObType="0">
+        <Transform>
+            <Position X="0" Y="0" Z="0"/>
+            <Scale X="1" Y="1" Z="1"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <Children Size="1"/>
+        <Child0 Name="Mesh" Visible="true" ObType="0">
+            <Mesh File="ElderTrophy/head.mesh"/>
+            <Shader File="4.Cube.hlsl"/>
+            <Material File="ElderTrophy/Elder_mat.mtl"/>
+            <Transform>
+                <Position X="0" Y="0" Z="0"/>
+                <Scale X="0.0049999999" Y="0.0049999999" Z="0.0049999999"/>
+                <Rotation X="-0.78626662" Y="0" Z="0"/>
+            </Transform>
+            <Children Size="2"/>
+            <Child0 Name="Eye_R" Visible="true" ObType="0">
+                <Mesh File="ElderTrophy/Eye_R.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="ElderTrophy/eye_gdking.mtl"/>
+                <Transform>
+                    <Position X="14" Y="90" Z="56"/>
+                    <Scale X="0.14171627" Y="0.14167807" Z="0.14168495"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="Eye_L" Visible="true" ObType="0">
+                <Mesh File="ElderTrophy/Eye_L.mesh"/>
+                <Shader File="4.Cube.hlsl"/>
+                <Material File="ElderTrophy/eye_gdking.mtl"/>
+                <Transform>
+                    <Position X="-14" Y="90" Z="56"/>
+                    <Scale X="0.14171627" Y="0.14167807" Z="0.14168495"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child1>
+        </Child0>
+    </Child0>
+</Root>

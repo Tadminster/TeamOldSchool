@@ -21,10 +21,10 @@
 
 
 
+#define PARTICLE    ParticleManager::GetInstance()
 #define GM			GameManager::GetInstance()
 #define RECIPE		GM->recipe
 #define OBJ			GM->objectManager
-#define PARTICLE    GM->particleManager
 #define MAP			GM->map
 #define SEA			GM->ocean
 #define PLAYER		GM->player

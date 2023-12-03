@@ -12,17 +12,17 @@ class TitleUI
 private:
     UI*         titleUI;
     // ==============================================================
-    UI*         panel;
-    BtnInfo     infoStart;
-    BtnInfo     infoOption;
-    BtnInfo     infoExit;
+    UI*         panel;                  // 패널을 가리킬 포인터
+    BtnInfo     infoStart;              // 시작 버튼을 가리키는 포인터와 상태를 저장한 구조체
+    BtnInfo     infoOption;			    // 옵션 버튼을 가리키는 포인터와 상태를 저장한 구조체
+    BtnInfo     infoExit;				// 종료 버튼을 가리키는 포인터와 상태를 저장한 구조체
     // ==============================================================
-    Vector3     btnBaseScale{ 0.14f, 0.06f, 0.0f };
-    Vector3     btnMouseOverScale{ 0.16f, 0.08f, 0.0f };
+    Vector3     btnBaseScale{ 0.14f, 0.06f, 0.0f };         // 버튼의 기본 크기
+    Vector3     btnMouseOverScale{ 0.16f, 0.08f, 0.0f };	// 버튼의 마우스오버 크기
     // ==============================================================
-    class UI*   fadeOut = nullptr;
-    float       fadeout = 5;
-    bool        isPostQuit = false;
+    class UI*   fadeOut = nullptr;	    // fadeout 효과를 위한 UI
+    float       fadeout = 5;            // fadeout의 opacity
+    bool        isPostQuit = false;	    // PostQuitMessage를 한번만 호출하기 위한 변수
 public:
     TitleUI();
     ~TitleUI();

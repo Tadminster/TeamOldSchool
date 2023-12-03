@@ -27,6 +27,7 @@ void TitleUI::Init()
 void TitleUI::Release()
 {
 	titleUI->Release();
+	fadeOut->Release();
 }
 
 void TitleUI::Update()
@@ -128,6 +129,14 @@ void TitleUI::LateUpdate()
 				}
 			}
 		}
+	}
+	// 패널 위에 마우스가 없으면
+	else
+	{
+		// 버튼들의 상태를 초기화
+		BtnInitalize(infoStart);
+		BtnInitalize(infoOption);
+		BtnInitalize(infoExit);
 	}
 }
 

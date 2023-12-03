@@ -6,7 +6,6 @@ ParticleManager::ParticleManager()
 	beechDrop = Pop::Create("Particle_WoodLeafDrop");
 	beechDrop->LoadFile("Particle_WoodLeafDrop.xml");
 	
-	
 	//나무 타격 이펙트 파티클효과
 	hitBeech = Pop::Create("Particle_HitWood");
 	hitBeech->LoadFile("Particle_HitWood.xml");
@@ -49,6 +48,7 @@ ParticleManager::ParticleManager()
 
 	waterSplash = Pop::Create("Particle_WaterSplash");
 	waterSplash->LoadFile("Particle_WaterSplash.xml");
+	waterSplash->waveRange = 0.45f;
 
 	waterWave = Pop::Create("Particle_WaterWave");
 	waterWave->LoadFile("Particle_WaterWave.xml");
@@ -60,7 +60,7 @@ ParticleManager::~ParticleManager()
 
 void ParticleManager::Init()
 {
-	//levelUpOnHead->SetWorldPos(PLAYER->GetActor()->GetWorldPos() + Vector3(0, 1, 0));
+	
 }
 
 void ParticleManager::Release()
@@ -104,21 +104,6 @@ void ParticleManager::Render()
 	waterWave->Render();
 	elderStomp->Render();
 	elderJumpAttack->Render();
-
-	//현재 레벨업 빛무리 이펙트에 알파값조절 투명도조절 시험중
-	/*BLEND->Set(true);
-	levelUp->desc2.alpha += DELTA * 0.1f;
-	if (levelUp->desc2.alpha >= 1.0f) levelUp->desc2.alpha = 0.0f;
-	BLEND->Set(false);*/
-
-	BLEND->Set(true);
-	levelUpOnHead->Render();
-	levelUpOnHead->desc2.alpha += DELTA * 0.3f;
-	if (levelUpOnHead->desc2.alpha >= 1.0f) levelUpOnHead->desc2.alpha = 0.0f;
-	levelUpOnHead->Render();
-	BLEND->Set(false);
-
-	//waterWave->scale += Vector3(0.2f, 0.2f, 0.2f) * DELTA;
 }
 
 void ParticleManager::RenderHierarchy()

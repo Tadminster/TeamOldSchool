@@ -22,12 +22,14 @@ enum class EffectType
 
 class Particle : public Actor
 {
+
 protected:
     //현재 재생중인 시간
     float playTime = 0.0f;
     //재생중인가?
     bool isPlaying = false;
 public:
+    EffectType effectType;
     //총 재생시간
     float duration = 1.0f;
     virtual void    Play()
@@ -43,5 +45,6 @@ public:
     void            Gui();
     float           PlayTime() { return playTime / duration; } //재생시간 비율
     bool            IsPlaying() { return isPlaying; } //재생중인가?
+    
 };
 

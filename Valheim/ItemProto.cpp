@@ -8,6 +8,7 @@
 #include "Stone.h"
 #include "Woodpile.h"
 #include "Leather.h"
+#include "ElderTrophy.h"
 #include "ItemProto.h"
 
 ItemProto* ItemProto::Create(Item name)
@@ -28,6 +29,8 @@ ItemProto* ItemProto::Create(Item name)
 		return new Stone();
 	case Item::Leather:
 		return new Leather();
+	case Item::ElderTrophy:
+		return new ElderTrophy();
 	default:
 		throw std::invalid_argument("error");
 	}

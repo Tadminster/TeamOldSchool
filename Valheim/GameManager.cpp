@@ -14,7 +14,6 @@ GameManager::GameManager()
 	ocean->LoadFile("Water.xml");
 
 	objectManager	= new ObjectManager();
-	particleManager = new ParticleManager();
 	uiManager		= new UserInterfaceManager();
 
 	player			= new Player();
