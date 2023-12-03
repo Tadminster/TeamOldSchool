@@ -76,9 +76,6 @@ void Setting::Update()
 	{
 		settingPanel->Update();
 		volumeIcon->Update();
-		CreatBtnUpdate(volumeUp, btn1);
-		CreatBtnUpdate(volumeDown, btn2);
-		CreatBtnUpdate(turnAndOffvolume, btn3);
 	}
 
 
@@ -161,6 +158,10 @@ void Setting::LateUpdate()
 				}
 			}
 		}
+		//버튼 하이라이트 효과
+		CreatBtnUpdate(volumeUp, btn1);
+		CreatBtnUpdate(volumeDown, btn2);
+		CreatBtnUpdate(turnAndOffvolume, btn3);
 	}
 
 
