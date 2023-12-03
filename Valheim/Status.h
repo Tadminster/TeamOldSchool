@@ -1,11 +1,11 @@
 #pragma once
 class Status
 {
-public:
-	bool isOpen = false;
 private:
 	UI* bgIMG = nullptr;
+
 public:
+	bool isOpen = false;
 	Status();
 	~Status();
 

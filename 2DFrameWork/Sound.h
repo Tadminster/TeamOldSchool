@@ -84,6 +84,8 @@ enum SoundName
     PLAYER_LEVELUP_01,       //ÇÃ·¹ÀÌ¾î ·¹º§¾÷
 
     ELDER_BGM_01,       //¿¤´õ BGM
+    ELDER_STOMP,       //¿¤´õ Stomp
+    ELDER_JUMPATTACK,       //¿¤´õ JumpAttack
 };
 
 class Sound : public Singleton<Sound>
