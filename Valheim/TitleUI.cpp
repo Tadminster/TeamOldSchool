@@ -10,6 +10,10 @@ TitleUI::TitleUI()
 	infoStart.btn = static_cast<UI*>(titleUI->Find("1_Btn_Start"));
 	infoOption.btn = static_cast<UI*>(titleUI->Find("1_Btn_Option"));
 	infoExit.btn = static_cast<UI*>(titleUI->Find("1_Btn_Exit"));
+
+	fadeOut = UI::Create();
+	fadeOut->name = "fade";
+	fadeOut->LoadFile("UI_FadeOut.xml");
 }
 
 TitleUI::~TitleUI()
@@ -27,6 +31,18 @@ void TitleUI::Release()
 
 void TitleUI::Update()
 {
+	if (fadeout < FADEOUT)
+	{
+		fadeout += DELTA;
+		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
+	}
+	else
+	{
+		if(isPostQuit) PostQuitMessage(0);
+	}
+	
+
+	fadeOut->Update();
 	titleUI->Update();
 }
 
@@ -60,7 +76,8 @@ void TitleUI::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					// ´ÙÀ½ ¾ÀÀ¸·Î ÀÌµ¿ (·Îµù ¾À)
-					SCENE->ChangeScene("Loading");
+					SCENE->ChangeScene("Loading", FADEOUT);
+					fadeout = 0;
 				}
 			}
 		}
@@ -106,7 +123,8 @@ void TitleUI::LateUpdate()
 				// ¸¶¿ì½º ¿ÞÂÊ ¹öÆ°À» ¶¼¸é
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
-					PostQuitMessage(0);
+					fadeout = 0;
+					isPostQuit = true;
 				}
 			}
 		}
@@ -116,6 +134,7 @@ void TitleUI::LateUpdate()
 void TitleUI::Render()
 {
 	titleUI->Render();
+	fadeOut->Render();
 }
 
 void TitleUI::ResizeScreen()

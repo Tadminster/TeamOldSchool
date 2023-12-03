@@ -113,10 +113,11 @@ void TitleScene::Update()
 	player->Update();
 	karve->Update();
 	jellyFish->Update();
+	
 
 	if (INPUT->KeyDown(VK_SPACE))
 	{
-		SCENE->ChangeScene("Loading");
+		SCENE->ChangeScene("Loading",1.0f);
 	}
 }
 
