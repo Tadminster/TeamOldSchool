@@ -3,6 +3,8 @@
 #include "LoadingScene.h"
 #include "TitleScene.h"
 
+extern int introCount;
+
 TitleScene::TitleScene()
 {
 	titleUI = new TitleUI();
@@ -10,7 +12,7 @@ TitleScene::TitleScene()
 	background = Actor::Create();
 	background->LoadFile("RECT_TitleBG.xml");
 	background->name = "Background";
-	
+
 	titleCamera = Camera::Create("titleCamera");
 	titleCamera->LoadFile("Cam_title.xml");
 	titleCamera->name = "TitleCamera";
@@ -62,6 +64,7 @@ TitleScene::TitleScene()
 	mouseIcon = UI::Create();
 	mouseIcon->LoadFile("Unit/Mouse_Torch.xml");
 	mouseIcon->name = "mouse";
+	introCount++;
 }
 
 TitleScene::~TitleScene()
@@ -98,29 +101,28 @@ void TitleScene::Release()
 
 void TitleScene::Update()
 {
-	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-	ImGui::Begin("Hierarchy");
-	{
-		titleUI->RenderHierarchy();
-		background->RenderHierarchy();
-		titleCamera->RenderHierarchy();
-		ocean->RenderHierarchy();
-		floor->RenderHierarchy();
-		underwater->RenderHierarchy();
-		player->RenderHierarchy();
-		karve->RenderHierarchy();
-		monster01->RenderHierarchy();
-		monster02->RenderHierarchy();
-		mouseIcon->RenderHierarchy();
-		PARTICLE->waterSplash->RenderHierarchy();
-	}
-	ImGui::End();
+	//ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+	//ImGui::Begin("Hierarchy");
+	//{
+	//	titleUI->RenderHierarchy();
+	//	background->RenderHierarchy();
+	//	titleCamera->RenderHierarchy();
+	//	ocean->RenderHierarchy();
+	//	floor->RenderHierarchy();
+	//	underwater->RenderHierarchy();
+	//	player->RenderHierarchy();
+	//	karve->RenderHierarchy();
+	//	monster01->RenderHierarchy();
+	//	monster02->RenderHierarchy();
+	//	PARTICLE->waterSplash->RenderHierarchy();
+	//}
+	//ImGui::End();
 
 	mouseIcon->SetWorldPos(Utility::MouseToNDC()+Vector3(0,-0.01f,0));
 
 	// 메인 카메라 업데이트
-	Camera::main->ControlMainCam();
-	Camera::main->Update();
+	//Camera::main->ControlMainCam();
+	titleCamera->Update();
 	
 	// 물결 효과 (펄린노이즈)
 	static float waveCycle = 0.0f;

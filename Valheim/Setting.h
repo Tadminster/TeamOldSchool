@@ -22,6 +22,10 @@ private:
 	//=======================================================
 	Vector3		btnScale{ 0.28f, 0.12f, 0.0f }; //버튼사이즈
 	//=======================================================
+	string btn1 = "volumeUp";
+	string btn2 = "volumeDown";
+	string btn3 = "turnAndOffvolume";
+
 public:
 	Setting();
 	~Setting();
@@ -39,5 +43,6 @@ public:
 	//========================================
 	//
 	void OpenSetting();
+	void CreatBtnUpdate(SettingBtn& settingBtn, string name);
 };
 

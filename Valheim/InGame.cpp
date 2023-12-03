@@ -21,6 +21,8 @@ InGame::InGame()
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
+	loadCount++; // 4
+
 	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
@@ -55,8 +57,8 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	LIGHT->RenderDetail();
-	scattering->RenderDetail();
+	//LIGHT->RenderDetail();
+	//scattering->RenderDetail();
 
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");

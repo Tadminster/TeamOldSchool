@@ -111,7 +111,7 @@ void ParticleManager::RenderHierarchy()
 	
 	ImGui::Begin("Hierarchy");
 	{
-		beechDrop->RenderHierarchy();
+		/*beechDrop->RenderHierarchy();
 		hitBeech->RenderHierarchy();
 		woodHitDust->RenderHierarchy();
 		hitBlood->RenderHierarchy();
@@ -121,7 +121,7 @@ void ParticleManager::RenderHierarchy()
 		healEffect->RenderHierarchy();
 		healEffect2->RenderHierarchy();
 		waterSplash->RenderHierarchy();
-		waterWave->RenderHierarchy();
+		waterWave->RenderHierarchy();*/
 		elderStomp->RenderHierarchy();
 		elderJumpAttack->RenderHierarchy();
 	}
@@ -136,31 +136,26 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		beechDrop->SetWorldPos(pos);
 		beechDrop->Play();
-		cout << "나뭇잎 떨어짐" << endl;
 	}
 	else if (type == EffectType::HITWOOD)
 	{
 		hitBeech->SetWorldPos(pos);
 		hitBeech->Play();
-		cout << "나무 타격" << endl;
 	}
 	else if (type == EffectType::WOODHITDUST)
 	{
 		woodHitDust->SetWorldPos(pos);
 		woodHitDust->Play();
-		cout << "나무 타격 먼지발생" << endl;
 	}
 	else if (type == EffectType::HITBLOOD)
 	{
 		hitBlood->SetWorldPos(pos);
 		hitBlood->Play();
-		cout << "피 터짐" << endl;
 	}
 	else if (type == EffectType::HITROCK)
 	{
 		hitRock->SetWorldPos(pos);
 		hitRock->Play();
-		cout << "바위 타격" << endl;
 	}
 	else if (type == EffectType::ELDERSTOMP)
 	{
@@ -176,37 +171,31 @@ void ParticleManager::PlayParticleEffect(EffectType type, Vector3 pos)
 	{
 		levelUp->SetWorldPos(pos);
 		levelUp->Play();
-		cout << "레벨업 빛무리효과" << endl;
 	}
 	else if (type == EffectType::LEVELUPONHEAD)
 	{
 		levelUpOnHead->SetWorldPos(pos);
 		levelUpOnHead->Play();
-		cout << "레벨업 캐릭터 머리위 이펙트" << endl;
 	}
 	else if (type == EffectType::HEALEFFECT)
 	{
 		healEffect->SetWorldPos(pos);
 		healEffect->Play();
-		cout << "캐릭터 회복 이펙트" << endl;
 	}
 	else if (type == EffectType::HEALEFFECT2)
 	{
 		healEffect2->SetWorldPos(pos);
 		healEffect2->Play();
-		cout << "캐릭터 회복 이펙트2" << endl;
 	}
 	else if (type == EffectType::WATERSPLASH)
 	{
 		waterSplash->SetWorldPos(pos);
 		waterSplash->Play();
-		cout << "파도 철썩임" << endl;
 	}
 	else if (type == EffectType::WATERWAVE)
 	{
 		waterWave->SetWorldPos(pos);
 		waterWave->Play();
-		cout << "파도 철썩임" << endl;
 	}
 }
 

@@ -23,7 +23,7 @@ Setting::~Setting()
 void Setting::Init()
 {
 	settingPanel->visible = false;
-	volumeIcon->visible = true;
+	volumeIcon->visible = false;
 
 	BtnInitalize(volumeUp);
 	BtnInitalize(volumeDown);
@@ -39,13 +39,13 @@ void Setting::Release()
 
 void Setting::Update()
 {
-	cout << App.soundScale << endl;
-	ImGui::Begin("UI Hierarchy");
+
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		settingPanel->RenderHierarchy();
 		volumeIcon->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	//패널 열기 닫기
 	// 인벤토리, 스탯창 제작창이 열려있지 않고 인게임 씬일때만 ESC 로 설정창 불러오기
@@ -55,6 +55,7 @@ void Setting::Update()
 		{
 			if (INPUT->KeyDown(VK_ESCAPE))
 			{
+				volumeIcon->visible = !volumeIcon->visible;
 				settingPanel->visible = !settingPanel->visible;
 				isOpen = !isOpen;
 			}
@@ -65,6 +66,7 @@ void Setting::Update()
 	{
 		if (INPUT->KeyDown(VK_ESCAPE))
 		{
+			volumeIcon->visible = !volumeIcon->visible;
 			settingPanel->visible = !settingPanel->visible;
 			isOpen = !isOpen;
 		}
@@ -73,8 +75,10 @@ void Setting::Update()
 	if (isOpen)
 	{
 		settingPanel->Update();
+		volumeIcon->Update();
 	}
-	volumeIcon->Update();
+
+
 }
 
 void Setting::LateUpdate()
@@ -154,7 +158,12 @@ void Setting::LateUpdate()
 				}
 			}
 		}
+		//버튼 하이라이트 효과
+		CreatBtnUpdate(volumeUp, btn1);
+		CreatBtnUpdate(volumeDown, btn2);
+		CreatBtnUpdate(turnAndOffvolume, btn3);
 	}
+
 
 }
 
@@ -163,42 +172,47 @@ void Setting::Render()
 	if (isOpen)
 	{
 		settingPanel->Render();
+		//======================================
+		//사운드 아이콘 볼륨바 조절
+		{
+			//초기사운드 또는 소리가 클때 3개다보임
+			if (App.soundScale > 0.6)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = true;
+				volumeIcon->Find("volumeStick2")->visible = true;
+				volumeIcon->Update();
+			}
+			// 1개만 보이기 소리가 조금이라도 켜져있을때
+			else if (App.soundScale > 0.0f and App.soundScale < 0.3f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = false;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+			//2개만 보일때 중간정도 소리
+			else if (App.soundScale > 0.3f and App.soundScale < 0.6f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = true;
+				volumeIcon->Find("volumeStick1")->visible = true;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+			// 소리가 음소거 상태일때 다안보임
+			else if (App.soundScale == 0.0f)
+			{
+				volumeIcon->Find("volumeStick0")->visible = false;
+				volumeIcon->Find("volumeStick1")->visible = false;
+				volumeIcon->Find("volumeStick2")->visible = false;
+				volumeIcon->Update();
+			}
+		}
+		volumeIcon->Render();
 	}
 
-	
-	//초기사운드 또는 소리가 클때 3개다보임
-	if (App.soundScale > 0.6)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = true;
-		volumeIcon->Find("volumeStick2")->visible = true;
-		volumeIcon->Update();
-	}
-	// 1개만 보이기 소리가 조금이라도 켜져있을때
-	else if (App.soundScale > 0.0f and App.soundScale < 0.3f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = false;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	//2개만 보일때 중간정도 소리
-	else if (App.soundScale > 0.3f and App.soundScale < 0.6f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = true;
-		volumeIcon->Find("volumeStick1")->visible = true;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	// 소리가 음소거 상태일때 다안보임
-	else if (App.soundScale == 0.0f)
-	{
-		volumeIcon->Find("volumeStick0")->visible = false;
-		volumeIcon->Find("volumeStick1")->visible = false;
-		volumeIcon->Find("volumeStick2")->visible = false;
-		volumeIcon->Update();
-	}
-	volumeIcon->Render();
+
+
 }
 
 void Setting::BtnInitalize(SettingBtn& settingBtn)
@@ -242,4 +256,63 @@ void Setting::OpenSetting()
 {
 	isOpen = true;
 	settingPanel->visible = true;
+	volumeIcon->visible = true;
+}
+
+void Setting::CreatBtnUpdate(SettingBtn& settingBtn, string name)
+{
+	string path = "Setting/" + name;
+
+
+	if (settingBtn.state == SettingBtnState::NONE)
+	{
+		// 마우스가 버튼 위에 있다면
+		if (settingBtn.button->MouseOver())
+		{
+			path += "_highLight.png";
+			// 버튼 이미지&상태 변경 (NORMAL -> HIGHLIGHT)
+			settingBtn.button->material->diffuseMap = RESOURCE->textures.Load(path);
+			settingBtn.state = SettingBtnState::MOUSE_OVER;
+		}
+	}
+	// 마우스 오버 상태
+	else if (settingBtn.state == SettingBtnState::MOUSE_OVER)
+	{
+		// 마우스가 버튼 위에 없다면
+		if (!settingBtn.button->MouseOver())
+		{
+			path += ".png";
+			// 버튼 이미지&상태 변경 (HIGHLIGHT -> NORMAL)
+			settingBtn.button->material->diffuseMap = RESOURCE->textures.Load(path);
+			settingBtn.state = SettingBtnState::NONE;
+		}
+		else if (INPUT->KeyDown(VK_LBUTTON))
+		{
+			path += "_pressed.png";
+			// 버튼 이미지&상태 변경 (HIGHLIGHT -> CLICK)
+			settingBtn.button->material->diffuseMap = RESOURCE->textures.Load(path);
+			settingBtn.state = SettingBtnState::MOUSE_CLICK;
+		}
+	}
+	// 마우스 클릭 상태
+	else if (settingBtn.state == SettingBtnState::MOUSE_CLICK)
+	{
+		// 마우스가 버튼 위에 없다면
+		if (!settingBtn.button->MouseOver())
+		{
+			path += ".png";
+			// 버튼 이미지&상태 변경 (CLICK -> NORMAL)
+			settingBtn.button->material->diffuseMap = RESOURCE->textures.Load(path);
+			settingBtn.state = SettingBtnState::NONE;
+		}
+		// 마우스를 떼었다면
+		else if (INPUT->KeyUp(VK_LBUTTON))
+		{
+			path += "_highLight.png";
+			// 버튼 이미지&상태 변경 (CLICK -> HIGHLIGHT)
+			settingBtn.button->material->diffuseMap = RESOURCE->textures.Load(path);
+			settingBtn.state = SettingBtnState::MOUSE_OVER;
+		}
+	}
+
 }
