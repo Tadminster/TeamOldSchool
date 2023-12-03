@@ -70,17 +70,17 @@ SoundDB::SoundDB()
 	// UI
 	{
 		// UI를 열 때
-		SOUND->AddSound("Inventory/Inventory_Show_01.ogg", UI_SHOW_01, false);
-		SOUND->AddSound("Inventory/Inventory_Show_02.ogg", UI_SHOW_02, false);
-		SOUND->AddSound("Inventory/Inventory_Show_03.ogg", UI_SHOW_03, false);
+		SOUND->AddSound("UI/UI_Show_01.ogg", UI_SHOW_01, false);
+		SOUND->AddSound("UI/UI_Show_02.ogg", UI_SHOW_02, false);
+		SOUND->AddSound("UI/UI_Show_03.ogg", UI_SHOW_03, false);
 
 		// UI를 닫을 때
-		SOUND->AddSound("Inventory/Inventory_Hide_01.ogg", UI_HIDE_01, false);
-		SOUND->AddSound("Inventory/Inventory_Hide_02.ogg", UI_HIDE_02, false);
-		SOUND->AddSound("Inventory/Inventory_Hide_03.ogg", UI_HIDE_03, false);
+		SOUND->AddSound("UI/UI_Hide_01.ogg", UI_HIDE_01, false);
+		SOUND->AddSound("UI/UI_Hide_02.ogg", UI_HIDE_02, false);
+		SOUND->AddSound("UI/UI_Hide_03.ogg", UI_HIDE_03, false);
 
 		// UI 클릭할 때
-		SOUND->AddSound("Inventory/Inventory_Item_Pick.ogg", UI_CLICK, false);
+		SOUND->AddSound("UI/UI_Click.ogg", UI_CLICK, false);
 	}
 
 	// Crafting

@@ -16,7 +16,6 @@ InGame::InGame()
 
 	scattering = new Scattering();
 	loadCount++; // 4
-
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();

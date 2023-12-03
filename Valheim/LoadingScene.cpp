@@ -19,9 +19,7 @@ void LoadingScene::Init()
     backgroundImg = UI::Create();
     backgroundImg->LoadFile("UI_Loading.xml");
 
-    cout << "111" << endl;
     thread1 = new thread(CreateInGameScene);
-
   
     textPos.left = App.GetWidth() * 0.9f;
     textPos.top = App.GetHeight() * 0.95f;
