@@ -89,13 +89,23 @@ SoundDB::SoundDB()
 	SOUND->AddSound("Unit/Player_Walk_01.ogg", PLAYER_WALK_01, false);
 	SOUND->AddSound("Unit/Player_Walk_Water_01.ogg", PLAYER_WALK_WATER_01, false);
 	// Run--------------------------------------------------------------------
-	SOUND->AddSound("Unit/Player_Run_01.ogg", PLAYER_RUN_01, true);
-	SOUND->AddSound("Unit/Player_Run_Water_01.ogg", PLAYER_RUN_WATER_01, true);
+	SOUND->AddSound("Unit/Player_Run_01.ogg", PLAYER_RUN_01, false);
+	SOUND->AddSound("Unit/Player_Run_Water_01.ogg", PLAYER_RUN_WATER_01, false);
+	// Jump--------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Jump_01.ogg", PLAYER_JUMP_01, false);
 	// Axe--------------------------------------------------------------------
 	SOUND->AddSound("Unit/Player_Axe_Swing_01.ogg", PLAYER_AXE_SWING_01, false);
 	SOUND->AddSound("Unit/Player_Axe_Swing_02.ogg", PLAYER_AXE_SWING_02, false);
 	SOUND->AddSound("Unit/Player_Axe_Swing_03.ogg", PLAYER_AXE_SWING_03, false);
 	SOUND->AddSound("Unit/Player_Axe_Hit_01.ogg", PLAYER_AXE_HIT_01, false);
+	// Club--------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Club_Swing_01.ogg", PLAYER_CLUB_SWING_01, false);
+	SOUND->AddSound("Unit/Player_Club_Swing_02.ogg", PLAYER_CLUB_SWING_02, false);
+	SOUND->AddSound("Unit/Player_Club_Swing_03.ogg", PLAYER_CLUB_SWING_03, false);
+	// Shield--------------------------------------------------------------------
+	SOUND->AddSound("Unit/Player_Block_01.ogg", PLAYER_BLOCK_01, false);
+	SOUND->AddSound("Unit/Player_Block_02.ogg", PLAYER_BLOCK_02, false);
+	SOUND->AddSound("Unit/Player_Block_03.ogg", PLAYER_BLOCK_03, false);
 
 	// ETC
 

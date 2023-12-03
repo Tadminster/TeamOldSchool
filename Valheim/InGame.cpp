@@ -173,8 +173,8 @@ void InGame::Render()
 	OBJ->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
-	UIM->Render();
 	MONSTER->Render();
+	UIM->Render();
 }
 
 void InGame::ResizeScreen()

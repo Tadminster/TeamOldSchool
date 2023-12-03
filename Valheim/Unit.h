@@ -9,6 +9,7 @@ protected:
 	float				maxHitpoint = 0;
 	//SetOnTerrain--------------------------------------
 	Vector3				groundHit = {};
+	Vector3				groundZero = {};
 	//ApplyGravity--------------------------------------
 	float				gravity = 0;
 	bool				isLand = 0;

@@ -66,8 +66,6 @@ void IdleState::Death()
 //Walk 클래스----------------------------------------------------------
 void WalkState::Idle()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) {
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
 	}
@@ -77,62 +75,44 @@ void WalkState::Walk()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 2) 
 	{
-		
-
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
 	
 }
 void WalkState::Run()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(RunState::GetInstance());
 }
 void WalkState::Jump()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(JumpState::GetInstance());
 }
 void WalkState::Swing()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(SwingState::GetInstance());
 }
 void WalkState::Fist()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(FistState::GetInstance());
 }
 void WalkState::Axe()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(AxeState::GetInstance());
 }
 void WalkState::Shield()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(ShieldState::GetInstance());
 }
 void WalkState::Block() {}
 void WalkState::BlockFail() {}
 void WalkState::Death()
 {
-	SOUND->Stop(PLAYER_WALK_01);
-	SOUND->Stop(PLAYER_WALK_WATER_01);
 	SetPlayerState(DeathState::GetInstance());
 }
 
 //Run 클래스----------------------------------------------------------
 void RunState::Idle()
 {
-	SOUND->Stop(PLAYER_RUN_01);
-	SOUND->Stop(PLAYER_RUN_WATER_01);
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1) 
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
@@ -141,26 +121,14 @@ void RunState::Idle()
 }
 void RunState::Walk()
 {
-	SOUND->Stop(PLAYER_RUN_01);
-	SOUND->Stop(PLAYER_RUN_WATER_01);
 	SetPlayerState(WalkState::GetInstance());
 }
 void RunState::Run()
 {
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 3)
 	{
-		if (PLAYER->GetActor()->GetWorldPos().y < 0)
-		{
-			SOUND->Play(PLAYER_RUN_WATER_01);
-		}
-		else SOUND->Play(PLAYER_RUN_01);
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 3);
 	}
-	if (PLAYER->GetActor()->GetWorldPos().y < 0)
-	{
-		SOUND->Stop(PLAYER_RUN_01);
-	}
-	else SOUND->Stop(PLAYER_RUN_WATER_01);
 }
 void RunState::Jump()
 {
@@ -207,6 +175,7 @@ void JumpState::Run()
 }
 void JumpState::Jump()
 {
+	SOUND->Play(PLAYER_JUMP_01);
 	PLAYER->actor->SetWorldPosY(PLAYER->actor->GetWorldPos().y + 0.3f);
 	PLAYER->isLand = false;
 	//PLAYER->gravity = -10.0f;
@@ -332,7 +301,6 @@ void AxeState::Axe()
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 9)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 9);
-		
 		SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(PLAYER_AXE_SWING_01, PLAYER_AXE_SWING_03));
 		SOUND->Play(randomPlay);
 	}
@@ -456,7 +424,7 @@ void BlockFailState::BlockFail()
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 15)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 15);
-		PLAYER->GetPlayer()->anim->aniScale = 0.3f;
+		PLAYER->GetPlayer()->anim->aniScale = 0.1f;
 	}
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animState == AnimationState::STOP)
 	{
