@@ -8,5 +8,41 @@
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
     <UI PivotX="0" PivotY="0"/>
-    <Children Size="0"/>
+    <Children Size="3"/>
+    <Child0 Name="turnAndOffvolume" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="turnAndOffvolume.mtl"/>
+        <Transform>
+            <Position X="0" Y="0.58333331" Z="0"/>
+            <Scale X="0.28" Y="0.12" Z="0"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child0>
+    <Child1 Name="volumeDown" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="volumeDown.mtl"/>
+        <Transform>
+            <Position X="0" Y="0.16666667" Z="0"/>
+            <Scale X="0.28" Y="0.12" Z="0"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child1>
+    <Child2 Name="volumeUp" Visible="true" ObType="4">
+        <Mesh File="6.UI.mesh"/>
+        <Shader File="6.UI.hlsl"/>
+        <Material File="volumeUp.mtl"/>
+        <Transform>
+            <Position X="0" Y="-0.25" Z="0"/>
+            <Scale X="0.28" Y="0.12" Z="0"/>
+            <Rotation X="0" Y="0" Z="0"/>
+        </Transform>
+        <UI PivotX="0" PivotY="0"/>
+        <Children Size="0"/>
+    </Child2>
 </Root>
