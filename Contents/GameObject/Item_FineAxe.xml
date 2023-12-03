@@ -1,6 +1,6 @@
 <Root Name="Root" Visible="true" ObType="1">
     <Collider ColliderType="2" Visible="true">
-        <Position X="-0.1" Y="0" Z="-0.69999999"/>
+        <Position X="0.1" Y="0" Z="0.69999999"/>
         <Scale X="0.31999999" Y="0.22" Z="0.22"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
@@ -24,9 +24,17 @@
             <Transform>
                 <Position X="0" Y="0" Z="0"/>
                 <Scale X="0.003" Y="0.003" Z="0.003"/>
-                <Rotation X="1.5707961" Y="3.1415758" Z="0"/>
+                <Rotation X="1.5707961" Y="0" Z="0"/>
             </Transform>
-            <Children Size="0"/>
+            <Children Size="1"/>
+            <Child0 Name="CollisionPoint" Visible="true" ObType="1">
+                <Transform>
+                    <Position X="86.666664" Y="233.33337" Z="0"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
         </Child0>
     </Child0>
 </Root>
