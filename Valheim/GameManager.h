@@ -12,7 +12,6 @@ public:
     class MonsterManager*       monster;
 
     class ObjectManager*        objectManager;
-    class ParticleManager*      particleManager;
     class UserInterfaceManager* uiManager;
 
     class AStar*                astar;

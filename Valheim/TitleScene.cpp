@@ -114,6 +114,7 @@ void TitleScene::Update()
 	player->Update();
 	karve->Update();
 	jellyFish->Update();
+	PARTICLE->Update();
 }
 
 void TitleScene::LateUpdate()
@@ -128,7 +129,7 @@ void TitleScene::LateUpdate()
 		static float waterEffectCycle = 4.9f;
 		if (TIMER->GetTick(waterEffectCycle, 5.0f))
 		{
-			//PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos);
+			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos);
 		}
 	}
 
@@ -157,6 +158,7 @@ void TitleScene::PreRender()
 void TitleScene::Render()
 {
 	Camera::main->Set();
+	PARTICLE->Render();
 
 	background->Render();
 	floor->Render();

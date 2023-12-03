@@ -28,7 +28,6 @@ private:
 
     // ¹öÆ°
     class TitleUI*  titleUI;
-
 private:
     siv::PerlinNoise perlin;
 
