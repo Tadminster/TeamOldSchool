@@ -1,6 +1,6 @@
 enum class SceneName
 {
-    Title, Loading, InGame
+    Intro, Title, Loading, InGame
 };
 
 #pragma once
@@ -11,7 +11,7 @@ private:
     Scene *                 nextScene = nullptr;
     Scene *                 currentScene = nullptr;
     SceneName 				currentSceneKey;             // ÇöÀç
-    map<SceneName, Scene*>    scenes;
+    map<SceneName, Scene*>  scenes;
 
     float changingTime = 0.0f;
 

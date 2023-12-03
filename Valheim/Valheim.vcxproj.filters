@@ -151,6 +151,9 @@
     <ClInclude Include="PlayerSound.h">
       <Filter>GameObject\Unit\Player</Filter>
     </ClInclude>
+    <ClInclude Include="IntroScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -297,6 +300,9 @@
     </ClCompile>
     <ClCompile Include="PlayerSound.cpp">
       <Filter>GameObject\Unit\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroScene.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

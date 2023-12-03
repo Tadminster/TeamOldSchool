@@ -3,6 +3,8 @@
 #include "LoadingScene.h"
 #include "TitleScene.h"
 
+extern int introCount;
+
 TitleScene::TitleScene()
 {
 	titleUI = new TitleUI();
@@ -10,7 +12,7 @@ TitleScene::TitleScene()
 	background = Actor::Create();
 	background->LoadFile("RECT_TitleBG.xml");
 	background->name = "Background";
-	
+
 	titleCamera = Camera::Create("titleCamera");
 	titleCamera->LoadFile("Cam_title.xml");
 	titleCamera->name = "TitleCamera";
@@ -58,6 +60,7 @@ TitleScene::TitleScene()
 	monster02->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	
 	PARTICLE->waterSplash->rotation.y = -50.0f * ToRadian;
+	introCount++;
 }
 
 TitleScene::~TitleScene()

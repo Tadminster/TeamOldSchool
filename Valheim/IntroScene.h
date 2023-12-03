@@ -1,16 +1,12 @@
 #pragma once
-#define MAX_LOADCOUNT	5.0f
-#define LOADIND_RATE	DELTA * 40.0f
+#define MAX_INTROCOUNT 1.0f
 
-class LoadingScene : public Scene
+class IntroScene : public Scene
 {
 private:
-	Camera*		loadingCam;
+	Camera*		introCam;
 	UI*			backgroundImg;
-	thread*		thread2;
-
-	RECT		textPos;
-	float       loadingProgress{ 0.0f };
+	thread*		thread1;
 
 public:
 	virtual void Init() override;

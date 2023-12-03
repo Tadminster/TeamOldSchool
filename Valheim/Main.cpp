@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "TitleScene.h"
+#include "IntroScene.h"
 #include "Main.h"
 
 Main::Main()
@@ -13,8 +13,8 @@ Main::~Main()
 
 void Main::Init()
 {
-    SCENE->AddScene(SceneName::Title, new TitleScene);
-    SCENE->ChangeScene(SceneName::Title);
+    SCENE->AddScene(SceneName::Intro, new IntroScene);
+    SCENE->ChangeScene(SceneName::Intro);
 }
 
 void Main::Release()
