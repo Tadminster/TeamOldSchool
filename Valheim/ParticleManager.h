@@ -17,6 +17,8 @@ public:
 	Pop* hitBeech;
 	Pop* hitBlood;
 	Pop* hitRock;
+	Pop* elderStomp;
+	Pop* elderJumpAttack;
 
 	Pop* waterSplash;
 	Pop* waterWave;

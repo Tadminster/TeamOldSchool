@@ -175,9 +175,9 @@ void Elder::LateUpdate()
 		}
 
 		//Player 공격 -> Elder 피격
-		if (PLAYER->GetWeoponCollider(actor->collider))
+		if (PLAYER->GetWeoponCollider(actor->Find("RootNode")->collider))
 		{
-			if (PLAYER->CleanHit(actor->collider) && PLAYER->CleanFrame())
+			if (PLAYER->CleanHit(actor->Find("RootNode")->collider) && PLAYER->CleanFrame())
 			{
 				this->ReceivedDamageEvent(PLAYER->GetWeaponDMG(), PLAYER->GetWeaponType());
 			}

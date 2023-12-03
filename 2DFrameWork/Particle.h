@@ -15,7 +15,9 @@ enum class EffectType
     HEALEFFECT,
     HEALEFFECT2,
     WATERSPLASH,
-    WATERWAVE
+    WATERWAVE,
+    ELDERSTOMP,
+    ELDERATTACK
 };
 
 class Particle : public Actor
