@@ -67,10 +67,12 @@ void ElderStomp::ElderStompPatern(Elder* elder)
 					moveDir.Normalize();
 					elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);
 				}
+				
 				//발 내려찍는 프레임에 타격 콜라이더 크기 확대
 				if (elder->actor->anim->currentAnimator.currentFrame >= 23
 					&& elder->actor->anim->currentAnimator.currentFrame <= 30)
 				{
+					
 					if (elder->actor->Find("mixamorig:RightLeg")->collider->scale.x < 500.0f)
 					{
 						elder->actor->Find("mixamorig:RightLeg")->collider->scale.x *= 2.5f;

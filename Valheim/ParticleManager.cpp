@@ -25,11 +25,13 @@ ParticleManager::ParticleManager()
 
 	//엘더 발찍기
 	elderStomp = Pop::Create("ElderStomp");
-	elderStomp->LoadFile("Particle_HitRock.xml");
+	elderStomp->LoadFile("Unit/Particle_ElderStomp.xml");
+	elderStomp->name = "elderStomp";
 
 	//엘더 점프공격
 	elderJumpAttack = Pop::Create("ElderJumpAttack");
-	elderJumpAttack->LoadFile("Particle_HitRock.xml");
+	elderJumpAttack->LoadFile("Particle_ElderJumpAttack.xml");
+	elderJumpAttack->name = "elderJumpAttack";
 	
 	//플레이어 레벨업 파티클 효과
 	levelUp = Pop::Create("Praticle_LevelUp");
