@@ -56,7 +56,7 @@ void TitleUI::LateUpdate()
 {
 	// 패널 위에 마우스가 올라가 있으면
 	// 버튼들의 마우스오버 상태를 체크
-	if (panel->MouseOver())
+	if (!SETTING->isOpen && panel->MouseOver())
 	{
 		// 시작 버튼 마우스오버
 		if (infoStart.btn->MouseOver())
@@ -108,7 +108,7 @@ void TitleUI::LateUpdate()
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					// 옵션창 활성화
-					//SETTING->
+					SETTING->OpenSetting();
 					infoOption.state == TitleBtnState::MOUSE_OVER;
 				}
 			}
