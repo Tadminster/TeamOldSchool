@@ -1,6 +1,6 @@
 #pragma once
 enum class SettingBtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
-struct SettingBtn
+struct SettingBtn : public Singleton<SettingBtn>
 {
 	UI* button;
 	SettingBtnState state{ SettingBtnState::NONE };
