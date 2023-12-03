@@ -133,7 +133,12 @@ SoundDB::SoundDB()
 	// Elder-----------------------------------------------------------------------------
 	// Elder BGM
 	SOUND->AddSound("Unit/Elder/Elder_BGM.ogg", ELDER_BGM_01, true);
-
+	// Elder Stomp
+	SOUND->AddSound("Unit/Elder/Elder_Stomp.ogg", ELDER_STOMP, false);
+	// Elder JumpAttack
+	SOUND->AddSound("Unit/Elder/Elder_JumpAttack.ogg", ELDER_JUMPATTACK, false);
+	// Elder Spear
+	SOUND->AddSound("Unit/Elder/Elder_Spear.ogg", ELDER_SPEAR, false);
 
 	// ETC
 

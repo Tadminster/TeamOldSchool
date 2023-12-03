@@ -60,6 +60,9 @@ void ElderStomp::ElderStompPatern(Elder* elder)
 			//엘더 공격 중
 			if (elder->GetState() == E_STOMP)
 			{
+				if (elder->actor->anim->currentAnimator.currentFrame == 23)
+					SOUND->Play(ELDER_STOMP);
+
 				//발 내려찍기 전까진 이동, 회전값 적용
 				if (elder->actor->anim->GetPlayTime() <= 0.3f)
 				{
@@ -204,6 +207,9 @@ void ElderJumpAttack::ElderJumpAttackPatern(Elder* elder)
 			}
 			//8방향 * 7(방향당 소환할 창 갯수)
 			if (elder->state == E_JumpAttack) {
+				if (elder->actor->anim->currentAnimator.currentFrame == 50)
+					SOUND->Play(ELDER_JUMPATTACK);
+
 				if (spearIdx < 56)
 				{
 					Vector3 direction = {};
@@ -345,6 +351,14 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			/*Vector3 moveDir = PLAYER->GetPlayer()->GetWorldPos() - elder->actor->GetWorldPos();
 			moveDir.Normalize();
 			elder->actor->rotation.y = atan2f(moveDir.x, moveDir.z);*/
+			/*if (elder->state == E_SUMMON)
+			{
+				if (TIMER->GetTick(spearHitTime, 0.2f))
+				{
+					SOUND->Play(ELDER_SPEAR);
+				}
+			}*/
+			
 			//플레이어 추적을 제한하기 위한 조건
 			float chaseTime = 0;
 			if (distance >= 0 && distance < 15) chaseTime = 0.3f;
@@ -383,6 +397,7 @@ void ElderSummonSpear::SummonSpearPatern(Elder* elder)
 			{
 				if (TIMER->GetTick(summonTime, spearSpeed))
 				{
+					SOUND->Play(ELDER_SPEAR);
 					for (int j = 0; j < BUNDLENUM; j++)
 					{
 						Actor* spear = Actor::Create();

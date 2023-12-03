@@ -73,19 +73,20 @@ enum SoundName
     PLAYER_AXE_SWING_03,
     PLAYER_AXE_HIT_01,    
 
-    PLAYER_CLUB_SWING_01,    //플레이어 클럽
+    PLAYER_CLUB_SWING_01,   //플레이어 클럽
     PLAYER_CLUB_SWING_02,
     PLAYER_CLUB_SWING_03,
 
-    PLAYER_BLOCK_01,         //플레이어 방패막기
+    PLAYER_BLOCK_01,        //플레이어 방패막기
     PLAYER_BLOCK_02,
     PLAYER_BLOCK_03,
 
-    PLAYER_LEVELUP_01,       //플레이어 레벨업
+    PLAYER_LEVELUP_01,      //플레이어 레벨업
 
-    ELDER_BGM_01,       //엘더 BGM
-    ELDER_STOMP,       //엘더 Stomp
+    ELDER_BGM_01,           //엘더 BGM
+    ELDER_STOMP,            //엘더 Stomp
     ELDER_JUMPATTACK,       //엘더 JumpAttack
+    ELDER_SPEAR,       //엘더 Spear
 };
 
 class Sound : public Singleton<Sound>

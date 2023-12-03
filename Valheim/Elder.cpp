@@ -319,6 +319,7 @@ void Elder::DoFSM()
 	else if (state == E_SUMMON)
 	{
 		state->Summon(this);
+
 	}
 	else if (state == E_DEATH)
 	{

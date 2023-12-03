@@ -143,6 +143,11 @@ void Elder_JumpAttackState::JumpAttack(Elder* elder)
 		{
 			elder->GetActor()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 11);
 		}
+		if (elder->GetActor()->anim->currentAnimator.animIdx == 11)
+		{
+			if (elder->GetActor()->anim->currentAnimator.currentFrame == 10)
+				SOUND->Play(ELDER_JUMPATTACK);
+		}
 	}
 	
 }
