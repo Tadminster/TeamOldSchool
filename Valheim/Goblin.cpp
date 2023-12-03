@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GoblinState.h"
+#include "ItemProto.h"
 #include "Goblin.h"
 
 Goblin::Goblin(Vector3 spawnPos)
@@ -106,6 +107,7 @@ void Goblin::UpdateLight()
 bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 {
 	PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, actor->GetWorldPos() + Vector3(0, actor->scale.y * 0.5f, 0));
+	SOUND->Play(PLAYER_AXE_HIT_01);
 	if (wType == WeaponType::Blunt)
 	{
 		hitPoint -= damage * 2.0f;
@@ -114,9 +116,8 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 	{
 		hitPoint -= PLAYER->GetFistDMG();
 	}
-	else if(wType == WeaponType::Axe)
+	else
 	{
-		SOUND->Play(PLAYER_AXE_HIT_01);
 		hitPoint -= damage;
 	}
 	return false;
@@ -124,14 +125,20 @@ bool Goblin::ReceivedDamageEvent(float damage, WeaponType wType)
 
 bool Goblin::IsDestroyed()
 {
-	if (deathTime >= 3.0f) return true;
-
+	if (deathTime >= 3.0f)
+	{
+		DestructionEvent();
+		return true;
+	}
 	return false;
 }
 
 void Goblin::DestructionEvent()
 {
-
+	ItemProto* item = ItemProto::Create(Item::Leather);
+	Vector3 randomPos = Vector3(RANDOM->Float(-1.0f, 1.0f), RANDOM->Float(1.0f, 3.0f), RANDOM->Float(-1.0f, 1.0f));
+	item->GetActor()->SetWorldPos(actor->GetWorldPos() + randomPos);
+	OBJ->AddItem(item);
 }
 
 void Goblin::SetState(GoblinState* state)

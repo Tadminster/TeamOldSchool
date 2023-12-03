@@ -11,7 +11,7 @@ SceneManager::~SceneManager()
     scenes.clear();
 }
 
-bool SceneManager::AddScene(string key, Scene * value)
+bool SceneManager::AddScene(SceneName key, Scene* value)
 {
     auto iter = scenes.find(key);
 
@@ -24,7 +24,7 @@ bool SceneManager::AddScene(string key, Scene * value)
     return true;
 }
 
-bool SceneManager::DeleteScene(string key)
+bool SceneManager::DeleteScene(SceneName key)
 {
     auto iter = scenes.find(key);
 
@@ -39,9 +39,10 @@ bool SceneManager::DeleteScene(string key)
     return true;
 }
 
-Scene * SceneManager::ChangeScene(string key, float changingTime)
+Scene* SceneManager::ChangeScene(SceneName key, float changingTime)
 {
-    Scene * temp = GetScene(key);
+    Scene* temp = GetScene(key);
+    currentSceneKey = key;
 
     if (temp)
     {
@@ -55,12 +56,12 @@ Scene * SceneManager::ChangeScene(string key, float changingTime)
             SafeRelease(currentScene);
             //¾À ¹Ù²ð ¶§
             nextScene->Init();
-        } 
+        }
     }
     return temp;
 }
 
-Scene * SceneManager::GetScene(string key)
+Scene* SceneManager::GetScene(SceneName key)
 {
     auto iter = scenes.find(key);
 
@@ -72,7 +73,7 @@ Scene * SceneManager::GetScene(string key)
     return iter->second;
 }
 
-Scene * SceneManager::GetCurrentScene()
+Scene* SceneManager::GetCurrentScene()
 {
     return currentScene;
 }
@@ -127,4 +128,10 @@ void SceneManager::ResizeScreen()
 {
     if (isChanging || !currentScene)return;
     currentScene->ResizeScreen();
+}
+
+bool SceneManager::IsMacthScene(SceneName key)
+{
+    if (currentSceneKey == key) return true;
+    return false;
 }

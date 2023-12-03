@@ -13,6 +13,7 @@ void Unit::SetOnTerrain()
 	groundRay.direction = Vector3(0, -1, 0);
 	if (Utility::RayIntersectMap(groundRay, MAP, groundHit))
 	{
+		groundZero = groundHit;
 		if (actor->GetWorldPos().y - groundHit.y < 0.1f)
 		{
 			actor->SetWorldPosY(groundHit.y);

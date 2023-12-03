@@ -444,6 +444,7 @@ void Player::PlayerMove()
 	else if (state == SwingState::GetInstance()) moveSpeed = SWINGSPEED;
 	else if (state == ShieldState::GetInstance()) moveSpeed = status->shieldSpeed;
 	else if (state == AxeState::GetInstance()) moveSpeed = 0;
+	else if (state == BlockFailState::GetInstance()) moveSpeed = 0;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	moveDir = Vector3();
@@ -456,8 +457,9 @@ void Player::PlayerMove()
 
 	actor->MoveWorldPos(moveDir * moveSpeed * DELTA);
 
-	if (actor->GetWorldPos().y < -1.5f)
+	if (groundZero.y < -1.5f)
 	{
+		moveSpeed = 0;
 		actor->SetWorldPos(lastPos);
 	}
 	else
@@ -579,8 +581,11 @@ void Player::PlayerHit(float damage)
 	{
 		if (isGuard)
 		{
+			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(PLAYER_BLOCK_01, PLAYER_BLOCK_03));
+			SOUND->Play(randomPlay);
 			hitPoint -= damage * (1 - (equippedShield->damageReduced + status->blockAbility));
-			if (staminar >= blockStaminar)
+			staminar -= blockStaminar;
+			if (staminar > 0.5f)
 			{
 				state = BlockState::GetInstance();
 				state->Block();
@@ -590,7 +595,6 @@ void Player::PlayerHit(float damage)
 				state = BlockFailState::GetInstance();
 				state->BlockFail();
 			}
-			staminar -= blockStaminar;
 			blockCount++;
 		}
 		else

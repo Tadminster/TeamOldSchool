@@ -54,11 +54,20 @@ enum SoundName
     PLAYER_RUN_01,          // 플레이어 뛰기
     PLAYER_RUN_WATER_01,
 
+    PLAYER_JUMP_01,         //플레이어 점프
+
     PLAYER_AXE_SWING_01,    //플레이어 도끼
     PLAYER_AXE_SWING_02,
     PLAYER_AXE_SWING_03,
     PLAYER_AXE_HIT_01,    
 
+    PLAYER_CLUB_SWING_01,    //플레이어 클럽
+    PLAYER_CLUB_SWING_02,
+    PLAYER_CLUB_SWING_03,
+
+    PLAYER_BLOCK_01,         //플레이어 방패막기
+    PLAYER_BLOCK_02,
+    PLAYER_BLOCK_03,
 };
 
 class Sound : public Singleton<Sound>
