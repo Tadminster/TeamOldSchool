@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ItemProto.h"
-#include "SoundDB.h"
 #include "MonsterManager.h"
 #include "InGame.h"
 
@@ -15,12 +14,8 @@ InGame::InGame()
 	grid = Grid::Create();
 	loadCount++; // 2
 
-	soundDB = new SoundDB();
-	loadCount++; // 3
-
 	scattering = new Scattering();
 	loadCount++; // 4
-
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -42,19 +37,20 @@ void InGame::Init()
 {
 	GM->Init();
 	UIM->Init();
-	soundDB->Init();
 
 	OBJ->Init();
 	PLAYER->Init();
 	MONSTER->Init();
 	SETTING->Init();
 	// 배경음악 재생
-	//SOUND->Play(BGM_HOMEBASE);
+	SOUND->Play(BGM_HOMEBASE);
+	// 라이트 현재시간 초기화
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 }
 
 void InGame::Release()
 {
+
 }
 
 void InGame::Update()

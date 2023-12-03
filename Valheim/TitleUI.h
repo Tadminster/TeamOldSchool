@@ -23,6 +23,8 @@ private:
     class UI*   fadeOut = nullptr;	    // fadeout 효과를 위한 UI
     float       fadeout = 5;            // fadeout의 opacity
     bool        isPostQuit = false;	    // PostQuitMessage를 한번만 호출하기 위한 변수
+    //==============================================================
+    class       SoundDB* soundDB;
 public:
     TitleUI();
     ~TitleUI();

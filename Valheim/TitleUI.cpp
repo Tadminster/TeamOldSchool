@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "SoundDB.h"
 #include "TitleUI.h"
 
 TitleUI::TitleUI()
@@ -14,6 +15,8 @@ TitleUI::TitleUI()
 	fadeOut = UI::Create();
 	fadeOut->name = "fade";
 	fadeOut->LoadFile("UI_FadeOut.xml");
+
+	soundDB = new SoundDB();
 }
 
 TitleUI::~TitleUI()
@@ -22,12 +25,14 @@ TitleUI::~TitleUI()
 
 void TitleUI::Init()
 {
+	soundDB->Init();
 }
 
 void TitleUI::Release()
 {
 	titleUI->Release();
 	fadeOut->Release();
+	delete soundDB;
 }
 
 void TitleUI::Update()
@@ -182,6 +187,9 @@ void TitleUI::BtnMouseClick(BtnInfo& btnInfo)
 	// 마우스 왼쪽 버튼을 누르면
 	if (INPUT->KeyDown(VK_LBUTTON))
 	{
+		// 클릭음 재생
+		SOUND->Play(UI_CLICK);
+
 		// 스타트버튼 상태를 마우스 클릭으로 변경
 		btnInfo.state = TitleBtnState::MOUSE_CLICK;
 	}

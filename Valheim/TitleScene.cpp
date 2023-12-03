@@ -58,6 +58,8 @@ void TitleScene::Init()
 {
 	SCENE->AddScene(SceneName::Loading, new LoadingScene);
 	LIGHT->UpdateDirection();
+
+	SOUND->Play(BGM_OCEANWAVE);
 	SETTING->Init();
 }
 
@@ -77,6 +79,7 @@ void TitleScene::Release()
 	floor->Release();
 
 	PARTICLE->waterSplash->rotation.y = 0.0f;
+	SOUND->Stop(BGM_OCEANWAVE);
 	//btnStart->Release();
 	//btnOption->Release();
 	//btnExit->Release();

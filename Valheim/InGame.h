@@ -7,8 +7,6 @@ private:
     bool                            isDebugCamControl{ true };
 
     Grid*                           grid;
-
-    class SoundDB*                  soundDB;
 	
     Scattering*                     scattering;
    
