@@ -56,7 +56,7 @@ void PlayerSound::Run()
 		}
 		else
 		{
-			if (TIMER->GetTick(soundTime, 0.3f))
+			if (TIMER->GetTick(soundTime, 0.4f))
 			{
 				SOUND->Stop(PLAYER_RUN_WATER_01);
 				SOUND->Play(PLAYER_RUN_01);

@@ -424,7 +424,7 @@ void BlockFailState::BlockFail()
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 15)
 	{
 		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 15);
-		PLAYER->GetPlayer()->anim->aniScale = 0.3f;
+		PLAYER->GetPlayer()->anim->aniScale = 0.1f;
 	}
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animState == AnimationState::STOP)
 	{
