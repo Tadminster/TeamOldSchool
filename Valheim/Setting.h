@@ -14,6 +14,7 @@ public:
 	bool	isOpen		{ false }; //패널이 열려 있는지 판별
 private:
 	UI*			settingPanel;
+	UI*			volumeIcon;
 	//=======================================================
 	SettingBtn	volumeUp;			//볼륨 업
 	SettingBtn	volumeDown;			//볼륨 다운
