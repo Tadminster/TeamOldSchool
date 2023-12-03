@@ -87,6 +87,7 @@ void TitleScene::Release()
 	player->Release();
 	karve->Release();
 	monster01->Release();
+	monster02->Release();
 
 	titleCamera->Release();
 	
@@ -140,9 +141,9 @@ void TitleScene::Update()
 	if (titleUI->isPostStart)
 	{
 		// 카메라 이동
-		titleCamera->MoveWorldPos(cameraDir * 1.0f * DELTA);
-		karve->MoveWorldPos(-cameraDir * 2.0f * DELTA);
-		monster01->MoveWorldPos(-cameraDir * 5.0f * DELTA);
+		titleCamera->MoveWorldPos(cameraDir * 0.5f * DELTA);
+		karve->MoveWorldPos(-cameraDir * 3.0f * DELTA);
+		monster01->MoveWorldPos(-cameraDir * 6.0f * DELTA);
 		monster02->MoveLocalPos(monster02->GetForward() * 5.0f * DELTA);
 	}
 

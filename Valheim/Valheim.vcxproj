@@ -34,6 +34,7 @@
     <ClInclude Include="LoadingScene.h" />
     <ClInclude Include="MonsterManager.h" />
     <ClInclude Include="Notification.h" />
+    <ClInclude Include="OutroScene.h" />
     <ClInclude Include="PlayerSound.h" />
     <ClInclude Include="PlayerStatus.h" />
     <ClInclude Include="Recipe.h" />
@@ -88,6 +89,7 @@
     <ClCompile Include="LoadingScene.cpp" />
     <ClCompile Include="MonsterManager.cpp" />
     <ClCompile Include="Notification.cpp" />
+    <ClCompile Include="OutroScene.cpp" />
     <ClCompile Include="PlayerSound.cpp" />
     <ClCompile Include="PlayerStatus.cpp" />
     <ClCompile Include="Recipe.cpp" />

@@ -16,6 +16,7 @@ SoundDB::SoundDB()
 	// BGM
 	SOUND->AddSound("BGM/OceanWaves.ogg", BGM_OCEANWAVE, true);		// 타이틀 배경음악
 	SOUND->AddSound("BGM/Homebase.ogg",   BGM_HOMEBASE, true);		// 홈베이스 배경음악
+	SOUND->AddSound("BGM/StillAlive.mp3",     BGM_ENDING,   true);		// 숲 배경음악
 
 	// WOOD
 	SOUND->AddSound("Wood/Wood_Break_01.ogg", WOOD_BREAK_01, false); // 나무가 부서질 때

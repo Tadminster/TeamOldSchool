@@ -1,6 +1,6 @@
 enum class SceneName
 {
-    Intro, Title, Loading, InGame
+    Intro, Title, Loading, InGame, Outro
 };
 
 #pragma once

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "ItemProto.h"
 #include "MonsterManager.h"
+#include "OutroScene.h"
 #include "InGame.h"
 
 extern int loadCount;
@@ -53,6 +54,8 @@ void InGame::Init()
 void InGame::Release()
 {
 
+	LIGHT->currentTime = LIGHT->halfdayCycleLength;
+	SOUND->Stop(BGM_HOMEBASE);
 }
 
 void InGame::Update()
@@ -124,6 +127,12 @@ void InGame::Update()
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
+
+	if (INPUT->KeyDown('P'))
+	{
+		SCENE->AddScene(SceneName::Outro, new OutroScene());
+		SCENE->ChangeScene(SceneName::Outro);
+	}
 }
 
 void InGame::LateUpdate()
