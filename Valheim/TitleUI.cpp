@@ -99,13 +99,18 @@ void TitleUI::LateUpdate()
 			{
 				BtnMouseOver(infoOption);
 			}
-			else if (infoStart.state == TitleBtnState::MOUSE_OVER)
+			else if (infoOption.state == TitleBtnState::MOUSE_OVER)
 			{
 				BtnMouseClick(infoOption);
 			}
-			else if (infoStart.state == TitleBtnState::MOUSE_CLICK)
+			else if (infoOption.state == TitleBtnState::MOUSE_CLICK)
 			{
-				// 옵션창 활성화
+				if (INPUT->KeyUp(VK_LBUTTON))
+				{
+					// 옵션창 활성화
+					//SETTING->
+					infoOption.state == TitleBtnState::MOUSE_OVER;
+				}
 			}
 		}
 		// 종료 버튼 마우스오버
