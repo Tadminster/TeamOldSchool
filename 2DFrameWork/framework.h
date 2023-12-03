@@ -70,6 +70,7 @@ using namespace SimpleMath;
 #define SafeReset(p)		{ if(p){ (p).reset(); (p) = nullptr; } }
 
 #define	ToRadian			0.0174532f
+#define ToDegree			57.2957795f
 //Macro(WINAPI Style)
 #define	PI					3.1415926f	//180
 #define PI_2                3.1415926f * 2.0f // 360

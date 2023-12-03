@@ -46,6 +46,8 @@ TitleScene::TitleScene()
 	jellyFish->LoadFile("Unit/Monster_JellyFish.xml");
 	jellyFish->name = "jellyFish";
 	jellyFish->anim->ChangeAnimation(AnimationState::LOOP, 2);
+	
+	PARTICLE->waterSplash->rotation.y = -40.0f * ToRadian;
 }
 
 TitleScene::~TitleScene()
@@ -74,6 +76,7 @@ void TitleScene::Release()
 	ocean->Release();
 	floor->Release();
 
+	PARTICLE->waterSplash->rotation.y = 0.0f;
 	//btnStart->Release();
 	//btnOption->Release();
 	//btnExit->Release();
@@ -93,6 +96,7 @@ void TitleScene::Update()
 		player->RenderHierarchy();
 		karve->RenderHierarchy();
 		jellyFish->RenderHierarchy();
+		PARTICLE->waterSplash->RenderHierarchy();
 	}
 	ImGui::End();
 
@@ -126,10 +130,10 @@ void TitleScene::LateUpdate()
 		karve->SetWorldPos(playerRayHitPos + karvePos);
 		player->SetWorldPos(playerRayHitPos + playerPos);
 
-		static float waterEffectCycle = 4.9f;
-		if (TIMER->GetTick(waterEffectCycle, 5.0f))
+		static float waterEffectCycle = 1.9f;
+		if (TIMER->GetTick(waterEffectCycle, 2.0f))
 		{
-			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos + Vector3(0,1.0f,0));
+			PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, karve->Find("Bow")->GetWorldPos());
 		}
 	}
 

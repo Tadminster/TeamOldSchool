@@ -105,9 +105,12 @@ void Pop::Reset()
 
 		//임의의 회전된 3개축
 		Vector3 rot;
-		rot.y = RANDOM->Float(0.0f, PI * waveRange);
-		rot.x = RANDOM->Float(0.0f, PI * waveRange);
-		rot.z = RANDOM->Float(0.0f, PI * waveRange);
+		
+		float ratationY = this->rotation.y / PI; // PI / 180;
+		//cout << ratationY << endl;
+		rot.y = RANDOM->Float(ratationY, (waveRange + ratationY)) * PI;
+		rot.x = RANDOM->Float(0.0f, waveRange * PI);
+		rot.z = RANDOM->Float(0.0f, waveRange * PI);
 		//임의의 회전행렬
 		Matrix matRot = Matrix::CreateFromYawPitchRoll(rot.y, rot.x, rot.z);
 		// v = v * R

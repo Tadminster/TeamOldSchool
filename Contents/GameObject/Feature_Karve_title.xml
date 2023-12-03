@@ -1,6 +1,6 @@
-<Root Name="Root" Visible="true" ObType="1">
+<Root Name="Karve" Visible="true" ObType="1">
     <Transform>
-        <Position X="30" Y="0" Z="25"/>
+        <Position X="30" Y="0.47255117" Z="25"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0.90756637" Z="0"/>
     </Transform>
@@ -19,8 +19,16 @@
                 <Scale X="0.0080000004" Y="0.0080000004" Z="0.0080000004"/>
                 <Rotation X="0" Y="0" Z="-0"/>
             </Transform>
-            <Children Size="6"/>
-            <Child0 Name="FrontHull" Visible="true" ObType="0">
+            <Children Size="7"/>
+            <Child0 Name="Bow" Visible="true" ObType="1">
+                <Transform>
+                    <Position X="0" Y="150" Z="-474.99997"/>
+                    <Scale X="1" Y="1" Z="1"/>
+                    <Rotation X="0" Y="0" Z="0"/>
+                </Transform>
+                <Children Size="0"/>
+            </Child0>
+            <Child1 Name="FrontHull" Visible="true" ObType="0">
                 <Mesh File="Karve/FrontHull.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/smallboat_worn.mtl"/>
@@ -30,8 +38,8 @@
                     <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child0>
-            <Child1 Name="FrontPiece" Visible="true" ObType="0">
+            </Child1>
+            <Child2 Name="FrontPiece" Visible="true" ObType="0">
                 <Mesh File="Karve/FrontPiece.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/smallboat_worn.mtl"/>
@@ -41,8 +49,8 @@
                     <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child1>
-            <Child2 Name="RearHull" Visible="true" ObType="0">
+            </Child2>
+            <Child3 Name="RearHull" Visible="true" ObType="0">
                 <Mesh File="Karve/RearHull.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/smallboat_worn.mtl"/>
@@ -52,8 +60,8 @@
                     <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child2>
-            <Child3 Name="RearPiece" Visible="true" ObType="0">
+            </Child3>
+            <Child4 Name="RearPiece" Visible="true" ObType="0">
                 <Mesh File="Karve/RearPiece.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/smallboat_worn.mtl"/>
@@ -63,8 +71,8 @@
                     <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child3>
-            <Child4 Name="mast" Visible="true" ObType="0">
+            </Child4>
+            <Child5 Name="mast" Visible="true" ObType="0">
                 <Mesh File="Karve/mast.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/ship.mtl"/>
@@ -74,8 +82,8 @@
                     <Rotation X="0" Y="1.570796" Z="-0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child4>
-            <Child5 Name="smallboat_001" Visible="true" ObType="0">
+            </Child5>
+            <Child6 Name="smallboat_001" Visible="true" ObType="0">
                 <Mesh File="Karve/smallboat_001.mesh"/>
                 <Shader File="4.Cube.hlsl"/>
                 <Material File="Karve/smallboat_worn.mtl"/>
@@ -85,7 +93,7 @@
                     <Rotation X="8.4293731e-08" Y="-3.1415925" Z="0"/>
                 </Transform>
                 <Children Size="0"/>
-            </Child5>
+            </Child6>
         </Child0>
     </Child0>
 </Root>
