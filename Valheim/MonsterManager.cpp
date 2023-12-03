@@ -26,9 +26,9 @@ MonsterManager::MonsterManager()
 
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		jellyFish[i] = Actor::Create();
-		jellyFish[i]->LoadFile("Unit/Monster_JellyFish.xml");
-		jellyFish[i]->name = "JellyFish" + to_string(i+1);
+		monster01[i] = Actor::Create();
+		monster01[i]->LoadFile("Unit/Monster_JellyFish.xml");
+		monster01[i]->name = "JellyFish" + to_string(i+1);
 	}
 }
 
@@ -49,8 +49,8 @@ void MonsterManager::Init()
 
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		jellyFish[i]->SetWorldPos(OBJ->GetStartingPosition());
-		jellyFish[i]->anim->ChangeAnimation(AnimationState::LOOP, 2);
+		monster01[i]->SetWorldPos(OBJ->GetStartingPosition());
+		monster01[i]->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	}
 }
 
@@ -82,7 +82,7 @@ void MonsterManager::Update()
 
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		jellyFish[i]->Update();
+		monster01[i]->Update();
 	}
 }
 
@@ -111,7 +111,7 @@ void MonsterManager::RenderHierarchy()
 
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		jellyFish[i]->RenderHierarchy();
+		monster01[i]->RenderHierarchy();
 	}
 }
 
@@ -129,6 +129,6 @@ void MonsterManager::Render()
 	
 	for (int i = 0; i < JELLYFISHNUM; i++)
 	{
-		jellyFish[i]->Render();
+		monster01[i]->Render();
 	}
 }

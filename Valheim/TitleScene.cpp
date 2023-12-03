@@ -13,8 +13,10 @@ TitleScene::TitleScene()
 	
 	titleCamera = Camera::Create("titleCamera");
 	titleCamera->LoadFile("Cam_title.xml");
+	titleCamera->name = "TitleCamera";
+	titleCamera->SetWorldPos(Vector3(40.0f, 0.f, 40.0f));
 	Camera::main = titleCamera;
-	cameraRay.position = Vector3(45.0f, 100.0f, 45.0f);
+
 	cameraRay.direction = Vector3(0.0f, -1.0f, 0.0f);
 
 	floor = Terrain::Create();
@@ -38,14 +40,22 @@ TitleScene::TitleScene()
 	karve = Actor::Create();
 	karve->LoadFile("Feature_Karve_title.xml");
 	karve->name = "Karve";
-
-	playerRay.position = Vector3(30.0f, 100.0f, 25.0f);
+	player->parent = karve;
+	player->rotation.y = 180.0f * ToRadian;
+	player->SetLocalPos(playerPos);
 	playerRay.direction = Vector3(0.0f, -1.0f, 0.0f);
 
-	jellyFish = Actor::Create();
-	jellyFish->LoadFile("Unit/Monster_JellyFish.xml");
-	jellyFish->name = "jellyFish";
-	jellyFish->anim->ChangeAnimation(AnimationState::LOOP, 2);
+	monster01 = Actor::Create();
+	monster01->LoadFile("Unit/Monster_JellyFish.xml");
+	monster01->name = "Monster1";
+	monster01->SetWorldPos(Vector3(43.0f, -3.0f, 36.0f));
+	monster01->anim->ChangeAnimation(AnimationState::LOOP, 2);
+
+	monster02 = Actor::Create();
+	monster02->LoadFile("Unit/Monster_JellyFish.xml");
+	monster02->name = "Monster2";
+	monster02->SetWorldPos(Vector3(25.0f, -3.5f, 42.0f));
+	monster02->anim->ChangeAnimation(AnimationState::LOOP, 2);
 	
 	PARTICLE->waterSplash->rotation.y = -50.0f * ToRadian;
 }
@@ -69,7 +79,7 @@ void TitleScene::Release()
 
 	player->Release();
 	karve->Release();
-	jellyFish->Release();
+	monster01->Release();
 
 	titleCamera->Release();
 	
@@ -95,19 +105,36 @@ void TitleScene::Update()
 		underwater->RenderHierarchy();
 		player->RenderHierarchy();
 		karve->RenderHierarchy();
-		jellyFish->RenderHierarchy();
+		monster01->RenderHierarchy();
+		monster02->RenderHierarchy();
 		PARTICLE->waterSplash->RenderHierarchy();
 	}
 	ImGui::End();
 
-
+	// 메인 카메라 업데이트
 	Camera::main->ControlMainCam();
 	Camera::main->Update();
 	
+	// 물결 효과 (펄린노이즈)
 	static float waveCycle = 0.0f;
 	if (TIMER->GetTick(waveCycle, 0.05f))
 	{
 		ocean->PerlinNoiseSea(perlin);
+	}
+
+	// 레이 위치 설정
+	Vector3 playerPos = player->GetWorldPos();
+	playerRay.position = Vector3(playerPos.x, 100.0f, playerPos.z);
+	Vector3 cameraPos = titleCamera->GetWorldPos();
+	cameraRay.position = Vector3(cameraPos.x, 100.0f, cameraPos.z);
+	// 시작버튼을 눌렀으면
+	if (titleUI->isPostStart)
+	{
+		// 카메라 이동
+		titleCamera->MoveWorldPos(cameraDir * 1.0f * DELTA);
+		karve->MoveWorldPos(-cameraDir * 2.0f * DELTA);
+		monster01->MoveWorldPos(-cameraDir * 5.0f * DELTA);
+		monster02->MoveLocalPos(monster02->GetForward() * 5.0f * DELTA);
 	}
 
 	titleUI->Update();
@@ -117,7 +144,8 @@ void TitleScene::Update()
 	underwater->Update();
 	player->Update();
 	karve->Update();
-	jellyFish->Update();
+	monster01->Update();
+	monster02->Update();
 	PARTICLE->Update();
 	SETTING->Update();
 }
@@ -125,11 +153,11 @@ void TitleScene::Update()
 void TitleScene::LateUpdate()
 {
 
-	// 플레이어와 배 위치 설정
+	// 배(플레이어) 위치 설정 
 	if (Utility::RayIntersectMap(playerRay, ocean, playerRayHitPos))
 	{
-		karve->SetWorldPos(playerRayHitPos + karvePos);
-		player->SetWorldPos(playerRayHitPos + playerPos);
+		// 배 Y위치를 물 표면으로 설정
+		karve->SetWorldPosY(playerRayHitPos.y + karvePosY);
 
 		static float waterEffectCycle = 1.9f;
 		if (TIMER->GetTick(waterEffectCycle, 2.0f))
@@ -140,24 +168,28 @@ void TitleScene::LateUpdate()
 
 	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
 	{
-		// 카메라 위치를 물 표면으로 설정
-		titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
+		// 카메라 Y위치를 물 표면으로 설정
+		titleCamera->SetWorldPosY(rayHitPos.y * weightPosY);
 
 		// 물속 표현
 		if (rayHitPos.y > titleCamera->GetWorldPos().y)
 		{
+			// 물속으로 들어갈 때 잠수중이 아니라면
 			if (!isUnderwater)
 			{
 				isUnderwater = true;
 				underwater->visible = true;
 
+				// 물속에서 들리는 파도 소리
 				SoundName randomPlay1 = static_cast<SoundName>(RANDOM->Int(UNDERWATER_WAVE_PASS_BY_01, UNDERWATER_WAVE_PASS_BY_04));
 				SOUND->Play(randomPlay1);
 
+				// 물속에서 고통스러워 하는 소리
 				SoundName randomPlay2 = static_cast<SoundName>(RANDOM->Int(UNDERWATER_HURT_01, UNDERWATER_HURT_03));
 				SOUND->Play(randomPlay2);
 			}
 		}
+		// 물속에서 나왔으면
 		else
 		{
 			isUnderwater = false;
@@ -165,8 +197,8 @@ void TitleScene::LateUpdate()
 		}
 	}
 
-	titleUI->LateUpdate();
 	SETTING->LateUpdate();
+	titleUI->LateUpdate();
 }
 
 void TitleScene::PreRender()
@@ -186,7 +218,8 @@ void TitleScene::Render()
 	floor->Render();
 	player->Render();
 	karve->Render();
-	jellyFish->Render();
+	monster01->Render();
+	monster02->Render();
 
 	BLEND->Set(true);
 	ocean->Render();

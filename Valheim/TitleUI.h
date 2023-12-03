@@ -1,5 +1,5 @@
 #pragma once
-#define FADEOUT 2.0f
+#define FADEOUT 3.0f
 enum class TitleBtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
 struct BtnInfo
 {
@@ -22,9 +22,11 @@ private:
     // ==============================================================
     class UI*   fadeOut{ nullptr };	    // fadeout 효과를 위한 UI
     float       fadeout{ 0 };           // fadeout의 opacity
-    bool        isPostStart{false};	    // 시작 버튼을 눌렀는지 판별
     //==============================================================
     class       SoundDB* soundDB;
+
+public:
+    bool        isPostStart{false};	    // 시작 버튼을 눌렀는지 판별
 
 public:
     TitleUI();

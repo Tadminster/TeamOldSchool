@@ -80,6 +80,10 @@ enum SoundName
     PLAYER_BLOCK_01,         //플레이어 방패막기
     PLAYER_BLOCK_02,
     PLAYER_BLOCK_03,
+
+    LIZARD_ROAR_01,         // 몬스터 포효소리
+    LIZARD_ROAR_02,
+    LIZARD_ROAR_03
 };
 
 class Sound : public Singleton<Sound>

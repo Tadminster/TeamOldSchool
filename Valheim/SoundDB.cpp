@@ -100,7 +100,10 @@ SoundDB::SoundDB()
 		SOUND->AddSound("UnderWater/UnderWater_Wave_Pass_By_04.ogg", UNDERWATER_WAVE_PASS_BY_04, false);
 	}
 
-
+	// Monster
+	SOUND->AddSound("Roar/Lizard_Roar_01.ogg", LIZARD_ROAR_01, false);
+	SOUND->AddSound("Roar/Lizard_Roar_02.ogg", LIZARD_ROAR_02, false);
+	SOUND->AddSound("Roar/Lizard_Roar_03.ogg", LIZARD_ROAR_03, false);
 
 	// Player-----------------------------------------------------------------------------
 	// Fist-------------------------------------------------------------------

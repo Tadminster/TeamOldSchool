@@ -10,22 +10,24 @@ private:
     Ray             cameraRay;
     Vector3         rayHitPos;
     float           weightPosY{ 3.0f };
+    Vector3         cameraDir{ 0.5f, 0.0f, 0.5f };
 
     // 바닥, 바다, 물속
     Terrain*        floor;
     Terrain*        ocean;
     UI*             underwater;
-    bool			isUnderwater{ false };
+    bool			isUnderwater{ true };
 
     // 플레이어, 배, 몬스터    
     Actor*          player;
     Actor*          karve;
     Ray             playerRay;
     Vector3         playerRayHitPos;
-    Vector3         karvePos{ 0.0f, 0.3f, 0.0f };
-    Vector3         playerPos{ -2.0f, 0.3f, -1.5f };
+    Vector3         playerPos{ -0.5f, 0.2f, -1.5f };
+    float           karvePosY{ 0.2f };
     
-    Actor*          jellyFish;
+    Actor*          monster01;
+    Actor*          monster02;
 
     // 버튼
     class TitleUI*  titleUI;

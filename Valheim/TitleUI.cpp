@@ -78,6 +78,9 @@ void TitleUI::LateUpdate()
 				{
 					isPostStart = true;
 
+					SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(LIZARD_ROAR_01, LIZARD_ROAR_03));
+					SOUND->Play(randomPlay);
+
 					// 다음 씬으로 이동 (로딩 씬)
 					SCENE->ChangeScene(SceneName::Loading, FADEOUT);
 				}
@@ -190,7 +193,7 @@ void TitleUI::BtnMouseClick(BtnInfo& btnInfo)
 		// 클릭음 재생
 		SOUND->Play(UI_CLICK);
 
-		// 스타트버튼 상태를 마우스 클릭으로 변경
+		// 버튼의 상태를 마우스 클릭으로 변경
 		btnInfo.state = TitleBtnState::MOUSE_CLICK;
 	}
 }
