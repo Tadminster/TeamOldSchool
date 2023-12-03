@@ -5,7 +5,7 @@ Setting::Setting()
 {
 	settingPanel = UI::Create("SettingPanel");
 	settingPanel->LoadFile("UI_SettingPanel.xml");
-	
+
 	volumeUp.button = static_cast<UI*>(settingPanel->Find("volumeUp"));
 	volumeDown.button = static_cast<UI*>(settingPanel->Find("volumeDown"));
 	turnAndOffvolume.button = static_cast<UI*>(settingPanel->Find("turnAndOffvolume"));
@@ -20,7 +20,7 @@ Setting::~Setting()
 void Setting::Init()
 {
 	settingPanel->visible = false;
-	
+
 	BtnInitalize(volumeUp);
 	BtnInitalize(volumeDown);
 	BtnInitalize(turnAndOffvolume);
@@ -41,23 +41,40 @@ void Setting::Update()
 	ImGui::End();
 
 	//패널 열기 닫기
-	if (INPUT->KeyDown(VK_F8))
+	// 인벤토리, 스탯창 제작창이 열려있지 않고 인게임 씬일때만 ESC 로 설정창 불러오기
+	if (SCENE->IsMacthScene(SceneName::InGame))
 	{
-		settingPanel->visible = !settingPanel->visible;
-
+		if ((not INVEN->isOpen) and (not STATUS->isOpen) and (not CRAFT->isOpen))
+		{
+			if (INPUT->KeyDown(VK_ESCAPE))
+			{
+				settingPanel->visible = !settingPanel->visible;
+				isOpen = !isOpen;
+			}
+		}
+	}
+	//타이틀 씬에서 설정창 켜고 끄기
+	else if (SCENE->IsMacthScene(SceneName::Title))
+	{
+		if (INPUT->KeyDown(VK_ESCAPE))
+		{
+			settingPanel->visible = !settingPanel->visible;
+			isOpen = !isOpen;
+		}
 	}
 
-
-
-
-	settingPanel->Update();
+	if (isOpen)
+	{
+		settingPanel->Update();
+	}
 }
 
 void Setting::LateUpdate()
 {
+	
 	//설정창	패널위에 마우스가 올라가 있으면 
 	//버튼들의 상태체크
-	if (settingPanel->visible and settingPanel->MouseOver())
+	if (isOpen and settingPanel->MouseOver())
 	{
 		//볼륨 키우기 버튼 마우스 오버일때
 		if (volumeUp.button->MouseOver())
@@ -78,10 +95,10 @@ void Setting::LateUpdate()
 					// 전체볼륨을 올려줍니다
 					App.soundScale += 0.1f;
 					SOUND->SetMasterVolume();
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
-
 		//볼륨 줄이기 버튼 마우스 오버일때
 		if (volumeDown.button->MouseOver())
 		{
@@ -101,6 +118,7 @@ void Setting::LateUpdate()
 					// 전체볼륨을 줄여줍니다
 					App.soundScale -= 0.1f;
 					SOUND->SetMasterVolume();
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
@@ -124,6 +142,7 @@ void Setting::LateUpdate()
 					//볼륨을 키고 끕니다
 					volumeOn = !volumeOn;
 					OnOffMasterVolume(volumeOn);
+					SOUND->Play(UI_CLICK);
 				}
 			}
 		}
@@ -132,8 +151,10 @@ void Setting::LateUpdate()
 
 void Setting::Render()
 {
-	
-	settingPanel->Render();
+	if (isOpen)
+	{
+		settingPanel->Render();
+	}
 }
 
 void Setting::BtnInitalize(SettingBtn& settingBtn)
@@ -171,4 +192,10 @@ void Setting::OnOffMasterVolume(bool OnAndOff)
 		App.soundScale = 0.5f;
 		SOUND->SetMasterVolume();
 	}
+}
+
+void Setting::OpenSetting()
+{
+	isOpen = true;
+	settingPanel->visible = true;
 }

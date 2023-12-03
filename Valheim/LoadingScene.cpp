@@ -7,7 +7,7 @@ int loadCount = 0;
 
 void CreateInGameScene()
 {
-    SCENE->AddScene("InGame", new InGame());
+    SCENE->AddScene(SceneName::InGame, new InGame());
 }
 
 void LoadingScene::Init()
@@ -19,9 +19,7 @@ void LoadingScene::Init()
     backgroundImg = UI::Create();
     backgroundImg->LoadFile("UI_Loading.xml");
 
-    cout << "111" << endl;
     thread1 = new thread(CreateInGameScene);
-
   
     textPos.left = App.GetWidth() * 0.9f;
     textPos.top = App.GetHeight() * 0.95f;
@@ -47,7 +45,7 @@ void LoadingScene::Update()
 
     if (loadCount == MAX_LOADCOUNT)
     {
-        SCENE->ChangeScene("InGame");
+        SCENE->ChangeScene(SceneName::InGame);
     }
 }
 

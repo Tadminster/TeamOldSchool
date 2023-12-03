@@ -2,17 +2,19 @@
 
 enum SoundName
 {
+    BGM_OCEANWAVE,          // 타이틀 배경음악 (파도소리)
     BGM_HOMEBASE,           // 홈베이스 배경음악
 
     CRAFTING,               // 제작
 
-    INVENTORY_SHOW_01,      // 인벤토리를 열 때
-    INVENTORY_SHOW_02, 
-    INVENTORY_SHOW_03,                                    
-    INVENTORY_HIDE_01,      // 인벤토리를 닫을 때
-    INVENTORY_HIDE_02, 
-    INVENTORY_HIDE_03,                                    
-    INVENTORY_ITEM_PICK,    // 인벤토리에서 아이템을 집을 때
+    UI_SHOW_01,             // UI를 열 때
+    UI_SHOW_02, 
+    UI_SHOW_03,                                    
+    UI_HIDE_01,             // UI를 닫을 때
+    UI_HIDE_02, 
+    UI_HIDE_03,                                    
+    UI_CLICK,               // UI 클릭할 때
+
     INVENTORY_ITEM_DROP,    // 인벤토리에서 아이템을 버릴 때
     INVENTORY_ITEM_USE_01,  // 인벤토리에서 아이템을 사용할 때
     INVENTORY_ITEM_USE_02, 
@@ -42,7 +44,17 @@ enum SoundName
     ROCK_BREAK_01,  	    // 바위가 부서질 때
     ROCK_BREAK_02, 
     ROCK_BREAK_03, 
-    ROCK_BREAK_04,                                 
+    ROCK_BREAK_04,           
+
+    UNDERWATER_HURT_01,     // 물속에서 피해를 입을 때
+    UNDERWATER_HURT_02,
+    UNDERWATER_HURT_03,
+
+    UNDERWATER_WAVE_PASS_BY_01,     // 물속에서 파도가 지나갈 때
+    UNDERWATER_WAVE_PASS_BY_02,
+    UNDERWATER_WAVE_PASS_BY_03,
+    UNDERWATER_WAVE_PASS_BY_04,
+
 
     PLAYER_FIST_01,         // 플레이어 주먹
     PLAYER_FIST_02,
@@ -95,7 +107,7 @@ public:
     //전역에서 사운드 삭제
     bool DeleteSound(SoundName name);
 
-    //그리고 key를 매개변수로 두고 모두 제어
+    //key로 사운드 제어
     void Play(SoundName name);
     void Stop(SoundName name);
     //일시정지

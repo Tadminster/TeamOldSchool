@@ -1,17 +1,17 @@
 #pragma once
 enum class SettingBtnState { NONE, MOUSE_OVER, MOUSE_CLICK };
-struct SettingBtn : public Singleton<SettingBtn>
+struct SettingBtn
 {
 	UI* button;
 	SettingBtnState state{ SettingBtnState::NONE };
 };
-class Setting
+class Setting : public Singleton<Setting>
 {
 public:
-	bool	mouseOnPanel = false;	//설정창 온오프 판별
 	//=======================================================
 	bool	volumeOn	= true;	//전체볼륨 켜진지 꺼진지판별
-
+	//=======================================================
+	bool	isOpen		= false; //패널이 열려 있는지 판별
 private:
 	UI*			settingPanel;
 	//=======================================================
@@ -35,5 +35,8 @@ public:
 	void BtnMouseOver(SettingBtn& settingBtn);
 	void BtnMouseClick(SettingBtn& settingBtn);
 	void OnOffMasterVolume(bool OnAndOff);
+	//========================================
+	//
+	void OpenSetting();
 };
 

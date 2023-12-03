@@ -12,6 +12,7 @@
 #include "MiniMap.h"
 #include "ObjectManager.h"
 #include "ParticleManager.h"
+#include "Setting.h"
 
 #include "UserInterfaceManager.h"
 #include "Inventory.h"
@@ -22,6 +23,7 @@
 
 
 #define PARTICLE    ParticleManager::GetInstance()
+#define SETTING     Setting::GetInstance()
 #define GM			GameManager::GetInstance()
 #define RECIPE		GM->recipe
 #define OBJ			GM->objectManager

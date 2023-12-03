@@ -14,7 +14,8 @@ SoundDB::SoundDB()
 	// 1. SOUND->Play(enum SoundName);
 
 	// BGM
-	SOUND->AddSound("BGM/Homebase.ogg", BGM_HOMEBASE, true); // 홈베이스 배경음악
+	SOUND->AddSound("BGM/OceanWaves.ogg", BGM_OCEANWAVE, true);		// 타이틀 배경음악
+	SOUND->AddSound("BGM/Homebase.ogg",   BGM_HOMEBASE, true);		// 홈베이스 배경음악
 
 	// WOOD
 	SOUND->AddSound("Wood/Wood_Break_01.ogg", WOOD_BREAK_01, false); // 나무가 부서질 때
@@ -56,18 +57,7 @@ SoundDB::SoundDB()
 
 	// Inventory
 	{
-		// 인벤토리를 열 때
-		SOUND->AddSound("Inventory/Inventory_Show_01.ogg", INVENTORY_SHOW_01, false);
-		SOUND->AddSound("Inventory/Inventory_Show_02.ogg", INVENTORY_SHOW_02, false);
-		SOUND->AddSound("Inventory/Inventory_Show_03.ogg", INVENTORY_SHOW_03, false);
-
-		// 인벤토리를 닫을 때
-		SOUND->AddSound("Inventory/Inventory_Hide_01.ogg", INVENTORY_HIDE_01, false);
-		SOUND->AddSound("Inventory/Inventory_Hide_02.ogg", INVENTORY_HIDE_02, false);
-		SOUND->AddSound("Inventory/Inventory_Hide_03.ogg", INVENTORY_HIDE_03, false);
-
-		// 인벤토리에서 아이템을 집을 때와 버릴 때
-		SOUND->AddSound("Inventory/Inventory_Item_Pick.ogg", INVENTORY_ITEM_PICK, false);
+		// 인벤토리에서 아이템을 버릴 때
 		SOUND->AddSound("Inventory/Inventory_Item_Drop.ogg", INVENTORY_ITEM_DROP, false);
 
 		// 인벤토리에서 아이템을 사용할 때
@@ -77,9 +67,41 @@ SoundDB::SoundDB()
 		SOUND->AddSound("Inventory/Inventory_Item_Use_04.ogg", INVENTORY_ITEM_USE_04, false);
 	}
 
+	// UI
+	{
+		// UI를 열 때
+		SOUND->AddSound("UI/UI_Show_01.ogg", UI_SHOW_01, false);
+		SOUND->AddSound("UI/UI_Show_02.ogg", UI_SHOW_02, false);
+		SOUND->AddSound("UI/UI_Show_03.ogg", UI_SHOW_03, false);
+
+		// UI를 닫을 때
+		SOUND->AddSound("UI/UI_Hide_01.ogg", UI_HIDE_01, false);
+		SOUND->AddSound("UI/UI_Hide_02.ogg", UI_HIDE_02, false);
+		SOUND->AddSound("UI/UI_Hide_03.ogg", UI_HIDE_03, false);
+
+		// UI 클릭할 때
+		SOUND->AddSound("UI/UI_Click.ogg", UI_CLICK, false);
+	}
+
 	// Crafting
 	SOUND->AddSound("System/Crafting.ogg", CRAFTING, false); // Craft
-	
+
+	// Under Water
+	{
+		// 물속에서 피해를 입을 때
+		SOUND->AddSound("UnderWater/UnderWater_Hurt_01.ogg", UNDERWATER_HURT_01, false); 
+		SOUND->AddSound("UnderWater/UnderWater_Hurt_02.ogg", UNDERWATER_HURT_02, false);
+		SOUND->AddSound("UnderWater/UnderWater_Hurt_03.ogg", UNDERWATER_HURT_03, false);
+
+		// 물속에서 파도가 지나갈 때
+		SOUND->AddSound("UnderWater/UnderWater_Wave_Pass_By_01.ogg", UNDERWATER_WAVE_PASS_BY_01, false);
+		SOUND->AddSound("UnderWater/UnderWater_Wave_Pass_By_02.ogg", UNDERWATER_WAVE_PASS_BY_02, false);
+		SOUND->AddSound("UnderWater/UnderWater_Wave_Pass_By_03.ogg", UNDERWATER_WAVE_PASS_BY_03, false);
+		SOUND->AddSound("UnderWater/UnderWater_Wave_Pass_By_04.ogg", UNDERWATER_WAVE_PASS_BY_04, false);
+	}
+
+
+
 	// Player-----------------------------------------------------------------------------
 	// Fist-------------------------------------------------------------------
 	SOUND->AddSound("Unit/Player/Player_Fist_01.ogg", PLAYER_FIST_01, false);

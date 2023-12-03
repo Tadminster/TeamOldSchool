@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ItemProto.h"
-#include "SoundDB.h"
 #include "MonsterManager.h"
 #include "InGame.h"
 
@@ -15,12 +14,8 @@ InGame::InGame()
 	grid = Grid::Create();
 	loadCount++; // 2
 
-	soundDB = new SoundDB();
-	loadCount++; // 3
-
 	scattering = new Scattering();
-	loadCount++; // 4
-
+	loadCount++; // 3
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
@@ -30,7 +25,7 @@ InGame::InGame()
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
-	loadCount++; // 5
+	loadCount++; // 4
 }
 
 InGame::~InGame()
@@ -42,18 +37,20 @@ void InGame::Init()
 {
 	GM->Init();
 	UIM->Init();
-	soundDB->Init();
 
 	OBJ->Init();
 	PLAYER->Init();
 	MONSTER->Init();
+	SETTING->Init();
 	// 배경음악 재생
 	SOUND->Play(BGM_HOMEBASE);
+	// 라이트 현재시간 초기화
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 }
 
 void InGame::Release()
 {
+
 }
 
 void InGame::Update()
@@ -119,6 +116,7 @@ void InGame::Update()
 	OBJ->Update();
 	PARTICLE->Update();
 	PLAYER->Update();
+	SETTING->Update();
 	UIM->Update();
 	MONSTER->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
@@ -131,8 +129,7 @@ void InGame::LateUpdate()
 	OBJ->LateUpdate();
 	PLAYER->LateUpdate();
 	MONSTER->LateUpdate();
-	PARTICLE->LateUpdate();
-
+	SETTING->LateUpdate();
 	UIM->LateUpdate();
 }
 
@@ -173,8 +170,9 @@ void InGame::Render()
 	OBJ->Render();
 	PLAYER->Render();
 	PARTICLE->Render();
-	MONSTER->Render();
 	UIM->Render();
+	MONSTER->Render();
+	SETTING->Render();
 }
 
 void InGame::ResizeScreen()

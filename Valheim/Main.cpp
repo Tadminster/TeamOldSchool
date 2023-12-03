@@ -13,8 +13,8 @@ Main::~Main()
 
 void Main::Init()
 {
-    SCENE->AddScene("Title", new TitleScene);
-    SCENE->ChangeScene("Title");
+    SCENE->AddScene(SceneName::Title, new TitleScene);
+    SCENE->ChangeScene(SceneName::Title);
 }
 
 void Main::Release()
