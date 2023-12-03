@@ -4,6 +4,7 @@ enum SoundName
 {
     BGM_OCEANWAVE,          // 타이틀 배경음악 (파도소리)
     BGM_HOMEBASE,           // 홈베이스 배경음악
+    BGM_ENDING,             // 엔딩 배경음악
 
     CRAFTING,               // 제작
 
