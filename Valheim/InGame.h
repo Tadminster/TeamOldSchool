@@ -12,7 +12,7 @@ private:
    
     GameManager*                    gameManager;
     
-    class MonsterManager* monster;
+    class MonsterManager*           monster;
 public:
     InGame();
     ~InGame();
