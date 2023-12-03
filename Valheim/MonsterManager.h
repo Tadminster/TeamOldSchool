@@ -7,7 +7,7 @@ class MonsterManager
 
 	vector<Prototype*> unit;
 
-	Actor* jellyFish[JELLYFISHNUM] = {};
+	Actor* monster01[JELLYFISHNUM] = {};
 
 public:
 	MonsterManager();

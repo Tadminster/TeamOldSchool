@@ -86,6 +86,10 @@ enum SoundName
     ELDER_BGM_01,           //¿¤´õ BGM
     ELDER_STOMP,            //¿¤´õ Stomp
     ELDER_JUMPATTACK,       //¿¤´õ JumpAttack
+
+    LIZARD_ROAR_01,         // ¸ó½ºÅÍ Æ÷È¿¼Ò¸®
+    LIZARD_ROAR_02,
+    LIZARD_ROAR_03
     ELDER_SPEAR,       //¿¤´õ Spear
 };
 
