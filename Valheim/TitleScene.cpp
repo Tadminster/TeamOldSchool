@@ -56,6 +56,7 @@ void TitleScene::Init()
 {
 	SCENE->AddScene("Loading", new LoadingScene);
 	LIGHT->UpdateDirection();
+	
 }
 
 void TitleScene::Release()
@@ -128,12 +129,18 @@ void TitleScene::LateUpdate()
 	{
 		karve->SetWorldPos(playerRayHitPos + karvePos);
 		player->SetWorldPos(playerRayHitPos + playerPos);
+
+		static float waterEffectCycle = 4.9f;
+		if (TIMER->GetTick(waterEffectCycle, 5.0f))
+		{
+			//PARTICLE->PlayParticleEffect(EffectType::WATERSPLASH, playerRayHitPos);
+		}
 	}
 
 	if (Utility::RayIntersectMap(cameraRay, ocean, rayHitPos))
 	{
 		// 카메라 위치를 물 표면으로 설정
-		titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
+		//titleCamera->SetWorldPos(Vector3(rayHitPos.x, rayHitPos.y * weightPosY, rayHitPos.z));
 
 		// 물속 표현
 		if (rayHitPos.y > titleCamera->GetWorldPos().y)
