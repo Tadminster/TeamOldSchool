@@ -53,7 +53,6 @@ public:
 	void    RenderHierarchy();
 
 	void	GenerateTree();
-	//void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);

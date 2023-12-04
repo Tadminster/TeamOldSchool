@@ -8,24 +8,19 @@ extern int loadCount;
 
 InGame::InGame()
 {
-	tempCamera = Camera::Create("tempCamera");
-	tempCamera->LoadFile("Cam.xml");
-	loadCount++; // 1
-
-	grid = Grid::Create();
-	loadCount++; // 2
-
 	scattering = new Scattering();
-	loadCount++; // 3
+	loadCount++; // 1
 	
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
+	loadCount++; // 2
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
 	loadCount++; // 4
 
 	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
+	loadCount++; // 3
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
 	loadCount++; // 4
@@ -66,18 +61,9 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	//LIGHT->RenderDetail();
-	//scattering->RenderDetail();
-
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
 	{
-		if (DEBUGMODE)
-		{
-			grid->RenderHierarchy();
-			tempCamera->RenderHierarchy();
-		}
-
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
 		OBJ->RenderHierarchy();
@@ -88,38 +74,39 @@ void InGame::Update()
 	ImGui::End();
 
 	// F1 : 모드전환
-	if (INPUT->KeyDown(VK_F1))
-	{
-		DEBUGMODE = !DEBUGMODE;
-	}
+	//if (INPUT->KeyDown(VK_F1))
+	//{
+	//	DEBUGMODE = !DEBUGMODE;
+	//}
 	// F2 : 카메라전환
-	if (INPUT->KeyDown(VK_F2))
-	{
-		if (DEBUGMODE)
-		{
-			Camera::main = tempCamera;
-			isDebugCam = true;
-		}
-		else
-		{
-			Camera::main = PLAYER->GetPlayerCam();
-			isDebugCam = false;
-		}
-	}
+	//if (INPUT->KeyDown(VK_F2))
+	//{
+	//	if (DEBUGMODE)
+	//	{
+	//		Camera::main = tempCamera;
+	//		isDebugCam = true;
+	//	}
+	//	else
+	//	{
+	//		Camera::main = PLAYER->GetPlayerCam();
+	//		isDebugCam = false;
+	//	}
+	//}
 
 	// 디버그 모드에서 업데이트
-	if (DEBUGMODE)
-	{
-		grid->Update();
-	}
+	//if (DEBUGMODE)
+	//{
+	//	grid->Update();
+	//}
 
 	// 카메라에 따른 조작
-	if (isDebugCam)
-	{
-		if (INPUT->KeyDown(VK_F3)) isDebugCamControl = !isDebugCamControl;
-		if (isDebugCamControl) Camera::main->ControlMainCam();
-	}
-	else PLAYER->AvtivatePlayerCam();
+	//if (isDebugCam)
+	//{
+	//	if (INPUT->KeyDown(VK_F3)) isDebugCamControl = !isDebugCamControl;
+	//	if (isDebugCamControl) Camera::main->ControlMainCam();
+	//}
+	//else 
+	PLAYER->AvtivatePlayerCam();
 
 	Camera::main->Update();
 	GM->Update();
@@ -177,10 +164,6 @@ void InGame::Render()
 	scattering->DrawPass2();
 	//LIGHT->Set();
 
-	if (DEBUGMODE)
-	{
-		grid->Render();
-	}
 	GM->Render();
 	MAP->Render();
 	SEA->Render();

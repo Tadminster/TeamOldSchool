@@ -153,7 +153,7 @@ void LightManager::UpdateDirection()
 
 	if (currentTime >= dayCycleLength)
 	{
-		cout << TIMER->GetWorldTime() << endl;
+		//cout << TIMER->GetWorldTime() << endl;
 		currentTime = fmod(currentTime, dayCycleLength);
 	}
 

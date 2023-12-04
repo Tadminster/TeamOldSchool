@@ -133,8 +133,8 @@ void ItemProto::Release()
 
 void ItemProto::DestructionEvent()
 {
-	cout << "stack: " << currentStack << endl;
-	cout << "stack 수가 0이하이므로 아이템 파괴" << endl;
+	//cout << "stack: " << currentStack << endl;
+	//cout << "stack 수가 0이하이므로 아이템 파괴" << endl;
 	this->Release();
 }
 

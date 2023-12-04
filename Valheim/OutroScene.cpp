@@ -108,7 +108,7 @@ void OutroScene::LateUpdate()
 {
 	// 플레이어와 카메라 거리 계산
 	float length = (outroCamera->GetWorldPos() - karve->GetWorldPos()).LengthSquared();
-	cout << length << endl;
+	//cout << length << endl;
 	// 카메라와 일정거리 가까워지면
 	if (length < 200 && length > 50)
 	{
