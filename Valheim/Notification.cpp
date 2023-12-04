@@ -32,7 +32,7 @@ void Notification::Update()
 	//}
 	//ImGui::End();
 	
-	//lifeTime += DELTA;
+	lifeTime += DELTA;
 
 	float appHalfWidth = App.GetHalfWidth();
 	float appHalfHeight = App.GetHalfHeight();
