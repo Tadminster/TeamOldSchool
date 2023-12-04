@@ -86,7 +86,7 @@ bool Recipe::DiscoveryItemUpdate(ItemProto* item)
         else return false;
     }
     // 키가 존재하지 않을 때
-    else cout << "Item '" << item->GetStringName() << "' not found in map." << endl;
+    //else cout << "Item '" << item->GetStringName() << "' not found in map." << endl;
 
     return false;
 }

@@ -2,16 +2,8 @@
 class InGame : public Scene
 {
 private:
-    Camera*                         tempCamera;
-    bool                            isDebugCam{ false };
-    bool                            isDebugCamControl{ true };
-
-    Grid*                           grid;
-	
     Scattering*                     scattering;
-   
     GameManager*                    gameManager;
-    
     class MonsterManager*           monster;
 public:
     InGame();

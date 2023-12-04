@@ -73,6 +73,7 @@ ObjectManager::~ObjectManager()
 
 void ObjectManager::Init()
 {
+
 	while (featureCount < MINIMUM_FEATURE_COUNT)
 		GenerateTree();
 
@@ -85,6 +86,8 @@ void ObjectManager::Init()
 		Vector3 tempPos = Vector3(startingPosition->x + RANDOM->Int(-5, 5), 50, startingPosition->z + RANDOM->Int(-5, 5));
 		item->GetActor()->SetWorldPos(tempPos);
 	}
+
+	//GenerateInstanceGrass();
 }
 
 void ObjectManager::Release()
@@ -111,24 +114,24 @@ void ObjectManager::Release()
 
 void ObjectManager::Update()
 {
-	if (ImGui::Button("Generate PerinNoiseMap"))
-	{
-		Release();
-		MAP->PerlinNoiseHeightMap();
-	}
-	if (ImGui::Button("Generate Tree"))
-	{
-		Release();
-		GenerateTree();
-	}
+	//if (ImGui::Button("Generate PerinNoiseMap"))
+	//{
+	//	Release();
+	//	MAP->PerlinNoiseHeightMap();
+	//}
+	//if (ImGui::Button("Generate Tree"))
+	//{
+	//	Release();
+	//	GenerateTree();
+	//}
 	//if (ImGui::Button("Generate Instancing Tree"))
 	//{
 	//	GenerateInstanceTree();
 	//}
-	if (ImGui::Button("Generate Instance Grass"))
-	{
-		GenerateInstanceGrass();
-	}
+	//if (ImGui::Button("Generate Instance Grass"))
+	//{
+	//	GenerateInstanceGrass();
+	//}
 
 	ListEraser(objects);
 	ListEraser(items);
@@ -219,10 +222,10 @@ void ObjectManager::RenderHierarchy()
 	// 오브젝트 매니저 전용 하이어라이키
 	ImGui::Begin("TerrainHierarchy");
 	{
-		for (auto& obj : objects)
-		{
-			obj->GetActor()->RenderHierarchy();
-		}
+	//	for (auto& obj : objects)
+	//	{
+	//		obj->GetActor()->RenderHierarchy();
+	//	}
 		for (auto& objInstancing : instancingObjects)
 		{
 			objInstancing->GetActor()->RenderHierarchy();
@@ -378,93 +381,15 @@ void ObjectManager::GenerateTree()
 }
 
 
-//void ObjectManager::GenerateInstanceTree()
-//{
-//	int rowSize = MAP->rowSize;
-//	double frequencyScale = 1.0 / rowSize * 2;			// 맵 크기에 따른 주파수 스케일 조정
-//	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));		// 난수 시드로 펄린노이즈 생성
-//
-//	vector<Vector3> treePos;							// 인스턴스 나무 위치 저장할 벡터
-//
-//	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
-//	Ray ray; Vector3 Hit;
-//	ray.position = Vector3();
-//	ray.direction = Vector3(0, -1, 0);
-//
-//	for (int i = 0; i < rowSize; i++)
-//	{
-//		for (int j = 0; j < rowSize; j++)
-//		{
-//			float positionY = vertices[i * rowSize + j].position.y;
-//
-//			// 높이체크
-//			// 높이가 -1 이하 인곳에서는 생성하지 않음
-//			if (positionY < -1.0f) continue;
-//			// 높이가 -1 ~ 1 이면, 50분의 1 확률로 생성
-//			else if (positionY < 1.0f)
-//			{
-//				if (RANDOM->Int(1, 50) != 1) continue;
-//			}
-//			// 높이가 1 ~ 10 이면, 30분의 1 확률로 생성
-//			else if (positionY < 10.0f)
-//			{
-//				if (RANDOM->Int(1, 30) != 1) continue;
-//			}
-//			else // 높이가 10 이상이면, 20분의 1 확률로 생성
-//			{
-//				if (RANDOM->Int(1, 20) != 1) continue;
-//			}
-//
-//			double x = (double)i * frequencyScale;
-//			double y = (double)j * frequencyScale;
-//			double z = 0.5;
-//			double noiseValue = perlin.noise3D(x, y, z);
-//
-//			// 펄린노이즈 값 체크
-//			if (noiseValue > -0.2f)
-//			{
-//				ray.position = vertices[i * rowSize + j].position; +Vector3(0, 1000, 0);
-//
-//				if (MAP->ComputePicking(ray, Hit))
-//				{
-//					treePos.emplace_back(Hit);
-//				}
-//			}
-//		}
-//	}
-//
-//	FeatureProto* beech = FeatureProto::Create(FeatureType::BeechInstancing);
-//	beech->GetActor()->SetWorldPos(Vector3(0.0f, -50.0f, 0.0f));
-//	beech->Update();
-//	float baseline = fabs(beech->GetActor()->GetWorldPos().y);
-//
-//	UINT count = treePos.size();
-//	Matrix* ins = new Matrix[count];
-//	for (int i = 0; i < count; i++)
-//	{
-//		Vector3 insPos = Vector3(treePos[i].x, treePos[i].y + baseline, treePos[i].z);
-//		ins[i] = Matrix::CreateTranslation(insPos);
-//		ins[i] = ins[i].Transpose();
-//	}
-//
-//	beech->GetActor()->Find("Lod0")->mesh->CreateInstanceBuffer(ins, count);
-//	beech->GetActor()->Find("Lod0MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-//	//beech->GetActor()->Find("Lod1")->mesh->CreateInstanceBuffer(ins, count);
-//	//beech->GetActor()->Find("Lod1MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-//	//beech->GetActor()->Find("Lod3")->mesh->CreateInstanceBuffer(ins, count);
-//	//beech->GetActor()->Find("Lod3MeshObject1")->mesh->CreateInstanceBuffer(ins, count);
-//
-//	instancingObjects.emplace_back(beech);
-//}
-
-
 void ObjectManager::GenerateInstanceGrass()
 {
+	//cout << "Generate Instance Grass" << endl;
+
 	int rowSize = MAP->rowSize;
 	double frequencyScale = 1.0 / rowSize * 2;			// 맵 크기에 따른 주파수 스케일 조정
 	siv::PerlinNoise perlin(RANDOM->Int(0, 10000));		// 난수 시드로 펄린노이즈 생성
 
-	vector<Vector3> grassPos;							// 인스턴스 나무 위치 저장할 벡터
+	vector<Vector3> grassPos;							// 인스턴스 Grass 위치 저장할 벡터
 
 	VertexTerrain* vertices = (VertexTerrain*)MAP->mesh->vertices;
 	Ray ray; Vector3 Hit;
@@ -478,16 +403,21 @@ void ObjectManager::GenerateInstanceGrass()
 			float positionY = vertices[i * rowSize + j].position.y;
 
 			// 높이체크
-			// 높이가 -1 이하 인곳에서는 생성하지 않음
-			if (positionY < -1.0f) continue;
-			// 높이가 -1 ~ 1 이면, 20분의 1 확률로 생성
+			// 높이가 0 이하 인곳에서는 생성하지 않음
+			if (positionY < -0.0f) continue;
+			// 높이가 0 ~ 1 이면, 50분의 1 확률로 생성
 			else if (positionY < 1.0f)
+			{
+				if (RANDOM->Int(1, 50) != 1) continue;
+			}
+			// 높이가 1 ~ 10 이면, 20분의 1 확률로 생성
+			else if (positionY < 10.0f)
 			{
 				if (RANDOM->Int(1, 20) != 1) continue;
 			}
-			else // 높이가 1 이상 이면, 20분의 1 확률로 생성
+			else // 높이가 10 이상이면, 10분의 1 확률로 생성
 			{
-				if (RANDOM->Int(1, 5) != 1) continue;
+				if (RANDOM->Int(1, 10) != 1) continue;
 			}
 
 			double x = (double)i * frequencyScale;
@@ -509,22 +439,23 @@ void ObjectManager::GenerateInstanceGrass()
 	}
 
 	Grass* grass = new Grass(Vector3(0, 0, 0));
+	grass->Update();
+	//float baseline = fabs(grass->GetActor()->GetWorldPos().y);
 
 	UINT count = grassPos.size();
-	cout << "Grass " << count << "개 생성!" << endl;
 	Matrix* ins = new Matrix[count];
-	int idx = 0;
-	for (int i = 1; i < count; i++)
+	for (int i = 0; i < count; i++)
 	{
-		Vector3 insPos = Vector3(grassPos[i].x, grassPos[i].y, grassPos[i].z);
-		ins[idx] = Matrix::CreateTranslation(insPos);
-		ins[idx] = ins[idx].Transpose();
-		idx++;
+		Vector3 insPos = Vector3(grassPos[i].x, grassPos[i].y /*- baseline*/, grassPos[i].z);
+		ins[i] = Matrix::CreateTranslation(insPos);
+		ins[i] = ins[i].Transpose();
 	}
+
 	grass->GetActor()->Find("grasscross__1_")->mesh->CreateInstanceBuffer(ins, count);
 	grass->Update();
 
-	objects.emplace_back(grass);
+	cout << "Instance Grass Count : " << count << endl;
+	instancingObjects.emplace_back(grass);
 }
 
 void ObjectManager::AddObject(Prototype* object)
