@@ -3,14 +3,7 @@
 class InGame : public Scene
 {
 private:
-    Camera*                         tempCamera;
-    bool                            isDebugCam{ false };
-    bool                            isDebugCamControl{ true };
-
-    Grid*                           grid;
-	
     Scattering*                     scattering;
-   
     GameManager*                    gameManager;
     
     class MonsterManager* monster;
@@ -20,6 +13,7 @@ private:
     class UI* fadeOut{ nullptr };	    // fadeout 효과를 위한 UI
     float       fadeout{ 0 };           // fadeout의 opacity
     bool isEnding{ false };
+    class MonsterManager*           monster;
 public:
     InGame();
     ~InGame();

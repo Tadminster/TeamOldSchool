@@ -1,5 +1,5 @@
 #pragma once
-#define MINIMUM_FEATURE_COUNT 200
+#define MINIMUM_FEATURE_COUNT 250
 
 template<typename T>
 void ListEraser(std::list<T*>& list) {
@@ -26,15 +26,15 @@ private:
 	list<class Prototype*>		objects;
 	list<class Prototype*>		instancingObjects;
 	list<class ItemProto*>		items;
-	list<class StructureProto*>	structures;
+	//list<class StructureProto*>	structures;
 
-	class ItemProto*		stoneAxe[5];
-	class ItemProto*		woodpile[5];
-	class ItemProto*		stone[5];
-	class ItemProto*		woodShield[5];
-	class ItemProto*		leather[5];
-	class ItemProto*        elderTrophy[5];
-	class ItemProto*        fineWood[5];
+	//class ItemProto*		stoneAxe[5];
+	//class ItemProto*		woodpile[5];
+	//class ItemProto*		stone[5];
+	//class ItemProto*		woodShield[5];
+	//class ItemProto*		leather[5];
+	//class ItemProto*      elderTrophy[5];
+	//class ItemProto*      fineWood[5];
 	class FeatureProto*		shipwreck;	// ³­ÆÄ¼±
 
 	int featureCount{ 0 };
@@ -53,7 +53,6 @@ public:
 	void    RenderHierarchy();
 
 	void	GenerateTree();
-	//void	GenerateInstanceTree();
 	void	GenerateInstanceGrass();
 
 	void	AddObject(Prototype* object);
@@ -62,7 +61,7 @@ public:
 
 	list<Prototype*>	GetObjects() { return objects; }
 	list<Collider*>		GetColliders();
-	Vector3			GetStartingPosition() { return Vector3(startingPosition->x, startingPosition->y, startingPosition->z); }
+	Vector3				GetStartingPosition() { return Vector3(startingPosition->x, startingPosition->y, startingPosition->z); }
 
 };
 

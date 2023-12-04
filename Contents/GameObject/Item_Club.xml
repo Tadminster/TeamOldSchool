@@ -1,5 +1,5 @@
 <Root Name="Club" Visible="true" ObType="1">
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="0" Z="0.55000001"/>
         <Scale X="0.12" Y="0.12" Z="0.54000002"/>
         <Rotation X="0" Y="0" Z="0"/>

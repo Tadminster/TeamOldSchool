@@ -81,6 +81,27 @@ void Craft::Init()
 
 void Craft::Release()
 {
+	for (int i = 0; i < RECIPE_SIZE; i++)
+	{
+		SafeDelete(recipeItem[i]);
+	}
+	selectedRecipe = nullptr;
+	// ==================================================
+	detailUI = nullptr;
+	panel= nullptr;
+	for (int i = 0; i < RECIPE_SIZE; i++)
+	{
+		btnRecipe[i] = nullptr;
+		iconRecipe[i] = nullptr;
+	}
+	detailUI = nullptr;
+	for (int i = 0; i < MATERIAL_SIZE; i++)
+	{
+		iconMaterial[i] = nullptr;
+	}
+	btnCreate = nullptr;
+
+	craftUI->Release();
 }
 
 void Craft::Update()

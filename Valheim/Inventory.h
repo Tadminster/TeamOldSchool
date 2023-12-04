@@ -16,8 +16,8 @@ class Inventory
 
 private:
 	// 실제 아이템과 아이콘=============================================================================
-	class ItemProto* inventoryItem[INVENTORY_SIZE];			// 인벤토리 아이템
-	class UI* inventoryIcon[INVENTORY_SIZE];				// 인벤토리 아이콘
+	class ItemProto*	inventoryItem[INVENTORY_SIZE];		// 인벤토리 아이템
+	class UI*			inventoryIcon[INVENTORY_SIZE];		// 인벤토리 아이콘
 	// 이미지===========================================================================================
 	UI*					inventoryUI;						// 인벤토리 UI
 	UI*					panel;								// 인벤토리 패널을 가리킬 포인터

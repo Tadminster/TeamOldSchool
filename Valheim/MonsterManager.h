@@ -1,5 +1,5 @@
 #pragma once
-#define	JELLYFISHNUM 16
+#define	JELLYFISHNUM 5
 class MonsterManager
 {
 	class Goblin* goblin[9] = {};
@@ -9,6 +9,7 @@ class MonsterManager
 	vector<Prototype*> unit;
 
 	Actor* monster01[JELLYFISHNUM] = {};
+	Vector3 monsterPos[JELLYFISHNUM];
 
 public:
 	MonsterManager();
