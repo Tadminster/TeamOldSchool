@@ -45,8 +45,8 @@ class Player : public Unit
 	float					healTime = 0;
 	float					healGetTick = 0;
 	//St º¯¼ö----------------------------------------------
-	float					staminar = 20.0f;
-	float					maxStaminar = 20.0f;
+	float					staminar = 30.0f;
+	float					maxStaminar = 30.0f;
 	float					growthStaminar = 0.05f;
 	float					staminarTime = 0;
 	bool					staminarOn = false;
