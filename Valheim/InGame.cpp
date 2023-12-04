@@ -10,17 +10,11 @@ InGame::InGame()
 {
 	scattering = new Scattering();
 	loadCount++; // 1
-
-	
-	
-
-	scattering = new Scattering();
-	loadCount++; // 2
-	
 	
 	mouseIcon = UI::Create();
 	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
 	mouseIcon->name = '1';
+	loadCount++; // 2
 	
 	mouseIcon2 = UI::Create();
 	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
@@ -236,4 +230,6 @@ void InGame::ResizeScreen()
 
 	Camera::main->width = App.GetWidth();
 	Camera::main->height = App.GetHeight();
+
+	INVEN->ResizeScreen();
 }

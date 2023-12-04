@@ -26,7 +26,6 @@ private:
 	RECT				text_itemName;						// 툴팁 박스(아이템 이름)
 	RECT				text_itemExplain;					// 툴팁 박스(아이템 설명)
 	RECT				text_number[INVENTORY_ROW_SIZE];	// 첫 줄의 슬롯들 숫자를 표시할 텍스트 영역
-	int					text_numberCorrect{ -30 };			// text_number 보정값
 	// 아이템 조작======================================================================================
 	bool			    isUse[INVENTORY_SIZE];				// 아이템 사용 여부
 	bool				isOnTooltip;						// 아이템 툴팁 표시 여부

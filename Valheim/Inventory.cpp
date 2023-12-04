@@ -145,28 +145,16 @@ void Inventory::Update()
 			tooltopBox->Update();
 		}
 	}
-
-	static float InitTime = 4.5f;
-	if (TIMER->GetTick(InitTime, 5.0f))
-	{
-		GM->ResizeScreen();
-
-		// 인벤토리 첫번째 줄의 슬롯들 텍스트 위치 업데이트
-		for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
-		{
-			// App.GetWidth() = 슬롯의 위치를 NDC좌표계로 변환
-			// slot[i]->GetWorldPos().x + 1.0f) / 2.0f = 슬롯 위치(-1~1)를 (0~1)로 변환
-			// - 30 최종 결과값에서 30픽셀 이동(보정)
-			text_number[i].left = App.GetHalfWidth() * (slot[i]->GetWorldPos().x + 1.0f) + text_numberCorrect;
-			text_number[i].right = text_number[i].left + 1000;
-			text_number[i].top = App.GetHalfHeight() * (1.0f - slot[i]->GetWorldPos().y) + text_numberCorrect;
-			text_number[i].bottom = text_number[i].top + 200;
-		}
-	}
 }
 
 void Inventory::LateUpdate()
 {
+	static float resizeCycle = 9.0f;
+	if (TIMER->GetTick(resizeCycle, 10.0f))
+	{
+		ResizeScreen();
+	}
+
 	if (isOpen)
 	{
 		// 마우스 오버시 슬롯 강조
@@ -249,7 +237,30 @@ void Inventory::Render()
 
 void Inventory::ResizeScreen()
 {
+	float appHalfWidth = App.GetHalfWidth();
+	float appHalfHeight = App.GetHalfHeight();
 
+	// 숫자 창 크기 계산 (가로세로 절반크기, Pivot이 중앙이므로)
+	Vector2 numberWindow{
+		appHalfWidth * slot[0]->S._11,
+		appHalfHeight * slot[0]->S._22 };
+
+
+	// 인벤토리 첫번째 줄의 슬롯들 텍스트 위치 업데이트
+	for (int i = 0; i < INVENTORY_ROW_SIZE; i++)
+	{
+		// 숫자 창 위치 계산
+		Vector2 Baseline{
+			appHalfWidth * (slot[i]->GetWorldPos().x + 1.0f),
+			appHalfHeight * (1.0f - slot[i]->GetWorldPos().y) };
+
+		// App.GetWidth() = 슬롯의 위치를 NDC좌표계로 변환
+		// slot[i]->GetWorldPos().x + 1.0f) / 2.0f = 슬롯 위치(-1~1)를 (0~1)로 변환
+		text_number[i].left = Baseline.x - numberWindow.x * 0.9f;
+		text_number[i].right = text_number[i].left + 1000;
+		text_number[i].top = Baseline.y - numberWindow.y * 0.9f;
+		text_number[i].bottom = text_number[i].top + 200;
+	}
 }
 
 void Inventory::MouseOverSlot()
