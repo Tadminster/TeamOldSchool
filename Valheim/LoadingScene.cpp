@@ -41,7 +41,8 @@ void LoadingScene::Release()
 void LoadingScene::Update()
 {
     float maximumPercent = min(99.0f, 100.0f * ((float)loadCount / (MAX_LOADCOUNT - 1)));
-    loadingProgress = clamp(loadingProgress + LOADIND_RATE, (float)loadCount * 19.0f, maximumPercent);
+   // loadingProgress = clamp(loadingProgress + LOADIND_RATE, (float)loadCount * 19.0f, maximumPercent);
+    loadingProgress = clamp(loadingProgress, (float)loadCount * 19.0f, maximumPercent);
 
     if (loadCount == MAX_LOADCOUNT)
     {

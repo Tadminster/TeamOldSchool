@@ -38,11 +38,11 @@ DamageText::~DamageText()
 
 void DamageText::Update()
 {
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		damageText->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 	
 	// 라이프타임 증가
 	lifeTime += DELTA;

@@ -35,8 +35,8 @@ Player::Player()
 	mouseIcon2 = UI::Create();
 	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");*/
 	
-	hitPoint = 300.0f;
-	maxHitpoint = 300.0f;
+	hitPoint = 30.0f;
+	maxHitpoint = 30.0f;
 }
 
 Player::~Player()
@@ -51,7 +51,8 @@ void Player::Init()
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	//maxHitpoint = 200;
-	treeCount = 10;
+	//treeCount = 10;
+	actor->Update();
 }
 
 void Player::Update()
@@ -72,7 +73,7 @@ void Player::Update()
 	//// 중력값 적용
 	ApplyGravity();
 	//// 플레이어 컨트롤
-	
+	AvtivatePlayerCam();
 		PlayerControl();
 		PlayerMove();
 		//// 플레이어 자연 치유(5초동안 피격당하지 않으면 2초당 1회복)
@@ -115,7 +116,7 @@ void Player::Release()
 
 void Player::RenderHierarchy()
 {
-	revive->RenderHierarchy();
+	//revive->RenderHierarchy();
 	/*actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();

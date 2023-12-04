@@ -63,7 +63,7 @@ void Beech::Release()
 
 void Beech::RenderHierarchy()
 {
-	actor->RenderHierarchy();
+	//actor->RenderHierarchy();
 }
 
 void Beech::LodUpdate(float distance)

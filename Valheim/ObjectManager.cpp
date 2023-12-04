@@ -220,18 +220,18 @@ void ObjectManager::RefractionRender()
 void ObjectManager::RenderHierarchy()
 {
 	// 오브젝트 매니저 전용 하이어라이키
-	ImGui::Begin("TerrainHierarchy");
+	//ImGui::Begin("TerrainHierarchy");
 	{
 	//	for (auto& obj : objects)
 	//	{
 	//		obj->GetActor()->RenderHierarchy();
 	//	}
-		for (auto& objInstancing : instancingObjects)
+		/*for (auto& objInstancing : instancingObjects)
 		{
 			objInstancing->GetActor()->RenderHierarchy();
-		}
+		}*/
 	}
-	ImGui::End();
+	//ImGui::End();
 }
 
 void ObjectManager::GenerateTree()
@@ -454,7 +454,7 @@ void ObjectManager::GenerateInstanceGrass()
 	grass->GetActor()->Find("grasscross__1_")->mesh->CreateInstanceBuffer(ins, count);
 	grass->Update();
 
-	cout << "Instance Grass Count : " << count << endl;
+	//cout << "Instance Grass Count : " << count << endl;
 	instancingObjects.emplace_back(grass);
 }
 

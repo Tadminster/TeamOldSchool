@@ -11,16 +11,17 @@ InGame::InGame()
 	scattering = new Scattering();
 	loadCount++; // 1
 
-	grid = Grid::Create();
-	loadCount++; // 2
+	
+	
 
 	scattering = new Scattering();
-	loadCount++; // 3
+	loadCount++; // 2
+	
 	
 	mouseIcon = UI::Create();
 	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
 	mouseIcon->name = '1';
-
+	
 	mouseIcon2 = UI::Create();
 	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
 	mouseIcon2->name = '2';
@@ -28,20 +29,20 @@ InGame::InGame()
 	fadeOut = UI::Create();
 	fadeOut->name = "fade";
 	fadeOut->LoadFile("UI_FadeOut.xml");
-
+	loadCount++; // 3
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
-	loadCount++; // 2
+	
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
 	loadCount++; // 4
 
 	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
-	loadCount++; // 3
+	
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
-	loadCount++; // 4
+	loadCount++; // 5
 }
 
 InGame::~InGame()
@@ -98,8 +99,8 @@ void InGame::Update()
 		mouseIcon2->visible = true;
 	}
 
-	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-	ImGui::Begin("Hierarchy");
+	//ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+	/*ImGui::Begin("Hierarchy");
 	{
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
@@ -108,7 +109,7 @@ void InGame::Update()
 		PLAYER->RenderHierarchy();
 		MONSTER->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	// F1 : 모드전환
 	//if (INPUT->KeyDown(VK_F1))
@@ -143,7 +144,7 @@ void InGame::Update()
 	//	if (isDebugCamControl) Camera::main->ControlMainCam();
 	//}
 	//else 
-	PLAYER->AvtivatePlayerCam();
+	
 
 	Camera::main->Update();
 	mouseIcon->Update();
@@ -166,10 +167,10 @@ void InGame::Update()
 		fadeout += DELTA;
 		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
 	}
-	if (INPUT->KeyDown('P'))
+	if (fadeOut->material->opacity>=1.0f)
 	{
 		SCENE->AddScene(SceneName::Outro, new OutroScene());
-		SCENE->ChangeScene(SceneName::Outro, FADEOUT);
+		SCENE->ChangeScene(SceneName::Outro);
 	}
 		
 	

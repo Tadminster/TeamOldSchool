@@ -6,7 +6,7 @@ private:
     Scattering*                     scattering;
     GameManager*                    gameManager;
     
-    class MonsterManager* monster;
+    
 
     UI* mouseIcon;
     UI* mouseIcon2;

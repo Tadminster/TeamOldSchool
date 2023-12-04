@@ -32,8 +32,8 @@ Elder::Elder()
 	hp->LoadFile("Unit/Elder_HP.xml");
 	hp->name = "elder_hp";
 	
-	hitPoint = 2;
-	maxHitpoint = 2;
+	hitPoint = 200;
+	maxHitpoint = 200;
 }
 
 

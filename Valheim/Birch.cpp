@@ -56,7 +56,7 @@ void Birch::Render()
 
 void Birch::RenderHierarchy()
 {
-	actor->RenderHierarchy();
+	//actor->RenderHierarchy();
 }
 
 void Birch::LodUpdate(float distance)

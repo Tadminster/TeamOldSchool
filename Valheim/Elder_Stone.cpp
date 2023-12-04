@@ -30,11 +30,12 @@ void Elder_Stone::Init()
 void Elder_Stone::Update()
 {
 	//ShowCursor(true);
-	actor->RenderHierarchy();
+	/*actor->
+	();
 	ment->RenderHierarchy();
-	ment2->RenderHierarchy();
+	ment2->RenderHierarchy();*/
 
-	if ((PLAYER->GetActor()->GetWorldPos()-actor->GetWorldPos()).Length()<10.0f)
+	if ((PLAYER->GetActor()->GetWorldPos()-actor->GetWorldPos()).Length()<5.0f)
 	{
 		// 카메라 위치 -> 마우스로 레이를 생성
 		Ray GetItem = Utility::MouseToRay(Camera::main);
