@@ -32,22 +32,19 @@ void Notification::Update()
 	}
 	ImGui::End();
 	
-	lifeTime += DELTA;
-
-	notificationUI->Update();
-}
-
-void Notification::Render()
-{
-	notificationUI->Render();
+	//lifeTime += DELTA;
 
 	float appHalfWidth = App.GetHalfWidth();
 	float appHalfHeight = App.GetHalfHeight();
 
+	float screenBaselineX = 650.0f;
+	float screenRatioX = screenBaselineX / appHalfWidth;
+	notificationUI->scale.x = screenRatioX;
+
 	// 알림 창 크기 계산 (가로세로 절반크기, Pivot이 중앙이므로)
 	Vector2 notiSize{
 		appHalfWidth * panel->S._11,
-		appHalfHeight* panel->S._22 };
+		appHalfHeight * panel->S._22 };
 
 	// 디테일 창 위치 계산
 	Vector2 Baseline{
@@ -65,6 +62,13 @@ void Notification::Render()
 	rectItemName.right = rectItemName.left + 1000;
 	rectItemName.top = Baseline.y;
 	rectItemName.bottom = rectItemName.top + 1000;
+
+	notificationUI->Update();
+}
+
+void Notification::Render()
+{
+	notificationUI->Render();
 
 	DWRITE->RenderText(
 		textSubject,
