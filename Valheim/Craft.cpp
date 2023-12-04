@@ -106,11 +106,11 @@ void Craft::Release()
 
 void Craft::Update()
 {
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		craftUI->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	// 탭 키를 누르면 크래프팅 창 열기
 	if (INPUT->KeyDown('C'))

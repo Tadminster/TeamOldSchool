@@ -44,12 +44,12 @@ void ElderTrophy::Release()
 
 void ElderTrophy::Update()
 {
-	ImGui::Begin("ItemHierarchy");
+	/*ImGui::Begin("ItemHierarchy");
 	{
 		actor->RenderHierarchy();
 		icon->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 
 	ItemProto::Update();

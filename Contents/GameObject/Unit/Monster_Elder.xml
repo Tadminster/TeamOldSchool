@@ -1,7 +1,7 @@
 <Root Name="Root" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Elder/Monster_Elder.skel" BoneIndexCount="68"/>
     <Animations AnimSize="12" File0="Monster_Elder/Elder_Opening0.anim" File1="Monster_Elder/Elder_Idle0.anim" File2="Monster_Elder/Elder_Walk0.anim" File3="Monster_Elder/Elder_Stomp0.anim" File4="Monster_Elder/Elder_JumpAttack0.anim" File5="Monster_Elder/Elder_Summon0.anim" File6="Monster_Elder/Elder_VineShoot0.anim" File7="Monster_Elder/Elder_Death0.anim" File8="/jump10.anim" File9="/jump20.anim" File10="/jump30.anim" File11="/jump30.anim"/>
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="2.5" Z="0.15000001"/>
         <Scale X="1.8" Y="2.5" Z="1.8"/>
         <Rotation X="0" Y="0" Z="0"/>
@@ -13,7 +13,7 @@
     </Transform>
     <Children Size="1"/>
     <Child0 Name="RootNode" Visible="true" ObType="0" BoneIndex="1">
-        <Collider ColliderType="2" Visible="true">
+        <Collider ColliderType="2" Visible="false">
             <Position X="0" Y="2499.9998" Z="0"/>
             <Scale X="2200" Y="2500" Z="2200"/>
             <Rotation X="0" Y="0" Z="0"/>
@@ -53,7 +53,7 @@
                 <Children Size="1"/>
                 <Child0 Name="mixamorig:LeftLeg" Visible="true" ObType="0" BoneIndex="59">
                     <Shader File="4.Cube.hlsl"/>
-                    <Collider ColliderType="2" Visible="true">
+                    <Collider ColliderType="2" Visible="false">
                         <Position X="0" Y="1399.9999" Z="0"/>
                         <Scale X="450" Y="1500" Z="450"/>
                         <Rotation X="0" Y="0" Z="0"/>
@@ -103,7 +103,7 @@
                 <Children Size="1"/>
                 <Child0 Name="mixamorig:RightLeg" Visible="true" ObType="0" BoneIndex="64">
                     <Shader File="4.Cube.hlsl"/>
-                    <Collider ColliderType="2" Visible="true">
+                    <Collider ColliderType="2" Visible="false">
                         <Position X="0" Y="1400.0001" Z="0"/>
                         <Scale X="450" Y="1500" Z="450"/>
                         <Rotation X="0" Y="0" Z="0"/>

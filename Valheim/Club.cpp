@@ -46,12 +46,12 @@ void Club::Release()
 
 void Club::Update()
 {
-	ImGui::Begin("ItemHierarchy");
+	/*ImGui::Begin("ItemHierarchy");
 	{
 		actor->RenderHierarchy();
 		icon->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 
 	ItemProto::Update();

@@ -32,7 +32,7 @@ WPARAM Window::Run(Scene* main)
 
 			TIMER->Chronometry(App.fixFrame);
 			INPUT->Update();
-			GUI->Update();
+			//GUI->Update();
 			SOUND->Update();
 			main->Update();
 			main->LateUpdate();
@@ -48,7 +48,7 @@ WPARAM Window::Run(Scene* main)
 				DEPTH->Set(false);
 				GameObject::RenderAxis();
 				DEPTH->Set(true);
-				GUI->Render();
+				//GUI->Render();
 			}
 			DWRITE->GetDC()->EndDraw();
 			D3D->Present();
@@ -165,8 +165,8 @@ void Window::Create()
 	);
 	assert(App.handle != NULL);
 
-
 	ShowWindow(App.handle, SW_SHOWNORMAL);
+	ShowWindow(GetConsoleWindow(), SW_HIDE);
 	SetForegroundWindow(App.handle);
 	SetFocus(App.handle);
 

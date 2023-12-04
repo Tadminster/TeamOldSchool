@@ -23,14 +23,17 @@ Player::Player()
 	state = IdleState::GetInstance();
 	status = new PlayerStatus();
 	sound = new PlayerSound();
+	revive = UI::Create();
+	revive->LoadFile("Unit/Revive.xml");
+	revive->name = "revive";
 
 	Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 
-	mouseIcon = UI::Create();
+	/*mouseIcon = UI::Create();
 	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
 	
 	mouseIcon2 = UI::Create();
-	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
+	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");*/
 	
 	hitPoint = 30.0f;
 	maxHitpoint = 30.0f;
@@ -42,19 +45,21 @@ Player::~Player()
 
 void Player::Init()
 {
-	mouseIcon2->visible = false;
+	revive->visible = false;
+	//mouseIcon2->visible = false;
 	actor->SetWorldPos(OBJ->GetStartingPosition());
 	//Camera::main = static_cast<Camera*>(actor->Find("PlayerCam"));
 	slidingVector.direction = actor->GetForward();
 	//maxHitpoint = 200;
-	//treeCount = 3;
+	//treeCount = 10;
+	actor->Update();
 }
 
 void Player::Update()
 {
 	playerhitPos = actor->GetWorldPos() + Vector3(0, actor->scale.y * 1.5f, 0);
 	PARTICLE->SetWorldPos();
-	mouseIcon2->SetWorldPos(Utility::MouseToNDC() + Vector3(0, -0.01f, 0));
+	//mouseIcon2->SetWorldPos(Utility::MouseToNDC() + Vector3(0, -0.01f, 0));
 	if (DEBUGMODE) 
 	{
 		isPlayerCam = false;
@@ -68,24 +73,26 @@ void Player::Update()
 	//// 중력값 적용
 	ApplyGravity();
 	//// 플레이어 컨트롤
-	PlayerControl();
-	PlayerMove();
-	//// 플레이어 자연 치유(5초동안 피격당하지 않으면 2초당 1회복)
-	PlayerHealth();
-	//// 플레이어 스테미너(1초동안 스테미너 쓰는 행동 하지 않으면 초당 5회복)
-	PlayerStaminar();
-	//// 플레이어 성장치 제어
-	GrowthAbility();
-	//// 플레이어 embient, diffuse 제어
-	UpdateLight();
-
+	AvtivatePlayerCam();
+		PlayerControl();
+		PlayerMove();
+		//// 플레이어 자연 치유(5초동안 피격당하지 않으면 2초당 1회복)
+		PlayerHealth();
+		//// 플레이어 스테미너(1초동안 스테미너 쓰는 행동 하지 않으면 초당 5회복)
+		PlayerStaminar();
+		//// 플레이어 성장치 제어
+		GrowthAbility();
+		//// 플레이어 embient, diffuse 제어
+		UpdateLight();
+	
 	actor->Update();
 	sound->Update();
 	status->Update();
 	playerHp->Update();
 	playerSt->Update();
-	mouseIcon->Update();
-	mouseIcon2->Update();
+	revive->Update();
+	/*mouseIcon->Update();
+	mouseIcon2->Update();*/
 }
 
 void Player::LateUpdate()
@@ -98,8 +105,9 @@ void Player::Render()
 	playerHp->Render();
 	playerSt->Render();
 	status->Render();
-	mouseIcon->Render();
-	mouseIcon2->Render();
+	revive->Render();
+	//mouseIcon->Render();
+	//mouseIcon2->Render();
 }
 
 void Player::Release()
@@ -108,6 +116,7 @@ void Player::Release()
 
 void Player::RenderHierarchy()
 {
+	//revive->RenderHierarchy();
 	/*actor->RenderHierarchy();
 	playerHp->RenderHierarchy();
 	playerSt->RenderHierarchy();
@@ -266,7 +275,6 @@ void Player::AvtivatePlayerCam()
 	//카메라 전환 시 화면 짤리는 부분 방지
 
 	if(actor->anim->currentAnimator.animIdx==0) actor->Update();
-	
 	{
 		Camera::main->viewport.x = 0.0f;
 		Camera::main->viewport.y = 0.0f;
@@ -279,14 +287,14 @@ void Player::AvtivatePlayerCam()
 	//인벤 열리면 커서 고정 해제----------------------------------
 	if (!INVEN->isOpen && !CRAFT->isOpen && !SETTING->isOpen && !STATUS->isOpen)
 	{
-		mouseIcon->visible = true;
-		mouseIcon2->visible = false;
-		//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
-		ptMouse.x = App.GetHalfWidth();
-		ptMouse.y = App.GetHalfHeight();
-		Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
-		Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
-		actor->rotation.y += Rot.y;
+		if (state != DeathState::GetInstance()) {
+			//마우스좌표 화면 중앙 고정 & 플레이어가 카메라 회전값 받기2
+			ptMouse.x = App.GetHalfWidth();
+			ptMouse.y = App.GetHalfHeight();
+			Rot.x = (INPUT->position.y - ptMouse.y) * 0.001f;
+			Rot.y = (INPUT->position.x - ptMouse.x) * 0.001f;
+			actor->rotation.y += Rot.y;
+		}
 		if (Camera::main->rotation.x <= 60.0f * ToRadian && Camera::main->rotation.x >= -30.0f * ToRadian)
 		{
 			actor->rotation.x += Rot.x * 0.35f;
@@ -299,11 +307,11 @@ void Player::AvtivatePlayerCam()
 		ClientToScreen(App.GetHandle(), &ptMouse);
 		SetCursorPos(ptMouse.x, ptMouse.y);
 	}
-	else
+	/*else
 	{
 		mouseIcon->visible = false;
 		mouseIcon2->visible = true;
-	}
+	}*/
 	actor->Find("PlayerCam")->SetLocalPosY(actor->Find("PlayerCam")->rotation.x * 1.5f + 4.0f);
 	actor->Find("PlayerCam")->SetLocalPosZ(actor->Find("PlayerCam")->rotation.x * 4.0f - 6.0f);
 	//프러스텀 컬링용 캠 로테이션 받아오기
@@ -452,6 +460,11 @@ void Player::PlayerControl()
 				}
 		}
 	}
+
+	if (hitPoint <= 0)
+	{
+		state->Death();
+	}
 }
 
 void Player::PlayerMove()
@@ -465,6 +478,7 @@ void Player::PlayerMove()
 	else if (state == AxeState::GetInstance()) moveSpeed = 0;
 	else if (state == BlockFailState::GetInstance()) moveSpeed = 0;
 	else if (state == IdleState::GetInstance()) moveSpeed = 0;
+	else if (state == DeathState::GetInstance()) moveSpeed = 0;
 	//타 콜라이더와 충돌상태일 때, 이동각도를 슬라이딩 벡터로 받기 위한 조건문
 	moveDir = Vector3();
 
@@ -568,6 +582,7 @@ bool Player::GetItem(ItemProto* item)
 			// E키를 누르면
 			if (INPUT->KeyDown('E'))
 			{
+				if (item->GetEnumName() == Item::ElderTrophy) isElderTrophy = true;
 				// 인벤토리에 아이템 추가하고	
 				INVEN->AddItem(item);
 				// 찾아낸 아이템 목록 업데이트
@@ -596,38 +611,40 @@ bool Player::GetItem(ItemProto* item)
 
 void Player::PlayerHit(float damage)
 {
-	if (hitTime < 0)
-	{
-		if (isGuard)
+	if (state != DeathState::GetInstance()) {
+		if (hitTime < 0)
 		{
-			SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(PLAYER_BLOCK_01, PLAYER_BLOCK_03));
-			SOUND->Play(randomPlay);
-			hitPoint -= damage * (1 - (equippedShield->damageReduced + status->blockAbility));
-			staminar -= blockStaminar;
-			if (staminar > 0.5f)
+			if (isGuard)
 			{
-				state = BlockState::GetInstance();
-				state->Block();
+				SoundName randomPlay = static_cast<SoundName>(RANDOM->Int(PLAYER_BLOCK_01, PLAYER_BLOCK_03));
+				SOUND->Play(randomPlay);
+				hitPoint -= damage * (1 - (equippedShield->damageReduced + status->blockAbility));
+				staminar -= blockStaminar;
+				if (staminar > 0.5f)
+				{
+					state = BlockState::GetInstance();
+					state->Block();
+				}
+				else
+				{
+					state = BlockFailState::GetInstance();
+					state->BlockFail();
+				}
+				blockCount++;
 			}
 			else
 			{
-				state = BlockFailState::GetInstance();
-				state->BlockFail();
+				//임시로 플레이어 타격시 출혈 이펙트 추가합니다
+				PARTICLE->PlayParticleEffect(EffectType::HITBLOOD, playerhitPos);
+				actor->SetWorldPos(actor->GetWorldPos() - actor->GetForward());
+				hitPoint -= damage;
 			}
-			blockCount++;
+			hitTime = 1.0f;
+			healTime = 0;
+			isHit = false;
+			isGuard = false;
+			state->Idle();
 		}
-		else
-		{
-			//임시로 플레이어 타격시 출혈 이펙트 추가합니다
-			PARTICLE->PlayParticleEffect(EffectType::HITBLOOD,playerhitPos);
-			actor->SetWorldPos(actor->GetWorldPos() - actor->GetForward());
-			hitPoint -= damage;
-		}
-		hitTime = 1.0f;
-		healTime = 0;
-		isHit = false;
-		isGuard = false;
-		state->Idle();
 	}
 }
 
@@ -755,12 +772,12 @@ float Player::GetWeaponDMG()
 {
 	if (equippedWeapon)
 	{
-		randomDMG = RANDOM->Float(-equippedWeapon->damage * 0.2f, equippedWeapon->damage * 0.2f);
+		randomDMG = RANDOM->Float(-equippedWeapon->damage * 0.2f, equippedWeapon->damage * 0.2f) + status->totalLevel;
 		return equippedWeapon->damage + randomDMG;
 	}
 	else
 	{
-		randomDMG = RANDOM->Float(-fistDMG * 0.2f, fistDMG * 0.2f);
+		randomDMG = RANDOM->Float(-fistDMG * 0.2f, fistDMG * 0.2f) + status->totalLevel;
 		return fistDMG + randomDMG;
 	}
 }

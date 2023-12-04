@@ -80,11 +80,11 @@ void Inventory::Release()
 
 void Inventory::Update()
 {
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		inventoryUI->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	// Tab키를 누르면 인벤토리가 열림
 	if (INPUT->KeyDown(VK_TAB))

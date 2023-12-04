@@ -163,7 +163,7 @@ void TitleUI::ResizeScreen()
 
 void TitleUI::RenderHierarchy()
 {
-	titleUI->RenderHierarchy();
+	//titleUI->RenderHierarchy();
 }
 
 void TitleUI::BtnInitalize(BtnInfo& btnInfo)

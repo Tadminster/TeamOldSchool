@@ -1,5 +1,5 @@
 <Root Name="Spear" Visible="true" ObType="1">
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="1.15" Z="0"/>
         <Scale X="0.2" Y="1.15" Z="0.2"/>
         <Rotation X="0" Y="0" Z="0"/>

@@ -27,11 +27,11 @@ void Status::Release()
 
 void Status::Update()
 {
-	ImGui::Begin("UI Hierarchy");
+	/*ImGui::Begin("UI Hierarchy");
 	{
 		bgIMG->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 	
 	if (isOpen) bgIMG->visible = true;
 	else bgIMG->visible = false;

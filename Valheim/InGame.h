@@ -1,9 +1,18 @@
 #pragma once
+#define FADEOUT 3.0f
 class InGame : public Scene
 {
 private:
     Scattering*                     scattering;
     GameManager*                    gameManager;
+    
+    
+
+    UI* mouseIcon;
+    UI* mouseIcon2;
+    class UI* fadeOut{ nullptr };	    // fadeout 효과를 위한 UI
+    float       fadeout{ 0 };           // fadeout의 opacity
+    bool isEnding{ false };
     class MonsterManager*           monster;
 public:
     InGame();

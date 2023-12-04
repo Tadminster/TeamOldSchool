@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Goblin.h"
 #include "Elder.h"
+#include "Elder_Stone.h"
 #include "MonsterManager.h"
 
 MonsterManager::MonsterManager()
@@ -30,6 +31,8 @@ MonsterManager::MonsterManager()
 		monster01[i]->LoadFile("Unit/Monster_JellyFish.xml");
 		monster01[i]->name = "JellyFish" + to_string(i+1);
 	}
+
+	stone = new Elder_Stone();
 }
 
 MonsterManager::~MonsterManager()
@@ -90,6 +93,7 @@ void MonsterManager::Update()
 		monster01[i]->SetWorldPos(dir * 150.0f + monsterPos[i]);
 		monster01[i]->Update();
 	}
+	stone->Update();
 }
 
 void MonsterManager::LateUpdate()
@@ -104,6 +108,8 @@ void MonsterManager::LateUpdate()
 		}
 			
 	}
+
+	stone->LateUpdate();
 }
 
 void MonsterManager::RenderHierarchy()
@@ -137,4 +143,6 @@ void MonsterManager::Render()
 	{
 		monster01[i]->Render();
 	}
+
+	stone->Render();
 }

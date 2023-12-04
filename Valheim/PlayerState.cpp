@@ -452,8 +452,32 @@ void DeathState::Block() {}
 void DeathState::BlockFail() {}
 void DeathState::Death()
 {
+	PLAYER->respawnTime += DELTA;
 	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 7)
 	{
-		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 7);
+		PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::ONCE_LAST, 7);
+	}
+
+	if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx == 7
+		&& PLAYER->GetPlayer()->anim->currentAnimator.animState == AnimationState::STOP)
+	{
+		if (PLAYER->respawnTime >= 3.0f)
+		{
+			PLAYER->revive->visible = true;
+			if (INPUT->KeyDown('E'))
+			{
+				PLAYER->hitPoint = 1.0f;
+				PLAYER->actor->SetWorldPos(OBJ->GetStartingPosition());
+				if (PLAYER->GetPlayer()->anim->currentAnimator.animIdx != 1)
+				{
+					PLAYER->GetPlayer()->anim->ChangeAnimation(AnimationState::LOOP, 1);
+				}
+				SetPlayerState(IdleState::GetInstance());
+				PLAYER->revive->visible = false;
+				PLAYER->respawnTime = 0;
+			}
+		}
+
+		
 	}
 }

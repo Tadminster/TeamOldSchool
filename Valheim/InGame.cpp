@@ -10,20 +10,39 @@ InGame::InGame()
 {
 	scattering = new Scattering();
 	loadCount++; // 1
+
 	
+	
+
+	scattering = new Scattering();
+	loadCount++; // 2
+	
+	
+	mouseIcon = UI::Create();
+	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
+	mouseIcon->name = '1';
+	
+	mouseIcon2 = UI::Create();
+	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
+	mouseIcon2->name = '2';
+	
+	fadeOut = UI::Create();
+	fadeOut->name = "fade";
+	fadeOut->LoadFile("UI_FadeOut.xml");
+	loadCount++; // 3
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
-	loadCount++; // 2
+	
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_Shadow.hlsl")->LoadGeometry();
 	loadCount++; // 4
 
 	RESOURCE->shaders.Load("5.Cube_Water.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_CR.hlsl")->LoadGeometry();
-	loadCount++; // 3
+	
 	RESOURCE->shaders.Load("4.Instance_Shadow.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("4.Instance_Water.hlsl")->LoadGeometry();
-	loadCount++; // 4
+	loadCount++; // 5
 }
 
 InGame::~InGame()
@@ -33,6 +52,8 @@ InGame::~InGame()
 
 void InGame::Init()
 {
+	mouseIcon2->visible = false;
+
 	GM->Init();
 	UIM->Init();
 
@@ -52,6 +73,7 @@ void InGame::Release()
 	GM->Release();
 	UIM->Release();
 
+	fadeOut->Release();
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 	SOUND->Stop(BGM_HOMEBASE);
 	PARTICLE->Release();
@@ -61,8 +83,24 @@ void InGame::Release()
 
 void InGame::Update()
 {
-	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
-	ImGui::Begin("Hierarchy");
+	//LIGHT->RenderDetail();
+	//scattering->RenderDetail();
+
+	mouseIcon2->SetWorldPos(Utility::MouseToNDC() + Vector3(0.025f, -0.045f, 0));
+
+	if (!INVEN->isOpen && !CRAFT->isOpen && !SETTING->isOpen && !STATUS->isOpen)
+	{
+		mouseIcon->visible = true;
+		mouseIcon2->visible = false;
+	}
+	else
+	{
+		mouseIcon->visible = false;
+		mouseIcon2->visible = true;
+	}
+
+	//ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
+	/*ImGui::Begin("Hierarchy");
 	{
 		MAP->RenderHierarchy();
 		SEA->RenderHierarchy();
@@ -71,7 +109,7 @@ void InGame::Update()
 		PLAYER->RenderHierarchy();
 		MONSTER->RenderHierarchy();
 	}
-	ImGui::End();
+	ImGui::End();*/
 
 	// F1 : 모드전환
 	//if (INPUT->KeyDown(VK_F1))
@@ -106,9 +144,11 @@ void InGame::Update()
 	//	if (isDebugCamControl) Camera::main->ControlMainCam();
 	//}
 	//else 
-	PLAYER->AvtivatePlayerCam();
+	
 
 	Camera::main->Update();
+	mouseIcon->Update();
+	mouseIcon2->Update();
 	GM->Update();
 	SEA->Update();
 	OBJ->Update();
@@ -117,15 +157,24 @@ void InGame::Update()
 	SETTING->Update();
 	UIM->Update();
 	MONSTER->Update();
+	fadeOut->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
 
-	if (INPUT->KeyDown('P'))
+	if (PLAYER->isEnding)
+	{
+		fadeout += DELTA;
+		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
+	}
+	if (fadeOut->material->opacity>=1.0f)
 	{
 		SCENE->AddScene(SceneName::Outro, new OutroScene());
 		SCENE->ChangeScene(SceneName::Outro);
 	}
+		
+	
+
 }
 
 void InGame::LateUpdate()
@@ -170,9 +219,12 @@ void InGame::Render()
 	OBJ->Render();
 	PARTICLE->Render();
 	MONSTER->Render();
+	PLAYER->Render();
 	UIM->Render();
 	SETTING->Render();
-	PLAYER->Render();
+	mouseIcon->Render();
+	mouseIcon2->Render();
+	fadeOut->Render();
 }
 
 void InGame::ResizeScreen()
