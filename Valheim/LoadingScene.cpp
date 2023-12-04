@@ -40,9 +40,9 @@ void LoadingScene::Release()
 
 void LoadingScene::Update()
 {
-    loadingProgress = clamp(loadingProgress, (float)loadCount * 20.0f - 2.0f, 99.0f);
+    loadingProgress = clamp(loadingProgress + LOADIND_RATE, (float)loadCount * 20.0f - 2.0f, 99.9f);
 
-    if (loadCount == MAX_LOADCOUNT)
+    if (loadCount == MAX_LOADCOUNT && loadingProgress > 99.0f)
     {
         SCENE->ChangeScene(SceneName::InGame);
     }

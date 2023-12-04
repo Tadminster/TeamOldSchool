@@ -1,6 +1,6 @@
 #pragma once
 #define MAX_LOADCOUNT	5.0f
-#define LOADIND_RATE	DELTA * 50.0f
+#define LOADIND_RATE	DELTA * 10.0f
 
 class LoadingScene : public Scene
 {
