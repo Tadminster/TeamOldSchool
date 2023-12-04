@@ -119,7 +119,7 @@ void TitleScene::Update()
 	//}
 	//ImGui::End();
 
-	mouseIcon->SetWorldPos(Utility::MouseToNDC()+Vector3(0,-0.01f,0));
+	mouseIcon->SetWorldPos(Utility::MouseToNDC() + Vector3(0.025f, -0.045f, 0));
 
 	// 메인 카메라 업데이트
 	//Camera::main->ControlMainCam();
