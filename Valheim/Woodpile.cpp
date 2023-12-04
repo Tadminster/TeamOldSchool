@@ -45,12 +45,12 @@ void Woodpile::Release()
 
 void Woodpile::Update()
 {
-	ImGui::Begin("ItemHierarchy");
-	{
-		actor->RenderHierarchy();
-		icon->RenderHierarchy();
-	}
-	ImGui::End();
+	//ImGui::Begin("ItemHierarchy");
+	//{
+	//	actor->RenderHierarchy();
+	//	icon->RenderHierarchy();
+	//}
+	//ImGui::End();
 
 
 	ItemProto::Update();

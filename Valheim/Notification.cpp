@@ -26,11 +26,11 @@ Notification::~Notification()
 
 void Notification::Update()
 {
-	ImGui::Begin("UI Hierarchy");
-	{
-		notificationUI->RenderHierarchy();
-	}
-	ImGui::End();
+	//ImGui::Begin("UI Hierarchy");
+	//{
+	//	notificationUI->RenderHierarchy();
+	//}
+	//ImGui::End();
 	
 	//lifeTime += DELTA;
 
