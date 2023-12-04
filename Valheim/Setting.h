@@ -9,9 +9,8 @@ class Setting : public Singleton<Setting>
 {
 public:
 	//=======================================================
-	bool	volumeOn	{ true };	//전체볼륨 켜진지 꺼진지판별
-	//=======================================================
 	bool	isOpen		{ false }; //패널이 열려 있는지 판별
+	bool	volumeOn	{ true }; //사운드 켜진지 꺼진지
 private:
 	UI*			settingPanel;
 	UI*			volumeIcon;
@@ -39,9 +38,8 @@ public:
 	void BtnInitalize(SettingBtn& settingBtn);
 	void BtnMouseOver(SettingBtn& settingBtn);
 	void BtnMouseClick(SettingBtn& settingBtn);
-	void OnOffMasterVolume(bool OnAndOff);
+	void OnOffMasterVolume();
 	//========================================
-	//
 	void OpenSetting();
 	void CreatBtnUpdate(SettingBtn& settingBtn, string name);
 };

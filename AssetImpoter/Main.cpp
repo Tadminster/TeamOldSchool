@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Main.h"
-
 Main::Main()
 {
 
@@ -15,6 +14,12 @@ Main::Main()
     rain = Rain::Create();
     hitblood = Pop::Create();
     billboard = Billboard::Create();
+
+    bgIMG = UI::Create("Status");
+    bgIMG->name = "Status";
+    bgIMG->LoadFile("Unit/Player_StatusBGIMG.xml");
+    bgIMG->SetWorldPosX(App.GetWidth() * 0.5f / App.GetWidth());
+    bgIMG->SetWorldPosY(App.GetHalfHeight() * 0.7f / App.GetHalfHeight());
 }
 
 Main::~Main()
@@ -47,7 +52,9 @@ void Main::Update()
     rain->RenderHierarchy();
     hitblood->RenderHierarchy();
     billboard->RenderHierarchy();
+    bgIMG->RenderHierarchy();
     ImGui::End();
+
 
     ImGui::Begin("AssetImporter");
     if (GUI->FileImGui("BonelessChicken", "BonelessChicken",
@@ -278,6 +285,7 @@ void Main::Update()
     rain->Update();
     hitblood->Update();
     billboard->Update();
+    bgIMG->Update();
 
     //if (ImGui::Button("changeName"))
     //{
@@ -312,6 +320,7 @@ void Main::Render()
     rain->Render();
     hitblood->Render();
     billboard->Render();
+    bgIMG->Render();
 }
 
 void Main::ResizeScreen()

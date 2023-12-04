@@ -148,12 +148,13 @@ void Setting::LateUpdate()
 			}
 			else if (turnAndOffvolume.state == SettingBtnState::MOUSE_CLICK)
 			{
+
 				// 마우스 왼쪽 버튼을 떼면
 				if (INPUT->KeyUp(VK_LBUTTON))
 				{
 					//볼륨을 키고 끕니다
 					volumeOn = !volumeOn;
-					OnOffMasterVolume(volumeOn);
+					OnOffMasterVolume();
 					SOUND->Play(UI_CLICK);
 				}
 			}
@@ -175,13 +176,14 @@ void Setting::Render()
 		//======================================
 		//사운드 아이콘 볼륨바 조절
 		{
+
 			//초기사운드 또는 소리가 클때 3개다보임
 			if (App.soundScale > 0.6)
 			{
 				volumeIcon->Find("volumeStick0")->visible = true;
 				volumeIcon->Find("volumeStick1")->visible = true;
 				volumeIcon->Find("volumeStick2")->visible = true;
-				volumeIcon->Update();
+
 			}
 			// 1개만 보이기 소리가 조금이라도 켜져있을때
 			else if (App.soundScale > 0.0f and App.soundScale < 0.3f)
@@ -189,7 +191,7 @@ void Setting::Render()
 				volumeIcon->Find("volumeStick0")->visible = true;
 				volumeIcon->Find("volumeStick1")->visible = false;
 				volumeIcon->Find("volumeStick2")->visible = false;
-				volumeIcon->Update();
+
 			}
 			//2개만 보일때 중간정도 소리
 			else if (App.soundScale > 0.3f and App.soundScale < 0.6f)
@@ -197,7 +199,7 @@ void Setting::Render()
 				volumeIcon->Find("volumeStick0")->visible = true;
 				volumeIcon->Find("volumeStick1")->visible = true;
 				volumeIcon->Find("volumeStick2")->visible = false;
-				volumeIcon->Update();
+
 			}
 			// 소리가 음소거 상태일때 다안보임
 			else if (App.soundScale == 0.0f)
@@ -205,8 +207,10 @@ void Setting::Render()
 				volumeIcon->Find("volumeStick0")->visible = false;
 				volumeIcon->Find("volumeStick1")->visible = false;
 				volumeIcon->Find("volumeStick2")->visible = false;
-				volumeIcon->Update();
+
 			}
+
+			volumeIcon->Update();
 		}
 		volumeIcon->Render();
 	}
@@ -236,21 +240,20 @@ void Setting::BtnMouseClick(SettingBtn& settingBtn)
 	}
 }
 
-void Setting::OnOffMasterVolume(bool OnAndOff)
+void Setting::OnOffMasterVolume()
 {
-	if (OnAndOff)
+	if (volumeOn)
 	{
-		//소리가 켜져있을땐 꺼줍니다
 		App.soundScale = 0.0f;
-		SOUND->SetMasterVolume();
+		SOUND->PauseAll();
 	}
-	else if (!OnAndOff)
+	else
 	{
-		//소리가 꺼져있을땐 기본볼륨으로 바꿔줍니다
-		App.soundScale = 1.0f;
-		SOUND->SetMasterVolume();
+		App.soundScale = 0.5f;
+		SOUND->ResumeAll();
 	}
 }
+
 
 void Setting::OpenSetting()
 {
