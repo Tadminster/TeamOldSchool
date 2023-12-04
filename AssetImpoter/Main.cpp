@@ -34,6 +34,7 @@ void Main::Release()
 
 void Main::Update()
 {
+    ShowCursor(true);
     Camera::main->ControlMainCam();
     Camera::main->Update();
     rain->Gui();

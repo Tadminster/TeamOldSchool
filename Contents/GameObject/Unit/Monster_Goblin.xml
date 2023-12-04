@@ -1,7 +1,7 @@
 <Root Name="Monster_Goblin" Visible="true" ObType="1" BoneIndex="0">
     <Skeleton File="Monster_Goblin/Monster_Goblin.skel" BoneIndexCount="52"/>
     <Animations AnimSize="5" File0="Monster_Goblin/Goblin_Idle0.anim" File1="Monster_Goblin/Goblin_Idle20.anim" File2="Monster_Goblin/Goblin_Run0.anim" File3="Monster_Goblin/Goblin_Attack0.anim" File4="Monster_Goblin/Goblin_Death0.anim"/>
-    <Collider ColliderType="2" Visible="true">
+    <Collider ColliderType="2" Visible="false">
         <Position X="0" Y="0.85000002" Z="0"/>
         <Scale X="0.60000002" Y="0.89999998" Z="0.60000002"/>
         <Rotation X="0" Y="0" Z="0"/>
@@ -371,7 +371,7 @@
                                     <Children Size="1"/>
                                     <Child0 Name="mixamorig:RightHand" Visible="true" ObType="0" BoneIndex="29">
                                         <Shader File="4.Cube.hlsl"/>
-                                        <Collider ColliderType="2" Visible="true">
+                                        <Collider ColliderType="2" Visible="false">
                                             <Position X="0" Y="30.00001" Z="0"/>
                                             <Scale X="15" Y="25" Z="15"/>
                                             <Rotation X="0" Y="0" Z="0"/>

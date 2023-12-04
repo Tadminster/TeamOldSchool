@@ -32,9 +32,10 @@ Elder::Elder()
 	hp->LoadFile("Unit/Elder_HP.xml");
 	hp->name = "elder_hp";
 	
-	hitPoint = 200;
-	maxHitpoint = 200;
+	hitPoint = 2;
+	maxHitpoint = 2;
 }
+
 
 Elder::~Elder()
 {
@@ -145,15 +146,14 @@ void Elder::Update()
 			}
 		}
 	}
-
 	//Elder - Terrain Ãæµ¹
 	DoFSM();
 	UpdateLight();
 	SetOnTerrain();
 
-	actor->Update();
-	patern->Update();
+	if (isElder) actor->Update();
 	hp->Update();
+	patern->Update();
 	if (ment1) ment1->Update();
 	if (ment2) ment2->Update();
 	if (ment3) ment3->Update();
@@ -190,7 +190,7 @@ void Elder::LateUpdate()
 
 void Elder::Render()
 {
-	actor->Render();
+	if (isElder) actor->Render();
 	patern->Render();
 	hp->Render();
 	if (ment1) ment1->Render();

@@ -7,6 +7,7 @@ class Player : public Unit
 	friend class SwingState;
 	friend class FistState;
 	friend class BlockState;
+	friend class DeathState;
 	friend class BlockFailState;
 	friend class PlayerStatus;
 	friend class ElderJumpAttack;
@@ -21,6 +22,7 @@ class Player : public Unit
 
 	UI* mouseIcon;
 	UI* mouseIcon2;
+	UI* revive;
 	//카메라 관련 변수
 	POINT					ptMouse;
 	Vector3					Rot;
@@ -37,6 +39,7 @@ class Player : public Unit
 	Vector3 playerCamHit;
 	Ray playerReverseCamRay;
 	Vector3 playerReverseCamRayHit;
+	
 	//Hp 변수----------------------------------------------
 	float					growthHp = 0.1f;
 	float					healTime = 0;
@@ -71,10 +74,12 @@ class Player : public Unit
 	int						isEquip = 0;
 
 	float					hitTime = 0;
-
+	float					respawnTime = 0;
 
 	float					randomDMG = 0;
 public:
+	bool isElderTrophy{ false };
+	bool isEnding{ false };
 	Player();
 	~Player();
 	void Init() override;

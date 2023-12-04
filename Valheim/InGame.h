@@ -1,4 +1,5 @@
 #pragma once
+#define FADEOUT 3.0f
 class InGame : public Scene
 {
 private:
@@ -13,6 +14,12 @@ private:
     GameManager*                    gameManager;
     
     class MonsterManager* monster;
+
+    UI* mouseIcon;
+    UI* mouseIcon2;
+    class UI* fadeOut{ nullptr };	    // fadeout 효과를 위한 UI
+    float       fadeout{ 0 };           // fadeout의 opacity
+    bool isEnding{ false };
 public:
     InGame();
     ~InGame();

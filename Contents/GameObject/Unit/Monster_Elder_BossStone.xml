@@ -1,11 +1,11 @@
-<Root Name="Monster_Elder_BossStone" Visible="true" ObType="1">
-    <Collider ColliderType="1" Visible="true">
+<Root Name="BossStone" Visible="true" ObType="1">
+    <Collider ColliderType="1" Visible="false">
         <Position X="0" Y="2.45" Z="0"/>
         <Scale X="1.2" Y="2.55" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Collider>
     <Transform>
-        <Position X="0" Y="0" Z="0"/>
+        <Position X="0" Y="19.845459" Z="0"/>
         <Scale X="1" Y="1" Z="1"/>
         <Rotation X="0" Y="0" Z="0"/>
     </Transform>
@@ -22,7 +22,7 @@
             <Shader File="4.Cube.hlsl"/>
             <Material File="Elder_BossStone/Elder_BossStone.mtl"/>
             <Transform>
-                <Position X="0" Y="0" Z="0"/>
+                <Position X="0" Y="-0.80000001" Z="0"/>
                 <Scale X="1" Y="1" Z="1"/>
                 <Rotation X="0" Y="0" Z="-0"/>
             </Transform>

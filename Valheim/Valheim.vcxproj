@@ -23,6 +23,7 @@
     <ClInclude Include="Club.h" />
     <ClInclude Include="Craft.h" />
     <ClInclude Include="ElderTrophy.h" />
+    <ClInclude Include="Elder_Stone.h" />
     <ClInclude Include="FineAxe.h" />
     <ClInclude Include="FineWood.h" />
     <ClInclude Include="Goblin.h" />
@@ -78,6 +79,7 @@
     <ClCompile Include="Club.cpp" />
     <ClCompile Include="Craft.cpp" />
     <ClCompile Include="ElderTrophy.cpp" />
+    <ClCompile Include="Elder_Stone.cpp" />
     <ClCompile Include="FineAxe.cpp" />
     <ClCompile Include="FineWood.cpp" />
     <ClCompile Include="Goblin.cpp" />

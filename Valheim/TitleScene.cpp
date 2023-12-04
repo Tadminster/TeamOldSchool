@@ -239,8 +239,8 @@ void TitleScene::Render()
 	underwater->Render();
 
 	titleUI->Render();
-	mouseIcon->Render();
 	SETTING->Render();
+	mouseIcon->Render();
 }
 
 void TitleScene::ResizeScreen()

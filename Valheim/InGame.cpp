@@ -18,6 +18,18 @@ InGame::InGame()
 	scattering = new Scattering();
 	loadCount++; // 3
 	
+	mouseIcon = UI::Create();
+	mouseIcon->LoadFile("Unit/Mouse_Aim.xml");
+	mouseIcon->name = '1';
+
+	mouseIcon2 = UI::Create();
+	mouseIcon2->LoadFile("Unit/Mouse_Torch.xml");
+	mouseIcon2->name = '2';
+	
+	fadeOut = UI::Create();
+	fadeOut->name = "fade";
+	fadeOut->LoadFile("UI_FadeOut.xml");
+
 	RESOURCE->shaders.Load("0.Sky_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("0.SkySphere_CR.hlsl")->LoadGeometry();
 	RESOURCE->shaders.Load("5.Cube_CR.hlsl")->LoadGeometry();
@@ -38,6 +50,8 @@ InGame::~InGame()
 
 void InGame::Init()
 {
+	mouseIcon2->visible = false;
+
 	GM->Init();
 	UIM->Init();
 
@@ -53,7 +67,7 @@ void InGame::Init()
 
 void InGame::Release()
 {
-
+	fadeOut->Release();
 	LIGHT->currentTime = LIGHT->halfdayCycleLength;
 	SOUND->Stop(BGM_HOMEBASE);
 }
@@ -62,6 +76,19 @@ void InGame::Update()
 {
 	//LIGHT->RenderDetail();
 	//scattering->RenderDetail();
+
+	mouseIcon2->SetWorldPos(Utility::MouseToNDC() + Vector3(0.025f, -0.045f, 0));
+
+	if (!INVEN->isOpen && !CRAFT->isOpen && !SETTING->isOpen && !STATUS->isOpen)
+	{
+		mouseIcon->visible = true;
+		mouseIcon2->visible = false;
+	}
+	else
+	{
+		mouseIcon->visible = false;
+		mouseIcon2->visible = true;
+	}
 
 	ImGui::Text("FPS: %d", TIMER->GetFramePerSecond());
 	ImGui::Begin("Hierarchy");
@@ -116,6 +143,8 @@ void InGame::Update()
 	else PLAYER->AvtivatePlayerCam();
 
 	Camera::main->Update();
+	mouseIcon->Update();
+	mouseIcon2->Update();
 	GM->Update();
 	SEA->Update();
 	OBJ->Update();
@@ -124,15 +153,24 @@ void InGame::Update()
 	SETTING->Update();
 	UIM->Update();
 	MONSTER->Update();
+	fadeOut->Update();
 	//월드타임을 받아오고 그에따라서 광원의 각도를 변화시킵니다
 	
 	LIGHT->UpdateDirection();
 
+	if (PLAYER->isEnding)
+	{
+		fadeout += DELTA;
+		fadeOut->material->opacity = fadeout * (1.0f / FADEOUT);
+	}
 	if (INPUT->KeyDown('P'))
 	{
 		SCENE->AddScene(SceneName::Outro, new OutroScene());
-		SCENE->ChangeScene(SceneName::Outro);
+		SCENE->ChangeScene(SceneName::Outro, FADEOUT);
 	}
+		
+	
+
 }
 
 void InGame::LateUpdate()
@@ -175,15 +213,19 @@ void InGame::Render()
 	{
 		grid->Render();
 	}
+	
 	GM->Render();
 	MAP->Render();
 	SEA->Render();
 	OBJ->Render();
 	PARTICLE->Render();
 	MONSTER->Render();
+	PLAYER->Render();
 	UIM->Render();
 	SETTING->Render();
-	PLAYER->Render();
+	mouseIcon->Render();
+	mouseIcon2->Render();
+	fadeOut->Render();
 }
 
 void InGame::ResizeScreen()

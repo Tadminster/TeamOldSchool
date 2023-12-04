@@ -5,6 +5,7 @@ class MonsterManager
 	class Goblin* goblin[9] = {};
 	class Goblin* goblin2[4] = {};
 
+	class Elder_Stone* stone;
 	vector<Prototype*> unit;
 
 	Actor* monster01[JELLYFISHNUM] = {};

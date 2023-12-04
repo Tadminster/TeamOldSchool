@@ -157,6 +157,9 @@
     <ClInclude Include="OutroScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Elder_Stone.h">
+      <Filter>GameObject\Unit\Elder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
@@ -309,6 +312,9 @@
     </ClCompile>
     <ClCompile Include="OutroScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Elder_Stone.cpp">
+      <Filter>GameObject\Unit\Elder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
