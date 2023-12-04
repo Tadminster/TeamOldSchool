@@ -1,5 +1,5 @@
 #pragma once
-#define MINIMUM_FEATURE_COUNT 200
+#define MINIMUM_FEATURE_COUNT 250
 
 template<typename T>
 void ListEraser(std::list<T*>& list) {
@@ -61,7 +61,7 @@ public:
 
 	list<Prototype*>	GetObjects() { return objects; }
 	list<Collider*>		GetColliders();
-	Vector3			GetStartingPosition() { return Vector3(startingPosition->x, startingPosition->y, startingPosition->z); }
+	Vector3				GetStartingPosition() { return Vector3(startingPosition->x, startingPosition->y, startingPosition->z); }
 
 };
 
